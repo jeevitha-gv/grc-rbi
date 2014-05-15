@@ -39,3 +39,4 @@ gem 'spring',        group: :development
 
 # Devise
 gem 'devise'
+gem 'activeadmin', github: 'gregbell/active_admin'
