@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  
+
+  get 'companies/welcome', :as => :welcome
+  resources :companies
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get 'audits/index'

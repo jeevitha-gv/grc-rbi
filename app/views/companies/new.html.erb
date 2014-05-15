@@ -1,0 +1,38 @@
+<h1>Sign up now!</h1>
+<%= form_for :company, :url => companies_path do |f| %>
+
+    <p>
+      <%= f.label :name, 'Company' %><br>
+      <%= f.text_field :name %>
+    </p>
+
+    <p>
+      <%= f.label :primary_email, 'Primary Email' %><br>
+      <%= f.text_field :primary_email %>
+    </p>
+
+    <p>
+      <%= f.label :secondary_email, 'Secondary Email' %><br>
+      <%= f.text_field :secondary_email %>
+    </p>
+
+    <p>
+      <%= f.label :address1, 'Address Line 1' %><br>
+      <%= f.text_field :address1 %>
+    </p>
+
+    <p>
+      <%= f.label :address2, 'Address Line 2' %><br>
+      <%= f.text_field :address2 %>
+    </p>
+
+    <p>
+      <%= f.label :contact_no, 'Contact' %><br>
+      <%= f.text_field :contact_no %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+
+<% end %>
