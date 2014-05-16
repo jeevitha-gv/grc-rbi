@@ -4,6 +4,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :name
       t.string :primary_email
       t.string :secondary_email
+      t.string :domain
       t.string :address1
       t.string :address2
       t.string :timezone
