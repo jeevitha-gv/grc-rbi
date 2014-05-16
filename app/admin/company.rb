@@ -7,6 +7,7 @@ ActiveAdmin.register Company do
     column :name
     column :primary_email
     column :secondary_email
+    column :domain
     column :address1
     column :address2
     column :timezone
@@ -15,7 +16,7 @@ ActiveAdmin.register Company do
     actions
   end
 
-  permit_params :name, :primary_email, :secondary_email, :address1, :address2, :timezone, :country_id, :contact_no
+  permit_params :name, :primary_email, :secondary_email, :domain, :address1, :address2, :timezone, :country_id, :contact_no
   #
   # or
   #
