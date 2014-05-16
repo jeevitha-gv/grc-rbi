@@ -1,0 +1,4 @@
+users:
+  create:
+    success:  "Your account has been successfully created"
+    failure:  "We are experiencing an internal problem. Please try after couple of minutes."

@@ -2,32 +2,37 @@
 <%= form_for :company, :url => companies_path do |f| %>
 
     <p>
-      <%= f.label :name, 'Company' %><br>
+      <%= f.label :name, t('companies.company') %><br>
       <%= f.text_field :name %>
     </p>
 
     <p>
-      <%= f.label :primary_email, 'Primary Email' %><br>
+      <%= f.label :primary_email, t('companies.primary_email') %><br>
       <%= f.text_field :primary_email %>
     </p>
 
     <p>
-      <%= f.label :secondary_email, 'Secondary Email' %><br>
+      <%= f.label :secondary_email, t('companies.secondary_email') %><br>
       <%= f.text_field :secondary_email %>
     </p>
 
     <p>
-      <%= f.label :address1, 'Address Line 1' %><br>
+      <%= f.label :domain, t('domain') %><br>
+      <%= f.text_field :domain %>
+    </p>
+
+    <p>
+      <%= f.label :address1, t('companies.address1') %><br>
       <%= f.text_field :address1 %>
     </p>
 
     <p>
-      <%= f.label :address2, 'Address Line 2' %><br>
+      <%= f.label :address2, t('companies.address2') %><br>
       <%= f.text_field :address2 %>
     </p>
 
     <p>
-      <%= f.label :contact_no, 'Contact' %><br>
+      <%= f.label :contact_no, t('companies.contact') %><br>
       <%= f.text_field :contact_no %>
     </p>
 

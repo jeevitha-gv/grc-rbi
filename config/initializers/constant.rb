@@ -1,0 +1,1 @@
+MESSAGES = YAML.load_file("#{Rails.root.to_s}/config/messages.yml")
