@@ -9,6 +9,7 @@ ActiveAdmin.register Section do
   end
 
   show do
+    attributes_table :id, :name
   end
 
 end
