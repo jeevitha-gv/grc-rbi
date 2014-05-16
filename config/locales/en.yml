@@ -20,4 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  companies:
+    company:  "Company Name"
+    primary_email: "Primary Email"
+    secondary_email: "Secondary Email"
+    domain: "Sub Domain"
+    address1: "Address Line 1"
+    address2: "Address Line 2"
+    contact: "Contact"
