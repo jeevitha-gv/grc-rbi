@@ -1,9 +1,20 @@
 ActiveAdmin.register Company do
 
-  
-  # See permitted parameters documentation:
-  # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
+  # Remove new company creation option from ActiveAdmin
+  actions :all, :except => [:new]
+
+  index do
+    column :name
+    column :primary_email
+    column :secondary_email
+    column :address1
+    column :address2
+    column :timezone
+    column :country_id
+    column :contact_no
+    actions
+  end
+
   permit_params :name, :primary_email, :secondary_email, :address1, :address2, :timezone, :country_id, :contact_no
   #
   # or
