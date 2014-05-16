@@ -1,6 +1,7 @@
 ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation
   
+  menu :if => proc{ current_admin_user.present? }
   #authentication
   controller do
     before_filter :authenticate_admin_user!
