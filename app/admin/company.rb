@@ -1,5 +1,10 @@
 ActiveAdmin.register Company do
 
+  menu :if => proc{ current_admin_user.present? }
+  #authentication
+  controller do
+    before_filter :authenticate_admin_user!
+  end
   # Remove new company creation option from ActiveAdmin
   actions :all, :except => [:new]
 
