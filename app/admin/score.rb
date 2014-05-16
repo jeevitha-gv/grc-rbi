@@ -1,5 +1,10 @@
 ActiveAdmin.register Score do
 
+  #authentication
+  controller do
+    before_filter :authenticate_admin_user!
+  end
+  
     # remove new record creation option
     actions :all, :except => [:new]
 
@@ -12,11 +17,11 @@ ActiveAdmin.register Score do
     actions    
   end     
   
-  #form for edit scores
    form do |f|
     f.inputs "Edit scores" do
-      f.input :level
+      f.input :level, :hidden_input => true
       f.input :description
+   
     end
     f.actions
   end
