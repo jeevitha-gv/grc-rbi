@@ -1,5 +1,7 @@
 class CompaniesController < ApplicationController
 
+  before_filter :authenticate_admin_user, :only => [:settings]
+
   def index
     @companies = Company.all
   end
@@ -15,10 +17,14 @@ class CompaniesController < ApplicationController
       redirect_to welcome_path
     end
   end
-
+  
+   
+  def settings
+  end
+  
   private
   def company_params
-    params.require(:company).permit(:name, :primary_email, :secondary_email, :address1, :address2, :contact_no)
+    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :contact_no)
   end
 
 end
