@@ -29,3 +29,6 @@ en:
     address2: "Address Line 2"
     contact: "Contact"
     country: "Country"
+
+  system:
+    hello:  "Hello"
