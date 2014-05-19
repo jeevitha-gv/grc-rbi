@@ -8,6 +8,14 @@ Rails.application.routes.draw do
   get 'audits/index'
 
   devise_for :users
+
+
+  resource :user, only: [:edit] do
+    collection do
+      patch 'update_password'
+    end
+    get '/user/edit', to: 'users#edit', as: 'reset_password'
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
