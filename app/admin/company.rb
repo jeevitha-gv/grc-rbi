@@ -6,7 +6,7 @@ ActiveAdmin.register Company do
     before_filter :authenticate_admin_user!
   end
   # Remove new company creation option from ActiveAdmin
-  actions :all, :except => [:new]
+  actions :all, :except => [:new, :destroy]
 
   index do
     column :name
@@ -18,10 +18,11 @@ ActiveAdmin.register Company do
     column :timezone
     column :country_id
     column :contact_no
+    column :is_disabled
     actions
   end
 
-  permit_params :name, :primary_email, :secondary_email, :domain, :address1, :address2, :timezone, :country_id, :contact_no
+  permit_params :name, :primary_email, :secondary_email, :domain, :address1, :address2, :timezone, :country_id, :contact_no, :is_disabled
   #
   # or
   #
