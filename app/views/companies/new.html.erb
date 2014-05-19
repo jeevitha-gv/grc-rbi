@@ -1,8 +1,7 @@
 <h1>Sign up now!</h1>
 
-<%= link_to_unless_current "English", locale: "en" %> |
-<%= link_to_unless_current "French", locale: "fr" %>
-
+<%= link_to_unless_current "EN", {locale: "en"} %>
+<%= link_to_unless_current "FR", {locale: "fr"} %>
 
 <%= form_for :company, :url => companies_path do |f| %>
 
