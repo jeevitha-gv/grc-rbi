@@ -1,0 +1,10 @@
+fr:
+  companies:
+    company:  "Entreprise"
+    primary_email: "Primaire Email"
+    secondary_email: "Secondaire Email"
+    domain: "Sub Domaine"
+    address1: "Address Line 1"
+    address2: "Address Line 2"
+    contact: "Contact"
+    country: "Country"
