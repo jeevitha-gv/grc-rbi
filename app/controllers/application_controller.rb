@@ -4,11 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
-
   before_filter :set_locale
-  def set_locale
-    I18n.locale = params[:locale] if params[:locale].present?
-  end
+  helper_method :current_company
 
 
   protected
@@ -17,12 +14,25 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :user_name
     devise_parameter_sanitizer.for(:sign_up) << :full_name
   end
-  
+
   #To check company admin for settings
   def authenticate_admin_user
     if current_user.roles.first.title == 'company admin'
       redirect_to '/admin/dashboard'
     end
+  end
+
+  def current_company
+    begin
+      Company.find_by_id(current_user.company_id)
+    rescue ActiveRecord::RecordNotFound
+      redirect_to welcome_path
+      return
+    end
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] if params[:locale].present?
   end
 
 end
