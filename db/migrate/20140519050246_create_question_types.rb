@@ -4,9 +4,8 @@ class CreateQuestionTypes < ActiveRecord::Migration
       t.string :name
       t.timestamps
     end
-
-    # QuestionType.create([{name: ''}])
-    # QuestionType.create([{name: ''}])
-    # QuestionType.create([{name: ''}])
+    QuestionType.create([{name: 'Yes or No'}])
+    QuestionType.create([{name: 'Descriptive Type'}])
+    QuestionType.create([{name: 'Multiple Choice'}])
   end
 end

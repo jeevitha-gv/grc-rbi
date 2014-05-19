@@ -8,5 +8,10 @@ class User < ActiveRecord::Base
 
   has_many :roles, :through => :previleges
   has_many :previleges
+
+  has_many :teams, :through => :user_teams
+  has_many :user_teams
+
+  belongs_to :company
   belongs_to :language
 end

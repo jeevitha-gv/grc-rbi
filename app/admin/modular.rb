@@ -5,7 +5,6 @@ ActiveAdmin.register Modular do
 
   index do
     selectable_column
-    id_column
     column :controller_name
     column :action_name
     actions
