@@ -10,6 +10,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :timezone
       t.integer :country_id
       t.string :contact_no
+      t.boolean :is_disabled
 
       t.timestamps
     end
