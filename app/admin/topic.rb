@@ -7,6 +7,7 @@ ActiveAdmin.register Topic do
 
 
   index do 
+    selectable_column
    	column :name
    	actions
   end

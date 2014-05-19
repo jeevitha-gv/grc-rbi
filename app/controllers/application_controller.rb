@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :user_name
     devise_parameter_sanitizer.for(:sign_up) << :full_name
+    devise_parameter_sanitizer.for(:sign_up) << :time_zone
   end
 
   #To check company admin for settings

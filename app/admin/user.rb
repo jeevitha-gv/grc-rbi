@@ -4,6 +4,8 @@ ActiveAdmin.register User do
 menu :if => proc{ !current_admin_user.present? }
 
 index do
+  selectable_column
+  column :company_id
   column :full_name
   column :email
   column :user_name
@@ -30,15 +32,6 @@ form do |f|
     end
   end
   f.actions
-end
-
-
-
-
-controller do
-  def permitted_params
-    params.permit!
-  end
 end
   
 end
