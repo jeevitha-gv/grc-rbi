@@ -8,13 +8,10 @@ class User < ActiveRecord::Base
 
   has_many :roles, :through => :previleges
   has_many :previleges
-<<<<<<< HEAD
 
   has_many :teams, :through => :user_teams
   has_many :user_teams
 
   belongs_to :company
-=======
   belongs_to :language
->>>>>>> c527c5510ad8eb2e1e8beb8399be0f323f46dfdc
 end
