@@ -39,6 +39,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string  :authentication_token
       t.integer :manager
 
+      t.integer :language_id
+
 
       t.timestamps
     end

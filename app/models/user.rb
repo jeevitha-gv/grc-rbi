@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
 
   has_many :roles, :through => :previleges
   has_many :previleges
+  belongs_to :language
 end
