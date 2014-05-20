@@ -31,10 +31,12 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    # session[:locale] = params[:locale] if params[:locale]
-    # I18n.locale = session[:locale] || I18n.default_locale
-    I18n.locale  = Language.find(current_user.language_id).code || I18n.default_locale
-    MESSAGES.replace ALLMESSAGES["#{I18n.locale}"]
+    unless current_user.blank?
+      # session[:locale] = params[:locale] if params[:locale]
+      # I18n.locale = session[:locale] || I18n.default_locale
+      I18n.locale  = Language.find(current_user.language_id).code || I18n.default_locale
+      MESSAGES.replace ALLMESSAGES["#{I18n.locale}"]
+    end
   end
 
 end
