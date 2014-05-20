@@ -1,0 +1,29 @@
+en:
+  users:
+    create:
+        success: "Your account has been successfully created"
+        failure: "We are experiencing an internal problem. Please try after couple of minutes."
+
+  topics:
+    create:
+        success: "Your account has been successfully created"
+        failure: "We are experiencing an internal problem. Please try after couple of minutes."
+
+  company:
+    domain:
+        unique: "Sorry, this domain has already been taken."
+
+fr:
+  users:
+    create:
+        success: "ddddddd"
+        failure: "ddddd."
+
+  topics:
+    create:
+        success: "Your account has been successfully created"
+        failure: "We are experiencing an internal problem. Please try after couple of minutes."
+
+  company:
+    domain:
+        unique: "Sorry, this domain has already been taken."

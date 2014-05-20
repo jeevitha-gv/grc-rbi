@@ -7,13 +7,11 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   helper_method :current_company
 
-
   protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :user_name
     devise_parameter_sanitizer.for(:sign_up) << :full_name
-    devise_parameter_sanitizer.for(:sign_up) << :time_zone
   end
 
   #To check company admin for settings
@@ -33,8 +31,10 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    session[:locale] = params[:locale] if params[:locale]
-    I18n.locale = session[:locale] || I18n.default_locale
+    # session[:locale] = params[:locale] if params[:locale]
+    # I18n.locale = session[:locale] || I18n.default_locale
+    I18n.locale  = Language.find(current_user.language_id).code || I18n.default_locale
+    MESSAGES.replace ALLMESSAGES["#{I18n.locale}"]
   end
 
 end
