@@ -2,6 +2,8 @@ ActiveAdmin.register Team do
 
       menu :if => proc{ !current_admin_user.present? }
 
+      permit_params :name
+
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
