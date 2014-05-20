@@ -15,5 +15,7 @@ class User < ActiveRecord::Base
   belongs_to :company
   belongs_to :language
 
+  has_one :profile
+
   validates :user_name, :full_name , presence: true, uniqueness: true
 end

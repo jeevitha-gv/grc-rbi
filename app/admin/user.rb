@@ -5,7 +5,6 @@ menu :if => proc{ !current_admin_user.present? }
 
 index do
   selectable_column
-  column :company_id
   column :full_name
   column :email
   column :user_name
