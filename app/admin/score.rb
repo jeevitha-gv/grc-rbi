@@ -5,12 +5,14 @@ ActiveAdmin.register Score do
   
     # remove new record creation option
     actions :all, :except => [:new]
+    actions :all, :except => [:destroy]
 
   permit_params :id, :level, :description
   
   #display the required fields in index
-  index do                            
-    column :level        
+  index do 
+    selectable_column                          
+    column :level       
     column :description     
     actions    
   end     
@@ -19,7 +21,6 @@ ActiveAdmin.register Score do
     f.inputs "Edit scores" do
       f.input :level, :hidden_input => true
       f.input :description
-   
     end
     f.actions
   end

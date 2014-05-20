@@ -6,6 +6,12 @@ ActiveAdmin.register Role do
   end
  
   permit_params :title, :company_id
-  
+
+  index do
+  	selectable_column
+  	column :title
+  	actions
+  end
+ 
   
 end
