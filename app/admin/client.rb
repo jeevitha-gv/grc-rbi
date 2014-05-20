@@ -4,35 +4,6 @@ ActiveAdmin.register Client do
 
   permit_params :name, :company_id, :address1, :address2, :contact_no, :email
 
-  controller do 
-    def create 
-      @client = Client.new(client_params)
-      @client.company_id = current_user.company_id
-      if @client.save
-        redirect_to admin_clients_path
-      else 
-        redirect_to new_admin_client_path
-      end
-    end
-
-    private
-      def client_params
-        params.require(:client).permit(:name, :address1, :address2, :contact_no, :email)
-      end
-  end
-  
-  # See permitted parameters documentation:
-  # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #  permitted = [:permitted, :attributes]
-  #  permitted << :other if resource.something?
-  #  permitted
-  # end
   index do
     column :name
     column :company_id
