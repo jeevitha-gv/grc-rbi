@@ -16,12 +16,36 @@ ActiveAdmin.register Company do
     column :address1
     column :address2
     column :timezone
-    column :country_id
+    column :country
     column :contact_no
     column :is_disabled
     actions
   end
 
+  form do |f|
+    f.inputs "Company Details" do
+      f.input :name
+      f.input :primary_email , :input_html => { :disabled => true }
+      f.input :secondary_email
+      f.input :domain , :input_html => { :disabled => true }
+      f.input :address1
+      f.input :address2
+      f.input :timezone
+      f.input :country
+      f.input :contact_no
+      f.input :is_disabled
+    end
+    f.actions
+  end
+
   permit_params :name, :primary_email, :secondary_email, :domain, :address1, :address2, :timezone, :country_id, :contact_no, :is_disabled
+  #
+  # or
+  #
+  # permit_params do
+  #  permitted = [:permitted, :attributes]
+  #  permitted << :other if resource.something?
+  #  permitted
+  # end
   
 end
