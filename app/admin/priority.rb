@@ -15,4 +15,8 @@ ActiveAdmin.register Priority do
     column :name
     actions
   end
+
+  show do
+    attributes_table :name
+  end
 end

@@ -1,9 +1,9 @@
 class AuditsController < ApplicationController
   before_action :authenticate_user!
-  before_action :current_company_disabled
+  # before_action :current_company_disabled
 
   def index
-    
+
   end
 
 

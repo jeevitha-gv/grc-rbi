@@ -9,4 +9,8 @@ ActiveAdmin.register Modular do
     column :action_name
     actions
   end
+
+  show do
+    attributes_table :controller_name, :action_name, :section
+  end
 end
