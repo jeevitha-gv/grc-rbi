@@ -11,20 +11,19 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    @company = Company.new(company_params)
 
+    @company = Company.new(company_params)
     if @company.save
       redirect_to welcome_path
     end
   end
-  
-   
+
+
   def settings
   end
-  
+
   private
   def company_params
-    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no)
+    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :attachments_attributes =>[:attachment])
   end
-
 end
