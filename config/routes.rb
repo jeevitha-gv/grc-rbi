@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+<<<<<<< HEAD
    root 'audits#index'
    
    # subdomain root path
@@ -23,6 +24,9 @@ Rails.application.routes.draw do
     get '/' => 'audits#index'
    end
 
+=======
+   root 'companies#new'
+>>>>>>> 89a968c4c095e36eaa402c65b32596147d2b42f2
   
   resources :companies do     
     member do      

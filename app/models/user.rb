@@ -17,7 +17,17 @@ class User < ActiveRecord::Base
 
   has_one :profile
 
+<<<<<<< HEAD
   validates :user_name, :full_name , presence: true, uniqueness: true
   
   delegate :title, to: :dealer, prefix: true
+=======
+  #validates :user_name, :full_name, presence: true, uniqueness: true
+  protected
+
+  def password_required?
+    false
+  end
+  
+>>>>>>> 89a968c4c095e36eaa402c65b32596147d2b42f2
 end
