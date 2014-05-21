@@ -6,5 +6,10 @@ class CreateLanguages < ActiveRecord::Migration
 
       t.timestamps
     end
+    [
+        { :name => 'English', :code => 'en' },
+        { :name => 'French', :code => 'fr' }
+    ].each do |l|
+      Language.create(:name => l[:name], :code => l[:code])
   end
 end
