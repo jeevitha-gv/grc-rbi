@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_filter :set_locale
+  before_filter :set_locale, :if => :current_user
+  before_filter :set_time_zone, :if => :current_user
   helper_method :current_company
 
   protected
@@ -31,12 +32,23 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    unless current_user.blank?
-      # session[:locale] = params[:locale] if params[:locale]
-      # I18n.locale = session[:locale] || I18n.default_locale
-      I18n.locale  = Language.find(current_user.language_id).code || I18n.default_locale
-      MESSAGES.replace ALLMESSAGES["#{I18n.locale}"]
+    begin
+      I18n.locale  = ::Language.find(current_user.language_id).code || I18n.default_locale
+      MESSAGES.replace ::ALLMESSAGES["#{I18n.locale}"]
+    rescue ActiveRecord::RecordNotFound
+      redirect_to welcome_path
+      return
     end
   end
 
+  def set_time_zone
+    case current_user.timezone || current_company.timezone
+    when current_user.timezone
+      Time.zone = current_user.timezone
+    when current_company.timezone
+      Time.zone = current_company.timezone
+    else
+      Time.zone = "London"
+    end
+  end
 end

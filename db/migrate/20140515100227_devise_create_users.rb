@@ -39,7 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string  :authentication_token
       t.integer :manager
       t.integer :language_id
-      t.string  :time_zone
+      t.string  :timezone
 
 
       t.timestamps

@@ -12,7 +12,7 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
-
+    @company.timezone = params[:timezone].values[0]
     if @company.save
       redirect_to welcome_path
     end
@@ -24,6 +24,6 @@ class CompaniesController < ApplicationController
 
   private
   def company_params
-    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :attachments_attributes =>[:file])
+    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :timezone, :attachments_attributes =>[:file])
   end
 end
