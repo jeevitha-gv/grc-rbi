@@ -1,1 +1,2 @@
-MESSAGES = YAML.load_file("#{Rails.root.to_s}/config/messages.yml")
+ALLMESSAGES = YAML.load_file("#{Rails.root.to_s}/config/locales/messages.yml")
+MESSAGES =  ALLMESSAGES["en"]
