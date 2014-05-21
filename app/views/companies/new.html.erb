@@ -3,7 +3,7 @@
 <%= link_to_unless_current "EN", {locale: "en"} %>
 <%= link_to_unless_current "FR", {locale: "fr"} %>
 
-<%= form_for :company, :url => companies_path, :html => {:multipart => true} do |f| %>
+<%= form_for(@company) do |f| %>
 
     <p>
       <%= f.label :name, t('companies.company') %><br>
@@ -35,10 +35,9 @@
       <%= f.text_field :address2 %>
     </p>
 
-    <%= f.fields_for :attachments do |ff| %>
-        <%= ff.label :attachment %><br />
-        <%= ff.file_field :attachment %>
-
+    <%= f.fields_for :attachments do |attach| %>
+        <%= attach.label :attachment %><br />
+        <%= attach.file_field :attachment_file %>
     <% end %>
 
     <p>

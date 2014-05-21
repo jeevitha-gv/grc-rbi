@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-
+  before_filter :check_subdomain
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :set_locale
   helper_method :current_company
@@ -16,17 +16,41 @@ class ApplicationController < ActionController::Base
 
   #To check company admin for settings
   def authenticate_admin_user
-    if current_user.roles.first.title == 'company admin'
+    if current_user.role_title == 'company admin'
       redirect_to '/admin/dashboard'
     end
   end
-
+  
+  # Return current company for logged_in user
   def current_company
-    begin
-      Company.find_by_id(current_user.company_id)
-    rescue ActiveRecord::RecordNotFound
-      redirect_to welcome_path
-      return
+    @company ||= current_user.company if current_user.present?
+  end
+  
+  # will check for sudomain presence and correct subdomain
+  def check_subdomain
+    if(request.subdomain.present? || current_company.present?)
+      current_company.present? ? check_current_company_domain : (redirect_to current_path_without_subdomain)
+    end
+  end
+  
+  # Escape the subdomain from the given url
+  def escape_subdomain
+    if(request.subdomain.present?)
+      redirect_to current_path_without_subdomain
+    end
+  end
+  
+  # Checks whether current domain matches the logged_in company domain
+  def check_current_company_domain
+    unless(current_company.domain.eql?(request.subdomain))
+      redirect_to current_path_with_subdomain
+    end
+  end
+  
+  # Will not allow to access the page if authenticated
+  def skip_if_authenticated
+    if(current_user)
+      redirect_to root_path
     end
   end
 
@@ -37,6 +61,16 @@ class ApplicationController < ActionController::Base
       I18n.locale  = Language.find(current_user.language_id).code || I18n.default_locale
       MESSAGES.replace ALLMESSAGES["#{I18n.locale}"]
     end
+  end
+  
+  # Returns URL with subdomain.. Call this function after User logged_in areas
+  def current_path_with_subdomain
+    "http://" + current_company.domain + "." + request.domain + request.fullpath
+  end
+  
+  # Returns URL without subdomain..
+  def current_path_without_subdomain
+    "http://" + request.domain + request.fullpath
   end
 
 end

@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'companies/welcome', :as => :welcome
-  resources :companies
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get 'audits/index'
 
   devise_for :users
 
@@ -14,20 +11,29 @@ Rails.application.routes.draw do
     collection do
       patch 'update_password'
     end
-    get '/user/edit', to: 'users#edit', as: 'reset_password'
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
    root 'audits#index'
+   
+   # subdomain root path
+   constraints(Subdomain) do
+    get '/' => 'audits#index'
+   end
+
   
-  resources :companies do
-    member do
+  resources :companies do     
+    member do      
       get 'settings'
+    end
+    collection do
+      get 'welcome', to: 'companies#welcome', :as => :welcome
     end
    end
   
+   get 'welcome', to: 'companies#welcome', :as => :welcome
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

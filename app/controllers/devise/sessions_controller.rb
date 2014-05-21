@@ -2,6 +2,8 @@ class Devise::SessionsController < DeviseController
   prepend_before_filter :require_no_authentication, only: [ :new, :create ]
   prepend_before_filter :allow_params_authentication!, only: :create
   prepend_before_filter only: [ :create, :destroy ] { request.env["devise.skip_timeout"] = true }
+  skip_before_filter :check_subdomain, only: [ :new, :create ]
+  before_filter :escape_subdomain, only: [ :new, :create ]
 
   # GET /resource/sign_in
   def new
