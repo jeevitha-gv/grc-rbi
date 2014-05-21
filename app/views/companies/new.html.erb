@@ -12,7 +12,7 @@
       <%= u.text_field :email %>
     </p>
   <% end %>
-    
+
     <p>
       <%= f.label :name, t('companies.company') %><br>
       <%= f.text_field :name %>
@@ -21,7 +21,7 @@
     <p>
       <%= f.label :domain, t('domain') %><br>
       <%= f.text_field :domain %> .fixrnix.in
-    </p>    
+    </p>
 
     <%= f.fields_for :attachments do |attach| %>
         <%= attach.label :attachment %><br />
@@ -31,11 +31,12 @@
     <p>
       <%= f.label :country_id, t('companies.country') %><br>
       <%= f.collection_select :country_id, Country.all, :id, :name %>
-    </p>    
+    </p>
 
     <p>
       <%= f.label :timezone, t('companies.timezone') %><br>
-      <%= time_zone_select(:timezone, ActiveSupport::TimeZone.zones_map) %>
+      <%= binding.pry %>
+      <%= f.select(:timezone, Company::TIMEZONES) %>
     </p>
 
     <p>

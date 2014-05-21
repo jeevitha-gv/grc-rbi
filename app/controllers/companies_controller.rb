@@ -16,7 +16,6 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
-    @company.timezone = params[:timezone].values[0]
     if @company.save
       redirect_to welcome_path
     end
