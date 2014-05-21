@@ -11,5 +11,6 @@ class CreateLanguages < ActiveRecord::Migration
         { :name => 'French', :code => 'fr' }
     ].each do |l|
       Language.create(:name => l[:name], :code => l[:code])
+    end
   end
 end
