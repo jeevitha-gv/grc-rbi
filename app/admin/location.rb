@@ -4,6 +4,7 @@ ActiveAdmin.register Location do
   permit_params :name, :company_id
 
   controller do
+    #publicactivity gem
     include PublicActivity::StoreController  
   
     def create
