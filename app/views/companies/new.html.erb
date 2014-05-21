@@ -1,39 +1,28 @@
 <h1>Sign up now!</h1>
 
-<%= link_to_unless_current "EN", {locale: "en"} %>
-<%= link_to_unless_current "FR", {locale: "fr"} %>
-
 <%= form_for :company, :url => companies_path, :html => {:multipart => true} do |f| %>
 
+
+  <%= f.fields_for :user do |u| %>
+    <p>
+      <%= u.label :full_name, t('users.name') %><br>
+      <%= u.text_field :full_name %>
+    </p>
+    <p>
+      <%= u.label :email, t('users.email') %><br>
+      <%= u.text_field :email %>
+    </p>
+  <% end %>
+    
     <p>
       <%= f.label :name, t('companies.company') %><br>
       <%= f.text_field :name %>
     </p>
 
     <p>
-      <%= f.label :primary_email, t('companies.primary_email') %><br>
-      <%= f.text_field :primary_email %>
-    </p>
-
-    <p>
-      <%= f.label :secondary_email, t('companies.secondary_email') %><br>
-      <%= f.text_field :secondary_email %>
-    </p>
-
-    <p>
       <%= f.label :domain, t('domain') %><br>
-      <%= f.text_field :domain %>
-    </p>
-
-    <p>
-      <%= f.label :address1, t('companies.address1') %><br>
-      <%= f.text_field :address1 %>
-    </p>
-
-    <p>
-      <%= f.label :address2, t('companies.address2') %><br>
-      <%= f.text_field :address2 %>
-    </p>
+      <%= f.text_field :domain %> .fixrnix.in
+    </p>    
 
     <%= f.fields_for :attachments do |ff| %>
         <%= ff.label :attachment %><br />
@@ -44,12 +33,7 @@
     <p>
       <%= f.label :country_id, t('companies.country') %><br>
       <%= f.collection_select :country_id, Country.all, :id, :name %>
-    </p>
-
-    <p>
-      <%= f.label :contact_no, t('companies.contact') %><br>
-      <%= f.text_field :contact_no %>
-    </p>
+    </p>    
 
     <p>
       <%= f.submit %>
