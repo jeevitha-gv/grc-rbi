@@ -34,6 +34,11 @@
     </p>    
 
     <p>
+      <%= f.label :timezone, t('companies.timezone') %><br>
+      <%= time_zone_select(:timezone, ActiveSupport::TimeZone.zones_map) %>
+    </p>
+
+    <p>
       <%= f.submit %>
     </p>
 

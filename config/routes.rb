@@ -32,7 +32,11 @@ Rails.application.routes.draw do
       get 'welcome', to: 'companies#welcome', :as => :welcome
     end
    end
-   
+
+   resources :activities
+  
+   get 'welcome', to: 'companies#welcome', :as => :welcome
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

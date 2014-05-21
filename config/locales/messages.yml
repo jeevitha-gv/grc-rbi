@@ -12,6 +12,30 @@ en:
     domain:
         unique: "Sorry, this domain has already been taken."
 
+  section:
+    create:
+      success: "Section was created successfully."
+      update: "Section was successfully updated."
+      destroy: "Section was successfully destroyed."
+      create: "Section was successfully created."
+      failure: ""
+
+  priorities:
+    create:
+      success: "Section was created successfully."
+      update: "Section was successfully updated."
+      destroy: "Section was successfully destroyed."
+      create: "Section was successfully created."
+      failure: ""
+
+  modulars:
+    create:
+      success: "Section was created successfully."
+      update: "Section was successfully updated."
+      destroy: "Section was successfully destroyed."
+      create: "Section was successfully created."
+      failure: ""
+
 fr:
   users:
     create:
@@ -26,3 +50,27 @@ fr:
   company:
     domain:
         unique: "Sorry, this domain has already been taken."
+
+  section:
+    create:
+      success: "Section was created successfully."
+      update: "Section was successfully updated."
+      destroy: "Section was successfully destroyed."
+      create: "Section was successfully created."
+      failure: ""
+
+  priorities:
+    create:
+      success: "Section was created successfully."
+      update: "Section was successfully updated."
+      destroy: "Section was successfully destroyed."
+      create: "Section was successfully created."
+      failure: ""
+
+  modulars:
+    create:
+      success: "Section was created successfully."
+      update: "Section was successfully updated."
+      destroy: "Section was successfully destroyed."
+      create: "Section was successfully created."
+      failure: ""

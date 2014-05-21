@@ -1,9 +1,12 @@
 ActiveAdmin.register Location do
   menu :if => proc{ !current_admin_user.present? }
-
+  
   permit_params :name, :company_id
 
   controller do
+    #publicactivity gem
+    include PublicActivity::StoreController  
+  
     def create
       @location = Location.new(location_params)
       @location.company_id = current_user.company_id
@@ -29,7 +32,7 @@ ActiveAdmin.register Location do
 
   form do |f|
     f.inputs "New Location" do
-      f.input :name
+      f.input :name, :label => t('en.location.name')
     end
     f.actions
   end
