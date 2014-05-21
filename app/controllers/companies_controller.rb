@@ -7,15 +7,17 @@ class CompaniesController < ApplicationController
   end
 
   def new
-    @company = Company.new
+    @company = Company.new    
   end
 
   def create
-    @company = Company.new(company_params)
 
+    @company = Company.new(company_params)    
     if @company.save
+      binding.pry
+      @company.users.create(user_params[:user])
       redirect_to welcome_path
-    end
+    end    
   end
 
 
@@ -24,6 +26,9 @@ class CompaniesController < ApplicationController
 
   private
   def company_params
-    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :attachments_attributes =>[:file])
+    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :attachments_attributes =>[:attachment])
+  end
+  def user_params
+    params.require(:company).permit(:user => [:email, :full_name])
   end
 end
