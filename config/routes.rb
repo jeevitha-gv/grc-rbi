@@ -1,12 +1,5 @@
 Rails.application.routes.draw do
 
-<<<<<<< HEAD
-  get 'activities/index'
-
-  get 'companies/welcome', :as => :welcome
-  resources :companies
-=======
->>>>>>> 60879cce425b14f6a6ba66896c8c6334045add38
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

@@ -10,10 +10,6 @@ class ApplicationController < ActionController::Base
   before_filter :set_time_zone, :if => :current_user
   helper_method :current_company
 
-<<<<<<< HEAD
- 
-=======
->>>>>>> 60879cce425b14f6a6ba66896c8c6334045add38
   protected
 
   def configure_permitted_parameters
@@ -80,8 +76,6 @@ class ApplicationController < ActionController::Base
   def current_path_without_subdomain
     "http://" + request.domain + request.fullpath
   end
-<<<<<<< HEAD
-=======
 
   def set_time_zone
     case current_user.timezone || current_company.timezone
@@ -93,5 +87,4 @@ class ApplicationController < ActionController::Base
       Time.zone = "London"
     end
   end
->>>>>>> 60879cce425b14f6a6ba66896c8c6334045add38
 end
