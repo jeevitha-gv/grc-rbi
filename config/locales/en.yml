@@ -31,7 +31,7 @@ en:
     country: "Country"
 
   users:
-    name:  "Your Name"
+    username:  "Username"
     email: "Email"
 
   system:

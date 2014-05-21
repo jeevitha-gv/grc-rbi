@@ -26,6 +26,6 @@ class CompaniesController < ApplicationController
     params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :attachments_attributes =>[:attachment])
   end
   def user_params
-    params.require(:company).permit(:user => [:email, :full_name])
+    params.require(:company).permit(:user => [:email, :user_name])
   end
 end

@@ -5,8 +5,8 @@
 
   <%= f.fields_for :user do |u| %>
     <p>
-      <%= u.label :full_name, t('users.name') %><br>
-      <%= u.text_field :full_name %>
+      <%= u.label :user_name, t('users.username') %><br>
+      <%= u.text_field :user_name %>
     </p>
     <p>
       <%= u.label :email, t('users.email') %><br>
