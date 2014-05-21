@@ -12,6 +12,7 @@ class CompaniesController < ApplicationController
   def new
     @company = Company.new
     @company.attachments.build
+    @company.users.build
   end
 
   def create
@@ -26,6 +27,6 @@ class CompaniesController < ApplicationController
 
   private
   def company_params
-    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :timezone, :attachments_attributes =>[:attachment_file])
+    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, attachments_attributes: [:attachment_file], users_attributes: [:user_name, :email])
   end
 end
