@@ -45,3 +45,5 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'carrierwave'
 
 gem 'pry'
+
+gem 'public_activity'

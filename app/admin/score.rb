@@ -19,7 +19,7 @@ ActiveAdmin.register Score do
   
    form do |f|
     f.inputs "Edit scores" do
-      f.input :level, :hidden_input => true
+      f.input :level, :input_html => { :disabled => true } 
       f.input :description
     end
     f.actions

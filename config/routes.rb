@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'activities/index'
+
   get 'companies/welcome', :as => :welcome
   resources :companies
 
@@ -27,6 +29,7 @@ Rails.application.routes.draw do
       get 'settings'
     end
    end
+   resources :activities
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

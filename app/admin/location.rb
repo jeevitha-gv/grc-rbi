@@ -1,9 +1,11 @@
 ActiveAdmin.register Location do
   menu :if => proc{ !current_admin_user.present? }
-
+  
   permit_params :name, :company_id
 
   controller do
+    include PublicActivity::StoreController  
+  
     def create
       @location = Location.new(location_params)
       @location.company_id = current_user.company_id
