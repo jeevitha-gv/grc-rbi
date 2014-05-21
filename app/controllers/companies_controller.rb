@@ -11,15 +11,12 @@ class CompaniesController < ApplicationController
   end
 
   def create
-
     @company = Company.new(company_params)    
-    if @company.save
-      binding.pry
+    if @company.save      
       @company.users.create(user_params[:user])
       redirect_to welcome_path
     end    
   end
-
 
   def settings
   end

@@ -17,5 +17,11 @@ class User < ActiveRecord::Base
 
   has_one :profile
 
-  validates :user_name, :full_name , presence: true, uniqueness: true
+  #validates :user_name, :full_name, presence: true, uniqueness: true
+  protected
+
+  def password_required?
+    false
+  end
+  
 end
