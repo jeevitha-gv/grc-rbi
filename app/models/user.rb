@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
 
   has_one :profile
 
-  validates :user_name, :full_name , presence: true, uniqueness: true
-  
+  # validates :user_name, :full_name , presence: true, uniqueness: true
+
   delegate :title, to: :dealer, prefix: true
 
   protected

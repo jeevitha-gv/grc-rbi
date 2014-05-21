@@ -1,16 +1,18 @@
-<!-- Form for Updating the password of the user -->
 
-<%= form_for(@user, :url => { :action => "update_password" } ) do |f| %>
-  <div >
-    <%= f.label :password, "Password" %><br />
-    <%= f.password_field :password, :autocomplete => "off"  %>
-  </div>
+<%= form_for(@user, :url => { :action => "update" } ) do |f| %>
+  
+<div>
+  <%= @user.email %>
+</div>
+<div>
+  <%= f.label :full_name %>
+  <%= text_field :full_name %>
+</div>
   <div>
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
+    <%= f.label :user_name %>
+    <%= f.text_field :user_name %>
   </div>
   <br />
-  <div>
-    <%= f.submit "Update Password" %>
-  </div>
+
+  <%= f.submit %>
 <% end %>

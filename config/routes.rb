@@ -7,10 +7,11 @@ Rails.application.routes.draw do
   devise_for :users
 
 
-  resource :user, only: [:edit] do
+  resource :user do
     collection do
       patch 'update_password'
     end
+    get "password"
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -31,8 +32,7 @@ Rails.application.routes.draw do
       get 'welcome', to: 'companies#welcome', :as => :welcome
     end
    end
-  
-   get 'welcome', to: 'companies#welcome', :as => :welcome
+   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
