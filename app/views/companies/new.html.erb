@@ -35,7 +35,6 @@
 
     <p>
       <%= f.label :timezone, t('companies.timezone') %><br>
-      <%= binding.pry %>
       <%= f.select(:timezone, Company::TIMEZONES) %>
     </p>
 
