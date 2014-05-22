@@ -87,4 +87,9 @@ class ApplicationController < ActionController::Base
       Time.zone = "London"
     end
   end
+
+  # Routing to sign in path after signout
+  def after_sign_out_path_for(resource_or_scope)
+    new_session_path(resource_name)
+  end
 end
