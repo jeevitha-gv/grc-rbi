@@ -3,9 +3,10 @@
   <div class="col-md-5 col-md-offset-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><strong>Sign Up</strong></h3>
+        <h3 class="panel-title"><strong>New Company</strong></h3>
+        <%= link_to "Sign in", "/users/sign_in", :class => "panel-title pull-right", style: "margin-top: -20px; font-size: 12px;" %>
       </div>
-      <div class="panel-body">
+      <div class="panel-body clearfix">
         <form role="form">
           <%= f.fields_for :users do |user| %>
             <div class="form-group">
@@ -23,7 +24,8 @@
           </div>
           <div class="form-group">
             <%= f.label :domain, t('domain') %><br>
-            <%= f.text_field :domain ,:class =>"form-control"%>.fixrnix.in
+            <div class=" col-lg-10 col-md-10">
+            <%= f.text_field :domain ,:class =>"form-control"%> </div> <span>.fixrnix.in</span>
           </div>
           <div class="form-group">
             <%= f.fields_for :attachments do |attach| %>
