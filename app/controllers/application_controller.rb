@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
- # before_filter :set_locale, :if => :current_user
+  before_filter :set_locale, :if => :current_user
   before_filter :set_time_zone, :if => :current_user
   helper_method :current_company
   before_filter :check_subdomain
@@ -52,8 +52,6 @@ class ApplicationController < ActionController::Base
   
   # Will not allow to access the page if authenticated
   def skip_if_authenticated
-    p 666666666666666666
-    p current_user
     if(current_user)
       redirect_to root_subdomain_path
     end
