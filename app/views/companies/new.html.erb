@@ -24,7 +24,7 @@
     </p>
 
     <%= f.fields_for :attachments do |attach| %>
-        <%= attach.label :attachment %><br />
+        <%= attach.label :attachment, "Company Logo" %><br />
         <%= attach.file_field :attachment_file %>
     <% end %>
 
