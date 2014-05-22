@@ -15,8 +15,13 @@
     <%= f.label :user_name %>
     <%= f.text_field :user_name %>
   </div>
-  <br />
-
+<br />
+<br>
+  <div>
+    <%= f.label :language_id %>
+    <%= f.collection_select(:language_id, Language.all, :id, :name)  %>
+  </div>
+<br>
   <%= f.fields_for :profile do |profile| %>
   	<div>
   		<%= profile.label :personal_email %>
