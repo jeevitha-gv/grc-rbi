@@ -5,12 +5,13 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    @user.build_attachment unless @user.attachment.present?
   end
 
   def update
     @user = current_user
-    if @user.update(user_params)
-      redirect_to audits_path
+    if @user.update_attributes(user_params)
+      redirect_to edit_user_path
     else
       render "edit"
     end
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:user_name,:full_name, profile_attributes: [:personal_email, :phone_no, :address1, :address2, :city, :state, :country])
+    params.require(:user).permit(:user_name, :full_name, :timezone, profile_attributes: [:personal_email, :phone_no, :address1, :address2, :city, :state, :country], attachment_attributes: [:attachment_file])
   end
 
   def password_params

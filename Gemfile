@@ -43,6 +43,7 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 # For attachments
 gem 'carrierwave'
+gem 'rmagick'
 
 gem 'pry'
 
