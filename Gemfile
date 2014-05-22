@@ -45,6 +45,10 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'carrierwave'
 gem 'rmagick'
 
+gem 'cancan'
 gem 'pry'
 
 gem 'public_activity'
+
+# bootstrap
+gem 'bootstrap-sass'

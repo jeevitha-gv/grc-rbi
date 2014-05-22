@@ -4,4 +4,5 @@ class Modular < ActiveRecord::Base
   validates :action_name, presence: true, format: { with: /\A[a-zA-Z]+\z/ }
   #associations
   belongs_to :section
+  has_many :previleges
 end

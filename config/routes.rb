@@ -3,8 +3,10 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-
+  post 'admin/previleges/modal_previlege'
   devise_for :users
+
+  resources :home
 
 
   resource :user do
@@ -22,7 +24,7 @@ Rails.application.routes.draw do
   end
   
   # You can have the root of your site routed with "root"
-  root 'companies#new'
+  root 'home#index'
 
   resources :companies do     
     member do      

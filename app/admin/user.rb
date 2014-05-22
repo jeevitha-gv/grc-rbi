@@ -15,6 +15,9 @@ show do
   attributes_table :full_name, :email, :user_name
 end
 
+ 
+  permit_params :full_name, :email , :user_name
+
 
 form do |f|
   f.inputs "User Details" do
@@ -22,8 +25,6 @@ form do |f|
       f.input :full_name
       f.input :email
       f.input :user_name
-      f.input :password
-      f.input :password_confirmation
     else
       f.input :full_name
       f.input :email , :input_html => { :disabled => true } 

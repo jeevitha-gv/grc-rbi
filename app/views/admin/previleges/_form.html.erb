@@ -1,0 +1,43 @@
+<%= active_admin_form_for [:admin, @previlege] do |f| %>
+		  <%= f.input :role %></br>
+			<%= f.label :Previlege%>
+			<div id="role">
+			<div id="previlege" class="previleges roles_0">
+			<%= f.select :modular,options_for_select(Section.all.collect{|x| [	x.name, x.id.to_i]}), {},{ :prompt => "-select-", :id => "previlege_modular",  :onChange => "previlege_add(this);"}%></br></br>
+			<%= f.select :modular_id,options_for_select(Modular.all.collect{}), {:id => "previlege_modular_id", :selected =>""}, :multiple => true, :prompt => "-select-", disabled: true%></br></br>
+			</div>
+			</div>
+			<p><%#= f.link_to "Add a task" %></p>
+			<a href='#' id ="add_previlege" onclick="add_multiple_previlege();" >Add Previlege</a>
+    <%= f.submit %>
+<% end %>
+<script>
+function previlege_add(element)
+{
+var modal_id = $(element).val();
+var selected_div = $($(element).closest('.previleges')).children('#previlege_modular_id');
+	$(selected_div).attr('disabled', false);
+	$(selected_div).empty();
+	$.ajax({url: "/admin/previleges/modal_previlege", type: 'post', data: {modal_id: modal_id },	success: function(data){
+			if(data.actions.length > 0)
+				{
+				var option="";
+				for (var i=0;i<data.actions.length;i++)
+				{
+				option=option+"<option value="+data.actions[i]["id"]+">"+data.actions[i]["action_name"]+"</option>";
+				}
+				$(selected_div).append(option);
+				}
+				}
+});
+}
+function add_multiple_previlege()
+{
+var modal_select = "roles_"+$('.previleges').size();
+   jQuery("#role").append( "<div class= 'previleges "+modal_select+"'>"+jQuery("#previlege").html()+"</div>");
+	 	$($('.'+modal_select).children('#previlege_modular_id')).empty();
+
+     return false;
+}
+
+</script>

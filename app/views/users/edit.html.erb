@@ -1,4 +1,3 @@
-
 <%= form_for(@user, :url => { :action => "update" }) do |f| %>
   <br>
   <%= f.fields_for :attachment do |attach| %>
@@ -30,8 +29,13 @@
     <%= f.select :timezone, Company::TIMEZONES, :selected => @user.timezone %>
   </div>
   <br />
-
-
+  <br />
+  <br>
+    <div>
+      <%= f.label :language_id %>
+      <%= f.collection_select(:language_id, Language.all, :id, :name)  %>
+    </div>
+  <br>
     <%= f.fields_for :profile do |profile| %>
     	<div>
     		<%= profile.label :personal_email %>
@@ -66,9 +70,7 @@
     		<%= profile.label :country %>
     		<%= profile.label :country %>
     	</div>
-
     <% end %>
-
   <%= f.submit %>
 <% end %>
 

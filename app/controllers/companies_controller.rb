@@ -4,7 +4,8 @@ class CompaniesController < ApplicationController
   prepend_before_filter :skip_if_authenticated, only: [ :new, :create ]
   skip_before_filter :check_subdomain, only: [ :new, :create ]
   before_filter :escape_subdomain, only: [ :new, :create ]
-
+  #~ load_and_authorize_resource
+    
   def index
     @companies = Company.all
   end
@@ -23,7 +24,9 @@ class CompaniesController < ApplicationController
       redirect_to current_path_without_subdomain
     end
   end
-
+  
+  
+  
   def settings
   end
 
