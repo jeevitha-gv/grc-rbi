@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-      I18n.locale  = ::Language.where(current_user.language_id).first.code || I18n.default_locale
+      I18n.locale  = ::Language.where("id = ?", current_user.language_id).first.code || I18n.default_locale
       MESSAGES.replace ::ALLMESSAGES["#{I18n.locale}"]
   end
   
