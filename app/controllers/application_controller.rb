@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
   
   # Returns URL without subdomain..
   def current_path_without_subdomain
-    "http://" + request.domain + request.fullpath
+    "http://" + request.domain + (request.port.nil? ? '' : ":#{request.port}") + request.fullpath
   end
 
   def set_time_zone
