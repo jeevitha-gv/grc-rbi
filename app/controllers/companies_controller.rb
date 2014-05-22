@@ -17,11 +17,10 @@ class CompaniesController < ApplicationController
   end
 
   def create
+     params[:company][:users_attributes]["0"][:role_id] = "1"
     @company = Company.new(company_params)
     if @company.save
       redirect_to welcome_path
-    else
-      redirect_to current_path_without_subdomain
     end
   end
   
@@ -32,6 +31,6 @@ class CompaniesController < ApplicationController
 
   private
   def company_params
-    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :timezone, attachments_attributes: [:attachment_file], users_attributes: [:user_name, :email])
+    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, attachments_attributes: [:attachment_file], users_attributes: [:user_name, :email, :role_id])
   end
 end
