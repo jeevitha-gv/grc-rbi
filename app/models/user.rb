@@ -21,6 +21,14 @@ class User < ActiveRecord::Base
 
   delegate :title, to: :dealer, prefix: true
 
+  def is?( requested_role)
+    self.role == requested_role.to_s if self.role.present?
+  end
+  
+  def user_previleges
+    @grouped_modular_action ||= self.role.previleges.map(&:modular).group_by(&:action_name) if self.role.present?
+  end
+  
   protected
 
   def password_required?
