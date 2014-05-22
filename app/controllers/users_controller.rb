@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if @user.update(password_params)
       # Sign in the user by passing validation in case his password changed
       sign_in(@user, :bypass => true)
-      redirect_to root_path
+      redirect_to root_subdomain_path
     else
       render "edit"
     end
