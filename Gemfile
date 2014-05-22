@@ -47,3 +47,6 @@ gem 'cancan'
 gem 'pry'
 
 gem 'public_activity'
+
+# bootstrap
+gem 'bootstrap-sass'

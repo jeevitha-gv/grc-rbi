@@ -1,45 +1,48 @@
-<h1>Sign up now!</h1>
-
 <%= form_for(@company) do |f| %>
-
-  <%= f.fields_for :users do |user| %>
-    <p>
-      <%= user.label :user_name, t('users.username') %><br>
-      <%= user.text_field :user_name %>
-    </p>
-    <p>
-      <%= user.label :email, t('users.email') %><br>
-      <%= user.text_field :email %>
-    </p>
-  <% end %>
-
-    <p>
-      <%= f.label :name, t('companies.company') %><br>
-      <%= f.text_field :name %>
-    </p>
-
-    <p>
-      <%= f.label :domain, t('domain') %><br>
-      <%= f.text_field :domain %> .fixrnix.in
-    </p>
-
-    <%= f.fields_for :attachments do |attach| %>
-        <%= attach.label :attachment, "Company Logo" %><br />
-        <%= attach.file_field :attachment_file %>
-    <% end %>
-
-    <p>
-      <%= f.label :country_id, t('companies.country') %><br>
-      <%= f.collection_select :country_id, Country.all, :id, :name %>
-    </p>
-
-    <p>
-      <%= f.label :timezone, t('companies.timezone') %><br>
-      <%= f.select(:timezone, Company::TIMEZONES) %>
-    </p>
-
-    <p>
-      <%= f.submit %>
-    </p>
-
+<div class="container" style="margin-top:30px">
+  <div class="col-md-5 col-md-offset-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strong>Sign Up</strong></h3>
+      </div>
+      <div class="panel-body">
+        <form role="form">
+          <%= f.fields_for :users do |user| %>
+            <div class="form-group">
+              <%= user.label :user_name, t('users.username') %><br>
+              <%= user.text_field :user_name, :class =>"form-control" %>
+            </div>
+            <div class="form-group">
+              <%= user.label :email, t('users.email') %><br>
+              <%= user.text_field :email ,:class =>"form-control" %>
+            </div>
+          <% end %>
+          <div class="form-group">
+            <%= f.label :name, t('companies.company') %><br>
+            <%= f.text_field :name ,:class =>"form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :domain, t('domain') %><br>
+            <%= f.text_field :domain ,:class =>"form-control"%>.fixrnix.in
+          </div>
+          <div class="form-group">
+            <%= f.fields_for :attachments do |attach| %>
+              <%= attach.label :attachment %><br />
+              <%= attach.file_field :attachment_file %>
+            <% end %>
+          </div>
+          <div class="form-group">
+            <%= f.label :country_id, t('companies.country') %><br>
+            <%= f.collection_select(:country_id, Country.all, :id, :name, {}, {:class =>"btn btn-default"})  %>
+          </div>
+          <div class="form-group">
+            <%= f.label :timezone, t('companies.timezone') %><br>
+            <%= f.select(:timezone, Company::TIMEZONES, {},{:class =>"btn btn-default"})%>
+          </div>
+          <%= f.submit "Sign up", :class => "btn btn-m btn-success" %>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>

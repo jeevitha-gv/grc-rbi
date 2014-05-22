@@ -87,6 +87,13 @@ class ApplicationController < ActionController::Base
       Time.zone = "London"
     end
   end
+
+
+  # Routing to sign in path after signout
+  def after_sign_out_path_for(resource_or_scope)
+    new_session_path(resource_name)
+  end
+
   
    #redirect to home page if you don't have access
    rescue_from CanCan::AccessDenied do | exception |
