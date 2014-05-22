@@ -23,33 +23,33 @@ class ApplicationController < ActionController::Base
       redirect_to '/admin/dashboard'
     end
   end
-  
+
   # Return current company for logged_in user
   def current_company
     @company ||= current_user.company if current_user.present?
   end
-  
+
   # will check for sudomain presence and correct subdomain
   def check_subdomain
     if(request.subdomain.present? || current_company.present?)
       current_company.present? ? check_current_company_domain : (redirect_to current_path_without_subdomain)
     end
   end
-  
+
   # Escape the subdomain from the given url
   def escape_subdomain
     if(request.subdomain.present?)
       redirect_to current_path_without_subdomain
     end
   end
-  
+
   # Checks whether current domain matches the logged_in company domain
   def check_current_company_domain
     unless(current_company.domain.eql?(request.subdomain))
       redirect_to current_path_with_subdomain
     end
   end
-  
+
   # Will not allow to access the page if authenticated
   def skip_if_authenticated
     if(current_user)
@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
       I18n.locale  = ::Language.where("id = ?", current_user.language_id).first.code || I18n.default_locale
       MESSAGES.replace ::ALLMESSAGES["#{I18n.locale}"]
   end
-  
+
   # Returns URL with subdomain.. Call this function after User logged_in areas
   def current_path_with_subdomain
     request.protocol + current_company.domain + "." + request.domain + (request.port.nil? ? '' : ":#{request.port}") + request.fullpath
@@ -71,7 +71,7 @@ class ApplicationController < ActionController::Base
   def root_subdomain_path
     request.protocol + current_company.domain + "." + request.domain + (request.port.nil? ? '' : ":#{request.port}")
   end
-  
+
   # Returns URL without subdomain..
   def current_path_without_subdomain
     "http://" + request.domain + (request.port.nil? ? '' : ":#{request.port}") + request.fullpath
@@ -84,7 +84,7 @@ class ApplicationController < ActionController::Base
     when current_company.timezone
       Time.zone = current_company.timezone
     else
-      Time.zone = "London"
+      Time.zone = "Mumbai"
     end
   end
 
