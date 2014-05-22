@@ -45,7 +45,6 @@ class ApplicationController < ActionController::Base
   
   # Checks whether current domain matches the logged_in company domain
   def check_current_company_domain
-    binding.pry
     unless(current_company.domain.eql?(request.subdomain))
       redirect_to current_path_with_subdomain
     end
