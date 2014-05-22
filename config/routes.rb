@@ -15,14 +15,14 @@ Rails.application.routes.draw do
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+  
+  # subdomain root path
+  constraints(Subdomain) do
+    get '/' => 'audits#index'
+  end
+  
   # You can have the root of your site routed with "root"
   root 'companies#new'
-   
-   # subdomain root path
-   constraints(Subdomain) do
-    get '/' => 'audits#index'
-   end
 
   resources :companies do     
     member do      
