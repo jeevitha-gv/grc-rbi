@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
 
-  belongs_to :roles
+  belongs_to :role
   has_many :previleges, through: :roles
 
   has_many :teams, through: :user_teams
