@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
 
   belongs_to :role
-  has_many :previleges, through: :roles
+  has_many :previleges, through: :role
 
   has_many :teams, through: :user_teams
   has_many :user_teams

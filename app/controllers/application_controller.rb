@@ -104,4 +104,11 @@ class ApplicationController < ActionController::Base
    def current_ability
     @current_ability ||= Ability.new(current_user)
   end
+
+  def user_password_check
+    if current_user.password.nil?
+      redirect_to '/users/password'
+    end
+  end
+
 end
