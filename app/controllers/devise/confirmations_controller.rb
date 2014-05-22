@@ -23,7 +23,7 @@ class Devise::ConfirmationsController < DeviseController
     sign_in resource, :bypass => true
     if resource.errors.empty?
       set_flash_message(:notice, :confirmed) if is_flashing_format?
-      respond_with_navigational(resource){ redirect_to edit_user_path }
+      respond_with_navigational(resource){ redirect_to password_user_path }
     else
       respond_with_navigational(resource.errors, status: :unprocessable_entity){ render :new }
     end

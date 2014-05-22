@@ -29,6 +29,25 @@ en:
     address2: "Address Line 2"
     contact: "Contact"
     country: "Country"
+    timezone: Select Timezone
+
+  modulars:
+    model_name: "Model Name"
+    action_name: "Action Name"
+    section: "Section"
+
+  priorities:
+    name: "Name"
+
+  section:
+    name: "Name"
+
+  location:
+    name: "Nameddddd"
+
+  users:
+    username:  "Username"
+    email: "Email"
 
   system:
     hello:  "Hello"

@@ -3,7 +3,6 @@ users:
       success: "Your account has been successfully created"
       failure: "We are experiencing an internal problem. Please try after couple of minutes."
 
-topics:
+uniqueness:
   create:
-      success: "Your account has been successfully created"
-      failure: "We are experiencing an internal problem. Please try after couple of minutes." 
+      failure: "has been already used" 

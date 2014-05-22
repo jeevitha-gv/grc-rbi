@@ -1,9 +1,17 @@
 <h1>Sign up now!</h1>
 
-<%= link_to_unless_current "EN", {locale: "en"} %>
-<%= link_to_unless_current "FR", {locale: "fr"} %>
+<%= form_for(@company) do |f| %>
 
-<%= form_for :company, :url => companies_path do |f| %>
+  <%= f.fields_for :users do |user| %>
+    <p>
+      <%= user.label :user_name, t('users.username') %><br>
+      <%= user.text_field :user_name %>
+    </p>
+    <p>
+      <%= user.label :email, t('users.email') %><br>
+      <%= user.text_field :email %>
+    </p>
+  <% end %>
 
     <p>
       <%= f.label :name, t('companies.company') %><br>
@@ -11,29 +19,14 @@
     </p>
 
     <p>
-      <%= f.label :primary_email, t('companies.primary_email') %><br>
-      <%= f.text_field :primary_email %>
-    </p>
-
-    <p>
-      <%= f.label :secondary_email, t('companies.secondary_email') %><br>
-      <%= f.text_field :secondary_email %>
-    </p>
-
-    <p>
       <%= f.label :domain, t('domain') %><br>
-      <%= f.text_field :domain %>
+      <%= f.text_field :domain %> .fixrnix.in
     </p>
 
-    <p>
-      <%= f.label :address1, t('companies.address1') %><br>
-      <%= f.text_field :address1 %>
-    </p>
-
-    <p>
-      <%= f.label :address2, t('companies.address2') %><br>
-      <%= f.text_field :address2 %>
-    </p>
+    <%= f.fields_for :attachments do |attach| %>
+        <%= attach.label :attachment %><br />
+        <%= attach.file_field :attachment_file %>
+    <% end %>
 
     <p>
       <%= f.label :country_id, t('companies.country') %><br>
@@ -41,8 +34,8 @@
     </p>
 
     <p>
-      <%= f.label :contact_no, t('companies.contact') %><br>
-      <%= f.text_field :contact_no %>
+      <%= f.label :timezone, t('companies.timezone') %><br>
+      <%= f.select(:timezone, Company::TIMEZONES) %>
     </p>
 
     <p>
