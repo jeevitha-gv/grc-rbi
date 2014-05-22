@@ -1,18 +1,59 @@
 
 <%= form_for(@user, :url => { :action => "update" } ) do |f| %>
-  
+  <br>
 <div>
+	Email:
   <%= @user.email %>
 </div>
+<br>
 <div>
   <%= f.label :full_name %>
-  <%= text_field :full_name %>
+  <%= f.text_field :full_name %>
 </div>
+<br>
   <div>
     <%= f.label :user_name %>
     <%= f.text_field :user_name %>
   </div>
   <br />
 
+  <%= f.fields_for :profile do |profile| %>
+  	<div>
+  		<%= profile.label :personal_email %>
+	  	<%= profile.text_field :personal_email %>
+  	</div>
+  	<br>
+  	<div>
+  		<%= profile.label :phone_no %>
+  		<%= profile.text_field :phone_no %>
+  	</div>
+  	<br>
+  	<div>
+  		<%= profile.label :address1 %>
+  		<%= profile.text_field :address1 %>
+  	</div>
+  	<br> 
+  	<div> 
+  		<%= profile.label :address2 %>
+  		<%= profile.label :address2 %>
+  	</div>
+  	<br>
+  	<div>
+  		<%= profile.label :city %>
+  		<%= profile.text_field :city %>
+  	</div>
+  	<br>
+  	<div>
+  		<%= profile.label :state %>
+  		<%= profile.text_field :state %>
+  	</div>
+  	<div>
+  		<%= profile.label :country %>
+  		<%= profile.label :country %>
+  	</div>
+
+  <% end %>
+
   <%= f.submit %>
 <% end %>
+

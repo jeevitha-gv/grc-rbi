@@ -27,4 +27,8 @@ class User < ActiveRecord::Base
     false
   end
 
+
+  # Nested attribute for Profile
+  accepts_nested_attributes_for :profile
+
 end
