@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
- # before_filter :set_locale, :if => :current_user
+  before_filter :set_locale, :if => :current_user
   before_filter :set_time_zone, :if => :current_user
   helper_method :current_company
   before_filter :check_subdomain
@@ -45,6 +45,7 @@ class ApplicationController < ActionController::Base
   
   # Checks whether current domain matches the logged_in company domain
   def check_current_company_domain
+    binding.pry
     unless(current_company.domain.eql?(request.subdomain))
       redirect_to current_path_with_subdomain
     end
@@ -52,31 +53,24 @@ class ApplicationController < ActionController::Base
   
   # Will not allow to access the page if authenticated
   def skip_if_authenticated
-    p 666666666666666666
-    p current_user
     if(current_user)
       redirect_to root_subdomain_path
     end
   end
 
   def set_locale
-    begin
-      I18n.locale  = ::Language.find(current_user.language_id).code || I18n.default_locale
+      I18n.locale  = ::Language.where(current_user.language_id).first.code || I18n.default_locale
       MESSAGES.replace ::ALLMESSAGES["#{I18n.locale}"]
-    rescue ActiveRecord::RecordNotFound
-      redirect_to welcome_path
-      return
-    end
   end
   
   # Returns URL with subdomain.. Call this function after User logged_in areas
   def current_path_with_subdomain
-    "http://" + current_company.domain + "." + request.domain + request.fullpath
+    request.protocol + current_company.domain + "." + request.domain + (request.port.nil? ? '' : ":#{request.port}") + request.fullpath
   end
 
  # Returns URL with subdomain.. Call this function after User logged_in areas
   def root_subdomain_path
-    "http://" + current_company.domain + "." + request.domain
+    request.protocol + current_company.domain + "." + request.domain + (request.port.nil? ? '' : ":#{request.port}")
   end
   
   # Returns URL without subdomain..
