@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :authenticate_user!
+  before_filter :check_password , only: [:edit, :update]
 
 
   def edit
@@ -10,7 +11,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to audits_path
+      redirect_to edit_user_path
     else
       render "edit"
     end
