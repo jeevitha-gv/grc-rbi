@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   belongs_to :company
   belongs_to :language
 
+  has_one :attachment, as: :attachable
   has_one :profile
 
   # validates :user_name, :full_name , presence: true, uniqueness: true
@@ -38,5 +39,5 @@ class User < ActiveRecord::Base
 
   # Nested attribute for Profile
   accepts_nested_attributes_for :profile
-
+  accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
 end
