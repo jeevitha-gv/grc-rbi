@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post 'admin/previleges/modal_previlege'
   devise_for :users
 
+  resources :home
+
 
   resource :user do
     collection do
