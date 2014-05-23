@@ -3,18 +3,17 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   #before_filter :check_password , only: [:edit, :update]
 
-  def new
-    @user = User.new    
-  end
 
   def edit
-    @user = current_user    
+    @user = current_user
+    @user.build_attachment unless @user.attachment.present?
     @user.profile ? @user.profile : @user.build_profile
     @user.build_attachment unless @user.attachment.present?
+
   end
 
   def update
-    @user = current_user    
+    @user = current_user
     if @user.update_attributes(user_params)
       redirect_to edit_user_path
     else
@@ -33,7 +32,7 @@ class UsersController < ApplicationController
       sign_in(@user, :bypass => true)
       redirect_to root_subdomain_path
     else
-      render "edit"
+      render "password"
     end
   end
 

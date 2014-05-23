@@ -1,9 +1,5 @@
 class User < ActiveRecord::Base
-  
-   #publicactivity gem
-   include PublicActivity::Model
-   tracked owner: ->(controller, model) { controller && controller.current_user }
-  
+
 
   # Include default devise modules. Others available are:
   #  :timeoutable and :omniauthable
@@ -39,12 +35,11 @@ class User < ActiveRecord::Base
   def active_for_authentication?
     super && !self.is_disabled
   end
-
   
   protected
 
   def password_required?
-    false
+    super if confirmed?
   end
 
   # Nested attribute for Profile
