@@ -5,8 +5,5 @@ class CreateAuditTypes < ActiveRecord::Migration
       t.timestamps
     end
 
-    AuditType.create([{name: 'Internal'}])
-    AuditType.create([{name: 'External'}])
-
   end
 end

@@ -36,12 +36,7 @@
       <%= f.collection_select(:language_id, Language.all, :id, :name)  %>
     </div>
   <br>
-    <%= f.fields_for :profile do |profile| %>
-    	<div>
-    		<%= profile.label :personal_email %>
-  	  	<%= profile.text_field :personal_email %>
-    	</div>
-    	<br>
+    <%= f.fields_for :profile do |profile| %>    	
     	<div>
     		<%= profile.label :phone_no %>
     		<%= profile.text_field :phone_no %>
@@ -54,7 +49,7 @@
     	<br>
     	<div>
     		<%= profile.label :address2 %>
-    		<%= profile.label :address2 %>
+    		<%= profile.text_field :address2 %>
     	</div>
     	<br>
     	<div>
@@ -68,9 +63,10 @@
     	</div>
     	<div>
     		<%= profile.label :country %>
-    		<%= profile.label :country %>
+    		<%= profile.text_field :country %>
     	</div>
     <% end %>
   <%= f.submit %>
+  <br><br>
 <% end %>
 

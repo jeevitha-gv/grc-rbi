@@ -8,6 +8,9 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
     @user.build_attachment unless @user.attachment.present?
+    @user.profile ? @user.profile : @user.build_profile
+    @user.build_attachment unless @user.attachment.present?
+
   end
 
   def update
@@ -30,14 +33,14 @@ class UsersController < ApplicationController
       sign_in(@user, :bypass => true)
       redirect_to root_subdomain_path
     else
-      render "edit"
+      render "password"
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:user_name, :full_name, :timezone, :language_id, profile_attributes: [:personal_email, :phone_no, :address1, :address2, :city, :state, :country], attachment_attributes: [:attachment_file])
+    params.require(:user).permit(:id, :user_name, :full_name, :timezone, :language_id, profile_attributes: [:personal_email, :user_id, :phone_no, :address1, :address2, :city, :state, :country], attachment_attributes: [:attachment_file])
   end
 
   def password_params

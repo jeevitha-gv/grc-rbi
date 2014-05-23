@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
 
   belongs_to :role
-  has_many :previleges, through: :roles
+  has_many :previleges, through: :role
 
   has_many :teams, through: :user_teams
   has_many :user_teams
@@ -29,13 +29,18 @@ class User < ActiveRecord::Base
   def user_previleges
     @grouped_modular_action ||= self.role.previleges.map(&:modular).group_by(&:action_name) if self.role.present?
   end
+
+
+# Restricting user to login if the account is disable
+  def active_for_authentication?
+    super && !self.is_disabled
+  end
   
   protected
 
   def password_required?
-    false
+    super if confirmed?
   end
-
 
   # Nested attribute for Profile
   accepts_nested_attributes_for :profile

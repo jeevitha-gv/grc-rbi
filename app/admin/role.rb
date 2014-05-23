@@ -22,8 +22,9 @@ ActiveAdmin.register Role do
       else
         redirect_to new_admin_role_path
      end
-    
-    end
+   end
+   
+   
 
     private
       def role_params
@@ -43,10 +44,12 @@ ActiveAdmin.register Role do
   #~ permit_params :title, :company_id
   
   #display the required fields in index
-  index do  
-    selectable_column                     
-    column :title        
-    actions    
+  index  do
+      selectable_column
+    column :title
+    actions  do |f|
+      link_to "Add privilege" , "/admin/previleges/new?role_id=#{f.id}"#, :onclick => "test();"
+    end
   end  
   
   
@@ -57,3 +60,7 @@ ActiveAdmin.register Role do
     f.actions
   end
 end
+
+
+
+

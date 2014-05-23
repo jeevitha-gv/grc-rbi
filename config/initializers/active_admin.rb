@@ -84,7 +84,8 @@ ActiveAdmin.setup do |config|
   # (within the application controller) to return the currently logged in user.
   config.current_user_method = :current_admin_user
   config.register_stylesheet 'active_admin.css'
-
+  config.show_comments_in_menu = false
+  config.allow_comments = false 
 
   # == Logging Out
   #

@@ -5,10 +5,6 @@ class CreateResponseStatuses < ActiveRecord::Migration
 
       t.timestamps
     end
-    ResponseStatus.create([{name: 'Planning'}])
-    ResponseStatus.create([{name: 'In Progress'}])
-    ResponseStatus.create([{name: 'Halted'}])
-    ResponseStatus.create([{name: 'Cancelled'}])
-    ResponseStatus.create([{name: 'Completed'}])
+   
   end
 end
