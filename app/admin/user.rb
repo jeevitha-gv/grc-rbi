@@ -30,6 +30,7 @@ form do |f|
       f.input :email
       f.input :user_name
       f.input :is_disabled
+      f.input :teams, :class => ""
   end
   f.inputs "Other Information", for: [:profile, f.object.profile] do |s|
     s.input :personal_email
