@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="/assets/bootstrap-multiselect.css" type="text/css"/>
-<link rel="stylesheet" href="/assets/bootstrap-3.1.1.min.css" type="text/css"/>
-<script type="text/javascript" src="/assets/bootstrap-3.1.1.min.js"></script>
-<script type="text/javascript" src="/assets/bootstrap-multiselect.js"></script>	
+
+<script type="text/javascript" src="/assets/messi.js"></script>	
+<script type="text/javascript" src="/assets/messi.min.js"></script>	
 <%  role = Role.where('id= ?', params[:role_id]).first.title%>
+<div id="flash"></div>
 <%= active_admin_form_for [:admin, @previlege] , :remote => true do |f| %>
 <%#= hidden_field_tag(request_forgery_protection_token.to_s, form_authenticity_token) %>
 		 <h2> Assign previlege for : </i><%= role%></i></h2>
@@ -10,13 +10,10 @@
 			<%= f.label :Previlege%>
 			<div id="role">
 			<div id="previlege" class="previleges roles_0">
-			<%= f.select :modular,options_for_select(Section.all.collect{|x| [	x.name, x.id.to_i]}), {},{ :prompt => "-select-", :id => "previlege_modular",  :onChange => "previlege_add(this);"}%></br></br>
-			<%= f.select :modular_id,options_for_select(Modular.all.collect{}), {:id => "previlege_modular_id", :selected =>""}, :multiple => "multiple", :prompt => "-select-", disabled: true%></br></br>
+			<%= f.select :modular,options_for_select(Section.all.collect{|x| [	x.name, x.id.to_i]}), {},{ :prompt => "-select-", :id => "previlege_modular",  :onChange => "previlege_add(this);"}%>
+			<%= f.select :modular_id,options_for_select(Modular.all.collect{}), {:id => "previlege_modular_id", :selected =>"", :class=> "test"}, :multiple => "multiple", :prompt => "-select-", disabled: true%>		
+    <%= f.submit "ADD" %>	</div>
 			</div>
-			</div>
-			<p><%#= f.link_to "Add a task" %></p>
-			<!--<a href='#' id ="add_previlege" onclick="add_multiple_previlege();" >Add Previlege</a>-->
-    <%= f.submit "ADD" %>
 <% end %>
 <div id="view_previleges"></div>
 <script>
@@ -25,7 +22,8 @@ function previlege_add(element)
 var modal_id = $(element).val();
 //~ var selected_div = $($(element).closest('.previleges')).children('#previlege_modular_id');
 	$('#previlege_modular_id').attr('disabled', false);
-	$('#previlege_modular_id').empty();
+	$('.multiselect dropdown-toggle btn btn-default').empty();
+		$('#previlege_modular_id option[value]').remove();
 	$.ajax({url: "/admin/previleges/modal_previlege", type: 'post', data: {modal_id: modal_id },	success: function(data){
 			if(data.actions.length > 0)
 				{
@@ -49,4 +47,5 @@ var modal_id = $(element).val();
 
      //~ return false;
 //~ }
+
 </script>
