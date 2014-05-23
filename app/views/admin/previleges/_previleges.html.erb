@@ -1,2 +1,8 @@
-p 444444444444
-	
+	<% @all_previleges.each do |f|%>
+	Role : <%= f.role.title%>
+	Modal name: <%= f.modular.model_name%>
+	Action: <%= f.modular.action_name%></br></br>
+	<%= form_tag "/admin/previleges/#{f.id}", :remote => true,:method => "delete" do%>
+	<%= submit_tag 'Delete'%>
+	<% end %>
+	<% end %>

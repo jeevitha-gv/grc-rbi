@@ -1,9 +1,13 @@
-ActiveAdmin.register Role do
+ActiveAdmin.register Role  do
  menu :if => proc{ !current_admin_user.present? }
- 
  #authentication
   controller do
    before_filter :check_role
+   action :all, except: [:new]
+    def scoped_collection                                                                                                                                                                                                                                                
+     @previleges=Role.where('company_id= ?', current_user.company_id)
+		end
+   
     def create
       @role = Role.new(role_params)
       @role.company_id = current_user.company_id
@@ -23,8 +27,6 @@ ActiveAdmin.register Role do
         redirect_to new_admin_role_path
      end
    end
-   
-   
 
     private
       def role_params
@@ -41,11 +43,11 @@ ActiveAdmin.register Role do
        end
   end
  
-  #~ permit_params :title, :company_id
   
   #display the required fields in index
+  
   index  do
-      selectable_column
+    
     column :title
     actions  do |f|
       link_to "Add privilege" , "/admin/previleges/new?role_id=#{f.id}"#, :onclick => "test();"
