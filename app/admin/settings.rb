@@ -10,7 +10,6 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
     before_filter :authorize_company, only: [:edit, :update]
 
     def index
-      # binding.pry
       redirect_to edit_admin_setting_path(current_user.company_id)
     end
 
@@ -25,7 +24,6 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
 
     private
     def company_params
-      binding.pry
       params.require(:settings).permit(:name, :secondary_email, :address1, :address2, :country_id, :contact_no, :timezone, attachment_attributes: [:attachment_file])
     end
 
