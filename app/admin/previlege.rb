@@ -2,9 +2,11 @@ ActiveAdmin.register Previlege do
 
   
   menu :if => proc{ !current_admin_user.present? }
+	menu false
 	controller do
-      before_filter :authenticate_user!
-			
+      before_filter :authenticate_user!#, :role_company
+			skip_before_filter :verify_authenticity_token
+
 		 def create
 				params[:previlege][:modular_id].each do |previlege_modular_id|
 					 previlege =  Previlege.where('role_id =? AND modular_id =?', params[:previlege][:role_id], previlege_modular_id)
@@ -15,7 +17,7 @@ ActiveAdmin.register Previlege do
 						@previlege.save
 					end
 			end
-					redirect_to admin_previleges_path
+				respond_to :js
 		end
 		
 		def edit
@@ -33,6 +35,8 @@ ActiveAdmin.register Previlege do
 				end
 			end
 		end
+		
+		
 		
 		#To get modular record based on section select
 		def  modal_previlege
@@ -52,8 +56,13 @@ ActiveAdmin.register Previlege do
          else
            redirect_to '/users/sign_in'
          end
-          
        end
+			 
+		 def role_company
+			if current_user.company.roles.collect {|x| x.id}.include?(params[:role_id])
+				return true
+			end
+		 end
 	end
   
 	
@@ -62,7 +71,7 @@ ActiveAdmin.register Previlege do
 	#display the required fields in index
   index do                            
     column :role_id        
-    column :user     
+    #~ column :user     
     actions    
   end  
 
