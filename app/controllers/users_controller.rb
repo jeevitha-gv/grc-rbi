@@ -6,11 +6,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    @user.build_profile
     @user.build_attachment unless @user.attachment.present?
   end
 
   def update
-    @user = current_user
+    @user = current_user    
     if @user.update_attributes(user_params)
       redirect_to edit_user_path
     else
