@@ -5,8 +5,6 @@ class CreateRoles < ActiveRecord::Migration
       t.integer :company_id
       t.timestamps
     end
-    Role.create([{title: 'company admin', company_id: 0}])
-    Role.create([{title: 'company user', company_id: 0}])
     
   end
 end

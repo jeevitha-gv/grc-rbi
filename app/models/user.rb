@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
-
+  
+   #publicactivity gem
+   include PublicActivity::Model
+   tracked owner: ->(controller, model) { controller && controller.current_user }
+  
 
   # Include default devise modules. Others available are:
   #  :timeoutable and :omniauthable

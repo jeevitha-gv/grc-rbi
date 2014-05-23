@@ -1,7 +1,9 @@
 ActiveAdmin.register Score do
+ 
 
   menu :if => proc{ !current_admin_user.present? }
 
+     
   
     # remove new record creation option
     actions :all, :except => [:new]

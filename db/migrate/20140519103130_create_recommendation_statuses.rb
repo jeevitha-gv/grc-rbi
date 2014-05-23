@@ -5,10 +5,6 @@ class CreateRecommendationStatuses < ActiveRecord::Migration
 
       t.timestamps
     end
-     RecommendationStatus.create([{name: 'Opened Recommendation'}])
-     RecommendationStatus.create([{name: 'Risk accepted for Recommendation'}])
-     RecommendationStatus.create([{name: 'Closed Recommendation'}])
-     RecommendationStatus.create([{name: 'Closed duplicate Recommendation'}])
-
+    
   end
 end
