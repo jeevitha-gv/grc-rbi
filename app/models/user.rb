@@ -29,13 +29,19 @@ class User < ActiveRecord::Base
   def user_previleges
     @grouped_modular_action ||= self.role.previleges.map(&:modular).group_by(&:action_name) if self.role.present?
   end
+
+
+# Restricting user to login if the account is disable
+  def active_for_authentication?
+    super && !self.is_disabled
+  end
+
   
   protected
 
   def password_required?
     false
   end
-
 
   # Nested attribute for Profile
   accepts_nested_attributes_for :profile

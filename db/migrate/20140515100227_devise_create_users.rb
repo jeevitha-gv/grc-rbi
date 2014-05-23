@@ -40,6 +40,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.integer :manager
       t.integer :language_id
       t.string  :timezone
+      t.boolean :is_disabled, :default => false
 
 
       t.timestamps
