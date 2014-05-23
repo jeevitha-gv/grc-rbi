@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_time_zone, :if => :current_user
   helper_method :current_company
   before_filter :check_subdomain
+  before_filter :check_password_authenticated, :if => :current_user
 
   protected
 
@@ -94,14 +95,18 @@ class ApplicationController < ActionController::Base
     new_session_path(resource_name)
   end
 
-  
-   #redirect to home page if you don't have access
-   rescue_from CanCan::AccessDenied do | exception |
+
+  #redirect to home page if you don't have access
+  rescue_from CanCan::AccessDenied do | exception |
     redirect_to root_url, alert: exception.message
   end
-  
+
   #check the ability of current_user
-   def current_ability
+  def current_ability
     @current_ability ||= Ability.new(current_user)
+  end
+
+  def check_password_authenticated
+    redirect_to password_user_path unless current_user.encrypted_password.present?
   end
 end
