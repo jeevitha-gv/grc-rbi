@@ -50,7 +50,6 @@ ActiveAdmin.register Role do
     actions  do |f|
       link_to "Add privilege" , "/admin/previleges/new?role_id=#{f.id}"#, :onclick => "test();"
     end
-    render :partial => "index"
   end  
   
   
