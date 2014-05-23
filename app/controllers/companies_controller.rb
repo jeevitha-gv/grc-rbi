@@ -5,14 +5,14 @@ class CompaniesController < ApplicationController
   skip_before_filter :check_subdomain, only: [ :new, :create ]
   before_filter :escape_subdomain, only: [ :new, :create ]
   #~ load_and_authorize_resource
-    
+
   def index
     @companies = Company.all
   end
 
   def new
     @company = Company.new
-    @company.attachments.build
+    @company.build_attachment
     @company.users.build
   end
 
@@ -23,14 +23,14 @@ class CompaniesController < ApplicationController
       redirect_to welcome_path
     end
   end
-  
-  
-  
+
+
+
   def settings
   end
 
   private
   def company_params
-    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, attachments_attributes: [:attachment_file], users_attributes: [:user_name, :email, :role_id])
+    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :timezone, attachment_attributes: [:attachment_file], users_attributes: [:user_name, :email, :role_id])
   end
 end

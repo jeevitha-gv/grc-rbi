@@ -1,8 +1,6 @@
-
-
 <h1> Activities</h1>
 <% @activities.each do |activity| %>
-  <%= activity.inspect %>
-
+  <%= activity.owner.full_name %> has <%= parse_and_convert(activity.key) %> <%= activity.created_at %> from <%= activity.ip %><br>
 <% end %>
+
 

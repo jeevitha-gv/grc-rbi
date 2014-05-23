@@ -7,7 +7,7 @@ class Company < ActiveRecord::Base
   #validates_uniqueness_of :domain # Domain must be unique
   has_many :users
 
-  has_many :attachments, :as => :attachable
-  accepts_nested_attributes_for :attachments, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
+  has_one :attachment, :as => :attachable
+  accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users
 end

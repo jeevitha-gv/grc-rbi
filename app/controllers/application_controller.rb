@@ -3,13 +3,14 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   #publicactivity gem
   include PublicActivity::StoreController
-  
+
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :set_locale, :if => :current_user
   before_filter :set_time_zone, :if => :current_user
   helper_method :current_company
   before_filter :check_subdomain
+  before_filter :check_password_authenticated, :if => :current_user
 
   protected
 
@@ -89,27 +90,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   # Routing to sign in path after signout
   def after_sign_out_path_for(resource_or_scope)
     new_session_path(resource_name)
   end
 
-  
-   #redirect to home page if you don't have access
-   rescue_from CanCan::AccessDenied do | exception |
+  #redirect to home page if you don't have access
+  rescue_from CanCan::AccessDenied do | exception |
     redirect_to root_url, alert: exception.message
   end
-  
+
   #check the ability of current_user
-   def current_ability
+  def current_ability
     @current_ability ||= Ability.new(current_user)
   end
 
-  def user_password_check
-    if current_user.password.nil?
-      redirect_to '/users/password'
-    end
+  def check_password_authenticated
+    redirect_to password_user_path unless current_user.encrypted_password.present?
   end
-
 end
