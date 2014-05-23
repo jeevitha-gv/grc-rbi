@@ -3,10 +3,13 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   #before_filter :check_password , only: [:edit, :update]
 
+  def new
+    @user = User.new    
+  end
 
   def edit
-    @user = current_user
-    @user.build_profile
+    @user = current_user    
+    @user.profile ? @user.profile : @user.build_profile
     @user.build_attachment unless @user.attachment.present?
   end
 
@@ -37,7 +40,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:user_name, :full_name, :timezone, :language_id, profile_attributes: [:personal_email, :phone_no, :address1, :address2, :city, :state, :country], attachment_attributes: [:attachment_file])
+    params.require(:user).permit(:id, :user_name, :full_name, :timezone, :language_id, profile_attributes: [:personal_email, :user_id, :phone_no, :address1, :address2, :city, :state, :country], attachment_attributes: [:attachment_file])
   end
 
   def password_params
