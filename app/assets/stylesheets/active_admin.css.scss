@@ -19,7 +19,7 @@
 
 input[disabled="disabled"]{
   background-color: #F4F4F4;
-  border: 0px solid #F4F4F4 !important;  
+  border: 0px solid #F4F4F4 !important;
 
 }
 
@@ -43,3 +43,52 @@ input[disabled="disabled"]{
 #header ul.tabs > li a{
   padding: 19px 10px !important; border-radius:0!important;
   }
+
+  #header ul.tabs > li a {
+
+    color: #181818;
+
+    text-shadow: none !important;
+}
+#title_bar {
+  background: none repeat scroll 0 0 #181818 !important;
+  border: medium none;
+  color: #FFFFFF;
+}
+
+
+#title_bar h2 {
+  font-size: 1.5em;
+  text-shadow: none;
+}
+
+
+.breadcrumb
+{
+
+  background-color: #0085C8!important;text-shadow: none;
+}
+
+.breadcrumb a{ color:#fff!important;text-shadow: none;}
+
+form fieldset legend span {
+  background: none repeat scroll 0 0 #0085C8 !important;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: normal;
+    padding: 8px 5px;
+    text-shadow: none;}
+
+.label {
+  color: #181818 !important;
+  font-size: 1em !important;
+  font-weight: normal !important;
+  text-align: left !important;
+
+}
+#footer {
+  background-color: #363535;
+  color: #9F9D9D;
+  height: 70px;
+  padding: 25px 0;
+}

@@ -5,7 +5,7 @@
       <div class="container">
         <div class="navbar-header">
           <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-          <a href="#" class="navbar-brand">Company Name</a> </div>
+          <%= link_to current_company.name, root_path, :class=>"navbar-brand" %></div>
         <div class="navbar-collapse collapse fleft">
           <ul class="nav navbar-nav main_nav">
             <li><a href="#">
