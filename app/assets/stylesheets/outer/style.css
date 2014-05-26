@@ -20,7 +20,7 @@
 }
 .subbar-nav li {
 	float: left;
-	width: 120px;
+	width: 107px;
     text-align: center;
 }
 .subbar-nav li a {
@@ -29,6 +29,7 @@
 	border: none !important;
 	border-bottom:5px solid #181818;
 	 height:57px;
+	 text-decoration: none;
 }
 .subbar-nav li a.active,.subbar-nav li a:hover {
 	border-bottom: 5px solid #ffa200 !important; background-color:transparent !important;
@@ -403,5 +404,20 @@ a.edit-icon {
   font-size: 14px;
   padding: 5px 20px;
 }
-
+.navbar{
+	background:none!important;
+	border:none;
+}
 .black_btn:hover{ background-color:#929292; color:#454343;}
+.main_nav li a{
+	padding: 18px 20px !important;
+	color:#000!important;
+	text-decoration: none;
+}
+.main_nav li a:hover {
+	color:#FFFFFF!important;
+	}
+.navbar-header a{
+	text-decoration: none;
+	color:#999999!important;
+}
