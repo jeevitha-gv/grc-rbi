@@ -1,0 +1,9 @@
+<% if flash[:notice].present? %>
+new Messi("<%= flash[:notice]%>", {title: 'Success message'});
+$("#view_previleges").html("<%= escape_javascript(render(:partial=>'privileges'))%>");	
+$('#previlege_modular_id').attr('disabled', false);
+$('#previlege_modular_id').empty();
+$('#falsh').show();
+<% else %>
+new Messi("<%= flash[:error]%>", {title: 'Error'});
+<% end %>
