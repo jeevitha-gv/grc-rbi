@@ -16,6 +16,8 @@ ActiveAdmin.register Previlege do
 			
 			#To crete new previlege
 		 def create
+			@all_previleges = current_user.previleges
+			 if params[:previlege][:modular_id].present?
 				params[:previlege][:modular_id].each do |previlege_modular_id|
 					 previlege =  Previlege.where('role_id =? AND modular_id =?', params[:previlege][:role_id], previlege_modular_id)
 					if previlege.empty?
@@ -24,6 +26,10 @@ ActiveAdmin.register Previlege do
 						@previlege.modular_id = previlege_modular_id
 						@previlege.save
 					end
+				end
+				flash[:notice] =  MESSAGES["previlages"]["create"]["success"]
+			else
+				flash[:error] =  MESSAGES["previlages"]["create"]["failure"]
 			end
 				respond_to :js
 		end
@@ -37,14 +43,18 @@ ActiveAdmin.register Previlege do
 		def update
 				params[:previlege][:modular_id].reject(&:empty?).each do |controller_name| 
 				modular_id = Modular.where('modal_name =?', controller_name).first.id
-				p @previlege = Previlege.where('role_id =? AND modular_id =?',  params[:previlege][:role_id], modular_id).first
+				@previlege = Previlege.where('role_id =? AND modular_id =?',  params[:previlege][:role_id], modular_id).first
 				if @previlege.nil?
 				Previlege.create(:role_id => params[:previlege][:role_id], :modular_id => modular_id)
 				end
 			end
 		end
 		
-		
+		def destroy
+			previlege = Previlege.where('id= ?', params[:id]).first
+			previlege.destroy if previlege.present?
+			respond_to :js
+		end
 		
 		#To get modular record based on section select
 		def  modal_previlege

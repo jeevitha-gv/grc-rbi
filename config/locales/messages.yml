@@ -36,6 +36,11 @@ en:
       create: "Section was successfully created."
       failure: ""
 
+  previlages:
+    create:
+      success: "Previlege was created successfully."
+      failure: "Please select actions to create previlages."
+
 fr:
   users:
     create:
@@ -66,7 +71,7 @@ fr:
       destroy: "Section was successfully destroyed."
       create: "Section was successfully created."
       failure: ""
-
+      
   modulars:
     create:
       success: "Section was created successfully."
@@ -74,3 +79,5 @@ fr:
       destroy: "Section was successfully destroyed."
       create: "Section was successfully created."
       failure: ""
+
+  

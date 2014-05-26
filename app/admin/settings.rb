@@ -1,7 +1,5 @@
 ActiveAdmin.register Company, { :as => 'Settings'} do
-  # scope_to :current_user
   menu :if => proc{ !current_admin_user.present? }
-  # menu :url=> '/admin/settings/#{current_user.company_id}/edit'
   actions :all, :except => [:new, :create, :show, :destroy]
   config.filters = false
   config.batch_actions = false
@@ -35,6 +33,7 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
   end
 
   form do |f|
+    f.object.build_attachment unless f.object.attachment.present?
     f.inputs "Company Details" do
       f.input :name
       f.input :primary_email , :input_html => { :disabled => true }
@@ -42,23 +41,15 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
       f.input :domain , :input_html => { :disabled => true }
       f.input :address1
       f.input :address2
-      # f.semantic_fields_for :attachment do |p|
-      #   render :partial => "get_attachment"
-      # end
       f.input :timezone, :as => :select, :collection => Company::TIMEZONES
       f.input :country
       f.input :contact_no
       f.input :is_disabled
     end
+    f.inputs "Attachments", for: [:attachment, f.object.attachment] do |s|
+      s.input :attachment, :as => :file, :hint => s.template.image_tag(s.object.attachment_file.thumb) if s.object.attachment_file.present?
+      s.input :attachment_file if s.object.attachment_file.blank?
+    end
     f.actions
   end
-
-
-  # index do
-  #   redirect_to edit_admin_setting_path(current_user.company_id)
-  # end
-
-  # show do
-  #   attributes_table :name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :timezone
-  # end
 end
