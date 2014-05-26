@@ -9,8 +9,8 @@
 <body>
 
 <!-- Notice -->
-	<p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+	<!-- <p class="notice"><%= notice %></p> -->
+    <!-- <p class="alert"><%= alert %></p> -->
 <!-- Notice end -->
 
     <!-- Logout -->
@@ -23,8 +23,9 @@
 
 	<!-- Logout end -->
 
-
+<%= render :partial => "layouts/header" %>
 <%= yield %>
+<%= render :partial => "layouts/footer" %>
 
 </body>
 </html>
