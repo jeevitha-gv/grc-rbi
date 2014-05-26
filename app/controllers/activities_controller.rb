@@ -15,4 +15,9 @@ class ActivitiesController < ApplicationController
     return activity
   end
 
+  def clear_audit    
+    PublicActivity::Activity.all.destroy_all
+    redirect_to activities_path
+  end
+
 end
