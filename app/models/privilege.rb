@@ -1,4 +1,4 @@
-class Previlege < ActiveRecord::Base
+class Privilege < ActiveRecord::Base
 	
 	# Rails Association
 	belongs_to :role
