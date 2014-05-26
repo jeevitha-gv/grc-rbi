@@ -31,7 +31,7 @@ form do |f|
       f.input :email
       f.input :user_name
       f.input :is_disabled
-<<<<<<< HEAD
+      f.input :teams, :class => ""
     end
     f.inputs "Other Information", for: [:profile, f.object.profile] do |s|
       s.input :personal_email
@@ -44,20 +44,13 @@ form do |f|
         f.input :email , :input_html => { :disabled => true }
         f.input :user_name
         f.input :is_disabled
+        f.input :teams, :class => ""
       end
       f.inputs "Other Information", for: [:profile, f.object.profile] do |s|
         s.input :personal_email
         s.input :address1
         s.input :address2
-    end
-=======
-      f.input :teams, :class => ""
-  end
-  f.inputs "Other Information", for: [:profile, f.object.profile] do |s|
-    s.input :personal_email
-    s.input :address1
-    s.input :address2
->>>>>>> cae77c091c5a66340e838a794417a5b34a7be631
+      end
   end
   f.actions
 end
