@@ -42,12 +42,9 @@ ActiveAdmin.register Role  do
          end
        end
        
-<<<<<<< HEAD
       #To check company admin
       def check_company_admin
-        p current_company.roles
         if current_company.roles.present?
-          p current_company.roles
           company_admin_id = current_company.roles.where('title= ?' ,'company admin').first.id if (current_company.id == current_user.company_id && current_company.roles.present?)
           current_user.role_id 
           unless company_admin_id.nil?
@@ -57,8 +54,7 @@ ActiveAdmin.register Role  do
         end
       end
        
-=======
->>>>>>> b3e63592a9fd97e22ad40ba521eeefce713597cd
+
   end
  
   
