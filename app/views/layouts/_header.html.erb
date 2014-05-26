@@ -19,12 +19,12 @@
               Risk</a></li>
           </ul>
         </div>
-        <div class="user_login"> <img src="/assets/user-icon.jpg"> UserName <span id="login_drop"><img src="/assets/user-down-arrow.png"></span>
+        <div class="user_login"> <img src="/assets/user-icon.jpg"><%= current_user.user_name %><span id="login_drop"><img src="/assets/user-down-arrow.png"></span>
           <div class="account_header_dropdown" style="display: none;">
             <ul>
-              <li><a href="">User Profile</a></li>
-              <li><a href="">Reset Password</a></li>
-              <li><a href="">Logout</a></li>
+              <li><%= link_to "User Profile", edit_user_path %></li>
+              <li><%= link_to "Reset Password", password_user_path %></li>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
             </ul>
           </div>
         </div>
@@ -72,3 +72,21 @@
     </div>
   </div>
 </div>
+<!-- Notice -->
+  <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+<!-- Notice end -->
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $( ".user_login" ).mouseenter(function() {
+      $(this).addClass("active");
+      $(".account_header_dropdown").slideDown(100);
+    })
+    .mouseleave(function() {
+      $(this).removeClass("active");
+      $(".account_header_dropdown").hide();
+    });
+  });
+</script>
