@@ -6,7 +6,7 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
 
   controller do
     before_filter :authorize_company, only: [:edit, :update]
-
+    before_filter :check_company_admin
     def index
       redirect_to edit_admin_setting_path(current_user.company_id)
     end

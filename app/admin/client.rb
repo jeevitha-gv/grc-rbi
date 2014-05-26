@@ -1,7 +1,10 @@
 ActiveAdmin.register Client do
 
   menu :if => proc{ !current_admin_user.present? }
-
+   #authentication
+  controller do
+    before_filter :check_company_admin
+  end
   permit_params :name, :company_id, :address1, :address2, :contact_no, :email
 
   index do

@@ -108,4 +108,14 @@ class ApplicationController < ActionController::Base
   def check_password_authenticated
     redirect_to password_user_path unless current_user.encrypted_password.present?
   end
+  
+  #To check company admin
+    def check_company_admin
+        company_admin_id = current_company.roles.where('title= ?' ,'company admin').first.id if (current_company.id == current_user.company_id && current_company.roles.present?)
+        current_user.role_id 
+        unless company_admin_id.nil?
+          result = current_user.role_id == company_admin_id ?  true : false
+            redirect_to '/users/sign_in'  if result == false
+          end
+      end
 end

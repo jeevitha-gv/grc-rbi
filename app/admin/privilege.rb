@@ -10,14 +10,13 @@ ActiveAdmin.register Privilege do
 	#To hide form menu
 	menu false
 	controller do
-      before_filter :authenticate_user!
+      before_filter :authenticate_user!, :check_company_admin
 			skip_before_filter :verify_authenticity_token
 			before_filter :role_company, only: [:new]
 			
 			#To crete new previlege
 		 def create
-			 p 888
-			p @all_privileges = current_company.roles.collect {|role|  role.privileges}.flatten
+			@all_privileges = current_company.roles.collect {|role|  role.privileges}.flatten
 			 if params[:privilege][:modular_id].present?
 				params[:privilege][:modular_id].each do |privilege_modular_id|
 					  privilege =  Privilege.where('role_id =? AND modular_id =?', params[:privilege][:role_id], privilege_modular_id)
