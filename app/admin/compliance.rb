@@ -1,7 +1,9 @@
 ActiveAdmin.register Compliance do
 
   menu :if => proc{ !current_admin_user.present? }
-
+   controller do
+    before_filter :check_company_admin
+  end
   
    permit_params :name
 
