@@ -2,10 +2,10 @@ ActiveAdmin.register Role  do
  menu :if => proc{ !current_admin_user.present? }
  #authentication
   controller do
-   before_filter :check_role
+   before_filter :check_role, :check_company_admin
    action :all, except: [:new]
     def scoped_collection                                                                                                                                                                                                                                                
-     @previleges=Role.where('company_id= ?', current_user.company_id)
+     @privileges=Role.where('company_id= ?', current_user.company_id)
 		end
    
     def create
@@ -39,8 +39,20 @@ ActiveAdmin.register Role  do
          else
            redirect_to '/users/sign_in'
          end
-          
        end
+       
+      #To check company admin
+      def check_company_admin
+        if current_company.roles.present?
+          company_admin_id = current_company.roles.where('title= ?' ,'company admin').first.id if (current_company.id == current_user.company_id && current_company.roles.present?)
+          current_user.role_id 
+          unless company_admin_id.nil?
+            result = current_user.role_id == company_admin_id ?  true : false
+              redirect_to '/users/sign_in'  if result == false
+            end
+        end
+      end
+       
   end
  
   
@@ -50,7 +62,7 @@ ActiveAdmin.register Role  do
     
     column :title
     actions  do |f|
-      link_to "Add privilege" , "/admin/previleges/new?role_id=#{f.id}"#, :onclick => "test();"
+      link_to "Add privilege" , "/admin/privileges/new?role_id=#{f.id}"#, :onclick => "test();"
     end
   end  
   
