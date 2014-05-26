@@ -19,7 +19,7 @@
               Risk</a></li>
           </ul>
         </div>
-        <div class="user_login"> <img src="/assets/user-icon.jpg"><%= current_user.user_name unless current_user.user_name.blank? %><span id="login_drop"><img src="/assets/user-down-arrow.png"></span>
+        <div class="user_login"> <img src="/assets/outer/user-icon.jpg"><%= current_user.user_name unless current_user.user_name.blank? %><span id="login_drop"><img src="/assets/outer/user-down-arrow.png"></span>
           <div class="account_header_dropdown" style="display: none;">
             <ul>
               <li><%= link_to "User Profile", edit_user_path %></li>
