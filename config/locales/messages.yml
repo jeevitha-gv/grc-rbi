@@ -7,6 +7,12 @@ en:
   uniqueness:
     create:
       failure: "has been already used" 
+  client:
+    create:
+      success: "client was created successfully."
+      update: "client was successfully updated."
+      destroy: "client was successfully destroyed."
+      
 
   company:
     domain:
@@ -71,7 +77,7 @@ fr:
       destroy: "Section was successfully destroyed."
       create: "Section was successfully created."
       failure: ""
-      
+
   modulars:
     create:
       success: "Section was created successfully."
