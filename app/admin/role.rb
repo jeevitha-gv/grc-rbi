@@ -33,7 +33,8 @@ ActiveAdmin.register Role  do
         params.require(:role).permit(:title, :company_id)
        end
        def check_role
-        role = Role.where('id =?', current_user.role_id).first.title if current_user.role_id.present?
+        p current_user.role_id
+        p role = Role.where('id =?', current_user.role_id).first.title if current_user.role_id.present?
          if role == 'company admin'
           return true
          else
@@ -43,7 +44,9 @@ ActiveAdmin.register Role  do
        
       #To check company admin
       def check_company_admin
+        p current_company.roles
         if current_company.roles.present?
+          p current_company.roles
           company_admin_id = current_company.roles.where('title= ?' ,'company admin').first.id if (current_company.id == current_user.company_id && current_company.roles.present?)
           current_user.role_id 
           unless company_admin_id.nil?

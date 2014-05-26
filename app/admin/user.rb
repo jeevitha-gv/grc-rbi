@@ -13,6 +13,7 @@ index do
   column :email
   column :user_name
   column :is_disabled
+  column :team
   actions
 end
 
