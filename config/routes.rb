@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  post 'admin/previleges/modal_previlege'
+  post 'admin/privileges/modal_previlege'
   devise_for :users
 
   resources :home

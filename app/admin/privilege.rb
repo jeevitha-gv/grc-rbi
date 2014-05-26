@@ -1,4 +1,4 @@
-ActiveAdmin.register Previlege do
+ActiveAdmin.register Privilege do
 	#To change title bar link
   breadcrumb do
     [
@@ -16,15 +16,16 @@ ActiveAdmin.register Previlege do
 			
 			#To crete new previlege
 		 def create
-			@all_previleges = current_user.previleges
-			 if params[:previlege][:modular_id].present?
-				params[:previlege][:modular_id].each do |previlege_modular_id|
-					 previlege =  Previlege.where('role_id =? AND modular_id =?', params[:previlege][:role_id], previlege_modular_id)
-					if previlege.empty?
-						@previlege = Previlege.new(previlege_params) 			
-						@previlege.role_id = params[:previlege][:role_id]
-						@previlege.modular_id = previlege_modular_id
-						@previlege.save
+			 p 888
+			p @all_privileges = current_company.roles.collect {|role|  role.privileges}.flatten
+			 if params[:privilege][:modular_id].present?
+				params[:privilege][:modular_id].each do |privilege_modular_id|
+					  privilege =  Privilege.where('role_id =? AND modular_id =?', params[:privilege][:role_id], privilege_modular_id)
+					if privilege.empty?
+						@privilege = Privilege.new(privilege_params) 			
+						@privilege.role_id = params[:privilege][:role_id]
+						@privilege.modular_id = privilege_modular_id
+						@privilege.save
 					end
 				end
 				flash[:notice] =  MESSAGES["previlages"]["create"]["success"]
@@ -35,24 +36,24 @@ ActiveAdmin.register Previlege do
 		end
 		
 		def edit
-			@previlege = Previlege.where('id= ?', params[:id]).first
+			@privilege = Privilege.where('id= ?', params[:id]).first
 			@section = ["Audit"]
-			@role_previlege = Previlege.where('role_id= ?', @previlege.role_id)
+			@role_privilege = Privilege.where('role_id= ?', @privilege.role_id)
 		end
 		
 		def update
-				params[:previlege][:modular_id].reject(&:empty?).each do |controller_name| 
+				params[:privilege][:modular_id].reject(&:empty?).each do |controller_name| 
 				modular_id = Modular.where('modal_name =?', controller_name).first.id
-				@previlege = Previlege.where('role_id =? AND modular_id =?',  params[:previlege][:role_id], modular_id).first
-				if @previlege.nil?
-				Previlege.create(:role_id => params[:previlege][:role_id], :modular_id => modular_id)
+				@privilege = Privilege.where('role_id =? AND modular_id =?',  params[:privilege][:role_id], modular_id).first
+				if @privilege.nil?
+				Privilege.create(:role_id => params[:privilege][:role_id], :modular_id => modular_id)
 				end
 			end
 		end
 		
 		def destroy
-			previlege = Previlege.where('id= ?', params[:id]).first
-			previlege.destroy if previlege.present?
+			privilege = Privilege.where('id= ?', params[:id]).first
+			privilege.destroy if privilege.present?
 			respond_to :js
 		end
 		
@@ -64,8 +65,8 @@ ActiveAdmin.register Previlege do
 		
 		private
 			
-      def previlege_params
-        params.require(:previlege).permit(:role_id, :modular_id)
+      def privilege_params
+        params.require(:privilege).permit(:role_id, :modular_id)
 			end
 			#check current user is role
        def check_role

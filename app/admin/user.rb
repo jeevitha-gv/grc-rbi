@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
 
-  
+
 menu :if => proc{ !current_admin_user.present? }
 
 # removing delete option
@@ -16,7 +16,7 @@ index do
   actions
 end
 
-show do 
+show do
   attributes_table :full_name, :email, :user_name
 end
 
@@ -71,6 +71,10 @@ controller do
   private
     def user_params
       params.require(:user).permit(:full_name, :email, :user_name, :is_disabled, :company_id, profile_attributes: [:personal_email, :address2, :address1])
+    end
+
+    def scoped_collection
+      current_user.company.users
     end
 end
 

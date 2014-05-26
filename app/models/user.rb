@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
 
   belongs_to :role
-  has_many :previleges, through: :role
+  has_many :privileges, through: :role
 
   has_many :teams, through: :user_teams
   has_many :user_teams
@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def user_previleges
-    @grouped_modular_action ||= self.role.previleges.map(&:modular).group_by(&:action_name) if self.role.present?
+    @grouped_modular_action ||= self.role.privileges.map(&:modular).group_by(&:action_name) if self.role.present?
   end
 
 
