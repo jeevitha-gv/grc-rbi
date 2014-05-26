@@ -6,17 +6,13 @@
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
       <div class="page_heading">User Profile</div>
   </div>
-</div>
+</div>  
+  
+
+
+
 <div class="row user_main">
-  <div class="profile_photo_block">
-      <div class="profile_photo">
-          <a href=""><img src="img/user-profile-pic.jpg" class="edit_photo"/></a>
-      </div>
-  </div>
-  <div class="profile_form">
-
-
-
+      <div class="profile_photo_block">
 
 <%= form_for(@user, :url => { :action => "update" }) do |f| %>
   <br>
@@ -28,6 +24,8 @@
       <%= attach.file_field :attachment_file %>
     </div>
   <% end %>
+  </div>
+  <div class="profile_form">
   <div class="pad_bttm">
   	Email:
     <%= @user.email %>
