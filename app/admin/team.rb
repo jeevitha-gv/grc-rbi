@@ -2,7 +2,7 @@ ActiveAdmin.register Team do
 
       menu :if => proc{ !current_admin_user.present? }
 
-      # permit_params :name, :module_id, :company_id, :department_id
+
  controller do
    action :all, except: [:new, :show]
     def scoped_collection  
@@ -23,6 +23,13 @@ ActiveAdmin.register Team do
       params.require(:team).permit(:name, :module_id, :company_id, :department_id)
      end
   end
+
+  #authentication
+  controller do
+    before_filter :check_company_admin
+  end
+      permit_params :name
+
 
   index do
     selectable_column

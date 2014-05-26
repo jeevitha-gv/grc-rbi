@@ -1,6 +1,7 @@
 ActiveAdmin.register Client do
 
   menu :if => proc{ !current_admin_user.present? }
+<<<<<<< HEAD
 
   #permit_params :name, :company_id, :address1, :address2, :contact_no, :email
   
@@ -24,6 +25,13 @@ ActiveAdmin.register Client do
       params.require(:client).permit(:name, :company_id, :address1, :address2, :contact_no, :email)
     end
   end
+=======
+   #authentication
+  controller do
+    before_filter :check_company_admin
+  end
+  permit_params :name, :company_id, :address1, :address2, :contact_no, :email
+>>>>>>> b3e63592a9fd97e22ad40ba521eeefce713597cd
 
   index do
     column :name

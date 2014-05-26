@@ -42,6 +42,7 @@ ActiveAdmin.register Role  do
          end
        end
        
+<<<<<<< HEAD
       #To check company admin
       def check_company_admin
         p current_company.roles
@@ -56,6 +57,8 @@ ActiveAdmin.register Role  do
         end
       end
        
+=======
+>>>>>>> b3e63592a9fd97e22ad40ba521eeefce713597cd
   end
  
   
