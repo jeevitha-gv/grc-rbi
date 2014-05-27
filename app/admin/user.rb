@@ -66,13 +66,6 @@ controller do
       params.require(:user).permit(:full_name, :email, :user_name, :is_disabled, :company_id, profile_attributes: [:personal_email, :address2, :address1])
     end
 
-<<<<<<< HEAD
-    
-=======
-    def scoped_collection
-      current_company.users
-    end
->>>>>>> 14ade6c2d754d21d715ba284c85ca0ac69e45173
 end
 
 
