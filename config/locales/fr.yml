@@ -11,3 +11,16 @@ fr:
 
   system:
     hello:  "Bonjour"
+
+  profile:
+    email: "Email"
+    name: "Nom"
+    username: "Nom d'Utilisateur"
+    timezone: "Timezone"
+    language: "Language"
+    Contact: "Contact"
+    address1: "Address 1"
+    address2: "Address 2"
+    city: "City"
+    state: "State"
+    country: "Country"
