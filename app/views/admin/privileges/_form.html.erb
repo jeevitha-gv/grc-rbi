@@ -13,8 +13,8 @@
 			<%= f.label :Privilege%>
 			<div id="role">
 			<div id="previlege" class="previleges roles_0">
-			<%= f.select :modular,options_for_select(Section.all.collect{|x| [	x.name, x.id.to_i]}), {},{ :prompt => "-select-", :id => "privilege_modular",  :onChange => "previlege_add(this);"}%>
-			<%= f.select :modular_id,options_for_select(Modular.all.collect{}), {:id => "privilege_modular_id", :selected =>"", :class=> "test"}, :multiple => "multiple", :prompt => "-select-", disabled: true%>		
+			<%= f.select :modular,options_for_select(Section.all.collect{|x| [	x.name, x.id.to_i]}),{include_blank: '-Select Model-' }, {:id => "privilege_modular",  :onChange => "previlege_add(this);"}%>
+			<%= f.select :modular_id,options_for_select(Modular.all.collect{}), {:id => "privilege_modular_id", :selected =>"", :class=> "test"}, :multiple => "multiple", disabled: true%>		
     <%= f.submit "ADD" %>	</div>
 			</div>
 <% end %>
@@ -24,7 +24,10 @@
 <div id="grid"></div>
 
 <script>
-
+$(document ).ready(function() {
+	$('#privilege_modular_id').addClass("multiselect");
+	$('.multiselect').multiselect();
+});
 $(document).ready(function(){
 	var dataSource = new kendo.data.DataSource({
 		transport: {
@@ -77,7 +80,7 @@ function previlege_add(element)
 var modal_id = $(element).val();
 //~ var selected_div = $($(element).closest('.previleges')).children('#previlege_modular_id');
 	$('#privilege_modular_id').attr('disabled', false);
-
+	$("#privilege_modular_id").multiselect('destroy');
 	//~ $('.multiselect dropdown-toggle btn btn-default').empty();
 		$('#privilege_modular_id option[value]').remove();
 	$.ajax({url: "/admin/privileges/modal_previlege", type: 'post', data: {modal_id: modal_id },	success: function(data){
@@ -89,12 +92,14 @@ var modal_id = $(element).val();
 				option=option+"<option value="+data.actions[i]["id"]+">"+data.actions[i]["action_name"]+"</option>";
 				}
 				$('#privilege_modular_id').append(option);
-				$('#privilege_modular_id').addClass("multiselect");
+				//~ $('#privilege_modular_id').addClass("multiselect");
 				$('.multiselect').multiselect();
 				}
 				}
 });
 }
+
+
 //~ function add_multiple_previlege()
 //~ {
 //~ var modal_select = "roles_"+$('.previleges').size();
