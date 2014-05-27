@@ -17,8 +17,8 @@ index do
   column :full_name
   column :email
   column :user_name
-  column :is_disabled
   column :team
+  column :is_disabled
   actions
 end
 
@@ -39,8 +39,8 @@ form do |f|
         f.input :email, :input_html => { :disabled => true }
       end
       f.input :user_name
-      f.input :is_disabled
       f.input :teams, :class => ""
+      f.input :is_disabled
     end
     f.inputs "Other Information", for: [:profile, f.object.profile] do |s|
       s.input :personal_email
