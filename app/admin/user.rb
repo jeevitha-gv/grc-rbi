@@ -50,8 +50,6 @@ form do |f|
   f.actions
 end
 
-
-
 controller do
   def create
     @user = User.new(user_params)
