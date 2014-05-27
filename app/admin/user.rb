@@ -3,10 +3,6 @@ ActiveAdmin.register User do
 
 menu :if => proc{ !current_admin_user.present? }
 
-  #authentication
-  controller do
-    before_filter :check_company_admin
-  end
 
 # removing delete option
 actions :all, :except => [:destroy]
@@ -51,6 +47,9 @@ form do |f|
 end
 
 controller do
+   def scoped_collection
+      current_company.users
+    end
   def create
     @user = User.new(user_params)
     @user.company_id = current_user.company_id
@@ -61,14 +60,12 @@ controller do
     end
   end
 
+ 
   private
     def user_params
       params.require(:user).permit(:full_name, :email, :user_name, :is_disabled, :company_id, profile_attributes: [:personal_email, :address2, :address1])
     end
 
-    def scoped_collection
-      current_company.users
-    end
 end
 
 
