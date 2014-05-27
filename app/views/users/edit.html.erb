@@ -1,84 +1,74 @@
 <div class="clearfix"></div>
 <div class="content">
-<div class="container">
-
-<div class="row"> 
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-      <div class="page_heading">User Profile</div>
-  </div>
-</div>  
-  
-
-
-
-<div class="row user_main">
+  <div class="container">
+    <div class="row"> 
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="page_heading">User Profile</div>
+      </div>
+    </div>    
+    <div class="row user_main">
       <div class="profile_photo_block">
-
-<%= form_for(@user, :url => { :action => "update" }) do |f| %>
-  <br>
-  <%= f.fields_for :attachment do |attach| %>
-    <div>
-      <%= attach.label :attachment, "Profile Photo" %><br />
-      <%= image_tag(@user.attachment.attachment_file.thumb) if @user.attachment.present? %>
-      <br>
-      <%= attach.file_field :attachment_file %>
+        <%= form_for(@user, :url => { :action => "update" }) do |f| %>  
+          <%= f.fields_for :attachment do |attach| %>
+            <div>
+              <%= attach.label :attachment, "Profile Photo" %><br />
+              <%= image_tag(@user.attachment.attachment_file.thumb) if @user.attachment.present? %>      
+              <%= attach.file_field :attachment_file %>
+            </div>
+          <% end %>
+      </div>
+      <div class="profile_form">
+        <div class="pad_bttm">
+  	      <%= f.label :email, t('profile.email') %>
+          <%= @user.email %>
+        </div>
+        <div class="pad_bttm">
+          <%= f.label :full_name, t('profile.name') %>
+          <%= f.text_field :full_name %>
+        </div>
+        <div class="pad_bttm">
+          <%= f.label :user_name, t('profile.username') %>
+          <%= f.text_field :user_name %>
+        </div>
+        <div class="pad_bttm">
+          <%= f.label :timezone, t('profile.timezone') %>
+          <%= f.select :timezone, Company::TIMEZONES, :selected => @user.timezone %>
+        </div>  
+        <div class="pad_bttm">
+          <%= f.label :language_id, t('profile.language') %>
+          <%= f.collection_select(:language_id, Language.all, :id, :name)  %>
+        </div>  
+        <%= f.fields_for :profile do |profile| %>    	
+          <div class="pad_bttm">
+          	<%= profile.label :phone_no, t('profile.contact') %>
+          	<%= profile.text_field :phone_no %>
+          </div>    	
+          <div class="pad_bttm">
+          	<%= profile.label :address1, t('profile.address1') %>
+          	<%= profile.text_field :address1 %>
+          </div>    	
+          <div class="pad_bttm">
+          	<%= profile.label :address2, t('profile.address2') %>
+          	<%= profile.text_field :address2 %>
+          </div>    	
+          <div class="pad_bttm">
+          	<%= profile.label :city, t('profile.city') %>
+          	<%= profile.text_field :city %>
+          </div>    	
+          <div class="pad_bttm">
+          	<%= profile.label :state, t('profile.state') %>
+          	<%= profile.text_field :state %>
+          </div>
+          <div class="pad_bttm">
+          	<%= profile.label :country, t('profile.country') %>
+          	<%= profile.text_field :country %>
+          </div>
+        <% end %>
+        <div class="fright col-lg-10">
+          <%= f.submit "Update", :class => "orange_btn" %>
+        </div>
+      </div>
     </div>
-  <% end %>
-  </div>
-  <div class="profile_form">
-  <div class="pad_bttm">
-  	Email:
-    <%= @user.email %>
-  </div>
-  <div class="pad_bttm">
-    <%= f.label :full_name %>
-    <%= f.text_field :full_name %>
-  </div>
-  <div class="pad_bttm">
-    <%= f.label :user_name %>
-    <%= f.text_field :user_name %>
-  </div>
-  <div class="pad_bttm">
-    <%= f.label :timezone %>
-    <%= f.select :timezone, Company::TIMEZONES, :selected => @user.timezone %>
-  </div>  
-  <div class="pad_bttm">
-      <%= f.label :language_id %>
-      <%= f.collection_select(:language_id, Language.all, :id, :name)  %>
-  </div>  
-  <%= f.fields_for :profile do |profile| %>    	
-    	<div class="pad_bttm">
-    		<%= profile.label :phone_no %>
-    		<%= profile.text_field :phone_no %>
-    	</div>    	
-    	<div class="pad_bttm">
-    		<%= profile.label :address1 %>
-    		<%= profile.text_field :address1 %>
-    	</div>    	
-    	<div class="pad_bttm">
-    		<%= profile.label :address2 %>
-    		<%= profile.text_field :address2 %>
-    	</div>    	
-    	<div class="pad_bttm">
-    		<%= profile.label :city %>
-    		<%= profile.text_field :city %>
-    	</div>    	
-    	<div class="pad_bttm">
-    		<%= profile.label :state %>
-    		<%= profile.text_field :state %>
-    	</div>
-    	<div class="pad_bttm">
-    		<%= profile.label :country %>
-    		<%= profile.text_field :country %>
-    	</div>
-  <% end %>
-  <div class="fright col-lg-10">
-    <%= f.submit "Update", :class => "orange_btn" %>
+    <% end %>
   </div>
 </div>
-</div>
-  <br><br>
-<% end %>
-</div>
-</div>
-
