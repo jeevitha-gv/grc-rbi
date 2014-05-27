@@ -10,4 +10,8 @@ class Company < ActiveRecord::Base
   has_one :attachment, :as => :attachable
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users
+
+  #validation 
+  validates :domain, presence: true
+
 end
