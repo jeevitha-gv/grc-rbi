@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   #publicactivity gem
   include PublicActivity::StoreController
-
+  include ActiveSupport::Rescuable
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :set_locale, :if => :current_user
@@ -11,9 +11,13 @@ class ApplicationController < ActionController::Base
   helper_method :current_company
   before_filter :check_subdomain
   before_filter :check_password_authenticated, :if => :current_user
-
+    if Rails.application.config.consider_all_requests_local
+    rescue_from Exception, with: lambda { |exception| render_error 500, exception }
+    rescue_from ActionController::RoutingError, ActionController::UnknownController, AbstractController::ActionNotFound, ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
+  end
+  
   protected
-
+  
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :user_name
     devise_parameter_sanitizer.for(:sign_up) << :full_name
@@ -117,5 +121,14 @@ class ApplicationController < ActionController::Base
           result = current_user.role_id == company_admin_id ?  true : false
             redirect_to '/users/sign_in'  if result == false
           end
-      end
+        end
+        
+  private
+
+  def render_error(status, exception)
+    respond_to do |format|
+      format.html { render template: "errors/error_#{status}", layout: 'layouts/empty', :locals => {status: status, exception: exception}  }
+      format.all { render nothing: true, status: status }
+    end
+  end
 end
