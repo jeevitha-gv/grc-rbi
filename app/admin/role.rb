@@ -9,13 +9,18 @@ ActiveAdmin.register Role  do
 		end
    
     def create
-      @role = Role.new(role_params)
-      @role.company_id = current_user.company_id
-      if @role.save
-        redirect_to admin_roles_path
+      role = Role.where("title= ? AND company_id= ?", params[:role][:title], current_user.company_id).first
+      unless role.present?
+        @role = Role.new(role_params)
+        @role.company_id = current_user.company_id
+        if @role.save
+          redirect_to admin_roles_path
+        else
+          redirect_to new_admin_role_path
+        end
       else
         redirect_to new_admin_role_path
-			end
+      end
 		end
     
     def update
