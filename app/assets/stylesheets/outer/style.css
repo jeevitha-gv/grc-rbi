@@ -42,7 +42,8 @@
 	background-color: #363535;
 	color: #9f9d9d;
 	padding: 25px 0;
-	position: fixed;
+	position: relative;
+	vertical-align: bottom;
 	bottom: 0;
 	right: 0;
 	left: 0;

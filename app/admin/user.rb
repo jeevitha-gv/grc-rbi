@@ -35,7 +35,7 @@ form do |f|
       f.input :full_name
       if f.object.new_record?
         f.input :email
-      else 
+      else
         f.input :email, :input_html => { :disabled => true }
       end
       f.input :user_name
@@ -67,7 +67,7 @@ controller do
     end
 
     def scoped_collection
-      current_user.company.users
+      current_company.users
     end
 end
 
