@@ -15,12 +15,12 @@ class ActivitiesController < ApplicationController
     return activity
   end
 
-  def clear_audit
-    @users = User.where(company_id: current_company)    
-    #PublicActivity::Activity.all.destroy_all
-    user_ids = @users.map(&:id)
-      PublicActivity::Activity.where("owner_id IN(?)",user_ids).destroy_all
-    redirect_to activities_path
-  end
+  # def clear_audit
+  #   @users = User.where(company_id: current_company)    
+  #   #PublicActivity::Activity.all.destroy_all
+  #   user_ids = @users.map(&:id)
+  #     PublicActivity::Activity.where("owner_id IN(?)",user_ids).destroy_all
+  #   redirect_to activities_path
+  # end
 
 end
