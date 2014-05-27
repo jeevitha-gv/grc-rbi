@@ -1,6 +1,6 @@
 class Client < ActiveRecord::Base
 
 	belongs_to :company #client belongs to a company
-	 validates_uniqueness_of :email, :presence => true#email should be unique
-	 validates_uniqueness_of :name, :presence => true #client name should be unique
+	 validates :name, presence: true, uniqueness:{ message: MESSAGES["uniqueness"]["create"]["failure"]}#name should be unique
+	 validates :email, presence: true, uniqueness:{ message: MESSAGES["uniqueness"]["create"]["failure"]}#E-mailshould be unique
 end

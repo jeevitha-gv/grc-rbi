@@ -3,6 +3,11 @@ ActiveAdmin.register User do
 
 menu :if => proc{ !current_admin_user.present? }
 
+  #authentication
+  controller do
+    before_filter :check_company_admin
+  end
+
 # removing delete option
 actions :all, :except => [:destroy]
 
@@ -13,6 +18,7 @@ index do
   column :email
   column :user_name
   column :is_disabled
+  column :team
   actions
 end
 

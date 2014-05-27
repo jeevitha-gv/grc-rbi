@@ -20,7 +20,7 @@
 }
 .subbar-nav li {
 	float: left;
-	width: 120px;
+	width: 107px;
     text-align: center;
 }
 .subbar-nav li a {
@@ -29,6 +29,7 @@
 	border: none !important;
 	border-bottom:5px solid #181818;
 	 height:57px;
+	 text-decoration: none;
 }
 .subbar-nav li a.active,.subbar-nav li a:hover {
 	border-bottom: 5px solid #ffa200 !important; background-color:transparent !important;
@@ -121,7 +122,7 @@ ul.list-tab {
 	text-align: center;
 	width: 30px;
 	height: 26px;
-	background-image: url(../img/sub-nav-icon.png);
+	background-image: url("/assets/outer/sub-nav-icon.png");
 	background-repeat: no-repeat;
 	background-position: 0 0;
 	margin: 0 auto;
@@ -130,7 +131,7 @@ ul.list-tab {
 	text-align: center;
 	width: 30px;
 	height: 26px;
-	background-image: url(../img/sub-nav-icon.png);
+	background-image: url("/assets/outer/sub-nav-icon.png");
 	background-repeat: no-repeat;
 	background-position: -30px 0;
 	margin: 0 auto;
@@ -139,7 +140,7 @@ ul.list-tab {
 	text-align: center;
 	width: 30px;
 	height: 26px;
-	background-image: url(../img/sub-nav-icon.png);
+	background-image: url("/assets/outer/sub-nav-icon.png");
 	background-repeat: no-repeat;
 	background-position: -60px 0;
 	margin: 0 auto;
@@ -148,7 +149,7 @@ ul.list-tab {
 	text-align: center;
 	width: 30px;
 	height: 26px;
-	background-image: url(../img/sub-nav-icon.png);
+	background-image: url("/assets/outer/sub-nav-icon.png");
 	background-repeat: no-repeat;
 	background-position: -90px 0;
 	margin: 0 auto;
@@ -157,7 +158,7 @@ ul.list-tab {
 	text-align: center;
 	width: 30px;
 	height: 26px;
-	background-image: url(../img/sub-nav-icon.png);
+	background-image: url("/assets/outer/sub-nav-icon.png");
 	background-repeat: no-repeat;
 	background-position: -120px 0;
 	margin: 0 auto;
@@ -166,7 +167,7 @@ ul.list-tab {
 	text-align: center;
 	width: 30px;
 	height: 26px;
-	background-image: url(../img/sub-nav-icon.png);
+	background-image: url("/assets/outer/sub-nav-icon.png");
 	background-repeat: no-repeat;
 	background-position: -150px 0;
 	margin: 0 auto;
@@ -175,7 +176,7 @@ ul.list-tab {
 	text-align: center;
 	width: 30px;
 	height: 26px;
-	background-image: url(../img/sub-nav-icon.png);
+	background-image: url("/assets/outer/sub-nav-icon.png");
 	background-repeat: no-repeat;
 	background-position: -180px 0;
 	margin: 0 auto;
@@ -184,7 +185,7 @@ ul.list-tab {
 	text-align: center;
 	width: 30px;
 	height: 26px;
-	background-image: url(../img/sub-nav-icon.png);
+	background-image: url("/assets/outer/sub-nav-icon.png");
 	background-repeat: no-repeat;
 	background-position: -210px 0;
 	margin: 0 auto;
@@ -193,13 +194,13 @@ ul.list-tab {
 	text-align: center;
 	width: 30px;
 	height: 26px;
-	background-image: url(../img/sub-nav-icon.png);
+	background-image: url("/assets/outer/sub-nav-icon.png");
 	background-repeat: no-repeat;
 	background-position: -240px 0;
 	margin: 0 auto;
 }
 .sort-icon {
-	background-image: url(../img/sort-icon.png);
+	background-image: url("/assets/outer/sort-icon.png");
 	background-repeat: no-repeat;
 	width: 7px;
 	height: 16px;
@@ -209,7 +210,7 @@ ul.list-tab {
 	text-align: center;
 	width: 25px;
 	height: 25px;
-	background-image: url(../img/menu-icon.png);
+	background-image: url("/assets/outer/menu-icon.png");
 	background-repeat: no-repeat;
 	background-position: 0 0;
 	margin: 0 auto;
@@ -219,7 +220,7 @@ ul.list-tab {
 	text-align: center;
 	width: 25px;
 	height: 25px;
-	background-image: url(../img/menu-icon.png);
+	background-image: url("/assets/outer/menu-icon.png");
 	background-repeat: no-repeat;
 	background-position: -25px 0;
 	margin: 0 auto;
@@ -229,7 +230,7 @@ ul.list-tab {
 	text-align: center;
 	width: 25px;
 	height: 25px;
-	background-image: url(../img/menu-icon.png);
+	background-image: url("/assets/outer/menu-icon.png");
 	background-repeat: no-repeat;
 	background-position: -50px 0;
 	margin: 0 auto;
@@ -246,34 +247,34 @@ a.active .risk-icon, a:hover .risk-icon {
 	background-position: -50px -25px;
 }
 a.set-icon.active {
-	background-image: url(../img/action-icon.png);
+	background-image: url("/assets/outer/action-icon.png");
 	background-position: 0 -20px;
 }
 a.tick-icon.active {
-	background-image: url(../img/action-icon.png);
+	background-image: url("/assets/outer/action-icon.png");
 	background-position: -20px -20px;
 }
 a.tick1-icon.active {
-	background-image: url(../img/action-icon.png);
+	background-image: url("/assets/outer/action-icon.png");
 	background-position: -40px -20px;
 }
 a.book-icon.active {
-	background-image: url(../img/action-icon.png);
+	background-image: url("/assets/outer/action-icon.png");
 	background-position: -60px -20px;
 }
 a.pdf-icon.active {
-	background-image: url(../img/action-icon.png);
+	background-image: url("/assets/outer/action-icon.png");
 	background-position: -80px -20px;
 }
 a.edit-icon.active {
-	background-image: url(../img/action-icon.png);
+	background-image: url("/assets/outer/action-icon.png");
 	background-position: -100px -20px;
 }
 a.set-icon {
 	text-align: center;
 	width: 20px;
 	height: 20px;
-	background-image: url(../img/action-icon.png);
+	background-image: url("/assets/outer/action-icon.png");
 	background-repeat: no-repeat;
 	background-position: 0 0;
 	margin: 0 5px;
@@ -283,7 +284,7 @@ a.tick-icon {
 	text-align: center;
 	width: 20px;
 	height: 20px;
-	background-image: url(../img/action-icon.png);
+	background-image: url("/assets/outer/action-icon.png");
 	background-repeat: no-repeat;
 	background-position: -20px 0;
 	margin: 0 5px;
@@ -293,7 +294,7 @@ a.tick1-icon {
 	text-align: center;
 	width: 20px;
 	height: 20px;
-	background-image: url(../img/action-icon.png);
+	background-image: url("/assets/outer/action-icon.png");
 	background-repeat: no-repeat;
 	background-position: -40px 0;
 	margin: 0 5px;
@@ -303,7 +304,7 @@ a.book-icon {
 	text-align: center;
 	width: 20px;
 	height: 20px;
-	background-image: url(../img/action-icon.png);
+	background-image: url("/assets/outer/action-icon.png");
 	background-repeat: no-repeat;
 	background-position: -60px 0;
 	margin: 0 5px;
@@ -313,7 +314,7 @@ a.pdf-icon {
 	text-align: center;
 	width: 20px;
 	height: 20px;
-	background-image: url(../img/action-icon.png);
+	background-image: url("/assets/outer/action-icon.png");
 	background-repeat: no-repeat;
 	background-position: -80px 0;
 	margin: 0 5px;
@@ -323,7 +324,7 @@ a.edit-icon {
 	text-align: center;
 	width: 20px;
 	height: 20px;
-	background-image: url(../img/action-icon.png);
+	background-image: url("/assets/outer/action-icon.png");
 	background-repeat: no-repeat;
 	background-position: -100px 0;
 	margin: 0 5px;
@@ -403,5 +404,21 @@ a.edit-icon {
   font-size: 14px;
   padding: 5px 20px;
 }
-
+.navbar{
+	background:none!important;
+	border:none;
+}
 .black_btn:hover{ background-color:#929292; color:#454343;}
+.main_nav li a{
+	padding: 18px 20px !important;
+	color:#000!important;
+	text-decoration: none;
+}
+.main_nav li a:hover {
+	color:#FFFFFF!important;
+	}
+.navbar-header a{
+	text-decoration: none;
+	color:#999999!important;
+}
+#dashboard-content{min-height:300px;}

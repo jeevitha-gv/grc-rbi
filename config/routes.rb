@@ -35,7 +35,9 @@ Rails.application.routes.draw do
     end
    end
 
-   resources :activities
+   delete '/activities/clear_audit' => 'activities#clear_audit', :as => :clear_audit
+   resources :activities, :except => [:show]
+
   
    get 'welcome', to: 'companies#welcome', :as => :welcome
 

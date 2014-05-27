@@ -1,4 +1,7 @@
-<p> <a href="">Clear Audit Trail</a></p>
+<%= link_to 'Clear Audit Trail', clear_audit_path,
+            :confirm => 'Do you really want to delete all activity logs?', :method => :delete %>
+
+
 <h1> Activities</h1>
 <% @activities.each do |activity| %>
   <%= activity.owner.full_name %> has <%= parse_and_convert(activity.key) %> <%= activity.created_at %> from <%= activity.ip %><br>

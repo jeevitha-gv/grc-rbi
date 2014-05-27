@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
   has_one :attachment, as: :attachable
   has_one :profile
 
+   validates :user_name, presence: true
+   validates :email, presence: true, uniqueness:{ message: MESSAGES["uniqueness"]["create"]["failure"]}#E-mailshould be unique
+   
   # validates :user_name, :full_name , presence: true, uniqueness: true
 
   delegate :title, to: :dealer, prefix: true
