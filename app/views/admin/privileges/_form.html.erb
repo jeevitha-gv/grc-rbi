@@ -1,3 +1,12 @@
+<<<<<<< HEAD:app/views/admin/previleges/_form.html.erb
+<head>
+    <link href="http://cdn.kendostatic.com/2014.1.416/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="http://cdn.kendostatic.com/2014.1.416/styles/kendo.default.min.css" rel="stylesheet" />
+    <script src="http://cdn.kendostatic.com/2014.1.416/js/kendo.all.min.js"></script>
+<script type="text/javascript" src="/assets/messi.js"></script>	
+<script type="text/javascript" src="/assets/messi.min.js"></script>	
+=======
+>>>>>>> f6aec720bf59e50985803585368472cd88fa9b36:app/views/admin/privileges/_form.html.erb
 <%  role = Role.where('id= ?', params[:role_id]).first.title%>
 <div id="flash"></div>
 <%= active_admin_form_for [:admin, @privilege] , :remote => true do |f| %>
@@ -13,7 +22,44 @@
 			</div>
 <% end %>
 <div id="view_previleges"></div>
+
+<br>
+<div id="grid"></div>
+
 <script>
+
+$(document).ready(function(){
+
+	var dataSource = new kendo.data.DataSource({
+		transport: {
+			read: "/previleges",
+			destroy : {
+				url: function(previlege){
+					return crudServiceBaseUrl + "/" + previlege.id
+				},
+				dataType: "json",
+				type: "DELETE"
+			}
+		},
+		schema: {
+			model: {
+				id: "id",
+				fields: {
+					modular_id: {type: "integer"}
+				}
+			}
+		}
+	});
+	$("#grid").kendoGrid({
+	 height: 100,
+	 columns: [
+	 	{ field:"Model Name", title: "Model"},
+	 	{ field: "Action Name", title: "Action"},
+	 	{ command: ["destroy"], title: "", width: "160px" }
+	 ]
+});
+});
+
 function previlege_add(element)
 {
 var modal_id = $(element).val();
