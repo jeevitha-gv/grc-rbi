@@ -42,11 +42,11 @@
 	background-color: #363535;
 	color: #9f9d9d;
 	padding: 25px 0;
-	position: relative;
-	vertical-align: bottom;
-	bottom: 0;
-	right: 0;
 	left: 0;
+	right: 0;
+	bottom: 0!important;
+  position:inherit;
+
 }
 .user_login {
 	color: #717171;
@@ -425,4 +425,7 @@ a.edit-icon {
 .navbar-header a{
 	text-decoration: none;
 	color:#999999!important;
+}
+#footer-adjust {
+  min-height: 335px;
 }
