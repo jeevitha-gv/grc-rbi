@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   #  :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
+         :recoverable, :rememberable, :trackable, :confirmable, :lockable
 
   belongs_to :role
   has_many :privileges, through: :role
@@ -18,8 +18,10 @@ class User < ActiveRecord::Base
   has_one :attachment, as: :attachable
   has_one :profile
 
-   validates :user_name, presence: true
-   validates :email, presence: true, uniqueness:{ message: MESSAGES["uniqueness"]["create"]["failure"]}#E-mailshould be unique
+   validates :user_name, presence: { message: MESSAGES["users"]["user_name"]["presence"]["failure"] }
+   validates :email, presence: { message: MESSAGES["users"]["email"]["presence"]["failure"] }
+   validates :email, uniqueness:{ message: MESSAGES["users"]["email"]["uniqueness"]["failure"]}
+   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, presence:{message: MESSAGES["users"]["email"]["valid"]["failure"]}
    
   # validates :user_name, :full_name , presence: true, uniqueness: true
 

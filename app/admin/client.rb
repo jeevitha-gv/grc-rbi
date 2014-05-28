@@ -14,9 +14,12 @@ ActiveAdmin.register Client do
       @client = Client.new(client_params)
       @client.company_id = current_user.company_id
       if @client.save
+        flash[:notice]=  MESSAGES["client"]["create"]["success"]
         redirect_to admin_clients_path
       else
-        redirect_to new_admin_client_path
+        # flash[:error]=  MESSAGES["uniqueness"]["create"]["failure"]
+        #render new_admin_client_path
+        render 'new'
       end
     end
 
@@ -30,7 +33,7 @@ ActiveAdmin.register Client do
 
   index do
     column :name
-    column :company_id
+  
     column :address1
     column :address2
     column :contact_no
@@ -38,7 +41,8 @@ ActiveAdmin.register Client do
     actions
   end
   form do |f|
-    f.inputs "Clients Details" do
+      # f.semantic_errors *f.object.errors.keys
+      f.inputs "Clients Details" do
       f.input :name
       f.input :address1
       f.input :address2

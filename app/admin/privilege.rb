@@ -23,14 +23,13 @@ ActiveAdmin.register Privilege do
 		 def create
 		 	@created_priviliges = []
 			params[:privilege][:modular_id] && params[:privilege][:modular_id].each do |privilege_modular_id|
-				  privilege =  Privilege.where('role_id =? AND modular_id =?', params[:privilege][:role_id], privilege_modular_id)
-				if privilege.empty?
+				@privilege =  Privilege.where('role_id =? AND modular_id =?', params[:privilege][:role_id], privilege_modular_id).first
+				if @privilege.nil?
 					@privilege = Privilege.new(privilege_params) 			
 					@privilege.modular_id = privilege_modular_id
 					@privilege.save
 					@created_priviliges << @privilege
 				end
-				flash[:notice] =  MESSAGES["previlages"]["create"]["success"]
 			end
 			respond_to :js
 		end

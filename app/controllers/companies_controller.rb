@@ -17,11 +17,13 @@ class CompaniesController < ApplicationController
   end
 
   def create
-     params[:company][:users_attributes]["0"][:role_id] = "1"
+    params[:company][:users_attributes]["0"][:role_id] = "1"
     @company = Company.new(company_params)
     if @company.save
       redirect_to welcome_path
-    end
+    else
+      render 'new'
+  end
   end
 
 

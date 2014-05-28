@@ -12,6 +12,7 @@ class Company < ActiveRecord::Base
   accepts_nested_attributes_for :users
 
   #validation 
-  validates :domain, presence: true
+
+  validates :domain, presence:{message: MESSAGES["company"]["domain"]["presence"]["failure"]}
 
 end

@@ -1,5 +1,24 @@
 en:
   users:
+    user_name:
+      presence:
+         failure: "Kindly enter your user name"
+    email:
+      presence:
+         failure: "Kindly enter your email"
+      uniqueness:
+         failure: "has been already used"
+      valid:
+         failure: "Invalid email"   
+
+  company:
+    domain:
+      presence: 
+        failure: "Kindly enter your domain name"
+      # uniqueness:
+      #   failure: "has been already used"
+
+
     create:
       success: "Your account has been successfully created"
       failure: "We are experiencing an internal problem. Please try after couple of minutes."
@@ -7,16 +26,34 @@ en:
   uniqueness:
     create:
       failure: "has been already used" 
+
+  field:
+    input: "can't be blank"
+
+
+  location:
+    create:
+      success: "Location was created successfully"
+      update: "Location was successfully updated"
+      destroy: "Location was successfully destroyed"
+
+
   client:
     create:
       success: "client was created successfully."
       update: "client was successfully updated."
-      destroy: "client was successfully destroyed."
-      
+      destroy: "client was successfully destroyed." 
 
-  company:
-    domain:
-        unique: "Sorry, this domain has already been taken."
+  Team:
+    create:
+      success: "Team was created successfully."
+      update: "Team was successfully updated."
+      destroy: "Team was successfully destroyed." 
+
+
+  # company:
+  #   domain:
+  #       unique: "Sorry, this domain has already been taken."
 
   section:
     create:
@@ -47,43 +84,4 @@ en:
       success: "Previlege was created successfully."
       failure: "Please select actions to create previlages."
 
-fr:
-  users:
-    create:
-        success: "ddddddd"
-        failure: "ddddd."
 
-  topics:
-    create:
-        success: "Your account has been successfully created"
-        failure: "We are experiencing an internal problem. Please try after couple of minutes."
-
-  company:
-    domain:
-        unique: "Sorry, this domain has already been taken."
-
-  section:
-    create:
-      success: "Section was created successfully."
-      update: "Section was successfully updated."
-      destroy: "Section was successfully destroyed."
-      create: "Section was successfully created."
-      failure: ""
-
-  priorities:
-    create:
-      success: "Section was created successfully."
-      update: "Section was successfully updated."
-      destroy: "Section was successfully destroyed."
-      create: "Section was successfully created."
-      failure: ""
-
-  modulars:
-    create:
-      success: "Section was created successfully."
-      update: "Section was successfully updated."
-      destroy: "Section was successfully destroyed."
-      create: "Section was successfully created."
-      failure: ""
-
-  
