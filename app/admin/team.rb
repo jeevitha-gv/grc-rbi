@@ -12,9 +12,11 @@ ActiveAdmin.register Team do
       @team = Team.new(team_params)
       @team.company_id = current_user.company_id
       if @team.save
+        flash[:now]=  MESSAGES["Team"]["create"]["success"]
         redirect_to admin_teams_path
       else
-        redirect_to new_admin_team_path
+        # redirect_to new_admin_team_path
+        render 'new'
       end
     end
 

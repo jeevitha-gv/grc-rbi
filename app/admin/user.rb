@@ -7,6 +7,9 @@ ActiveAdmin.register User do
   permit_params :full_name, :email, :user_name, :password , :password_confirmation, :is_disabled, profile_attributes: [:personal_email, :address2, :address1]
 
   controller do
+
+# removing delete option
+actions :all, :except => [:destroy]
     before_filter :check_company_admin
     def create
       @user = User.new(user_params)
@@ -14,7 +17,8 @@ ActiveAdmin.register User do
       if @user.save
         redirect_to admin_users_path
       else
-        redirect_to new_admin_user_path
+        # redirect_to new_admin_user_path
+        render 'new'
       end
     end
 
@@ -63,5 +67,5 @@ ActiveAdmin.register User do
       s.input :address2
     end
     f.actions
-  end
+   end
 end
