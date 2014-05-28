@@ -1,34 +1,68 @@
 ActiveAdmin.register User do
+  menu :if => proc{ !current_admin_user.present? }
 
+  # removing delete option
+  actions :all, :except => [:destroy]
 
-menu :if => proc{ !current_admin_user.present? }
+  permit_params :full_name, :email, :user_name, :password , :password_confirmation, :role_id,:is_disabled, profile_attributes: [:personal_email, :address2, :address1]
 
+  controller do
 
 # removing delete option
 actions :all, :except => [:destroy]
+    before_filter :check_company_admin
+    def create
+      @user = User.new(user_params)
+      @user.company_id = current_user.company_id
+      if @user.save
+        redirect_to admin_users_path
+      else
+        # redirect_to new_admin_user_path
+        render 'new'
+      end
+    end
 
+    private
+      def user_params
+        params.require(:user).permit(:full_name, :email, :user_name, :password , :password_confirmation, :is_disabled, :role_id,:company_id, profile_attributes: [:personal_email, :address2, :address1])
+      end
 
-index do
-  selectable_column
-  column :full_name
-  column :email
-  column :user_name
-  column :team
-  column :is_disabled
-  actions
-end
+      def scoped_collection
+        current_company.users
+      end
+  end
 
+<<<<<<< HEAD
 
 show do
   attributes_table :full_name, :email, :user_name
 end
+=======
+  index do
+    selectable_column
+    column :full_name
+    column :email
+    column :user_name
+    column :team
+    column :is_disabled
+    actions
+  end
+>>>>>>> 293f0b573b8122e271f3f9905717d30b6d90321b
 
-  permit_params :full_name, :email, :user_name, :password , :password_confirmation, :is_disabled, profile_attributes: [:personal_email, :address2, :address1]
+  show do
+    attributes_table :full_name, :email, :user_name
+  end
 
+<<<<<<< HEAD
 form do |f|
   company_admin_role = Role.where('title= ?','company admin')
   roles = current_company.roles - company_admin_role
   f.object.profile ? f.object.profile : f.object.build_profile
+=======
+
+  form do |f|
+    f.object.profile ? f.object.profile : f.object.build_profile
+>>>>>>> 293f0b573b8122e271f3f9905717d30b6d90321b
     f.inputs "User Details" do
       f.input :full_name
       if f.object.new_record?
@@ -46,34 +80,6 @@ form do |f|
       s.input :address1
       s.input :address2
     end
-  f.actions
+    f.actions
+   end
 end
-
-controller do
-   def scoped_collection
-      current_company.users
-    end
-  def create
-    @user = User.new(user_params)
-    @user.company_id = current_user.company_id
-    if @user.save
-      redirect_to admin_users_path
-    else
-      redirect_to new_admin_user_path
-    end
-  end
-
- 
-  private
-    def user_params
-      params.require(:user).permit(:full_name, :email, :user_name, :is_disabled, :company_id, :role_id, profile_attributes: [:personal_email, :address2, :address1])
-    end
-
-end
-
-
-end
-
-
-
-

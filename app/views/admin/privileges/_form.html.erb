@@ -47,8 +47,9 @@ $(document ).ready(function() {
 				id: "id",
 				fields: {
 					id: { type: "string" },
-					role_id: { type: "string" },
-					modular_id: { type: "string" }
+					role_name: { type: "string" },
+					model_name: { type: "string" },
+					action_name: {type: "string"}
 				}
 			}
 		}
@@ -56,12 +57,13 @@ $(document ).ready(function() {
 	$(document).ready(function(){
 	$("#grid").kendoGrid({
 		dataSource: dataSource,
-	 	height: 200,
+	 	height: 300,
         sortable: true,
         pageable: true,
 	 	columns: [
-	 		{ field:"role_id", title: "Role"},
-	 		{ field:"modular_id", title: "Modal"},
+	 		{ field:"role_name", title: "Role"},
+	 		{ field:"model_name", title: "Modal"},
+	 		{ field:"action_name", title: "Action"},
 	 		{ command: ["destroy"], title: "", width: "160px" }
 	 	],
 	 	editable: "inline"

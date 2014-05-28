@@ -3,6 +3,10 @@ ActiveAdmin.register Modular do
 
   permit_params :model_name, :action_name, :section_id
 
+  controller do
+    before_filter :authenticate_admin_user!
+  end
+
   index do
     selectable_column
     column :model_name

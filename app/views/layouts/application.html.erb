@@ -15,7 +15,7 @@
 <%= render :partial => "layouts/header" if user_signed_in? %>
 <%= yield %>
 
-<%= render :partial => "layouts/footer" %>
+<%= render :partial => "layouts/footer" if user_signed_in? %>
 
 </body>
 </html>

@@ -22,6 +22,7 @@ ActiveAdmin.register Privilege do
 			#To crete new previlege
 		 def create
 		 	@created_priviliges = []
+		 	@privileges_create = true
 			params[:privilege][:modular_id] && params[:privilege][:modular_id].each do |privilege_modular_id|
 				@privilege =  Privilege.where('role_id =? AND modular_id =?', params[:privilege][:role_id], privilege_modular_id).first
 				if @privilege.nil?
@@ -29,6 +30,8 @@ ActiveAdmin.register Privilege do
 					@privilege.modular_id = privilege_modular_id
 					@privilege.save
 					@created_priviliges << @privilege
+			    else
+			    	@privileges_create = false
 				end
 			end
 			respond_to :js

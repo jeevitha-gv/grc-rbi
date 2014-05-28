@@ -4,9 +4,13 @@ ActiveAdmin.register Language do
 
   permit_params :name, :code
 
+  controller do
+    before_filter :authenticate_admin_user!
+  end
+
   index do
     column :name
-    column :code    
+    column :code
     actions
   end
 

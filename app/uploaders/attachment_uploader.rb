@@ -33,11 +33,11 @@ class AttachmentUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process :resize_to_fit => [100, 100]
+    process :resize_to_fill => [100, 100]
   end
 
-  version :medium do
-    process :resize_to_fit => [250, 180]
+  version :small do
+    process :resize_to_fill => [24, 24]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

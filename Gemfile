@@ -39,7 +39,7 @@ gem 'spring',        group: :development
 
 # Devise
 gem 'devise'
-gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', :path => 'vendor/active_admin'
 
 # For attachments
 gem 'carrierwave'
