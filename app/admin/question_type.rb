@@ -1,6 +1,6 @@
 ActiveAdmin.register QuestionType do
 
-  menu :if => proc{ !current_admin_user.present? }
+  menu :if => proc{ current_admin_user.present? }
  
   #authentication
  controller do
