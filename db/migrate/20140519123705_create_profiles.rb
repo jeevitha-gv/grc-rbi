@@ -9,7 +9,7 @@ class CreateProfiles < ActiveRecord::Migration
       t.string  :address2
       t.string  :city
       t.string  :state
-      t.string  :country
+      t.integer  :country_id
 
       t.timestamps
     end
