@@ -36,6 +36,7 @@ form do |f|
       end
       f.input :user_name
       f.input :teams, :class => ""
+      f.input :role_id, :label => 'Role', :as => :select, :collection => current_company.roles, :prompt => "-Select Role-"
       f.input :is_disabled
     end
     f.inputs "Other Information", for: [:profile, f.object.profile] do |s|
@@ -63,7 +64,7 @@ controller do
  
   private
     def user_params
-      params.require(:user).permit(:full_name, :email, :user_name, :is_disabled, :company_id, profile_attributes: [:personal_email, :address2, :address1])
+      params.require(:user).permit(:full_name, :email, :user_name, :is_disabled, :company_id, :role_id, profile_attributes: [:personal_email, :address2, :address1])
     end
 
 end
