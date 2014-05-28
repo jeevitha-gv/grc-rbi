@@ -4,8 +4,8 @@ ActiveAdmin.register Role  do
   controller do
    before_filter :check_role, :check_company_admin
    action :all, except: [:new]
-    def scoped_collection                                                                                                                                                                                                                                                
-     @privileges=Role.where('company_id= ?', current_user.company_id)
+    def scoped_collection
+     @roles = Role.where('company_id= ?', current_user.company_id)
 		end
    
     def create

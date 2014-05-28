@@ -171,10 +171,14 @@ ActiveAdmin.setup do |config|
   #
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
+  config.register_javascript 'messi.js'
+  config.register_javascript 'messi.min.js'
+  config.register_stylesheet 'messi.min.css'
   config.register_stylesheet 'bootstrap-multiselect.css'
   config.register_stylesheet 'bootstrap-3.1.1.min.css'
   config.register_javascript 'bootstrap-3.1.1.min.js'
   config.register_javascript 'bootstrap-multiselect.js'
+ 
   # == CSV options
   #
   # Set the CSV builder separator

@@ -14,7 +14,7 @@ ActiveAdmin.register Privilege do
 	  skip_before_filter :verify_authenticity_token
 	  before_filter :role_company, only: [:new]
 
-	  	def scoped_collection                                                                                                                                                                                                                                               
+	  	def scoped_collection
 	  		Privilege.where(role_id: current_company.roles.map(&:id))
 	  	end		
 
@@ -30,8 +30,8 @@ ActiveAdmin.register Privilege do
 					@privilege.save
 					@created_priviliges << @privilege
 				end
+				flash[:notice] =  MESSAGES["previlages"]["create"]["success"]
 			end
-			flash[:notice] =  MESSAGES["previlages"]["create"]["success"]			
 			respond_to :js
 		end
 		

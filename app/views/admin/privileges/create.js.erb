@@ -5,7 +5,4 @@ new Messi("<%= flash[:notice]%>", {title: 'Success message'});
 <%end%>
 $('#privilege_modular').val('');
 $('.multiselect').multiselect().trigger('reset');
-$('#falsh').show();
-<% else %>
-new Messi("<%= flash[:error]%>", {title: 'Error'});
 <% end %>
