@@ -43,9 +43,8 @@ input[disabled="disabled"]{
 }
 
 #title_bar {
-  background: none repeat scroll 0 0 #181818 !important;
   border: medium none;
-  color: #FFFFFF;
+  color: #000;
 }
 
 #title_bar h2 {
@@ -54,7 +53,7 @@ input[disabled="disabled"]{
 }
 
 .breadcrumb{
-  background-color: #0085C8!important;text-shadow: none;
+  background-color: #999999!important;text-shadow: none;
 }
 
 .breadcrumb a{ color:#fff!important;text-shadow: none;}
@@ -89,4 +88,18 @@ form fieldset legend span {
     color: rgb(51, 51, 51);
     white-space: nowrap;
     text-decoration: none;
+}
+
+#privilege_modular {
+  margin: 0 10px 20px 0;
+}
+
+
+#grid {
+    margin-bottom: 25px;
+} 
+
+.btn-group, .btn-group-vertical {
+  margin: 0 10px 0 0;
+
 }

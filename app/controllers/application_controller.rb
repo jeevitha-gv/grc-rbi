@@ -11,10 +11,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_company
   before_filter :check_subdomain
   before_filter :check_password_authenticated, :if => :current_user
-    if Rails.application.config.consider_all_requests_local
-    rescue_from Exception, with: lambda { |exception| render_error 500, exception }
-    rescue_from ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
-  end
+    #~ if Rails.application.config.consider_all_requests_local
+    #~ rescue_from Exception, with: lambda { |exception| render_error 500, exception }
+    #~ rescue_from ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
+  #~ end
   
   protected
   
@@ -115,13 +115,15 @@ class ApplicationController < ActionController::Base
   
   #To check company admin
     def check_company_admin
-        company_admin_id = current_company.roles.where('title= ?' ,'company admin').first.id if (current_company.id == current_user.company_id && current_company.roles.present?)
-        current_user.role_id 
-        unless company_admin_id.nil?
-          result = current_user.role_id == company_admin_id ?  true : false
-            redirect_to '/users/sign_in'  if result == false
-          end
-        end
+      result = current_company.id == current_user.company_id ? true : false if current_user.company_id
+      redirect_to '/users/sign_in'  if result == false
+        #~ company_admin_id = current_company.roles.where('title= ?' ,'company admin').first.id if (current_company.id == current_user.company_id && current_company.roles.present?)
+        #~ current_user.role_id 
+        #~ unless company_admin_id.nil?
+          #~ result = current_user.role_id == company_admin_id ?  true : false
+            #~ redirect_to '/users/sign_in'  if result == false
+          #~ end
+      end
         
   private
 

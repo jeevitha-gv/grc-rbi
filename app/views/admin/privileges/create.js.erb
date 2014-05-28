@@ -4,6 +4,7 @@ new Messi("<%=  MESSAGES["previlages"]["create"]["success"] %>", {title: 'Succes
  dataSource.insert(0,{id: <%= privilege.id%>, role_id: <%= privilege.role_id%>, modular_id: <%= privilege.modular_id%>});	
 <%end%>
 $('#privilege_modular').val('');
+$('#privilege_modular_id').val('');
 $('.multiselect').multiselect().trigger('reset');
 <% end %>
 setTimeout(function(){$('.messi-closebtn').trigger("click")},1000);

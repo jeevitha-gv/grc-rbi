@@ -16,6 +16,7 @@ ActiveAdmin.register Role  do
         if @role.save
           redirect_to admin_roles_path
         else
+          p @role.errors
           redirect_to new_admin_role_path
         end
       else
@@ -48,15 +49,17 @@ ActiveAdmin.register Role  do
        end
        
       #To check company admin
-      def check_company_admin
-        if current_company.roles.present?
-          company_admin_id = current_company.roles.where('title= ?' ,'company admin').first.id if (current_company.id == current_user.company_id && current_company.roles.present?)
-          current_user.role_id 
-          unless company_admin_id.nil?
-            result = current_user.role_id == company_admin_id ?  true : false
-              redirect_to '/users/sign_in'  if result == false
-            end
-        end
+      def check_company_admin        
+        result = current_company.id == current_user.company_id ? true : false if current_user.company_id
+        redirect_to '/users/sign_in'  if result == false
+        #~ if current_company.roles.present?
+          #~ company_admin_id = current_company.roles.where('title= ?' ,'company admin').first.id if (current_company.id == current_user.company_id && current_company.roles.present?)
+          #~ current_user.role_id 
+          #~ unless company_admin_id.nil?
+            #~ result = current_user.role_id == company_admin_id ?  true : false
+              #~ redirect_to '/users/sign_in'  if result == false
+            #~ end
+        #~ end
       end
        
 

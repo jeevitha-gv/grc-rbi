@@ -14,7 +14,7 @@
 			<div id="previlege" class="previleges roles_0">
 			<%= f.select :modular,options_for_select(Section.all.collect{|x| [	x.name, x.id.to_i]}),{include_blank: '-Select Model-' }, {:id => "privilege_modular",  :onChange => "previlege_add(this);"}%>
 			<%= f.select :modular_id,options_for_select(Modular.all.collect{}), {:id => "privilege_modular_id", :selected =>"", :class=> "test"}, :multiple => "multiple", disabled: true%>		
-    <%= f.submit "ADD" %>	</div>
+    <%= f.submit "ADD", :onclick => "return privilege_params_check();" %>	</div>
 			</div>
 <% end %>
 <div id="grid"></div>
@@ -92,6 +92,19 @@ var modal_id = $(element).val();
 });
 }
 
+function privilege_params_check()
+{
+var action = $('#privilege_modular_id').val();
+if (action == null)
+{
+new Messi("<%= MESSAGES["previlages"]["create"]["action"] %>", {title: 'Error', titleClass: 'anim error'});
+return false;
+}
+else
+{
+return true;
+}
+}
 
 //~ function add_multiple_previlege()
 //~ {

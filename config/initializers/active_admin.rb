@@ -1,5 +1,28 @@
 ActiveAdmin.setup do |config|
 
+#~ class MyNavigation < ActiveAdmin::Component
+#~ def build(namespace, menu)
+  #~ super(id: "header")
+    #~ para "Copyright #{Date.today.year} Reverb Media Group"
+     #~ unless menu['jobs']
+      #~ new_item = ActiveAdmin::MenuItem.new(id: 'jobs',
+                                           #~ label: 'Jobs',
+                                           #~ url: admin_roles_path,
+                                           #~ priority: 11)
+      #~ menu.add new_item
+    #~ end
+
+    # Now, invoke the parent class's build method to put it all together.
+    #~ super(namespace, menu)
+  #~ end
+#~ end
+
+class MyFooter < ActiveAdmin::Component
+  def build
+    super(id: "footer")
+    para "Copyright #{Date.today.year} fixnix"
+  end
+end
   # == Site Title
   #
   # Set the title that is displayed on the main layout
@@ -84,9 +107,18 @@ ActiveAdmin.setup do |config|
   # (within the application controller) to return the currently logged in user.
   config.current_user_method = :current_admin_user
   config.register_stylesheet 'active_admin.css'
+  config.register_stylesheet 'outer/style.css'
   config.show_comments_in_menu = false
   config.allow_comments = false 
-
+  config.view_factory.footer = MyFooter
+  config.view_factory.header = MyNavigation
+  #~ config.view_factory.register = '/views/layouts/application.html.erb'
+  
+   #~ config.namespace :dashboard do |dashboard|
+    #~ dashboard.view_factory = ActiveAdmin::ViewFactory.new
+    #~ dashboard.view_factory.global_navigation = MyNavigation
+    #~ dashboard.view_factory.footer = CommonFooter
+  #~ end
   # == Logging Out
   #
   # Active Admin displays a logout link on each screen. These
@@ -175,10 +207,21 @@ ActiveAdmin.setup do |config|
   config.register_javascript 'messi.min.js'
   config.register_stylesheet 'messi.min.css'
   config.register_stylesheet 'bootstrap-multiselect.css'
-  config.register_stylesheet 'bootstrap-3.1.1.min.css'
-  config.register_javascript 'bootstrap-3.1.1.min.js'
   config.register_javascript 'bootstrap-multiselect.js'
- 
+  config.register_stylesheet 'outer/style.css'
+  config.register_stylesheet 'outer/bootstrap.css'
+  config.register_stylesheet 'outer/bootstrap.css.map '
+  config.register_stylesheet 'outer/bootstrap.min.css'
+  config.register_stylesheet 'outer/bootstrap-theme.css'
+  config.register_stylesheet 'outer/bootstrap-theme.css.map'
+  config.register_stylesheet 'outer/bootstrap-theme.min.css'
+  config.register_stylesheet 'outer/docs.min.css'
+  config.register_stylesheet 'outer/media.css'
+  config.register_javascript 'bootstrap.js'
+  config.register_javascript 'bootstrap.min.js'
+  config.register_javascript 'docs.min.js'
+  config.register_javascript 'masonry.pkgd.min.js'
+
   # == CSV options
   #
   # Set the CSV builder separator
@@ -247,5 +290,6 @@ ActiveAdmin.setup do |config|
   # You can enable or disable them for all resources here.
   #
   # config.filters = true
+
 
 end
