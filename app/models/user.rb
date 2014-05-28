@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
    validates :email, presence: { message: MESSAGES["users"]["email"]["presence"]["failure"] }
    validates :email, uniqueness:{ message: MESSAGES["users"]["email"]["uniqueness"]["failure"]}
    validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, presence:{message: MESSAGES["users"]["email"]["valid"]["failure"]}
-   
+   validates :password, :confirmation => true
   # validates :user_name, :full_name , presence: true, uniqueness: true
 
   delegate :title, to: :dealer, prefix: true
@@ -37,9 +37,9 @@ class User < ActiveRecord::Base
 
 
 # Restricting user to login if the account is disable
-  # def active_for_authentication?
-  #   super && !self.is_disabled
-  # end
+  def active_for_authentication?
+    super && !self.is_disabled
+  end
 
   protected
 

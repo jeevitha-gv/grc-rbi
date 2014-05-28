@@ -82,6 +82,6 @@ en:
   previlages:
     create:
       success: "Previlege was created successfully."
-      failure: "Please select actions to create previlages."
+      failure: "Some of the privileges already added."
 
 
