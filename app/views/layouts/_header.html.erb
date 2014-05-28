@@ -8,13 +8,13 @@
           <%= link_to current_company.name, root_path, :class=>"navbar-brand" %></div>
         <div class="navbar-collapse collapse fleft">
           <ul class="nav navbar-nav main_nav">
-            <li><a href="#">
+            <li id="next-phase"><a href="#">
               <div class="overview-icon"></div>
               Over view</a></li>
-            <li><a href="" class="active">
+            <li id="next-phase"><a href="" class="active">
               <div class="audit-icon"></div>
               Audit</a></li>
-            <li><a href="">
+            <li id="next-phase"><a href="">
               <div class="risk-icon"></div>
               Risk</a></li>
           </ul>
@@ -41,31 +41,31 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <li><a href="#">
+        <li id="next-phase"><a href="#">
           <div class="dash-icon"></div>
           Dashboard</a></li>
-        <li><a href="">
+        <li id="next-phase"><a href="" >
           <div class="calender-icon"></div>
           Calender</a></li>
-        <li><a href="">
+        <li id="next-phase"><a href="">
           <div class="plan-icon"></div>
           Plan</a></li>
-        <li><a href="" class="active">
+        <li id="next-phase"><a href="" class="active">
           <div class="list-icon"></div>
           List</a></li>
-        <li><a href="">
+        <li id="next-phase"><a href="">
           <div class="do-icon"></div>
           Do</a></li>
-        <li><a href="">
+        <li id="next-phase"><a href="">
           <div class="check-icon"></div>
           Check</a></li>
-        <li><a href="">
+        <li id="next-phase"><a href="">
           <div class="act-icon"></div>
           Act</a></li>
-        <li><a href="">
+        <li id="next-phase"><a href="">
           <div class="published-icon"></div>
           Published</a></li>
-        <li><a href="">
+        <li id="next-phase"><a href="">
           <div class="setting-icon"></div>
           Setting</a></li>
       </ul>
@@ -88,5 +88,10 @@
       $(this).removeClass("active");
       $(".account_header_dropdown").hide();
     });
+
+    $("#next-phase").click(function(){
+      new Messi('Planned for further phases.');
+    });
+
   });
 </script>
