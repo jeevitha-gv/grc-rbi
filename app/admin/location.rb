@@ -3,7 +3,6 @@ ActiveAdmin.register Location do
 
   #authentication
   controller do
-    before_filter :authenticate_admin_user!
     before_filter :check_company_admin
   end
 
