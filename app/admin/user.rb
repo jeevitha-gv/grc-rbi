@@ -36,7 +36,6 @@ actions :all, :except => [:destroy]
 show do
   attributes_table :full_name, :email, :user_name
 end
-=======
   index do
     selectable_column
     column :full_name
