@@ -54,6 +54,7 @@ ActiveAdmin.register User do
       end
       f.input :user_name
       f.input :teams, :class => ""
+      f.input :role_id, :label => 'Role', :as => :select, :collection => current_company.roles, :prompt => "-Select Role-"
       f.input :is_disabled
     end
     f.inputs "Other Information", for: [:profile, f.object.profile] do |s|
