@@ -71,8 +71,8 @@ ResponseStatus.delete_all
 
 Role.delete_all
 
-    Role.create([{title: 'company admin', company_id: 0}])
-    Role.create([{title: 'company user', company_id: 0}])
+    Role.create([{title: 'company_admin'}])
+    Role.create([{title: 'company user'}])
 
 Section.delete_all
     

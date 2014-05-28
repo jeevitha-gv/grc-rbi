@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
   #To check company admin for settings
   def authenticate_admin_user
-    if current_user.role_title == 'company admin'
+    if current_user.role_title == 'company_admin'
       redirect_to '/admin/dashboard'
     end
   end
