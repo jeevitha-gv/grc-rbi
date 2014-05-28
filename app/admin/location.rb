@@ -1,8 +1,9 @@
 ActiveAdmin.register Location do
   menu :if => proc{ !current_admin_user.present? }
 
-   #authentication
+  #authentication
   controller do
+    before_filter :authenticate_admin_user!
     before_filter :check_company_admin
   end
 
@@ -23,7 +24,7 @@ ActiveAdmin.register Location do
        @errors = @location.errors
         # redirect_to new_admin_location_path
         render 'new'
-      end
+    end
 
     end
 
@@ -44,7 +45,7 @@ ActiveAdmin.register Location do
   end
 
   form do |f|
-       
+
        f.inputs "New Location" do
        f.input :name, :label => t('en.location.name')
        f.label :@errors if @errors.present?
