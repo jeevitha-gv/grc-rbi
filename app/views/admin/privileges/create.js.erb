@@ -1,8 +1,10 @@
-<% if flash[:notice].present? %>
-new Messi("<%= flash[:notice]%>", {title: 'Success message'});
+<% if @privilege %>
+new Messi("<%=  MESSAGES["previlages"]["create"]["success"] %>", {title: 'Success', titleClass: 'success'});
 <% @created_priviliges.each do |privilege| %>
  dataSource.insert(0,{id: <%= privilege.id%>, role_id: <%= privilege.role_id%>, modular_id: <%= privilege.modular_id%>});	
 <%end%>
 $('#privilege_modular').val('');
 $('.multiselect').multiselect().trigger('reset');
 <% end %>
+setTimeout(function(){$('.messi-closebtn').trigger("click")},1000);
+
