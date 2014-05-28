@@ -32,7 +32,6 @@ actions :all, :except => [:destroy]
       end
   end
 
-<<<<<<< HEAD
 
 show do
   attributes_table :full_name, :email, :user_name
@@ -47,22 +46,12 @@ end
     column :is_disabled
     actions
   end
->>>>>>> 293f0b573b8122e271f3f9905717d30b6d90321b
 
-  show do
-    attributes_table :full_name, :email, :user_name
-  end
 
-<<<<<<< HEAD
 form do |f|
   company_admin_role = Role.where('title= ?','company admin')
   roles = current_company.roles - company_admin_role
   f.object.profile ? f.object.profile : f.object.build_profile
-=======
-
-  form do |f|
-    f.object.profile ? f.object.profile : f.object.build_profile
->>>>>>> 293f0b573b8122e271f3f9905717d30b6d90321b
     f.inputs "User Details" do
       f.input :full_name
       if f.object.new_record?

@@ -427,14 +427,12 @@ a.edit-icon {
 .navbar-header a{
 	text-decoration: none;
 	color:#999999!important;
-<<<<<<< HEAD
 }
 
 .notice ,.alert{
     display: none;
 }
-=======
-}
+
 #footer-adjust {
   min-height: 335px;
 }
@@ -455,4 +453,3 @@ a.edit-icon {
 #login_drop img {
     padding: 5px 0 0;  float: right;
 }
->>>>>>> 293f0b573b8122e271f3f9905717d30b6d90321b
