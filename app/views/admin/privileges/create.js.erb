@@ -1,6 +1,8 @@
 <% if flash[:notice].present? %>
 new Messi("<%= flash[:notice]%>", {title: 'Success message'});
-$("#view_previleges").html("<%= escape_javascript(render(:partial=>'privileges'))%>");	
+<% @created_priviliges.each do |privilege| %>
+ dataSource.insert(0,{id: <%= privilege.id%>, role_id: <%= privilege.role_id%>, modular_id: <%= privilege.modular_id%>});	
+<%end%>
 $('#privilege_modular').val('');
 $('.multiselect').multiselect().trigger('reset');
 $('#falsh').show();
