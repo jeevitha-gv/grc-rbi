@@ -73,3 +73,14 @@ Role.delete_all
 
     Role.create([{title: 'company admin', company_id: 0}])
     Role.create([{title: 'company user', company_id: 0}])
+
+Section.delete_all
+    
+    Section.create([{name: 'Audit'}])
+    Section.create([{name: 'Risk'}])
+
+Priority.delete_all
+
+    Priority.create([{name: 'High'}])
+    Priority.create([{name: 'Medium'}])
+    Priority.create([{name: 'Low'}])

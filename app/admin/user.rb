@@ -4,7 +4,7 @@ ActiveAdmin.register User do
   # removing delete option
   actions :all, :except => [:destroy]
 
-  permit_params :full_name, :email, :user_name, :password , :password_confirmation, :is_disabled, profile_attributes: [:personal_email, :address2, :address1]
+  permit_params :full_name, :email, :user_name, :password , :password_confirmation, :role_id,:is_disabled, profile_attributes: [:personal_email, :address2, :address1]
 
   controller do
 
@@ -24,7 +24,7 @@ actions :all, :except => [:destroy]
 
     private
       def user_params
-        params.require(:user).permit(:full_name, :email, :user_name, :is_disabled, :company_id, profile_attributes: [:personal_email, :address2, :address1])
+        params.require(:user).permit(:full_name, :email, :user_name, :password , :password_confirmation, :is_disabled, :role_id,:company_id, profile_attributes: [:personal_email, :address2, :address1])
       end
 
       def scoped_collection
