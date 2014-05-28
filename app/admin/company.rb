@@ -10,11 +10,8 @@ ActiveAdmin.register Company do
 
   index do
     column :name
-    column :primary_email
-    column :secondary_email
-    column :domain
-    column :address1
-    column :address2
+    column :primary_email    
+    column :domain    
     column :timezone
     column :country
     column :contact_no
