@@ -41,6 +41,8 @@ Rails.application.routes.draw do
   
    get 'welcome', to: 'companies#welcome', :as => :welcome
 
+   # resources :privileges
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
