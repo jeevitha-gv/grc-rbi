@@ -16,9 +16,13 @@ ActiveAdmin.register Location do
       @location = Location.new(location_params)
       @location.company_id = current_user.company_id
       if @location.save
+        flash[:notice]=  MESSAGES["location"]["create"]["success"]
         redirect_to admin_locations_path
       else
-        redirect_to new_admin_location_path
+        # flash[:error]=  MESSAGES["uniqueness"]["create"]["failure"]
+       @errors = @location.errors
+        # redirect_to new_admin_location_path
+        render 'new'
       end
 
     end
@@ -36,8 +40,10 @@ ActiveAdmin.register Location do
   end
 
   form do |f|
-    f.inputs "New Location" do
-      f.input :name, :label => t('en.location.name')
+       
+       f.inputs "New Location" do
+       f.input :name, :label => t('en.location.name')
+       f.label :@errors if @errors.present?
     end
     f.actions
   end

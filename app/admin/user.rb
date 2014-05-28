@@ -5,7 +5,7 @@ menu :if => proc{ !current_admin_user.present? }
 
   #authentication
   controller do
-    before_filter :check_company_admin
+    #before_filter :check_company_admin
   end
 
 # removing delete option
@@ -57,7 +57,8 @@ controller do
     if @user.save
       redirect_to admin_users_path
     else
-      redirect_to new_admin_user_path
+      # redirect_to new_admin_user_path
+      render 'new'
     end
   end
 
