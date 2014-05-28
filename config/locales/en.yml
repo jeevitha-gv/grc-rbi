@@ -36,6 +36,20 @@ en:
     action_name: "Action Name"
     section: "Section"
 
+  profile:
+    email: "Email"
+    name: "Name"
+    username: "Username"
+    timezone: "Timezone"
+    language: "Language"
+    Contact: "Contact"
+    address1: "Address 1"
+    address2: "Address 2"
+    city: "City"
+    state: "State"
+    country: "Country"
+
+
   priorities:
     name: "Name"
 

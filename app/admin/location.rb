@@ -1,17 +1,17 @@
 ActiveAdmin.register Location do
   menu :if => proc{ !current_admin_user.present? }
-  
+
    #authentication
   controller do
     before_filter :check_company_admin
   end
-  
+
   permit_params :name, :company_id
 
   controller do
     #publicactivity gem
-    include PublicActivity::StoreController  
-  
+    include PublicActivity::StoreController
+
     def create
       @location = Location.new(location_params)
       @location.company_id = current_user.company_id
@@ -30,6 +30,10 @@ ActiveAdmin.register Location do
     private
       def location_params
         params.require(:location).permit(:name, :company_id)
+      end
+
+      def scoped_collection
+        current_company.locations
       end
   end
 

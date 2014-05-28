@@ -1,10 +1,12 @@
-<%= link_to 'Clear Audit Trail', clear_audit_path,
+<%#= link_to 'Clear Audit Trail', clear_audit_path,
             :confirm => 'Do you really want to delete all activity logs?', :method => :delete %>
 
-
+<div class="container">
 <h1> Activities</h1>
-<% @activities.each do |activity| %>
+<% @users = User.where(company_id: current_company) %>
+<% user_ids = @users.map(&:id) %>
+<% @filtered_activities = PublicActivity::Activity.where("owner_id IN(?)",user_ids) %>
+<% @filtered_activities.each do |activity| %>
   <%= activity.owner.full_name %> has <%= parse_and_convert(activity.key) %> <%= activity.created_at %> from <%= activity.ip %><br>
 <% end %>
-
-
+</div>

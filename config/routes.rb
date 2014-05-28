@@ -35,11 +35,13 @@ Rails.application.routes.draw do
     end
    end
 
-   delete '/activities/clear_audit' => 'activities#clear_audit', :as => :clear_audit
+   # delete '/activities/clear_audit' => 'activities#clear_audit', :as => :clear_audit
    resources :activities, :except => [:show]
 
   
    get 'welcome', to: 'companies#welcome', :as => :welcome
+
+   # resources :privileges
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

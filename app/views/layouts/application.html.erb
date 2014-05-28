@@ -14,8 +14,8 @@
 
 <%= render :partial => "layouts/header" if user_signed_in? %>
 <%= yield %>
-<div id="dashboard-content"></div>
-<%= render :partial => "layouts/footer" %>
+
+<%= render :partial => "layouts/footer" if user_signed_in? %>
 
 </body>
 </html>
