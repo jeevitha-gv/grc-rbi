@@ -6,7 +6,7 @@
         <div class="navbar-header">
           <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
           <% unless current_company.attachment.blank? %>
-            <%= image_tag(current_company.attachment.attachment_file.small) %>
+            <%= image_tag(current_company.attachment.attachment_file.small, :class => "navbar-brand") %>
           <% else %>
             <%= link_to current_company.name, root_path, :class=>"navbar-brand" %>
           <% end %>
@@ -30,7 +30,7 @@
           <% else %>
             <img src="/assets/outer/user-icon.jpg">
           <% end %>
-          <%= current_user.user_name unless current_user.user_name.blank? %>
+          <div class="user-name"><%= current_user.user_name unless current_user.user_name.blank? %></div>
           <span id="login_drop"><img src="/assets/outer/user-down-arrow.png"></span>
 
           <div class="account_header_dropdown" style="display: none;">

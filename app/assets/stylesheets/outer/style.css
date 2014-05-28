@@ -69,6 +69,7 @@
 	position: absolute;
 	width: 100%;
 	z-index: 60000;
+	top: 47px;
 }
 .account_header_dropdown li a:hover{ color:#0085C8;}
 .account_header_dropdown > ul {
@@ -388,6 +389,7 @@ a.edit-icon {
   background-color: #FFFFFF;
   border: 1px solid #E7E7E8;
   padding: 0 0 15px;
+  margin-bottom: 15px;
 }
 
 .orange_btn {
@@ -428,4 +430,21 @@ a.edit-icon {
 }
 #footer-adjust {
   min-height: 335px;
+}
+.user-name {
+    float: left;
+    height: 22px;
+    max-width: 150px;
+    min-width: 75px;
+    overflow: hidden;
+    padding: 0 0 0 5px;
+}
+.user_login > img {
+    float: left;
+}
+#login_drop {
+    padding: 35px 0 0;
+}
+#login_drop img {
+    padding: 5px 0 0;  float: right;
 }
