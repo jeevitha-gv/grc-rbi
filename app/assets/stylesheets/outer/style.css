@@ -1,4 +1,4 @@
-/* CSS Document */
+	/* CSS Document */
 .fleft {
 	float: left;
 }
@@ -428,6 +428,11 @@ a.edit-icon {
 	text-decoration: none;
 	color:#999999!important;
 }
+
+.notice ,.alert{
+    display: none;
+}
+
 #footer-adjust {
   min-height: 335px;
 }

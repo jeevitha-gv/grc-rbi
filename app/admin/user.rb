@@ -32,6 +32,10 @@ actions :all, :except => [:destroy]
       end
   end
 
+
+show do
+  attributes_table :full_name, :email, :user_name
+end
   index do
     selectable_column
     column :full_name
@@ -42,13 +46,11 @@ actions :all, :except => [:destroy]
     actions
   end
 
-  show do
-    attributes_table :full_name, :email, :user_name
-  end
 
-
-  form do |f|
-    f.object.profile ? f.object.profile : f.object.build_profile
+form do |f|
+  company_admin_role = Role.where('title= ?','company admin')
+  roles = current_company.roles - company_admin_role
+  f.object.profile ? f.object.profile : f.object.build_profile
     f.inputs "User Details" do
       f.input :full_name
       if f.object.new_record?
@@ -58,7 +60,7 @@ actions :all, :except => [:destroy]
       end
       f.input :user_name
       f.input :teams, :class => ""
-      f.input :role_id, :label => 'Role', :as => :select, :collection => current_company.roles, :prompt => "-Select Role-"
+      f.input :role_id, :label => 'Role', :as => :select, :collection => roles, :prompt => "-Select Role-"
       f.input :is_disabled
     end
     f.inputs "Other Information", for: [:profile, f.object.profile] do |s|

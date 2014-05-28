@@ -74,7 +74,7 @@ ActiveAdmin.register Privilege do
 			#check current user is role
        def check_role
         role = Role.where('id =?', current_user.role_id).first.title if current_user.role_id.present?
-         if role == 'company admin'
+         if role == 'company_admin'
           return true
          else
            redirect_to '/users/sign_in'

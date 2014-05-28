@@ -84,4 +84,5 @@ en:
       success: "Previlege was created successfully."
       failure: "Some of the privileges already added."
 
-
+  roles:
+    company_admin_failure: "You can't create a role with this title"

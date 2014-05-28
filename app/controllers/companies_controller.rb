@@ -33,6 +33,6 @@ class CompaniesController < ApplicationController
 
   private
   def company_params
-    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :timezone, attachment_attributes: [:attachment_file], users_attributes: [:user_name, :email, :role_id])
+    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :timezone, attachment_attributes: [:id, :attachment_file], users_attributes: [:user_name, :email, :role_id])
   end
 end

@@ -58,33 +58,24 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <li class="next-phase"><a href="#" class="active">
-          <div class="dash-icon"></div>
-          Dashboard</a></li>
-        <li class="next-phase"><a href="#" >
-          <div class="calender-icon"></div>
-          Calender</a></li>
-        <li class="next-phase"><a href="#">
-          <div class="plan-icon"></div>
-          Plan</a></li>
-        <li class="next-phase"><a href="#">
-          <div class="list-icon"></div>
-          List</a></li>
-        <li class="next-phase"><a href="#">
-          <div class="do-icon"></div>
-          Do</a></li>
-        <li class="next-phase"><a href="#">
-          <div class="check-icon"></div>
-          Check</a></li>
-        <li class="next-phase"><a href="#">
-          <div class="act-icon"></div>
-          Act</a></li>
-        <li class="next-phase"><a href="#">
-          <div class="published-icon"></div>
-          Published</a></li>
-        <li class="next-phase"><a href="#">
-          <div class="setting-icon"></div>
-          Setting</a></li>
+        <li id="next-phase"><a href="/admin/clients">
+          Clients</a></li>
+        <li id="next-phase"><a href="/admin/departments" >
+          Departments</a></li>
+        <li id="next-phase"><a href="/admin/locations">
+          Locations</a></li>
+        <li id="next-phase"><a href="/admin/roles" class="active">
+          Roles</a></li>
+        <li id="next-phase"><a href="/admin/settings">
+          Settings</a></li>
+        <li id="next-phase"><a href="/admin/teams">
+          Teams</a></li>
+        <li id="next-phase"><a href="/admin/topics">
+          Topics</a></li>
+        <li id="next-phase"><a href="/admin/users">
+          Users</a></li>
+        <!--<li id="next-phase"><a href="">
+          Setting</a></li>-->
       </ul>
     </div>
   </div>
@@ -106,8 +97,8 @@
       $(".account_header_dropdown").hide();
     });
 
-    $(".next-phase").click(function(){
-      new Messi('Planned for further phases.', {autoclose: '5000'});
+    $("#next-phase").click(function(){
+      new Messi('Planned for further phases.');
     });
 
   });
