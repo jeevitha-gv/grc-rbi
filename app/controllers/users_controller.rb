@@ -8,8 +8,7 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
     @user.build_attachment unless @user.attachment.present?
-    @user.profile ? @user.profile : @user.build_profile
-    @user.build_attachment unless @user.attachment.present?
+    @user.build_profile unless @user.profile.present?
 
   end
 
