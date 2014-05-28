@@ -19,7 +19,7 @@
             <li><a href="/" class="<%= add_active_class(params) == 'Audit' ? 'active' : '' %>">
               <div class="audit-icon"></div>
               Audit</a></li>
-            <li><a href="/risks" class="<%= add_active_class(params) == 'Risk' ? 'active' : '' %>">
+            <li class="next-phase"><a href="#" class="<%= add_active_class(params) == 'Risk' ? 'active' : '' %>">
               <div class="risk-icon"></div>
               Risk</a></li>
           </ul>
@@ -58,31 +58,31 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <li id="next-phase"><a href="#">
+        <li class="next-phase"><a href="#" class="active">
           <div class="dash-icon"></div>
           Dashboard</a></li>
-        <li id="next-phase"><a href="" >
+        <li class="next-phase"><a href="#" >
           <div class="calender-icon"></div>
           Calender</a></li>
-        <li id="next-phase"><a href="">
+        <li class="next-phase"><a href="#">
           <div class="plan-icon"></div>
           Plan</a></li>
-        <li id="next-phase"><a href="" class="active">
+        <li class="next-phase"><a href="#">
           <div class="list-icon"></div>
           List</a></li>
-        <li id="next-phase"><a href="">
+        <li class="next-phase"><a href="#">
           <div class="do-icon"></div>
           Do</a></li>
-        <li id="next-phase"><a href="">
+        <li class="next-phase"><a href="#">
           <div class="check-icon"></div>
           Check</a></li>
-        <li id="next-phase"><a href="">
+        <li class="next-phase"><a href="#">
           <div class="act-icon"></div>
           Act</a></li>
-        <li id="next-phase"><a href="">
+        <li class="next-phase"><a href="#">
           <div class="published-icon"></div>
           Published</a></li>
-        <li id="next-phase"><a href="">
+        <li class="next-phase"><a href="#">
           <div class="setting-icon"></div>
           Setting</a></li>
       </ul>
@@ -106,7 +106,7 @@
       $(".account_header_dropdown").hide();
     });
 
-    $("#next-phase").click(function(){
+    $(".next-phase").click(function(){
       new Messi('Planned for further phases.');
     });
 
