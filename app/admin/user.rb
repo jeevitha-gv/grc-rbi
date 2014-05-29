@@ -4,7 +4,7 @@ ActiveAdmin.register User do
   # removing delete option
   actions :all, :except => [:destroy]
 
-  permit_params :full_name, :email, :user_name, :password , :password_confirmation, :role_id,:is_disabled, profile_attributes: [:personal_email, :address2, :address1]
+  permit_params :full_name, :email, :user_name, :password , :password_confirmation, :role_id, :city, :state, :country_id,:is_disabled, profile_attributes: [:personal_email, :address2, :address1,  :city, :state, :country_id]
 
   controller do
 
@@ -24,7 +24,7 @@ actions :all, :except => [:destroy]
 
     private
       def user_params
-        params.require(:user).permit(:full_name, :email, :user_name, :password , :password_confirmation, :is_disabled, :role_id,:company_id, profile_attributes: [:personal_email, :address2, :address1])
+        params.require(:user).permit(:full_name, :email, :user_name, :password , :password_confirmation, :is_disabled, :role_id,:company_id, profile_attributes: [:personal_email, :address2, :address1, :city, :state, :country_id])
       end
 
       def scoped_collection
@@ -32,10 +32,6 @@ actions :all, :except => [:destroy]
       end
   end
 
-
-show do
-  attributes_table :full_name, :email, :user_name
-end
   index do
     selectable_column
     column :full_name
@@ -46,11 +42,13 @@ end
     actions
   end
 
+  show do
+    attributes_table :full_name, :email, :user_name
+  end
 
-form do |f|
-  company_admin_role = Role.where('title= ?','company admin')
-  roles = current_company.roles - company_admin_role
-  f.object.profile ? f.object.profile : f.object.build_profile
+
+  form do |f|
+    f.object.profile ? f.object.profile : f.object.build_profile
     f.inputs "User Details" do
       f.input :full_name
       if f.object.new_record?
@@ -60,13 +58,16 @@ form do |f|
       end
       f.input :user_name
       f.input :teams, :class => ""
-      f.input :role_id, :label => 'Role', :as => :select, :collection => roles, :prompt => "-Select Role-"
+      f.input :role_id, :label => 'Role', :as => :select, :collection => current_company.roles, :prompt => "-Select Role-"
       f.input :is_disabled
     end
     f.inputs "Other Information", for: [:profile, f.object.profile] do |s|
       s.input :personal_email
       s.input :address1
       s.input :address2
+      s.input :city
+      s.input :state
+      s.input :country_id, :label => 'Country', :as => :select, :collection => Country.all, :prompt => "-Select Country-"
     end
     f.actions
    end
