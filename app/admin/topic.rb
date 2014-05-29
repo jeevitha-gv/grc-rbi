@@ -4,28 +4,25 @@ ActiveAdmin.register Topic do
 
   #authentication
   controller do
-    before_filter :check_company_admin
+    before_filter :check_company_admin, :check_role
   end
 
   permit_params :id , :name
 
-
-
-  index do 
+  index do
     selectable_column
    	column :name
    	actions
   end
 
-
-   show do 
- 	 attributes_table :name
-   end
+  show do
+    attributes_table :name
+  end
 
   form do |f|
     f.inputs "Topics for Non Compliance" do
       f.input :name
     end
     f.actions
-  end  
+  end
 end

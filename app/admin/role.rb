@@ -4,10 +4,11 @@ ActiveAdmin.register Role  do
   controller do
    before_filter :check_role, :check_company_admin
    action :all, except: [:new]
+
     def scoped_collection
      @roles = Role.where('company_id= ?', current_user.company_id)
 		end
-   
+
     def create
       role = Role.where("title= ? AND company_id= ?", params[:role][:title], current_user.company_id).first
       unless role.present?
@@ -23,7 +24,7 @@ ActiveAdmin.register Role  do
         redirect_to new_admin_role_path
       end
 		end
-    
+
     def update
       @role = Role.find_by_id(params[:id])
       @role.update_attributes(:title => params[:role][:title])
@@ -37,46 +38,18 @@ ActiveAdmin.register Role  do
     private
       def role_params
         params.require(:role).permit(:title, :company_id)
-       end
-       def check_role
-        p current_user.role_id
-        p role = Role.where('id =?', current_user.role_id).first.title if current_user.role_id.present?
-         if role == 'company_admin'
-          return true
-         else
-           redirect_to '/users/sign_in'
-         end
-       end
-       
-      #To check company admin
-      def check_company_admin        
-        result = current_company.id == current_user.company_id ? true : false if current_user.company_id
-        redirect_to '/users/sign_in'  if result == false
-        #~ if current_company.roles.present?
-          #~ company_admin_id = current_company.roles.where('title= ?' ,'company admin').first.id if (current_company.id == current_user.company_id && current_company.roles.present?)
-          #~ current_user.role_id 
-          #~ unless company_admin_id.nil?
-            #~ result = current_user.role_id == company_admin_id ?  true : false
-              #~ redirect_to '/users/sign_in'  if result == false
-            #~ end
-        #~ end
       end
-       
-
   end
- 
-  
+
   #display the required fields in index
-  
   index  do
-    
     column :title
     actions  do |f|
       link_to "Add privilege" , "/admin/privileges/new?role_id=#{f.id}"#, :onclick => "test();"
     end
-  end  
-  
-  
+  end
+
+
   form do |f|
     f.inputs "Roles" do
       f.input :title

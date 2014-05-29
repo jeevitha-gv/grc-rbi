@@ -15,9 +15,9 @@ class ApplicationController < ActionController::Base
     #~ rescue_from Exception, with: lambda { |exception| render_error 500, exception }
     #~ rescue_from ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
   #~ end
-  
+
   protected
-  
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :user_name
     devise_parameter_sanitizer.for(:sign_up) << :full_name
@@ -112,19 +112,28 @@ class ApplicationController < ActionController::Base
   def check_password_authenticated
     redirect_to password_user_path unless current_user.encrypted_password.present?
   end
-  
+
   #To check company admin
     def check_company_admin
       result = current_company.id == current_user.company_id ? true : false if current_user.company_id
       redirect_to '/users/sign_in'  if result == false
         #~ company_admin_id = current_company.roles.where('title= ?' ,'company admin').first.id if (current_company.id == current_user.company_id && current_company.roles.present?)
-        #~ current_user.role_id 
+        #~ current_user.role_id
         #~ unless company_admin_id.nil?
           #~ result = current_user.role_id == company_admin_id ?  true : false
             #~ redirect_to '/users/sign_in'  if result == false
           #~ end
       end
-        
+
+  def check_role
+    role = Role.where('id =?', current_user.role_id).first.title if current_user.role_id.present?
+    if role == 'company_admin'
+      return true
+    else
+      redirect_to '/users/sign_in'
+    end
+  end
+
   private
 
   def render_error(status, exception)

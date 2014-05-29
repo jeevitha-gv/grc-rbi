@@ -109,11 +109,11 @@ end
   config.register_stylesheet 'active_admin.css'
   config.register_stylesheet 'outer/style.css'
   config.show_comments_in_menu = false
-  config.allow_comments = false 
+  config.allow_comments = false
   config.view_factory.footer = MyFooter
   config.view_factory.header = MyNavigation
   #~ config.view_factory.register = '/views/layouts/application.html.erb'
-  
+
    #~ config.namespace :dashboard do |dashboard|
     #~ dashboard.view_factory = ActiveAdmin::ViewFactory.new
     #~ dashboard.view_factory.global_navigation = MyNavigation
@@ -218,9 +218,9 @@ end
   config.register_stylesheet 'outer/docs.min.css'
   config.register_stylesheet 'outer/media.css'
   config.register_javascript 'bootstrap.js'
-  config.register_javascript 'bootstrap.min.js'
-  config.register_javascript 'docs.min.js'
-  config.register_javascript 'masonry.pkgd.min.js'
+  config.register_javascript 'outer/bootstrap.min.js'
+  config.register_javascript 'outer/docs.min.js'
+  config.register_javascript 'outer/masonry.pkgd.min.js'
 
   # == CSV options
   #

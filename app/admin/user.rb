@@ -7,10 +7,9 @@ ActiveAdmin.register User do
   permit_params :full_name, :email, :user_name, :password , :password_confirmation, :role_id, :city, :state, :country_id,:is_disabled, profile_attributes: [:personal_email, :address2, :address1,  :city, :state, :country_id]
 
   controller do
-
-# removing delete option
-actions :all, :except => [:destroy]
-    before_filter :check_company_admin
+    # removing delete option
+    actions :all, :except => [:destroy]
+    before_filter :check_company_admin, :check_role
     def create
       @user = User.new(user_params)
       @user.company_id = current_user.company_id
