@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :user_name
     devise_parameter_sanitizer.for(:sign_up) << :full_name
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me) }
   end
 
   #To check company admin for settings

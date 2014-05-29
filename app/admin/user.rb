@@ -33,16 +33,29 @@ ActiveAdmin.register User do
 
   index do
     selectable_column
-    column :full_name
-    column :email
     column :user_name
+    column :email
     column :team
+    column "Role" do |r|
+      role = Role.find(r.role_id).title
+    end
     column :is_disabled
     actions
   end
 
   show do
-    attributes_table :full_name, :email, :user_name
+    attributes_table do
+      row :full_name
+      row :email
+      row :user_name
+      row :team
+      row "Role" do |r|
+        role = Role.find(r.role_id).title
+      end
+      row :is_disabled do |d|
+        d.is_disabled? ? 'Yes': 'No'
+      end
+    end
   end
 
 
