@@ -3,8 +3,8 @@ class Language < ActiveRecord::Base
   
   scope :current_user_language, ->(id) {where("id = ?", id)}
 
-  validates :name, presence:{message: MESSAGES["language"]["name"]["presence"]["failure"]}
-  validates :name, uniqueness:{message: MESSAGES["language"]["name"]["uniqueness"]["failure"]}
-  validates :code, presence:{message: MESSAGES["language"]["code"]["presence"]["failure"]}
-  validates :code, uniqueness:{message: MESSAGES["language"]["code"]["uniqueness"]["failure"]}
+  validates :name, presence:true
+  validates :name, uniqueness:true
+  validates :code, presence:true
+  validates :code, uniqueness:true
 end
