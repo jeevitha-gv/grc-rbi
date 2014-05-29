@@ -99,7 +99,7 @@ function privilege_params_check()
 var action = $('#privilege_modular_id').val();
 if (action == null)
 {
-new Messi("<%= MESSAGES["previlages"]["create"]["action"] %>", {title: 'Error', titleClass: 'anim error'});
+new Messi("<%= MESSAGES["previlages"]["create"]["action"] %>", {title: 'Error', titleClass: 'anim error', autoclose: 1500});
 return false;
 }
 else
