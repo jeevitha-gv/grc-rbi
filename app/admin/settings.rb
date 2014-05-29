@@ -4,6 +4,8 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
   config.filters = false
   config.batch_actions = false
 
+  permit_params :name, :secondary_email, :address1, :address2, :country_id, :contact_no, :timezone, :is_disabled, attachment_attributes: [:id,:attachment_file]
+
   controller do
     before_filter :check_company_admin, :check_role
     before_filter :authorize_company, only: [:edit, :update]
@@ -11,19 +13,18 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
       redirect_to edit_admin_setting_path(current_user.company_id)
     end
 
-    def edit
-      @company = current_user.company
-    end
+    # def edit
+    #   @company = current_user.company
+    # end
 
-    def update
-      @company.update_attributes(company_params)
-      redirect_to edit_admin_setting_path(current_user.company_id)
-    end
+    # def update
+    # if @company.update_attributes(company_params)
+    #   redirect_to edit_admin_setting_path(current_user.company_id)
+    # else
+    #   render :edit
+    # end
+    # end
 
-    private
-    def company_params
-      params.require(:company).permit(:name, :secondary_email, :address1, :address2, :country_id, :contact_no, :timezone, attachment_attributes: [:id,:attachment_file])
-    end
 
     def authorize_company
       unless current_user.company_id == params[:id].to_i

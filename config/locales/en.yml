@@ -68,6 +68,16 @@ en:
                 other: " Companyname cannot exceed 50 characters"
               too_short:
                 other: " Companyname cannot be less than 2 characters"
+            address1:
+              too_long:
+                other: "Address Line 1 cannot exceed 40 characters"
+              too_short:
+                other: "Address Line 1 cannot be less than 7 characters"
+            address2:
+              too_long:
+                other: "Address Line 2 cannot exceed 40 characters"
+              too_short:
+                other: "Address Line 2 cannot be less than 7 characters"
             domain:
               blank: "Domain name cannot be blank"
               taken: "Domain name is already taken. Please try another name"
@@ -162,6 +172,7 @@ en:
             title: 
               blank: "Role  can't be blank"
               invalid: "Role type name should contain alphabets"
+              taken: "Role has been already used"
         team:
           attributes:
             name:
