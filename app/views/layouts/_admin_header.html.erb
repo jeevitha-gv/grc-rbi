@@ -5,14 +5,14 @@
       <div class="container">
         <div class="navbar-header">
           <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-         
+
           </div>
         <div class="navbar-collapse collapse fleft">
           <ul class="nav navbar-nav main_nav">
-            <li><a href="/user/edit" class="<%= add_active_class(params) == 'User' ? 'active' : '' %>">
+            <li><a href="/admin/dashboard" class="<%= add_admin_active_class(params) == 'Settings' ? 'active' : '' %>">
               <div class="overview-icon"></div>
               Over view</a></li>
-            <li><a href="/" class="<%= add_active_class(params) == 'Audit' ? 'active' : '' %>">
+            <li class="next-phase"><a href="#" class="<%= add_active_class(params) == 'Audit' ? 'active' : '' %>">
               <div class="audit-icon"></div>
               Audit</a></li>
             <li class="next-phase"><a href="#" class="<%= add_active_class(params) == 'Risk' ? 'active' : '' %>">
@@ -21,7 +21,7 @@
           </ul>
         </div>
         <div class="user_login">
-        
+
             <img src="/assets/outer/user-icon.jpg">
           <div class="user-name"><%#= current_user.user_name unless current_user.user_name.blank? %></div>
           <span id="login_drop"><img src="/assets/outer/user-down-arrow.png"></span>
@@ -45,23 +45,25 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <li id="next-phase"><a href="/admin/dashboard">
+        <li id="next-phase"><a href="/admin/dashboard" class="<%= request.fullpath.include?("admin/dashboard") == true ? 'active' : '' %>">
           Dashboard</a></li>
-        <li id="next-phase"><a href="/admin/compliances" >
+        <li id="next-phase"><a href="/admin/compliances" class="<%= request.fullpath.include?("/admin/compliances") == true ? 'active' : '' %>">
           Compliances</a></li>
-        <li id="next-phase"><a href="/admin/companies">
+        <li id="next-phase"><a href="/admin/companies" class="<%= request.fullpath.include?("admin/companies") == true ? 'active' : '' %>">
           Companies</a></li>
-        <li id="next-phase"><a href="/admin/modulars" class="active">
+        <li id="next-phase"><a href="/admin/modulars" class="<%= request.fullpath.include?("admin/modulars") == true ? 'active' : '' %>">
           Modulars</a></li>
-        <li id="next-phase"><a href="/admin/priorities">
+        <li id="next-phase"><a href="/admin/priorities" class="<%= request.fullpath.include?("admin/priorities") == true ? 'active' : '' %>">
           Priority</a></li>
-        <li id="next-phase"><a href="/admin/question_types">
+        <li id="next-phase"><a href="/admin/question_types" class="<%= request.fullpath.include?("admin/question_types") == true ? 'active' : '' %>">
           QuestionType</a></li>
-        <li id="next-phase"><a href="/admin/languages">
+        <li id="next-phase"><a href="/admin/languages" class="<%= request.fullpath.include?("admin/languages") == true ? 'active' : '' %>">
           Language</a></li>
-        <li id="next-phase"><a href="/admin/sections">
+        <li id="next-phase"><a href="/admin/sections" class="<%= request.fullpath.include?("admin/sections") == true ? 'active' : '' %>">
           Section</a></li>
-        <li id="next-phase"><a href="/admin/scores">
+        <li id="next-phase"><a href="/admin/topics" class="<%= request.fullpath.include?("admin/topics") == true ? 'active' : '' %>">
+          Topics</a></li>
+        <li id="next-phase"><a href="/admin/scores" class="<%= request.fullpath.include?("admin/scores") == true ? 'active' : '' %>">
           Score</a></li>
       </ul>
     </div>
