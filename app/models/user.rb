@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
   has_one :attachment, as: :attachable
   has_one :profile
 
+# attribute to login with username or email
+  attr_accessor :login
+
    #validates_format_of :full_name, :with =>/\A[a-zA-Z1-9]+\z/
    #validates :full_name, length: { maximum: 50 }
    validates :user_name, presence: true
@@ -55,4 +58,16 @@ class User < ActiveRecord::Base
   # Nested attribute for Profile
   accepts_nested_attributes_for :profile
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
+
+
+  # to have a login with username or email , we have to overwrite the method find_first_by_auth_conditions in devise
+    
+    def self.find_first_by_auth_conditions(warden_conditions)
+      conditions = warden_conditions.dup
+      if login = conditions.delete(:login)
+        where(conditions).where(["lower(user_name) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      else
+        where(conditions).first
+      end
+    end
 end
