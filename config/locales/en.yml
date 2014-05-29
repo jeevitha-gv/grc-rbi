@@ -39,12 +39,14 @@ en:
               too_long:
                 other: "User name should contains maximum of 52 char"
               taken: "User name has been already used"
+            role_id:
+              blank: "Role can't be blank"
         profile:
           attributes:
             phone_no:
               not_a_number: "Please enter a valid phone number"
               too_long:
-                other: "Phone Number cannot exceed 30 digits"
+                other: "Phone Number cannot exceed 12 digits"
               too_short:
                 other: "Phone Number cannot be less than 7 digits"
             address1:
@@ -169,7 +171,7 @@ en:
               blank: "Action name can't be blank"
               taken: "Action name has been already used"
               invalid: "Action name should contain alphanumeric"
-            section:
+            section_id:
               blank: "Section name can't be blank"
         topic:
           attributes:
