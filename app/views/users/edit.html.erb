@@ -2,7 +2,6 @@
   <h2> Error Messages </h2>
   <ul>
     <% @user.errors.messages.each do |msg| %>
-    <%binding.pry%>
       <li><%= msg[1][0] %></li>
     <% end %>
   </ul>
