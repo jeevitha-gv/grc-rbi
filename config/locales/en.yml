@@ -81,7 +81,7 @@ en:
           attributes:
             name:
               blank: "Client name can't be blank"
-              invalid: "Client name should contain alphanumeric"
+              invalid: "Client name should contain alphabets"
               too_short:
                 other: "client name should contain minimum of 4 char"
               too_long:
@@ -94,6 +94,11 @@ en:
               too_long:
                 other: "Contact number should contains maximum of 10 digits"
             address1:
+              too_short:
+                other: "Address should contain minimum of 7 char"
+              too_long:
+                other: "Address should contains maximum of 40 char"
+            address2:
               too_short:
                 other: "Address should contain minimum of 7 char"
               too_long:
