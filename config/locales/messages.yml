@@ -1,200 +1,52 @@
 en:
-  users:
-    user_name:
-      presence:
-         failure: "Enter your user name"
-      uniqueness:
-        failure: "User name has been already used"
-      name:
-        failure: "User name must be alphabets"
-      length:
-        failure: "User name must not be exceed 52 characters"
-    email:
-      presence:
-         failure: "Enter your email"
-      uniqueness:
-         failure: "E-mail has been already used"
-      valid:
-         failure: "Invalid email"  
-    role:
-      name:
-         failure: "Role can't be empty" 
-
-  company:
-    domain:
-      presence: 
-        failure:  "Enter your domain name"
-      uniqueness:
-        failure: "Domain name has been already used"
-      name:
-        failure: "Domain name must be alphabets"
-      length:
-        failure: "Domain name must not be exceed 25 characters"
-    name:
-      presence: 
-        failure: "Enter your company name"
-      uniqueness:
-        failure: "Company name has been already used"
-      name:
-        failure: "Company name must be alphanumeric"
-      length:
-        failure: "Company name must not be exceed 100 characters"
-    contact:
-      number:
-        failure: "Contact number is invalid"
-      length:
-        failure: "Contact number must not be exceed 10 characters"
-    address1:
-      length:
-        failure: "Address length should be 7 to 40"
-    address2:
-      length:
-        failure: "Adreess length should be 7 to 40"
-    email:
-      valid:
-        failure: "Invalid email"   
-
-  profile:
-    contact:
-      number:
-        failure: "Contact number is invalid"
-      length:
-        failure: "Contact number must not be exceed 10 characters"
-    address1:
-      length:
-        failure: "Address length should be 7 to 40"
-    address2:
-      length:
-        failure: "Adreess length should be 7 to 40"    
-  
-  client:
-    name:
-      presence: 
-        failure: "Enter your client name"
-      uniqueness:
-        failure: "Client name has been already used"
-      name:
-        failure: "Client name must be alphanumeric"
-      length:
-        failure: "Client name must not be exceed 100 characters"
-    contact:
-      number:
-        failure: "Contact number is invalid"
-      length:
-        failure: "Contact number must not be exceed 10 characters"
-    address1:
-      length:
-        failure: "Address length should be 7 to 40"
-    address2:
-      length:
-        failure: "Adreess length should be 7 to 40"       
-    email:
-      presence:
-        failure: "Enter your email"
-      uniqueness:
-        failure: "E-mail has been already used"
-      valid:
-        failure: "Invalid email"   
-  
-  compliance:
-    name:
-      presence: 
-        failure: "Enter your compliance name"
-      uniqueness:
-        failure: "compliance name has been already used"
-
-  department:
-    name:
-      presence: 
-        failure: "Enter your department name"
-      name:
-        failure: "Department name must be alphanumeric"
 
   location:
-    name:
-      presence: 
-        failure: "Enter your location name"
-      name:
-        failure: "Location name must be alphanumeric"
-  questiontype:
-    name:
-      presence: 
-        failure: "Enter your questiontype"
-      uniqueness:
-        failure: "Questiontype has been already used"
-      name:
-        failure: "Questiontype must be alphanumeric"
+    create:
+      success: "Location was created successfully"
+      update: "Location was successfully updated"
+      destroy: "Location was successfully destroyed"
 
-  topic:
-    name:
-      presence: 
-        failure: "Enter your topic name"
-      uniqueness:
-        failure: "Topicname has been already used"
-  
-  language:
-    name:
-      presence: 
-        failure: "Enter your language name"
-      uniqueness:
-        failure: "Language has been already used"
-    code:
-      presence: 
-        failure: "Enter your code name"
-      uniqueness:
-        failure: "codename has been already used"
+
+  client:
+    create:
+      success: "client was created successfully."
+      update: "client was successfully updated."
+      destroy: "client was successfully destroyed." 
+
+  Team:
+    create:
+      success: "Team was created successfully."
+      update: "Team was successfully updated."
+      destroy: "Team was successfully destroyed." 
+
+
+  # company:
+  #   domain:
+  #       unique: "Sorry, this domain has already been taken."
+
   section:
-    name:
-      presence: 
-        failure: "Enter your section name"
-      uniqueness:
-        failure: "Section name has been already used"
-      name:
-        failure: "Section name must be alphanumeric"
-  priority:
-    name:
-      presence: 
-        failure: "Enter your priority name"
-      uniqueness:
-        failure: "Priority name has been already used"
-      name:
-        failure: "Priority name must be alphanumeric"
+    create:
+      success: "Section was created successfully."
+      update: "Section was successfully updated."
+      destroy: "Section was successfully destroyed."
+      create: "Section was successfully created."
+      failure: ""
 
-  modular:
-    model:
-      presence: 
-        failure: "Enter your model name"
-      uniqueness:
-        failure: "Model name has been already used"
-      name:
-        failure: "Model name must be alphanumeric"
-    action:
-      presence: 
-        failure: "Enter your action name"
-      uniqueness:
-        failure: "Action name has been already used"
-      name:
-        failure: "Action name must be alphanumeric"
-    section:
-      name:
-        failure: "Section name can't be blank"
+  priorities:
+    create:
+      success: "Section was created successfully."
+      update: "Section was successfully updated."
+      destroy: "Section was successfully destroyed."
+      create: "Section was successfully created."
+      failure: ""
 
-  team:
-    name:
-      presence: 
-        failure: "Enter your priority name"
-      uniqueness:
-        failure: "Priority name has been already used"
-
-  role:
-    name:
-      presence: 
-        failure: "Enter your priority name"
-      uniqueness:
-        failure: "Priority name has been already used"
-
-
-
+  modulars:
+    create:
+      success: "Section was created successfully."
+      update: "Section was successfully updated."
+      destroy: "Section was successfully destroyed."
+      create: "Section was successfully created."
+      failure: ""
 
   previlages:
     create:
