@@ -22,7 +22,7 @@ ActiveAdmin.register Company do
   form do |f|
     f.inputs "Company Details" do
       f.input :name
-      f.input :primary_email , :input_html => { :disabled => true }
+      f.input :primary_email
       f.input :secondary_email
       f.input :domain , :input_html => { :disabled => true }
       f.input :address1
