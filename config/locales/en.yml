@@ -26,6 +26,7 @@ en:
           attributes:
             email:
               blank: "Email can't be blank"
+              invalid: "Email is invalid"
             full_name:
               blank: "Full Name can't be blank"
               invalid: "Full Name should contain alphabets"
@@ -45,10 +46,8 @@ en:
           attributes:
             phone_no:
               not_a_number: "Please enter a valid phone number"
-              too_long:
-                other: "Phone Number cannot exceed 12 digits"
-              too_short:
-                other: "Phone Number cannot be less than 7 digits"
+              wrong_length:
+                other: "Phone no should be 10 digits"
             address1:
               too_long:
                 other: "Address Line 1 cannot exceed 40 characters"
@@ -94,10 +93,8 @@ en:
             contact_no:
               not_a_number: "is not a number"
               blank: "Contact number can't be blank"
-              too_short:
-                other: "Contact number should contain minimum of 10 digits"
-              too_long:
-                other: "Contact number should contains maximum of 10 digits"
+              wrong_length:
+                other: "Contact no should be 10 digits"
             address1:
               too_short:
                 other: "Address should contain minimum of 7 char"
