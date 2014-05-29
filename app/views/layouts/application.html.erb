@@ -11,11 +11,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id="wrapper">
+  <%= render :partial => "layouts/header" if user_signed_in? %>
+  <%= yield %>
 
-<%= render :partial => "layouts/header" if user_signed_in? %>
-<%= yield %>
-
-<%= render :partial => "layouts/footer" if user_signed_in? %>
-
+  <%= render :partial => "layouts/footer" if user_signed_in? %>
+</div>
 </body>
 </html>

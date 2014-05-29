@@ -6,6 +6,7 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
 
   controller do
     before_filter :check_company_admin, :check_role
+    before_filter :authorize_company, only: [:edit, :update]
     def index
       redirect_to edit_admin_setting_path(current_user.company_id)
     end
@@ -21,7 +22,13 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
 
     private
     def company_params
-      params.require(:settings).permit(:name, :secondary_email, :address1, :address2, :country_id, :contact_no, :timezone, attachment_attributes: [:attachment_file])
+      params.require(:company).permit(:name, :secondary_email, :address1, :address2, :country_id, :contact_no, :timezone, attachment_attributes: [:id,:attachment_file])
+    end
+
+    def authorize_company
+      unless current_user.company_id == params[:id].to_i
+        redirect_to root_subdomain_path
+      end
     end
   end
 
