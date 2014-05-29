@@ -1,33 +1,36 @@
 <% if @user.errors.any? %>
-            <h2> Error Messages </h2>
-            <ul>
-              <% @user.errors.messages.each do |msg| %>
-                <li><%= msg[1][0] %></li>
-              <% end %>
-            </ul>
+  <h2> Error Messages </h2>
+  <ul>
+    <% @user.errors.messages.each do |msg| %>
+    <%binding.pry%>
+      <li><%= msg[1][0] %></li>
+    <% end %>
+  </ul>
 <% end %>
 <div class="clearfix"></div>
 <div class="content">
   <div class="container">
-    <div class="row"> 
+    <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="page_heading">User Profile</div>
       </div>
-    </div>    
+    </div>
     <div class="row user_main">
       <div class="profile_photo_block">
         <div class="">
-        <%= form_for(@user, :url => { :action => "update" }) do |f| %>  
+        <%= form_for(@user, :url => { :action => "update" }) do |f| %>
           <%= f.fields_for :attachment do |attach| %>
             <div>
               <%= attach.label :attachment, "Profile Photo" %><br />
               <div class="profile_photo">
-              <%= image_tag(@user.attachment.attachment_file.thumb) if @user.attachment.present? %>      
-              <%= attach.file_field :attachment_file%>
+                <%= image_tag((@user.attachment.present? && @user.attachment.attachment_file.present?) ? @user.attachment.attachment_file.thumb : "/assets/outer/face-image.jpg", :id => "profile_img", :class => "profile_img") %>
+                <div class="profile_photo_sec">
+                </div>
               </div>
+              <%= attach.file_field :attachment_file, :accept=>"image/*", :onChange=>"addFiles(this)", :class=>"image-select", :style=>"display:none;"%>
             </div>
           <% end %>
-         </div> 
+         </div>
       </div>
       <div class="profile_form">
         <div class="pad_bttm">
@@ -45,28 +48,28 @@
         <div class="pad_bttm">
           <%= f.label :timezone, t('profile.timezone') %>
           <%= f.select :timezone, Company::TIMEZONES, :selected => @user.timezone %>
-        </div>  
+        </div>
         <div class="pad_bttm">
           <%= f.label :language_id, t('profile.language') %>
           <%= f.collection_select(:language_id, Language.all, :id, :name)  %>
-        </div>  
-        <%= f.fields_for :profile do |profile| %>    	
+        </div>
+        <%= f.fields_for :profile do |profile| %>
           <div class="pad_bttm">
           	<%= profile.label :phone_no, t('profile.contact') %>
           	<%= profile.text_field :phone_no %>
-          </div>    	
+          </div>
           <div class="pad_bttm">
           	<%= profile.label :address1, t('profile.address1') %>
           	<%= profile.text_field :address1 %>
-          </div>    	
+          </div>
           <div class="pad_bttm">
           	<%= profile.label :address2, t('profile.address2') %>
           	<%= profile.text_field :address2 %>
-          </div>    	
+          </div>
           <div class="pad_bttm">
           	<%= profile.label :city, t('profile.city') %>
           	<%= profile.text_field :city %>
-          </div>    	
+          </div>
           <div class="pad_bttm">
           	<%= profile.label :state, t('profile.state') %>
           	<%= profile.text_field :state %>
@@ -84,3 +87,29 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $( ".profile_photo" ).click(function(){
+      $(".image-select").click();
+    });
+  });
+
+  function addFiles(fileInput) {
+    var files = fileInput.files;
+    var file = files[0];
+    var imageType = /image.*/;
+    if (!file.type.match(imageType)) {
+      return true;
+    }
+    var img = $("#profile_img")[0]
+    img.file = file;
+    var reader = new FileReader();
+    reader.onload = (function(aImg) {
+      return function(e) {
+        aImg.src = e.target.result;
+      };
+    })(img);
+    reader.readAsDataURL(file);
+  }
+</script>

@@ -632,22 +632,25 @@ html, body {
 
 .profile_photo {
     background-image: url("/assets/outer/face-image.jpg");
-    background-repeat: no-repeat;
-    height: 100px;
-    width: 100px;
-    cursor: pointer;
+   position:relative;
+	width:102px; height:102px;
+	border:1px solid #666;
+    cursor: pointer;border-radius: 3px;
 }
 
-.profile_photo:hover {
+
+.profile_photo_sec {
     background-image: url("/assets/outer/upload-image.png");
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    background-color: transparent;
+   position:absolute;
+	bottom:0; width:100px; height:100px; left:0; display:none;
+	background-repeat:no-repeat; background-position:bottom center;
 }
+.profile_photo:hover .profile_photo_sec{ display:block;}
 
-.profile_photo > input {
-  background-color: transparent;
-  border: medium none transparent;
-  height: 100px;
-  width: 100px;
-}
+.profile_img {width: 100px;height: 100px;}
+
+
+
+
+
+
