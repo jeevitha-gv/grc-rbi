@@ -125,6 +125,10 @@ en:
               blank: "Location name can't be blank"
               invalid: "Location name should contain alphanumeric"
               taken: "Location name has been already used"
+              too_short:
+                other: "Location should contain minimum of 7 char"
+              too_long:
+                other: "Contact number should contains maximum of 10 digits"
         question_type:
           attributes:
             name:
