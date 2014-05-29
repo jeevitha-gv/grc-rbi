@@ -58,22 +58,20 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <li id="next-phase"><a href="/admin/clients" class="<%= request.fullpath.include?("admin/clients") == true ? 'active' : '' %>">
+        <li><a href="/admin/clients" class="<%= request.fullpath.include?("admin/clients") == true ? 'active' : '' %>">
           Clients</a></li>
-        <li id="next-phase"><a href="/admin/departments" class="<%= request.fullpath.include?("admin/departments") == true ? 'active' : '' %>">
+        <li><a href="/admin/departments" class="<%= request.fullpath.include?("admin/departments") == true ? 'active' : '' %>">
           Departments</a></li>
-        <li id="next-phase"><a href="/admin/locations" class="<%= request.fullpath.include?("admin/locations") == true ? 'active' : '' %>">
+        <li><a href="/admin/locations" class="<%= request.fullpath.include?("admin/locations") == true ? 'active' : '' %>">
           Locations</a></li>
-        <li id="next-phase"><a href="/admin/roles" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
+        <li><a href="/admin/roles" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
           Roles</a></li>
-        <li id="next-phase"><a href="/admin/settings" class="<%= request.fullpath.include?("admin/settings") == true ? 'active' : '' %>">
+        <li><a href="/admin/settings" class="<%= request.fullpath.include?("admin/settings") == true ? 'active' : '' %>">
           Settings</a></li>
-        <li id="next-phase"><a href="/admin/teams" class="<%= request.fullpath.include?("admin/teams") == true ? 'active' : '' %>">
+        <li><a href="/admin/teams" class="<%= request.fullpath.include?("admin/teams") == true ? 'active' : '' %>">
           Teams</a></li>
-        <li id="next-phase"><a href="/admin/users" class="<%= request.fullpath.include?("admin/users") == true ? 'active' : '' %>">
+        <li><a href="/admin/users" class="<%= request.fullpath.include?("admin/users") == true ? 'active' : '' %>">
           Users</a></li>
-        <!--<li id="next-phase"><a href="">
-          Setting</a></li>-->
       </ul>
     </div>
   </div>
@@ -96,7 +94,8 @@
     });
 
     $(".next-phase").click(function(){
-      new Messi('Planned for further phases.');
+      // new Messi('Planned for further phases.', {autoclose: '5000'});
+      new Messi('Planned for further phases.', {title: 'Warning', titleClass: 'warning', autoclose: 2000});
     });
 
   });

@@ -2,9 +2,13 @@ ActiveAdmin.register Score do
 
   menu :if => proc{ current_admin_user.present? }
 
+  #authentication
+  controller do
+    before_filter :authenticate_admin_user!
+  end
+
   # remove new record creation option
-  actions :all, :except => [:new]
-  actions :all, :except => [:destroy]
+  actions :all, :except => [:new, :destroy]
 
   permit_params :id, :level, :description
 

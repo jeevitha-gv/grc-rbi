@@ -39,9 +39,148 @@ en:
               too_long:
                 other: "User name should contains maximum of 52 char"
               taken: "User name has been already used"
-          profile:
+        profile:
+          attributes:
             phone_no:
+              not_a_number: "Please enter a valid phone number"
+              too_long:
+                other: "Phone Number cannot exceed 30 digits"
+              too_short:
+                other: "Phone Number cannot be less than 7 digits"
+            address1:
+              too_long:
+                other: "Address Line 1 cannot exceed 40 characters"
+              too_short:
+                other: "Address Line 1 cannot be less than 7 characters"
+            address2:
+              too_long:
+                other: "Address Line 2 cannot exceed 40 characters"
+              too_short:
+                other: "Address Line 2 cannot be less than 7 characters"
+        company:
+          attributes:
+            name:
+              blank: "Company Name can't be blank"
+              invalid: "Company Name must be alphanumeric"
+              invalid: "Please enter a valid Company Name"
+            domain:
+              blank: "Domain name cannot be blank"
+              taken: "Domain name is already taken. Please try another name"
+            secondary_email:
+              invalid: "Secondary Email is invalid"    
+        language:
+          attributes:
+            name:
+              blank: "Language cannot be blank"
+              taken: "This language has already been added"
+            code:
+              blank: "Language Code cannot be blank"
+              taken: "Code must be unique"
+
+        client:
+          attributes:
+            name:
+              blank: "Client name can't be blank"
+              invalid: "Client name should contain alphabets"
+              too_short:
+                other: "client name should contain minimum of 4 char"
+              too_long:
+                other: "client name should contains maximum of 52 char"
+            contact_no:
               not_a_number: "is not a number"
+              blank: "Contact number can't be blank"
+              too_short:
+                other: "Contact number should contain minimum of 10 digits"
+              too_long:
+                other: "Contact number should contains maximum of 10 digits"
+            address1:
+              too_short:
+                other: "Address should contain minimum of 7 char"
+              too_long:
+                other: "Address should contains maximum of 40 char"
+            address2:
+              too_short:
+                other: "Address should contain minimum of 7 char"
+              too_long:
+                other: "Address should contains maximum of 40 char"
+            email:
+              blank: "Email can't be blank"
+              invalid: "Email is invalid"
+              taken: "Email has been already used"
+        compliance:
+          attributes:
+            name:
+              blank: "Compliance name can't be blank"
+              taken: "Email has been already used"
+        department:
+          attributes:
+            name:
+              blank: "Department name can't be blank"
+              invalid: "Department name should contain alphanumeric"
+            loacation_id:
+              blank: "Location Can't be blank"
+        location:
+          attributes:
+            name:
+              blank: "Location name can't be blank"
+              invalid: "Location name should contain alphanumeric"
+              taken: "Location name has been already used"
+              too_short:
+                other: "Location should contain minimum of 7 char"
+              too_long:
+                other: "Contact number should contains maximum of 10 digits"
+        question_type:
+          attributes:
+            name:
+              blank: "question type  can't be blank"
+              invalid: "question type name should contain alphanumeric"
+              taken: "question type name has been already used"
+        role:
+          attributes:
+            title: 
+              blank: "Role  can't be blank"
+              taken: "Role name has been already used"
+        team:
+          attributes:
+            name:
+              blank: "Team name can't be blank"
+              invalid: "Team name should contain alphanumeric"
+              taken: "Team name has been already used"
+        priority:
+          attributes:
+            name:
+              blank: "Priority name can't be blank"
+              taken: "Priority name has been already used"
+              invalid: "Priority name should contain alphanumeric"
+        section:
+          attributes:
+            name:
+              blank: "Section name can't be blank"
+              taken: "Section name has been already used"
+              invalid: "Section name should contain alphanumeric"
+        modular:
+          attributes:
+            model_name:
+              blank: "Model name can't be blank"
+              taken: "Model name has been already used"
+              invalid: "Model name should contain alphanumeric"
+            action_name:
+              blank: "Action name can't be blank"
+              taken: "Action name has been already used"
+              invalid: "Action name should contain alphanumeric"
+            section:
+              blank: "Section name can't be blank"
+        topic:
+          attributes:
+            name:
+              blank: "Topic name can't be blank"
+              taken: "Topic name has been already used"
+              
+
+
+
+
+
 
   companies:
     company:  "Company Name"

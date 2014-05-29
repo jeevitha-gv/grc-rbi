@@ -11,10 +11,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_company
   before_filter :check_subdomain
   before_filter :check_password_authenticated, :if => :current_user
-    #~ if Rails.application.config.consider_all_requests_local
-    #~ rescue_from Exception, with: lambda { |exception| render_error 500, exception }
-    #~ rescue_from ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
-  #~ end
+    if Rails.application.config.consider_all_requests_local
+    rescue_from Exception, with: lambda { |exception| render_error 500, exception }
+    rescue_from ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
+  end
 
   protected
 
@@ -139,7 +139,7 @@ class ApplicationController < ActionController::Base
 
   def render_error(status, exception)
     respond_to do |format|
-      format.html { render template: "errors/error_#{status}", layout: 'layouts/empty', :locals => {status: status, exception: exception}  }
+      format.html { render template: "errors/error_#{status}", layout: false, :locals => {status: status, exception: exception}  }
       format.all { render nothing: true, status: status }
     end
   end
