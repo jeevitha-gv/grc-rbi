@@ -1,9 +1,10 @@
 # The section Model is to track the Audit in the application.
 class Section < ActiveRecord::Base
-  validates :name, presence: true, format: { with: /\A[a-zA-Z]+\z/ }
+  
   #associations
   has_many :modulars #Section has many modulars
-  validates_format_of :name, :with =>/\A[a-zA-Z1-9]+\z/
-  validates :name, presence:true
-  validates :name, uniqueness:true
+
+  validates :name, presence:true, :if => Proc.new{ |f| f.name.blank? } 
+  validates_format_of :name, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.name.blank? } 
+  validates :name, uniqueness:true, :if => Proc.new{ |f| !f.name.blank? } 
 end

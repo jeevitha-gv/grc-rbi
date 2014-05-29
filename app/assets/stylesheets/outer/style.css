@@ -389,7 +389,7 @@ a.edit-icon {
   background-color: #FFFFFF;
   border: 1px solid #E7E7E8;
   padding: 0 0 15px;
-  margin-bottom: 15px;
+  margin-bottom: 100px;
 }
 
 .orange_btn {
@@ -641,7 +641,7 @@ html, body {
 .profile_photo:hover {
     background-image: url("/assets/outer/upload-image.png");
     background-position: center bottom;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     background-color: transparent;
 }
 
