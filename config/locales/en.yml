@@ -134,13 +134,13 @@ en:
           attributes:
             name:
               blank: "question type  can't be blank"
-              invalid: "question type name should contain alphanumeric"
+              invalid: "question type name should contain alphabets"
               taken: "question type name has been already used"
         role:
           attributes:
             title: 
               blank: "Role  can't be blank"
-              taken: "Role name has been already used"
+              invalid: "Role type name should contain alphabets"
         team:
           attributes:
             name:
