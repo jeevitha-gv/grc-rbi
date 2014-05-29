@@ -75,6 +75,8 @@ en:
               blank: "Language cannot be blank"
               taken: "This language has already been added"
               invalid: "Language name must be alphabets"
+              too_short:
+                other: "Language should contain minimum of 3 char"
             code:
               blank: "Language Code cannot be blank"
               taken: "Code must be unique"
@@ -115,6 +117,8 @@ en:
               blank: "Compliance name can't be blank"
               taken: "Compliance name has been already used"
               invalid: "Compliance name should contain alphanumeric"
+              too_short:
+                other: "Compliance should contain minimum of 2 char"
         department:
           attributes:
             name:
@@ -138,6 +142,8 @@ en:
               blank: "question type  can't be blank"
               invalid: "question type name should contain alphabets"
               taken: "question type name has been already used"
+              too_short:
+                other: "Question type should contain minimum of 4 char"
         role:
           attributes:
             title: 
@@ -161,16 +167,22 @@ en:
               blank: "Section name can't be blank"
               taken: "Section name has been already used"
               invalid: "Section name should contain alphanumeric"
+              too_short:
+                other: "Section should contain minimum of 4 char"
         modular:
           attributes:
             model_name:
               blank: "Model name can't be blank"
               taken: "Model name has been already used"
               invalid: "Model name should contain alphanumeric"
+              too_short:
+                other: "Model should contain minimum of 4 char"
             action_name:
               blank: "Action name can't be blank"
               taken: "Action name has been already used"
               invalid: "Action name should contain alphanumeric"
+              too_short:
+                other: "Action should contain minimum of 4 char"
             section_id:
               blank: "Section name can't be blank"
         topic:
@@ -179,6 +191,8 @@ en:
               blank: "Topic can't be blank"
               taken: "Topic  has been already used"
               invalid: "Topic should contain alphanumeric"
+              too_short:
+                other: "Location should contain minimum of 4 char"
               
 
 
