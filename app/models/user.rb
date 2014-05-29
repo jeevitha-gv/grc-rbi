@@ -18,11 +18,16 @@ class User < ActiveRecord::Base
   has_one :attachment, as: :attachable
   has_one :profile
 
-   validates :user_name, presence: { message: MESSAGES["users"]["user_name"]["presence"]["failure"] }
-   validates :email, presence: { message: MESSAGES["users"]["email"]["presence"]["failure"] }
+   #validates_format_of :full_name, :with =>/\A[a-zA-Z1-9]+\z/
+   #validates :full_name, length: { maximum: 50 }
+   validates :user_name, presence: true
+   validates :user_name, uniqueness: true
+   validates_format_of :user_name, :with =>/\A(?=.*[a-z])[a-z\d]+\Z/i
+   validates :user_name, length: { maximum: 52 }
+   validates :email, presence: true
    validates :email, uniqueness:{ message: MESSAGES["users"]["email"]["uniqueness"]["failure"]}
    validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, presence:{message: MESSAGES["users"]["email"]["valid"]["failure"]}
-   validates :password, :confirmation => true
+   validates :role_id, presence:{message: MESSAGES["users"]["role"]["name"]["failure"]}
   # validates :user_name, :full_name , presence: true, uniqueness: true
 
   delegate :title, to: :dealer, prefix: true

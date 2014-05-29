@@ -18,8 +18,31 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
 en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "Email can't be blank"
+            full_name:
+              blank: "Full Name can't be blank"
+              invalid: "Full Name should contain alphabets"
+              too_short:
+                other: "Full name should contain minimum of 8 char"
+            user_name:
+              blank: "User Name can't be blank"
+              invalid: "User Name should contain alphabets"
+              too_short:
+                other: "User Name should contain minimum of 8 char"
+              too_long:
+                other: "User name should contains maximum of 52 char"
+              taken: "User name has been already used"
+          profile:
+            phone_no:
+              not_a_number: "is not a number"
+
   companies:
     company:  "Company Name"
     primary_email: "Primary Email"

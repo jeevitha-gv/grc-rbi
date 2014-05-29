@@ -7,7 +7,8 @@ class Role < ActiveRecord::Base
 	
  #validation
 	validates :title, exclusion: { in: %w(company_admin) ,:if => Proc.new{ |f| (f.title.nil?) },message: MESSAGES["roles"]["company_admin_failure"]}
-
+    validates :title, presence:{message: MESSAGES["role"]["name"]["presence"]["failure"]}
+    validates :title, uniqueness:{message: MESSAGES["role"]["name"]["uniqueness"]["failure"]}
 	
 	has_many :privileges
 	has_many :roles
