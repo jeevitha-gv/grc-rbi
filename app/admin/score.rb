@@ -6,11 +6,6 @@ ActiveAdmin.register Score do
   actions :all, :except => [:new]
   actions :all, :except => [:destroy]
 
-  #authentication
-  controller do
-    before_filter :check_company_admin
-  end
-
   permit_params :id, :level, :description
 
   #display the required fields in index
