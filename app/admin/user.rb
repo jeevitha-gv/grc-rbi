@@ -4,7 +4,7 @@ ActiveAdmin.register User do
   # removing delete option
   actions :all, :except => [:destroy]
 
-  permit_params :full_name, :email, :user_name, :password , :password_confirmation, :role_id, :city, :state, :country_id,:is_disabled, profile_attributes: [:personal_email, :address2, :address1,  :city, :state, :country_id]
+  permit_params :full_name, :email, :user_name, :password , :password_confirmation, :role_id, :city, :state, :country_id,:is_disabled, profile_attributes: [:personal_email, :address2, :address1,  :city, :state, :country_id, :phone_no]
 
   controller do
     # removing delete option
@@ -23,7 +23,7 @@ ActiveAdmin.register User do
 
     private
       def user_params
-        params.require(:user).permit(:full_name, :email, :user_name, :password , :password_confirmation, :is_disabled, :role_id,:company_id, profile_attributes: [:personal_email, :address2, :address1, :city, :state, :country_id])
+        params.require(:user).permit(:full_name, :email, :user_name, :password , :password_confirmation, :is_disabled, :role_id,:company_id, profile_attributes: [:personal_email, :address2, :address1, :phone_no, :city, :state, :country_id])
       end
 
       def scoped_collection
@@ -79,6 +79,7 @@ ActiveAdmin.register User do
       s.input :personal_email
       s.input :address1
       s.input :address2
+      s.input :phone_no
       s.input :city
       s.input :state
       s.input :country_id, :label => 'Country', :as => :select, :collection => Country.all, :prompt => "-Select Country-"

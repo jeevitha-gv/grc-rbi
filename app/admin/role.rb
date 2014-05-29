@@ -17,8 +17,7 @@ ActiveAdmin.register Role  do
         if @role.save
           redirect_to admin_roles_path
         else
-          p @role.errors
-          redirect_to new_admin_role_path
+          render 'new'
         end
       else
         redirect_to new_admin_role_path
