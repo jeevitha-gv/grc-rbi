@@ -1,28 +1,5 @@
 ActiveAdmin.setup do |config|
 
-#~ class MyNavigation < ActiveAdmin::Component
-#~ def build(namespace, menu)
-  #~ super(id: "header")
-    #~ para "Copyright #{Date.today.year} Reverb Media Group"
-     #~ unless menu['jobs']
-      #~ new_item = ActiveAdmin::MenuItem.new(id: 'jobs',
-                                           #~ label: 'Jobs',
-                                           #~ url: admin_roles_path,
-                                           #~ priority: 11)
-      #~ menu.add new_item
-    #~ end
-
-    # Now, invoke the parent class's build method to put it all together.
-    #~ super(namespace, menu)
-  #~ end
-#~ end
-
-class MyFooter < ActiveAdmin::Component
-  def build
-    super(id: "footer")
-    para "Copyright #{Date.today.year} fixnix"
-  end
-end
   # == Site Title
   #
   # Set the title that is displayed on the main layout
