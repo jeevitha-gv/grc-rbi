@@ -37,7 +37,8 @@ ActiveAdmin.register User do
     column :email
     column :team
     column "Role" do |r|
-      role = Role.find(r.role_id).title
+      role = Role.where('id=?',r.role_id).first
+      title = role.title if role
     end
     column :is_disabled
     actions
@@ -50,7 +51,8 @@ ActiveAdmin.register User do
       row :user_name
       row :team
       row "Role" do |r|
-        role = Role.find(r.role_id).title
+        role = Role.where('id=?',r.role_id).first
+        title = role.title if role   
       end
       row :is_disabled do |d|
         d.is_disabled? ? 'Yes': 'No'
