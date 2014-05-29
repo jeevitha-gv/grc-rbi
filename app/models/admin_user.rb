@@ -4,5 +4,5 @@ class AdminUser < ActiveRecord::Base
   devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :email, presence: true, uniqueness:{ message: MESSAGES["uniqueness"]["create"]["failure"]}#E-mailshould be unique
+  validates :email, presence: true
 end

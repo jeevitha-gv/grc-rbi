@@ -4,5 +4,7 @@ class Team < ActiveRecord::Base
 has_many :users, :through => :user_teams 
 has_many :user_teams
 
- validates :name, presence: true, uniqueness:{ message: MESSAGES["uniqueness"]["create"]["failure"]}
+ validates :name, uniqueness:{ message: MESSAGES["team"]["name"]["uniqueness"]["failure"]}
+ validates :name, presence:{ message: MESSAGES["team"]["name"]["presence"]["failure"]}
+
 end

@@ -4,5 +4,7 @@ class Topic < ActiveRecord::Base
    tracked owner: ->(controller, model) { controller && controller.current_user }
    tracked ip: ->(controller,model) {controller && controller.current_user.current_sign_in_ip}
 
-validates :name, presence: true, uniqueness:{ message: MESSAGES["uniqueness"]["create"]["failure"]}
+validates :name, uniqueness:{ message: MESSAGES["topic"]["name"]["uniqueness"]["failure"]}
+validates :name, presence:{ message: MESSAGES["topic"]["name"]["presence"]["failure"]}
+
 end
