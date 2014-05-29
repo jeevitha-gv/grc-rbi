@@ -20,7 +20,7 @@ class Company < ActiveRecord::Base
   validates :domain, uniqueness: true
   validates_format_of :domain, :with =>/\A[a-zA-Z]+\z/
   validates :name, length: { maximum: 25 }  
-  validates_format_of :secondary_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+  validates_format_of :secondary_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, :if => Proc.new{|f| !f.secondary_email.blank? }
   #validates_numericality_of :contact_no, presence:{message: MESSAGES["company"]["contact"]["number"]["failure"]}
   #validates :contact_no, length: { is: 10}, presence:{message: MESSAGES["company"]["contact"]["length"]["failure"]}
   #validates :address1, length: { in: 7..40 }, presence:{message: MESSAGES["company"]["address1"]["length"]["failure"]}
