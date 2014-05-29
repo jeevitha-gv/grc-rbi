@@ -5,7 +5,7 @@
       <div class="container">
         <div class="navbar-header">
           <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-          <div class="navbar-brand">Audit-Risk</div>
+         
           </div>
         <div class="navbar-collapse collapse fleft">
           <ul class="nav navbar-nav main_nav">
@@ -23,7 +23,7 @@
         <div class="user_login">
         
             <img src="/assets/outer/user-icon.jpg">
-          <div class="user-name">Super Admin</div>
+          <div class="user-name"><%#= current_user.user_name unless current_user.user_name.blank? %></div>
           <span id="login_drop"><img src="/assets/outer/user-down-arrow.png"></span>
 
           <div class="account_header_dropdown" style="display: none;">
@@ -45,23 +45,23 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <li id="next-phase"><a href="/admin/dashboard">
+        <li><a href="/admin/dashboard">
           Dashboard</a></li>
-        <li id="next-phase"><a href="/admin/compliances" >
+        <li><a href="/admin/compliances" >
           Compliances</a></li>
-        <li id="next-phase"><a href="/admin/companies">
+        <li><a href="/admin/companies">
           Companies</a></li>
-        <li id="next-phase"><a href="/admin/modulars" class="active">
+        <li><a href="/admin/modulars" class="active">
           Modulars</a></li>
-        <li id="next-phase"><a href="/admin/priorities">
+        <li><a href="/admin/priorities">
           Priority</a></li>
-        <li id="next-phase"><a href="/admin/question_types">
+        <li><a href="/admin/question_types">
           QuestionType</a></li>
-        <li id="next-phase"><a href="/admin/languages">
+        <li><a href="/admin/languages">
           Language</a></li>
-        <li id="next-phase"><a href="/admin/sections">
+        <li><a href="/admin/sections">
           Section</a></li>
-        <li id="next-phase"><a href="/admin/scores">
+        <li><a href="/admin/scores">
           Score</a></li>
       </ul>
     </div>
