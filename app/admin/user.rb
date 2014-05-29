@@ -13,6 +13,15 @@ ActiveAdmin.register User do
     def create
       @user = User.new(user_params)
       @user.company_id = current_user.company_id
+      team_id = params[:user][:team_ids].delete_if(&:empty?)
+			team_id.each do |team|
+        user_team = UserTeam.where('user_id =? AND team_id =?',current_user.id, team).first
+        if user_team.nil?
+					@user_team = UserTeam.new
+					@user_team.team_id = team
+					@user_team.save
+        end
+			end
       if @user.save
         redirect_to admin_users_path
       else

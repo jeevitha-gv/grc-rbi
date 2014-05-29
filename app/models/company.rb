@@ -14,6 +14,7 @@ class Company < ActiveRecord::Base
   #validation  
   #validates_format_of :name, :with =>/\A[a-zA-Z1-9]+\z/, presence:{message: MESSAGES["company"]["name"]["name"]["failure"]}
   validates :name, presence: true
+<<<<<<< HEAD
   validates_format_of :name, :with =>/\A[a-zA-Z1-9]+\z/, :if => Proc.new{|f| !f.name.blank? }  
   validates :domain, presence: true
   validates :domain, uniqueness: true
@@ -26,4 +27,20 @@ class Company < ActiveRecord::Base
   validates :address1, length: { in: 7..40 }, :if => Proc.new{|f| !f.address1.blank? }
   validates :address2, length: { in: 7..40 }, :if => Proc.new{|f| !f.address2.blank? }
   
+=======
+  validates_format_of :name, :with =>/\A[a-zA-Z1-9]+\z/  
+  validates :name, length: { maximum: 30 }
+  validates :domain, presence: true
+  validates :domain, uniqueness: true
+  validates_format_of :domain, :with =>/\A[a-zA-Z]+\z/
+  validates :name, length: { maximum: 25 }  
+  validates_format_of :secondary_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, :if => Proc.new{|f| !f.secondary_email.blank? }
+  validates :address1, length: { in: 7..40 }, :if => Proc.new{|f| !f.address1.blank? }
+  validates :address2, length: { in: 7..40 }, :if => Proc.new{|f| !f.address2.blank? }
+  #validates_numericality_of :contact_no, presence:{message: MESSAGES["company"]["contact"]["number"]["failure"]}
+  #validates :contact_no, length: { is: 10}, presence:{message: MESSAGES["company"]["contact"]["length"]["failure"]}
+  #validates :address1, length: { in: 7..40 }, presence:{message: MESSAGES["company"]["address1"]["length"]["failure"]}
+  #validates :address2, length: { in: 7..40 }, presence:{message: MESSAGES["company"]["address2"]["length"]["failure"]}
+  #validates_format_of :secondary_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, presence:{message: MESSAGES["company"]["email"]["valid"]["failure"]}
+>>>>>>> 0f674cff541f3dfb9b3c5798d77b7a13642f0f90
 end
