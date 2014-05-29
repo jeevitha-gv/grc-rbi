@@ -15,14 +15,15 @@ class Company < ActiveRecord::Base
   #validates_format_of :name, :with =>/\A[a-zA-Z1-9]+\z/, presence:{message: MESSAGES["company"]["name"]["name"]["failure"]}
   validates :name, presence: true
   validates_format_of :name, :with =>/\A[a-zA-Z1-9]+\z/  
-  validates :name, length: { maximum: 30 }
+  validates :name, length: { maximum: 50 }
   validates :domain, presence: true
   validates :domain, uniqueness: true
   validates_format_of :domain, :with =>/\A[a-zA-Z]+\z/
-  validates :name, length: { maximum: 25 }  
+  validates :domain,length: { in: 2..25 } 
+  validates :name, length: { in: 2..50 }  
   validates_format_of :secondary_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, :if => Proc.new{|f| !f.secondary_email.blank? }
-  #validates_numericality_of :contact_no, presence:{message: MESSAGES["company"]["contact"]["number"]["failure"]}
-  #validates :contact_no, length: { is: 10}, presence:{message: MESSAGES["company"]["contact"]["length"]["failure"]}
+  validates_numericality_of :contact_no, :if => Proc.new{|f| !f.contact_no.blank? }
+  validates :contact_no, length: { is: 10},:if => Proc.new{|f| !f.contact_no.blank? }
   #validates :address1, length: { in: 7..40 }, presence:{message: MESSAGES["company"]["address1"]["length"]["failure"]}
   #validates :address2, length: { in: 7..40 }, presence:{message: MESSAGES["company"]["address2"]["length"]["failure"]}
   #validates_format_of :secondary_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, presence:{message: MESSAGES["company"]["email"]["valid"]["failure"]}

@@ -64,11 +64,24 @@ en:
               blank: "Company Name can't be blank"
               invalid: "Company Name must be alphanumeric"
               invalid: "Please enter a valid Company Name"
+              too_long:
+                other: " Companyname cannot exceed 50 characters"
+              too_short:
+                other: " Companyname cannot be less than 2 characters"
             domain:
               blank: "Domain name cannot be blank"
               taken: "Domain name is already taken. Please try another name"
+              invalid: "Domain name should contain alphabets"
+              too_long:
+                other: " Domain name cannot exceed 25 characters"
+              too_short:
+                other: " Domain name cannot be less than 2 characters"
             secondary_email:
-              invalid: "Secondary Email is invalid"    
+              invalid: "Secondary Email is invalid" 
+            contact_no:
+              not_a_number: "is not a number"   
+              wrong_length:
+                other: "Contact no should be 10 digits"
         language:
           attributes:
             name:
