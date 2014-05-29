@@ -2,7 +2,7 @@ ActiveAdmin.register Client do
 
   menu :if => proc{ !current_admin_user.present? }
 
-  #permit_params :name, :company_id, :address1, :address2, :contact_no, :email
+  permit_params :name, :company_id, :address1, :address2, :contact_no, :email
 
   controller do
     before_filter :check_company_admin, :check_role

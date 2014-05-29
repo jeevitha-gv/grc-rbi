@@ -26,6 +26,7 @@ en:
           attributes:
             email:
               blank: "Email can't be blank"
+              invalid: "Email is invalid"
             full_name:
               blank: "Full Name can't be blank"
               invalid: "Full Name should contain alphabets"
@@ -45,10 +46,8 @@ en:
           attributes:
             phone_no:
               not_a_number: "Please enter a valid phone number"
-              too_long:
-                other: "Phone Number cannot exceed 12 digits"
-              too_short:
-                other: "Phone Number cannot be less than 7 digits"
+              wrong_length:
+                other: "Phone no should be 10 digits"
             address1:
               too_long:
                 other: "Address Line 1 cannot exceed 40 characters"
@@ -65,20 +64,38 @@ en:
               blank: "Company Name can't be blank"
               invalid: "Company Name must be alphanumeric"
               invalid: "Please enter a valid Company Name"
+              too_long:
+                other: " Companyname cannot exceed 50 characters"
+              too_short:
+                other: " Companyname cannot be less than 2 characters"
             domain:
               blank: "Domain name cannot be blank"
               taken: "Domain name is already taken. Please try another name"
+              invalid: "Domain name should contain alphabets"
+              too_long:
+                other: " Domain name cannot exceed 25 characters"
+              too_short:
+                other: " Domain name cannot be less than 2 characters"
             secondary_email:
-              invalid: "Secondary Email is invalid"    
+              invalid: "Secondary Email is invalid" 
+            contact_no:
+              not_a_number: "is not a number"   
+              wrong_length:
+                other: "Contact no should be 10 digits"
         language:
           attributes:
             name:
               blank: "Language cannot be blank"
               taken: "This language has already been added"
+              invalid: "Language name must be alphabets"
+              too_short:
+                other: "Language should contain minimum of 3 char"
             code:
               blank: "Language Code cannot be blank"
               taken: "Code must be unique"
-
+              invalid: "Code must be alphabets"
+              wrong_length:
+                other: "Code length should be two characters"
         client:
           attributes:
             name:
@@ -91,10 +108,8 @@ en:
             contact_no:
               not_a_number: "is not a number"
               blank: "Contact number can't be blank"
-              too_short:
-                other: "Contact number should contain minimum of 10 digits"
-              too_long:
-                other: "Contact number should contains maximum of 10 digits"
+              wrong_length:
+                other: "Contact no should be 10 digits"
             address1:
               too_short:
                 other: "Address should contain minimum of 7 char"
@@ -115,6 +130,8 @@ en:
               blank: "Compliance name can't be blank"
               taken: "Compliance name has been already used"
               invalid: "Compliance name should contain alphanumeric"
+              too_short:
+                other: "Compliance should contain minimum of 2 char"
         department:
           attributes:
             name:
@@ -138,6 +155,8 @@ en:
               blank: "question type  can't be blank"
               invalid: "question type name should contain alphabets"
               taken: "question type name has been already used"
+              too_short:
+                other: "Question type should contain minimum of 4 char"
         role:
           attributes:
             title: 
@@ -161,23 +180,32 @@ en:
               blank: "Section name can't be blank"
               taken: "Section name has been already used"
               invalid: "Section name should contain alphanumeric"
+              too_short:
+                other: "Section should contain minimum of 4 char"
         modular:
           attributes:
             model_name:
               blank: "Model name can't be blank"
               taken: "Model name has been already used"
               invalid: "Model name should contain alphanumeric"
+              too_short:
+                other: "Model should contain minimum of 4 char"
             action_name:
               blank: "Action name can't be blank"
               taken: "Action name has been already used"
               invalid: "Action name should contain alphanumeric"
+              too_short:
+                other: "Action should contain minimum of 4 char"
             section_id:
               blank: "Section name can't be blank"
         topic:
           attributes:
             name:
-              blank: "Topic name can't be blank"
-              taken: "Topic name has been already used"
+              blank: "Topic can't be blank"
+              taken: "Topic  has been already used"
+              invalid: "Topic should contain alphanumeric"
+              too_short:
+                other: "Location should contain minimum of 4 char"
               
 
 

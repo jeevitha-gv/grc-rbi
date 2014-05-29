@@ -12,7 +12,7 @@ ActiveAdmin.register Privilege do
 
 	controller do
     before_filter :authenticate_user!, :check_company_admin, :check_role
-	  skip_before_filter :verify_authenticity_token
+	  #~ skip_before_filter :verify_authenticity_token
 	  before_filter :role_company, only: [:new]
 
   	def scoped_collection
@@ -61,7 +61,7 @@ ActiveAdmin.register Privilege do
 
 		#To get modular record based on section select
 		def  modal_previlege
-		  modular_id = Modular.where('section_id =?', params[:modal_id])
+			modular_id = Modular.where('section_id =?', params[:modal_id])
 			render json: {:actions=>modular_id}
 		end
 

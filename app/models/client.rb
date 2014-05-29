@@ -13,5 +13,5 @@ class Client < ActiveRecord::Base
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create,:if => Proc.new{|f| !f.email.blank? } 
   validates :contact_no, presence:true, :if => Proc.new{|f| f.contact_no.blank? } 
   validates_numericality_of :contact_no, :if => Proc.new{|f| !f.contact_no.blank? } 
-  validates :contact_no, length: { in: 10..12}, :if => Proc.new{|f| !f.contact_no.blank? } 
+  validates :contact_no, length: { is: 10 }, :if => Proc.new{|f| !f.contact_no.blank? } 
 end
