@@ -13,13 +13,14 @@ class Company < ActiveRecord::Base
 
   #validation  
   #validates_format_of :name, :with =>/\A[a-zA-Z1-9]+\z/, presence:{message: MESSAGES["company"]["name"]["name"]["failure"]}
-  validates :name, presence:{message: MESSAGES["company"]["name"]["presence"]["failure"]}
+  validates :name, presence: true
   validates_format_of :name, :with =>/\A[a-zA-Z1-9]+\z/  
-  validates :name, length: { maximum: 30 }, presence:{message: MESSAGES["company"]["name"]["length"]["failure"]}
-  validates :domain, presence:{message: MESSAGES["company"]["domain"]["presence"]["failure"]}
-  validates :domain, uniqueness:{message: MESSAGES["company"]["domain"]["uniqueness"]["failure"]}
-  validates_format_of :domain, :with =>/\A[a-zA-Z]+\z/, presence:{message: MESSAGES["company"]["domain"]["name"]["failure"]}
-  validates :name, length: { maximum: 25 }, presence:{message: MESSAGES["company"]["domain"]["length"]["failure"]}
+  validates :name, length: { maximum: 30 }
+  validates :domain, presence: true
+  validates :domain, uniqueness: true
+  validates_format_of :domain, :with =>/\A[a-zA-Z]+\z/
+  validates :name, length: { maximum: 25 }  
+  validates_format_of :secondary_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
   #validates_numericality_of :contact_no, presence:{message: MESSAGES["company"]["contact"]["number"]["failure"]}
   #validates :contact_no, length: { is: 10}, presence:{message: MESSAGES["company"]["contact"]["length"]["failure"]}
   #validates :address1, length: { in: 7..40 }, presence:{message: MESSAGES["company"]["address1"]["length"]["failure"]}
