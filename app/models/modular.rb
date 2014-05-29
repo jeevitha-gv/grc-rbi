@@ -5,8 +5,10 @@ class Modular < ActiveRecord::Base
   validates_format_of :model_name, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{|f| !f.model_name.blank? } 
   validates :action_name, presence:true, :if => Proc.new{|f| f.action_name.blank? } 
   validates_format_of :action_name, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{|f| !f.action_name.blank? } 
- 
-  
+  validates :model_name, length: { in: 4..52 }, :if => Proc.new{ |f| !f.model_name.blank? } 
+  validates :action_name, length: { in: 4..52 }, :if => Proc.new{ |f| !f.action_name.blank? } 
+
+
   #associations
   belongs_to :section
   has_many :privileges
