@@ -14,7 +14,7 @@ class Company < ActiveRecord::Base
   #validation  
   #validates_format_of :name, :with =>/\A[a-zA-Z1-9]+\z/, presence:{message: MESSAGES["company"]["name"]["name"]["failure"]}
   validates :name, presence:{message: MESSAGES["company"]["name"]["presence"]["failure"]}
-  validates :name, uniqueness:{message: MESSAGES["company"]["name"]["uniqueness"]["failure"]}
+  validates_format_of :name, :with =>/\A[a-zA-Z1-9]+\z/  
   validates :name, length: { maximum: 30 }, presence:{message: MESSAGES["company"]["name"]["length"]["failure"]}
   validates :domain, presence:{message: MESSAGES["company"]["domain"]["presence"]["failure"]}
   validates :domain, uniqueness:{message: MESSAGES["company"]["domain"]["uniqueness"]["failure"]}
