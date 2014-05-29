@@ -200,6 +200,7 @@ en:
     create:
       success: "Previlege was created successfully."
       failure: "Some of the privileges already added."
+      action: "Please select action to create privilege."
 
   roles:
     company_admin_failure: "You can't create a role with this title"

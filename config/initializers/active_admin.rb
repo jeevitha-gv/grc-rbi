@@ -198,6 +198,7 @@ ActiveAdmin.setup do |config|
   config.register_javascript 'outer/bootstrap.min.js'
   config.register_javascript 'outer/docs.min.js'
   config.register_javascript 'outer/masonry.pkgd.min.js'
+  config.register_javascript 'bootstrap-3.1.1.min.js'
 
   # == CSV options
   #
