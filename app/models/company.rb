@@ -6,6 +6,7 @@ class Company < ActiveRecord::Base
   belongs_to :country # Company belongs to a country
   #validates_uniqueness_of :domain # Domain must be unique
   has_many :users
+  has_many :teams
 
   has_one :attachment, :as => :attachable
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true

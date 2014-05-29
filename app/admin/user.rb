@@ -80,7 +80,7 @@ ActiveAdmin.register User do
         f.input :email, :input_html => { :disabled => true }
       end
       f.input :user_name
-      f.input :teams, :class => ""
+      f.input :teams, :class => "", :collection => current_company.teams, :prompt => "-Select teams-"
       f.input :role_id, :label => 'Role', :as => :select, :collection => current_company.roles, :prompt => "-Select Role-"
       f.input :is_disabled
     end
