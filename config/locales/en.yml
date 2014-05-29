@@ -179,8 +179,9 @@ en:
         topic:
           attributes:
             name:
-              blank: "Topic name can't be blank"
-              taken: "Topic name has been already used"
+              blank: "Topic can't be blank"
+              taken: "Topic  has been already used"
+              invalid: "Topic should contain alphanumeric"
               
 
 
