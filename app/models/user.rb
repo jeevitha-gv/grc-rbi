@@ -28,9 +28,9 @@ class User < ActiveRecord::Base
    validates_format_of :user_name, :with =>/\A(?=.*[a-z])[a-z\d]+\Z/i
    validates :user_name, length: { maximum: 52 }
    validates :email, presence: true
-   validates :email, uniqueness:{ message: MESSAGES["users"]["email"]["uniqueness"]["failure"]}
-   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, presence:{message: MESSAGES["users"]["email"]["valid"]["failure"]}
-   validates :role_id, presence:{message: MESSAGES["users"]["role"]["name"]["failure"]}
+   validates :email, uniqueness: true
+   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+   validates :role_id, presence: true
   # validates :user_name, :full_name , presence: true, uniqueness: true
 
   delegate :title, to: :dealer, prefix: true
