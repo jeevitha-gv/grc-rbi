@@ -26,8 +26,8 @@
   				<div class="panel-body">
    					<form role="form">
   						<div class="form-group">
-  							<%= f.label :email %><br />
- 							<%= f.email_field :email, autofocus: true, :class =>"form-control" %>
+                  <%= f.label :login, "Username or e-mail" %><br />
+                  <%= f.text_field :login , :class =>"form-control" %>
   						</div>
   						<div class="form-group">
     						<%= f.label :password %><br />
