@@ -139,10 +139,12 @@ en:
           attributes:
             title: 
               blank: "Role  can't be blank"
+              taken: "Role name has been already used"
         team:
           attributes:
             name:
               blank: "Team name can't be blank"
+              invalid: "Team name should contain alphanumeric"
               taken: "Team name has been already used"
         priority:
           attributes:
