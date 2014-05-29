@@ -111,13 +111,14 @@ en:
           attributes:
             name:
               blank: "Compliance name can't be blank"
-              taken: "Email has been already used"
+              taken: "Compliance name has been already used"
+              invalid: "Compliance name should contain alphanumeric"
         department:
           attributes:
             name:
               blank: "Department name can't be blank"
               invalid: "Department name should contain alphanumeric"
-            loacation_id:
+            location_id:
               blank: "Location Can't be blank"
         location:
           attributes:
