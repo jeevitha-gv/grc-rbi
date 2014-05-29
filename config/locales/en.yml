@@ -75,10 +75,13 @@ en:
             name:
               blank: "Language cannot be blank"
               taken: "This language has already been added"
+              invalid: "Language name must be alphabets"
             code:
               blank: "Language Code cannot be blank"
               taken: "Code must be unique"
-
+              invalid: "Code must be alphabets"
+              wrong_length:
+                other: "Code length should be two characters"
         client:
           attributes:
             name:
