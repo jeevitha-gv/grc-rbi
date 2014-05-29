@@ -3,7 +3,7 @@ ActiveAdmin.register Department do
 
  #authentication
   controller do
-    before_filter :check_company_admin
+    before_filter :check_company_admin, :check_role
   end
 
   permit_params :name, :location_id

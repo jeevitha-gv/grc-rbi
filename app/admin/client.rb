@@ -3,13 +3,15 @@ ActiveAdmin.register Client do
   menu :if => proc{ !current_admin_user.present? }
 
   #permit_params :name, :company_id, :address1, :address2, :contact_no, :email
-  
+
   controller do
-    before_filter :check_company_admin
-   action :all, except: [:new, :show]
-    def scoped_collection  
+    before_filter :check_company_admin, :check_role
+    action :all, except: [:new, :show]
+
+    def scoped_collection
      @client=Client.where('company_id= ?', current_user.company_id)
     end
+
     def create
       @client = Client.new(client_params)
       @client.company_id = current_user.company_id
@@ -23,23 +25,24 @@ ActiveAdmin.register Client do
       end
     end
 
-     private
-    def client_params
-      params.require(:client).permit(:name, :company_id, :address1, :address2, :contact_no, :email)
-    end
+    private
+      def client_params
+        params.require(:client).permit(:name, :company_id, :address1, :address2, :contact_no, :email)
+      end
   end
    #authentication
- 
+
 
   index do
     column :name
-  
+
     column :address1
     column :address2
     column :contact_no
     column :email
     actions
   end
+
   form do |f|
       # f.semantic_errors *f.object.errors.keys
       f.inputs "Clients Details" do

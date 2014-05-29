@@ -4,10 +4,13 @@ ActiveAdmin.register Team do
 
 
  controller do
+   before_filter :check_company_admin, :check_role
    action :all, except: [:new, :show]
-    def scoped_collection  
+
+    def scoped_collection
      @team=Team.where('company_id= ?', current_user.company_id)
     end
+
     def create
       @team = Team.new(team_params)
       @team.company_id = current_user.company_id
@@ -20,17 +23,13 @@ ActiveAdmin.register Team do
       end
     end
 
-     private
-    def team_params
-      params.require(:team).permit(:name, :module_id, :company_id, :department_id)
-     end
+    private
+      def team_params
+        params.require(:team).permit(:name, :module_id, :company_id, :department_id)
+      end
   end
 
-  #authentication
-  controller do
-    before_filter :check_company_admin
-  end
-      permit_params :name
+  permit_params :name
 
 
   index do
@@ -38,12 +37,11 @@ ActiveAdmin.register Team do
     column :name
     actions
   end
-form do |f|
+
+  form do |f|
     f.inputs "Team" do
       f.input :name
-    end       
+    end
     f.actions
-  end  
-
-  
+  end
 end

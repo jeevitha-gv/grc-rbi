@@ -1,28 +1,5 @@
 ActiveAdmin.setup do |config|
 
-#~ class MyNavigation < ActiveAdmin::Component
-#~ def build(namespace, menu)
-  #~ super(id: "header")
-    #~ para "Copyright #{Date.today.year} Reverb Media Group"
-     #~ unless menu['jobs']
-      #~ new_item = ActiveAdmin::MenuItem.new(id: 'jobs',
-                                           #~ label: 'Jobs',
-                                           #~ url: admin_roles_path,
-                                           #~ priority: 11)
-      #~ menu.add new_item
-    #~ end
-
-    # Now, invoke the parent class's build method to put it all together.
-    #~ super(namespace, menu)
-  #~ end
-#~ end
-
-class MyFooter < ActiveAdmin::Component
-  def build
-    super(id: "footer")
-    para "Copyright #{Date.today.year} fixnix"
-  end
-end
   # == Site Title
   #
   # Set the title that is displayed on the main layout
@@ -109,11 +86,11 @@ end
   config.register_stylesheet 'active_admin.css'
   config.register_stylesheet 'outer/style.css'
   config.show_comments_in_menu = false
-  config.allow_comments = false 
+  config.allow_comments = false
   config.view_factory.footer = MyFooter
   config.view_factory.header = MyNavigation
   #~ config.view_factory.register = '/views/layouts/application.html.erb'
-  
+
    #~ config.namespace :dashboard do |dashboard|
     #~ dashboard.view_factory = ActiveAdmin::ViewFactory.new
     #~ dashboard.view_factory.global_navigation = MyNavigation
@@ -218,9 +195,9 @@ end
   config.register_stylesheet 'outer/docs.min.css'
   config.register_stylesheet 'outer/media.css'
   config.register_javascript 'bootstrap.js'
-  config.register_javascript 'bootstrap.min.js'
-  config.register_javascript 'docs.min.js'
-  config.register_javascript 'masonry.pkgd.min.js'
+  config.register_javascript 'outer/bootstrap.min.js'
+  config.register_javascript 'outer/docs.min.js'
+  config.register_javascript 'outer/masonry.pkgd.min.js'
 
   # == CSV options
   #
