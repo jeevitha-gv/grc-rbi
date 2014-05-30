@@ -1,0 +1,23 @@
+<div class="container">
+<div class="panel panel-default">
+
+<%= form_for(@nc_question) do |f| %>
+	
+	<%= f.label :question %>
+	<%= f.text_field :question %>
+	<br>
+
+	<%= f.label :question_type_id %>
+	<%= f.text_field :question_type_id %>
+	<br>
+
+	<%= f.label :priority_id %>
+	<%= f.text_field :question_type_id %>
+	<br>
+	            
+
+	<%= f.submit "Add" %>
+
+<% end %>
+</div>
+</div>

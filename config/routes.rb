@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :home
+  resources :nc_questions
 
 
   resource :user do
