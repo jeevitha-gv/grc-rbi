@@ -4,7 +4,7 @@ class NcQuestion < ActiveRecord::Base
 	belongs_to :question_type
 	belongs_to :priority
 	belongs_to :company
-	belongs_to :auditee_id, :class_name => "User"
+	belongs_to :auditee, :class => "User", foreign_key: :auditee_id
 	belongs_to :audit
 
 	#Validations

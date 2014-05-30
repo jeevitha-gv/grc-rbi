@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   has_one :attachment, as: :attachable
   has_one :profile
-  has_many :nc_questions, :class_name => "NcQuestion", :foreign_key => 'auditee_id'
+  has_many :nc_questions
 
 # attribute to login with username or email
   attr_accessor :login
