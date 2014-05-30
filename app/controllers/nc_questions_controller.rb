@@ -9,6 +9,7 @@ class NcQuestionsController < ApplicationController
 	end
 
 	def create
+		binding.pry
 		@nc_question = NcQuestion.new(question_params)
 		if @nc_question.save
 			redirect_to nc_questions_path
@@ -18,6 +19,7 @@ class NcQuestionsController < ApplicationController
 	end
 
 	def question_params
+		
 		params.require(:nc_question).permit(:question, :question_type_id, :priority_id, :target_date, :does_require_document, :nc_library, :auditee_id)
 	end
 
