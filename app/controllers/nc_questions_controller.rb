@@ -1,0 +1,2 @@
+class NcQuestionsController < ApplicationController
+end
