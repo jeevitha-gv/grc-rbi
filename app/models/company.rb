@@ -12,15 +12,15 @@ class Company < ActiveRecord::Base
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users
 
-  #validation  
+  #validation
   #validates_format_of :name, :with =>/\A[a-zA-Z1-9]+\z/, presence:{message: MESSAGES["company"]["name"]["name"]["failure"]}
   validates :name, presence: true
-  validates_format_of :name, :with =>/\A[a-zA-Z1-9]+\z/, :if => Proc.new{|f| !f.name.blank? }  
+  validates_format_of :name, :with =>/\A[a-zA-Z1-9]+\z/, :if => Proc.new{|f| !f.name.blank? }
   validates :domain, presence: true
   validates :domain, uniqueness: true
-  validates_format_of :domain, :with =>/\A[a-zA-Z]+\z/
-  validates :domain,length: { in: 2..25 } 
-  validates :name, length: { in: 2..50 }, :if => Proc.new{|f| !f.name.blank? }  
+  validates_format_of :domain, :with =>/\A[a-z]+\z/
+  validates :domain,length: { in: 2..25 }
+  validates :name, length: { in: 2..50 }, :if => Proc.new{|f| !f.name.blank? }
   validates_format_of :secondary_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :if => Proc.new{|f| !f.secondary_email.blank? }
   validates_numericality_of :contact_no, :if => Proc.new{|f| !f.contact_no.blank? }
   validates :contact_no, length: { is: 10},:if => Proc.new{|f| !f.contact_no.blank? }
