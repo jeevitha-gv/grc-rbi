@@ -1,0 +1,38 @@
+<div class="container">
+<div class="panel panel-default">
+
+<%= form_for(@nc_question) do |f| %>
+	
+	<%= f.label :question %>
+	<%= f.text_field :question %>
+	<br>
+	
+	<%= f.label :question_type_id %>
+	<%= f.collection_select(:question_type_id, QuestionType.all, :id, :name)  %>
+	<br>
+	            
+	<%= f.label :priority_id %>
+	<%= f.collection_select(:priority_id, Priority.all, :id, :name)  %>
+	<br>
+
+	<%= f.label :target_date %>
+	<%= f.date_field :target_date %>
+	<br>
+
+	<%= f.label :does_require_document %>
+	<%= f.check_box :does_require_document %>
+	<br>
+
+	<%= f.label :nc_library %>
+	<%= f.check_box :nc_library %>
+	<br>
+
+	<%= f.label :auditee_id %>
+	<%= f.collection_select(:auditee_id, User.all, :id, :full_name)  %>
+	<br>
+
+	<%= f.submit "Add Question" %>
+
+<% end %>
+</div>
+</div>
