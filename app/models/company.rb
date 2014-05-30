@@ -23,6 +23,7 @@ class Company < ActiveRecord::Base
   validates :domain,length: { in: 2..25 }
   validates :name, length: { in: 2..50 }, :if => Proc.new{|f| !f.name.blank? }
   validates_format_of :secondary_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :if => Proc.new{|f| !f.secondary_email.blank? }
+  validates_format_of :primary_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :if => Proc.new{|f| !f.primary_email.blank? }
   validates_numericality_of :contact_no, :if => Proc.new{|f| !f.contact_no.blank? }
   validates :contact_no, length: { is: 10},:if => Proc.new{|f| !f.contact_no.blank? }
   validates :address1, length: { in: 7..40 }, :if => Proc.new{|f| !f.address1.blank? }
