@@ -603,10 +603,6 @@ html, body {
 	color:#999999!important;
 }
 
-.notice ,.alert{
-    display: none;
-}
-
 #footer-adjust {
   min-height: 335px;
 }
@@ -650,7 +646,14 @@ html, body {
 .profile_img {width: 100px;height: 100px;}
 
 
+.profile_form input[type="submit"] {
+    box-shadow: none;
+}
 
+.error_message {
+color: #932419;
+text-align: left;
+}
 
-
+.error_inputfield input{ border:1px solid  #932419!important;}
 
