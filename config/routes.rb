@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :home
   resources :nc_questions
-
+  resources :audits
 
   resource :user do
     collection do
@@ -18,17 +18,17 @@ Rails.application.routes.draw do
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  
+
   # subdomain root path
   constraints(Subdomain) do
     get '/' => 'audits#index'
   end
-  
+
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  resources :companies do     
-    member do      
+  resources :companies do
+    member do
       get 'settings'
     end
     collection do
@@ -39,7 +39,7 @@ Rails.application.routes.draw do
    # delete '/activities/clear_audit' => 'activities#clear_audit', :as => :clear_audit
    resources :activities, :except => [:show]
 
-  
+
    get 'welcome', to: 'companies#welcome', :as => :welcome
 
    # resources :privileges
