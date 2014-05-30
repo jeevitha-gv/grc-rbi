@@ -9,7 +9,9 @@ class NcQuestionsController < ApplicationController
 	end
 
 	def create
+		binding.pry
 		@nc_question = NcQuestion.new(question_params)
+
 		if @nc_question.save
 			redirect_to nc_questions_path
 		else

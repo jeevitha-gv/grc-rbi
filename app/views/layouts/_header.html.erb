@@ -16,7 +16,7 @@
             <li><a href="/user/edit" class="<%= add_active_class(params) == 'User' ? 'active' : '' %>">
               <div class="overview-icon"></div>
               Over view</a></li>
-            <li><a href="/" class="<%= add_active_class(params) == 'Audit' ? 'active' : '' %>">
+            <li><a href="/audits/new" class="<%= add_active_class(params) == 'Audit' ? 'active' : '' %>">
               <div class="audit-icon"></div>
               Audit</a></li>
             <li class="next-phase"><a href="#" class="<%= add_active_class(params) == 'Risk' ? 'active' : '' %>">
@@ -89,9 +89,12 @@
     </div>
   </div>
 </div>
-<!-- Notice -->
-  <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+<%if flash[:notice]%>
+  <div class="alert alert-success"><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:notice] %></div>
+<%end%>
+<%if flash[:error]%>
+    <div class="alert alert-danger"><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:error]  %></div>
+<%end%>
 <!-- Notice end -->
 
 <script type="text/javascript">

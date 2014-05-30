@@ -87,9 +87,11 @@ en:
               too_short:
                 other: " Domain name cannot be less than 2 characters"
             secondary_email:
-              invalid: "Secondary Email is invalid" 
+              invalid: "Secondary Email is invalid"
+            primary_email:
+              invalid: "Primary Email is invalid"
             contact_no:
-              not_a_number: "is not a number"   
+              not_a_number: "is not a number"
               wrong_length:
                 other: "Contact no should be 10 digits"
         language:
@@ -169,7 +171,7 @@ en:
                 other: "Question type should contain minimum of 4 char"
         role:
           attributes:
-            title: 
+            title:
               blank: "Role  can't be blank"
               invalid: "Role type name should contain alphabets"
               taken: "Role has been already used"
@@ -217,14 +219,10 @@ en:
               invalid: "Topic should contain alphanumeric"
               too_short:
                 other: "Location should contain minimum of 4 char"
-        attachment:      
+        attachment:
           attributes:
             attachment_file:
               size_too_big: "Attachment file size is too big"
-
-
-
-
 
   companies:
     company:  "Company Name"
@@ -271,3 +269,12 @@ en:
 
   system:
     hello:  "Hello"
+
+  audit:
+    title: "Audit Title"
+    objective: "Objective"
+    deliverables: "Deliverables"
+    context: "Context"
+    issues: "Issues"
+    scope: "Scope"
+    methodology: "Methodology"
