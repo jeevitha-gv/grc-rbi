@@ -1,5 +1,8 @@
 ActiveAdmin.register Role  do
  menu :if => proc{ !current_admin_user.present? }
+
+  permit_params :title, :company_id
+ 
  #authentication
   controller do
    before_filter :check_role, :check_company_admin
@@ -15,6 +18,7 @@ ActiveAdmin.register Role  do
         @role = Role.new(role_params)
         @role.company_id = current_user.company_id
         if @role.save
+          flash[:now]=  MESSAGES["Role"]["create"]["success"]
           redirect_to admin_roles_path
         else
           render 'new'
@@ -23,16 +27,6 @@ ActiveAdmin.register Role  do
         redirect_to new_admin_role_path
       end
 		end
-
-    def update
-      @role = Role.find_by_id(params[:id])
-      @role.update_attributes(:title => params[:role][:title])
-      if @role
-        redirect_to admin_roles_path
-      else
-        redirect_to new_admin_role_path
-     end
-   end
 
     private
       def role_params

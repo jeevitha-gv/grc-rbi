@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 # attribute to login with username or email
   attr_accessor :login
 
-   validates_format_of :full_name, :with =>/\A[a-zA-Z1-9]+\z/, :if => Proc.new{|f| !f.full_name.blank? } 
+   validates_format_of :full_name, :with =>/\A[a-zA-Z ]+\z/, :if => Proc.new{|f| !f.full_name.blank? } 
    validates :full_name, length: { maximum: 50 }, :if => Proc.new{|f| !f.full_name.blank? }
    validates :user_name, presence: true, :if => Proc.new{|f| f.user_name.blank? }
    validates :user_name, uniqueness: true, :if => Proc.new{|f| !f.user_name.blank? }
