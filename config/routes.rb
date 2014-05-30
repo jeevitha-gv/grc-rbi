@@ -7,8 +7,12 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :home
+
+  resources :checklist_recommendations
+
   resources :nc_questions
   resources :audits
+
 
   resource :user do
     collection do

@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   has_one :profile
   has_many :nc_questions
 
+  has_many :checklist_recommendations
+
 # attribute to login with username or email
   attr_accessor :login
 
