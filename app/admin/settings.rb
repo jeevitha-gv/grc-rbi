@@ -4,7 +4,7 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
   config.filters = false
   config.batch_actions = false
 
-  permit_params :name, :secondary_email, :address1, :address2, :country_id, :contact_no, :timezone, :is_disabled, attachment_attributes: [:id,:attachment_file]
+  permit_params :name, :secondary_email, :address1, :address2, :country_id, :contact_no, :timezone, :is_disabled, :primary_email, attachment_attributes: [:id,:attachment_file]
 
   controller do
     before_filter :check_company_admin, :check_role
@@ -37,7 +37,7 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
     f.object.build_attachment unless f.object.attachment.present?
     f.inputs "Company Details" do
       f.input :name
-      f.input :primary_email , :input_html => { :disabled => true }
+      f.input :primary_email 
       f.input :secondary_email
       f.input :domain , :input_html => { :disabled => true }
       f.input :address1
