@@ -19,7 +19,9 @@ en:
       update: "Team was successfully updated."
       destroy: "Team was successfully destroyed." 
 
-
+  Role:
+    create:
+      success: "Role was created successfully"
   # company:
   #   domain:
   #       unique: "Sorry, this domain has already been taken."

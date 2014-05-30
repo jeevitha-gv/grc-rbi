@@ -89,10 +89,12 @@
     </div>
   </div>
 </div>
-<div class="clearfix"></div>
-<!-- Notice -->
-  <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+<%if flash[:notice]%>
+  <div class="alert alert-success"><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:notice] %></div>
+<%end%>
+<%if flash[:error]%>
+    <div class="alert alert-danger"><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:error]  %></div>
+<%end%>
 <!-- Notice end -->
 
 <script type="text/javascript">

@@ -88,6 +88,8 @@ en:
                 other: " Domain name cannot be less than 2 characters"
             secondary_email:
               invalid: "Secondary Email is invalid"
+            primary_email:
+              invalid: "Primary Email is invalid"
             contact_no:
               not_a_number: "is not a number"
               wrong_length:
@@ -217,12 +219,10 @@ en:
               invalid: "Topic should contain alphanumeric"
               too_short:
                 other: "Location should contain minimum of 4 char"
-
-
-
-
-
-
+        attachment:
+          attributes:
+            attachment_file:
+              size_too_big: "Attachment file size is too big"
 
   companies:
     company:  "Company Name"
