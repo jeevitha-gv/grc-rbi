@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :home
+  resources :checklist_recommendations
 
 
   resource :user do
