@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   # validates :user_name, :full_name , presence: true, uniqueness: true
 
   delegate :title, to: :dealer, prefix: true
-
+  delegate :title, to: :role, prefix: true, allow_nil: true
   def is?( requested_role)
     self.role == requested_role.to_s if self.role.present?
   end

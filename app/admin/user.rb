@@ -13,16 +13,17 @@ ActiveAdmin.register User do
     def create
       @user = User.new(user_params)
       @user.company_id = current_user.company_id
-      team_id = params[:user][:team_ids].delete_if(&:empty?)
-			team_id.each do |team|
-        user_team = UserTeam.where('user_id =? AND team_id =?',current_user.id, team).first
+      if @user.save
+        team_id = params[:user][:team_ids].delete_if(&:empty?)
+        team_id.each do |team|
+        user_team = UserTeam.where('user_id =? AND team_id =?',@user.id, team).first
         if user_team.nil?
 					@user_team = UserTeam.new
 					@user_team.team_id = team
+					@user_team.user_id = @user.id
 					@user_team.save
         end
 			end
-      if @user.save
         redirect_to admin_users_path
       else
         # redirect_to new_admin_user_path
@@ -32,7 +33,7 @@ ActiveAdmin.register User do
 
     private
       def user_params
-        params.require(:user).permit(:full_name, :email, :user_name, :password , :password_confirmation, :is_disabled, :role_id,:company_id, profile_attributes: [:personal_email, :address2, :address1, :phone_no, :city, :state, :country_id])
+        params.require(:user).permit(:full_name, :email, :user_name, :password , :password_confirmation, :is_disabled, :role_id,:company_id, :team_ids, profile_attributes: [:personal_email, :address2, :address1, :phone_no, :city, :state, :country_id])
       end
 
       def scoped_collection
@@ -44,10 +45,11 @@ ActiveAdmin.register User do
     selectable_column
     column :user_name
     column :email
-    column :team
+    column :team do |team|
+       team.teams.map(&:name).join(",")
+    end
     column "Role" do |r|
-      role = Role.where('id=?',r.role_id).first
-      title = role.title if role
+      r.role_title
     end
     column :is_disabled
     actions
@@ -58,10 +60,11 @@ ActiveAdmin.register User do
       row :full_name
       row :email
       row :user_name
-      row :team
+      row "Team" do |team|
+        team.teams.map(&:name).join(",")
+      end
       row "Role" do |r|
-        role = Role.where('id=?',r.role_id).first
-        title = role.title if role   
+        r.role_title 
       end
       row :is_disabled do |d|
         d.is_disabled? ? 'Yes': 'No'
@@ -80,7 +83,7 @@ ActiveAdmin.register User do
         f.input :email, :input_html => { :disabled => true }
       end
       f.input :user_name
-      f.input :teams, :class => "", :collection => current_company.teams, :prompt => "-Select teams-"
+      f.input :teams, :class => "", :collection => current_company.teams
       f.input :role_id, :label => 'Role', :as => :select, :collection => current_company.roles, :prompt => "-Select Role-"
       f.input :is_disabled
     end
@@ -91,7 +94,7 @@ ActiveAdmin.register User do
       s.input :phone_no
       s.input :city
       s.input :state
-      s.input :country_id, :label => 'Country', :as => :select, :collection => Country.all, :prompt => "-Select Country-"
+      #~ s.input :country_id, :label => 'Country', :as => :select, :collection => Country.all, :prompt => "-Select Country-"
     end
     f.actions
    end

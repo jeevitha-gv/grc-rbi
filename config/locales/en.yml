@@ -217,8 +217,10 @@ en:
               invalid: "Topic should contain alphanumeric"
               too_short:
                 other: "Location should contain minimum of 4 char"
-              
-
+        attachment:      
+          attributes:
+            attachment_file:
+              size_too_big: "Attachment file size is too big"
 
 
 
