@@ -4,6 +4,10 @@ class ComplianceLibrary < ActiveRecord::Base
  has_many :operational_areas
  belongs_to :compliance
 
+ #Validations
+ validates :compliance_id, presence: true
+ validates :name, presence: true
+
  delegate :name, to: :compliance, prefix: true, allow_nil: true
  delegate :parent_id, to: :compliance_library, prefix: true, allow_nil: true
 end

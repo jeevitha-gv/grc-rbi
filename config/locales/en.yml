@@ -223,6 +223,12 @@ en:
           attributes:
             attachment_file:
               size_too_big: "Attachment file size is too big"
+        compliance_library:
+          attributes:
+            name:
+              blank: "Name can't be blank"
+            compliance_id:
+              blank: "Compliance can't be blank"
 
   companies:
     company:  "Company Name"
