@@ -10,6 +10,7 @@ class Company < ActiveRecord::Base
   has_many :teams
   has_many :nc_questions
   has_one :attachment, :as => :attachable
+  has_many :operational_areas
 
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users
