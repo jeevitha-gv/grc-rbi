@@ -3,76 +3,130 @@
   <div class="container">
     <div class="row">
       <div class="audit-title">
-        <h2>Prepare Checklist for Non-Compliance Audit</h2>
-        <div class="audit-content container">          
+        <h2>Checklist for Non - Compliance Audit</h2>
+        <div class="audit-content container">
           <%= form_for(@nc_question) do |f| %>
           <div class="col-lg-4 col-sm-6 col-xs-12">
             <div class="form-group clearfix">
               <%= f.label :question, t('nc_question.request'), :class => "col-sm-4" %>
-              <%= f.text_field :question, :class => "audit-normal-input" %>
+              <div class="col-sm-7">
+                <%= f.text_field :question, :class => "audit-normal-input" %>
+              </div>
             </div>
             <div class="form-group clearfix">
               <%= f.label :question_type_id, t('nc_question.resp_type'), :class => "col-sm-4 control-label" %>
-              <%= f.collection_select(:question_type_id, QuestionType.all, :id, :name, {}, {:class => "col-sm-7"}) %>
-            </div>
+              <div class="col-sm-7">
+                <%= f.collection_select(:question_type_id, QuestionType.all, :id, :name) %>
+              </div>
+            </div>            
           </div>
-          <div class="col-lg-4 col-sm-6 col-xs-12">
+          <div class="col-lg-4 col-sm-6 col-xs-12">          
             <div class="form-group clearfix">
               <%= f.label :auditee_id, t('nc_question.assign_auditee'), :class => "col-sm-4 control-label" %>
-              <%= f.collection_select(:auditee_id, User.all, :id, :full_name, {}, {:class => "col-sm-7"})  %>
+              <div class="col-sm-7">
+                <%= f.collection_select(:auditee_id, User.all, :id, :full_name)  %>
+              </div>
             </div>
             <div class="form-group clearfix">
               <%= f.label :target_date, t('nc_question.target_date'), :class => "col-sm-4 control-label" %>
-              <%= f.date_field :target_date, :class => "col-sm-7" %>              
+              <div class="col-sm-7">
+                <div class="form-group">
+                  <div class='input-group date' id='datetimepicker1'>
+                    <%= f.text_field :target_date, :class => "form-control" %>              
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span> </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-lg-4 col-sm-6 col-xs-12">            
-            <div class="form-group clearfix">
+          <div class="col-lg-4 col-sm-6 col-xs-12">
+          <div class="form-group clearfix">              
               <%= f.label :priority_id, t('nc_question.priority'), :class => "col-sm-4 control-label" %>
-              <%= f.collection_select(:priority_id, Priority.all, :id, :name, {}, {:class => "col-sm-7"})  %>              
+              <div class="col-sm-7">
+                <%= f.collection_select(:priority_id, Priority.all, :id, :name)  %>  
+              </div>
             </div>
             <div class="form-group clearfix">
-              <%= f.label :does_require_document, t('nc_question.need_doc'), :class => "col-sm-5" %>
-              <%= f.check_box :does_require_document %>
-            </div>
-            <div class="form-group clearfix">
-              <%= f.label :nc_library, t('nc_question.save_to_lib'), :class => "col-sm-12" %>
-              <%= f.check_box :nc_library %>              
-            </div>
+              <%= f.label :does_require_document, t('nc_question.need_doc'), :class => "col-sm-5" %>           
+              <%= f.check_box :does_require_document %>        
+          </div>   
+          <div class="form-group clearfix">
+              <%= f.label :nc_library, t('nc_question.save_to_lib') %>
+              <%= f.check_box :nc_library %> 
           </div>
-          <div class="clearfix border-divider"> </div>      
-          <div class="col-lg-4 col-sm-6 col-xs-12">             
-          </div>
-          <div class="col-lg-4 col-sm-6 col-xs-12">              
-          </div>
-          <div class="col-lg-4 col-sm-6 col-xs-12"><br><br>
-              <a class="black_btn" href="">Cancel</a> 
-              <a class="black_btn" href="">Reset</a> 
-              <%= f.submit "Ask Auditee", :class => "orange_btn" %>             
-          </div>
-          <% end %>
+        <!-- <div class="form-group clearfix">
+        <div class="col-sm-12">
+            <%= f.label :nc_library, t('nc_question.save_to_lib') %>
+            <%= f.check_box :nc_library %> 
         </div>
+    
+        </div> -->
+          </div>
+          <div class="clearfix border-divider"> </div>
+          <div class="col-lg-4 col-sm-6 col-xs-12">
+          <div class="form-group clearfix">
+              <label class="col-sm-4">Request</label>
+              <div class="col-sm-7">
+                <input class="audit-normal-input" type="text">
+              </div>
+            </div>
+            <div class="form-group clearfix">
+              <label class="col-sm-4 control-label">Response Type</label>
+              <div class="col-sm-7">
+                <select>
+                  <option>Multiple Choice</option>
+                  <option></option>
+                  <option></option>
+                  <option></option>
+                  <option></option>
+                </select>
+              </div>
+            </div>
+   
+          </div>
+          <div class="col-lg-4 col-sm-6 col-xs-12">
+          
+            <div class="form-group clearfix">
+              <label class="col-sm-4 control-label">Target Date</label>
+              <div class="col-sm-7">
+                <div class="form-group">
+                  <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span> </div>
+                </div>
+              </div>
+            </div>
+            
+           
+          </div>
+          <div class="col-lg-4 col-sm-6 col-xs-12">
+             <div class="form-group clearfix">
+              <label class="col-sm-4 control-label">Priority</label>
+              <div class="col-sm-7">
+                <select>
+                  <option></option>
+                  <option></option>
+                  <option></option>
+                  <option></option>
+                  <option></option>
+                </select>
+              </div>
+            </div>
+             <div class="form-group clearfix">
+            <label class="col-sm-5">Need Document?</label>
+           
+              <label class="padding15px">
+                <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_0"> Yes</label>
+             
+              <label class="padding15px">
+                <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_1"> No</label>
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>   
+        <div class="form-group clearfix">
+        <div class="col-sm-12"><input type="checkbox"> Save to Request Library</div>
+    
+        </div>
+            
+          </div>
           
           <div class="clearfix border-divider"></div>
           
@@ -84,6 +138,7 @@
           </div>
           <div class="col-lg-4 col-sm-6 col-xs-12"><br><br>
            <a class="black_btn" href="">Cancel</a> <a class="black_btn" href="">Reset</a> <a href="#" class="orange_btn">Ask Auditee</a></div>
+           <% end %>
         </div>
       </div>
     </div>
@@ -92,104 +147,104 @@
 
 <script type="text/javascript">
 $(window).load(function(){
-	var $container = $('#grid_items');
-	// initialize
-	$container.masonry({
-	  columnWidth: 292,
-	  itemSelector: '.item',
-	  isFitWidth: true
-	});
-	
-	
-	$(".block_banner img").each(function(index, element) {
+  var $container = $('#grid_items');
+  // initialize
+  $container.masonry({
+    columnWidth: 292,
+    itemSelector: '.item',
+    isFitWidth: true
+  });
+  
+  
+  $(".block_banner img").each(function(index, element) {
         var screenImage = $(this);
 
-		// Create new offscreen image to test
-		var theImage = new Image();
-		theImage.src = screenImage.attr("src");
-		
-		var imageHeight = theImage.height;
-		
-		$(this).css("max-height",imageHeight);
-		$(this).css("min-height",imageHeight);
+    // Create new offscreen image to test
+    var theImage = new Image();
+    theImage.src = screenImage.attr("src");
+    
+    var imageHeight = theImage.height;
+    
+    $(this).css("max-height",imageHeight);
+    $(this).css("min-height",imageHeight);
     });
 });
 
 $(".click_icon").click(function() {
-			$(".share_pop").show();
+      $(".share_pop").show();
 });
 
 $(".click_icon").click(function(){
-		$(".share_pop").show();
+    $(".share_pop").show();
 });
-	
+  
 $(document).ready(function(){
-	
-	Top_postion = $(window).scrollTop();
-	
-	$( ".user_login" ).mouseenter(function() {
-		$(this).addClass("active");
-		$(".account_header_dropdown").slideDown(100);	  
-	})
-	.mouseleave(function() {
-		$(this).removeClass("active");
-		$(".account_header_dropdown").hide();
-	});
-	
-	//for notification drop hide in outside click
-	onclick_icon = 0;	  
-	$(".click_icon").mouseenter(function() {
-		onclick_icon = 0;	  
-	})
-	.mouseleave(function() {
-		onclick_icon = 1;	  
-	});
-	
-	
-	$("body").click(function(){
-		if(onclick_icon){
-			$(".share_pop").hide();
-		}
-	});
-	
-	
-	/* placeholder */
-	$(".place_holder").each(function(index, element) {
-		placeholder = $(this).attr("data-original");
-		$(this).val(placeholder);
-		$(this).removeClass("active");
+  
+  Top_postion = $(window).scrollTop();
+  
+  $( ".user_login" ).mouseenter(function() {
+    $(this).addClass("active");
+    $(".account_header_dropdown").slideDown(100);   
+  })
+  .mouseleave(function() {
+    $(this).removeClass("active");
+    $(".account_header_dropdown").hide();
+  });
+  
+  //for notification drop hide in outside click
+  onclick_icon = 0;   
+  $(".click_icon").mouseenter(function() {
+    onclick_icon = 0;   
+  })
+  .mouseleave(function() {
+    onclick_icon = 1;   
+  });
+  
+  
+  $("body").click(function(){
+    if(onclick_icon){
+      $(".share_pop").hide();
+    }
+  });
+  
+  
+  /* placeholder */
+  $(".place_holder").each(function(index, element) {
+    placeholder = $(this).attr("data-original");
+    $(this).val(placeholder);
+    $(this).removeClass("active");
     });
 
-	$(".place_holder").focus(function(){
-		placeholder = $(this).attr("data-original");
-		current_value = $(this).val();
-		if(current_value==placeholder){
-			$(this).val("");
-			$(this).addClass("active");
-		}
-	});
-	$(".place_holder").blur(function(){
-		placeholder = $(this).attr("data-original");
-		current_value = $(this).val();
-		if(current_value==""){
-			$(this).val(placeholder);
-			$(this).removeClass("active");
-		}else{
-			$(this).addClass("active");
-		}
-	});
-	$(".place_holder").click(function(){
-		placeholder = $(this).attr("data-original");
-		current_value = $(this).val();
-		if(current_value==placeholder){
-			$(this).val("");
-			$(this).addClass("active");
-		}
-		
-		 $("#datetimepicker1").datetimepicker();
-	});
-	/* placeholder */
-	
-	
+  $(".place_holder").focus(function(){
+    placeholder = $(this).attr("data-original");
+    current_value = $(this).val();
+    if(current_value==placeholder){
+      $(this).val("");
+      $(this).addClass("active");
+    }
+  });
+  $(".place_holder").blur(function(){
+    placeholder = $(this).attr("data-original");
+    current_value = $(this).val();
+    if(current_value==""){
+      $(this).val(placeholder);
+      $(this).removeClass("active");
+    }else{
+      $(this).addClass("active");
+    }
+  });
+  $(".place_holder").click(function(){
+    placeholder = $(this).attr("data-original");
+    current_value = $(this).val();
+    if(current_value==placeholder){
+      $(this).val("");
+      $(this).addClass("active");
+    }
+    
+     $("#datetimepicker1").datetimepicker();
+  });
+  /* placeholder */
+  
+  
 });
 </script>
