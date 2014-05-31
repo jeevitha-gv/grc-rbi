@@ -1,0 +1,84 @@
+
+
+<%= form_for :checklist_recommendation, url:checklist_recommendations_path do |f| %>
+  <p>
+    <%= f.label :checklist%><br>
+    <%= f.text_field :checklist_id %>
+  </p>
+   <p>
+    <%= f.label :checklisttype%><br>
+    <%= f.text_field :checklist_types %>
+  </p> 
+  <p>
+    <%= f.label :Auditeename%><br>
+    <%= f.text_field :auditee_id %>
+  </p>
+  <p>
+    <%= f.label :Recommendation%><br>
+    <%= f.text_field :recommendation %>
+  </p>
+    <p>
+    <%= f.label :Reason%><br>
+    <%= f.text_area :reason %>
+  </p>
+   <p>
+    <%= f.label :Correctiveaction%><br>
+    <%= f.text_area :corrective%>
+  </p>
+    <p>
+    <%= f.label :Preventiveaction%><br>
+    <%= f.text_area :preventive%>
+  </p>
+    <p>
+    <%= f.label :Priority%><br>
+    <%= f.collection_select :recommendation_priority, Priority.all, :id, :name %>
+  </p>
+  </p>
+    <p>
+    <%= f.label :Severity%><br>
+    <%= f.collection_select :recommendation_severity, Priority.all, :id, :name %>
+  </p>
+   <p>
+    <%= f.label :Priority%><br>
+    <%= f.collection_select :response_priority, Priority.all, :id, :name %>
+  </p>
+   <p>
+    <%= f.label :Severity%><br>
+    <%= f.collection_select :response_severity, Priority.all, :id, :name %>
+  </p> 
+  <p>
+    <%= f.label :RecStatus%><br>
+    <%= f.collection_select :recommendation_status_id, RecommendationStatus.all, :id, :name %>
+  </p>
+   <p>
+    <%= f.label :ResStatus%><br>
+    <%= f.collection_select :response_status_id, ResponseStatus.all, :id, :name %>
+  </p>
+   <p>
+    <%= f.label :DepRecomm%><br>
+    <%= f.text_field :dependent_recommendation %>
+  </p>
+   <p>
+    <%= f.label :BlockingRec%><br>
+    <%= f.text_field :blocking_recommendation %>
+  </p>
+  <p>
+    <%= f.label :Observation%><br>
+    <%= f.text_field :observation %>
+  </p>
+  <p>
+   
+    <%= f.submit :submit %>
+  </p>
+<% end %>
+
+
+  
+
+
+
+
+  
+  
+
+
