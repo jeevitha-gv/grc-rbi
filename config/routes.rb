@@ -43,6 +43,8 @@ Rails.application.routes.draw do
    # delete '/activities/clear_audit' => 'activities#clear_audit', :as => :clear_audit
    resources :activities, :except => [:show]
 
+    resources :compliance_libraries
+
 
    get 'welcome', to: 'companies#welcome', :as => :welcome
 
