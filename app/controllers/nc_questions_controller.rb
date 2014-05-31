@@ -9,7 +9,6 @@ class NcQuestionsController < ApplicationController
 	end
 
 	def create
-		binding.pry
 		@nc_question = NcQuestion.new(question_params)
 
 		if @nc_question.save
