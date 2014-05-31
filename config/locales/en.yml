@@ -278,3 +278,13 @@ en:
     issues: "Issues"
     scope: "Scope"
     methodology: "Methodology"
+
+  nc_question:
+    request: "Request"
+    resp_type: "Response Type"
+    assign_auditee: "Assign Auditee"
+    target_date: "Target Date"
+    priority: "Priority"
+    need_doc: "Require Document?"
+    save_to_lib: "Save to Request Library"
+
