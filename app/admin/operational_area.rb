@@ -2,6 +2,7 @@ ActiveAdmin.register OperationalArea do
 
   menu :if => proc{ current_admin_user.present? }
 
+  actions :all, :except => [:destroy]
 
   index do
   	column "Domain" do |c|
@@ -30,5 +31,26 @@ ActiveAdmin.register OperationalArea do
 
   permit_params :compliance_library_id, :weightage
 
+
+  controller do 
+
+    def create
+      @operational_area = OperationalArea.new(operational_area_params)
+      @operational_area.company_id = current_user.company_id
+      if @operational_area.save 
+        redirect_to admin_operational_areas_path
+      else
+        render 'new'
+      end
+    end
+
+
+    private
+
+    def operational_area_params
+      params.require(:operational_area).permit(:compliance_library_id, :weightage ,:company_id)
+    end
+
+  end
   
 end
