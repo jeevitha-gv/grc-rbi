@@ -1,6 +1,6 @@
 class AuditsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :current_company_disabled
+  before_filter :check_company_disabled
 
   def index
 
@@ -19,6 +19,8 @@ class AuditsController < ApplicationController
       render 'new'
     end
   end
+
+
 
   private
     def audit_params

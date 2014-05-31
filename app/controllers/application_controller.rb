@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
       rescue_from ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
     end
 
+
   protected
 
   def configure_permitted_parameters
@@ -110,8 +111,17 @@ class ApplicationController < ActionController::Base
     @current_ability ||= Ability.new(current_user)
   end
 
+  # check for password to access the page
   def check_password_authenticated
     redirect_to password_user_path unless current_user.encrypted_password.present?
+  end
+
+  # check for company disable status
+  def check_company_disabled
+     if current_company.is_disabled == true
+      sign_out current_user
+      redirect_to root_path
+    end
   end
 
   #To check company admin
