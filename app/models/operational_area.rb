@@ -8,5 +8,5 @@ class OperationalArea < ActiveRecord::Base
  delegate :name, to: :compliance_library, prefix: true
 
  # validation
- validates :compliance_library_id , uniqueness: true
+ validates :compliance_library_id ,:uniqueness => {:scope => :company_id}
 end

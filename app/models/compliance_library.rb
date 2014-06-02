@@ -3,6 +3,8 @@ class ComplianceLibrary < ActiveRecord::Base
  # Relationship
  has_many :operational_areas
  belongs_to :compliance
+ has_many :artifacts
+ has_many :audit_compliances
 
  #Validations
  validates :compliance_id, presence: true

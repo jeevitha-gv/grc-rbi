@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
 
   has_many :checklist_recommendations
 
+  has_many :artifact_answers
+
 # attribute to login with username or email
   attr_accessor :login
 
