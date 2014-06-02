@@ -295,6 +295,6 @@ en:
     assign_auditee: "Assign Auditee"
     target_date: "Target Date"
     priority: "Priority"
-    need_doc: "Require Document?"
+    need_doc: "Need Document?"
     save_to_lib: "Save to Request Library"
 
