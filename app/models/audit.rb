@@ -7,11 +7,13 @@ class Audit < ActiveRecord::Base
   belongs_to :team
   belongs_to :client
   belongs_to :audit_status
+  belongs_to :audit_type
 
   # validations
   validates :title, presence:true
   validates_format_of :title, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.title.blank? }
   validates :title, uniqueness:true, :if => Proc.new{ |f| !f.title.blank? }
+  validates :standard_id, presence:true, :if => Proc.new{ |f| !f.compliance_type.blank? }
   validates_format_of :issue, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.issue.blank? }
   validates :scope, length: { in: 4..50 }, :if => Proc.new{ |f| !f.scope.blank? }
   validates :context, length: { in: 4..50 }, :if => Proc.new{ |f| !f.context.blank? }

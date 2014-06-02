@@ -1,3 +1,8 @@
+<style>
+#standard-topic, #standard-complaince{
+  display: none;
+}
+</style>
 <% if @audit.errors.any? %>
   <h2> Error Messages </h2>
   <ul>
@@ -105,99 +110,90 @@
             </div>
             <div class="col-lg-4 col-sm-6 col-xs-12">
               <div class="form-group clearfix">
-                <label class="col-sm-4 control-label">Type</label>
+                <label class="col-sm-4 control-label">
+                  <%= f.label :audit_type, t('audit.audit_type') %>
+                </label>
                 <div class="col-sm-7">
-                  <select>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                  </select>
+                  <%= f.collection_select(:audit_type_id, AuditType.all, :id, :name, :prompt => true) %>
+                </div>
+              </div>
+
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">
+                  <%= f.label :department_id, t('audit.department') %>
+                </label>
+                <div class="col-sm-7">
+
+
+                  <%= f.collection_select(:department_id, Department.where(:location_id=>@locations.map(&:id)), :id, :name, :prompt => true) %>
                 </div>
               </div>
               <div class="form-group clearfix">
-                <label class="col-sm-4 control-label">Topic</label>
+                <label class="col-sm-4 control-label">
+                  <%= f.label :team_id, t('audit.team') %>
+                </label>
                 <div class="col-sm-7">
-                  <select>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group clearfix">
-                <label class="col-sm-4 control-label">Team</label>
-                <div class="col-sm-7">
-                  <select>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                  </select>
+                  <%= f.collection_select(:team_id, Team.where(:company_id=>current_company.id), :id, :name, :prompt => true) %>
                 </div>
               </div>
             </div>
             <div class="col-lg-4 col-sm-6 col-xs-12">
               <div class="form-group clearfix">
-                <label class="col-sm-4 control-label">Compliance</label>
+                <label class="col-sm-4 control-label">
+                  <%= f.label :compliance_type, t('audit.compliance_type') %>
+                </label>
                 <div class="col-sm-7">
-                  <select>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
+                  <select name="audit[compliance_type]" id="compliance_type">
+                    <option value="">Please select</option>
+                    <option value="Compliance">Compliance Audit</option>
+                    <option value="NonCompliance">NonCompliance Audit</option>
                   </select>
                 </div>
               </div>
+
               <div class="form-group clearfix">
-                <label class="col-sm-4 control-label">Location</label>
+                <label class="col-sm-4 control-label">
+                  <%= f.label :location, t('audit.location') %>
+                </label>
                 <div class="col-sm-7">
-                  <select>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                  </select>
+                  <%= f.collection_select(:location_id, @locations, :id, :name, :prompt => true) %>
                 </div>
               </div>
               <div class="form-group clearfix">
-                <label class="col-sm-4 control-label">Start Date</label>
+                <label class="col-sm-4 control-label">
+                  <%= f.label :start_date, t('audit.start_date') %>
+                </label>
                 <div class="col-sm-7">
                   <div class="form-group">
-                    <span style="width: 150px;" class="k-widget k-datepicker k-header"><span class="k-picker-wrap k-state-default"><input type="text" style="width: 100%;" value="10/10/2011" id="datepicker1" data-role="datepicker" class="k-input" role="combobox" aria-expanded="false" aria-owns="datepicker1_dateview" aria-disabled="false" aria-readonly="false"><span class="k-select" unselectable="on" role="button" aria-controls="datepicker1_dateview"><span class="k-icon k-i-calendar" unselectable="on">select</span></span></span></span>
+                    <span style="width: 150px;" class="k-widget k-datepicker k-header">
+                      <span class="k-picker-wrap k-state-default">
+                        <input type="text" style="width: 100%;" value="Select Date" id="datepicker1" data-role="datepicker" class="k-input" role="combobox" aria-expanded="false" aria-owns="datepicker1_dateview" aria-disabled="false" aria-readonly="false">
+                        <span class="k-select" unselectable="on" role="button" aria-controls="datepicker1_dateview">
+                          <span class="k-icon k-i-calendar" unselectable="on">select
+                          </span>
+                        </span>
+                      </span>
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-lg-4 col-sm-6 col-xs-12">
-              <div class="form-group clearfix">
-                <label class="col-sm-4 control-label">Standard</label>
+              <div class="form-group clearfix" id="standard-topic">
+                <label class="col-sm-4 control-label">
+                  <%= f.label :standard_id, t('audit.topic') %>
+                </label>
                 <div class="col-sm-7">
-                  <select>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                  </select>
+                  <%= f.collection_select(:standard_id, Topic.all, :id, :name, :prompt => true) %>
                 </div>
               </div>
-              <div class="form-group clearfix">
-                <label class="col-sm-4 control-label">Department</label>
+
+              <div class="form-group clearfix" id="standard-complaince">
+                <label class="col-sm-4 control-label">
+                  <%= f.label :standard_id, t('audit.standard') %>
+                </label>
                 <div class="col-sm-7">
-                  <select>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                  </select>
+                  <%= f.collection_select(:standard_id, Compliance.all, :id, :name, :prompt => true) %>
                 </div>
               </div>
               <div class="form-group clearfix">
@@ -254,3 +250,37 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $('#standard-complaince  select').attr('name', '');
+    $('#standard-topic  select').attr('name', '');
+
+    $("#compliance_type").change(function () {
+      var getStandardVal = this.value;
+      if(getStandardVal == 'Compliance')
+        {
+          $('#standard-complaince').show();
+          $('#standard-complaince  select').attr('name', 'standard_id');
+          $('#standard-topic  select').attr('name', '');
+          $('#standard-topic').hide();
+        }
+        else if(getStandardVal == 'NonCompliance')
+        {
+          $('#standard-topic').show();
+          $('#standard-topic  select').attr('name', 'standard_id');
+          $('#standard-complaince  select').attr('name', '');
+          $('#standard-complaince').hide();
+        }
+        else if(getStandardVal=='')
+        {
+          $('#standard-complaince').hide();
+          $('#standard-topic').hide();
+        }
+    });
+
+    $("#datepicker").kendoDatePicker();
+    $("#datepicker1").kendoDatePicker();
+
+  });
+</script>
