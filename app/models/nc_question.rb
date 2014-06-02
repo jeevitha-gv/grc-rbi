@@ -8,6 +8,8 @@ class NcQuestion < ActiveRecord::Base
 	belongs_to :audit
 	has_many :question_options
 	accepts_nested_attributes_for :question_options
+	has_many :checklist_recommendations, as: :checklist
+
 
 	#Validations
 	validates :question, presence: true

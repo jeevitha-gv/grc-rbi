@@ -7,6 +7,7 @@ class Audit < ActiveRecord::Base
   belongs_to :team
   belongs_to :client
   belongs_to :audit_status
+  has_many :checklist_recommendations, through: :audit_compliances
   has_many :audit_compliances
 
   # validations
