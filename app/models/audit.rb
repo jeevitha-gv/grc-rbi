@@ -8,6 +8,8 @@ class Audit < ActiveRecord::Base
   belongs_to :client
   belongs_to :audit_status
   belongs_to :audit_type
+  has_many :audit_compliances
+  accepts_nested_attributes_for :nc_questions
 
   # validations
   validates :title, presence:true

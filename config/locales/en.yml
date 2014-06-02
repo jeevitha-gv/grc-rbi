@@ -229,6 +229,10 @@ en:
               blank: "Name can't be blank"
             compliance_id:
               blank: "Compliance can't be blank"
+        operational_area:
+          attributes:
+            compliance_library_id:
+              taken: "Already Scored! pls update it! "
 
   companies:
     company:  "Company Name"
@@ -299,6 +303,6 @@ en:
     assign_auditee: "Assign Auditee"
     target_date: "Target Date"
     priority: "Priority"
-    need_doc: "Require Document?"
+    need_doc: "Need Document?"
     save_to_lib: "Save to Request Library"
 
