@@ -1,0 +1,256 @@
+<% if @audit.errors.any? %>
+  <h2> Error Messages </h2>
+  <ul>
+    <% @audit.errors.messages.each do |msg| %>
+      <li><%= msg[1][0] %></li>
+    <% end %>
+  </ul>
+<% end %>
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="audit-title">
+        <h2>New Audit Plan</h2>
+        <div class="audit-content container">
+          <%= form_for(@audit) do |f| %>
+            <div class="clearfix">
+              <h3>Audit Details</h3>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">
+                  <%= f.label :client_id, t('audit.client') %>
+                </label>
+                <div class="col-sm-7">
+                  <%= f.collection_select(:client_id, Client.where(:company_id=>current_company.id), :id, :name, :prompt => true) %>
+                </div>
+              </div>
+              <div class="form-group clearfix">
+                <label class="col-sm-4">
+                  <%= f.label :objective, t('audit.objective') %>
+                </label>
+                <div class="col-sm-7">
+                  <%= f.text_field :objective, :class=>"audit-big-input" %>
+                </div>
+              </div>
+              <div class="form-group clearfix">
+                <label class="col-sm-4">
+                  <%= f.label :deliverables, t('audit.deliverables') %>
+                </label>
+                <div class="col-sm-7">
+                  <%= f.text_field :deliverables, :class=>"audit-big-input" %>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+              <div class="form-group clearfix">
+                <label class="col-sm-4">
+                  <%= f.label :title, t('audit.title') %>
+                </label>
+                <div class="col-sm-7">
+                  <%= f.text_field :title, :class=>"audit-normal-input" %>
+                </div>
+              </div>
+              <div class="form-group clearfix">
+                <label class="col-sm-4">
+                  <%= f.label :context, t('audit.context') %>
+                </label>
+                <div class="col-sm-7">
+                  <%= f.text_field :context, :class=>"audit-big-input" %>
+                </div>
+              </div>
+              <div class="form-group clearfix">
+                <label class="col-sm-4">
+                  <%= f.label :issue, t('audit.issue') %>
+                </label>
+                <div class="col-sm-7">
+                  <%= f.text_field :issue, :class=>"audit-big-input" %>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+              <div class="form-group clearfix">
+                <label class="col-sm-4">
+                  <%= f.label :scope, t('audit.scope') %>
+                </label>
+                <div class="col-sm-7">
+                  <%= f.text_field :scope, :class=>"audit-big-input" %>
+                </div>
+              </div>
+              <div class="form-group clearfix">
+                <label class="col-sm-4">
+                  <%= f.label :methodology, t('audit.methodology') %>
+                </label>
+                <div class="col-sm-7">
+                  <%= f.text_field :methodology, :class=>"audit-big-input" %>
+                </div>
+              </div>
+              <div class="form-group clearfix addissue"> <a href="#add_url" data-toggle="modal" class="plus-icon">Add Issue from Risk Library</a>
+                <div class="modal fade" id="add_url">
+                  <div class="modal-dialog modal-dialog_large">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button"> &nbsp; </button>
+                        <h4 id="myModalLabel" class="modal-title">Issue from Risk Library</h4>
+                        <p></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix border-divider"> </div>
+            <div class="clearfix">
+              <h3>Plan</h3>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">Type</label>
+                <div class="col-sm-7">
+                  <select>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">Topic</label>
+                <div class="col-sm-7">
+                  <select>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">Team</label>
+                <div class="col-sm-7">
+                  <select>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">Compliance</label>
+                <div class="col-sm-7">
+                  <select>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">Location</label>
+                <div class="col-sm-7">
+                  <select>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">Start Date</label>
+                <div class="col-sm-7">
+                  <div class="form-group">
+                    <span style="width: 150px;" class="k-widget k-datepicker k-header"><span class="k-picker-wrap k-state-default"><input type="text" style="width: 100%;" value="10/10/2011" id="datepicker1" data-role="datepicker" class="k-input" role="combobox" aria-expanded="false" aria-owns="datepicker1_dateview" aria-disabled="false" aria-readonly="false"><span class="k-select" unselectable="on" role="button" aria-controls="datepicker1_dateview"><span class="k-icon k-i-calendar" unselectable="on">select</span></span></span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">Standard</label>
+                <div class="col-sm-7">
+                  <select>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">Department</label>
+                <div class="col-sm-7">
+                  <select>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">End Date</label>
+                <div class="col-sm-7">
+                  <div class="form-group">
+                   <span style="width: 150px;" class="k-widget k-datepicker k-header"><span class="k-picker-wrap k-state-default"><input type="text" style="width: 100%;" value="10/10/2011" id="datepicker" data-role="datepicker" class="k-input" role="combobox" aria-expanded="false" aria-owns="datepicker_dateview" aria-disabled="false" aria-readonly="false"><span class="k-select" unselectable="on" role="button" aria-controls="datepicker_dateview"><span class="k-icon k-i-calendar" unselectable="on">select</span></span></span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix border-divider"></div>
+            <div class="clearfix">
+              <h3>Team</h3>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">Auditor</label>
+                <div class="col-sm-7">
+                  <select>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">Auditee</label>
+                <div class="col-sm-7">
+                  <select>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+              <br>
+              <br>
+              <%= f.submit "Initiate Audit", :class => "black_btn" %>
+              <!-- <a href="" class="black_btn"></a> -->
+              <a class="orange_btn" href="#">Save as Plan</a>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
