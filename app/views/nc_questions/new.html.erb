@@ -32,7 +32,7 @@
               <div class="col-sm-7">
                 <div class="form-group">
                   <div class='input-group date' id='datetimepicker1'>
-                    <%= f.text_field :target_date, :class => "form-control" %>              
+                    <%= f.date_field :target_date, :class => "form-control" %>              
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span> </div>
                 </div>
               </div>
@@ -47,86 +47,17 @@
             </div>
             <div class="form-group clearfix">
               <%= f.label :does_require_document, t('nc_question.need_doc'), :class => "col-sm-5" %>           
-              <%= f.check_box :does_require_document %>        
-          </div>   
-          <div class="form-group clearfix">
-              <%= f.label :nc_library, t('nc_question.save_to_lib') %>
-              <%= f.check_box :nc_library %> 
-          </div>
-        <!-- <div class="form-group clearfix">
+              <%= f.check_box :does_require_document %>  <br>      
+            </div>               
+        <div class="form-group clearfix">
         <div class="col-sm-12">
             <%= f.label :nc_library, t('nc_question.save_to_lib') %>
             <%= f.check_box :nc_library %> 
         </div>
     
-        </div> -->
+        </div>
           </div>
           <div class="clearfix border-divider"> </div>
-          <div class="col-lg-4 col-sm-6 col-xs-12">
-          <div class="form-group clearfix">
-              <label class="col-sm-4">Request</label>
-              <div class="col-sm-7">
-                <input class="audit-normal-input" type="text">
-              </div>
-            </div>
-            <div class="form-group clearfix">
-              <label class="col-sm-4 control-label">Response Type</label>
-              <div class="col-sm-7">
-                <select>
-                  <option>Multiple Choice</option>
-                  <option></option>
-                  <option></option>
-                  <option></option>
-                  <option></option>
-                </select>
-              </div>
-            </div>
-   
-          </div>
-          <div class="col-lg-4 col-sm-6 col-xs-12">
-          
-            <div class="form-group clearfix">
-              <label class="col-sm-4 control-label">Target Date</label>
-              <div class="col-sm-7">
-                <div class="form-group">
-                  <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span> </div>
-                </div>
-              </div>
-            </div>
-            
-           
-          </div>
-          <div class="col-lg-4 col-sm-6 col-xs-12">
-             <div class="form-group clearfix">
-              <label class="col-sm-4 control-label">Priority</label>
-              <div class="col-sm-7">
-                <select>
-                  <option></option>
-                  <option></option>
-                  <option></option>
-                  <option></option>
-                  <option></option>
-                </select>
-              </div>
-            </div>
-             <div class="form-group clearfix">
-            <label class="col-sm-5">Need Document?</label>
-           
-              <label class="padding15px">
-                <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_0"> Yes</label>
-             
-              <label class="padding15px">
-                <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_1"> No</label>
-        
-    </div>   
-        <div class="form-group clearfix">
-        <div class="col-sm-12"><input type="checkbox"> Save to Request Library</div>
-    
-        </div>
-            
-          </div>
           
           <div class="clearfix border-divider"></div>
           
@@ -137,7 +68,9 @@
             
           </div>
           <div class="col-lg-4 col-sm-6 col-xs-12"><br><br>
-           <a class="black_btn" href="">Cancel</a> <a class="black_btn" href="">Reset</a> <a href="#" class="orange_btn">Ask Auditee</a></div>
+           <a class="black_btn" href="">Cancel</a> <a class="black_btn" href="">Reset</a>
+           <%= f.submit "Ask Auditee", :class => "orange_btn" %>             
+         </div>
            <% end %>
         </div>
       </div>
