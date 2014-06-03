@@ -13,7 +13,7 @@ QuestionType.delete_all
     QuestionType.create([{name: 'Multiple Choice'}])
 
 Topic.delete_all
-    
+
     Topic.create([{name: 'Network Security'}])
     Topic.create([{name: 'Physical Security'}])
     Topic.create([{name: 'System Security'}])
@@ -31,8 +31,10 @@ Score.delete_all
 
 AuditType.delete_all
 
-    AuditType.create([{name: 'Internal'}])
-    AuditType.create([{name: 'External'}])
+    AuditType.create([{name: 'Internal Audit'}])
+    AuditType.create([{name: 'External Audit'}])
+    AuditType.create([{name: 'Regulators'}])
+    AuditType.create([{name: 'Self Audit'}])
 
 AuditStatus.delete_all
 
@@ -75,7 +77,7 @@ Role.delete_all
     Role.create([{title: 'company user'}])
 
 Section.delete_all
-    
+
     Section.create([{name: 'Audit'}])
     Section.create([{name: 'Risk'}])
 

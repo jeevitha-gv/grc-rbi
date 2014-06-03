@@ -8,7 +8,12 @@ Rails.application.routes.draw do
 
   resources :home
 
-  resources :checklist_recommendations
+  resources :checklist_recommendations do
+    collection do
+      get 'auditee_response'
+      get 'audit_observation'
+    end
+  end
 
   resources :nc_questions
   resources :audits

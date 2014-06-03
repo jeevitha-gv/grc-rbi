@@ -715,4 +715,11 @@ text-align: left;
 }
 
 .error_inputfield input{ border:1px solid  #932419!important;}
-
+.add-btn{
+	 margin: 0 0 20px 122px;
+	float: left;
+}
+.add-btn-padding{
+	padding: 6px 0;
+	display: block;
+}
