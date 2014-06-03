@@ -87,7 +87,7 @@ $(document).ready(function(){
     current_value = $(this).val();
     if(current_value==placeholder){
       $(this).val("");
-      $(this).adhttp://fixnix.audit.loc/nc_questions/newdClass("active");
+      $(this).addClass("active");
     }
   });
   $(".place_holder").blur(function(){
@@ -99,7 +99,7 @@ $(document).ready(function(){
     }else{
       $(this).addClass("active");
     }
-  });http://fixnix.audit.loc/nc_questions/new
+  });
   $(".place_holder").click(function(){
     placeholder = $(this).attr("data-original");
     current_value = $(this).val();
