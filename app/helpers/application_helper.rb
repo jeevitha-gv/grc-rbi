@@ -35,7 +35,7 @@ def link_to_add_fields(name, f, association)
   end
   # link_to_function(name, h("add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")"))
   # link_to "#{name}", 'javascript:void(0)', onclick: "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")"
-  link_to "#{name}" ,"",  {onclick: "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")"}
+  link_to "#{name}" ,'javascript:void(0)',  {onclick: "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")"}
 end
 
 # def link_to_add_fields(name, f, association)
