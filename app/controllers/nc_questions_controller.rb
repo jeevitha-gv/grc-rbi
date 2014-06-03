@@ -5,12 +5,16 @@ class NcQuestionsController < ApplicationController
 	end
 
 	def new
-		@audit = Audit.new
+		@audit = Audit.first
 		@nc_question = NcQuestion.new
+		@question_option = QuestionOption.new
 		1.times do
-			nc_question = @audit.nc_questions.build 
+			nc_question = @audit.nc_questions.build 			
 		#@nc_question.question_options.build unless @nc_question.question_options.present?
-    end
+    	end
+    	1.times do
+    		question_option = @nc_question.question_options.build
+    	end
 	end
 
 	def create
