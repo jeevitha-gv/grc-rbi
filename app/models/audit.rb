@@ -7,7 +7,10 @@ class Audit < ActiveRecord::Base
   belongs_to :team
   belongs_to :client
   belongs_to :audit_status
+
+  has_many :checklist_recommendations, through: :audit_compliances
   belongs_to :audit_type
+
   has_many :audit_compliances
   accepts_nested_attributes_for :nc_questions
 

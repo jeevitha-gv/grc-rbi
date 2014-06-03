@@ -1,0 +1,12 @@
+<%= form_for(@audit) do |f| %>
+
+<%= f.label :title %><br />
+<%= f.text_field :title %>  
+
+<%= f.fields_for :nc_questions do |builder| %>
+<%= render 'nc_question_fields', :f => builder %>
+<% end %>
+<p><%= link_to_add_fields "Add Question", f, :nc_questions %>
+<%= f.submit %>
+
+<% end %>
