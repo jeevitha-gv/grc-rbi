@@ -1,5 +1,5 @@
 <style>
-#standard-topic, #standard-complaince{
+#standard-topic, #standard-complaince, #department-dropdown, #teams-dropdown{
   display: none;
 }
 </style>
@@ -120,20 +120,27 @@
 
               <div class="form-group clearfix">
                 <label class="col-sm-4 control-label">
+                  <%= f.label :location, t('audit.location') %>
+                </label>
+                <div class="col-sm-7">
+                  <%= f.select :location_id, options_for_select(Location.all.collect{|x| [x.name, x.id.to_i]}), {include_blank: 'Select Location' }, { :id => "locations-list", :onChange => "get_departments(this);"} %>
+                </div>
+              </div>
+
+              <div class="form-group clearfix" id="department-dropdown">
+                <label class="col-sm-4 control-label">
                   <%= f.label :department_id, t('audit.department') %>
                 </label>
                 <div class="col-sm-7">
-
-
-                  <%= f.collection_select(:department_id, Department.where(:location_id=>@locations.map(&:id)), :id, :name, :prompt => true) %>
+                  <%= f.select :department_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
                 </div>
               </div>
-              <div class="form-group clearfix">
+              <div class="form-group clearfix" id="teams-dropdown">
                 <label class="col-sm-4 control-label">
                   <%= f.label :team_id, t('audit.team') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.collection_select(:team_id, Team.where(:company_id=>current_company.id), :id, :name, :prompt => true) %>
+                  <%= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Team' }, { :id => "team_id"} %>
                 </div>
               </div>
             </div>
@@ -150,15 +157,29 @@
                   </select>
                 </div>
               </div>
-
-              <div class="form-group clearfix">
+              <div class="form-group clearfix" id="standard-topic">
                 <label class="col-sm-4 control-label">
-                  <%= f.label :location, t('audit.location') %>
+                  <%= f.label :standard_id, t('audit.topic') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.collection_select(:location_id, @locations, :id, :name, :prompt => true) %>
+                  <%= f.collection_select(:standard_id, Topic.all, :id, :name, :prompt => true) %>
                 </div>
               </div>
+
+              <div class="form-group clearfix" id="standard-complaince">
+                <label class="col-sm-4 control-label">
+                  <%= f.label :standard_id, t('audit.standard') %>
+                </label>
+                <div class="col-sm-7">
+                  <%= f.collection_select(:standard_id, Compliance.all, :id, :name, :prompt => true) %>
+                </div>
+              </div>
+
+
+
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+
               <div class="form-group clearfix">
                 <label class="col-sm-4 control-label">
                   <%= f.label :start_date, t('audit.start_date') %>
@@ -177,25 +198,7 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-xs-12">
-              <div class="form-group clearfix" id="standard-topic">
-                <label class="col-sm-4 control-label">
-                  <%= f.label :standard_id, t('audit.topic') %>
-                </label>
-                <div class="col-sm-7">
-                  <%= f.collection_select(:standard_id, Topic.all, :id, :name, :prompt => true) %>
-                </div>
-              </div>
 
-              <div class="form-group clearfix" id="standard-complaince">
-                <label class="col-sm-4 control-label">
-                  <%= f.label :standard_id, t('audit.standard') %>
-                </label>
-                <div class="col-sm-7">
-                  <%= f.collection_select(:standard_id, Compliance.all, :id, :name, :prompt => true) %>
-                </div>
-              </div>
               <div class="form-group clearfix">
                 <label class="col-sm-4 control-label">End Date</label>
                 <div class="col-sm-7">
@@ -261,14 +264,14 @@
       if(getStandardVal == 'Compliance')
         {
           $('#standard-complaince').show();
-          $('#standard-complaince  select').attr('name', 'standard_id');
+          $('#standard-complaince  select').attr('name', 'audit[standard_id]');
           $('#standard-topic  select').attr('name', '');
           $('#standard-topic').hide();
         }
         else if(getStandardVal == 'NonCompliance')
         {
           $('#standard-topic').show();
-          $('#standard-topic  select').attr('name', 'standard_id');
+          $('#standard-topic  select').attr('name', 'audit[standard_id]');
           $('#standard-complaince  select').attr('name', '');
           $('#standard-complaince').hide();
         }
@@ -283,4 +286,33 @@
     $("#datepicker1").kendoDatePicker();
 
   });
+
+  function get_departments(element){
+    var location_id = $(element).val();
+    if(location_id.length>0){
+      $.ajax({
+        url: "/audits/departments_list",
+        type: "GET",
+        data: {"location_id" : location_id}
+      });
+    }
+    else{
+      $('#department-dropdown').hide();
+      $('#teams-dropdown').hide();
+    }
+  }
+
+  function get_teams(element){
+    var department_id = $(element).val();
+    if(department_id.length>0){
+      $.ajax({
+        url: "/audits/teams_list",
+        type: "GET",
+        data: {"department_id" : department_id}
+      });
+    }
+    else {
+      $('#teams-dropdown').hide();
+    }
+  }
 </script>

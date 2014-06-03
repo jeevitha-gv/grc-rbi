@@ -16,7 +16,12 @@ Rails.application.routes.draw do
   end
 
   resources :nc_questions
-  resources :audits
+
+  resources :audits do
+    get 'departments_list', on: :collection
+    get 'teams_list', on: :collection
+  end
+
 
 
   resource :user do
