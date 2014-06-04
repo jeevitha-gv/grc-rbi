@@ -28,3 +28,23 @@ function add_fields(link, association, content) {
     $(link).parent().before(content.replace(regexp, new_id));      
     return false;
 }
+
+// function remove_fields(link) {
+//   $(link).previous("input[type=hidden]").value = "1";
+//   $(link).up(".fields").hide();
+// }
+
+// function remove_fields(link) {
+//   $(link).prev("input[type=hidden]").val("1");
+//   $(link).closest(".fields").hide();
+// }
+
+// function remove_fields(link) {  
+//     $(link).prev("input[type=hidden]").val("1");  
+//     $(link).closest(".fields").hide();  
+// }  
+
+function remove_fields(link) {
+    jQuery(link).parent().find("input[type=hidden]").val(1);
+    jQuery(link).parents(".fields").hide();
+}

@@ -7,7 +7,6 @@ class Audit < ActiveRecord::Base
   belongs_to :client
   belongs_to :audit_status
   belongs_to :audit_type
-
   has_many :nc_questions
   has_many :checklist_recommendations, through: :audit_compliances
   has_many :audit_compliances
@@ -41,6 +40,10 @@ class Audit < ActiveRecord::Base
   def check_auditees_uniq
     check_user_id = audit_auditees.size == audit_auditees.collect{|x| x.user_id}.uniq.size
     errors.add(:auditees, ("Please select unique auditees")) if check_user_id == false
+  end
+
+  def answered_compliances
+    self.audit_compliances.where(is_answered: true).map(&:compliance_library)
   end
 
   def check_auditees_presence
