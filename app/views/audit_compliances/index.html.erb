@@ -1,0 +1,269 @@
+<style>
+	.backspace { margin-left: -4px; }
+</style>
+
+<div class="clearfix"></div>
+<div class="content">
+  <div class="container">
+    <div class="row"> 
+      <!-- Nav tabs -->
+     <h4>Checklist for Compliance Audit</h4>
+      <div id="example" class="k-content">
+        <div class="panel-container">
+          <div id="strip">
+            
+            <div class="row panel-block">
+              <div class="col-md-12">
+                <div class="box-wrapper">
+                  <div id="grid"></div>
+                </div>
+              </div>
+              
+              <div class="fright"><br>
+            <br>
+            <a class="black_btn" href="">Back</a> <a href="#" class="orange_btn">Ask</a></div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+ $(window).load(function(){
+	var $container = $('#grid_items');
+	// initialize
+	$container.masonry({
+	  columnWidth: 292,
+	  itemSelector: '.item',
+	  isFitWidth: true
+	});
+	
+	
+	$(".block_banner img").each(function(index, element) {
+        var screenImage = $(this);
+
+		// Create new offscreen image to test
+		var theImage = new Image();
+		theImage.src = screenImage.attr("src");
+		
+		var imageHeight = theImage.height;
+		
+		$(this).css("max-height",imageHeight);
+		$(this).css("min-height",imageHeight);
+    });
+});
+
+$(".click_icon").click(function() {
+			$(".share_pop").show();
+});
+
+$(".click_icon").click(function(){
+		$(".share_pop").show();
+});
+	
+$(document).ready(function(){
+	
+	Top_postion = $(window).scrollTop();
+	
+	$( ".user_login" ).mouseenter(function() {
+		$(this).addClass("active");
+		$(".account_header_dropdown").slideDown(100);	  
+	})
+	.mouseleave(function() {
+		$(this).removeClass("active");
+		$(".account_header_dropdown").hide();
+	});
+	
+	//for notification drop hide in outside click
+	onclick_icon = 0;	  
+	$(".click_icon").mouseenter(function() {
+		onclick_icon = 0;	  
+	})
+	.mouseleave(function() {
+		onclick_icon = 1;	  
+	});
+	
+	
+	$("body").click(function(){
+		if(onclick_icon){
+			$(".share_pop").hide();
+		}
+	});
+	
+	
+	/* placeholder */
+	$(".place_holder").each(function(index, element) {
+		placeholder = $(this).attr("data-original");
+		$(this).val(placeholder);
+		$(this).removeClass("active");
+    });
+
+	$(".place_holder").focus(function(){
+		placeholder = $(this).attr("data-original");
+		current_value = $(this).val();
+		if(current_value==placeholder){
+			$(this).val("");
+			$(this).addClass("active");
+		}
+	});
+	$(".place_holder").blur(function(){
+		placeholder = $(this).attr("data-original");
+		current_value = $(this).val();
+		if(current_value==""){
+			$(this).val(placeholder);
+			$(this).removeClass("active");
+		}else{
+			$(this).addClass("active");
+		}
+	});
+	$(".place_holder").click(function(){
+		placeholder = $(this).attr("data-original");
+		current_value = $(this).val();
+		if(current_value==placeholder){
+			$(this).val("");
+			$(this).addClass("active");
+		}
+	});
+	/* placeholder */
+	
+	
+});
+</script> 
+
+<script type="text/javascript">
+			$(document).ready(function() {
+				// Fancybox
+				$(".fancybox").fancybox();
+				
+				// Kendo Datapicker
+				$("#datepicker").kendoDatePicker();
+				
+				// Kendo Tab
+				$("#tabstrip").kendoTabStrip({
+					animation:  {
+					    open: {
+						effects: "fadeIn"
+					    }
+					}
+				});
+			    
+				// Kendo Panel
+				$("#panelbar").kendoPanelBar();
+
+				// dataSource for Kendo grid
+
+				dataSource = new kendo.data.DataSource({
+					transport: {
+						read: {
+							url: '/audit_compliances',
+							dataType: 'json'
+						}
+					},
+					schema: {
+				        errors: function(response) {
+				         return response.errors;
+				      	},
+						data: "data",
+						model: {
+							id: "id",
+							fields: {
+								id: { type: "string" },
+								name: { type: "string" },
+								artifacts: { type: "string" },
+								priority: { type: "string" }
+							}
+						}
+					}
+				});
+
+				// Kendo Grid
+				$("#grid").kendoGrid({
+					dataSource: dataSource,
+				    dataBound: function(){
+						$('.check_row').on('click', function (e) {
+							var $cb = $(this);
+							var $row = $cb.parents('tr').first();
+							if ($cb.is(':checked')) {
+							$row.addClass('k-state-selected');
+							} else {
+							$row.removeClass('k-state-selected');
+							}
+						});	
+					},
+					height: 'auto',
+					scrollable: true,
+					sortable: true,
+					filterable: true,
+					pageable: {
+					    input: true,
+					    numeric: false
+					},
+					columns: [
+						{ field: "check_row", title: " ", width: 30, template: "<input class='check_row' type='checkbox' />" },
+						{ field: "name", title: "Domain"},
+						{ field: "artifacts", title: "Checklist" , template: kendo.template( jQuery("#myTemplate").html())},
+						{ field: "priority", title: "Priority" , template: kendo.template( jQuery("#priority").html())}
+					],
+					editable: "inline"
+				});                 		
+                 	
+
+				// Editable select box
+				$('.editable-select').change(function(){ 
+					modify();
+				});
+
+				function modify(){
+					$('.editable-input').val($('.editable-select').val());
+					output();
+				}
+
+				function output(){
+					$('.editable-result').text('value: ' + $('.editable-input').val());
+				}
+
+				$('.editable-input').on('click', function(){
+					$(this).select()
+				}).on('blur', function(){
+					output();
+				})
+
+				modify();
+				
+				// More contacts show
+				$(".more-link").click(function(){
+					if($(this).html() == "More")
+						$(this).html("Less").parent().siblings(".more-info").show();
+					else
+						$(this).html("More").parent().siblings(".more-info").hide();
+				});
+			});
+			
+			// Edit Popup
+			$(window).load(function(){
+				$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");				
+			});
+			
+
+		</script>
+ <script type="text/x-kendo-template" id="myTemplate">
+ <div class='checklist_select_big'>
+ <select>
+ # for (var i = 0; i < artifacts.split(",").length; i++) { #
+ <option value="#= artifacts.split(",")[i]#">#= artifacts.split(",")[i]#</option>
+ #}#
+ </select>
+ </div>
+</script>
+
+<script type="text/x-kendo-template" id="priority">
+
+ <button value="#= priority.split(",")[0]#",  class= "high_btn">#= priority.split(",")[0]#</button>
+ <button value="#= priority.split(",")[1]#",  class= "medium_btn backspace active">#= priority.split(",")[1]#</button>
+ <button value="#= priority.split(",")[2]#",  class= "low_btn backspace">#= priority.split(",")[2]#</button>
+
+</script>
+

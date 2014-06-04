@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   resources :nc_questions
   resources :audits
 
-
   resource :user do
     collection do
       patch 'update_password'
@@ -44,6 +43,7 @@ Rails.application.routes.draw do
    resources :activities, :except => [:show]
 
     resources :compliance_libraries
+    resources :audit_compliances
 
 
    get 'welcome', to: 'companies#welcome', :as => :welcome

@@ -86,15 +86,15 @@ input.k-textbox, textarea.k-textbox, input.k-textbox:hover, textarea.k-textbox:h
 	opacity: 1
 }
 .k-icon, .k-tool-icon, .k-grouping-dropclue, .k-drop-hint, .k-callout, .k-column-menu .k-sprite {
-	background-image: url('../../images/sprite.png');
+	background-image: url('/assets/outer/sprite.png');
 	border-color: transparent
 }
 .k-loading, .k-state-hover .k-loading {
-	background-image: url('../../images/loading.gif');
+	background-image: url('/assets/outer/loading.gif');
 	background-position: 50% 50%
 }
 .k-loading-image {
-	background-image: url('../../images/loading-image.gif')
+	background-image: url('/assets/outer/loading-image.gif')
 }
 .k-loading-color {
 	background-color: #fff
@@ -179,7 +179,7 @@ input.k-textbox, textarea.k-textbox, input.k-textbox:hover, textarea.k-textbox:h
 	background-image: none
 }
 .k-tool-icon, .k-tool-icon.k-state-hover, .k-tool-icon.k-state-active, .k-tool-icon.k-state-active.k-state-hover {
-	background-image: url('../../images/sprite.png')
+	background-image: url('/assets/outer/sprite.png')
 }
 .k-state-hover>.k-link, .k-other-month.k-state-hover .k-link, div.k-imagebrowser-dropzone em {
 	color: #2e2e2e
