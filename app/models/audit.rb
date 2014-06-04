@@ -6,22 +6,13 @@ class Audit < ActiveRecord::Base
   belongs_to :team
   belongs_to :client
   belongs_to :audit_status
-<<<<<<< HEAD
-
-  has_many :audit_compliances
-  has_many :checklist_recommendations, through: :audit_compliances
   belongs_to :audit_type
-  
-=======
-  belongs_to :audit_type
-
   has_many :nc_questions
   has_many :checklist_recommendations, through: :audit_compliances
   has_many :audit_compliances
   has_many :audit_auditees
   has_many :auditees, through: :audit_auditees, :class_name=>"User", :foreign_key => "user_id"
 
->>>>>>> ca018c6812ae7e8df9c570124181fe701882cfb2
   accepts_nested_attributes_for :nc_questions
   accepts_nested_attributes_for :audit_auditees, reject_if: lambda { |a| a[:user_id].blank? }
   accepts_nested_attributes_for :nc_questions, :allow_destroy => true
@@ -51,15 +42,11 @@ class Audit < ActiveRecord::Base
     errors.add(:auditees, ("Please select unique auditees")) if check_user_id == false
   end
 
-<<<<<<< HEAD
-
   def answered_compliances
     self.audit_compliances.where(is_answered: true).map(&:compliance_library)
   end
 
-=======
   def check_auditees_presence
     errors.add(:auditees, ("Please select auditee")) unless audit_auditees.present?
   end
->>>>>>> ca018c6812ae7e8df9c570124181fe701882cfb2
 end

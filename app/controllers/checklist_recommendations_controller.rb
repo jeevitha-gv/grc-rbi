@@ -30,20 +30,10 @@ class ChecklistRecommendationsController < ApplicationController
 
 	def update_individual_score
 
-    #@checklist_recommendation = ChecklistRecommendation.where(:checklist_id => params[:checklist_id],:checklist_type => params[:checklist_type])
-
- #   @checklist_recommendation = ChecklistRecommendation.new(checklist_params)
-	  
-	#    if @checklist_recommendation.save
-	#  		redirect_to @checklist_recommendation
-	#  	else
-	#  		render 'new'
-	# end
-	#  respond_to :js
-	p checklist = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?',params[:checklist_id], params[:checklist_type]).first
+	 checklist = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?',params[:checklist_id], params[:checklist_type]).first
 	if checklist.nil?
-		p 2222
-   p @checklist_recommendation = ChecklistRecommendation.new(checklist_params)
+	
+   @checklist_recommendation = ChecklistRecommendation.new(checklist_params)
    @checklist_recommendation.save
 	else
 		# p	checklist = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?',params[:checklist_id], params[:checklist_type]).first
