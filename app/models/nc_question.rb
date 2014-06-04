@@ -8,7 +8,7 @@ class NcQuestion < ActiveRecord::Base
 	belongs_to :audit
 	has_many :question_options
 	has_one :answer
-	accepts_nested_attributes_for :question_options
+	accepts_nested_attributes_for :question_options, :allow_destroy => true
 	has_many :checklist_recommendations, as: :checklist
 
 

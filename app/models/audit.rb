@@ -12,7 +12,7 @@ class Audit < ActiveRecord::Base
   belongs_to :audit_type
 
   has_many :audit_compliances
-  accepts_nested_attributes_for :nc_questions
+  accepts_nested_attributes_for :nc_questions, :allow_destroy => true
 
   # validations
   validates :title, presence:true
