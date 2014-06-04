@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     collection do
       get 'auditee_response'
       get 'audit_observation'
+      post 'update_individual_score'
     end
   end
 

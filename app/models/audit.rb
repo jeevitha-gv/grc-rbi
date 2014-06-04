@@ -8,10 +8,10 @@ class Audit < ActiveRecord::Base
   belongs_to :client
   belongs_to :audit_status
 
+  has_many :audit_compliances
   has_many :checklist_recommendations, through: :audit_compliances
   belongs_to :audit_type
-
-  has_many :audit_compliances
+  
   accepts_nested_attributes_for :nc_questions
 
   # validations
@@ -27,5 +27,10 @@ class Audit < ActiveRecord::Base
   validates :objective, length: { in: 4..50 }, :if => Proc.new{ |f| !f.objective.blank? }
   validates :close_reason, length: { in: 4..50 }, :if => Proc.new{ |f| !f.close_reason.blank? }
   validates :observation, length: { in: 4..50 }, :if => Proc.new{ |f| !f.observation.blank? }
+
+
+  def answered_compliances
+    self.audit_compliances.where(is_answered: true).map(&:compliance_library)
+  end
 
 end

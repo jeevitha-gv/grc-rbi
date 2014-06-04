@@ -1,80 +1,3 @@
-
-<body>
-<!--  <div id="wrapper">
-  <div class="header">
-    <div class="container">  -->
-      <!-- Fixed navbar -->
-<!--       <div class="navbar navbar-inverse " role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-            <a class="navbar-brand" href="#">Company Name</a> </div>
-          <div class="navbar-collapse collapse fleft">
-            <ul class="nav navbar-nav main_nav">
-              <li ><a href="#">
-                <div class="overview-icon"></div>
-                Over view</a></li>
-              <li ><a class="active" href="">
-                <div class="audit-icon"></div>
-                Audit</a></li>
-              <li ><a href="">
-                <div class="risk-icon"></div>
-                Risk</a></li>
-            </ul>
-          </div>
-          <div class="user_login"> <img src="img/user-icon.jpg" /> UserName <span id="login_drop"><img src="img/user-down-arrow.png"/></span>
-            <div class="account_header_dropdown">
-              <ul>
-                <li><a href="">User Profile</a></li>
-                <li><a href="">Reset Password</a></li>
-                <li><a href="">Logout</a></li>
-              </ul>
-            </div>
-          </div> -->
-          <!--/.nav-collapse --> 
-          
-<!--         </div>
-      </div>
-    </div>
-  </div>
-  <div class="clearfix"></div>
-  <div class="sub_menu">  -->
-    <!-- Fixed navbar -->
-<!--     <div class="navbar navbar-inverse subnavbar-fixed-top" role="navigation">
-      <div class="container">
-        <ul class="subbar-nav nav navbar-nav">
-          <li><a href="#">
-            <div class="dash-icon"></div>
-            Dashboard</a></li>
-          <li><a href="">
-            <div class="calender-icon"></div>
-            Calender</a></li>
-          <li><a href="">
-            <div class="plan-icon"></div>
-            Plan</a></li>
-          <li><a class="active" href="">
-            <div class="list-icon"></div>
-            List</a></li>
-          <li><a href="">
-            <div class="do-icon"></div>
-            Do</a></li>
-          <li><a href="">
-            <div class="check-icon"></div>
-            Check</a></li>
-          <li><a href="">
-            <div class="act-icon"></div>
-            Act</a></li>
-          <li><a href="">
-            <div class="published-icon"></div>
-            Published</a></li>
-          <li><a href="">
-            <div class="setting-icon"></div>
-            Setting</a></li>
-        </ul>
-      </div>
-    </div>
-  </div> -->    
-
   <div class="clearfix"></div>
   <div class="content">
     <div class="container">
@@ -91,7 +14,7 @@
                 </tr>
                 <tr>
                   <td><label>Client : </label>
-                   <span><%= @audit.client.name %></span></td>
+                   <span %><%= @audit.client.name%></span></td>
                   <td><label>Title : </label>
                    <span><%= @audit.title %></span></td>
                   <td><label>Scope : </label>
@@ -131,122 +54,27 @@
               </table>
             </div>
           </div>
-          <div class="container">
-            <%= form_for(@checklist_recommendation) do |f| %>
-            <div id="Accordion1">
-              <h3><a href="#">A6.11 Management Commitment to information Security</a> <span class="fright pending_msg">Pending</span></h3>
-              
-              <div>
-                <div class="row audit-title">
-                  
-                  <div class="col-lg-4">
-                  <div class="form-group clearfix">
-                      <label class="col-sm-5"><b>Artifact :</b> </label>
-                      <div class="col-sm-7"><a class="blue_link" href="">Information Security Policies</a> </div>
-                    </div>
-                    <div class="form-group clearfix">
-                      <label  class="col-sm-5"><b>Recommendation :</b><br></label>
-                       <div class="col-sm-7">
-                        <input class="audit-big-input" type="text">
-                      </div>
-                    </div>
-                    <div class="form-group clearfix">
-                      <label  class="col-sm-5"><b>Priority :</b> </label>
-                      <div class="col-sm-7">   
-                      <%= f.collection_select :recommendation_priority_id, Priority.all, :id, :name %>
-                      </div>
+          
+         <div class="clearfix"></div>
+                    
+                    <div class="container">
+                    <%= form_for(@checklist_recommendation) do |f| %>
+                    <%= render "recommendation",f: f %>
                     </div>
 
+                    <div class="clearfix"></div>
+                    <div class="fright paddingtop">
+                      <a class="black_btn" href="">Back</a> 
+                      <a class="grey_btn" href=""> Save Draft</a>
+                      <%= f.submit "Overallscore" , :class => "orange_btn"%></div>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="form-group clearfix">
-                      <label class="col-sm-5"><b>Comment :</b> </label>
-                      <div class="col-sm-7"> Some Comments by auditee</div>
-                       
-                    </div>
-                    <div class="form-group clearfix">
-                      <label  class="col-sm-5"><b>Reason :</b> </label>
-                      <div class="col-sm-7"> <input class="audit-big-input" type="text"> </div>
-                       
-                    </div>
-                    <div class="form-group clearfix">
-                      <label  class="col-sm-5"><b>Severity :</b> </label>
-                      <div class="col-sm-7">  <%= f.collection_select :recommendation_severity, Priority.all, :id, :name %>
-                      </div>
-                    </div>
-                    
-                    
-                  </div>
-                  <div class="col-lg-4"><div class="form-group clearfix">
-                      <label class="col-sm-5"><b>Target Date :</b> </label>
-                      <div class="col-sm-7"> <input id="datepicker2" value="10/10/2011" style="width:150px;" /></div>
-                        
-                    </div>
-                    <div class="form-group clearfix">
-                      <label  class="col-sm-5"><b>Status :</b> </label>
-                      <div class="col-sm-7">  <%= f.collection_select :recommendation_status_id, RecommendationStatus.all, :id, :name %> </div>
-                        
-                    </div>
-                 
-                    <div class="form-group clearfix">
-                      <label  class="col-sm-5"><b>Score :</b> </label>
-                      <div class="col-sm-7">
-                      <div class="number_link">
-                      <a class="active" href="">0</a>
-                      <a href="">1</a>
-                      <a href="">2</a>
-                      <a href="">3</a>
-                      <a href="">4</a>
-                      </div>
-                      </div>
-                    </div>
-                    
-                 
-                    
-                    <div class="form-group clearfix">
-                    <div class="col-sm-12 ">
-                    <!--   <a class="black_btn fright" href=""></a>  -->
-                      <%= f.submit :score , :class => "black_btn fright"%>
-                    </div>
-                    
-                    </div>
-                    </div>
-                    
-                </div>
+                </div>	
               </div>
-              <h3><a href="#">A6.11 Information Security Policy</a><span class="fright complete_msg">Completed</span></h3>
-              <div>
-                <p>Content 2</p>
-              </div>
-              <h3><a href="#">A6.13 Management Information Security Policy</a><span class="fright pending_msg">Pending</span></h3>
-              <div>
-                <p>Content 3</p>
-              </div>
-              <h3><a href="#">A6.14 Management Information Security Policy</a><span class="fright complete_msg">Completed</span></h3>
-              <div>
-                <p>Content 1</p>
-              </div>
-            </div>
-          </div>
-         <div class="clearfix"></div>
-                    <div class="fright paddingtop"><a class="black_btn" href="">Back</a> <a class="grey_btn" href=""> Save Draft</a> <a class="orange_btn" href="">Overall Score</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <% end %>
-  <!-- <div class="clearfix"></div>
-  <div class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="footer_left col-lg-6">2014 Â© FixNix Audit Management</div>
-        <div class="footer_right col-lg-6">Powered By<img src="img/footer_logo.png" alt=""/></div>
-      </div>
-    </div>
-  </div>
-</div> -->
+            </div>             
+        <% end %>
+
 <script type="text/javascript">
-$(window).load(function(){
+ $(window).load(function(){
   var $container = $('#grid_items');
   // initialize
   $container.masonry({
@@ -374,20 +202,39 @@ $(function() {
     <link href="http://cdn.kendostatic.com/2014.1.416/styles/kendo.default.min.css" rel="stylesheet" />
     <script src="http://cdn.kendostatic.com/2014.1.416/js/kendo.all.min.js"></script>
 <script>
-            $(document).ready(function() {
-                // create DatePicker from input HTML element
-        
-          $("#datepicker2").kendoDatePicker();
-                
-            });
+						$(document).ready(function() {
+							// create DatePicker from input HTML element
+
+							$(".datepicker2").kendoDatePicker();
+
+							$(".score_points").click(function(){
+								$(".score_points").removeClass('active')
+								$(this).addClass('active')
+							})     
+						});
+							
+							
+					// ajax for submitting the score method
+					function save_individual_score(id)
+					{
+							var recommendation = $("#recommendation_" +id).val()
+							var recommendation_priority = $("#recommendation_priority_id_" +id).val()
+							var reason = $("#reason_" +id).val()
+							var recommendation_severity = $("#recommendation_severity_id_" +id).val()
+							var closure_date = $("#closure_date_" +id).val()
+							var recommendation_status = $("#recommendation_status_id_" +id).val()
+							var recommendation_severity = $("#recommendation_severity_id_" +id).val()
+							$.ajax({
+									url: "/checklist_recommendations/update_individual_score",
+									type: "POST",
+                  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
+									data: {checklist_id :  id, checklist_type: 'AuditCompliance', recommendation: recommendation, reason: reason, closure_date: closure_date, recommendation_priority_id: recommendation_priority, recommendation_severity_id: recommendation_severity, recommendation_status_id: recommendation_status },
+									}).done(function() {
+									alert("dd")
+							});
+          } 
         </script>
-</body>
 
-
-
-
-
-  
   
 
 
