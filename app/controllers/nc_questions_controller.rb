@@ -18,17 +18,16 @@ class NcQuestionsController < ApplicationController
 	end
 
 	def create
-		@nc_question = NcQuestion.new(question_params)
-
-		if @nc_question.save
+		@audit = Audit.first		
+		if @audit.update_attributes(question_params)
 			redirect_to nc_questions_path
 		else
-			render new
+			render "new"
 		end
 	end
 
 	def question_params
-		params.require(:nc_question).permit(:question, :question_type_id, :priority_id, :target_date, :does_require_document, :nc_library, :auditee_id, question_options_attributes: [:value])
+		params.require(:audit).permit(nc_questions_attributes: [:question, :question_type_id, :priority_id, :target_date, :does_require_document, :nc_library, :auditee_id, question_options_attributes: [:value]])
 	end
 
 end
