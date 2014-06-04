@@ -52,8 +52,11 @@
                 <label class="col-sm-4">
                   <%= f.label :title, t('audit.title') %>
                 </label>
-                <div class="col-sm-7">
+                <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:title].present? %>">
                   <%= f.text_field :title, :class=>"audit-normal-input" %>
+                  <% if @audit.errors[:title].present? %>
+                    <div class="error_message"><%=  @audit.errors[:title][0]%></div>
+                  <% end %>
                 </div>
               </div>
               <div class="form-group clearfix">
@@ -113,8 +116,11 @@
                 <label class="col-sm-4 control-label">
                   <%= f.label :audit_type, t('audit.audit_type') %>
                 </label>
-                <div class="col-sm-7">
+                <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:title].present? %>">
                   <%= f.collection_select(:audit_type_id, AuditType.all, :id, :name, :prompt => true) %>
+                  <% if @audit.errors[:audit_type_id].present? %>
+                    <div class="error_message"><%=  @audit.errors[:audit_type_id][0]%></div>
+                  <% end %>
                 </div>
               </div>
 
@@ -186,24 +192,18 @@
                 </label>
                 <div class="col-sm-7">
                   <div class="form-group">
-                    <span style="width: 150px;" class="k-widget k-datepicker k-header">
-                      <span class="k-picker-wrap k-state-default">
-                        <input type="text" style="width: 100%;" value="Select Date" id="datepicker1" data-role="datepicker" class="k-input" role="combobox" aria-expanded="false" aria-owns="datepicker1_dateview" aria-disabled="false" aria-readonly="false">
-                        <span class="k-select" unselectable="on" role="button" aria-controls="datepicker1_dateview">
-                          <span class="k-icon k-i-calendar" unselectable="on">select
-                          </span>
-                        </span>
-                      </span>
-                    </span>
+                    <%= f.text_field :start_date, :class => "datepicker", :style =>"width:150px;" %>
                   </div>
                 </div>
               </div>
 
               <div class="form-group clearfix">
-                <label class="col-sm-4 control-label">End Date</label>
+                <label class="col-sm-4 control-label">
+                  <%= f.label :end_date, t('audit.end_date') %>
+                </label>
                 <div class="col-sm-7">
                   <div class="form-group">
-                   <span style="width: 150px;" class="k-widget k-datepicker k-header"><span class="k-picker-wrap k-state-default"><input type="text" style="width: 100%;" value="10/10/2011" id="datepicker" data-role="datepicker" class="k-input" role="combobox" aria-expanded="false" aria-owns="datepicker_dateview" aria-disabled="false" aria-readonly="false"><span class="k-select" unselectable="on" role="button" aria-controls="datepicker_dateview"><span class="k-icon k-i-calendar" unselectable="on">select</span></span></span></span>
+                   <%= f.text_field :end_date, :class => "datepicker1", :style =>"width:150px;" %>
                   </div>
                 </div>
               </div>
@@ -214,30 +214,43 @@
             </div>
             <div class="col-lg-4 col-sm-6 col-xs-12">
               <div class="form-group clearfix">
-                <label class="col-sm-4 control-label">Auditor</label>
-                <div class="col-sm-7">
-                  <select>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                  </select>
+                <label class="col-sm-4 control-label">
+                  <%= f.label :auditor, t('audit.auditor') %>
+                </label>
+                <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:auditor].present? %>">
+                  <%= f.select :auditor, options_for_select(@auditor_users.collect{|x| [x.full_name, x.id.to_i]}), {include_blank: 'Select Auditor' } %>
+                  <% if @audit.errors[:auditor].present? %>
+                    <div class="error_message"><%=  @audit.errors[:auditor][0]%></div>
+                  <% end %>
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-sm-6 col-xs-12">
-              <div class="form-group clearfix">
-                <label class="col-sm-4 control-label">Auditee</label>
-                <div class="col-sm-7">
-                  <select>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                  </select>
+
+            <div class="col-lg-4 col-sm-6 col-xs-12" id="auditee-list">
+              <% if @audit.errors[:auditees].present? %>
+                <%= @audit.errors[:auditees][0] %>
+              <% end %>
+              <% @audit.audit_auditees.build %>
+              <div class="form-group clearfix auditee-dropdown">
+                <div class='auditee-rows'>
+                  <%= f.fields_for :audit_auditees do |builder| %>
+                    <label class="col-sm-4 control-label">
+                      <%= builder.label :auditees, t('audit.auditee') %>
+                    </label>
+                    <div class="col-sm-7">
+                      <%= builder.select :user_id, options_for_select(@auditee_users.collect{|x| [x.full_name, x.id.to_i]}), {include_blank: 'Select Auditee' }, { :id => "locations-list"} %>
+                      <% if @audit.errors[:auditees].present? %>
+                        <div class="error_message"><%= @audit.errors[:auditees][0]%></div>
+                      <% end %>
+                    </div>
+                  <% end %>
                 </div>
+              </div>
+            </div>
+            <div class="col-sm-7">
+              <div class="form-group clearfix addissue">
+                <a href="javascript:void(0)" class="plus-icon" id="add_auditee">Add Auditee
+                </a>
               </div>
             </div>
             <div class="col-lg-4 col-sm-6 col-xs-12">
@@ -282,9 +295,14 @@
         }
     });
 
-    $("#datepicker").kendoDatePicker();
-    $("#datepicker1").kendoDatePicker();
+    $(".datepicker").kendoDatePicker();
+    $(".datepicker1").kendoDatePicker();
 
+    $('#add_auditee').click(function(){
+      var size = $('#auditee-list').find('.auditee-rows').size();
+      // console.log(cd append)
+      $("#auditee-list").append(""+"<div class='form-group clearfix auditee-dropdown'>"+$(".auditee-dropdown").html().replace('audit[audit_auditees_attributes][0][user_id]','audit[audit_auditees_attributes]['+size+'][user_id]')+"</div>"+"");
+    });
   });
 
   function get_departments(element){

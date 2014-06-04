@@ -117,6 +117,15 @@ $(document).ready(function(){
   //     $(".hidden").fadeIn('fast');   
   //   }            
   // }); 
+
+      $("#question_response").change(function(){
+          if($("#question_response").val() == "3"){
+            $("#hidden_stuff").fadeIn('fast');   
+          }
+          if($("#question_response").val() != "3"){
+            $("#hidden_stuff").fadeOut('fast');   
+          }            
+      });        
   
   
 });
