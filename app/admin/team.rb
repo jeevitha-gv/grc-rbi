@@ -29,7 +29,7 @@ ActiveAdmin.register Team do
       end
   end
 
-  permit_params :name
+  permit_params :name, :department_id
 
 
   index do
@@ -38,8 +38,13 @@ ActiveAdmin.register Team do
     actions
   end
 
+  show do
+    attributes_table :name, :section, :company, :department
+  end
+
   form do |f|
-    f.inputs "Team" do
+    f.inputs "New Team" do
+      f.input :department_id, :label => 'Department', :as => :select, :collection => Department.where(:location_id=>Company.first.locations.map(&:id))
       f.input :name
     end
     f.actions

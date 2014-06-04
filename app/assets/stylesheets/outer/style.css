@@ -469,6 +469,11 @@ a.edit-icon {
 	background-position: 15px 10px;
 	background-repeat: no-repeat;
 }
+.minus-icon {
+	background-image: url("/assets/outer/minus-icon.png");
+	background-position: 15px 10px;
+	background-repeat: no-repeat;
+}
 .audit-title label {
 	color: #4A4848;
 	font-size: 13px;
@@ -579,6 +584,65 @@ html, body {
 }
 .error_logo{ padding-top:15px; font-size:25px;}
 
+.attach-icon{ background-image:url(../images/attach-icon.png); background-repeat:no-repeat;padding: 0 0 0 18px;}
+.audit-title {
+    color: #252525;
+    font-size: 12px;
+}
+
+#Accordion1 a {
+  color: #252525;
+  font-size: 14px;
+} 
+.blue_link{ font-size:12px !important; color:#0085c8 !important; text-decoration:underline !important;  }
+
+.tab-content{padding-bottom: 30px; margin-bottom: 85px !important;display: inline-block;}
+.pending_msg{ color: #E24141;font-size: 12px;padding: 0 30px 0 0;}
+.complete_msg{ color: #606060;font-size: 12px;padding: 0 30px 0 0;}
+.number_link a{
+	background-color: #e0dedc;
+    border: 1px solid #d2d2d2;
+    border-radius: 5px;
+    padding:1px 5px;font-size: 12px !important;}
+.number_link a.active,.number_link a:hover{background-color: #F59035;}
+.block_link a.active{ background-color:#dc7d01; color:#fff !important;}
+.block_link a{ font-size:12px !important;padding: 4px 3px 4px 6px;background-color:#b6b5b5;line-height:30px;}
+
+.black_btn {
+  color: #FFFFFF !important;
+}
+
+.tab_main_title {
+  color: #534E4E;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 15px 0;
+  padding: 0 30px;
+}
+
+.grey_btn {
+    background-color: #c3c1c1;
+    border: medium none;
+    border-radius: 5px;
+    color: #302f2f !important;
+    font-size: 12px !important;
+    padding: 5px 20px;
+}
+.pending_active{  background: none repeat scroll 0 0 #D8D5D5 !important;}
+.grey_btn:hover{ background-color:#dbd8d8;}
+
+
+.audit-title h3 {
+    color: #4A4848;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 5px 0 10px;
+    padding: 0 0 0 20px;
+}
+
+.paddingtop{ padding-right: 15px;
+    padding-top: 15px;}
 
 
 
@@ -656,4 +720,11 @@ text-align: left;
 }
 
 .error_inputfield input{ border:1px solid  #932419!important;}
-
+.add-btn{
+	 margin: 0 0 20px 122px;
+	float: left;
+}
+.add-btn-padding{
+	padding: 6px 0;
+	display: block;
+}

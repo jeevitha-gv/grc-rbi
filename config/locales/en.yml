@@ -288,6 +288,16 @@ en:
     issues: "Issues"
     scope: "Scope"
     methodology: "Methodology"
+    audit_type: "Audit Type"
+    compliance_type: "Compliance Type"
+    standard : "Standard"
+    topic : "Topic"
+    location : "Location"
+    department : "Department"
+    start_date : "Start Date"
+    end_date : "End Date"
+    auditor : "Auditor"
+    auditee : "Auditee"
 
   nc_question:
     request: "Request"

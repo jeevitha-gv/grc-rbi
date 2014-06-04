@@ -4,14 +4,27 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   post 'admin/privileges/modal_previlege'
+  post 'admin/compliance_libraries/compliance_control_objectives'
+  post 'admin/compliance_libraries/compliance_controls'
+  post 'admin/compliance_libraries/compliance_domains'
   devise_for :users
 
   resources :home
 
-  resources :checklist_recommendations
+  resources :checklist_recommendations do
+    collection do
+      get 'auditee_response'
+      get 'audit_observation'
+    end
+  end
 
   resources :nc_questions
-  resources :audits
+
+  resources :audits do
+    get 'departments_list', on: :collection
+    get 'teams_list', on: :collection
+  end
+
 
   resource :user do
     collection do
