@@ -233,6 +233,18 @@ en:
           attributes:
             compliance_library_id:
               taken: "Already Scored! pls update it! "
+        audit:
+          attributes:
+            title:
+              blank: "Title can't be blank"
+              taken: "Title has been already used"
+            audit_type_id:
+              blank: "Auditor Type can't be blank"
+            auditor:
+              blank: "Auditor can't be blank"
+            auditees:
+              blank: "Auditee can't be blank"
+              taken: "Please select unique auditee"
 
   companies:
     company:  "Company Name"
