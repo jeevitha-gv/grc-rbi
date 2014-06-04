@@ -2,8 +2,9 @@ class Role < ActiveRecord::Base
 
    #publicactivity gem
     include PublicActivity::Model
-     tracked owner: ->(controller, model) { controller && controller.current_user }
-     tracked ip: ->(controller,model) {controller && controller.current_user.current_sign_in_ip}
+   #~ include PublicActivity::Common
+     #~ tracked owner: ->(controller, model) { controller && controller.current_user }, :if => Proc.new{ current_user }
+     #~ tracked ip: ->(controller,model) {controller && controller.current_user.current_sign_in_ip}
 	
  #validation
     validates :title, presence:true,:if => Proc.new{|f| f.title.blank? } 
@@ -12,7 +13,7 @@ class Role < ActiveRecord::Base
     validates :title, :uniqueness => {:scope => :company_id}, :if => Proc.new{ |f| !f.title.blank? }
    
 	
-    has_many :privileges
+   has_many :privileges
 	has_many :roles
 	belongs_to :company
 end

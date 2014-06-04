@@ -30,4 +30,14 @@ class Company < ActiveRecord::Base
   validates :contact_no, length: { is: 10},:if => Proc.new{|f| !f.contact_no.blank? }
   validates :address1, length: { in: 7..40 }, :if => Proc.new{|f| !f.address1.blank? }
   validates :address2, length: { in: 7..40 }, :if => Proc.new{|f| !f.address2.blank? }
+  
+  after_save :company_role_create
+  
+  private
+  def company_role_create
+    company = Company.last
+    Role.create(title: "auditor", company_id: company.id)
+    Role.create(title: "auditee", company_id: company.id)
+    Role.create(title: "CRO", company_id: company.id)
+  end
 end
