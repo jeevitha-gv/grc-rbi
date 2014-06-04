@@ -51,7 +51,7 @@
 .user_login {
 	color: #717171;
 	float: right;
-	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-family: 'Open Sans';
 	font-size: 13px;
 	padding: 20px 15px 11px;
 	background-color: #dddee0;
@@ -466,6 +466,11 @@ a.edit-icon {
 }
 .plus-icon {
 	background-image: url("/assets/outer/plus-icon.png");
+	background-position: 15px 10px;
+	background-repeat: no-repeat;
+}
+.minus-icon {
+	background-image: url("/assets/outer/minus-icon.png");
 	background-position: 15px 10px;
 	background-repeat: no-repeat;
 }

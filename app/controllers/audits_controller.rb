@@ -1,6 +1,7 @@
 class AuditsController < ApplicationController
   before_action :authenticate_user!
   before_filter :check_company_disabled
+  before_filter :audit_auditee_users, :only => [:new, :create]
 
   def index
 
@@ -34,7 +35,7 @@ class AuditsController < ApplicationController
 
   private
     def audit_params
-      params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id)
+      params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor, audit_auditees_attributes: [:user_id])
     end
 
     def current_company_disabled
@@ -42,5 +43,14 @@ class AuditsController < ApplicationController
         sign_out :user
         redirect_to new_user_session_path
       end
+    end
+
+    def audit_auditee_users
+      # for users with role auditor
+      @auditor_role = Role.where(:title=>"auditor", :company_id=>current_company.id).last
+      @auditor_users = User.where(:role_id=>@auditor_role.id)
+      # for users with role auditee
+      @auditee_role = Role.where(:title=>"auditee", :company_id=>current_company.id).last
+      @auditee_users = User.where(:role_id=>@auditee_role.id)
     end
 end

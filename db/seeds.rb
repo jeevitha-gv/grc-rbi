@@ -75,7 +75,7 @@ Role.delete_all
 
     Role.create([{title: 'company_admin'}])
     Role.create([{title: 'company user'}])
-
+  
 Section.delete_all
 
     Section.create([{name: 'Audit'}])
