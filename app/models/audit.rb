@@ -16,6 +16,7 @@ class Audit < ActiveRecord::Base
 
   accepts_nested_attributes_for :nc_questions
   accepts_nested_attributes_for :audit_auditees, reject_if: lambda { |a| a[:user_id].blank? }
+  accepts_nested_attributes_for :nc_questions, :allow_destroy => true
 
   # validations
   validates :title, presence:true
