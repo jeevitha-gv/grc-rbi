@@ -469,6 +469,11 @@ a.edit-icon {
 	background-position: 15px 10px;
 	background-repeat: no-repeat;
 }
+.minus-icon {
+	background-image: url("/assets/outer/minus-icon.png");
+	background-position: 15px 10px;
+	background-repeat: no-repeat;
+}
 .audit-title label {
 	color: #4A4848;
 	font-size: 13px;
