@@ -9,12 +9,12 @@ class UniversalMailer < ActionMailer::Base
 
   def notify_auditees_about_audit(audit)
   	@audit = audit
-  	mail(:to => User.where(:id => (audit.audit_auditees.map(&:user_id))).map(&:email), :subject => "You have been invited to an audit")
+  	mail(:to => audit.auditees.map(&:email), :subject => "You have been invited to an audit")
   end
 
-  def notify_auditee_that_checklist_is_prepared(audit)
+  def notify_auditees_that_checklist_is_prepared(audit)
     @audit = audit
-    mail(:to => User.where(:id => (audit.audit_auditees.map(&:user_id))).map(&:email), :subject => "Checklist has been prepared for Audit")    
+    mail(:to => audit.auditees.map(&:email), :subject => "Checklist has been prepared for Audit")    
   end
 
   def notify_auditor_that_auditee_has_answered(audit)
@@ -24,7 +24,7 @@ class UniversalMailer < ActionMailer::Base
 
   def notify_auditee_about_recommendations(audit)
     @audit = audit
-    mail(:to => User.where(:id => (audit.audit_auditees.map(&:user_id))).map(&:email), :subject => "Auditor has given a recommendation")  
+    mail(:to => audit.auditees.map(&:email), :subject => "Auditor has given a recommendation")  
   end
 
   def notify_auditor_about_responses(audit)
@@ -34,7 +34,7 @@ class UniversalMailer < ActionMailer::Base
 
   def notify_auditee_about_observations(audit)
     @audit = audit
-    mail(:to => User.where(:id => (audit.audit_auditees.map(&:user_id))).map(&:email), :subject => "Auditor has submitted an observation for your response")
+    mail(:to => audit.auditees.map(&:email), :subject => "Auditor has submitted an observation for your response")
   end
 
 end

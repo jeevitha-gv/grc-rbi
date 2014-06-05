@@ -11,7 +11,7 @@ class Audit < ActiveRecord::Base
   has_many :checklist_recommendations, through: :audit_compliances
   has_many :audit_compliances
   has_many :audit_auditees
-  has_many :auditees, through: :audit_auditees, :class_name=>"User", :foreign_key => "user_id"
+  has_many :auditees, through: :audit_auditees, :source => :user
 
   accepts_nested_attributes_for :nc_questions
   accepts_nested_attributes_for :audit_auditees, reject_if: lambda { |a| a[:user_id].blank? }
