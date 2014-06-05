@@ -14,7 +14,7 @@ class UniversalMailer < ActionMailer::Base
 
   def notify_auditee_that_checklist_is_prepared(audit)
     @audit = audit
-    mail(:to => User.where(:id => audit.audit_auditees).last.email, :subject => "Checklist has been prepared for Audit")
+    mail(:to => User.where(:id => (audit.audit_auditees.map(&:user_id))).map(&:email), :subject => "Checklist has been prepared for Audit")    
   end
 
   def notify_auditor_that_auditee_has_answered(audit)
@@ -23,15 +23,18 @@ class UniversalMailer < ActionMailer::Base
   end
 
   def notify_auditee_about_recommendations(audit)
-
+    @audit = audit
+    mail(:to => User.where(:id => (audit.audit_auditees.map(&:user_id))).map(&:email), :subject => "Auditor has given a recommendation")  
   end
 
   def notify_auditor_about_responses(audit)
-
+    @audit = audit
+    mail(:to => User.where(:id => audit.auditor).last.email, :subject => "Auditee has submitted a response to your recommendation")
   end
 
-  def notify_everyone_about_observations(audit)
-
+  def notify_auditee_about_observations(audit)
+    @audit = audit
+    mail(:to => User.where(:id => (audit.audit_auditees.map(&:user_id))).map(&:email), :subject => "Auditor has submitted an observation for your response")
   end
 
 end
