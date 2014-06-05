@@ -4,7 +4,6 @@ class AuditsController < ApplicationController
   before_filter :audit_auditee_users, :only => [:new, :create]
 
   def index
-
   end
 
 
@@ -25,7 +24,9 @@ class AuditsController < ApplicationController
   def create
     @audit = Audit.new(audit_params)
 
-    if @audit.save
+    if @audit.save                
+      UniversalMailer.notify_auditor_about_audit(@audit).deliver      
+      UniversalMailer.notify_auditees_about_audit(@audit).deliver
       redirect_to new_audit_path
     else
       render 'new'
