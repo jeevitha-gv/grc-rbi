@@ -5,5 +5,6 @@ json.data do |json|
 		json.name compliance.name
 		json.artifacts compliance.artifacts.map(&:name)
 		json.priority @priorities.map(&:name)
+		json.auditee @auditees.map(&:user_name)
 	end
 end
