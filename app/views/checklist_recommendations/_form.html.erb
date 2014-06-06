@@ -230,7 +230,6 @@ $(function() {
                   beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
                   data: {checklist_id :  id, checklist_type: 'AuditCompliance', recommendation: recommendation, reason: reason, closure_date: closure_date, recommendation_priority_id: recommendation_priority, recommendation_severity_id: recommendation_severity, recommendation_status_id: recommendation_status },
                   }).done(function() {
-                  alert("dd")
               });
           } 
         </script>

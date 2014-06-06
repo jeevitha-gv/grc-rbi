@@ -12,6 +12,7 @@ class Audit < ActiveRecord::Base
   has_many :audit_compliances
   has_many :audit_auditees
   has_many :auditees, through: :audit_auditees, :source => :user
+ 
 
   accepts_nested_attributes_for :nc_questions
   accepts_nested_attributes_for :audit_auditees, reject_if: lambda { |a| a[:user_id].blank? }
@@ -21,7 +22,7 @@ class Audit < ActiveRecord::Base
   validates :title, presence:true
   validates_format_of :title, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.title.blank? }
   validates :title, uniqueness:true, :if => Proc.new{ |f| !f.title.blank? }
-  validates :auditor, presence:true
+  #validates :auditor, presence:true
   validates :audit_type_id, presence:true
   validates :standard_id, presence:true, :if => Proc.new{ |f| !f.compliance_type.blank? }
   validates_format_of :issue, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.issue.blank? }
@@ -35,6 +36,14 @@ class Audit < ActiveRecord::Base
   validate :check_auditees_uniq
   validate :check_auditees_presence
 
+  delegate :name, :to => :client, prefix: true
+  delegate :name, :to => :audit_type, prefix: true, allow_nil: true
+
+
+  def answered_compliances
+    self.audit_compliances.where(is_answered: true).map(&:compliance_library)
+  end
+
 
   private
   def check_auditees_uniq
@@ -44,9 +53,6 @@ class Audit < ActiveRecord::Base
     end
   end
 
-  def answered_compliances
-    self.audit_compliances.where(is_answered: true).map(&:compliance_library)
-  end
 
   def check_auditees_presence
     errors.add(:auditees, ("Please select auditee")) unless audit_auditees.present?
