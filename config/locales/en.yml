@@ -237,6 +237,12 @@ en:
           attributes:
             priority_id:
               taken: "Remainder has been already in set! pls update it! "
+        nc_question:
+          attributes:
+            question:
+              blank: "Request cannot be blank"
+            target_date:
+              blank: "Date cannot be blank"
 
   companies:
     company:  "Company Name"
