@@ -12,6 +12,7 @@ class Audit < ActiveRecord::Base
   has_many :audit_compliances
   has_many :audit_auditees
   has_many :auditees, through: :audit_auditees, :source => :user
+  belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
  
 
   accepts_nested_attributes_for :nc_questions
@@ -36,8 +37,11 @@ class Audit < ActiveRecord::Base
   validate :check_auditees_uniq
   validate :check_auditees_presence
 
-  delegate :name, :to => :client, prefix: true
+  delegate :name, :to => :client, prefix: true, allow_nil: true
   delegate :name, :to => :audit_type, prefix: true, allow_nil: true
+  delegate :full_name, :to => :auditory, prefix: true, allow_nil: true
+
+  scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
 
 
   def answered_compliances
