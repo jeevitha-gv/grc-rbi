@@ -51,8 +51,10 @@ class Audit < ActiveRecord::Base
 
   private
   def check_auditees_uniq
-    check_user_id = audit_auditees.size == audit_auditees.collect{|x| x.user_id}.uniq.size
-    errors.add(:auditees, ("Please select unique auditees")) if check_user_id == false
+    if self.audit_auditees.present?
+      check_user_id = audit_auditees.size == audit_auditees.collect{|x| x.user_id}.uniq.size
+      errors.add(:auditees, ("Please select unique auditees")) if check_user_id == false
+    end
   end
 
 
