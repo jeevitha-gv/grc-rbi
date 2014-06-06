@@ -3,7 +3,7 @@ class ChecklistRecommendationsController < ApplicationController
 
 	 def new
 	 	@audit = Audit.find(params[:id]) # need to change with permission
-	    @controls = @audit.answered_compliances
+	  @controls = @audit.answered_compliances
 	 	@checklist_recommendation = ChecklistRecommendation.new
 	 	@score = Score.all
 	 end
