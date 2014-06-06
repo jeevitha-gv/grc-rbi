@@ -37,6 +37,14 @@ class Audit < ActiveRecord::Base
   validate :check_auditees_presence
 
 
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when '.csv' then Roo::CSV.new(file.path)
+    when '.xlsx' then Roo::Excelx.new(file.path)
+    else raise "Unknown file type: #{file.original_filename}"
+    end
+  end
+
   private
   def check_auditees_uniq
     check_user_id = audit_auditees.size == audit_auditees.collect{|x| x.user_id}.uniq.size

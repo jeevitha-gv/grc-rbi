@@ -45,6 +45,9 @@ gem 'activeadmin', :path => 'vendor/active_admin'
 gem 'carrierwave'
 gem 'rmagick'
 
+# For uploading spreadsheets
+gem 'roo'
+
 gem 'cancan'
 gem 'pry'
 
