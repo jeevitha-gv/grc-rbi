@@ -52,3 +52,6 @@ gem 'public_activity'
 
 # bootstrap
 gem 'bootstrap-sass'
+
+# HighCharts
+gem 'highcharts-rails', '~> 4.0.1'
