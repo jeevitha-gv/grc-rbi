@@ -233,6 +233,10 @@ en:
           attributes:
             compliance_library_id:
               taken: "Already Scored! pls update it! "
+        reminder:
+          attributes:
+            priority_id:
+              taken: "Remainder has been already in set! pls update it! "
 
   companies:
     company:  "Company Name"
