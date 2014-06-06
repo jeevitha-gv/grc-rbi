@@ -1,7 +1,475 @@
-<div class="container">
-<title>Audit</title>
-<!-- <p> <a href="/admin/settings">Company Admin Settings</a></p> -->
-<!-- <p> <a href="/activities">Audit Trail</a></p> -->
-<p> <h4>FixNix Audit Management</h4></p>
-<div id="footer-adjust"></div>
+<div class="clearfix"></div>
+<div class="content">
+  <div class="container">
+    <div class="row"> 
+      <!-- Nav tabs -->
+      <div class="fright">
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+      </div>
+      <div id="example" class="k-content">
+        <div class="panel-container">
+          <div id="tabstrip">
+            <ul>
+              <li class="k-state-active"> All </li>
+              <li> Planned </li>
+              <li> In Progress </li>
+              <li> Published </li>
+            </ul>
+            <div class="row panel-block">
+              <div class="col-md-12">
+                <div class="box-wrapper">
+                  <div id="grid"></div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix panel-block">  
+               <div class="row panel-block">
+                <div class="col-md-12">
+                   <div class="box-wrapper">
+                       <div id="grid1"></div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="clearfix panel-block">
+               <div class="clearfix panel-block">  
+               <div class="row panel-block">
+                <div class="col-md-12">
+                   <div class="box-wrapper">
+                       <div id="grid2"></div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="clearfix panel-block"> 
+            	<div class="clearfix panel-block">  
+               <div class="row panel-block">
+                <div class="col-md-12">
+                   <div class="box-wrapper">
+                       <div id="grid3"></div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script type="text/javascript">
+$(window).load(function(){
+	var $container = $('#grid_items');
+	// initialize
+	$container.masonry({
+	  columnWidth: 292,
+	  itemSelector: '.item',
+	  isFitWidth: true
+	});
+	
+	
+	$(".block_banner img").each(function(index, element) {
+        var screenImage = $(this);
+
+		// Create new offscreen image to test
+		var theImage = new Image();
+		theImage.src = screenImage.attr("src");
+		
+		var imageHeight = theImage.height;
+		
+		$(this).css("max-height",imageHeight);
+		$(this).css("min-height",imageHeight);
+    });
+});
+
+$(".click_icon").click(function() {
+			$(".share_pop").show();
+});
+
+$(".click_icon").click(function(){
+		$(".share_pop").show();
+});
+	
+$(document).ready(function(){
+	
+	Top_postion = $(window).scrollTop();
+	
+	$( ".user_login" ).mouseenter(function() {
+		$(this).addClass("active");
+		$(".account_header_dropdown").slideDown(100);	  
+	})
+	.mouseleave(function() {
+		$(this).removeClass("active");
+		$(".account_header_dropdown").hide();
+	});
+	
+	//for notification drop hide in outside click
+	onclick_icon = 0;	  
+	$(".click_icon").mouseenter(function() {
+		onclick_icon = 0;	  
+	})
+	.mouseleave(function() {
+		onclick_icon = 1;	  
+	});
+	
+	
+	$("body").click(function(){
+		if(onclick_icon){
+			$(".share_pop").hide();
+		}
+	});
+	
+	
+	/* placeholder */
+	$(".place_holder").each(function(index, element) {
+		placeholder = $(this).attr("data-original");
+		$(this).val(placeholder);
+		$(this).removeClass("active");
+    });
+
+	$(".place_holder").focus(function(){
+		placeholder = $(this).attr("data-original");
+		current_value = $(this).val();
+		if(current_value==placeholder){
+			$(this).val("");
+			$(this).addClass("active");
+		}
+	});
+	$(".place_holder").blur(function(){
+		placeholder = $(this).attr("data-original");
+		current_value = $(this).val();
+		if(current_value==""){
+			$(this).val(placeholder);
+			$(this).removeClass("active");
+		}else{
+			$(this).addClass("active");
+		}
+	});
+	$(".place_holder").click(function(){
+		placeholder = $(this).attr("data-original");
+		current_value = $(this).val();
+		if(current_value==placeholder){
+			$(this).val("");
+			$(this).addClass("active");
+		}
+	});
+	/* placeholder */
+	
+	
+});
+/*$(window).scroll(function(){
+	Top_postion = $(window).scrollTop();
+	
+	if(Top_postion>10){
+		$(".go_to_top").show();
+	}else{
+		$(".go_to_top").hide();
+	}
+});
+$(".go_to_top").click(function(){
+	top = 0;
+	$("html, body").animate({scrollTop: "0"}, 800);
+});
+*/
+</script> 
+
+<script type="text/javascript">
+			$(document).ready(function() {
+				// Fancybox
+				$(".fancybox").fancybox();
+				
+				// Kendo Datapicker
+				$("#datepicker").kendoDatePicker();
+				
+				// Kendo Tab
+				$("#tabstrip").kendoTabStrip({
+					animation:  {
+					    open: {
+						effects: "fadeIn"
+					    }
+					}
+				});
+			    
+				// Kendo Panel
+				$("#panelbar").kendoPanelBar();
+
+				dataSource = new kendo.data.DataSource({
+					transport: {
+						read: {
+							url: '/audits',
+							dataType: 'json'
+						}
+					},
+					schema: {
+				        errors: function(response) {
+				         return response.errors;
+				      	},
+						data: "data",
+						model: {
+							id: "id",
+							fields: {
+								title: { type: "string" },
+								client: { type: "string" },
+								audit_type: { type: "string" },
+								compliance_type: { type: "string" },
+								auditor: {type: "string"}
+							}
+						}
+					}
+				});
+				 
+			    
+				// Kendo Grid for all
+
+				$("#grid").kendoGrid({
+					dataSource: dataSource,
+					// transport: {
+					// 	read: {
+					// 	 url: '/audits/status_planned',
+					// 	type: "post",
+					// 	dataType: 'json'
+					// 	},
+					// dataSource: {
+					//     data: [],
+					//     schema: {
+					// 	model: {
+					// 	    fields: {
+					// 		Created: { type: "string" },
+					// 		Notes: { type: "string" },
+					// 		Edit: { type: "string" },
+					// 	    }
+					// 	}
+					//     },
+					//     pageSize: 20
+					// },
+					height: 'auto',
+					scrollable: true,
+					sortable: true,
+					filterable: true,
+					pageable: {
+					    input: true,
+					    numeric: false
+					},
+					columns: [
+					    { field: "title", title: "Audit Title" ,width: "35%"},
+					    { field: "client", title: "Client Name", width: "35%" },
+					    { field: "audit_type", title: "Audit Type", width: "35%" },
+					    { field: "compliance_type", title: "Compliance Type", width: "35%" },
+					    { field: "auditor", title: "Auditor Name", width: "35%" },
+
+					    { field: "Edit", command: ["Set","tick","tick1","book","pdf","edit"], title: "Edit", width: "180px" }
+					],
+					editable: "popup"
+				});
+
+
+
+                $("#panelbar2").kendoPanelBar();
+
+				dataSource = new kendo.data.DataSource({
+					transport: {
+						read: {
+							url: '/audits/status_planned',
+							dataType: 'json'
+						}
+					},
+					schema: {
+				        errors: function(response) {
+				         return response.errors;
+				      	},
+						data: "data",
+						model: {
+							id: "id",
+							fields: {
+								title: { type: "string" },
+								client: { type: "string" },
+								audit_type: { type: "string" },
+								compliance_type: { type: "string" },
+								auditor: {type: "string"}
+							}
+						}
+					}
+				});                 
+
+
+                  //grid for planned
+				$("#grid1").kendoGrid({
+					dataSource: dataSource,
+					height: 'auto',
+					scrollable: true,
+					sortable: true,
+					filterable: true,
+					pageable: {
+					    input: true,
+					    numeric: false
+					},
+					columns: [
+					    { field: "title", title: "Audit Title" ,width: "35%"},
+					    { field: "client", title: "Client Name", width: "35%" },
+					    { field: "audit_type", title: "Audit Type", width: "35%" },
+					    { field: "compliance_type", title: "Compliance Type", width: "35%" },
+					    { field: "auditor", title: "Auditor Name", width: "35%" },
+
+					    { field: "Edit", command: ["Set","tick","tick1","book","pdf","edit"], title: "Edit", width: "180px" }
+					],
+					editable: "popup"
+				});
+
+
+
+                
+                $("#panelbar2").kendoPanelBar();
+
+				dataSource = new kendo.data.DataSource({
+					transport: {
+						read: {
+							url: '/audits',
+							dataType: 'json'
+						}
+					},
+					schema: {
+				        errors: function(response) {
+				         return response.errors;
+				      	},
+						data: "data",
+						model: {
+							id: "id",
+							fields: {
+								title: { type: "string" },
+								client: { type: "string" },
+								audit_type: { type: "string" },
+								compliance_type: { type: "string" },
+								auditor: {type: "string"}
+							}
+						}
+					}
+				});
+
+
+                 //grid for InProgress
+				$("#grid2").kendoGrid({
+					dataSource: dataSource,
+					height: 'auto',
+					scrollable: true,
+					sortable: true,
+					filterable: true,
+					pageable: {
+					    input: true,
+					    numeric: false
+					},
+					columns: [
+					    { field: "title", title: "Audit Title" ,width: "35%"},
+					    { field: "client", title: "Client Name", width: "35%" },
+					    { field: "audit_type", title: "Audit Type", width: "35%" },
+					    { field: "compliance_type", title: "Compliance Type", width: "35%" },
+					    { field: "auditor", title: "Auditor Name", width: "35%" },
+
+					    { field: "Edit", command: ["Set","tick","tick1","book","pdf","edit"], title: "Edit", width: "180px" }
+					],
+					editable: "popup"
+				});
+
+
+
+
+
+
+
+				 $("#panelbar2").kendoPanelBar();
+
+				dataSource = new kendo.data.DataSource({
+					transport: {
+						read: {
+							url: '/audits',
+							dataType: 'json'
+						}
+					},
+					schema: {
+				        errors: function(response) {
+				         return response.errors;
+				      	},
+						data: "data",
+						model: {
+							id: "id",
+							fields: {
+								title: { type: "string" },
+								client: { type: "string" },
+								audit_type: { type: "string" },
+								compliance_type: { type: "string" },
+								auditor: {type: "string"}
+							}
+						}
+					}
+				});
+				
+                  
+                  //grid for published
+				$("#grid3").kendoGrid({
+					dataSource: dataSource,
+					height: 'auto',
+					scrollable: true,
+					sortable: true,
+					filterable: true,
+					pageable: {
+					    input: true,
+					    numeric: false
+					},
+					columns: [
+					    { field: "title", title: "Audit Title" ,width: "35%"},
+					    { field: "client", title: "Client Name", width: "35%" },
+					    { field: "audit_type", title: "Audit Type", width: "35%" },
+					    { field: "compliance_type", title: "Compliance Type", width: "35%" },
+					    { field: "auditor", title: "Auditor Name", width: "35%" },
+
+					    { field: "Edit", command: ["Set","tick","tick1","book","pdf","edit"], title: "Edit", width: "180px" }
+					],
+					editable: "popup"
+				});
+
+				
+				// Editable select box
+				$('.editable-select').change(function(){ 
+					modify();
+				});
+
+				function modify(){
+					$('.editable-input').val($('.editable-select').val());
+					output();
+				}
+
+				function output(){
+					$('.editable-result').text('value: ' + $('.editable-input').val());
+				}
+
+				$('.editable-input').on('click', function(){
+					$(this).select()
+				}).on('blur', function(){
+					output();
+				})
+
+				modify();
+				
+				// More contacts show
+				$(".more-link").click(function(){
+					if($(this).html() == "More")
+						$(this).html("Less").parent().siblings(".more-info").show();
+					else
+						$(this).html("More").parent().siblings(".more-info").hide();
+				});
+			});
+			
+			// Edit Popup
+			$(window).load(function(){
+				$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");
+				
+			});
+			
+		</script>

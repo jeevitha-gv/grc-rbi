@@ -1,3 +1,8 @@
+<style>
+  #hidden_stuff{
+    display: none;
+  }
+</style>
 <%= form_for(@audit, url: {controller: "nc_questions", action: "create"},:method => "post") do |f| %>
 
 <%= f.fields_for :nc_questions do |builder| %>

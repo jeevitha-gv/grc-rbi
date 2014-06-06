@@ -7,12 +7,12 @@ class Audit < ActiveRecord::Base
   belongs_to :client
   belongs_to :audit_status
   belongs_to :audit_type
-
   has_many :nc_questions
   has_many :checklist_recommendations, through: :audit_compliances
   has_many :audit_compliances
   has_many :audit_auditees
-  has_many :auditees, through: :audit_auditees, :class_name=>"User", :foreign_key => "user_id"
+  has_many :auditees, through: :audit_auditees, :source => :user
+
 
   accepts_nested_attributes_for :nc_questions
   accepts_nested_attributes_for :audit_auditees, reject_if: lambda { |a| a[:user_id].blank? }
@@ -22,7 +22,7 @@ class Audit < ActiveRecord::Base
   validates :title, presence:true
   validates_format_of :title, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.title.blank? }
   validates :title, uniqueness:true, :if => Proc.new{ |f| !f.title.blank? }
-  validates :auditor, presence:true
+  #validates :auditor, presence:true
   validates :audit_type_id, presence:true
   validates :standard_id, presence:true, :if => Proc.new{ |f| !f.compliance_type.blank? }
   validates_format_of :issue, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.issue.blank? }
@@ -36,6 +36,13 @@ class Audit < ActiveRecord::Base
   validate :check_auditees_uniq
   validate :check_auditees_presence
 
+  delegate :name, :to => :client, prefix: true
+  delegate :name, :to => :audit_type, prefix: true, allow_nil: true
+
+
+  def answered_compliances
+    self.audit_compliances.where(is_answered: true).map(&:compliance_library)
+  end
 
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)
@@ -47,8 +54,10 @@ class Audit < ActiveRecord::Base
 
   private
   def check_auditees_uniq
-    check_user_id = audit_auditees.size == audit_auditees.collect{|x| x.user_id}.uniq.size
-    self.errors[:auditees] = MESSAGES['audit']['failure']['auditee_unique'] if check_user_id == false
+    if self.audit_auditees.present?
+      check_user_id = audit_auditees.size == audit_auditees.collect{|x| x.user_id}.uniq.size
+      errors.add(:auditees, ("Please select unique auditees")) if check_user_id == false
+    end
   end
 
   def check_auditees_presence

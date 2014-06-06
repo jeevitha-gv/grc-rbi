@@ -4,8 +4,8 @@ class AuditsController < ApplicationController
   before_filter :audit_auditee_users, :only => [:new, :create]
 
   def index
-
-  end
+    @audits = Audit.all
+ end
 
   def departments_list
     @departments = Department.where(:location_id=>params[:location_id]).all
@@ -24,7 +24,9 @@ class AuditsController < ApplicationController
   def create
     @audit = Audit.new(audit_params)
 
-    if @audit.save
+    if @audit.save                
+      UniversalMailer.notify_auditor_about_audit(@audit).deliver      
+      UniversalMailer.notify_auditees_about_audit(@audit).deliver
       redirect_to new_audit_path
     else
       render 'new'
@@ -105,7 +107,7 @@ class AuditsController < ApplicationController
 
   private
     def audit_params
-      params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor, audit_auditees_attributes: [:user_id])
+      params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :audit_status_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor, audit_auditees_attributes: [:user_id])
     end
 
     def current_company_disabled
@@ -123,4 +125,10 @@ class AuditsController < ApplicationController
       @auditee_role = Role.where(:title=>"auditee", :company_id=>current_company.id).last
       @auditee_users = User.where(:role_id=>@auditee_role.id)
     end
+
+    # def status_planned
+    #   status = AuditStatus.where("name =?",params[:status])
+    #   @audits = Audit.where('audit_status_id= ?',status.id)
+    #   render json: {:data=> audits}
+    # end
 end

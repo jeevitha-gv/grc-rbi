@@ -4,6 +4,7 @@ class Client < ActiveRecord::Base
   has_many :audits
   belongs_to :company #client belongs to a company
 
+
   # validations
   validates :name, presence:true
   validates_format_of :name, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.name.blank? }

@@ -245,6 +245,12 @@ en:
             auditees:
               blank: "Auditee can't be blank"
               taken: "Please select unique auditee"
+        nc_question:
+          attributes:
+            question:
+              blank: "Request cannot be blank"
+            target_date:
+              blank: "Date cannot be blank"
 
   companies:
     company:  "Company Name"
@@ -319,4 +325,13 @@ en:
     priority: "Priority"
     need_doc: "Need Document?"
     save_to_lib: "Save to Request Library"
+
+  checklist_recommendation:
+    recommendation: "Recommendation"
+    response: "Response"
+    closure_date: "Closure Date"
+    priority: "Priority"
+    severity: "severity"
+    score: "Score"
+    comment: "Comment"
 

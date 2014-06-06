@@ -1,0 +1,2 @@
+module NcQuestionsHelper
+end

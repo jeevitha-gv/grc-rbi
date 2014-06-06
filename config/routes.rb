@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     collection do
       get 'auditee_response'
       get 'audit_observation'
+      post 'update_individual_score'
     end
   end
 
@@ -25,7 +26,6 @@ Rails.application.routes.draw do
     get 'teams_list', on: :collection
     post 'import_files', on: :collection
   end
-
 
 
   resource :user do
@@ -58,6 +58,7 @@ Rails.application.routes.draw do
    resources :activities, :except => [:show]
 
     resources :compliance_libraries
+    resources :audit_compliances
 
 
    get 'welcome', to: 'companies#welcome', :as => :welcome
