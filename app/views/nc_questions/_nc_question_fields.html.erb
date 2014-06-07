@@ -17,12 +17,12 @@
               </div>              
 
             </div>   
-            <div id="hidden_stuff" class="col-sm-7 add-btn">                
+            <div class="col-sm-7 add-btn hidden-item">                
                 <%= f.fields_for :question_options do |builder| %>
                   <%= render 'question_option_fields', :f => builder %>                   
                 <% end %>
                 <div class="form-group clearfix addissue"> 
-                  <%= link_to_add_choices "Add New Option", f, :question_options %>                     
+                  <%= link_to_add_choices "Add Option", f, :question_options %>                     
               </div>
                  
               </div>

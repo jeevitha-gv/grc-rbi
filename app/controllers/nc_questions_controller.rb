@@ -6,14 +6,12 @@ class NcQuestionsController < ApplicationController
 
 	def new
 		@audit = Audit.first
-		# @question_option = QuestionOption.new
 		@audit.nc_questions.build unless @audit.nc_questions.present?			
     	@audit.nc_questions.first.question_options.build unless @audit.nc_questions.first.question_options.present?	
 	end
 
 	def create
 		@audit = Audit.first
-		binding.pry
 		if @audit.update_attributes(question_params)
 			redirect_to nc_questions_path
 		else
