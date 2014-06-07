@@ -151,7 +151,6 @@
 	// ajax for submitting the score method
 	function save_individual_score(id)
 	{
-			var control_id = id;
 			var checklist_id = $("#checklist_id_"+id).val()
 			var recommendation = $("#recommendation_" +id).val()
 			var recommendation_priority = $("#recommendation_priority_id_" +id).val()
@@ -161,6 +160,9 @@
 			var recommendation_status = $("#recommendation_status_id_" +id).val()
 			var recommendation_severity = $("#recommendation_severity_id_" +id).val()
 			var score = $("#score_" +id).val()
+			var result = score_input_check(id)
+			if (result)
+		{
 			$.ajax({
 					url: "/checklist_recommendations/update_individual_score",
 					type: "POST",
@@ -169,4 +171,114 @@
 					}).done(function() {
 					alert("dd")
 			});
+		}
+			function score_input_check(id)
+			{
+					var score_recommendation = score_recommendation()
+					var score_priority = score_priority()
+					var score_reason = score_reason()
+					var score_severity = score_severity()
+					var score_closure_date = score_closure_date()
+					var score_status = score_status()
+					if (score_recommendation && score_priority && score_reason && score_severity && score_closure_date && score_status)
+					{
+					return true
+					}
+				else
+				{
+				return false
+				}
+				function score_recommendation()
+					{
+						if (recommendation == '')
+						{
+						$('#recommendation_'+id).addClass("error_input");
+						$('#error_recommendation_'+id).show()
+						return false
+						}
+						else
+						{
+						$('#recommendation_'+id).removeClass("error_input");
+						$('#error_recommendation_'+id).hide()
+							return true
+						}
+					//~ });
+					return value
+					}
+					function score_priority()
+					{
+					if (recommendation_priority == '')
+						{
+						$('#recommendation_priority_id_'+id).addClass("error_input");
+						$('#error_priority_'+id).show()
+						return false
+						}
+						else
+						{
+						$('#recommendation_priority_id_'+id).removeClass("error_input");
+						$('#error_priority_'+id).hide()
+							return true
+						}
+					}
+					function score_reason()
+					{
+					if (reason == '')
+						{
+						$('#reason_'+id).addClass("error_input");
+						$('#error_reason_'+id).show()
+						return false
+						}
+						else
+						{
+						$('#reason_'+id).removeClass("error_input");
+						$('#error_reason_'+id).hide()
+							return true
+						}
+					}
+					function score_severity()
+					{
+					if (recommendation_severity == '')
+						{
+						$('#recommendation_severity_id_'+id).addClass("error_input");
+						$('#error_severity_'+id).show()
+						return false
+						}
+						else
+						{
+						$('#recommendation_severity_id_'+id).removeClass("error_input");
+						$('#error_severity_'+id).hide()
+							return true
+						}
+					}
+					function score_closure_date()
+					{
+					if (closure_date == '')
+						{
+						$('#closure_date_'+id).addClass("error_input");
+						$('#error_closure_date_'+id).show()
+						return false
+						}
+						else
+						{
+						$('#closure_date_'+id).removeClass("error_input");
+						$('#error_closure_date_'+id).hide()
+							return true
+						}
+					}
+					function score_status()
+					{
+					if (recommendation_status == '')
+						{
+						$('#recommendation_status_id_'+id).addClass("error_input");
+						$('#error_status_'+id).show()
+						return false
+						}
+						else
+						{
+						$('#recommendation_status_id_'+id).removeClass("error_input");
+						$('#error_status_'+id).hide()
+							return true
+						}
+					}
+			}
 	} 

@@ -22,8 +22,7 @@ class ChecklistRecommendationsController < ApplicationController
 					@checklist_recommendation = ChecklistRecommendation.new(check)
 					 @checklist_recommendation.recommendation_completed = true unless params[:commit] == 'Save Draft'
 					if @checklist_recommendation.save
-											@checklist_recommendation.checklist.update_attributes(:score_id => score)
-						@checklist_recommendation
+						@checklist_recommendation.checklist.update_attributes(:score_id => score)
 					else
 						render 'new'
 					end
@@ -46,20 +45,21 @@ class ChecklistRecommendationsController < ApplicationController
 	end
 
 	def update_individual_score
-		checklist_recommendation = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?',params[:checklist_recommendation][:checklist_id], params[:checklist_recommendation][:checklist_type]).first
+		@checklist_recommendation = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?',params[:checklist_recommendation][:checklist_id], params[:checklist_recommendation][:checklist_type]).first
 		score = params[:checklist_recommendation][:score]
 		params[:checklist_recommendation].delete("score") 
-	if checklist_recommendation.nil?
-   @checklist_recommendation = ChecklistRecommendation.new(checklist_params)
-   @checklist_recommendation.save
+	if @checklist_recommendation.nil?
+		@checklist_recommendation = ChecklistRecommendation.new(checklist_params)
+		@checklist_recommendation.checklist.update_attributes(:score_id => score) if  @checklist_recommendation.save
 	else
-		checklist_recommendation.update(checklist_params)
+		@checklist_recommendation.checklist.update(:score_id => score)
+		@checklist_recommendation.update(checklist_params)
 	end
 end
 
 	private
 	  def checklist_params
-	    params.require(:checklist_recommendation).permit(:checklist_id, :checklist_type, :auditee_id, :recommendation, :reason, :corrective, :preventive, :closure_date, :recommendation_priority_id, :recommendation_severity_id, :response_priority_id, :response_severity_id, :recommendation_status_id, :response_status_id, :dependent_recommendation, :blocking_recommendation, :observation)
+	    params.require(:checklist_recommendation).permit(:checklist_id, :checklist_type, :auditee_id, :recommendation, :reason, :corrective, :preventive, :closure_date, :recommendation_priority_id, :recommendation_severity_id, :response_priority_id, :response_severity_id, :recommendation_status_id, :response_status_id, :dependent_recommendation, :blocking_recommendation, :observation, :recommendation_completed)
 	  end
 			def audit_compliance_params
 	    params.require(:audit_compliances).permit(:compliance_library_id, :audit_id, :score_id, :is_answered)
