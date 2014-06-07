@@ -29,5 +29,4 @@ class ChecklistRecommendation < ActiveRecord::Base
 		end
 		return checklist_params
 	end
->>>>>>> efc6fb5087e8339ba1e494e1ac3e7c406e4df2a8
 end

@@ -14,7 +14,7 @@ class Audit < ActiveRecord::Base
   has_many :artifact_answers, through: :audit_compliances
   has_many :auditees, through: :audit_auditees, :source => :user
   belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
-  has_many :skipped_audit_reminders
+  has_one :skipped_audit_reminder
   belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
 
 

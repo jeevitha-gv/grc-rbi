@@ -2,7 +2,7 @@ class SkippedAuditReminder < ActiveRecord::Base
 
 	# Relationship
 	belongs_to :audit
-	belongs_to :skipped_by, :class_name => "User"
+	belongs_to :user
 
 	def self.audits
 		SkippedAuditReminder.all.map(&:audit)
