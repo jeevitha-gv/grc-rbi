@@ -12,8 +12,12 @@ class Audit < ActiveRecord::Base
   has_many :audit_compliances
   has_many :audit_auditees
   has_many :auditees, through: :audit_auditees, :source => :user
+<<<<<<< HEAD
   belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
  
+=======
+
+>>>>>>> 6c85639eb9718ed9233e30666253ddaf3ed4c10f
 
   accepts_nested_attributes_for :nc_questions
   accepts_nested_attributes_for :audit_auditees, reject_if: lambda { |a| a[:user_id].blank? }
@@ -48,6 +52,13 @@ class Audit < ActiveRecord::Base
     self.audit_compliances.where(is_answered: true).map(&:compliance_library)
   end
 
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when '.csv' then Roo::CSV.new(file.path)
+    when '.xlsx' then Roo::Excelx.new(file.path)
+    else raise "Unknown file type: #{file.original_filename}"
+    end
+  end
 
   private
   def check_auditees_uniq
@@ -57,8 +68,7 @@ class Audit < ActiveRecord::Base
     end
   end
 
-
   def check_auditees_presence
-    errors.add(:auditees, ("Please select auditee")) unless audit_auditees.present?
+    self.errors[:auditees] = MESSAGES['audit']['failure']['auditee_blank'] unless audit_auditees.present?
   end
 end

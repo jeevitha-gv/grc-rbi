@@ -24,7 +24,11 @@ Rails.application.routes.draw do
   resources :audits do
     get 'departments_list', on: :collection
     get 'teams_list', on: :collection
+<<<<<<< HEAD
     post 'audit_with_status', on: :collection
+=======
+    post 'import_files', on: :collection
+>>>>>>> 6c85639eb9718ed9233e30666253ddaf3ed4c10f
   end
 
 
