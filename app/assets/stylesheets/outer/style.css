@@ -728,3 +728,5 @@ text-align: left;
 	padding: 6px 0;
 	display: block;
 }
+
+.error_input { border:1px solid  #932419!important;}
