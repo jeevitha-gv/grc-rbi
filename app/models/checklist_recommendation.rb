@@ -10,5 +10,6 @@ class ChecklistRecommendation < ActiveRecord::Base
 	belongs_to :dependent_recommendation, :class_name => "ChecklistRecommendation"
 	belongs_to :blocking_recommendation, :class_name => "ChecklistRecommendation"
 	belongs_to :checklist, polymorphic: true
+	belongs_to :auditee, class_name: 'User', foreign_key: 'auditee_id'
 
 end

@@ -13,6 +13,8 @@ class Audit < ActiveRecord::Base
   has_many :audit_auditees
   has_many :artifact_answers, through: :audit_compliances
   has_many :auditees, through: :audit_auditees, :source => :user
+  belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
+  has_many :skipped_audit_reminders
 
 
   accepts_nested_attributes_for :nc_questions
@@ -54,11 +56,7 @@ class Audit < ActiveRecord::Base
   end
 
   def unanswered_nc_questions
-    nc_questions = self.nc_questions.where("target_date <= ?" , DateTime.now)
-    check = []
-    nc_questions.each do |f|
-      check << f if f.answers.blank?
-    end
+    self.nc_questions.where("target_date <= ?" , DateTime.now).select{ |x| x.answers.blank?}
   end
 
 

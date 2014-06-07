@@ -37,4 +37,23 @@ class UniversalMailer < ActionMailer::Base
     mail(:to => audit.auditees.map(&:email), :subject => "Auditor has submitted an observation for your response")
   end
 
+  # Mailer for Artifact Priority
+  def artifacts_reminder(answered_artifact)
+    @answered_artifact = answered_artifact
+    mail(:to => answered_artifact.responsibility.email, :subject => "Alert mail for submitting your artifacts")
+  end
+
+  # Mailer for NC Questions Priority
+  def ncquestion_reminder(nc_question)
+    @nc_question = nc_question
+    mail(:to => nc_question.auditee.email, :subject => "Alert mail for Answering")
+    
+  end
+
+  # Mailer for Recommendation Priority
+  def recommendation_reminder(recommendation)
+    @recommendation = recommendation
+    mail(:to => recommendation.auditee.email, :subject => "Alert mail for giving response")
+  end
+
 end
