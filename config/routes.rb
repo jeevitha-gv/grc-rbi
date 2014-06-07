@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :audits do
     get 'departments_list', on: :collection
     get 'teams_list', on: :collection
+    post 'audit_with_status', on: :collection
   end
 
 

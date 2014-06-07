@@ -34,6 +34,9 @@ class AuditsController < ApplicationController
     end
   end
 
+   def audit_with_status
+       @audits = Audit.with_status(params[:audit_status_id])
+    end
 
   private
     def audit_params
@@ -56,9 +59,5 @@ class AuditsController < ApplicationController
       @auditee_users = User.where(:role_id=>@auditee_role.id)
     end
 
-    # def status_planned
-    #   status = AuditStatus.where("name =?",params[:status])
-    #   @audits = Audit.where('audit_status_id= ?',status.id)
-    #   render json: {:data=> audits}
-    # end
+
 end
