@@ -112,18 +112,13 @@ $(document).ready(function(){
   });
   /* placeholder */
   
-  // $("#question_response").change(function(){
-  //   if($("#question_response").val() == "3"){
-  //     $(".hidden").fadeIn('fast');   
-  //   }            
-  // }); 
 
-      $("#question_response").change(function(){
-          if($("#question_response").val() == "3"){
-            $("#hidden_stuff").fadeIn('fast');   
+      $(document).on("change", "#question_response", function(){
+          if($(this).val() == "3"){
+            $(this).parent().parent().parent().find(".hidden-item").fadeIn('fast');   
           }
-          if($("#question_response").val() != "3"){
-            $("#hidden_stuff").fadeOut('fast');   
+          if($("#question_response").val() != "3"){            
+            $(this).parent().parent().parent().find(".hidden-item").fadeOut('fast');   
           }            
       });        
   

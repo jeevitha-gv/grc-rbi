@@ -10,5 +10,24 @@ class ChecklistRecommendation < ActiveRecord::Base
 	belongs_to :dependent_recommendation, :class_name => "ChecklistRecommendation"
 	belongs_to :blocking_recommendation, :class_name => "ChecklistRecommendation"
 	belongs_to :checklist, polymorphic: true
+	belongs_to :auditee, class_name: 'User', foreign_key: 'auditee_id'
 
+	
+	#validation
+   validates :recommendation, presence: true
+   validates :reason, presence: true
+   validates :recommendation_priority_id, presence: true
+   validates :recommendation_severity_id, presence: true
+   validates :closure_date, presence: true
+   validates :recommendation_status_id, presence: true
+	
+	def audit_checklist(checklist_input)
+		checklist_params =[]
+			checklist_recommendation_id = checklist_input[:checklist_recommendation].collect {|k,v| v}
+			checklist_recommendation_id.each do |record|
+			checklist_params << record
+		end
+		return checklist_params
+	end
+>>>>>>> efc6fb5087e8339ba1e494e1ac3e7c406e4df2a8
 end

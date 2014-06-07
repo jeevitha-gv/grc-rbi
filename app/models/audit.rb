@@ -11,7 +11,11 @@ class Audit < ActiveRecord::Base
   has_many :checklist_recommendations, through: :audit_compliances
   has_many :audit_compliances
   has_many :audit_auditees
+  has_many :artifact_answers, through: :audit_compliances
   has_many :auditees, through: :audit_auditees, :source => :user
+  belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
+  has_many :skipped_audit_reminders
+  belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
 
 
   accepts_nested_attributes_for :nc_questions
@@ -36,12 +40,27 @@ class Audit < ActiveRecord::Base
   validate :check_auditees_uniq
   validate :check_auditees_presence
 
-  delegate :name, :to => :client, prefix: true
+  delegate :name, :to => :client, prefix: true, allow_nil: true
   delegate :name, :to => :audit_type, prefix: true, allow_nil: true
+  delegate :full_name, :to => :auditory, prefix: true, allow_nil: true
+
+  scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
 
 
   def answered_compliances
     self.audit_compliances.where(is_answered: true).map(&:compliance_library)
+  end
+
+  def unanswered_artifacts
+    self.artifact_answers.where("audit_compliances.is_answered=false")
+  end
+
+  def unresponsive_recommendation
+    self.checklist_recommendations.where("recommendation_completed = true AND response_completed = false")
+  end
+
+  def unanswered_nc_questions
+    self.nc_questions.where("target_date <= ?" , DateTime.now).select{ |x| x.answers.blank?}
   end
 
   def self.open_spreadsheet(file)

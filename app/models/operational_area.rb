@@ -5,7 +5,7 @@ class OperationalArea < ActiveRecord::Base
  belongs_to :compliance_library
  belongs_to :company
 
- delegate :name, to: :compliance_library, prefix: true
+ delegate :name, to: :compliance_library, prefix: true, allow_nil: true
 
  # validation
  validates :compliance_library_id ,:uniqueness => {:scope => :company_id}
