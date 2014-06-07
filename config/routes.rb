@@ -20,7 +20,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :nc_questions
+  resources :nc_questions do
+    post 'import_files', on: :collection
+  end
 
   resources :audits do
     get 'departments_list', on: :collection
