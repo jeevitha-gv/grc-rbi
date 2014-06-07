@@ -12,12 +12,8 @@ class Audit < ActiveRecord::Base
   has_many :audit_compliances
   has_many :audit_auditees
   has_many :auditees, through: :audit_auditees, :source => :user
-<<<<<<< HEAD
-  belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
- 
-=======
 
->>>>>>> 6c85639eb9718ed9233e30666253ddaf3ed4c10f
+  belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
 
   accepts_nested_attributes_for :nc_questions
   accepts_nested_attributes_for :audit_auditees, reject_if: lambda { |a| a[:user_id].blank? }
