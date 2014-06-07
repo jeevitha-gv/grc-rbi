@@ -23,7 +23,7 @@
             <div class="row panel-block">
               <div class="col-md-12">
                 <div class="box-wrapper">
-                  <div id="grid"></div>
+                  <div id="gridforall"></div>
                 </div>
               </div>
             </div>
@@ -31,7 +31,7 @@
                <div class="row panel-block">
                 <div class="col-md-12">
                    <div class="box-wrapper">
-                       <div id="grid1"></div>
+                       <div id="gridforplan"></div>
                     </div>
                 </div>
                 </div>
@@ -41,7 +41,7 @@
                <div class="row panel-block">
                 <div class="col-md-12">
                    <div class="box-wrapper">
-                       <div id="grid2"></div>
+                       <div id="gridforprogress"></div>
                     </div>
                 </div>
                 </div>
@@ -52,7 +52,7 @@
                <div class="row panel-block">
                 <div class="col-md-12">
                    <div class="box-wrapper">
-                       <div id="grid3"></div>
+                       <div id="gridforpublish"></div>
                     </div>
                 </div>
                 </div>
@@ -182,6 +182,40 @@ $(".go_to_top").click(function(){
 </script> 
 
 <script type="text/javascript">
+
+
+				function set_file(e)
+				{
+	                var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+					window.location.href = "/audit_compliances/"+ dataItem.id
+				}
+
+				function check_file(e)
+				{
+					var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+					window.location.href = "/checklist_recommendations/"+ dataItem.id
+				}
+
+				function act_file(e)
+				{
+					var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+					window.location.href = "/checklist_recommendations/"+ dataItem.id
+				}
+
+               	function publish_file(e)
+				{
+					var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+					window.location.href = "/checklist_recommendations/"+ dataItem.id
+				}
+                
+                function edit_file(e)
+				{
+					var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+					window.location.href = "/audits/"+ dataItem.id
+				}
+
+
+
 			$(document).ready(function() {
 				// Fancybox
 				$(".fancybox").fancybox();
@@ -197,15 +231,19 @@ $(".go_to_top").click(function(){
 					    }
 					}
 				});
+
+
+
 			    
 				// Kendo Panel
-				$("#panelbar").kendoPanelBar();
+				$("#panelbarforall").kendoPanelBar();
 
 				dataSource = new kendo.data.DataSource({
 					transport: {
 						read: {
 							url: '/audits',
 							dataType: 'json'
+							
 						}
 					},
 					schema: {
@@ -215,8 +253,9 @@ $(".go_to_top").click(function(){
 						data: "data",
 						model: {
 							id: "id",
-							fields: {
-								title: { type: "string" },
+							fields:{
+								id: { type: "string" },
+							    title: { type: "string" },
 								client: { type: "string" },
 								audit_type: { type: "string" },
 								compliance_type: { type: "string" },
@@ -229,27 +268,9 @@ $(".go_to_top").click(function(){
 			    
 				// Kendo Grid for all
 
-				$("#grid").kendoGrid({
+				$("#gridforall").kendoGrid({
 					dataSource: dataSource,
-					// transport: {
-					// 	read: {
-					// 	 url: '/audits/status_planned',
-					// 	type: "post",
-					// 	dataType: 'json'
-					// 	},
-					// dataSource: {
-					//     data: [],
-					//     schema: {
-					// 	model: {
-					// 	    fields: {
-					// 		Created: { type: "string" },
-					// 		Notes: { type: "string" },
-					// 		Edit: { type: "string" },
-					// 	    }
-					// 	}
-					//     },
-					//     pageSize: 20
-					// },
+					
 					height: 'auto',
 					scrollable: true,
 					sortable: true,
@@ -265,19 +286,21 @@ $(".go_to_top").click(function(){
 					    { field: "compliance_type", title: "Compliance Type", width: "35%" },
 					    { field: "auditor", title: "Auditor Name", width: "35%" },
 
-					    { field: "Edit", command: ["Set","tick","tick1","book","pdf","edit"], title: "Edit", width: "180px" }
+					    {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},"pdf",{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
+
+			
+
 					],
-					editable: "popup"
+					//editable: "popup"
 				});
 
+                $("#panelbarforplan").kendoPanelBar();
 
-
-                $("#panelbar2").kendoPanelBar();
-
-				dataSource = new kendo.data.DataSource({
+				dataSourceplan = new kendo.data.DataSource({
 					transport: {
 						read: {
-							url: '/audits/status_planned',
+							url: "/audits/audit_with_status?audit_status_id=1",
+							type: "post",
 							dataType: 'json'
 						}
 					},
@@ -289,6 +312,7 @@ $(".go_to_top").click(function(){
 						model: {
 							id: "id",
 							fields: {
+								id: { type: "string" },
 								title: { type: "string" },
 								client: { type: "string" },
 								audit_type: { type: "string" },
@@ -301,8 +325,8 @@ $(".go_to_top").click(function(){
 
 
                   //grid for planned
-				$("#grid1").kendoGrid({
-					dataSource: dataSource,
+				$("#gridforplan").kendoGrid({
+					dataSource: dataSourceplan,
 					height: 'auto',
 					scrollable: true,
 					sortable: true,
@@ -326,12 +350,13 @@ $(".go_to_top").click(function(){
 
 
                 
-                $("#panelbar2").kendoPanelBar();
+                $("#panelbarforprogress").kendoPanelBar();
 
-				dataSource = new kendo.data.DataSource({
+				dataSourceprogress = new kendo.data.DataSource({
 					transport: {
 						read: {
-							url: '/audits',
+							url: "/audits/audit_with_status?audit_status_id=3",
+							type: "post",
 							dataType: 'json'
 						}
 					},
@@ -343,6 +368,7 @@ $(".go_to_top").click(function(){
 						model: {
 							id: "id",
 							fields: {
+								id: { type: "string" },
 								title: { type: "string" },
 								client: { type: "string" },
 								audit_type: { type: "string" },
@@ -355,8 +381,8 @@ $(".go_to_top").click(function(){
 
 
                  //grid for InProgress
-				$("#grid2").kendoGrid({
-					dataSource: dataSource,
+				$("#gridforprogress").kendoGrid({
+					dataSource: dataSourceprogress,
 					height: 'auto',
 					scrollable: true,
 					sortable: true,
@@ -383,12 +409,13 @@ $(".go_to_top").click(function(){
 
 
 
-				 $("#panelbar2").kendoPanelBar();
+				 $("#panelbarforpublish").kendoPanelBar();
 
-				dataSource = new kendo.data.DataSource({
+				dataSourcepublish = new kendo.data.DataSource({
 					transport: {
 						read: {
-							url: '/audits',
+							url: "/audits/audit_with_status?audit_status_id=4",
+							type: "post",
 							dataType: 'json'
 						}
 					},
@@ -400,6 +427,7 @@ $(".go_to_top").click(function(){
 						model: {
 							id: "id",
 							fields: {
+								id: { type: "string" },
 								title: { type: "string" },
 								client: { type: "string" },
 								audit_type: { type: "string" },
@@ -412,8 +440,8 @@ $(".go_to_top").click(function(){
 				
                   
                   //grid for published
-				$("#grid3").kendoGrid({
-					dataSource: dataSource,
+				$("#gridforpublish").kendoGrid({
+					dataSource: dataSourcepublish,
 					height: 'auto',
 					scrollable: true,
 					sortable: true,
@@ -434,7 +462,14 @@ $(".go_to_top").click(function(){
 					editable: "popup"
 				});
 
-				
+				 // $(document).ready(function () {
+     //              $(".set").click(function () {
+     //                alert("a");
+     //               var item = $("#grid").data("kendoGrid").dataItem($(this).closest("tr"));
+     //               window.location.href = "/audits_compliances" + item;
+     //                  });
+     //                 });
+
 				// Editable select box
 				$('.editable-select').change(function(){ 
 					modify();
@@ -471,5 +506,8 @@ $(".go_to_top").click(function(){
 				$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");
 				
 			});
-			
-		</script>
+            
+
+           
+           
+           </script>

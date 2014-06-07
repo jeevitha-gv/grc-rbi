@@ -13,9 +13,14 @@ class Audit < ActiveRecord::Base
   has_many :audit_auditees
   has_many :artifact_answers, through: :audit_compliances
   has_many :auditees, through: :audit_auditees, :source => :user
+<<<<<<< HEAD
   belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
   has_many :skipped_audit_reminders
 
+=======
+
+  belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
+>>>>>>> efc6fb5087e8339ba1e494e1ac3e7c406e4df2a8
 
   accepts_nested_attributes_for :nc_questions
   accepts_nested_attributes_for :audit_auditees, reject_if: lambda { |a| a[:user_id].blank? }
@@ -39,8 +44,11 @@ class Audit < ActiveRecord::Base
   validate :check_auditees_uniq
   validate :check_auditees_presence
 
-  delegate :name, :to => :client, prefix: true
+  delegate :name, :to => :client, prefix: true, allow_nil: true
   delegate :name, :to => :audit_type, prefix: true, allow_nil: true
+  delegate :full_name, :to => :auditory, prefix: true, allow_nil: true
+
+  scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
 
 
   def answered_compliances
@@ -59,6 +67,13 @@ class Audit < ActiveRecord::Base
     self.nc_questions.where("target_date <= ?" , DateTime.now).select{ |x| x.answers.blank?}
   end
 
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when '.csv' then Roo::CSV.new(file.path)
+    when '.xlsx' then Roo::Excelx.new(file.path)
+    else raise "Unknown file type: #{file.original_filename}"
+    end
+  end
 
   private
   def check_auditees_uniq
@@ -68,8 +83,7 @@ class Audit < ActiveRecord::Base
     end
   end
 
-
   def check_auditees_presence
-    errors.add(:auditees, ("Please select auditee")) unless audit_auditees.present?
+    self.errors[:auditees] = MESSAGES['audit']['failure']['auditee_blank'] unless audit_auditees.present?
   end
 end

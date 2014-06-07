@@ -245,6 +245,18 @@ en:
               greater_than_or_equal_to: "Should be greater than or equal to 1"
               less_than_or_equal_to: "should be less than or equal to 30"
               only_integer: "Should be an Integer"
+        audit:
+          attributes:
+            title:
+              blank: "Title can't be blank"
+              taken: "Title has been already used"
+            audit_type_id:
+              blank: "Auditor Type can't be blank"
+            auditor:
+              blank: "Auditor can't be blank"
+            auditees:
+              blank: "Auditee can't be blank"
+              taken: "Please select unique auditee"
         nc_question:
           attributes:
             question:

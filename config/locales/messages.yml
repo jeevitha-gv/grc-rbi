@@ -11,13 +11,13 @@ en:
     create:
       success: "client was created successfully."
       update: "client was successfully updated."
-      destroy: "client was successfully destroyed." 
+      destroy: "client was successfully destroyed."
 
   Team:
     create:
       success: "Team was created successfully."
       update: "Team was successfully updated."
-      destroy: "Team was successfully destroyed." 
+      destroy: "Team was successfully destroyed."
 
   Role:
     create:
@@ -58,3 +58,16 @@ en:
 
   roles:
     company_admin_failure: "You can't create a role with this title"
+
+  audit:
+    failure:
+      auditee_blank: "Please select auditee"
+      auditee_unique: "Please select unique auditee"
+
+  checklist_recommendations:
+    recommendation: "Please enter recommendation"
+    priority: "Please enter priority"
+    reason: "Please enter reason"
+    severity: "Please enter severity"
+    closuredate: "Please enter closuredate"
+    status: "Please enter status"

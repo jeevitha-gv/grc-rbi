@@ -1,5 +1,5 @@
 <style>
-#standard-topic, #standard-complaince, #department-dropdown, #teams-dropdown{
+#standard-topic, #standard-compliance, #department-dropdown, #teams-dropdown{
   display: none;
 }
 </style>
@@ -93,13 +93,13 @@
                   <%= f.text_field :methodology, :class=>"audit-big-input" %>
                 </div>
               </div>
-              <div class="form-group clearfix addissue"> <a href="#add_url" data-toggle="modal" class="plus-icon">Add Issue from Risk Library</a>
+              <div class="form-group clearfix addissue"> <a href="#add_url" data-toggle="modal" class="plus-icon next-phase">Add Issue from Risk Library</a>
                 <div class="modal fade" id="add_url">
                   <div class="modal-dialog modal-dialog_large">
                     <div class="modal-content">
                       <div class="modal-header">
                         <button aria-hidden="true" data-dismiss="modal" class="close" type="button"> &nbsp; </button>
-                        <h4 id="myModalLabel" class="modal-title">Issue from Risk Library</h4>
+                        <h4 id="myModalLabel" class="modal-title">Planned for further phases.</h4>
                         <p></p>
                       </div>
                     </div>
@@ -172,7 +172,7 @@
                 </div>
               </div>
 
-              <div class="form-group clearfix" id="standard-complaince">
+              <div class="form-group clearfix" id="standard-compliance">
                 <label class="col-sm-4 control-label">
                   <%= f.label :standard_id, t('audit.standard') %>
                 </label>
@@ -228,7 +228,7 @@
 
             <div class="col-lg-4 col-sm-6 col-xs-12" id="auditee-list">
               <% if @audit.errors[:auditees].present? %>
-                <%= @audit.errors[:auditees][0] %>
+                <div class="error_message"><%= @audit.errors[:auditees][0]%></div>
               <% end %>
               <% @audit.audit_auditees.build %>
               <div class="form-group clearfix auditee-dropdown">
@@ -239,9 +239,7 @@
                     </label>
                     <div class="col-sm-7">
                       <%= builder.select :user_id, options_for_select(@auditee_users.collect{|x| [x.full_name, x.id.to_i]}), {include_blank: 'Select Auditee' }, { :id => "locations-list"} %>
-                      <% if @audit.errors[:auditees].present? %>
-                        <div class="error_message"><%= @audit.errors[:auditees][0]%></div>
-                      <% end %>
+
                     </div>
                   <% end %>
                 </div>
@@ -259,8 +257,28 @@
               <%= f.submit "Initiate Audit", :class => "black_btn" %>
               <!-- <a href="" class="black_btn"></a> -->
               <a class="orange_btn" href="#">Save as Plan</a>
+              <br>
+              <br>
             </div>
           <% end %>
+          <div class="form-group clearfix addissue">
+            <a class="orange_btn" href="#add_csv" data-toggle="modal">Upload audit from CSV or XLSX</a>
+            <div class="modal fade" id="add_csv">
+              <div class="modal-dialog modal-dialog_large">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"> &nbsp; </button>
+                    <h4 id="myModalLabel" class="modal-title">Upload files only CSV and XLSX</h4>
+                    <%= form_tag import_files_audits_path, multipart: true do %>
+                      <%= file_field_tag :file %>
+                      <%= submit_tag "Import" %>
+                    <% end %>
+                    <p></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -269,15 +287,15 @@
 
 <script>
   $(document).ready(function(){
-    $('#standard-complaince  select').attr('name', '');
+    $('#standard-compliance  select').attr('name', '');
     $('#standard-topic  select').attr('name', '');
 
     $("#compliance_type").change(function () {
       var getStandardVal = this.value;
       if(getStandardVal == 'Compliance')
         {
-          $('#standard-complaince').show();
-          $('#standard-complaince  select').attr('name', 'audit[standard_id]');
+          $('#standard-compliance').show();
+          $('#standard-compliance  select').attr('name', 'audit[standard_id]');
           $('#standard-topic  select').attr('name', '');
           $('#standard-topic').hide();
         }
@@ -285,12 +303,12 @@
         {
           $('#standard-topic').show();
           $('#standard-topic  select').attr('name', 'audit[standard_id]');
-          $('#standard-complaince  select').attr('name', '');
-          $('#standard-complaince').hide();
+          $('#standard-compliance  select').attr('name', '');
+          $('#standard-compliance').hide();
         }
         else if(getStandardVal=='')
         {
-          $('#standard-complaince').hide();
+          $('#standard-compliance').hide();
           $('#standard-topic').hide();
         }
     });
@@ -298,10 +316,17 @@
     $(".datepicker").kendoDatePicker();
     $(".datepicker1").kendoDatePicker();
 
+
     $('#add_auditee').click(function(){
       var size = $('#auditee-list').find('.auditee-rows').size();
+
       // console.log(cd append)
       $("#auditee-list").append(""+"<div class='form-group clearfix auditee-dropdown'>"+$(".auditee-dropdown").html().replace('audit[audit_auditees_attributes][0][user_id]','audit[audit_auditees_attributes]['+size+'][user_id]')+"</div>"+"");
+    });
+
+    $(".next-phase").click(function(){
+      // new Messi('Planned for further phases.', {autoclose: '5000'});
+      new Messi('Planned for further phases.', {title: 'Warning', titleClass: 'warning', autoclose: 2000});
     });
   });
 
