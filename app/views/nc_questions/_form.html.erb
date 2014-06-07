@@ -1,5 +1,5 @@
 <style>
-  #hidden_stuff{
+  .hidden-item{
     display: none;
   }
 </style>
@@ -20,7 +20,7 @@
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
                       <h4 class="modal-title" id="myModalLabel">Request Library</h4>
-                      <%= NcQuestion.where(:nc_library=>true) %>
+                      <%= current_company.nc_questions.map(&:question) %>
                       <p></p>
                     </div>
                   </div>
