@@ -1,15 +1,21 @@
 <div class="clearfix"></div>
 <div class="content">
   <div class="container">
-    <div class="row"> 
+    <div class="row">
       <!-- Nav tabs -->
       <div class="fright">
-        <form class="navbar-form navbar-left" role="search">
+				<%= form_tag audits_path, method: :get do %>
+				  <div class="form-group">
+				    <%= text_field_tag :query, params[:query], :class=>"form-control" %>
+				    <%= submit_tag "Search", name: nil, :class=>"btn btn-default" %>
+				  </div>
+				<% end %>
+        <!-- <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Search">
           </div>
           <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+        </form> -->
       </div>
       <div id="example" class="k-content">
         <div class="panel-container">
@@ -27,7 +33,7 @@
                 </div>
               </div>
             </div>
-            <div class="clearfix panel-block">  
+            <div class="clearfix panel-block">
                <div class="row panel-block">
                 <div class="col-md-12">
                    <div class="box-wrapper">
@@ -37,7 +43,7 @@
                 </div>
             </div>
             <div class="clearfix panel-block">
-               <div class="clearfix panel-block">  
+               <div class="clearfix panel-block">
                <div class="row panel-block">
                 <div class="col-md-12">
                    <div class="box-wrapper">
@@ -47,8 +53,8 @@
                 </div>
             </div>
             </div>
-            <div class="clearfix panel-block"> 
-            	<div class="clearfix panel-block">  
+            <div class="clearfix panel-block">
+            	<div class="clearfix panel-block">
                <div class="row panel-block">
                 <div class="col-md-12">
                    <div class="box-wrapper">
@@ -74,17 +80,17 @@ $(window).load(function(){
 	  itemSelector: '.item',
 	  isFitWidth: true
 	});
-	
-	
+
+
 	$(".block_banner img").each(function(index, element) {
         var screenImage = $(this);
 
 		// Create new offscreen image to test
 		var theImage = new Image();
 		theImage.src = screenImage.attr("src");
-		
+
 		var imageHeight = theImage.height;
-		
+
 		$(this).css("max-height",imageHeight);
 		$(this).css("min-height",imageHeight);
     });
@@ -97,37 +103,37 @@ $(".click_icon").click(function() {
 $(".click_icon").click(function(){
 		$(".share_pop").show();
 });
-	
+
 $(document).ready(function(){
-	
+
 	Top_postion = $(window).scrollTop();
-	
+
 	$( ".user_login" ).mouseenter(function() {
 		$(this).addClass("active");
-		$(".account_header_dropdown").slideDown(100);	  
+		$(".account_header_dropdown").slideDown(100);
 	})
 	.mouseleave(function() {
 		$(this).removeClass("active");
 		$(".account_header_dropdown").hide();
 	});
-	
+
 	//for notification drop hide in outside click
-	onclick_icon = 0;	  
+	onclick_icon = 0;
 	$(".click_icon").mouseenter(function() {
-		onclick_icon = 0;	  
+		onclick_icon = 0;
 	})
 	.mouseleave(function() {
-		onclick_icon = 1;	  
+		onclick_icon = 1;
 	});
-	
-	
+
+
 	$("body").click(function(){
 		if(onclick_icon){
 			$(".share_pop").hide();
 		}
 	});
-	
-	
+
+
 	/* placeholder */
 	$(".place_holder").each(function(index, element) {
 		placeholder = $(this).attr("data-original");
@@ -162,12 +168,12 @@ $(document).ready(function(){
 		}
 	});
 	/* placeholder */
-	
-	
+
+
 });
 /*$(window).scroll(function(){
 	Top_postion = $(window).scrollTop();
-	
+
 	if(Top_postion>10){
 		$(".go_to_top").show();
 	}else{
@@ -179,7 +185,7 @@ $(".go_to_top").click(function(){
 	$("html, body").animate({scrollTop: "0"}, 800);
 });
 */
-</script> 
+</script>
 
 <script type="text/javascript">
 
@@ -207,7 +213,7 @@ $(".go_to_top").click(function(){
 					var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 					window.location.href = "/checklist_recommendations/"+ dataItem.id
 				}
-                
+
                 function edit_file(e)
 				{
 					var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
@@ -219,10 +225,10 @@ $(".go_to_top").click(function(){
 			$(document).ready(function() {
 				// Fancybox
 				$(".fancybox").fancybox();
-				
+
 				// Kendo Datapicker
 				$("#datepicker").kendoDatePicker();
-				
+
 				// Kendo Tab
 				$("#tabstrip").kendoTabStrip({
 					animation:  {
@@ -234,7 +240,7 @@ $(".go_to_top").click(function(){
 
 
 
-			    
+
 				// Kendo Panel
 				$("#panelbarforall").kendoPanelBar();
 
@@ -243,7 +249,7 @@ $(".go_to_top").click(function(){
 						read: {
 							url: '/audits',
 							dataType: 'json'
-							
+
 						}
 					},
 					schema: {
@@ -264,13 +270,13 @@ $(".go_to_top").click(function(){
 						}
 					}
 				});
-				 
-			    
+
+
 				// Kendo Grid for all
 
 				$("#gridforall").kendoGrid({
 					dataSource: dataSource,
-					
+
 					height: 'auto',
 					scrollable: true,
 					sortable: true,
@@ -288,7 +294,7 @@ $(".go_to_top").click(function(){
 
 					    {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},"pdf",{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
 
-			
+
 
 					],
 					//editable: "popup"
@@ -321,7 +327,7 @@ $(".go_to_top").click(function(){
 							}
 						}
 					}
-				});                 
+				});
 
 
                   //grid for planned
@@ -349,7 +355,7 @@ $(".go_to_top").click(function(){
 
 
 
-                
+
                 $("#panelbarforprogress").kendoPanelBar();
 
 				dataSourceprogress = new kendo.data.DataSource({
@@ -437,8 +443,8 @@ $(".go_to_top").click(function(){
 						}
 					}
 				});
-				
-                  
+
+
                   //grid for published
 				$("#gridforpublish").kendoGrid({
 					dataSource: dataSourcepublish,
@@ -471,7 +477,7 @@ $(".go_to_top").click(function(){
      //                 });
 
 				// Editable select box
-				$('.editable-select').change(function(){ 
+				$('.editable-select').change(function(){
 					modify();
 				});
 
@@ -491,7 +497,7 @@ $(".go_to_top").click(function(){
 				})
 
 				modify();
-				
+
 				// More contacts show
 				$(".more-link").click(function(){
 					if($(this).html() == "More")
@@ -500,14 +506,14 @@ $(".go_to_top").click(function(){
 						$(this).html("More").parent().siblings(".more-info").hide();
 				});
 			});
-			
+
 			// Edit Popup
 			$(window).load(function(){
 				$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");
-				
-			});
-            
 
-           
-           
+			});
+
+
+
+
            </script>

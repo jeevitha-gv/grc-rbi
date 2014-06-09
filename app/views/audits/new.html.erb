@@ -266,9 +266,9 @@
             <div class="col-lg-4 col-sm-6 col-xs-12">
               <br>
               <br>
-              <%= f.submit "Initiate Audit", :class => "black_btn" %>
+              <%= f.submit "Initiate Audit", :class => "black_btn", :my_param => '0' %>
               <!-- <a href="" class="black_btn"></a> -->
-              <a class="orange_btn" href="#">Save as Plan</a>
+              <%= f.submit "Save as Plan", :class => "orange_btn", :my_param => '1' %>
               <br>
               <br>
             </div>
@@ -286,6 +286,9 @@
                       <%= submit_tag "Import" %>
                     <% end %>
                     <p></p>
+                    <p>
+                      <%= link_to "Download Sample Audit CSV", export_files_audits_path(format: "csv") %>
+                    </p>
                   </div>
                 </div>
               </div>
