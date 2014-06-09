@@ -24,6 +24,7 @@ class NcQuestionsController < ApplicationController
 		@nc_questions = NcQuestion.where(:id=>params[:nc_question])
 		@priorities = Priority.all
 		@response_types = QuestionType.all
+    # @response_type_selected = @nc_question.map(&:question_type_id)
 		@audit = Audit.find_by_id(params[:audit_id])
 		@auditees = @audit.auditees.all
   end

@@ -10,19 +10,14 @@
             <div class="form-group clearfix">
               <label for="audit_nc_questions_attributes_<%= time_variable %>_question_type_id" class="col-sm-4 control-label">Response Type</label>
               <div class="col-sm-7">
-                <select name="audit[nc_questions_attributes][<%= time_variable %>][question_type_id]" id="question_response"><option value="1" selected="selected">Yes or No</option>
-                <option value="2">Descriptive Type</option>
-                <option value="3">Multiple Choice</option></select>
+                <%= select_tag 'response_type', options_from_collection_for_select(@response_types, "id", "name") %>
               </div>
-
             </div>
             <div class="col-sm-7 add-btn hidden-item">
               <div class="form-group clearfix addissue">
                 <a onclick="add_fields(this, &quot;question_options&quot;, &quot;&lt;fieldset class=\&quot;choices\&quot;&gt;\n  &lt;input class=\&quot;audit-normal-input\&quot; id=\&quot;audit_nc_questions_attributes_<%= time_variable %>_question_options_attributes_new_question_options_value\&quot; name=\&quot;audit[nc_questions_attributes][<%= time_variable %>][question_options_attributes][new_question_options][value]\&quot; type=\&quot;text\&quot; /&gt;\n  &lt;input id=\&quot;audit_nc_questions_attributes_<%= time_variable %>_question_options_attributes_new_question_options__destroy\&quot; name=\&quot;audit[nc_questions_attributes][<%= time_variable %>][question_options_attributes][new_question_options][_destroy]\&quot; type=\&quot;hidden\&quot; value=\&quot;false\&quot; /&gt;&lt;a class=\&quot;minus-icon\&quot; href=\&quot;javascript:void(0)\&quot; onclick=\&quot;remove_options(this)\&quot;&gt;Remove Option&lt;\/a&gt;\n&lt;\/fieldset&gt;&quot;)" href="javascript:void(0)" class="plus-icon">Add Option</a>
               </div>
-
               </div>
-               <!-- <a href="#" class="add-btn-padding"><img src="/assets/outer/add-btn.jpg" alt=""/></a>          -->
 
 
           </div>
@@ -30,10 +25,7 @@
             <div class="form-group clearfix">
               <label for="audit_nc_questions_attributes_<%= time_variable %>_auditee_id" class="col-sm-4 control-label">Assign Auditee</label>
               <div class="col-sm-7">
-                <select name="audit[nc_questions_attributes][<%= time_variable %>][auditee_id]" id="audit_nc_questions_attributes_1_auditee_id"><option value="2">Bay Emmar</option>
-<option value="3">Bay Emmar Second</option>
-<option value="4">Padma Priya</option>
-<option value="1" selected="selected">Sri Harsha Kappala</option></select>
+                <%= select_tag 'auditees', options_from_collection_for_select(@auditees, "id", "full_name") %>
               </div>
             </div>
             <div class="form-group clearfix">
@@ -51,11 +43,7 @@
           <div class="form-group clearfix">
               <label for="audit_nc_questions_attributes_<%= time_variable %>_priority_id" class="col-sm-4 control-label">Priority</label>
               <div class="col-sm-7">
-                <% binding.pry %>
-                <!-- <select name="audit[nc_questions_attributes][<%= time_variable %>][priority_id]" id="audit_nc_questions_attributes_1_priority_id"><option value="1">High</option>
-<option value="2">Medium</option>
-<option value="3" selected="selected">Low</option></select> -->
-                <%= select_tag 'audit[nc_questions_attributes][<%= time_variable %>][priority_id]', options_from_collection_for_select(@priorities, "id", "name") %>
+                <%= select_tag 'priority', options_from_collection_for_select(@priorities, "id", "name") %>
               </div>
             </div>
             <div class="form-group clearfix">
