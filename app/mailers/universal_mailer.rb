@@ -38,22 +38,28 @@ class UniversalMailer < ActionMailer::Base
   end
 
   # Mailer for Artifact Priority
-  def artifacts_reminder(answered_artifact)
+  def artifacts_reminder(answered_artifact, user)
     @answered_artifact = answered_artifact
-    mail(:to => answered_artifact.responsibility.email, :subject => "Alert mail for submitting your artifacts")
+    mail(:to => user.email, :subject => "Alert mail for submitting your artifacts")
   end
 
   # Mailer for NC Questions Priority
-  def ncquestion_reminder(nc_question)
+  def ncquestion_reminder(nc_question, user)
     @nc_question = nc_question
-    mail(:to => nc_question.auditee.email, :subject => "Alert mail for Answering")
+    mail(:to => user.email, :subject => "Alert mail for Answering")
     
   end
 
   # Mailer for Recommendation Priority
-  def recommendation_reminder(recommendation)
+  def recommendation_reminder(recommendation, user)
     @recommendation = recommendation
-    mail(:to => recommendation.auditee.email, :subject => "Alert mail for giving response")
+    mail(:to => user.email, :subject => "Alert mail for giving response")
+  end
+
+  # Mailer for Escalation Matrix
+  def escalation_matrix_mail(reminder_mail_to, reminder_mail_cc,escalation_details)
+    @escalation_details = escalation_details
+    mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Alert Mail for giving response")
   end
 
 end

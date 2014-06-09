@@ -17,7 +17,7 @@ class Audit < ActiveRecord::Base
   has_many :auditees, through: :audit_auditees, :source => :user
   belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
   has_one :skipped_audit_reminder
-  belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
+  has_many :team_users, through: :team, :source => :users
 
 
   accepts_nested_attributes_for :nc_questions
@@ -53,17 +53,21 @@ class Audit < ActiveRecord::Base
     self.audit_compliances.where(is_answered: true).map(&:compliance_library)
   end
 
+  # Getting all the unanswered Audit compliance for sending reminders
   def unanswered_artifacts
     self.artifact_answers.where("audit_compliances.is_answered=false")
   end
 
+  # Getting all the checklist recommendations for sending reminders
   def unresponsive_recommendation
     self.checklist_recommendations.where("recommendation_completed = true AND response_completed = false")
   end
 
+  # Getting all the non compliance for sending reminders
   def unanswered_nc_questions
     self.nc_questions.where("target_date <= ?" , DateTime.now).select{ |x| x.answers.blank?}
   end
+
 
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)

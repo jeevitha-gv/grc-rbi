@@ -6,8 +6,9 @@ class NcQuestionsController < ApplicationController
 
 	def new
 		@audit = Audit.first
+		@nc_question = NcQuestion.new
 		@audit.nc_questions.build unless @audit.nc_questions.present?
-  	@audit.nc_questions.first.question_options.build unless @audit.nc_questions.first.question_options.present?
+    	@audit.nc_questions.first.question_options.build unless @audit.nc_questions.first.question_options.present?
 	end
 
 	def create
@@ -18,6 +19,15 @@ class NcQuestionsController < ApplicationController
 			render "new"
 		end
 	end
+
+	def library_questions
+		@nc_questions = NcQuestion.where(:id=>params[:nc_question])
+		@priorities = Priority.all
+		@response_types = QuestionType.all
+    # @response_type_selected = @nc_question.map(&:question_type_id)
+		@audit = Audit.find_by_id(params[:audit_id])
+		@auditees = @audit.auditees.all
+  end
 
 	def import_files
 		if(params[:file].present?)
@@ -57,7 +67,8 @@ class NcQuestionsController < ApplicationController
       redirect_to new_nc_question_path
     # end
     end
-	end
+  end
+
 
   def export_files
     nc_question_csv = CSV.generate do |csv|

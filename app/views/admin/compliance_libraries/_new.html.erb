@@ -1,6 +1,6 @@
 <div id="main_content_wrapper">
   <div id="main_content">
-    <%= semantic_form_for @compliance_library do |f| %>
+    <%= semantic_form_for @compliance_library, :url => admin_compliance_libraries_path, :method => :post do |f| %>
       <fieldset class="inputs">
         <legend>
           <span>ComplianceLibrary</span>

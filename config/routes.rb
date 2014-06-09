@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :nc_questions do
+    get 'library_questions', on: :collection
     post 'import_files', on: :collection
     get 'export_files', on: :collection
   end
