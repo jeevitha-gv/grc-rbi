@@ -51,7 +51,7 @@ ActiveAdmin.register Reminder do
       end
       row :value
       row :time_line do |t|
-        t.time_line = 1 ? 'Hours': 'Days'
+        t.time_line == 1 ? 'Hours': 'Days'
       end
       row :mail_count
     end

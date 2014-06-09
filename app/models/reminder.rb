@@ -20,8 +20,8 @@ class Reminder < ActiveRecord::Base
 	def self.check_priority(company_id, priority_id)
 	    reminder = Reminder.where("company_id = ? AND priority_id = ?", company_id, priority_id).last
 	    if reminder
-		    reminder_value = (reminder.timeline == 1 ? reminder.value : reminder.value * 24)
-		    if((reminder_value.to_i.hours + reminder.last_sent) <= Time.now)
+		    reminder_value = (reminder.time_line == 1 ? reminder.value : reminder.value * 24)
+		    if(reminder.last_sent.nil? || (reminder_value.to_i.minutes + reminder.last_sent) <= Time.now)
 		      return reminder
 		    end
 	    end
@@ -30,7 +30,7 @@ class Reminder < ActiveRecord::Base
 
 	# Methods to get emails for escalation
 
-	def self.get_escalation_mails(company,user,audit)
+	def get_escalation_mails(company,user,audit)
 		return reminder_mail(self.mail_to_name, company, user, audit),reminder_mail(self.mail_cc_name, company, user, audit)
 	end
 
@@ -45,7 +45,9 @@ class Reminder < ActiveRecord::Base
 			when "Reporting Manager"
 				return user.user_manager.email
 			when "Manager of Manager"
-				return user.user_manager.user_manager.email
+				return user.user_manager.user_manager.email if user.user_manager && user.user_manager.user_manager
+			when "Team"
+				return audit.team_users.map(&:email)
 			else
 				return company.company_admin.email
 		end

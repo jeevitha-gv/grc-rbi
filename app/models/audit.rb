@@ -15,6 +15,7 @@ class Audit < ActiveRecord::Base
   has_many :auditees, through: :audit_auditees, :source => :user
   belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
   has_one :skipped_audit_reminder
+  has_many :team_users, through: :team, :source => :users
 
 
   accepts_nested_attributes_for :nc_questions

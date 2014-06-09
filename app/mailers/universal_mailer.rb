@@ -57,7 +57,8 @@ class UniversalMailer < ActionMailer::Base
   end
 
   # Mailer for Escalation Matrix
-  def escalation_matrix_mail(reminder_mail_to, reminder_mail_cc)
+  def escalation_matrix_mail(reminder_mail_to, reminder_mail_cc,escalation_details)
+    @escalation_details = escalation_details
     mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Alert Mail for giving response")
   end
 
