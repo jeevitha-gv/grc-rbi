@@ -14,7 +14,8 @@ ActiveAdmin.register OperationalArea do
 
   form do |f|
   	f.inputs "Operational Area Weightage" do
-      all_compliance = ComplianceLibrary.all.group_by(&:parent_id).collect {|k,v| v}[0].collect {|x| x unless x.is_leaf }
+      all_compliance = ComplianceLibrary.all.group_by(&:parent_id)
+      all_compliance.collect {|k,v| v}[0].collect {|x| x unless x.is_leaf } unless all_compliance.empty?
   		f.input :compliance_library_id , :label => 'ComplianceLibrary', :as => :select, :collection => all_compliance, :prompt => "-Select Domain-"
   		f.input :weightage
   	end
