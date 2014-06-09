@@ -6,5 +6,5 @@ class Artifact < ActiveRecord::Base
   belongs_to :company
   has_many :artifact_answers
 
-  delegate :name, to: :compliance_library, prefix: true
+  delegate :name, to: :compliance_library, prefix: true, allow_nil: true
 end

@@ -19,12 +19,16 @@ class AuditsController < ApplicationController
 
   def new
     @audit = Audit.new
+    @audit.build_skipped_audit_reminder
   end
 
   def create
     @audit = Audit.new(audit_params)
 
-    if @audit.save                
+    if @audit.save
+      if params[:skip_reminder] == "true"
+        SkippedAuditReminder.create(:audit_id => @audit.id,:skipped_by => current_user.id)
+      end
       UniversalMailer.notify_auditor_about_audit(@audit).deliver      
       UniversalMailer.notify_auditees_about_audit(@audit).deliver
       redirect_to new_audit_path
@@ -112,6 +116,10 @@ class AuditsController < ApplicationController
     def audit_params
       params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :audit_status_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor, audit_auditees_attributes: [:user_id])
     end
+
+    # def skipped_reminder_params
+    #   params.require(:skipped_reminder).permit(:audit_id,:skipped_by)
+    # end
 
     def current_company_disabled
       if Company.find(current_user.company_id).is_disabled == true

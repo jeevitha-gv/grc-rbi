@@ -86,3 +86,12 @@ Priority.delete_all
     Priority.create([{name: 'High'}])
     Priority.create([{name: 'Medium'}])
     Priority.create([{name: 'Low'}])
+
+ReminderAssignment.delete_all
+
+    ReminderAssignment.create([{name: 'Company Admin'}])
+    ReminderAssignment.create([{name: 'Auditor'}])
+    ReminderAssignment.create([{name: 'Auditee'}])
+    ReminderAssignment.create([{name: 'Reporting Manager'}])
+    ReminderAssignment.create([{name: 'Manager of Manager'}])
+    ReminderAssignment.create([{name: 'Team'}])

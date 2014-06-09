@@ -10,13 +10,14 @@ class ChecklistRecommendation < ActiveRecord::Base
 	belongs_to :dependent_recommendation, :class_name => "ChecklistRecommendation"
 	belongs_to :blocking_recommendation, :class_name => "ChecklistRecommendation"
 	belongs_to :checklist, polymorphic: true
+	belongs_to :auditee, class_name: 'User', foreign_key: 'auditee_id'
+
 	
 	#validation
    validates :recommendation, presence: true
    validates :reason, presence: true
-   validates :response_priority_id, presence: true
-   validates :response_priority_id, presence: true
-   validates :response_severity_id, presence: true
+   validates :recommendation_priority_id, presence: true
+   validates :recommendation_severity_id, presence: true
    validates :closure_date, presence: true
    validates :recommendation_status_id, presence: true
 	
