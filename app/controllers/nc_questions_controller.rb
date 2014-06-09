@@ -6,8 +6,9 @@ class NcQuestionsController < ApplicationController
 
 	def new
 		@audit = Audit.first
-		@audit.nc_questions.build unless @audit.nc_questions.present?			
-    	@audit.nc_questions.first.question_options.build unless @audit.nc_questions.first.question_options.present?	
+		@nc_question = NcQuestion.new
+		@audit.nc_questions.build unless @audit.nc_questions.present?
+    	@audit.nc_questions.first.question_options.build unless @audit.nc_questions.first.question_options.present?
 	end
 
 	def create
@@ -17,6 +18,14 @@ class NcQuestionsController < ApplicationController
 		else
 			render "new"
 		end
+	end
+
+	def library_questions
+		@nc_questions = NcQuestion.where(:id=>params[:nc_question])
+		@priorities = Priority.all
+		@response_types = QuestionType.all
+		@audit = Audit.find_by_id(params[:audit_id])
+		@auditees = @audit.auditees.all
 	end
 
 	def question_params
