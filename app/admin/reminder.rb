@@ -39,6 +39,8 @@ ActiveAdmin.register Reminder do
         t.time_line = 1 ? 'Hours': 'Days'
     end
     column :mail_count
+    column :mail_to
+    column :mail_cc
     actions
   end
 

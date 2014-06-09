@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
 
   has_many :artifact_answers
 
+  belongs_to :user_manager, class_name: 'User', foreign_key: 'manager'
+
 # attribute to login with username or email
   attr_accessor :login
 
@@ -44,6 +46,7 @@ class User < ActiveRecord::Base
 
   delegate :title, to: :dealer, prefix: true
   delegate :title, to: :role, prefix: true, allow_nil: true
+
   def is?( requested_role)
     self.role == requested_role.to_s if self.role.present?
   end
