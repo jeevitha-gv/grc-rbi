@@ -36,8 +36,7 @@ Rails.application.routes.draw do
   end
 
   resources :audits do
-    get 'departments_list', on: :collection
-    get 'teams_list', on: :collection
+    get 'department_teams_users', on: :collection
     post 'audit_with_status', on: :collection
     post 'audit_all', on: :collection
     post 'import_files', on: :collection

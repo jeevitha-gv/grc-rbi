@@ -146,7 +146,7 @@
                   <%= f.label :team_id, t('audit.team') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Team' }, { :id => "team_id"} %>
+                  <%= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Team' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
                 </div>
               </div>
             </div>
@@ -218,7 +218,7 @@
                   <%= f.label :auditor, t('audit.auditor') %>
                 </label>
                 <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:auditor].present? %>">
-                  <%= f.select :auditor, options_for_select(@auditor_users.collect{|x| [x.full_name, x.id.to_i]}), {include_blank: 'Select Auditor' } %>
+                  <%= f.select :auditor, options_for_select(@auditor_users.collect{|x| [x.user_name, x.id.to_i]}), {include_blank: 'Select Auditor' } %>
                   <% if @audit.errors[:auditor].present? %>
                     <div class="error_message"><%=  @audit.errors[:auditor][0]%></div>
                   <% end %>
@@ -227,25 +227,26 @@
             </div>
 
             <div class="col-lg-4 col-sm-6 col-xs-12" id="auditee-list">
-              <% if @audit.errors[:auditees].present? %>
-                <div class="error_message"><%= @audit.errors[:auditees][0]%></div>
-              <% end %>
-              <% @audit.audit_auditees.build %>
-              <div class="form-group clearfix auditee-dropdown">
-                <div class='auditee-rows'>
-                  <%= f.fields_for :audit_auditees do |builder| %>
-                    <label class="col-sm-4 control-label">
-                      <%= builder.label :auditees, t('audit.auditee') %>
-                    </label>
-                    <div class="col-sm-7">
-                      <%= builder.select :user_id, options_for_select(@auditee_users.collect{|x| [x.full_name, x.id.to_i]}), {include_blank: 'Select Auditee' }, { :id => "locations-list"} %>
-
-                    </div>
-                  <% end %>
+                <% if @audit.errors[:auditees].present? %>
+                  <div class="error_message"><%= @audit.errors[:auditees][0]%></div>
+                <% end %>
+                <% @audit.audit_auditees.build %>
+                <div class="form-group clearfix auditee-dropdown">
+                  <div class='auditee-rows'>
+                    <% if (action_name != "new") && (action_name != "create") %>
+                      <%= f.fields_for :audit_auditees do |builder| %>
+                        <label class="col-sm-4 control-label">
+                          <%= builder.label :auditees, t('audit.auditee') %>
+                        </label>
+                        <div class="col-sm-7">
+                          <%= builder.select :user_id, options_for_select(@team.collect{|x| [x.user_name, x.id.to_i]}), {include_blank: 'Select Auditee' }, { :id => "auditees-users"} %>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
                 </div>
-              </div>
             </div>
-            <div class="col-sm-7">
+            <div class="col-sm-7" id="auditee-button" style="display:none;">
               <div class="form-group clearfix addissue">
                 <a href="javascript:void(0)" class="plus-icon" id="add_auditee">Add Auditee
                 </a>
@@ -255,8 +256,7 @@
               <br>
               <br>
               <%= f.submit "Initiate Audit", :class => "black_btn" %>
-              <!-- <a href="" class="black_btn"></a> -->
-              <a class="orange_btn" href="#">Save as Plan</a>
+              <%= f.submit "Save as Plan", :class => "orange_btn" %>
               <br>
               <br>
             </div>
@@ -334,7 +334,7 @@
     var location_id = $(element).val();
     if(location_id.length>0){
       $.ajax({
-        url: "/audits/departments_list",
+        url: "/audits/department_teams_users",
         type: "GET",
         data: {"location_id" : location_id}
       });
@@ -349,9 +349,23 @@
     var department_id = $(element).val();
     if(department_id.length>0){
       $.ajax({
-        url: "/audits/teams_list",
+        url: "/audits/department_teams_users",
         type: "GET",
         data: {"department_id" : department_id}
+      });
+    }
+    else {
+      $('#teams-dropdown').hide();
+    }
+  }
+
+  function get_auditee_users(element){
+    var team_id = $(element).val();
+    if(team_id.length>0){
+      $.ajax({
+        url: "/audits/department_teams_users",
+        type: "GET",
+        data: {"team_id" : team_id}
       });
     }
     else {

@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   delegate :title, to: :role, prefix: true, allow_nil: true
 
   def is?( requested_role)
-    self.role == requested_role.to_s if self.role.present?
+    self.role.title == requested_role.to_s if self.role.present?
   end
 
   def user_previleges

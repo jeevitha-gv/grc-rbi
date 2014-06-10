@@ -11,10 +11,17 @@ class ApplicationController < ActionController::Base
   helper_method :current_company
   before_filter :check_subdomain
   before_filter :check_password_authenticated, :if => :current_user
-    unless Rails.application.config.consider_all_requests_local
-      rescue_from Exception, with: lambda { |exception| render_error 500, exception }
-      rescue_from ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
-    end
+  unless Rails.application.config.consider_all_requests_local
+    rescue_from Exception, with: lambda { |exception| render_error 500, exception }
+    rescue_from ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
+  end
+
+  before_filter do
+    resource = controller_name.singularize.to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+  end
+
 
 
   protected

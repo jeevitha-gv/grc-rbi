@@ -28,7 +28,7 @@ class Audit < ActiveRecord::Base
   validates :title, presence:true
   validates_format_of :title, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.title.blank? }
   validates :title, uniqueness:true, :if => Proc.new{ |f| !f.title.blank? }
-  #validates :auditor, presence:true
+  validates :auditor, presence:true
   validates :audit_type_id, presence:true
   validates :standard_id, presence:true, :if => Proc.new{ |f| !f.compliance_type.blank? }
   validates_format_of :issue, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.issue.blank? }
@@ -47,7 +47,7 @@ class Audit < ActiveRecord::Base
   delegate :full_name, :to => :auditory, prefix: true, allow_nil: true
   delegate :name, :to => :location, prefix: true, allow_nil: true
   delegate :name, :to => :department, prefix: true, allow_nil: true
-  
+
   scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
 
   mapping do
@@ -60,11 +60,11 @@ class Audit < ActiveRecord::Base
   def answered_compliances
     self.audit_compliances.where(is_answered: true).map(&:compliance_library)
   end
-  
+
   def auditee_response_compliances
     self.audit_compliances.where(is_answered: true).collect{|x| x.checklist_recommendations.where('recommendation_completed= ?',true)}.flatten
   end
-  
+
   def audit_observation_compliances
     self.audit_compliances.where(is_answered: true).collect{|x| x.checklist_recommendations.where('response_completed= ?',true)}.flatten
   end
