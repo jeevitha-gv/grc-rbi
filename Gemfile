@@ -58,3 +58,8 @@ gem 'bootstrap-sass'
 
 # HighCharts
 gem 'highcharts-rails', '~> 4.0.1'
+
+#pdf
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+

@@ -1,10 +1,12 @@
 class AuditsController < ApplicationController
   before_action :authenticate_user!
   before_filter :check_company_disabled
-  before_filter :audit_auditee_users, :only => [:new, :create]
+  before_filter :audit_auditee_users, :only => [:new, :create, :edit, :update]
 
   def index
-    @audits = Audit.all
+     @current_user_audits = current_user.audit_auditees
+     @audits = @current_user_audits.map(&:audit_id).collect{|id| Audit.where('id= ?',id)}
+
  end
 
   def departments_list
@@ -21,11 +23,16 @@ class AuditsController < ApplicationController
     @audit = Audit.new
   end
 
+  def edit
+   @audit = Audit.find_by_id(params[:id])
+
+  end
+
   def create
     @audit = Audit.new(audit_params)
 
-    if @audit.save                
-      UniversalMailer.notify_auditor_about_audit(@audit).deliver      
+    if @audit.save
+      UniversalMailer.notify_auditor_about_audit(@audit).deliver
       UniversalMailer.notify_auditees_about_audit(@audit).deliver
       redirect_to new_audit_path
     else
@@ -33,8 +40,48 @@ class AuditsController < ApplicationController
     end
   end
 
+  def show
+     @audit = Audit.find(params[:id])
+    respond_to do |format|
+    format.html
+     format.pdf do
+        render :pdf => "pdf",
+        :template => "audits/show.html.erb",
+        layout: 'layouts/pdf.html.erb'
+        # show_as_html: params[:debug].present?
+               # :template => 'posts/show.html.erb',
+               # :layout => "pdf.html.erb",
+               # :footer => {
+               # :center => "Center",
+               # :left => "Left",
+               # :right => "Right"
+               #   }
+
+   end
+  end
+end
+
+
+  def update
+     @audit = Audit.find_by_id(params[:id])
+
+     if @audit.update_attributes(audit_params)
+      redirect_to edit_audit_path
+    else
+    render 'edit'
+    end
+  end
+
    def audit_with_status
        @audits = Audit.with_status(params[:audit_status_id])
+    end
+
+    def audit_all
+       @current_user_audits = current_user.audit_auditees
+       @audits = @current_user_audits.map(&:audit_id).collect{|id| Audit.where('id= ?',id)}
+       @audits = Audit.where("auditor=?",'3')
+
+
     end
 
   def import_files
@@ -105,8 +152,7 @@ class AuditsController < ApplicationController
       @errors = "Please select a file."
       redirect_to new_audit_path
     end
-
-  end
+   end
 
   private
     def audit_params
