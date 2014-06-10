@@ -58,7 +58,9 @@ Rails.application.routes.draw do
    resources :activities, :except => [:show]
 
     resources :compliance_libraries
-    resources :audit_compliances
+    resources :audit_compliances do 
+      get 'compliance_checklist', on: :collection
+    end
 
 
    get 'welcome', to: 'companies#welcome', :as => :welcome
