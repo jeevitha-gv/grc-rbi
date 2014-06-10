@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     get 'export_files', on: :collection
   end
 
+  resource :answers
+
   resource :user do
     collection do
       patch 'update_password'
