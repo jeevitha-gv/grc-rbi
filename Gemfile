@@ -58,3 +58,5 @@ gem 'bootstrap-sass'
 
 # HighCharts
 gem 'highcharts-rails', '~> 4.0.1'
+gem 'remotipart', '~> 1.0'
+
