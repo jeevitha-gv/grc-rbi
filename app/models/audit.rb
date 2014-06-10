@@ -47,6 +47,14 @@ class Audit < ActiveRecord::Base
   def answered_compliances
     self.audit_compliances.where(is_answered: true).map(&:compliance_library)
   end
+  
+  def auditee_response_compliances
+    self.audit_compliances.where(is_answered: true).collect{|x| x.checklist_recommendations.where('recommendation_completed= ?',true)}.flatten
+  end
+  
+  def audit_observation_compliances
+    self.audit_compliances.where(is_answered: true).collect{|x| x.checklist_recommendations.where('response_completed= ?',true)}.flatten
+  end
 
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)
