@@ -101,8 +101,8 @@ class AuditsController < ApplicationController
             :team_id =>  team.present? ? team.id : nil,
             :start_date =>  row_data[14],
             :end_date =>  row_data[15],
-            :auditor => auditor.present? ? auditor.id : nil
-            :company_id => current_company.id
+            :auditor => auditor.present? ? auditor.id : nil,
+            :company_id => current_company.id,
             :audit_status_id => AuditStatus.where(:name=>"Initiated").first.id
           }
           audit.save(:validate => false)
