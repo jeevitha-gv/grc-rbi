@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require jquery.remotipart
 
 
 function add_fields(link, association, content) { 	
@@ -31,3 +32,5 @@ function remove_options(link) {
     jQuery(link).parent().find("input[type=hidden]").val(1);
     jQuery(link).parents(".choices").hide();
 }
+
+    

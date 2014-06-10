@@ -1,0 +1,136 @@
+<div id="Accordion1">
+ <% @checklist_recommendations.each do |checklist| %>
+							<% control = checklist_control(checklist)%>
+              <h3><a href="#"><%= control.name%></a> <span class="fright pending_msg">Pending</span></h3>
+              <div>
+                <div class="row audit-title">
+								<% checklist_recommendation = audit_checklist(control, @audit.id).flatten.first%>
+								<%= checklist_recommendation.inspect%>
+								<%= form_tag '/checklist_recommendations/audit_observation_create' , :remote=>true , multipart: true do%>
+                  <div class="col-lg-4">
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Artifact :</b> </label>
+                      <div class="col-sm-7"><a class="blue_link" href="">Information Security Policies</a> </div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Recommendation :</b> </label>
+                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation%></div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Priority :</b> </label>
+                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_priority.name%></div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Comment :</b> </label>
+                      <div class="col-sm-7"> Comment by Auditee</div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Reason :</b> </label>
+                      <div class="col-sm-7"> procedures as part of the Knowledge Base</div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Severity :</b> </label>
+                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_severity.name%></div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Target Date :</b> </label>
+                      <div class="col-sm-7"> <%= checklist_recommendation.closure_date%></div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Status :</b> </label>
+                      <div class="col-sm-7"><%= checklist_recommendation.recommendation_status.name%></div>
+                    </div>
+                   
+                    
+                  
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Score :</b> </label>
+                      <div class="col-sm-7">
+                        <div class="number_link"> <a class="active" href="">0</a> <a href="">1</a> <a href="">2</a> <a href="">3</a> <a href="">4</a> </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                     <h3>Audit Details</h3>
+                  <div class="col-lg-4">
+                    
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5">Corrective Action</label>
+                      <div class="col-sm-7"> <%= checklist_recommendation.corrective%> </div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5 control-label">Status</label>
+                      <div class="col-sm-7"> <%= checklist_recommendation.response_status.name%>  </div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#attachment').click();" >Attach Document</a>
+											<%= file_field_tag "checklist_recommendation[attachment]", :style => "visibility:hidden; display:none;",	:id => "attachment"%></div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5">Preventive Action</label>
+                      <div class="col-sm-7"> <%= checklist_recommendation.preventive%>  </div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Priority :</b></label>
+                      <div class="col-sm-7"> <%= checklist_recommendation.response_priority.name%>  </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5">Blocking :</label>
+                      <div class="col-sm-7"><%= checklist_recommendation.blocking_recommendation%> </div>
+                    </div>
+                     <div class="form-group clearfix">
+                      <label class="col-sm-5">Dependent :</label>
+                      <div class="col-sm-7"> <%= checklist_recommendation.dependent_recommendation%> </div>
+                    </div>
+                     <div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Priority :</b></label>
+                      <div class="col-sm-7"> <%= checklist_recommendation.response_priority.name%>  </div>
+                    </div>
+                  </div>
+                  
+                  <div class="clearfix"></div>
+                  
+                  <h3>Auditor Observation</h3>
+                  <div class="clearfix"></div>
+                  
+                  <div class="col-lg-6">
+                  <div class="form-group clearfix">
+                      <label  class="col-sm-3">Observation :</label>
+                      <div class="col-sm-9"> 
+											<input class="audit-big-input" type="text" id="observation_<%= checklist_recommendation.id%>" name="checklist_recommendation[observation]">
+											<span class="error_message" id="error_observation_<%= checklist_recommendation.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["observation"]%><span>
+											</div>
+                       
+                    </div>
+                    <div class="form-group clearfix">
+                    <label  class="col-sm-3">Implemented</label>
+                    <div ><input type="radio"  name="checklist_recommendation[is_implemented]"  value="1" checked="checked"> Yes <input type="radio" name="checklist_recommendation[is_implemented]" value="0"> No</div>
+                    </div>
+                  
+                  </div>
+                  <div class="col-lg-6">
+                  <div class="form-group clearfix">
+                      <label  class="col-sm-3">Remarks : </label>
+                      <div class="col-sm-9"> <input class="audit-big-input" type="text" id="remarks_<%= checklist_recommendation.id%>" name="checklist_recommendation[remarks]">
+									<span class="error_message" id="error_remarks_<%= checklist_recommendation.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["remarks"]%><span>
+                    </div> </div>
+									<%= hidden_field_tag "checklist_recommendation[id]",  checklist_recommendation.id , :id => "id_#{checklist_recommendation.id}"%>
+                  <div class="clearfix fright">
+                  <!--<a class="black_btn" href="">Publish</a>-->
+									<input type="submit" value="Publish" class="black_btn" onclick="return audit_observation(<%=checklist_recommendation.id%>);" >
+                  </div>
+                  </div>
+                  
+                </div>
+              </div>
+							<% end %>
+							<% end %>
+            </div>

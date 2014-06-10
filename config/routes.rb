@@ -16,10 +16,18 @@ Rails.application.routes.draw do
   resources :checklist_recommendations do
     collection do
       get 'auditee_response'
+      post 'audit_observation_create'
+      post 'auditee_response_create'
       get 'audit_observation'
       post 'update_individual_score'
     end
   end
+
+ resources :dashboard do
+   collection do
+    get 'calender'
+   end
+ end
 
   resources :nc_questions do
     get 'library_questions', on: :collection
