@@ -1,4 +1,4 @@
- json.data do |json|
+json.data do |json|
 
 	json.array!(@audits) do |audit|
 	  json.id audit.id
