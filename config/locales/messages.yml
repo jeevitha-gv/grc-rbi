@@ -66,8 +66,13 @@ en:
 
   checklist_recommendations:
     recommendation: "Please enter recommendation"
-    priority: "Please enter priority"
+    priority: "Please select priority"
     reason: "Please enter reason"
-    severity: "Please enter severity"
-    closuredate: "Please enter closuredate"
-    status: "Please enter status"
+    severity: "Please select severity"
+    closuredate: "Please select closuredate"
+    status: "Please select status"
+    corrective: "Please enter corrective"
+    preventive: "Please enter preventive"
+    observation: "Please enter observation"
+    is_implemented: "Please select implementation status"
+    remarks: "Please enter remarks"

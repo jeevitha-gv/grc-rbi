@@ -16,10 +16,18 @@ Rails.application.routes.draw do
   resources :checklist_recommendations do
     collection do
       get 'auditee_response'
+      post 'audit_observation_create'
+      post 'auditee_response_create'
       get 'audit_observation'
       post 'update_individual_score'
     end
   end
+
+ resources :dashboard do
+   collection do
+    get 'calender'
+   end
+ end
 
   resources :nc_questions do
     get 'library_questions', on: :collection
@@ -31,6 +39,7 @@ Rails.application.routes.draw do
     get 'departments_list', on: :collection
     get 'teams_list', on: :collection
     post 'audit_with_status', on: :collection
+    post 'audit_all', on: :collection
     post 'import_files', on: :collection
     get 'export_files', on: :collection
   end

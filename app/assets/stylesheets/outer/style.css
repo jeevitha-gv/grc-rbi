@@ -584,7 +584,7 @@ html, body {
 }
 .error_logo{ padding-top:15px; font-size:25px;}
 
-.attach-icon{ background-image:url(../images/attach-icon.png); background-repeat:no-repeat;padding: 0 0 0 18px;}
+.attach-icon{ background-image:url(/assets/outer/attach-icon.png); background-repeat:no-repeat;padding: 0 0 0 18px;}
 .audit-title {
     color: #252525;
     font-size: 12px;
@@ -730,3 +730,6 @@ text-align: left;
 }
 
 .error_input { border:1px solid  #932419!important;}
+
+/*Import Section*/
+@import url("fullcalendar.css");	/* Calendars Styles */

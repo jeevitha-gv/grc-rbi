@@ -45,12 +45,28 @@ class Audit < ActiveRecord::Base
   delegate :name, :to => :client, prefix: true, allow_nil: true
   delegate :name, :to => :audit_type, prefix: true, allow_nil: true
   delegate :full_name, :to => :auditory, prefix: true, allow_nil: true
-
+  delegate :name, :to => :location, prefix: true, allow_nil: true
+  delegate :name, :to => :department, prefix: true, allow_nil: true
+  
   scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
 
+  mapping do
+    indexes :_id, :index => :not_analyzed
+    indexes :title
+    indexes :context
+    indexes :observation
+  end
 
   def answered_compliances
     self.audit_compliances.where(is_answered: true).map(&:compliance_library)
+  end
+  
+  def auditee_response_compliances
+    self.audit_compliances.where(is_answered: true).collect{|x| x.checklist_recommendations.where('recommendation_completed= ?',true)}.flatten
+  end
+  
+  def audit_observation_compliances
+    self.audit_compliances.where(is_answered: true).collect{|x| x.checklist_recommendations.where('response_completed= ?',true)}.flatten
   end
 
   # Getting all the unanswered Audit compliance for sending reminders
