@@ -1,11 +1,12 @@
 class AuditsController < ApplicationController
   before_action :authenticate_user!
   before_filter :check_company_disabled
-  before_filter :audit_auditee_users, :only => [:new, :create]
+  before_filter :audit_auditee_users, :only => [:new, :create, :edit, :update]
 
   def index
-    @audits = Audit.all
- end
+    @current_user_audits = current_user.audit_auditees
+    @audits = @current_user_audits.map(&:audit_id).collect{|id| Audit.where('id= ?',id)}
+  end
 
   def departments_list
     @departments = Department.where(:location_id=>params[:location_id]).all
@@ -20,6 +21,10 @@ class AuditsController < ApplicationController
   def new
     @audit = Audit.new
     @audit.build_skipped_audit_reminder
+  end
+
+  def edit
+    @audit = Audit.find_by_id(params[:id])
   end
 
   def create
@@ -43,9 +48,35 @@ class AuditsController < ApplicationController
     end
   end
 
-   def audit_with_status
-       @audits = Audit.with_status(params[:audit_status_id])
+  def show
+    @audit = Audit.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => "pdf", :template => "audits/show.html.erb", layout: 'layouts/pdf.html.erb'
     end
+  end
+end
+
+
+  def update
+    @audit = Audit.find_by_id(params[:id])
+
+    if @audit.update_attributes(audit_params)
+      redirect_to edit_audit_path
+    else
+      render 'edit'
+    end
+  end
+
+  def audit_with_status
+   # @audits = Audit.with_status(params[:audit_status_id])
+     @audits = current_user.accessible_audits.collect{|x| Audit.where('audit_status_id= ?',params[:audit_status_id])}.flatten
+  end
+
+  def audit_all
+   @audits = current_user.accessible_audits
+  end
 
   def import_files
     if(params[:file].present?)
@@ -101,7 +132,9 @@ class AuditsController < ApplicationController
             :team_id =>  team.present? ? team.id : nil,
             :start_date =>  row_data[14],
             :end_date =>  row_data[15],
-            :auditor => auditor.present? ? auditor.id : nil
+            :auditor => auditor.present? ? auditor.id : nil,
+            :company_id => current_company.id,
+            :audit_status_id => AuditStatus.where(:name=>"Initiated").first.id
           }
           audit.save(:validate => false)
           auditee_users.map(&:id).collect{|x| audit.audit_auditees.create(:user_id =>x) }
