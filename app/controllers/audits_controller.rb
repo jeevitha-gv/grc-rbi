@@ -70,13 +70,12 @@ end
   end
 
   def audit_with_status
-    @audits = Audit.with_status(params[:audit_status_id])
+   # @audits = Audit.with_status(params[:audit_status_id])
+     @audits = current_user.accessible_audits.collect{|x| Audit.where('audit_status_id= ?',params[:audit_status_id])}.flatten
   end
 
   def audit_all
-    @current_user_audits = current_user.audit_auditees
-    @audits = @current_user_audits.map(&:audit_id).collect{|id| Audit.where('id= ?',id)}
-    @audits = Audit.where("auditor=?",'3')
+   @audits = current_user.accessible_audits
   end
 
   def import_files
