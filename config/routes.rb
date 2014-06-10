@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'admin/compliance_libraries/compliance_controls'
   post 'admin/compliance_libraries/compliance_domains'
   post 'admin/compliance_libraries/import_files'
+  post 'admin/compliance_libraries/export_files'
 
   devise_for :users
 
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
   resources :nc_questions do
     get 'library_questions', on: :collection
     post 'import_files', on: :collection
+    get 'export_files', on: :collection
   end
 
   resources :audits do
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
     get 'teams_list', on: :collection
     post 'audit_with_status', on: :collection
     post 'import_files', on: :collection
+    get 'export_files', on: :collection
   end
 
   resource :user do

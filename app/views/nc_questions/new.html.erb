@@ -7,7 +7,26 @@
         <div class="audit-content container">
           <%= render 'form' %>
           <br>
-
+          <div class="form-group clearfix addissue"> <a class="plus-icon" data-toggle="modal" href="#add_files">Upload audit from CSV or XLSX</a>
+            <div id="add_files" class="modal fade">
+              <div class="modal-dialog modal-dialog_large">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
+                    <h4 class="modal-title" id="myModalLabel">Upload files only CSV and XLSX</h4>
+                    <%= form_tag import_files_nc_questions_path, multipart: true do %>
+                      <%= file_field_tag :file %>
+                      <%= submit_tag "Import" %>
+                    <% end %>
+                    <p></p>
+                    <p>
+                      <%= link_to "Download Sample Non Compliance Checklist CSV", export_files_nc_questions_path(format: "csv") %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,4 +1,6 @@
 class Audit < ActiveRecord::Base
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
 
   # associations
   belongs_to :location
@@ -72,6 +74,12 @@ class Audit < ActiveRecord::Base
     when '.csv' then Roo::CSV.new(file.path)
     when '.xlsx' then Roo::Excelx.new(file.path)
     else raise "Unknown file type: #{file.original_filename}"
+    end
+  end
+
+  def self.search(params)
+    tire.search(load: true) do
+      query { string params[:query], default_operator: "AND" } if params[:query].present?
     end
   end
 
