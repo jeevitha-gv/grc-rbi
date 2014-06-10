@@ -20,7 +20,7 @@
 }
 .subbar-nav li {
 	float: left;
-	width: 107px;
+	/*width: 107px;*/
     text-align: center;
 }
 .subbar-nav li a {
@@ -593,7 +593,7 @@ html, body {
 #Accordion1 a {
   color: #252525;
   font-size: 14px;
-} 
+}
 .blue_link{ font-size:12px !important; color:#0085c8 !important; text-decoration:underline !important;  }
 
 .tab-content{padding-bottom: 30px; margin-bottom: 85px !important;display: inline-block;}
@@ -625,7 +625,7 @@ html, body {
     border: medium none;
     border-radius: 5px;
     color: #302f2f !important;
-    font-size: 12px !important;
+    font-size: 14px !important;
     padding: 5px 20px;
 }
 .pending_active{  background: none repeat scroll 0 0 #D8D5D5 !important;}
@@ -733,3 +733,42 @@ text-align: left;
 
 /*Import Section*/
 @import url("fullcalendar.css");	/* Calendars Styles */
+
+.plusround-icon {
+    background-image: url("/assets/outer/add-btn.jpg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+     height: 19px;
+    margin-top: 8px;
+    padding: 10px;
+
+    width: 19px;
+    display: inline-block;
+}
+
+a.plus-background{
+	 background-color: rgba(0, 0, 0, 0) !important;
+	    float: left;
+    margin:8px 0 0;
+}
+
+.minusround-icon {
+    background-image: url("/assets/outer/minus-btn.jpg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    display: inline-block;
+    float: right;
+    height: 19px;
+    margin-top: 8px;
+    padding: 10px;
+    width: 19px;
+}
+
+.comaduit_resp .col-sm-10{width: 83.3333% !important;}
+.comaduit_resp input {
+    margin-bottom: 15px;
+}
+#skip_reminder {
+    margin-top: 12px;
+}
+.text-align-right{ text-align: right;}

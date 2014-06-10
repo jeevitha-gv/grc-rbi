@@ -256,24 +256,25 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-7">
+            <div class="col-sm-8">
               <div class="form-group clearfix addissue">
                 <a href="javascript:void(0)" class="plus-icon" id="add_auditee">Add Auditee
                 </a>
               </div>
             </div>
-            <div class="col-lg-4 col-sm-6 col-xs-12">
+            <div class="col-lg-12 col-sm-6 col-xs-12 text-align-right">
               <br>
               <br>
               <%= f.submit "Initiate Audit", :class => "black_btn" %>
               <!-- <a href="" class="black_btn"></a> -->
               <a class="orange_btn" href="#">Save as Plan</a>
+              <a class="grey_btn" href="#add_csv" data-toggle="modal">Upload audit from CSV or XLSX</a>
               <br>
               <br>
             </div>
           <% end %>
           <div class="form-group clearfix addissue">
-            <a class="orange_btn" href="#add_csv" data-toggle="modal">Upload audit from CSV or XLSX</a>
+
             <div class="modal fade" id="add_csv">
               <div class="modal-dialog modal-dialog_large">
                 <div class="modal-content">
