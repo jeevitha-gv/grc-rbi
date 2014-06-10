@@ -57,6 +57,17 @@ ActiveAdmin.register ComplianceLibrary do
         redirect_to new_admin_compliance_library_path
       end
     end
+
+    def export_files
+      compliance_library_csv = CSV.generate do |csv|
+        csv << ["name;compliance;parent;is_leaf;"]
+        csv_options = [["Example for domain;COBIT;"], ["Sample Control Objective;HIPAA;Example for domain;"], ["Sample Controls;ISO 28000;Example for domain;TRUE"]]
+        csv_options.each do |nc_question|
+          csv << nc_question
+        end
+      end
+      send_data(compliance_library_csv, :type => 'text/csv', :filename => 'sample_compliance_library.csv')
+    end
   end
 
   #Index page fields customization

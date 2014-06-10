@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
 
   has_many :audit_auditees
 
+  has_many :auditee_audit, through: :audit_auditees, source: :audit
+
+  has_many :auditor_audits, class_name: 'Audit', foreign_key: 'auditor'
+
   has_many :artifact_answers
 
   belongs_to :user_manager, class_name: 'User', foreign_key: 'manager'
@@ -31,7 +35,7 @@ class User < ActiveRecord::Base
 # attribute to login with username or email
   attr_accessor :login
 
-   validates_format_of :full_name, :with =>/\A[a-zA-Z ]+\z/, :if => Proc.new{|f| !f.full_name.blank? } 
+   validates_format_of :full_name, :with =>/\A[a-zA-Z ]+\z/, :if => Proc.new{|f| !f.full_name.blank? }
    validates :full_name, length: { maximum: 50 }, :if => Proc.new{|f| !f.full_name.blank? }
    validates :user_name, presence: true, :if => Proc.new{|f| f.user_name.blank? }
    validates :user_name, uniqueness: true, :if => Proc.new{|f| !f.user_name.blank? }
@@ -42,7 +46,7 @@ class User < ActiveRecord::Base
    validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, :if => Proc.new{|f| !f.email.blank? }
    validates :role_id, presence: true
    validates :password, :confirmation => true
-   
+
   # validates :user_name, :full_name , presence: true, uniqueness: true
 
   delegate :title, to: :dealer, prefix: true
@@ -62,6 +66,10 @@ class User < ActiveRecord::Base
     super && !self.is_disabled
   end
 
+  def accessible_audits
+    (self.auditor_audits + self.auditee_audit).uniq
+  end
+
   protected
 
   def password_required?
@@ -74,7 +82,7 @@ class User < ActiveRecord::Base
 
 
   # to have a login with username or email , we have to overwrite the method find_first_by_auth_conditions in devise
-    
+
     def self.find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup
       if login = conditions.delete(:login)

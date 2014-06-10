@@ -1,4 +1,5 @@
-		function save_draft_checklist()
+/*validation for checklist recommendation*/	
+	function save_draft_checklist()
 					{
 						var save_draft = $("#save_draft_"+id).val()
 						$("#save_draft_"+id).val('true')
@@ -126,7 +127,7 @@
 						{
 						$('#'+this.id).removeClass("error_input");
 						$('#error_'+this.id).hide()
-						value = false
+						value = true
 						}
 					});
 					return value
@@ -136,7 +137,9 @@
   $(document).ready(function() {
               // create DatePicker from input HTML element
 
-              $(".datepicker2").kendoDatePicker();
+              $(".datepicker2").kendoDatePicker({		      
+				format: "dd/MM/yyyy"
+		});
 
               $(".score_points").click(function(){
 								value =$(this).data("value");
@@ -282,3 +285,159 @@
 					}
 			}
 	} 
+	
+/* validation for auditee_response*/	
+function auditee_response(id)
+{
+var corrective = corrective_check()
+var preventive = preventive_check()
+var status = status_check()
+var priority = priority_check()
+var severity = severity_check()
+function corrective_check()
+{
+corrective_value = $('#corrective_'+id).val()
+if (corrective_value == '')
+{
+$('#corrective_'+id).addClass("error_input");
+$('#error_corrective_'+id).show()
+return false
+}
+else
+{
+$('#corrective_'+id).removeClass("error_input");
+$('#error_corrective_'+id).hide()
+return true
+}
+}
+function preventive_check()
+{
+preventive_value = $('#preventive_'+id).val()
+if (preventive_value == '')
+{
+$('#preventive_'+id).addClass("error_input");
+$('#error_preventive_'+id).show()
+return false
+}
+else
+{
+$('#preventive_'+id).removeClass("error_input");
+$('#error_preventive_'+id).hide()
+return true
+}
+}
+function status_check()
+{
+status_value = $('#response_status_id_'+id).val()
+if (status_value == '')
+{
+$('#response_status_id_'+id).addClass("error_input");
+$('#error_status_'+id).show()
+return false
+}
+else
+{
+$('#response_status_id_'+id).removeClass("error_input");
+$('#error_status_'+id).hide()
+return true
+}
+}
+function priority_check()
+{
+priority_value = $('#response_priority_id_'+id).val()
+if (priority_value == '')
+{
+$('#response_priority_id_'+id).addClass("error_input");
+$('#error_priority_'+id).show()
+return false
+}
+else
+{
+$('#response_priority_id_'+id).removeClass("error_input");
+$('#error_priority_'+id).hide()
+return true
+}
+}
+function severity_check()
+{
+severity_value = $('#response_severity_id_'+id).val()
+if (severity_value == '')
+{
+$('#response_severity_id_'+id).addClass("error_input");
+$('#error_severity_'+id).show()
+return false
+}
+else
+{
+$('#response_severity_id_'+id).removeClass("error_input");
+$('#error_severity_'+id).hide()
+return true
+}
+}
+}
+
+/*selection for blocking and dependent recommendation*/
+function dependent_recommendation_select()
+{
+id = $('#cheklist_id').val()
+recommendation_id = $('#recommendation_id').val()
+$('#dependent_recommendation_'+id).val(recommendation_id)
+ $('#myModal').modal('hide');
+}
+function blocking_recommendation_select()
+{
+id = $('#cheklist_id').val()
+recommendation_id = $('#recommendation_id').val()
+$('#blocking_recommendation_'+id).val(recommendation_id)
+ $('#myModal1').modal('hide');
+}
+function recommendation(id)
+{
+$('#cheklist_id').val(id)
+}
+
+function audit_observation(id)
+{
+	var observation = observation_check()
+	var remarks = remarks_check()
+	if (observation && remarks )
+	{
+	return true
+	}
+	else
+	{
+	return false
+	}
+	function observation_check()
+	{
+		var observation_value = $('#observation_'+id).val()
+		if (observation_value == '')
+		{
+			$('#observation_'+id).addClass("error_input");
+			$('#error_observation_'+id).show()
+			return false
+		}
+		else
+		{
+			$('#observation_'+id).removeClass("error_input");
+			$('#error_observation_'+id).hide()
+			return true
+		}
+	}
+	function remarks_check()
+	{
+		var remarks_value = $('#remarks_'+id).val()
+		if (remarks_value == '')
+		{
+			$('#remarks_'+id).addClass("error_input");
+			$('#error_remarks_'+id).show()
+			return false
+		}
+		else
+		{
+			$('#remarks_'+id).removeClass("error_input");
+			$('#error_remarks_'+id).hide()
+			return true
+		}
+	}
+}

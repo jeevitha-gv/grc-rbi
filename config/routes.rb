@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'admin/compliance_libraries/compliance_controls'
   post 'admin/compliance_libraries/compliance_domains'
   post 'admin/compliance_libraries/import_files'
+  post 'admin/compliance_libraries/export_files'
 
   devise_for :users
 
@@ -15,22 +16,35 @@ Rails.application.routes.draw do
   resources :checklist_recommendations do
     collection do
       get 'auditee_response'
+      post 'audit_observation_create'
+      post 'auditee_response_create'
       get 'audit_observation'
       post 'update_individual_score'
     end
   end
 
+ resources :dashboard do
+   collection do
+    get 'calender'
+   end
+ end
+
   resources :nc_questions do
     get 'library_questions', on: :collection
     post 'import_files', on: :collection
+    get 'export_files', on: :collection
   end
 
   resources :audits do
     get 'departments_list', on: :collection
     get 'teams_list', on: :collection
     post 'audit_with_status', on: :collection
+    post 'audit_all', on: :collection
     post 'import_files', on: :collection
+    get 'export_files', on: :collection
   end
+
+  resource :answers
 
   resource :user do
     collection do
@@ -53,7 +67,35 @@ Rails.application.routes.draw do
     collection do
       get 'welcome', to: 'companies#welcome', :as => :welcome
     end
+   end
+
+
+  resources :audit_compliances do 
+    get 'compliance_checklist', on: :collection
   end
+
+   # resources :privileges
+
+  # Example of regular route:
+  #   get 'products/:id' => 'catalog#view'
+
+  # Example of named route that can be invoked with purchase_url(id: product.id)
+  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+
+  # Example resource route (maps HTTP verbs to controller actions automatically):
+  #   resources :products
+
+  # Example resource route with options:
+  #   resources :products do
+  #     member do
+  #       get 'short'
+  #       post 'toggle'
+  #     end
+  #
+  #     collection do
+  #       get 'sold'
+  #     end
+  #   end
 
   # delete '/activities/clear_audit' => 'activities#clear_audit', :as => :clear_audit
   resources :activities, :except => [:show]

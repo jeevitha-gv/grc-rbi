@@ -1,11 +1,11 @@
 <fieldset class="fields">
           <div class="col-lg-4 col-sm-6 col-xs-12">
+
             <div class="form-group clearfix">
               <%= f.label :question, t('nc_question.request'), :class => "col-sm-4" %>
-              <%# binding.pry%>
-              <div class="col-sm-7 <%='error_inputfield' if @audit.errors["nc_questions.question"].present?%>">
+              <div class="col-sm-7 <%='error_inputfield' if (@audit.errors["nc_questions.question"].present? && f.object.question.blank?) %>">
                 <%= f.text_field :question, :class => "audit-normal-input" %>
-                 <%if @audit.errors["nc_questions.question"].present?%>
+                 <%if (@audit.errors["nc_questions.question"].present? && f.object.question.blank?) %>
                    <div class="error_message"><%=  @audit.errors["nc_questions.question"][0]%></div>
                   <% end %>
               </div>
@@ -39,12 +39,12 @@
             </div>
             <div class="form-group clearfix">
               <%= f.label :target_date, t('nc_question.target_date'), :class => "col-sm-4 control-label" %>
-              <div class="col-sm-7 <%='error_inputfield' if @audit.errors["nc_questions.target_date"].present?%>">
+              <div class="col-sm-7 <%='error_inputfield' if (@audit.errors["nc_questions.target_date"].present? && f.object.target_date.blank?) %>">
                 <div class="form-group">
                   <div class='input-group date' id='datetimepicker1'>
                     <%= f.date_field :target_date, :class => "form-control" %>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span> </div>
-                    <%if @audit.errors["nc_questions.target_date"].present?%>
+                    <%if (@audit.errors["nc_questions.target_date"].present? && f.object.target_date.blank?) %>
                       <div class="error_message"><%=  @audit.errors["nc_questions.target_date"][0]%></div>
                     <% end %>
                 </div>

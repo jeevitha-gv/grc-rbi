@@ -53,6 +53,9 @@
                 <%= submit_tag "Import" %>
               <% end %>
               <p></p>
+              <p>
+                <%= link_to "Download Sample Non Compliance Checklist CSV", admin_compliance_libraries_export_files_path(format: "csv"), :method => :post %>
+              </p>
             </div>
           </div>
         </div>

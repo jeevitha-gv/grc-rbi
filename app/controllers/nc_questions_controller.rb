@@ -1,18 +1,26 @@
 class NcQuestionsController < ApplicationController
+	before_filter :current_audit, :only => [:new, :library_questions]
 
 	def index
 		@nc_questions = NcQuestion.all
 	end
 
 	def new
-		@audit = Audit.first
-		@nc_question = NcQuestion.new
-		@audit.nc_questions.build unless @audit.nc_questions.present?
-    	@audit.nc_questions.first.question_options.build unless @audit.nc_questions.first.question_options.present?
+		begin
+			@audit = Audit.find(params[:id])
+			@nc_question = NcQuestion.new
+			@audit.nc_questions.build unless @audit.nc_questions.present?
+	  	@audit.nc_questions.first.question_options.build unless @audit.nc_questions.first.question_options.present?
+    rescue
+      @errors = "Invalid file format"
+      redirect_to audits_path
+    end
 	end
 
+
 	def create
-		@audit = Audit.first
+		@audit = Audit.find(params[:id])
+		# @nc_questions = NcQuestion.new(question_params)
 		if @audit.update_attributes(question_params)
 			redirect_to nc_questions_path
 		else
@@ -20,12 +28,12 @@ class NcQuestionsController < ApplicationController
 		end
 	end
 
+
 	def library_questions
 		@nc_questions = NcQuestion.where(:id=>params[:nc_question])
 		@priorities = Priority.all
 		@response_types = QuestionType.all
     # @response_type_selected = @nc_question.map(&:question_type_id)
-		@audit = Audit.find_by_id(params[:audit_id])
 		@auditees = @audit.auditees.all
   end
 
@@ -70,8 +78,23 @@ class NcQuestionsController < ApplicationController
   end
 
 
-	def question_params
-		params.require(:audit).permit(nc_questions_attributes: [:question, :question_type_id, :priority_id, :target_date, :does_require_document, :nc_library, :auditee_id, :id, :_destroy, question_options_attributes: [:value, :id, :_destroy]])
-	end
+  def export_files
+    nc_question_csv = CSV.generate do |csv|
+      csv << ["Question Name;Question Type;Mutilpe Type Options;"]
+      csv_options = [["Example Question;Yes or no;"], ["Second Question;Multiple choice;question option1", " question option2", " question option3", " question option4"], ["Third Question;Descriptive type"]]
+      csv_options.each do |nc_question|
+        csv << nc_question
+      end
+    end
+    send_data(nc_question_csv, :type => 'text/csv', :filename => 'sample_non_compliance_question.csv')
+  end
 
+  private
+		def question_params
+			params.require(:audit).permit(nc_questions_attributes: [:question, :question_type_id, :priority_id, :target_date, :does_require_document, :nc_library, :auditee_id, :id, :_destroy, question_options_attributes: [:value, :id, :_destroy]])
+		end
+
+		def current_audit
+			@audit = Audit.find(params[:audit_id])
+		end
 end
