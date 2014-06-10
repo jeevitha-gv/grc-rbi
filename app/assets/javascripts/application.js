@@ -13,14 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require jquery.remotipart
 
-// function add_fields(link, association, content) {
-//   var new_id = new Date().getTime();
-//   var regexp = new RegExp("new_" + association, "g");
-//   $(link).up().insert({
-//         before: content.replace(regexp, new_id)
-//   });
-// }
 
 function add_fields(link, association, content) { 	
     var new_id = new Date().getTime();  
@@ -29,22 +23,14 @@ function add_fields(link, association, content) {
     return false;
 }
 
-// function remove_fields(link) {
-//   $(link).previous("input[type=hidden]").value = "1";
-//   $(link).up(".fields").hide();
-// }
-
-// function remove_fields(link) {
-//   $(link).prev("input[type=hidden]").val("1");
-//   $(link).closest(".fields").hide();
-// }
-
-// function remove_fields(link) {  
-//     $(link).prev("input[type=hidden]").val("1");  
-//     $(link).closest(".fields").hide();  
-// }  
-
 function remove_fields(link) {
     jQuery(link).parent().find("input[type=hidden]").val(1);
     jQuery(link).parents(".fields").hide();
 }
+
+function remove_options(link) {
+    jQuery(link).parent().find("input[type=hidden]").val(1);
+    jQuery(link).parents(".choices").hide();
+}
+
+    

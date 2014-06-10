@@ -26,6 +26,7 @@
 <div id="wrapper">
   <%= render :partial => "layouts/header" if user_signed_in? %>
   <%= yield %>
+  <%= yield :javascript_includes%>
 
   <%= render :partial => "layouts/footer" if user_signed_in? %>
 </div>

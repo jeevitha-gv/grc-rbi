@@ -68,3 +68,16 @@ en:
     failure:
       auditee_blank: "Please select auditee"
       auditee_unique: "Please select unique auditee"
+
+  checklist_recommendations:
+    recommendation: "Please enter recommendation"
+    priority: "Please select priority"
+    reason: "Please enter reason"
+    severity: "Please select severity"
+    closuredate: "Please select closuredate"
+    status: "Please select status"
+    corrective: "Please enter corrective"
+    preventive: "Please enter preventive"
+    observation: "Please enter observation"
+    is_implemented: "Please select implementation status"
+    remarks: "Please enter remarks"

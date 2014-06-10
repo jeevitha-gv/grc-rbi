@@ -58,31 +58,31 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <li class="next-phase"><a href="#" class="active">
+        <li class="next-phase"><a href="#" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
           <div class="dash-icon"></div>
           Dashboard</a></li>
-        <li class="next-phase"><a href="#" >
+        <li class="next-phase"><a href="#" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
           <div class="calender-icon"></div>
           Calender</a></li>
-        <li class="next-phase"><a href="#">
+        <li><a href="/audits/new" class="<%= (request.fullpath.include?("/audits/new") && action_name=="new") == true ? 'active' : '' %>">
           <div class="plan-icon"></div>
           Plan</a></li>
-        <li class="next-phase"><a href="#">
+        <li><a href="/audits" class="<%= (request.fullpath.include?("audits") && action_name=="index") == true ? 'active' : '' %>">
           <div class="list-icon"></div>
           List</a></li>
-        <li class="next-phase"><a href="#">
+        <li><a href="/nc_questions/new" class="<%= request.fullpath.include?("nc_questions/new") == true ? 'active' : '' %>">
           <div class="do-icon"></div>
           Do</a></li>
-        <li class="next-phase"><a href="#">
+        <li class="next-phase"><a href="#" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
           <div class="check-icon"></div>
           Check</a></li>
-        <li class="next-phase"><a href="#">
+        <li><a href="/checklist_recommendations/auditee_response" class="<%= request.fullpath.include?("checklist_recommendations/auditee_response") == true ? 'active' : '' %>">
           <div class="act-icon"></div>
           Act</a></li>
-        <li class="next-phase"><a href="#">
+        <li><a href="/checklist_recommendations/audit_observation" class="<%= request.fullpath.include?("checklist_recommendations/audit_observation") == true ? 'active' : '' %>">
           <div class="published-icon"></div>
           Published</a></li>
-        <li class="next-phase"><a href="#">
+        <li class="next-phase"><a href="#" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
           <div class="setting-icon"></div>
           Setting</a></li>
       </ul>

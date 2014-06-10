@@ -1,32 +1,71 @@
 <style>
-  #hidden_stuff{
+  .hidden-item{
     display: none;
   }
 </style>
 <%= form_for(@audit, url: {controller: "nc_questions", action: "create"},:method => "post") do |f| %>
 
 <%= f.fields_for :nc_questions do |builder| %>
-	<%= render 'nc_question_fields', :f => builder %>		
+	<%= render 'nc_question_fields', :f => builder %>
 <% end %>
 
-
-	<div class="form-group clearfix addissue"> 
-    	<%= link_to_add_fields "Add New Request", f, :nc_questions %>              
+  <div id="questions_libraries"></div>
+	<div class="form-group clearfix addissue">
+    	<%= link_to_add_fields "Add New Request", f, :nc_questions %>
     </div>
-    <div class="form-group clearfix addissue"> <a class="plus-icon" data-toggle="modal" href="#add_url">Add Request from Library</a>
+    <div class="form-group clearfix addissue"> <a class="plus-icon" data-toggle="modal" href="#add_url">Add Request from Library</a><br><br>
               <div id="add_url" class="modal fade">
                 <div class="modal-dialog modal-dialog_large">
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
                       <h4 class="modal-title" id="myModalLabel">Request Library</h4>
-                      <%= NcQuestion.where(:nc_library=>true) %>
-                      <p></p>
+                      <%# binding.pry  %>
+                      <div id="test-check">
+                        <% nc_questions = current_company.nc_questions.where(:nc_library => "true") %>
+                        <% audit_nc_questions = @audit.nc_questions.map(&:id) %>
+                        <% library_questions = nc_questions.where("id NOT IN (?)", audit_nc_questions) %>
+                        <%= form_tag library_questions_nc_questions_path, :id => "submit_library" do %>
+                          <tbody>
+                            <% library_questions.each do |nc_qs| %>
+                            <tr>
+                              <td><%= check_box_tag "nc_questions[]", nc_qs.id %></td>
+                              <%= nc_qs.question %> <br>
+                            </tr>
+                            <% end %>
+                          </tbody>
+                          <%= submit_tag "Submit", :type => 'button', :id=>"submit_questions" %>
+                        <% end %>
+                      </div>
+                         <div>
+                          </br>
+                         </div>
                     </div>
                   </div>
                 </div>
               </div>
-    </div>          
+    </div>
+
+          <div class="form-group clearfix addissue"> <a class="plus-icon" data-toggle="modal" href="#add_files">Upload Requests from CSV or XLSX</a>
+            <div id="add_files" class="modal fade">
+              <div class="modal-dialog modal-dialog_large">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
+                    <h4 class="modal-title" id="myModalLabel">Upload files only CSV and XLSX</h4>
+                    <%= form_tag import_files_nc_questions_path, multipart: true do %>
+                      <%= file_field_tag :file %>
+                      <%= submit_tag "Import" %>
+                    <% end %>
+                    <p></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
 
 	<div class="col-lg-4 col-sm-6 col-xs-12"></div>
     <div class="col-lg-4 col-sm-6 col-xs-12"></div>
@@ -34,10 +73,27 @@
     	&nbsp; &nbsp; &nbsp; &nbsp;
     	<a class="black_btn" href="">Cancel</a>
     	<a class="black_btn" href="">Reset</a>
-        <%= f.submit "Ask Auditee", :class => "orange_btn" %>             
-    </div> 
-
-
-
-
+        <%= f.submit "Ask Auditee", :class => "orange_btn" %>
+    </div>
 <% end %>
+
+<script>
+$("#submit_questions").click(function(){
+  selected = []
+  $('#test-check input:checked').each(function() {
+    selected.push($(this).attr('value'));
+  });
+  $('#add_url').modal('hide');
+  if(selected.length>0){
+      $.ajax({
+        url: "/nc_questions/library_questions",
+        type: "GET",
+        data: {"nc_question" : selected}
+      });
+    }
+});
+
+  $('.orange_btn').click(function(){
+    $('.edit_audit').submit();
+  });
+</script>

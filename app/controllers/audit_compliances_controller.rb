@@ -4,8 +4,16 @@ class AuditCompliancesController < ApplicationController
 		@compliance_libraries = ComplianceLibrary.where(:is_leaf => true)
 		@priorities = Priority.all
 		@auditees = current_company.users.all
-	end
+		if params[:audit_id].present?
+			@audit = Audit.find(params[:audit_id])
+			redirect_to new_audit_compliance_path if @audit.audit_compliances.blank?
+		end
+    end
+    
+    def new
+    end
 
+<<<<<<< HEAD
   def create
     compliance_params.each do |k, v|
       audit_compliance = AuditCompliance.create(compliance_library_id: v["compliance_library_id"], audit_id: params[:audit_id])
@@ -29,3 +37,8 @@ class AuditCompliancesController < ApplicationController
       params.require(:checklist)
     end
 end
+=======
+    def edit
+  end
+ end
+>>>>>>> 9d20476608ca4a47773aadb3352f1ac03c8d75ad
