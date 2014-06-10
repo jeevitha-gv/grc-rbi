@@ -23,21 +23,17 @@ Rails.application.routes.draw do
     end
   end
 
-<<<<<<< HEAD
  resources :dashboard do
    collection do
     get 'calender'
    end
  end
 
-  resources :nc_questions
-=======
   resources :nc_questions do
     get 'library_questions', on: :collection
     post 'import_files', on: :collection
     get 'export_files', on: :collection
   end
->>>>>>> 05fb7a98f3cd579d5d65a2dd1f7142589eb50891
 
   resources :audits do
     get 'departments_list', on: :collection

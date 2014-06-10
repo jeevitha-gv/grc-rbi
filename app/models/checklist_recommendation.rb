@@ -12,13 +12,10 @@ class ChecklistRecommendation < ActiveRecord::Base
 	belongs_to :dependent_checklist, :class_name => "ChecklistRecommendation", foreign_key: "dependent_recommendation"
 	belongs_to :blocking_checklist, :class_name => "ChecklistRecommendation", foreign_key: "blocking_recommendation"
 	belongs_to :checklist, polymorphic: true
-<<<<<<< HEAD
 	has_many :attachments , as: :attachable
 	has_many :comments , as: :commentable
-=======
 	belongs_to :auditee, class_name: 'User', foreign_key: 'auditee_id'
 
->>>>>>> 05fb7a98f3cd579d5d65a2dd1f7142589eb50891
 	
 	#validation
 	validates :recommendation, presence: true
