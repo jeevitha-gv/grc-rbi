@@ -1,0 +1,65 @@
+<%# binding.pry %>
+<fieldset class="fields">
+          <div class="col-lg-4 col-sm-6 col-xs-12">
+            <div class="form-group clearfix">
+              <label for="audit_nc_questions_attributes_<%= time_variable %>_question" class="col-sm-4">Request</label>
+              <div class="col-sm-7 ">
+                <input type="text" value="<%= f.question %>" name="audit[nc_questions_attributes][<%= time_variable %>][question]" id="audit_nc_questions_attributes_<%= time_variable %>_question" class="audit-normal-input">
+              </div>
+            </div>
+            <div class="form-group clearfix">
+              <label for="audit_nc_questions_attributes_<%= time_variable %>_question_type_id" class="col-sm-4 control-label">Response Type</label>
+              <div class="col-sm-7">
+                <%= select_tag 'response_type', options_from_collection_for_select(@response_types, "id", "name") %>
+              </div>
+            </div>
+            <div class="col-sm-7 add-btn hidden-item">
+              <div class="form-group clearfix addissue">
+                <a onclick="add_fields(this, &quot;question_options&quot;, &quot;&lt;fieldset class=\&quot;choices\&quot;&gt;\n  &lt;input class=\&quot;audit-normal-input\&quot; id=\&quot;audit_nc_questions_attributes_<%= time_variable %>_question_options_attributes_new_question_options_value\&quot; name=\&quot;audit[nc_questions_attributes][<%= time_variable %>][question_options_attributes][new_question_options][value]\&quot; type=\&quot;text\&quot; /&gt;\n  &lt;input id=\&quot;audit_nc_questions_attributes_<%= time_variable %>_question_options_attributes_new_question_options__destroy\&quot; name=\&quot;audit[nc_questions_attributes][<%= time_variable %>][question_options_attributes][new_question_options][_destroy]\&quot; type=\&quot;hidden\&quot; value=\&quot;false\&quot; /&gt;&lt;a class=\&quot;minus-icon\&quot; href=\&quot;javascript:void(0)\&quot; onclick=\&quot;remove_options(this)\&quot;&gt;Remove Option&lt;\/a&gt;\n&lt;\/fieldset&gt;&quot;)" href="javascript:void(0)" class="plus-icon">Add Option</a>
+              </div>
+              </div>
+
+
+          </div>
+          <div class="col-lg-4 col-sm-6 col-xs-12">
+            <div class="form-group clearfix">
+              <label for="audit_nc_questions_attributes_<%= time_variable %>_auditee_id" class="col-sm-4 control-label">Assign Auditee</label>
+              <div class="col-sm-7">
+                <%= select_tag 'auditees', options_from_collection_for_select(@auditees, "id", "full_name") %>
+              </div>
+            </div>
+            <div class="form-group clearfix">
+              <label for="audit_nc_questions_attributes_<%= time_variable %>_target_date" class="col-sm-4 control-label">Target Date</label>
+              <div class="col-sm-7 ">
+                <div class="form-group">
+                  <div id="datetimepicker1" class="input-group date">
+                    <input type="date" name="audit[nc_questions_attributes][<%= time_variable %>][target_date]" id="audit_nc_questions_attributes_<%= time_variable %>_target_date" class="form-control">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 col-xs-12">
+          <div class="form-group clearfix">
+              <label for="audit_nc_questions_attributes_<%= time_variable %>_priority_id" class="col-sm-4 control-label">Priority</label>
+              <div class="col-sm-7">
+                <%= select_tag 'priority', options_from_collection_for_select(@priorities, "id", "name") %>
+              </div>
+            </div>
+            <div class="form-group clearfix">
+              <label for="audit_nc_questions_attributes_<%= time_variable %>_does_require_document" class="col-sm-5">Need Document?</label>
+              <input type="hidden" value="0" name="audit[nc_questions_attributes][<%= time_variable %>][does_require_document]"><input type="checkbox" value="1" name="audit[nc_questions_attributes][<%= time_variable %>][does_require_document]" id="audit_nc_questions_attributes_<%= time_variable %>_does_require_document" >  <br>
+            </div>
+        <div class="form-group clearfix">
+          <div class="col-sm-12">
+              <label for="audit_nc_questions_attributes_<%= time_variable %>_nc_library">Save to Request Library</label>
+              <input type="hidden" value="0" name="audit[nc_questions_attributes][<%= time_variable %>][nc_library]"><input type="checkbox" disabled="disabled" value="1" name="audit[nc_questions_attributes][<%= time_variable %>][nc_library]" id="audit_nc_questions_attributes_<%= time_variable %>_nc_library">
+          </div>
+        </div>
+          </div>
+            <div class="form-group clearfix addissue">
+              <input type="hidden" value="false" name="audit[nc_questions_attributes][<%= time_variable %>][_destroy]" id="audit_nc_questions_attributes_<%= time_variable %>__destroy"><a onclick="remove_fields(this)" href="javascript:void(0)" class="minus-icon">Remove Request</a>
+            </div>
+          <div class="clearfix border-divider"> </div>
+
+</fieldset>

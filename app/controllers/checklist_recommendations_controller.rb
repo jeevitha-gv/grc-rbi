@@ -1,49 +1,94 @@
 class ChecklistRecommendationsController < ApplicationController
-	 
-
-	 def new
-	 	@audit = Audit.find(params[:id]) # need to change with permission
-	  @controls = @audit.answered_compliances
-	 	@checklist_recommendation = ChecklistRecommendation.new
-	 	@score = Score.all
-	 end
 
 
-	 def create
-	  @checklist_recommendation = ChecklistRecommendation.new(checklist_params)
-	  
-	   if @checklist_recommendation.save
-	 		redirect_to @checklist_recommendation
-	 	else
-	 		render 'new'
-	 
-	  	end
+ #new for checklist recommendation
+ def new
+		@audit = Audit.find_by_id(params[:id]) # need to change with permission
+		@controls = @audit.answered_compliances
+		@checklist_recommendation = ChecklistRecommendation.new
+		@score = Score.all
+ end
+
+ #To create checklist recommendation for auditcompliance
+	def create
+		@checklist_recommendation = ChecklistRecommendation.new(checklist_params)
+		checklist_params = @checklist_recommendation.audit_checklist(params)
+			checklist_params.each do |check|
+				checklist = {}
+				checklist[:checklist_recommendation] = check
+				@checklist_recommendation = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?',checklist[:checklist_recommendation][:checklist_id], checklist[:checklist_recommendation][:checklist_type]).first
+				if @checklist_recommendation.nil?	
+						score = check[:score]
+						check.delete("score") 
+					@checklist_recommendation = ChecklistRecommendation.new(check)
+					@checklist_recommendation.recommendation_completed = true unless params[:commit] == 'Save Draft'
+					if @checklist_recommendation.save
+						@checklist_recommendation.checklist.update_attributes(:score_id => score)
+					else
+						render 'new'
+					end
+				else
+					@checklist_recommendation.recommendation_completed = true unless params[:commit] == 'Save Draft'
+					@checklist_recommendation.checklist.update(:score_id => checklist[:checklist_recommendation][:score])
+					checklist[:checklist_recommendation].delete("score") 
+					@checklist_recommendation.update(checklist[:checklist_recommendation])
+				end
+			end
+			redirect_to @checklist_recommendation
 	 end
 	
+	#To show auditee response
 	def auditee_response
-
+		@audit = Audit.where('id= ?',params[:id]).first 
+		@checklist_recommendations = @audit.auditee_response_compliances
+		@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
 	end
 
 	def audit_observation
-
+		@audit = Audit.where('id= ?',params[:id]).first 
+		@checklist_recommendations = @audit.audit_observation_compliances
 	end
-
-	def update_individual_score
-
-	 checklist = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?',params[:checklist_id], params[:checklist_type]).first
-	if checklist.nil?
 	
-   @checklist_recommendation = ChecklistRecommendation.new(checklist_params)
-   @checklist_recommendation.save
+	#To create auditee response for checklist recommendation
+	def audit_observation_create
+		@checklist_recommendation = ChecklistRecommendation.where('id= ?', params[:checklist_recommendation][:id]).first
+		if params[:checklist_recommendation][:attachment].present?
+			@checklist_recommendation.attachments.build(attachment_file: params[:checklist_recommendation][:attachment])
+			@checklist_recommendation.attachments.last.classified = "Audit Observation"
+		end
+		@checklist_recommendation.comments.build(comment: params[:checklist_recommendation][:remarks]) if  params[:checklist_recommendation][:remarks].present?
+		@checklist_recommendation.response_completed = true
+		@checklist_recommendation.update(checklist_params)
+		respond_to :js
+	end
+	
+	def auditee_response_create
+		@checklist_recommendation = ChecklistRecommendation.where('id= ?', params[:checklist_recommendation][:id]).first
+		if params[:checklist_recommendation][:attachment].present?
+			@checklist_recommendation.attachments.build(attachment_file: params[:checklist_recommendation][:attachment])
+			@checklist_recommendation.attachments.last.classified = "Auditee Response"
+		end
+		@checklist_recommendation.update(checklist_params)
+		respond_to :js
+	end
+	
+	#To create individual checklist recommendation
+	def update_individual_score
+		@checklist_recommendation = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?',params[:checklist_recommendation][:checklist_id], params[:checklist_recommendation][:checklist_type]).first
+		score = params[:checklist_recommendation][:score]
+		params[:checklist_recommendation].delete("score") 
+	if @checklist_recommendation.nil?
+		@checklist_recommendation = ChecklistRecommendation.new(checklist_params)
+		@checklist_recommendation.checklist.update_attributes(:score_id => score) if  @checklist_recommendation.save
 	else
-		# p	checklist = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?',params[:checklist_id], params[:checklist_type]).first
-			checklist.update(checklist_params)
+		@checklist_recommendation.checklist.update(:score_id => score)
+		@checklist_recommendation.update(checklist_params)
 	end
 end
 
 	private
 	  def checklist_params
-	    params.require(:checklist_recommendation).permit(:checklist_id, :checklist_type, :auditee_id, :recommendation, :reason, :corrective, :preventive, :closure_date, :recommendation_priority_id, :recommendation_severity_id, :response_priority_id, :response_severity_id, :recommendation_status_id, :response_status_id, :dependent_recommendation, :blocking_recommendation, :observation)
+	    params.require(:checklist_recommendation).permit(:checklist_id, :checklist_type, :auditee_id, :recommendation, :reason, :corrective, :preventive, :closure_date, :recommendation_priority_id, :recommendation_severity_id, :response_priority_id, :response_severity_id, :recommendation_status_id, :response_status_id, :dependent_recommendation, :blocking_recommendation, :observation, :recommendation_completed, :is_implemented)
 	  end
 end
 
