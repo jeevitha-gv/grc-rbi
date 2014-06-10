@@ -4,8 +4,8 @@ class AuditsController < ApplicationController
   before_filter :audit_auditee_users, :only => [:new, :create]
 
   def index
-    @audits = Audit.all
- end
+    @audits = Audit.search(params)
+  end
 
   def departments_list
     @departments = Department.where(:location_id=>params[:location_id]).all

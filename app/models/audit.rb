@@ -48,6 +48,12 @@ class Audit < ActiveRecord::Base
 
   scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
 
+  mapping do
+    indexes :_id, :index => :not_analyzed
+    indexes :title
+    indexes :context
+    indexes :observation
+  end
 
   def answered_compliances
     self.audit_compliances.where(is_answered: true).map(&:compliance_library)
