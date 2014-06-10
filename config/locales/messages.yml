@@ -55,6 +55,11 @@ en:
       success: "Previlege was created successfully."
       failure: "Some of the privileges already added."
       action: "Please select action to create privilege."
+      
+  checklist:
+    create:
+      success: "Checklist was created successfully"
+      failure: "Please select any domain"
 
   roles:
     company_admin_failure: "You can't create a role with this title"

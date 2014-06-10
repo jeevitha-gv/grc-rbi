@@ -1,7 +1,6 @@
 <link href="http://cdn.kendostatic.com/2014.1.416/styles/kendo.common.min.css" rel="stylesheet" />
 <link href="http://cdn.kendostatic.com/2014.1.416/styles/kendo.default.min.css" rel="stylesheet" />
 <script src="http://cdn.kendostatic.com/2014.1.416/js/kendo.all.min.js"></script>
-<script type="text/javascript" src="/assets/messi.js"></script>	
 <script type="text/javascript" src="/assets/messi.min.js"></script>	
 <%  role = Role.where('id= ?', params[:role_id]).first.title%>
 <div id="flash"></div>
@@ -19,7 +18,7 @@
 <% end %>
 <div id="grid"></div>
 <script>
-$(document ).ready(function() {
+ $(document ).ready(function() {
 	$('#privilege_modular_id').addClass("multiselect");
 	$('.multiselect').multiselect();
 });
