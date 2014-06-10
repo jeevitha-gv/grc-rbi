@@ -8,12 +8,14 @@ class AuditCompliancesController < ApplicationController
 			@audit = Audit.find(params[:audit_id])
 			redirect_to new_audit_compliance_path if @audit.audit_compliances.blank?
 		end
-    end
-    
-    def new
-    end
+  end
+  
+  def new
+  end
+  
+  def edit
+  end
 
-<<<<<<< HEAD
   def create
     compliance_params.each do |k, v|
       audit_compliance = AuditCompliance.create(compliance_library_id: v["compliance_library_id"], audit_id: params[:audit_id])
@@ -30,15 +32,8 @@ class AuditCompliancesController < ApplicationController
     end
   end
   
-  
-  
     private
     def compliance_params
       params.require(:checklist)
     end
 end
-=======
-    def edit
-  end
- end
->>>>>>> 9d20476608ca4a47773aadb3352f1ac03c8d75ad

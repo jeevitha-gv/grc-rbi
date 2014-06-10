@@ -67,19 +67,12 @@ Rails.application.routes.draw do
     collection do
       get 'welcome', to: 'companies#welcome', :as => :welcome
     end
-<<<<<<< HEAD
    end
 
-   # delete '/activities/clear_audit' => 'activities#clear_audit', :as => :clear_audit
-   resources :activities, :except => [:show]
 
-    resources :compliance_libraries
-    resources :audit_compliances do 
-      get 'compliance_checklist', on: :collection
-    end
-
-
-   get 'welcome', to: 'companies#welcome', :as => :welcome
+  resources :audit_compliances do 
+    get 'compliance_checklist', on: :collection
+  end
 
    # resources :privileges
 
@@ -103,9 +96,6 @@ Rails.application.routes.draw do
   #       get 'sold'
   #     end
   #   end
-=======
-  end
->>>>>>> 9d20476608ca4a47773aadb3352f1ac03c8d75ad
 
   # delete '/activities/clear_audit' => 'activities#clear_audit', :as => :clear_audit
   resources :activities, :except => [:show]
