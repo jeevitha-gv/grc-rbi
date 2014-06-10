@@ -72,8 +72,6 @@ end
   def audit_with_status
    # @audits = Audit.with_status(params[:audit_status_id])
      @audits = current_user.accessible_audits.collect{|x| Audit.where('audit_status_id= ?',params[:audit_status_id])}.flatten
-    p 77777777
-    p @audits
   end
 
   def audit_all
