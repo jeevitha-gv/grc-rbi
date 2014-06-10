@@ -102,6 +102,8 @@ class AuditsController < ApplicationController
             :start_date =>  row_data[14],
             :end_date =>  row_data[15],
             :auditor => auditor.present? ? auditor.id : nil
+            :company_id => current_company.id
+            :audit_status_id => AuditStatus.where(:name=>"Initiated").first.id
           }
           audit.save(:validate => false)
           auditee_users.map(&:id).collect{|x| audit.audit_auditees.create(:user_id =>x) }
