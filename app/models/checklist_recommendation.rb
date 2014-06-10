@@ -1,4 +1,5 @@
 class ChecklistRecommendation < ActiveRecord::Base
+	attr_accessor :is_checklist_new
 	# belongs_to :auditee_id, :class_name => "ArtifactAnswer"	
 	belongs_to :rec_priority, :class_name =>"Priority", foreign_key: :recommendation_priority
 	belongs_to :rec_severity, :class_name =>"Priority", foreign_key: :recommendation_severity
@@ -24,11 +25,11 @@ class ChecklistRecommendation < ActiveRecord::Base
 	validates :recommendation_severity_id, presence: true
 	validates :closure_date, presence: true
 	validates :recommendation_status_id, presence: true
-	validates :preventive, presence: true, :if => Proc.new{|f|  f.recommendation_completed == true}
-	validates :corrective, presence: true, :if => Proc.new{|f| f.recommendation_completed == true}
-	validates :response_status_id, presence: true, :if => Proc.new{|f| f.recommendation_completed == true}
-	validates :response_priority_id, presence: true, :if => Proc.new{|f| f.recommendation_completed == true}
-	validates :response_severity_id, presence: true, :if => Proc.new{|f| f.recommendation_completed == true}
+	validates :preventive, presence: true, :if => Proc.new{|f|  f.recommendation_completed == true && f.is_checklist_new != true}
+	validates :corrective, presence: true, :if => Proc.new{|f| f.recommendation_completed == true && f.is_checklist_new != true}
+	validates :response_status_id, presence: true, :if => Proc.new{|f| f.recommendation_completed == true && f.is_checklist_new != true}
+	validates :response_priority_id, presence: true, :if => Proc.new{|f| f.recommendation_completed == true && f.is_checklist_new != true}
+	validates :response_severity_id, presence: true, :if => Proc.new{|f| f.recommendation_completed == true && f.is_checklist_new != true}
 	validates :observation, presence: true, :if => Proc.new{|f| f.response_completed == true}
 	validates :is_implemented, presence: true, :if => Proc.new{|f| f.response_completed == true}
 	validates :recommendation_status_id, presence: true

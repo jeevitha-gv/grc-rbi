@@ -5,6 +5,7 @@ class ComplianceLibrary < ActiveRecord::Base
  belongs_to :compliance
  has_many :artifacts
  has_many :audit_compliances
+ belongs_to :parent , :class_name => "ComplianceLibrary", foreign_key: "parent_id"
 
  #Validations
  validates :compliance_id, presence: true
