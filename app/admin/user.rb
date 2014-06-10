@@ -4,7 +4,7 @@ ActiveAdmin.register User do
   # removing delete option
   actions :all, :except => [:destroy]
 
-  permit_params :full_name, :email, :user_name, :password , :password_confirmation, :role_id, :city, :state, :country_id,:is_disabled, profile_attributes: [:personal_email, :address2, :address1,  :city, :state, :country_id, :phone_no]
+  permit_params :full_name, :email, :user_name, :password , :password_confirmation, :role_id, :city, :state, :country_id,:is_disabled, :manager, profile_attributes: [:personal_email, :address2, :address1,  :city, :state, :country_id, :phone_no]
 
   controller do
     # removing delete option
@@ -85,6 +85,7 @@ ActiveAdmin.register User do
       f.input :user_name
       f.input :teams, :class => "", :collection => current_company.teams
       f.input :role_id, :label => 'Role', :as => :select, :collection => current_company.roles, :prompt => "-Select Role-"
+      f.input :manager , :label => 'Manager', :as => :select , :collection => current_company.users , :prompt => "-Select Manager-"
       f.input :is_disabled
     end
     f.inputs "Other Information", for: [:profile, f.object.profile] do |s|

@@ -1,0 +1,65 @@
+<div id="main_content_wrapper">
+  <div id="main_content">
+    <%= semantic_form_for @compliance_library, :url => admin_compliance_libraries_path, :method => :post do |f| %>
+      <fieldset class="inputs">
+        <legend>
+          <span>ComplianceLibrary</span>
+        </legend>
+        <ol>
+            <li id="compliance_library_compliance_id_input" class="select input optional">
+            <% if (params[:compliance_library_id].nil? && params[:control_objective_id].nil?) %>
+              <%= f.input :compliance_id, :as => :select, :collection => Compliance.all, :prompt => "-Select Compliance-" %>
+            <% else %>
+              <%= f.input :compliance_id, :as => :hidden, :input_html => { :value => "#{compliance.compliance_id if compliance}"} %>
+            <% end %>
+            </li>
+          <li id="compliance_library_name_input" class="string input required stringish">
+            <%= f.input :name %>
+          </li>
+          <li id="compliance_library_parent_id_input" class="hidden input optional">
+            <%= f.input :parent_id, :as => :hidden, :input_html => { :value => "#{id}"} %>
+          </li>
+          <li id="compliance_library_is_leaf_input" class="hidden input optional">
+            <% unless params[:control_objective_id].nil? %>
+              <%= f.input :is_leaf, :as => :hidden, :input_html => { :value => "true"} %>
+            <% else %>
+              <%= f.input :is_leaf, :as => :hidden, :input_html => { :value => "false"} %>
+            <% end %>
+          </li>
+        </ol>
+      </fieldset>
+      <fieldset class="actions">
+        <ol>
+          <li id="compliance_library_submit_action" class="action input_action ">
+            <input type="submit" value="Create Compliance library" name="commit">
+          </li>
+          <li class="cancel">
+            <a href="/admin/compliance_libraries">Cancel</a>
+          </li>
+        </ol>
+      </fieldset>
+    </form>
+    <% end %>
+    <div class="form-group clearfix addissue">
+      <a class="orange_btn" href="#add_csv" data-toggle="modal">Upload Compliance Libraries from CSV or XLSX</a>
+      <div class="modal fade" id="add_csv">
+        <div class="modal-dialog modal-dialog_large">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button aria-hidden="true" data-dismiss="modal" class="close" type="button"> &nbsp; </button>
+              <h4 id="myModalLabel" class="modal-title">Upload files only CSV and XLSX</h4>
+              <%= form_tag '/admin/compliance_libraries/import_files', multipart: true do %>
+                <%= file_field_tag :file %>
+                <%= submit_tag "Import" %>
+              <% end %>
+              <p></p>
+              <p>
+                <%= link_to "Download Sample Non Compliance Checklist CSV", admin_compliance_libraries_export_files_path(format: "csv"), :method => :post %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
