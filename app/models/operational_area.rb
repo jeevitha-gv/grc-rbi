@@ -9,4 +9,5 @@ class OperationalArea < ActiveRecord::Base
 
  # validation
  validates :compliance_library_id ,:uniqueness => {:scope => :company_id}
+ validates :weightage, :numericality => { :greater_than_or_equal_to => 1, :less_than_or_equal_to => 5, :only_integer => true}
 end

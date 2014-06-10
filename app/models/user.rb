@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
 
   belongs_to :user_manager, class_name: 'User', foreign_key: 'manager'
 
+
 # attribute to login with username or email
   attr_accessor :login
 

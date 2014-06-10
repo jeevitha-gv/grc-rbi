@@ -16,6 +16,7 @@ class Audit < ActiveRecord::Base
   belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
   has_one :skipped_audit_reminder
   has_many :team_users, through: :team, :source => :users
+  has_many :audit_operational_weightages
 
 
   accepts_nested_attributes_for :nc_questions
@@ -74,6 +75,62 @@ class Audit < ActiveRecord::Base
     else raise "Unknown file type: #{file.original_filename}"
     end
   end
+
+# ASC Score measurement
+def audit_operational_weightage(company,audit)
+  over_all_maximum_score = 0
+  over_all_total_score = 0
+  grouped_audit_compliance = AuditCompliance.joins("join compliance_libraries ON compliance_libraries.id=audit_compliances.compliance_library_id").where("audit_id=?", audit.id).group_by {|x| x.compliance_library.parent.parent_id}
+
+  grouped_audit_compliance.each do |k, v|
+    operational_area = OperationalArea.find_or_initialize_by(compliance_library_id: k, company_id: company.id)
+    if(operational_area.new_record?)
+      operational_area.weightage = 1
+      operational_area.company_id = current_company.id
+      operational_area.save
+    end
+
+      #  Sum of scores of each control
+        total_score = v.sum{|x| x.score.level}
+        over_all_total_score += total_score
+
+      # Weightage 
+        weightage = total_score * operational_area.weightage
+
+      # Compliance Percentage Calculation 
+        maximum_rating = (v.count * operational_area.weightage).to_f
+        maximum_score = (maximum_rating * operational_area.weightage).to_f
+        over_all_maximum_score += maximum_score
+        compliance_percentage = (weightage / maximum_score ) * 100
+        rating = get_compliance_rating(compliance_percentage)
+
+      # AuditOperationalWeightage
+        AuditOperationalWeightage.create(operational_area_id: operational_area.id, audit_id: audit.id, weightage: weightage, total_score: total_score, percentage: compliance_percentage, rating: rating)
+  end
+   # total compliance percentage
+   total_maximum_score = over_all_maximum_score.to_f
+   total_weightage = over_all_total_score.to_f
+   total_compliance_percentage = (total_weightage/total_maximum_score) * 100
+
+   audit.update(percentage: total_compliance_percentage)
+end
+
+  # Method to get Compliance Percentage
+  def self.get_compliance_rating(compliance_percentage)
+    case compliance_percentage
+      when compliance_percentage <= 50
+        return 1
+      when compliance_percentage <= 70
+        return 2
+      when compliance_percentage <= 90
+        return 3 
+      when compliance_percentage <=100
+        return 4
+      else
+        return 1
+    end
+  end
+
 
   private
   def check_auditees_uniq
