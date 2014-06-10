@@ -4,8 +4,7 @@ class AuditsController < ApplicationController
   before_filter :audit_auditee_users, :only => [:new, :create, :edit, :update]
 
   def index
-    @current_user_audits = current_user.audit_auditees
-    @audits = @current_user_audits.map(&:audit_id).collect{|id| Audit.where('id= ?',id)}
+
   end
 
   def departments_list
@@ -71,7 +70,7 @@ end
 
   def audit_with_status
    # @audits = Audit.with_status(params[:audit_status_id])
-     @audits = current_user.accessible_audits.collect{|x| Audit.where('audit_status_id= ?',params[:audit_status_id])}.flatten
+     @audits = current_user.accessible_audits.select{|x| x.audit_status_id==params[:audit_status_id].to_i}
   end
 
   def audit_all
