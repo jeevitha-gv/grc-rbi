@@ -127,7 +127,7 @@
 						{
 						$('#'+this.id).removeClass("error_input");
 						$('#error_'+this.id).hide()
-						value = false
+						value = true
 						}
 					});
 					return value
