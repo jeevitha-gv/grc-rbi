@@ -46,7 +46,7 @@
               </div>
     </div>
 
-          <div class="form-group clearfix addissue"> <a class="plus-icon" data-toggle="modal" href="#add_files">Upload Requests from CSV or XLSX</a>
+          <div class="form-group clearfix addissue"> <a class="upload-icon" data-toggle="modal" href="#add_files">Upload Requests from CSV or XLSX</a>
             <div id="add_files" class="modal fade">
               <div class="modal-dialog modal-dialog_large">
                 <div class="modal-content">
@@ -96,4 +96,8 @@ $("#submit_questions").click(function(){
   $('.orange_btn').click(function(){
     $('.edit_audit').submit();
   });
+
+ $(".datepicker").kendoDatePicker({
+        format: "dd/MM/yyyy"
+        });
 </script>
