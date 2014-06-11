@@ -156,7 +156,7 @@ end
 
   private
     def audit_params
-      params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :audit_status_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor,:start,:ends_at, audit_auditees_attributes: [:user_id])
+      params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :audit_status_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor,:start_date,:end_date, audit_auditees_attributes: [:user_id])
     end
 
     # def skipped_reminder_params
