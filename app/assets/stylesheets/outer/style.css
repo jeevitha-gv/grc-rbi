@@ -733,3 +733,15 @@ text-align: left;
 
 /*Import Section*/
 @import url("fullcalendar.css");	/* Calendars Styles */
+
+
+
+
+.audit_search input[type="text"] {
+    float: left;
+    width: 120px;
+}
+
+.audit_search {
+    margin: 8px; position: relative; z-index: 99999;
+}
