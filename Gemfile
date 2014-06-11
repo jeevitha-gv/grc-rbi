@@ -50,7 +50,7 @@ gem 'roo'
 
 gem 'cancan'
 gem 'pry'
-gem 'newrelic_rpm
+gem 'newrelic_rpm'
 
 # search in application
 gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
