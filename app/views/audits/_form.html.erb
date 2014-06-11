@@ -181,7 +181,9 @@
             </div>
 
             <div class="col-lg-4 col-sm-6 col-xs-12">
-
+              <% if @audit.errors[:end_date].present? %>
+                  <div class="error_message"><%= @audit.errors[:end_date][0]%></div>
+                <% end %>
               <div class="form-group clearfix">
                 <label class="col-sm-4 control-label">
                   <%= f.label :start_date, t('audit.start_date') %>
@@ -322,8 +324,12 @@
         }
     });
 
-    $(".datepicker").kendoDatePicker();
-    $(".datepicker1").kendoDatePicker();
+    $(".datepicker").kendoDatePicker({
+      format: "dd/MM/yyyy"
+    });
+    $(".datepicker1").kendoDatePicker({
+      format: "dd/MM/yyyy"
+    });
 
 
     $('#add_auditee').click(function(){

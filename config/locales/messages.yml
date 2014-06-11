@@ -55,7 +55,7 @@ en:
       success: "Previlege was created successfully."
       failure: "Some of the privileges already added."
       action: "Please select action to create privilege."
-      
+
   checklist:
     create:
       success: "Checklist was created successfully"
@@ -68,6 +68,7 @@ en:
     failure:
       auditee_blank: "Please select auditee"
       auditee_unique: "Please select unique auditee"
+      end_date: "End date must not be before start date"
 
   checklist_recommendations:
     recommendation: "Please enter recommendation"
