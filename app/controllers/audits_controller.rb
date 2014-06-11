@@ -17,6 +17,7 @@ class AuditsController < ApplicationController
   end
 
   def create
+    binding.pry
     @audit = Audit.new(audit_params)
     @audit.company_id=current_company.id
     if params[:commit] == "Save as Plan"

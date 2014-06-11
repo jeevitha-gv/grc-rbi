@@ -1,6 +1,6 @@
 class Audit < ActiveRecord::Base
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
+  # include Tire::Model::Search
+  # include Tire::Model::Callbacks
 
   # associations
   belongs_to :location
@@ -25,21 +25,24 @@ class Audit < ActiveRecord::Base
   accepts_nested_attributes_for :audit_auditees, reject_if: lambda { |a| a[:user_id].blank? }
   accepts_nested_attributes_for :nc_questions, :allow_destroy => true
 
+  COMPLIANCE_TYPES = [["Compliance Audit", "Compliance"], ["NonCompliance Audit", "NonCompliance"]]
+
   # validations
   validates :title, presence:true
   validates_format_of :title, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.title.blank? }
   validates :title, uniqueness:true, :if => Proc.new{ |f| !f.title.blank? }
   validates :auditor, presence:true
   validates :audit_type_id, presence:true
+  validates :compliance_type, presence:true
   validates :standard_id, presence:true, :if => Proc.new{ |f| !f.compliance_type.blank? }
   validates_format_of :issue, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.issue.blank? }
-  validates :scope, length: { in: 4..50 }, :if => Proc.new{ |f| !f.scope.blank? }
-  validates :context, length: { in: 4..50 }, :if => Proc.new{ |f| !f.context.blank? }
-  validates :methodology, length: { in: 4..50 }, :if => Proc.new{ |f| !f.methodology.blank? }
-  validates :deliverables, length: { in: 4..50 }, :if => Proc.new{ |f| !f.deliverables.blank? }
-  validates :objective, length: { in: 4..50 }, :if => Proc.new{ |f| !f.objective.blank? }
-  validates :close_reason, length: { in: 4..50 }, :if => Proc.new{ |f| !f.close_reason.blank? }
-  validates :observation, length: { in: 4..50 }, :if => Proc.new{ |f| !f.observation.blank? }
+  validates :scope, length: { in: 4..250 }, :if => Proc.new{ |f| !f.scope.blank? }
+  validates :context, length: { in: 4..250 }, :if => Proc.new{ |f| !f.context.blank? }
+  validates :methodology, length: { in: 4..250 }, :if => Proc.new{ |f| !f.methodology.blank? }
+  validates :deliverables, length: { in: 4..250 }, :if => Proc.new{ |f| !f.deliverables.blank? }
+  validates :objective, length: { in: 4..250 }, :if => Proc.new{ |f| !f.objective.blank? }
+  validates :close_reason, length: { in: 4..250 }, :if => Proc.new{ |f| !f.close_reason.blank? }
+  validates :observation, length: { in: 4..250 }, :if => Proc.new{ |f| !f.observation.blank? }
   validate :check_auditees_uniq
   validate :check_auditees_presence
 
@@ -51,12 +54,12 @@ class Audit < ActiveRecord::Base
 
   scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
 
-  mapping do
-    indexes :_id, :index => :not_analyzed
-    indexes :title
-    indexes :context
-    indexes :observation
-  end
+  # mapping do
+  #   indexes :_id, :index => :not_analyzed
+  #   indexes :title
+  #   indexes :context
+  #   indexes :observation
+  # end
 
   def answered_compliances
     self.audit_compliances.where(is_answered: true).map(&:compliance_library)
@@ -112,10 +115,10 @@ def audit_operational_weightage(company,audit)
         total_score = v.sum{|x| x.score.level}
         over_all_total_score += total_score
 
-      # Weightage 
+      # Weightage
         weightage = total_score * operational_area.weightage
 
-      # Compliance Percentage Calculation 
+      # Compliance Percentage Calculation
         maximum_rating = (v.count * operational_area.weightage).to_f
         maximum_score = (maximum_rating * operational_area.weightage).to_f
         over_all_maximum_score += maximum_score
@@ -141,7 +144,7 @@ end
       when compliance_percentage <= 70
         return 2
       when compliance_percentage <= 90
-        return 3 
+        return 3
       when compliance_percentage <=100
         return 4
       else
@@ -149,11 +152,11 @@ end
     end
   end
 
-  def self.search(params)
-    tire.search(load: true) do
-      query { string params[:query], default_operator: "AND" } if params[:query].present?
-    end
-  end
+  # def self.search(params)
+  #   tire.search(load: true) do
+  #     query { string params[:query], default_operator: "AND" } if params[:query].present?
+  #   end
+  # end
 
   private
   def check_auditees_uniq

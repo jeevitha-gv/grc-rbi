@@ -52,9 +52,9 @@ gem 'cancan'
 gem 'pry'
 
 # search in application
-gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'tire'
+# gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+# gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+# gem 'tire'
 
 gem 'public_activity'
 
