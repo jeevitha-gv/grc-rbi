@@ -117,7 +117,7 @@
 }
 
 .k-icon.k-i-arrow-s.k-panelbar-expand, .k-icon.k-i-arrow-n.k-panelbar-collapse {
-	background-image: url("../images/icon-sprite.png");
+	background-image: url("/assets/outer/icon-sprite.png");
 }
 
 .k-icon.k-i-arrow-n.k-panelbar-collapse, .k-state-selected .k-i-arrow-n {
@@ -275,7 +275,7 @@ div.k-grid-header .k-header, .k-grid td {
 }
 
 .k-i-calendar, .k-state-hover .k-i-calendar {
-	background: url("../images/icon-sprite.png") no-repeat 0 -511px transparent;
+	background: url("/assets/outer/icon-sprite.png") no-repeat 0 -511px transparent;
 	width: 22px;
 	height: 23px;
 }

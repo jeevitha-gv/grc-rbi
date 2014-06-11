@@ -5,7 +5,8 @@
       <!-- Nav tabs -->
       <div class="fright">
 				<%= form_tag audits_path, method: :get do %>
-				  <div class="form-group">
+				  <div class="form-group audit_search">
+
 				    <%= text_field_tag :query, params[:query], :class=>"form-control" %>
 				    <%= submit_tag "Search", name: nil, :class=>"btn btn-default" %>
 				  </div>

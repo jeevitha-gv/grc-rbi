@@ -205,6 +205,35 @@ $(function() {
   $( "#Accordion1" ).accordion(); 
 });
 </script>
-<link href="http://cdn.kendostatic.com/2014.1.416/styles/kendo.common.min.css" rel="stylesheet" />
-    <link href="http://cdn.kendostatic.com/2014.1.416/styles/kendo.default.min.css" rel="stylesheet" />
-    <script src="http://cdn.kendostatic.com/2014.1.416/js/kendo.all.min.js"></script>
+<script>
+            $(document).ready(function() {
+              // create DatePicker from input HTML element
+
+              $(".datepicker2").kendoDatePicker();
+
+              $(".score_points").click(function(){
+                $(".score_points").removeClass('active')
+                $(this).addClass('active')
+              })     
+            });
+              
+              
+          // ajax for submitting the score method
+          function save_individual_score(id)
+          {
+              var recommendation = $("#recommendation_" +id).val()
+              var recommendation_priority = $("#recommendation_priority_id_" +id).val()
+              var reason = $("#reason_" +id).val()
+              var recommendation_severity = $("#recommendation_severity_id_" +id).val()
+              var closure_date = $("#closure_date_" +id).val()
+              var recommendation_status = $("#recommendation_status_id_" +id).val()
+              var recommendation_severity = $("#recommendation_severity_id_" +id).val()
+              $.ajax({
+                  url: "/checklist_recommendations/update_individual_score",
+                  type: "POST",
+                  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
+                  data: {checklist_id :  id, checklist_type: 'AuditCompliance', recommendation: recommendation, reason: reason, closure_date: closure_date, recommendation_priority_id: recommendation_priority, recommendation_severity_id: recommendation_severity, recommendation_status_id: recommendation_status },
+                  }).done(function() {
+              });
+          } 
+        </script>

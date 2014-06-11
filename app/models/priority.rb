@@ -4,7 +4,7 @@ class Priority < ActiveRecord::Base
   has_many :nc_questions
   has_many :checklist_recommendations
   has_many :artifact_answers
-  has_many :remainders
+  has_many :reminders
 
   # Validation
  	validates :name, presence: true, :if => Proc.new{ |f| f.name.blank? } 

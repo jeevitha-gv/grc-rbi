@@ -8,9 +8,9 @@ ActiveAdmin.register Client do
     before_filter :check_company_admin, :check_role
     action :all, except: [:new, :show]
 
-    def scoped_collection
-     @client=Client.where('company_id= ?', current_user.company_id)
-    end
+      def scoped_collection
+        current_company.clients
+      end
 
     def create
       @client = Client.new(client_params)

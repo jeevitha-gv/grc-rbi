@@ -29,7 +29,7 @@ gem 'spring',        group: :development
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+ gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -50,11 +50,12 @@ gem 'roo'
 
 gem 'cancan'
 gem 'pry'
+gem 'newrelic_rpm'
 
 # search in application
-gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'tire'
+# gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+# gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+# gem 'tire'
 
 gem 'public_activity'
 

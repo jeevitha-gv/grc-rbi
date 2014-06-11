@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
 
   belongs_to :user_manager, class_name: 'User', foreign_key: 'manager'
 
+
 # attribute to login with username or email
   attr_accessor :login
 
@@ -52,7 +53,7 @@ class User < ActiveRecord::Base
   delegate :title, to: :role, prefix: true, allow_nil: true
 
   def is?( requested_role)
-    self.role == requested_role.to_s if self.role.present?
+    self.role.title == requested_role.to_s if self.role.present?
   end
 
   def user_previleges
@@ -66,7 +67,11 @@ class User < ActiveRecord::Base
   end
 
   def accessible_audits
-    (self.auditor_audits + self.auditee_audit).uniq
+    if(self.role.title == "company_admin")
+      Audit.where(company_id: self.company_id)
+    else
+      (self.auditor_audits + self.auditee_audit).uniq
+    end
   end
 
   protected

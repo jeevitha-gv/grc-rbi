@@ -137,7 +137,9 @@
   $(document).ready(function() {
               // create DatePicker from input HTML element
 
-              $(".datepicker2").kendoDatePicker();
+              $(".datepicker2").kendoDatePicker({		      
+				format: "dd/MM/yyyy"
+		});
 
               $(".score_points").click(function(){
 								value =$(this).data("value");
