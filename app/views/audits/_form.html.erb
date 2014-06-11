@@ -35,7 +35,7 @@
                   <%= f.label :objective, t('audit.objective') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.text_field :objective, :class=>"audit-big-input" %>
+                  <%= f.text_area :objective, :class=>"audit-big-input" %>
                 </div>
               </div>
               <div class="form-group clearfix">
@@ -43,7 +43,7 @@
                   <%= f.label :deliverables, t('audit.deliverables') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.text_field :deliverables, :class=>"audit-big-input" %>
+                  <%= f.text_area :deliverables, :class=>"audit-big-input" %>
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@
                   <%= f.label :title, t('audit.title') %>
                 </label>
                 <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:title].present? %>">
-                  <%= f.text_field :title, :class=>"audit-normal-input" %>
+                  <%= f.text_area :title, :class=>"audit-normal-input" %>
                   <% if @audit.errors[:title].present? %>
                     <div class="error_message"><%=  @audit.errors[:title][0]%></div>
                   <% end %>
@@ -64,7 +64,7 @@
                   <%= f.label :context, t('audit.context') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.text_field :context, :class=>"audit-big-input" %>
+                  <%= f.text_area :context, :class=>"audit-big-input" %>
                 </div>
               </div>
               <div class="form-group clearfix">
@@ -72,7 +72,7 @@
                   <%= f.label :issue, t('audit.issue') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.text_field :issue, :class=>"audit-big-input" %>
+                  <%= f.text_area :issue, :class=>"audit-big-input" %>
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@
                   <%= f.label :scope, t('audit.scope') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.text_field :scope, :class=>"audit-big-input" %>
+                  <%= f.text_area :scope, :class=>"audit-big-input" %>
                 </div>
               </div>
               <div class="form-group clearfix">
@@ -90,7 +90,7 @@
                   <%= f.label :methodology, t('audit.methodology') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.text_field :methodology, :class=>"audit-big-input" %>
+                  <%= f.text_area :methodology, :class=>"audit-big-input" %>
                 </div>
               </div>
               <div class="form-group clearfix addissue"> <a href="#add_url" data-toggle="modal" class="plus-icon next-phase">Add Issue from Risk Library</a>

@@ -8,6 +8,10 @@ ActiveAdmin.register Reminder do
     before_filter :check_company_admin, :check_role
 
 
+    def scoped_collection
+        current_company.reminders
+    end
+
     def create
       @reminder = Reminder.new(reminder_params)
       @reminder.company_id = current_user.company_id
