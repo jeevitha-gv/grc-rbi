@@ -7,16 +7,6 @@ class AuditsController < ApplicationController
 
   end
 
-  def departments_list
-    @departments = Department.where(:location_id=>params[:location_id]).all
-    render :partial => 'department_locations_list'
-  end
-
-  def teams_list
-    @teams = Team.where(:department_id=>params[:department_id])
-    render :partial => 'department_locations_list'
-  end
-
   def new
     @audit = Audit.new
     @audit.build_skipped_audit_reminder
@@ -36,6 +26,7 @@ class AuditsController < ApplicationController
     end
 
     if @audit.save
+      session[:audit_id] = @audit.id
       if params[:skip_reminder] == "true"
         SkippedAuditReminder.create(:audit_id => @audit.id,:skipped_by => current_user.id)
       end
@@ -69,12 +60,18 @@ end
   end
 
   def audit_with_status
-   # @audits = Audit.with_status(params[:audit_status_id])
      @audits = current_user.accessible_audits.select{|x| x.audit_status_id==params[:audit_status_id].to_i}
   end
 
   def audit_all
    @audits = current_user.accessible_audits
+  end
+
+  def department_teams_users
+    @departments = Department.where(:location_id=>params[:location_id]) if params[:location_id]
+    @teams = Team.where(:department_id=>params[:department_id]) if params[:department_id]
+    @team = Team.where(:id=>params[:team_id]).last if params[:team_id]
+    render 'department_locations_list'
   end
 
   def import_files
@@ -175,11 +172,9 @@ end
 
     def audit_auditee_users
       # for users with role auditor
-      @auditor_role = Role.where(:title=>"auditor", :company_id=>current_company.id).last
-      @auditor_users = User.where(:role_id=>@auditor_role.id)
+      @auditor_users = current_company.users
       # for users with role auditee
-      @auditee_role = Role.where(:title=>"auditee", :company_id=>current_company.id).last
-      @auditee_users = User.where(:role_id=>@auditee_role.id)
+      # @auditee_users = User.where(:role_id=>@auditee_role.id)
     end
 
 

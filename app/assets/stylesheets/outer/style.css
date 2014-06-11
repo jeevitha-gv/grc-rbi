@@ -734,6 +734,15 @@ text-align: left;
 /*Import Section*/
 @import url("fullcalendar.css");	/* Calendars Styles */
 
+
+.audit_search input[type="text"] {
+    float: left;
+    width: 120px;
+}
+
+.audit_search {
+    margin: 8px; position: relative; z-index: 99999;
+}
 .plusround-icon {
     background-image: url("/assets/outer/add-btn.jpg");
     background-position: 0 0;
@@ -772,3 +781,5 @@ a.plus-background{
     margin-top: 12px;
 }
 .text-align-right{ text-align: right;}
+
+

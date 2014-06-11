@@ -29,7 +29,7 @@ class Audit < ActiveRecord::Base
   validates :title, presence:true
   validates_format_of :title, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.title.blank? }
   validates :title, uniqueness:true, :if => Proc.new{ |f| !f.title.blank? }
-  #validates :auditor, presence:true
+  validates :auditor, presence:true
   validates :audit_type_id, presence:true
   validates :standard_id, presence:true, :if => Proc.new{ |f| !f.compliance_type.blank? }
   validates_format_of :issue, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.issue.blank? }

@@ -8,7 +8,7 @@ ActiveAdmin.register Team do
    action :all, except: [:new, :show]
 
     def scoped_collection
-     @team=Team.where('company_id= ?', current_user.company_id)
+      current_company.teams
     end
 
     def create
