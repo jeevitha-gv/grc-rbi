@@ -1,6 +1,6 @@
 class Audit < ActiveRecord::Base
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
+  # include Tire::Model::Search
+  # include Tire::Model::Callbacks
 
   # associations
   belongs_to :location
@@ -19,6 +19,8 @@ class Audit < ActiveRecord::Base
   has_one :skipped_audit_reminder
   has_many :team_users, through: :team, :source => :users
   has_many :audit_operational_weightages
+
+  COMPLIANCE_TYPES = [["Compliance Audit", "Compliance"], ["NonCompliance Audit", "NonCompliance"]]
 
 
   accepts_nested_attributes_for :nc_questions
@@ -51,12 +53,12 @@ class Audit < ActiveRecord::Base
 
   scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
 
-  mapping do
-    indexes :_id, :index => :not_analyzed
-    indexes :title
-    indexes :context
-    indexes :observation
-  end
+  # mapping do
+  #   indexes :_id, :index => :not_analyzed
+  #   indexes :title
+  #   indexes :context
+  #   indexes :observation
+  # end
 
   def answered_compliances
     self.audit_compliances.where(is_answered: true).map(&:compliance_library)
