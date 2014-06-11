@@ -29,7 +29,7 @@ en:
     audit_observation:
       success: "Audit observation was created successfully"
     audit_recommendation:
-      success: "Audit observation was created successfully"
+      success: "Audit recommendation was created successfully"
   
   # company:
   #   domain:
