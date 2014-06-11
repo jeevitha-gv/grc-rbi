@@ -12,9 +12,9 @@ class UniversalMailer < ActionMailer::Base
   	mail(:to => audit.auditees.map(&:email), :subject => "You have been invited to an audit")
   end
 
-  def notify_auditees_that_checklist_is_prepared(audit)
-    @audit = audit
-    mail(:to => audit.auditees.map(&:email), :subject => "Checklist has been prepared for Audit")    
+  def notify_auditees_that_checklist_is_prepared(nc_question)
+    @nc_question = nc_question
+    mail(:to => nc_question.auditee.email, :subject => "Checklist has been prepared for Audit")
   end
 
   def notify_auditor_that_auditee_has_answered(audit)
@@ -24,7 +24,7 @@ class UniversalMailer < ActionMailer::Base
 
   def notify_auditee_about_recommendations(audit)
     @audit = audit
-    mail(:to => audit.auditees.map(&:email), :subject => "Auditor has given a recommendation")  
+    mail(:to => audit.auditees.map(&:email), :subject => "Auditor has given a recommendation")
   end
 
   def notify_auditor_about_responses(audit)
@@ -47,7 +47,7 @@ class UniversalMailer < ActionMailer::Base
   def ncquestion_reminder(nc_question, user)
     @nc_question = nc_question
     mail(:to => user.email, :subject => "Alert mail for Answering")
-    
+
   end
 
   # Mailer for Recommendation Priority
