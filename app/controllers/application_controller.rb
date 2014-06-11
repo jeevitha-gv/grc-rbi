@@ -12,6 +12,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_audit
   before_filter :check_subdomain
   before_filter :check_password_authenticated, :if => :current_user
+    before_filter :set_cache_buster
+
+
   unless Rails.application.config.consider_all_requests_local
     rescue_from Exception, with: lambda { |exception| render_error 500, exception }
     rescue_from ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
@@ -157,6 +160,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_cache_buster
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
+  
   private
 
   def render_error(status, exception)
