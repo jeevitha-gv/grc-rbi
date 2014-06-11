@@ -14,6 +14,9 @@ class AuditsController < ApplicationController
 
   def edit
     @audit = Audit.find_by_id(params[:id])
+    @departments = Department.where(:location_id=>@audit.location_id) if @audit.location_id
+    @teams = Team.where(:department_id=>@audit.department_id) if @audit.department_id
+    @team = Team.where(:id=>@audit.team_id).last if @audit.location_id
   end
 
   def create
@@ -34,6 +37,9 @@ class AuditsController < ApplicationController
       UniversalMailer.notify_auditees_about_audit(@audit).deliver
       redirect_to new_audit_path
     else
+      @departments = Department.where(:location_id=>@audit.location_id) if @audit.location_id
+      @teams = Team.where(:department_id=>@audit.department_id) if @audit.department_id
+      @team = Team.where(:id=>@audit.team_id).last if @audit.team_id
       render 'new'
     end
   end

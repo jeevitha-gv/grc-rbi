@@ -121,24 +121,32 @@
                   <%= f.label :location, t('audit.location') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.select :location_id, options_for_select(Location.all.collect{|x| [x.name, x.id.to_i]}), {include_blank: 'Select Location' }, { :id => "locations-list", :onChange => "get_departments(this);"} %>
+                  <%= f.select :location_id, options_for_select(Location.all.collect{|x| [x.name, x.id.to_i]}, :selected => @audit.location_id), {include_blank: 'Select Location' }, { :id => "locations-list", :onChange => "get_departments(this);"} %>
                 </div>
               </div>
-
-              <div class="form-group clearfix" id="department-dropdown">
+              <div class="form-group clearfix" id="department-dropdown" style="<%= 'display:block;' if (@audit.department_id.present? && (action_name == "create" || action_name == "edit" || action_name == "update")) %>">
                 <label class="col-sm-4 control-label">
                   <%= f.label :department_id, t('audit.department') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.select :department_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
+                  <% if @departments.present? %>
+                    <%= f.select :department_id, options_for_select(@departments.all.collect{|x| [x.name, x.id.to_i]}, :selected => @audit.department_id), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
+                  <% else %>
+                    <%= f.select :department_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
+                  <% end %>
                 </div>
               </div>
-              <div class="form-group clearfix" id="teams-dropdown">
+              <%# binding.pry %>
+              <div class="form-group clearfix" id="teams-dropdown" style="<%= 'display:block;' if (@audit.team_id.present?) %>">
                 <label class="col-sm-4 control-label">
                   <%= f.label :team_id, t('audit.team') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Team' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
+                  <% if @teams.present? %>
+                    <%= f.select :team_id, options_for_select(@teams.all.collect{|x| [x.name, x.id.to_i]}, :selected => @audit.team_id), {include_blank: 'Select Team' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
+                  <% else %>
+                    <%= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -190,7 +198,7 @@
                 </label>
                 <div class="col-sm-7">
                   <div class="form-group">
-                    <%= f.text_field :start_date, :class => "datepicker", :style =>"width:150px;" %>
+                    <%= f.text_field :start_date, value: (@audit.start_date.strftime("%d/%m/%Y") if @audit.start_date.present?), :class => "datepicker", :style =>"width:150px;" %>
                   </div>
                 </div>
               </div>
@@ -201,7 +209,7 @@
                 </label>
                 <div class="col-sm-7">
                   <div class="form-group">
-                   <%= f.text_field :end_date, :class => "datepicker1", :style =>"width:150px;" %>
+                   <%= f.text_field :end_date, value: (@audit.end_date.strftime("%d/%m/%Y") if @audit.end_date.present?), :class => "datepicker1", :style =>"width:150px;" %>
                   </div>
                 </div>
               </div>
@@ -228,7 +236,7 @@
                   <%= f.label :auditor, t('audit.auditor') %>
                 </label>
                 <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:auditor].present? %>">
-                  <%= f.select :auditor, options_for_select(@auditor_users.collect{|x| [x.user_name, x.id.to_i]}), {include_blank: 'Select Auditor' } %>
+                  <%= f.select :auditor, options_for_select(@auditor_users.collect{|x| [x.user_name, x.id.to_i]}, :selected => @audit.auditor), {include_blank: 'Select Auditor' } %>
                   <% if @audit.errors[:auditor].present? %>
                     <div class="error_message"><%=  @audit.errors[:auditor][0]%></div>
                   <% end %>
@@ -240,17 +248,19 @@
                 <% if @audit.errors[:auditees].present? %>
                   <div class="error_message"><%= @audit.errors[:auditees][0]%></div>
                 <% end %>
-                <% @audit.audit_auditees.build %>
+                <% @audit.audit_auditees.build if action_name == "new" %>
                 <div class="form-group clearfix auditee-dropdown">
                   <div class='auditee-rows'>
-                    <% if (action_name != "new") && (action_name != "create") %>
-                      <%= f.fields_for :audit_auditees do |builder| %>
-                        <label class="col-sm-4 control-label">
-                          <%= builder.label :auditees, t('audit.auditee') %>
-                        </label>
-                        <div class="col-sm-7">
-                          <%= builder.select :user_id, options_for_select(@team.collect{|x| [x.user_name, x.id.to_i]}), {include_blank: 'Select Auditee' }, { :id => "auditees-users"} %>
-                        </div>
+                    <% if (action_name != "new") %>
+                      <% if @team.present? %>
+                        <%= f.fields_for :audit_auditees do |builder| %>
+                          <label class="col-sm-4 control-label">
+                            <%= builder.label :auditees, t('audit.auditee') %>
+                          </label>
+                          <div class="col-sm-7">
+                            <%= builder.select :user_id, options_for_select(@team.users.collect{|x| [x.user_name, x.id.to_i]}, :selected => @audit.auditor), {include_blank: 'Select Auditee' }, { :id => "auditees-users"} %>
+                          </div>
+                        <% end %>
                       <% end %>
                     <% end %>
                   </div>
