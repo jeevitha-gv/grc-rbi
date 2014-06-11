@@ -14,6 +14,9 @@ class AuditsController < ApplicationController
 
   def edit
     @audit = Audit.find_by_id(params[:id])
+    @departments = Department.where(:location_id=>@audit.location_id) if @audit.location_id
+    @teams = Team.where(:department_id=>@audit.department_id) if @audit.department_id
+    @team = Team.where(:id=>@audit.team_id).last if @audit.location_id
   end
 
   def create
@@ -26,6 +29,7 @@ class AuditsController < ApplicationController
     end
 
     if @audit.save
+      session[:audit_id] = @audit.id
       if params[:skip_reminder] == "true"
         SkippedAuditReminder.create(:audit_id => @audit.id,:skipped_by => current_user.id)
       end
@@ -33,6 +37,9 @@ class AuditsController < ApplicationController
       UniversalMailer.notify_auditees_about_audit(@audit).deliver
       redirect_to audits_path
     else
+      @departments = Department.where(:location_id=>@audit.location_id) if @audit.location_id
+      @teams = Team.where(:department_id=>@audit.department_id) if @audit.department_id
+      @team = Team.where(:id=>@audit.team_id).last if @audit.team_id
       render 'new'
     end
   end
@@ -43,9 +50,9 @@ class AuditsController < ApplicationController
       format.html
       format.pdf do
         render :pdf => "pdf", :template => "audits/show.html.erb", layout: 'layouts/pdf.html.erb'
+      end
     end
   end
-end
 
 
   def update
@@ -156,7 +163,7 @@ end
 
   private
     def audit_params
-      params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :audit_status_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor, audit_auditees_attributes: [:user_id])
+      params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :audit_status_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor, :start_date, :end_date, audit_auditees_attributes: [:user_id])
     end
 
     # def skipped_reminder_params
