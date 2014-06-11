@@ -795,4 +795,15 @@ a.plus-background{
 }
 .text-align-right{ text-align: right;}
 
+.datepicker {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: medium none;
+}
+
+.upload-icon {
+  background-image: url("/assets/outer/upload-icon.png");
+  background-position: 15px 6px;
+  background-repeat: no-repeat;
+}
+
 
