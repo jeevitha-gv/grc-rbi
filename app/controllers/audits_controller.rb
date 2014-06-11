@@ -26,6 +26,7 @@ class AuditsController < ApplicationController
     end
 
     if @audit.save
+      session[:audit_id] = @audit.id
       if params[:skip_reminder] == "true"
         SkippedAuditReminder.create(:audit_id => @audit.id,:skipped_by => current_user.id)
       end
@@ -59,7 +60,6 @@ end
   end
 
   def audit_with_status
-   # @audits = Audit.with_status(params[:audit_status_id])
      @audits = current_user.accessible_audits.select{|x| x.audit_status_id==params[:audit_status_id].to_i}
   end
 
