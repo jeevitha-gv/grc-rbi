@@ -303,8 +303,8 @@ input.k-textbox, textarea.k-textbox, input.k-textbox:hover, textarea.k-textbox:h
 	background-color: #f17b48
 }
 .k-popup, .k-menu .k-group, .k-grid .k-filter-options, .k-time-popup, .k-datepicker-calendar, .k-autocomplete.k-state-border-down, .k-autocomplete.k-state-border-up, .k-dropdown-wrap.k-state-active, .k-picker-wrap.k-state-active, .k-multiselect.k-state-focused, .k-imagebrowser .k-image, .k-tooltip {
-	-webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
-	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3)
+	/*-webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);*/
+	/*box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3)*/
 }
 .k-window {
 	border-color: rgba(0,0,0,0.3);
