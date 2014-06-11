@@ -67,7 +67,11 @@ class User < ActiveRecord::Base
   end
 
   def accessible_audits
-    (self.auditor_audits + self.auditee_audit).uniq
+    if(self.role.title == "company_admin")
+      Audit.where(company_id: self.company_id)
+    else
+      (self.auditor_audits + self.auditee_audit).uniq
+    end
   end
 
   protected
