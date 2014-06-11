@@ -16,10 +16,13 @@
 //= require jquery.remotipart
 
 
-function add_fields(link, association, content) { 	
-    var new_id = new Date().getTime();  
-    var regexp = new RegExp("new_" + association, "g");  
-    $(link).parent().before(content.replace(regexp, new_id));      
+function add_fields(link, association, content) {
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("new_" + association, "g");
+    $(link).parent().before(content.replace(regexp, new_id));
+    $($(link).parent().prev().find(".datepicker")).kendoDatePicker({
+        format: "dd/MM/yyyy"
+        });
     return false;
 }
 
@@ -33,4 +36,3 @@ function remove_options(link) {
     jQuery(link).parents(".choices").hide();
 }
 
-    
