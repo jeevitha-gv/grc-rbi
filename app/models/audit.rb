@@ -33,13 +33,13 @@ class Audit < ActiveRecord::Base
   validates :audit_type_id, presence:true
   validates :standard_id, presence:true, :if => Proc.new{ |f| !f.compliance_type.blank? }
   validates_format_of :issue, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.issue.blank? }
-  validates :scope, length: { in: 4..50 }, :if => Proc.new{ |f| !f.scope.blank? }
-  validates :context, length: { in: 4..50 }, :if => Proc.new{ |f| !f.context.blank? }
-  validates :methodology, length: { in: 4..50 }, :if => Proc.new{ |f| !f.methodology.blank? }
-  validates :deliverables, length: { in: 4..50 }, :if => Proc.new{ |f| !f.deliverables.blank? }
-  validates :objective, length: { in: 4..50 }, :if => Proc.new{ |f| !f.objective.blank? }
-  validates :close_reason, length: { in: 4..50 }, :if => Proc.new{ |f| !f.close_reason.blank? }
-  validates :observation, length: { in: 4..50 }, :if => Proc.new{ |f| !f.observation.blank? }
+  validates :scope, length: { in: 4..250 }, :if => Proc.new{ |f| !f.scope.blank? }
+  validates :context, length: { in: 4..250 }, :if => Proc.new{ |f| !f.context.blank? }
+  validates :methodology, length: { in: 4..250 }, :if => Proc.new{ |f| !f.methodology.blank? }
+  validates :deliverables, length: { in: 4..250 }, :if => Proc.new{ |f| !f.deliverables.blank? }
+  validates :objective, length: { in: 4..250 }, :if => Proc.new{ |f| !f.objective.blank? }
+  validates :close_reason, length: { in: 4..250 }, :if => Proc.new{ |f| !f.close_reason.blank? }
+  validates :observation, length: { in: 4..250 }, :if => Proc.new{ |f| !f.observation.blank? }
   validate :check_auditees_uniq
   validate :check_auditees_presence
 
@@ -48,7 +48,7 @@ class Audit < ActiveRecord::Base
   delegate :full_name, :to => :auditory, prefix: true, allow_nil: true
   delegate :name, :to => :location, prefix: true, allow_nil: true
   delegate :name, :to => :department, prefix: true, allow_nil: true
-  
+
   scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
 
   mapping do
@@ -61,11 +61,11 @@ class Audit < ActiveRecord::Base
   def answered_compliances
     self.audit_compliances.where(is_answered: true).map(&:compliance_library)
   end
-  
+
   def auditee_response_compliances
     self.audit_compliances.where(is_answered: true).collect{|x| x.checklist_recommendations.where('recommendation_completed= ?',true)}.flatten
   end
-  
+
   def audit_observation_compliances
     self.audit_compliances.where(is_answered: true).collect{|x| x.checklist_recommendations.where('response_completed= ?',true)}.flatten
   end
@@ -112,10 +112,10 @@ def audit_operational_weightage(company,audit)
         total_score = v.sum{|x| x.score.level}
         over_all_total_score += total_score
 
-      # Weightage 
+      # Weightage
         weightage = total_score * operational_area.weightage
 
-      # Compliance Percentage Calculation 
+      # Compliance Percentage Calculation
         maximum_rating = (v.count * operational_area.weightage).to_f
         maximum_score = (maximum_rating * operational_area.weightage).to_f
         over_all_maximum_score += maximum_score
@@ -141,7 +141,7 @@ end
       when compliance_percentage <= 70
         return 2
       when compliance_percentage <= 90
-        return 3 
+        return 3
       when compliance_percentage <=100
         return 4
       else
