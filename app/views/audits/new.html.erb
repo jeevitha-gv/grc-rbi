@@ -6,7 +6,7 @@
         <div class="audit-content container">
           <%= form_for(@audit) do |f| %>
             <%= render 'form', :f => f %>
-            <div class="col-sm-8" id="auditee-button" style="display:none;">
+            <div class="col-sm-8" id="auditee-button" style="<%= (action_name == "create" &&  @audit.errors[:auditees].blank?) == true ? "display:block;" : "display:none;" %>">
               <div class="form-group clearfix addissue">
                 <a href="javascript:void(0)" class="plus-icon" id="add_auditee">Add Auditee
                 </a>

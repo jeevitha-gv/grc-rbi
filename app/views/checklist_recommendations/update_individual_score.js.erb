@@ -1,0 +1,5 @@
+new Messi("<%=  MESSAGES["checklist_recommendation"]["audit_recommendation"]["success"] %>", {title: 'Success', titleClass: 'success', autoclose: 1500});
+<% id = @checklist_recommendation.checklist.compliance_library_id%>
+$('#recommendation_'+<%= id%>).val('')
+$('#reason_'+<%= id%>).val('')
+$('#closure_date_'+<%= id%>).val('')
