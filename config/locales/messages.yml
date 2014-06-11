@@ -18,19 +18,16 @@ en:
       success: "Team was created successfully."
       update: "Team was successfully updated."
       destroy: "Team was successfully destroyed."
-
+  
+  Department:
+    create:
+      success: "Department was created successfully."
+      update: "Department was successfully updated."
+      destroy: "Department was successfully destroyed."
+      
   Role:
     create:
       success: "Role was created successfully"
-  
-  checklist_recommendation:
-    auditee_create:
-      success: "Auditee response was created successfully"
-    audit_observation:
-      success: "Audit observation was created successfully"
-    audit_recommendation:
-      success: "Audit recommendation was created successfully"
-  
   # company:
   #   domain:
   #       unique: "Sorry, this domain has already been taken."
@@ -64,7 +61,7 @@ en:
       success: "Previlege was created successfully."
       failure: "Some of the privileges already added."
       action: "Please select action to create privilege."
-
+      
   checklist:
     create:
       success: "Checklist was created successfully"
@@ -77,7 +74,6 @@ en:
     failure:
       auditee_blank: "Please select auditee"
       auditee_unique: "Please select unique auditee"
-      end_date: "End date must not be before start date"
 
   checklist_recommendations:
     recommendation: "Please enter recommendation"

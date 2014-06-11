@@ -17,12 +17,12 @@ class Audit < ActiveRecord::Base
   has_many :team_users, through: :team, :source => :users
   has_many :audit_operational_weightages
 
+  COMPLIANCE_TYPES = [["Compliance Audit", "Compliance"], ["NonCompliance Audit", "NonCompliance"]]
+
 
   accepts_nested_attributes_for :nc_questions
   accepts_nested_attributes_for :audit_auditees, reject_if: lambda { |a| a[:user_id].blank? }
   accepts_nested_attributes_for :nc_questions, :allow_destroy => true
-
-  COMPLIANCE_TYPES = [["Compliance Audit", "Compliance"], ["NonCompliance Audit", "NonCompliance"]]
 
   # validations
   validates :title, presence:true
@@ -30,16 +30,15 @@ class Audit < ActiveRecord::Base
   validates :title, uniqueness:true, :if => Proc.new{ |f| !f.title.blank? }
   validates :auditor, presence:true
   validates :audit_type_id, presence:true
-  validates :compliance_type, presence:true
   validates :standard_id, presence:true, :if => Proc.new{ |f| !f.compliance_type.blank? }
   validates_format_of :issue, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.issue.blank? }
-  validates :scope, length: { in: 4..250 }, :if => Proc.new{ |f| !f.scope.blank? }
-  validates :context, length: { in: 4..250 }, :if => Proc.new{ |f| !f.context.blank? }
-  validates :methodology, length: { in: 4..250 }, :if => Proc.new{ |f| !f.methodology.blank? }
-  validates :deliverables, length: { in: 4..250 }, :if => Proc.new{ |f| !f.deliverables.blank? }
-  validates :objective, length: { in: 4..250 }, :if => Proc.new{ |f| !f.objective.blank? }
-  validates :close_reason, length: { in: 4..250 }, :if => Proc.new{ |f| !f.close_reason.blank? }
-  validates :observation, length: { in: 4..250 }, :if => Proc.new{ |f| !f.observation.blank? }
+  validates :scope, length: { in: 4..50 }, :if => Proc.new{ |f| !f.scope.blank? }
+  validates :context, length: { in: 4..50 }, :if => Proc.new{ |f| !f.context.blank? }
+  validates :methodology, length: { in: 4..50 }, :if => Proc.new{ |f| !f.methodology.blank? }
+  validates :deliverables, length: { in: 4..50 }, :if => Proc.new{ |f| !f.deliverables.blank? }
+  validates :objective, length: { in: 4..50 }, :if => Proc.new{ |f| !f.objective.blank? }
+  validates :close_reason, length: { in: 4..50 }, :if => Proc.new{ |f| !f.close_reason.blank? }
+  validates :observation, length: { in: 4..50 }, :if => Proc.new{ |f| !f.observation.blank? }
   validate :check_auditees_uniq
   validate :check_auditees_presence
   validate :validate_end_date_before_start_date
@@ -115,7 +114,6 @@ class Audit < ActiveRecord::Base
       over_all_maximum_score += maximum_score
       compliance_percentage = (weightage / maximum_score ) * 100
       rating = get_compliance_rating(compliance_percentage)
-
       # AuditOperationalWeightage
       AuditOperationalWeightage.create(operational_area_id: operational_area.id, audit_id: audit.id, weightage: weightage, total_score: total_score, percentage: compliance_percentage, rating: rating)
     end
