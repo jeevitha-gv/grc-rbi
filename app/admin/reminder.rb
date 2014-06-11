@@ -1,4 +1,4 @@
-ActiveAdmin.register Reminder do
+ActiveAdmin.register Reminder do  
 
   menu :if => proc{ !current_admin_user.present? }
 
@@ -36,11 +36,11 @@ ActiveAdmin.register Reminder do
 
   index do
     column "Priority" do |p|
-      p.priority.name
+      p.priority.name 
     end
-    column :value
+    column :value 
     column :time_line do |t|
-        t.time_line == 1 ? 'Hours': 'Days'
+        t.time_line = 1 ? 'Hours': 'Days'
     end
     column :mail_count
     column :mail_to
@@ -62,9 +62,9 @@ ActiveAdmin.register Reminder do
   end
 
   form do |f|
-    f.inputs "Set Reminders" do
+    f.inputs "Set Reminders" do 
       f.input :priority , :prompt => "-Select priority-"
-      f.input :value
+      f.input :value 
       f.input :time_line , as: :select, collection: [['Hours', '1'], ['Days', '2']] , :prompt => "-Select Timeline-"
       f.input :mail_count
       f.input :to , as: :select, collection: ReminderAssignment.all , :prompt => "-Select-"
@@ -75,7 +75,7 @@ ActiveAdmin.register Reminder do
 
   def convert_to_string(timeline)
     if timeline == 1
-      return "Hours"
+      return "Hours" 
     else
       return "Days"
     end

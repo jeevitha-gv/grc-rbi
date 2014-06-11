@@ -4,7 +4,7 @@ ActiveAdmin.register User do
   # removing delete option
   actions :all, :except => [:destroy]
 
-  permit_params :full_name, :email, :user_name, :password , :password_confirmation, :role_id, :city, :state, :country_id,:is_disabled, :manager,  team_ids: [], profile_attributes: [:personal_email, :address2, :address1,  :city, :state, :country_id, :phone_no]
+  permit_params :full_name, :email, :user_name, :password , :password_confirmation, :role_id, :city, :state, :country_id,:is_disabled, :manager, profile_attributes: [:personal_email, :address2, :address1,  :city, :state, :country_id, :phone_no]
 
   controller do
     # removing delete option
@@ -14,27 +14,7 @@ ActiveAdmin.register User do
       @user = User.new(user_params)
       @user.company_id = current_user.company_id
       if @user.save
-        team_id = params[:user][:team_ids].reject{|x| !x.present?}
-        team_id.each do |team|
-        user_team = UserTeam.where('user_id =? AND team_id =?',@user.id, team).first
-        if user_team.nil?
-					@user_team = UserTeam.new
-					@user_team.team_id = team
-					@user_team.user_id = @user.id
-					@user_team.save
-        end
-			end
-        redirect_to admin_users_path
-      else
-        # redirect_to new_admin_user_path
-        render 'new'
-      end
-    end
-    
-    def update
-      @user = User.find_by_id(params[:id])
-      if @user.update(user_params)
-        team_id = params[:user][:team_ids].reject{|x| !x.present?}
+        team_id = params[:user][:team_ids].delete_if(&:empty?)
         team_id.each do |team|
         user_team = UserTeam.where('user_id =? AND team_id =?',@user.id, team).first
         if user_team.nil?
@@ -53,7 +33,7 @@ ActiveAdmin.register User do
 
     private
       def user_params
-        params.require(:user).permit(:full_name, :email, :user_name, :password , :password_confirmation, :is_disabled, :role_id,:company_id,:manager, team_ids: [], profile_attributes: [:personal_email, :address2, :address1, :phone_no, :city, :state, :country_id])
+        params.require(:user).permit(:full_name, :email, :user_name, :password , :password_confirmation, :is_disabled, :role_id,:company_id, :team_ids, profile_attributes: [:personal_email, :address2, :address1, :phone_no, :city, :state, :country_id])
       end
 
       def scoped_collection
