@@ -45,6 +45,7 @@ class Audit < ActiveRecord::Base
   validates :observation, length: { in: 4..250 }, :if => Proc.new{ |f| !f.observation.blank? }
   validate :check_auditees_uniq
   validate :check_auditees_presence
+  validate :validate_end_date_before_start_date
 
   delegate :name, :to => :client, prefix: true, allow_nil: true
   delegate :name, :to => :audit_type, prefix: true, allow_nil: true
@@ -168,5 +169,11 @@ end
 
   def check_auditees_presence
     self.errors[:auditees] = MESSAGES['audit']['failure']['auditee_blank'] unless audit_auditees.present?
+  end
+
+  def validate_end_date_before_start_date
+    if end_date && start_date
+      self.errors[:end_date] = MESSAGES['audit']['failure']['end_date'] if end_date < start_date
+    end
   end
 end
