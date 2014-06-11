@@ -1,6 +1,6 @@
 class ChecklistRecommendation < ActiveRecord::Base
 	attr_accessor :is_checklist_new
-	# belongs_to :auditee_id, :class_name => "ArtifactAnswer"	
+	# belongs_to :auditee_id, :class_name => "ArtifactAnswer"
 	belongs_to :rec_priority, :class_name =>"Priority", foreign_key: :recommendation_priority
 	belongs_to :rec_severity, :class_name =>"Priority", foreign_key: :recommendation_severity
 	belongs_to :response_priority, :class_name =>"Priority"
@@ -17,7 +17,7 @@ class ChecklistRecommendation < ActiveRecord::Base
 	has_many :comments , as: :commentable
 	belongs_to :auditee, class_name: 'User', foreign_key: 'auditee_id'
 
-	
+
 	#validation
 	validates :recommendation, presence: true
 	validates :reason, presence: true
@@ -33,11 +33,17 @@ class ChecklistRecommendation < ActiveRecord::Base
 	validates :observation, presence: true, :if => Proc.new{|f| f.response_completed == true}
 	validates :is_implemented, presence: true, :if => Proc.new{|f| f.response_completed == true}
 	validates :recommendation_status_id, presence: true
-	
-	
+
+
+	delegate :name, :to => :recommendation_priority, prefix: true, allow_nil: true
+	delegate :name, :to => :recommendation_priority, prefix: true, allow_nil: true
+  delegate :name, :to => :recommendation_status, prefix: true, allow_nil: true
+
+
+
 	#~ delegate :audit_id, to: :checklist_recommendation, prefix: true, allow_nil: true
 	#~ accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
-	
+
 	def audit_checklist(checklist_input)
 		checklist_params =[]
 			checklist_recommendation_id = checklist_input[:checklist_recommendation].collect {|k,v| v}

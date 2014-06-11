@@ -198,10 +198,13 @@ $(".go_to_top").click(function(){
 	                if ( dataItem.compliance_type == "Compliance")
 	                {
 					window.location.href = "/audit_compliances?audit_id="+ dataItem.id
+
 				}
 			       else
 			       {
 				   window.location.href = "/nc_questions/new?audit_id="+ dataItem.id
+		       alert(hi);
+				   alert(current_audit);
 				}
 				}
 
@@ -232,7 +235,7 @@ $(".go_to_top").click(function(){
 				function pdf_file(e)
 				{
 					var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-					window.location.href = "/audits/"+ dataItem.id
+					window.location.href = "/audits/"+ dataItem.id +".pdf"
 				}
 
 

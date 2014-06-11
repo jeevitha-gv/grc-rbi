@@ -49,7 +49,7 @@ class AuditsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render :pdf => "pdf", :template => "audits/show.html.erb", layout: 'layouts/pdf.html.erb'
+        render :pdf => "pdf", :template => "audits/show.pdf.erb", layout: 'layouts/pdf.html.erb'
     end
   end
 end

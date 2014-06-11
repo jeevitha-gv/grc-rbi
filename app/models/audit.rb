@@ -10,7 +10,9 @@ class Audit < ActiveRecord::Base
   belongs_to :audit_status
   belongs_to :audit_type
   has_many :nc_questions
-  has_many :checklist_recommendations, through: :audit_compliances
+  has_many :answers, through: :nc_questions
+  has_many :nc_checklist_recommendations, through: :answers , source: :checklist_recommendations
+  has_many :compliance_checklist_recommendations, through: :audit_compliances, source: :checklist_recommendations
   has_many :audit_compliances
   has_many :audit_auditees
   has_many :artifact_answers, through: :audit_compliances
@@ -50,6 +52,7 @@ class Audit < ActiveRecord::Base
   delegate :name, :to => :client, prefix: true, allow_nil: true
   delegate :name, :to => :audit_type, prefix: true, allow_nil: true
   delegate :full_name, :to => :auditory, prefix: true, allow_nil: true
+  delegate :email, :to => :auditory, prefix: true, allow_nil: true
   delegate :name, :to => :location, prefix: true, allow_nil: true
   delegate :name, :to => :department, prefix: true, allow_nil: true
 
@@ -136,6 +139,10 @@ def audit_operational_weightage(company,audit)
 
    audit.update(percentage: total_compliance_percentage)
 end
+
+  def checklist_recommendations
+    (self.compliance_checklist_recommendations + self.nc_checklist_recommendations).uniq
+  end
 
   # Method to get Compliance Percentage
   def get_compliance_rating(compliance_percentage)

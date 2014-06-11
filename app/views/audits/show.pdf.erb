@@ -133,41 +133,40 @@ label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12p
 <th width="50%">Name</th>
 <th width="50%">Email-Id</th>
 </tr>
+<% @audit.auditees.each do |f| %>
+
 <tr>
-<td>Selva</td>
-<td>Selva@fixrnix.in</td>
+<td><%= f.full_name %></td>
+<td><%= f.email %></td>
 </tr>
-<tr>
-<td>Saravanan</td>
-<td>saravana@fixrnix.in</td>
-</tr>
-<tr>
-<td>Sheyam</td>
-<td>sheyam@fixrnix.in</td>
-</tr>
+<% end %>
 </table>
 <!--Team Auditee End-->
 <div class="cls"></div>
 <div class="line"></div>
 <div class="cls"></div>
 <!--Recommendations Start-->
+
 <h2 class="textaligncenter">Recommendations</h2>
+<% @audit.checklist_recommendations.each do |f| %>
 <!-- SideContent Start-->
 <div class="side">
 <!-- Leftside Content Start-->
 <div class="leftside">
 <label>Client : </label>
 <div class="label_content"><%= @audit.client_name %></div>
-<label>Closure Priority : </label>
-<div class="label_content"><%= @audit.client_name %></div>
-<label>Status : </label>
-<div class="label_content">Planning</div>
 </div>
+
+<label>Closure Priority : </label>
+<div class="label_content"><%= f.recommendation_priority_name %></div>
+<!-- <label>Status : </label>
+<div class="label_content">Planning</div> -->
+<!--  </div> -->
 <!-- Leftside Content End-->
 <!-- Rightside Content Start-->
 <div class="rightside">
 <label>Status : </label>
-<div class="label_content">Planning</div
+<div class="label_content"><%= f.recommendation_status_name %></div
 ></div>
 <!-- Rightside Content End-->
 </div>
@@ -178,9 +177,8 @@ label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12p
 <table border="1px" cellpadding="5" cellspacing="0" bordercolor="#ADADAD" width="100%">
 <tr><th>Auditor Recommendation</th></tr>
 <tr>
-<% @audit.checklist_recommendations.each do |f| %>
+
 <td><%= f.recommendation %></td>
-<% end %>
 </tr>
 </table>
 <!--Auditor Recommendation End -->
@@ -196,8 +194,8 @@ label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12p
 <th>Preventive Action</th>
 </tr>
 <tr>
-<td>Null</td>
-<td>Null</td>
+<td><%= f.corrective %></td>
+<td><%= f.preventive %></td>
 </tr>
 </table>
 
@@ -210,7 +208,7 @@ label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12p
 <th width="50%">Remarks</th>
 </tr>
 <tr>
-<td rowspan="4">Null</td>
+<td rowspan="4"><%= f.observation%></td>
 <td>1. hi</td>
 </tr>
 <tr>
@@ -223,7 +221,7 @@ label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12p
 <td>4. you</td>
 </tr>
 </table>
-
+<% end %>
 </div>
 <!-- Wrapper End-->
 
