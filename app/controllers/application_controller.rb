@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale, :if => :current_user
   before_filter :set_time_zone, :if => :current_user
   helper_method :current_company
+  helper_method :current_audit
   before_filter :check_subdomain
   before_filter :check_password_authenticated, :if => :current_user
   unless Rails.application.config.consider_all_requests_local
@@ -25,6 +26,10 @@ class ApplicationController < ActionController::Base
 
 
   protected
+
+  def current_audit
+      @audit ||= Audit.find(session[:audit_id])
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :user_name

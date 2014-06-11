@@ -233,7 +233,7 @@ en:
           attributes:
             compliance_library_id:
               taken: "Already Scored! pls update it! "
-            weightage: 
+            weightage:
               greater_than_or_equal_to: "Should be greater than or equal to 1"
               less_than_or_equal_to: "should be less than or equal to 5"
               only_integer: "Should be an Integer"
@@ -245,7 +245,7 @@ en:
               greater_than_or_equal_to: "Should be greater than or equal to 1"
               less_than_or_equal_to: "Should be less than or equal to 30"
               only_integer: "Should be an Integer"
-            mail_count: 
+            mail_count:
               greater_than_or_equal_to: "Should be greater than or equal to 1"
               less_than_or_equal_to: "should be less than or equal to 30"
               only_integer: "Should be an Integer"
@@ -261,6 +261,10 @@ en:
             auditees:
               blank: "Auditee can't be blank"
               taken: "Please select unique auditee"
+            compliance_type:
+              blank: "Compliance Type can't be blank"
+            standard_id:
+              blank: "Select any one standard"
         nc_question:
           attributes:
             question:

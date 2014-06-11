@@ -8,9 +8,10 @@ ActiveAdmin.register Role  do
    before_filter :check_role, :check_company_admin
    action :all, except: [:new]
 
+
     def scoped_collection
-     @roles = Role.where('company_id= ?', current_user.company_id)
-		end
+      current_company.roles
+    end
 
     def create
       role = Role.where("title= ? AND company_id= ?", params[:role][:title], current_user.company_id).first

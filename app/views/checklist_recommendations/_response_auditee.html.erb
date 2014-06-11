@@ -36,8 +36,8 @@
                     </div>
                     
                     <div class="form-group clearfix">
-                    <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#auditee_attachment').click();" >Attach Document</a>
-											<%= file_field_tag "checklist_recommendation[attachment]", :style => "visibility:hidden; display:none;",	:id => "auditee_attachment"%></div>
+                    <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#auditee_attachment_<%= checklist_recommendation.id%>').click();" >Attach Document</a>
+											<%= file_field_tag "checklist_recommendation[attachment]", :style => "visibility:hidden; display:none;",	:id => "auditee_attachment_#{checklist_recommendation.id}"%></div>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Reason :</b> </label>
-                      <div class="col-sm-7"> procedures as part of the Knowledge Base</div>
+                      <div class="col-sm-7"><%= checklist_recommendation.reason%></div>
                        
                     </div>
                     <div class="form-group clearfix">
@@ -87,6 +87,7 @@
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Score :</b> </label>
                       <div class="col-sm-7">
+
                       <div class="number_link">
                       <a class="active" href="">0</a>
                       <a href="">1</a>

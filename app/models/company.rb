@@ -13,6 +13,7 @@ class Company < ActiveRecord::Base
   has_many :operational_areas
   has_many :artifacts
   has_many :reminders
+  has_many :clients
   has_one :company_admin, -> { where role_id: Role.where(title: 'company_admin').first.id }, class_name: 'User'
 
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
@@ -32,7 +33,7 @@ class Company < ActiveRecord::Base
   validates :contact_no, length: { is: 10},:if => Proc.new{|f| !f.contact_no.blank? }
   validates :address1, length: { in: 7..40 }, :if => Proc.new{|f| !f.address1.blank? }
   validates :address2, length: { in: 7..40 }, :if => Proc.new{|f| !f.address2.blank? }
-  
+
   after_save :company_role_create
 
   scope :active, -> { where(is_disabled: false) }
@@ -44,7 +45,7 @@ class Company < ActiveRecord::Base
   def active_audits_with_skipped
     self.audits.where("end_date <= ?", Date.today) - SkippedAuditReminder.audits
   end
-  
+
   private
   def company_role_create
     company = Company.last

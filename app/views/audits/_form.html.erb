@@ -3,14 +3,6 @@
   display: none;
 }
 </style>
-<% if @audit.errors.any? %>
-  <h2> Error Messages </h2>
-  <ul>
-    <% @audit.errors.messages.each do |msg| %>
-      <li><%= msg[1][0] %></li>
-    <% end %>
-  </ul>
-<% end %>
 <div class="content">
   <div class="container">
     <div class="row">
@@ -156,41 +148,42 @@
                   <%= f.label :compliance_type, t('audit.compliance_type') %>
                 </label>
                 <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:compliance_type].present? %>">
-                  <select name="audit[compliance_type]" id="compliance_type">
-                    <option value="<%= @audit.compliance_type if @audit.compliance_type.present? %>">Please select</option>
-                    <option value="Compliance">Compliance Audit</option>
-                    <option value="NonCompliance">NonCompliance Audit</option>
-                  </select>
+                    <%= f.select(:compliance_type, Audit::COMPLIANCE_TYPES, {:include_blank => "Select Type"}, :id=>"compliance_type") %>
                   <% if @audit.errors[:compliance_type].present? %>
                     <div class="error_message"><%=  @audit.errors[:compliance_type][0]%></div>
                   <% end %>
                 </div>
               </div>
-              <div class="form-group clearfix" id="standard-topic">
+              <div class="form-group clearfix" id="standard-topic" style="<%= 'display:block;' if (@audit.compliance_type == 'NonCompliance' && @audit.errors[:standard_id].present?) %>">
                 <label class="col-sm-4 control-label">
                   <%= f.label :standard_id, t('audit.topic') %>
                 </label>
                 <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:standard_id].present? %>">
                   <%= f.collection_select(:standard_id, Topic.all, :id, :name, :prompt => true) %>
                   <% if @audit.errors[:standard_id].present? %>
-                    <div class="error_message"><%=  @audit.errors[:compliance_type][0]%></div>
+                    <div class="error_message"><%=  @audit.errors[:standard_id][0]%></div>
                   <% end %>
                 </div>
               </div>
 
-              <div class="form-group clearfix" id="standard-compliance">
+              <div class="form-group clearfix" id="standard-compliance" style="<%= 'display:block;' if (@audit.compliance_type == 'Compliance' && @audit.errors[:standard_id].present?) %>">
                 <label class="col-sm-4 control-label">
                   <%= f.label :standard_id, t('audit.standard') %>
                 </label>
                 <div class="col-sm-7">
                   <%= f.collection_select(:standard_id, Compliance.all, :id, :name, :prompt => true) %>
+                  <% if @audit.errors[:standard_id].present? %>
+                    <div class="error_message"><%=  @audit.errors[:standard_id][0]%></div>
+                  <% end %>
                 </div>
               </div>
 
             </div>
 
             <div class="col-lg-4 col-sm-6 col-xs-12">
-
+              <% if @audit.errors[:end_date].present? %>
+                  <div class="error_message"><%= @audit.errors[:end_date][0]%></div>
+                <% end %>
               <div class="form-group clearfix">
                 <label class="col-sm-4 control-label">
                   <%= f.label :start_date, t('audit.start_date') %>
@@ -331,8 +324,12 @@
         }
     });
 
-    $(".datepicker").kendoDatePicker();
-    $(".datepicker1").kendoDatePicker();
+    $(".datepicker").kendoDatePicker({
+      format: "dd/MM/yyyy"
+    });
+    $(".datepicker1").kendoDatePicker({
+      format: "dd/MM/yyyy"
+    });
 
 
     $('#add_auditee').click(function(){

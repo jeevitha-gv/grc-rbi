@@ -36,7 +36,7 @@ require 'date'
 					@checklist_recommendation.update(checklist[:checklist_recommendation])
 				end
 			end
-			redirect_to @checklist_recommendation
+			redirect_to "/"
 	 end
 	
 	#To show auditee response
