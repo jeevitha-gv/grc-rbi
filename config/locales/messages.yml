@@ -28,6 +28,15 @@ en:
   Role:
     create:
       success: "Role was created successfully"
+  
+  checklist_recommendation:
+    auditee_create:
+      success: "Auditee response was created successfully"
+    audit_observation:
+      success: "Audit observation was created successfully"
+    audit_recommendation:
+      success: "Audit recommendation was created successfully"
+  
   # company:
   #   domain:
   #       unique: "Sorry, this domain has already been taken."
