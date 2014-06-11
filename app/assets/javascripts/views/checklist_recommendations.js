@@ -138,7 +138,8 @@
               // create DatePicker from input HTML element
 
               $(".datepicker2").kendoDatePicker({		      
-				format: "dd/MM/yyyy"
+				format: "dd/MM/yyyy",
+		      parseFormats["MMMM  yyyy"]
 		});
 
               $(".score_points").click(function(){
