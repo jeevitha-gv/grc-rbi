@@ -247,7 +247,7 @@
                 <% if @audit.errors[:auditees].present? %>
                   <div class="error_message"><%= @audit.errors[:auditees][0]%></div>
                 <% end %>
-                <% @audit.audit_auditees.build %>
+                <% @audit.audit_auditees.build if action_name != "edit" %>
                 <div class="form-group clearfix auditee-dropdown">
                   <div class='auditee-rows'>
                     <% if (action_name != "new") && (action_name != "create") %>

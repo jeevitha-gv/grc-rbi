@@ -734,14 +734,27 @@ text-align: left;
 /*Import Section*/
 @import url("fullcalendar.css");	/* Calendars Styles */
 
-
 .audit_search input[type="text"] {
-    float: left;
-    width: 120px;
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: medium none;
+  float: left;
+  height: 30px;
+  margin: 5px 0 0 12px;
+  padding: 0;
+  width: 233px;box-shadow: none;
+}
+.audit_search input[type="submit"] {
+  background-color: rgba(0, 0, 0, 0);
+  border: medium none;
+  color: rgba(0, 0, 0, 0);
+  height: 38px;
+  width: 38px; 
 }
 
+.audit_search{ background-image: url("/assets/outer/search_bg.png"); width:287px; height: 38px;}
+
 .audit_search {
-    margin: 8px; position: relative; z-index: 99999;
+    margin: 4px 0 0; position: relative; z-index: 99999;
 }
 .plusround-icon {
     background-image: url("/assets/outer/add-btn.jpg");
