@@ -18,7 +18,13 @@ en:
       success: "Team was created successfully."
       update: "Team was successfully updated."
       destroy: "Team was successfully destroyed."
-
+  
+  Department:
+    create:
+      success: "Department was created successfully."
+      update: "Department was successfully updated."
+      destroy: "Department was successfully destroyed."
+      
   Role:
     create:
       success: "Role was created successfully"
