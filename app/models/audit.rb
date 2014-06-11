@@ -1,7 +1,4 @@
 class Audit < ActiveRecord::Base
-  # include Tire::Model::Search
-  # include Tire::Model::Callbacks
-
   # associations
   belongs_to :location
   belongs_to :department
@@ -55,13 +52,6 @@ class Audit < ActiveRecord::Base
 
   scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
 
-  # mapping do
-  #   indexes :_id, :index => :not_analyzed
-  #   indexes :title
-  #   indexes :context
-  #   indexes :observation
-  # end
-
   def answered_compliances
     self.audit_compliances.where(is_answered: true).map(&:compliance_library)
   end
@@ -98,44 +88,44 @@ class Audit < ActiveRecord::Base
     end
   end
 
-# ASC Score measurement
-def audit_operational_weightage(company,audit)
-  over_all_maximum_score = 0
-  over_all_total_score = 0
-  grouped_audit_compliance = AuditCompliance.joins("join compliance_libraries ON compliance_libraries.id=audit_compliances.compliance_library_id").where("audit_id=?", audit.id).group_by {|x| x.compliance_library.parent.parent_id}
+  # ASC Score measurement
+  def audit_operational_weightage(company,audit)
+    over_all_maximum_score = 0
+    over_all_total_score = 0
+    grouped_audit_compliance = AuditCompliance.joins("join compliance_libraries ON compliance_libraries.id=audit_compliances.compliance_library_id").where("audit_id=?", audit.id).group_by {|x| x.compliance_library.parent.parent_id}
 
-  grouped_audit_compliance.each do |k, v|
-    operational_area = OperationalArea.find_or_initialize_by(compliance_library_id: k, company_id: company.id)
-    if(operational_area.new_record?)
-      operational_area.weightage = 1
-      operational_area.company_id = current_company.id
-      operational_area.save
-    end
+    grouped_audit_compliance.each do |k, v|
+      operational_area = OperationalArea.find_or_initialize_by(compliance_library_id: k, company_id: company.id)
+      if(operational_area.new_record?)
+        operational_area.weightage = 1
+        operational_area.company_id = current_company.id
+        operational_area.save
+      end
 
       #  Sum of scores of each control
-        total_score = v.sum{|x| x.score.level}
-        over_all_total_score += total_score
+      total_score = v.sum{|x| x.score.level}
+      over_all_total_score += total_score
 
       # Weightage
-        weightage = total_score * operational_area.weightage
+      weightage = total_score * operational_area.weightage
 
       # Compliance Percentage Calculation
-        maximum_rating = (v.count * operational_area.weightage).to_f
-        maximum_score = (maximum_rating * operational_area.weightage).to_f
-        over_all_maximum_score += maximum_score
-        compliance_percentage = (weightage / maximum_score ) * 100
-        rating = get_compliance_rating(compliance_percentage)
+      maximum_rating = (v.count * operational_area.weightage).to_f
+      maximum_score = (maximum_rating * operational_area.weightage).to_f
+      over_all_maximum_score += maximum_score
+      compliance_percentage = (weightage / maximum_score ) * 100
+      rating = get_compliance_rating(compliance_percentage)
 
       # AuditOperationalWeightage
-        AuditOperationalWeightage.create(operational_area_id: operational_area.id, audit_id: audit.id, weightage: weightage, total_score: total_score, percentage: compliance_percentage, rating: rating)
-  end
-   # total compliance percentage
-   total_maximum_score = over_all_maximum_score.to_f
-   total_weightage = over_all_total_score.to_f
-   total_compliance_percentage = (total_weightage/total_maximum_score) * 100
+      AuditOperationalWeightage.create(operational_area_id: operational_area.id, audit_id: audit.id, weightage: weightage, total_score: total_score, percentage: compliance_percentage, rating: rating)
+    end
+    # total compliance percentage
+    total_maximum_score = over_all_maximum_score.to_f
+    total_weightage = over_all_total_score.to_f
+    total_compliance_percentage = (total_weightage/total_maximum_score) * 100
 
-   audit.update(percentage: total_compliance_percentage)
-end
+    audit.update(percentage: total_compliance_percentage)
+  end
 
   # Method to get Compliance Percentage
   def self.get_compliance_rating(compliance_percentage)
@@ -152,12 +142,6 @@ end
         return 1
     end
   end
-
-  # def self.search(params)
-  #   tire.search(load: true) do
-  #     query { string params[:query], default_operator: "AND" } if params[:query].present?
-  #   end
-  # end
 
   private
   def check_auditees_uniq
