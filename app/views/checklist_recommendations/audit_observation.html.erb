@@ -17,42 +17,45 @@
                 </tr>
                 <tr>
                   <td><label>Client : </label>
-                    <span> Gayathri</span></td>
+                    <span><%= @audit.client.name%></span></td>
                   <td><label>Title : </label>
-                    <span> Policy Management Team</span></td>
+                    <span> <%= @audit.title.truncate(50) %></span></td>
                   <td><label>Scope : </label>
-                    <span> Financial Reporting Council</span></td>
+                    <span> <%= @audit.scope.truncate(50) %></span></td>
                 </tr>
                 <tr>
                   <td><label>Team : </label>
-                    <span> Audit Astronaut And The Border</span></td>
+                    <span> <%= @audit.team.name %></span></td>
                   <td><label>Start Date : </label>
-                    <span> 16/03/2014</span></td>
+                    <span> <%= @audit.start_date %></span></td>
                   <td><label>End Date : </label>
-                    <span> 15/06 /2016</span></td>
+                    <span> <%= @audit.end_date %></span></td>
                 </tr>
                 <tr>
                   <td><label>Delivarable : </label>
-                    <span> Standards and procedures documentation</span></td>
+                    <span> <%= @audit.deliverables %></span></td>
                   <td><label>Objective : </label>
-                    <span> Financial Reporting Council</span></td>
+                    <span> <%= @audit.objective.truncate(50) %></span></td>
                   <td><label>Context :</label>
-                    <span> Audit policy have session static semantics </span></td>
+                    <span>  <%= @audit.context.truncate(50)%> </span></td>
                 </tr>
                 <tr>
                   <td><label>Method : </label>
-                    <span> Unic Audit Method</span></td>
+                    <span>  <%= @audit.methodology.truncate(50) %></span></td>
                   <td><label>Issues : </label>
-                    <span> Business/Occupational Breakdown</span></td>
+                    <span> <%= @audit.issue.truncate(50) %></span></td>
                   <td><label>Compliance : </label>
-                    <span> Subject to the compliance audit</span></td>
+                    <span>  <%= @audit.compliance_type %></span></td>
                 </tr>
                 <tr>
+								<% if @audit.compliance_type == 'Compliance' %>
                   <td><label>Standard : </label>
-                    <span>Government Auditing Standard</span></td>
+                    <span><%= standard_name(@audit) %></span></td>
+								<% else %>
                   <td><label>Topic : </label>
                     <span> Instance-level archived audit log</span></td>
                   <td></td>
+									<% end %>
                 </tr>
               </table>
             </div>
