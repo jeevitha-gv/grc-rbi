@@ -27,7 +27,7 @@
                   <td><label>Team : </label>
                   <span> <%= @audit.team.name %></span> </td>
                   <td><label>Start Date : </label>
-									<span> <%= @audit.start_date %></span> </td>
+                  <span> <%= @audit.start_date %></span> </td>
                   <td><label>End Date : </label>
                   <span><%= @audit.end_date %></span></td>
                 </tr>
@@ -48,14 +48,14 @@
                     <span><%= @audit.compliance_type %></span></td>
                 </tr>
                 <tr>
-								<% if @audit.compliance_type == 'Compliance' %>
+                <% if @audit.compliance_type == 'Compliance' %>
                   <td><label>Standard : </label>
                     <span><%= standard_name(@audit) %></span></td>
-								<% else %>
+                <% else %>
                   <td><label>Topic : </label>
                     <span> <%= standard_name(@audit) %></span></td>
                   <td></td>
-								<% end %>
+                <% end %>
                 </tr>
               </table>
             </div>
@@ -72,7 +72,7 @@
                     <div class="fright paddingtop">
                       <a class="black_btn" href="">Back</a> 
                       <!--<a class="grey_btn" href=""> Save Draft</a>-->
-											<%= f.submit "Save Draft" , :class => "grey_btn", :onclick => "return control_checklist();save_draft_checklist();"%>
+                      <%= f.submit "Save Draft" , :class => "grey_btn", :onclick => "return control_checklist();save_draft_checklist();"%>
                       <%= f.submit "Overallscore" , :class => "orange_btn" , :onclick => "return control_checklist();"%></div>
                   </div>
                 </div>  

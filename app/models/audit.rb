@@ -138,7 +138,7 @@ def audit_operational_weightage(company,audit)
 end
 
   # Method to get Compliance Percentage
-  def self.get_compliance_rating(compliance_percentage)
+  def get_compliance_rating(compliance_percentage)
     case compliance_percentage
       when compliance_percentage <= 50
         return 1

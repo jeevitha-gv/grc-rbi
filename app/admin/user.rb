@@ -18,12 +18,12 @@ ActiveAdmin.register User do
         team_id.each do |team|
         user_team = UserTeam.where('user_id =? AND team_id =?',@user.id, team).first
         if user_team.nil?
-					@user_team = UserTeam.new
-					@user_team.team_id = team
-					@user_team.user_id = @user.id
-					@user_team.save
+          @user_team = UserTeam.new
+          @user_team.team_id = team
+          @user_team.user_id = @user.id
+          @user_team.save
         end
-			end
+      end
         redirect_to admin_users_path
       else
         # redirect_to new_admin_user_path
@@ -38,12 +38,12 @@ ActiveAdmin.register User do
         team_id.each do |team|
         user_team = UserTeam.where('user_id =? AND team_id =?',@user.id, team).first
         if user_team.nil?
-					@user_team = UserTeam.new
-					@user_team.team_id = team
-					@user_team.user_id = @user.id
-					@user_team.save
+          @user_team = UserTeam.new
+          @user_team.team_id = team
+          @user_team.user_id = @user.id
+          @user_team.save
         end
-			end
+      end
         redirect_to admin_users_path
       else
         # redirect_to new_admin_user_path
