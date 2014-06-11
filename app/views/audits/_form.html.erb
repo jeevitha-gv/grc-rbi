@@ -35,7 +35,7 @@
                   <%= f.label :objective, t('audit.objective') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.text_field :objective, :class=>"audit-big-input" %>
+                  <%= f.text_area :objective, :class=>"audit-big-input" %>
                 </div>
               </div>
               <div class="form-group clearfix">
@@ -43,7 +43,7 @@
                   <%= f.label :deliverables, t('audit.deliverables') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.text_field :deliverables, :class=>"audit-big-input" %>
+                  <%= f.text_area :deliverables, :class=>"audit-big-input" %>
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@
                   <%= f.label :title, t('audit.title') %>
                 </label>
                 <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:title].present? %>">
-                  <%= f.text_field :title, :class=>"audit-normal-input" %>
+                  <%= f.text_area :title, :class=>"audit-normal-input" %>
                   <% if @audit.errors[:title].present? %>
                     <div class="error_message"><%=  @audit.errors[:title][0]%></div>
                   <% end %>
@@ -64,7 +64,7 @@
                   <%= f.label :context, t('audit.context') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.text_field :context, :class=>"audit-big-input" %>
+                  <%= f.text_area :context, :class=>"audit-big-input" %>
                 </div>
               </div>
               <div class="form-group clearfix">
@@ -72,7 +72,7 @@
                   <%= f.label :issue, t('audit.issue') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.text_field :issue, :class=>"audit-big-input" %>
+                  <%= f.text_area :issue, :class=>"audit-big-input" %>
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@
                   <%= f.label :scope, t('audit.scope') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.text_field :scope, :class=>"audit-big-input" %>
+                  <%= f.text_area :scope, :class=>"audit-big-input" %>
                 </div>
               </div>
               <div class="form-group clearfix">
@@ -90,7 +90,7 @@
                   <%= f.label :methodology, t('audit.methodology') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.text_field :methodology, :class=>"audit-big-input" %>
+                  <%= f.text_area :methodology, :class=>"audit-big-input" %>
                 </div>
               </div>
               <div class="form-group clearfix addissue"> <a href="#add_url" data-toggle="modal" class="plus-icon next-phase">Add Issue from Risk Library</a>
@@ -146,7 +146,7 @@
                   <%= f.label :team_id, t('audit.team') %>
                 </label>
                 <div class="col-sm-7">
-                  <%= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Team' }, { :id => "team_id"} %>
+                  <%= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Team' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
                 </div>
               </div>
             </div>
@@ -155,20 +155,26 @@
                 <label class="col-sm-4 control-label">
                   <%= f.label :compliance_type, t('audit.compliance_type') %>
                 </label>
-                <div class="col-sm-7">
+                <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:compliance_type].present? %>">
                   <select name="audit[compliance_type]" id="compliance_type">
-                    <option value="">Please select</option>
+                    <option value="<%= @audit.compliance_type if @audit.compliance_type.present? %>">Please select</option>
                     <option value="Compliance">Compliance Audit</option>
                     <option value="NonCompliance">NonCompliance Audit</option>
                   </select>
+                  <% if @audit.errors[:compliance_type].present? %>
+                    <div class="error_message"><%=  @audit.errors[:compliance_type][0]%></div>
+                  <% end %>
                 </div>
               </div>
               <div class="form-group clearfix" id="standard-topic">
                 <label class="col-sm-4 control-label">
                   <%= f.label :standard_id, t('audit.topic') %>
                 </label>
-                <div class="col-sm-7">
+                <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:standard_id].present? %>">
                   <%= f.collection_select(:standard_id, Topic.all, :id, :name, :prompt => true) %>
+                  <% if @audit.errors[:standard_id].present? %>
+                    <div class="error_message"><%=  @audit.errors[:compliance_type][0]%></div>
+                  <% end %>
                 </div>
               </div>
 
@@ -181,9 +187,8 @@
                 </div>
               </div>
 
-
-
             </div>
+
             <div class="col-lg-4 col-sm-6 col-xs-12">
 
               <div class="form-group clearfix">
@@ -207,7 +212,19 @@
                   </div>
                 </div>
               </div>
+
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">
+                  <%= f.label 'Skip Reminder' %>
+                </label>
+                  <div class="col-sm-7">
+                    <div class="form-group">
+                      <%= check_box_tag 'skip_reminder','true'%>
+                    </div>
+                  </div>
+              </div>
             </div>
+
             <div class="clearfix border-divider"></div>
             <div class="clearfix">
               <h3>Team</h3>
@@ -218,7 +235,7 @@
                   <%= f.label :auditor, t('audit.auditor') %>
                 </label>
                 <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:auditor].present? %>">
-                  <%= f.select :auditor, options_for_select(@auditor_users.collect{|x| [x.full_name, x.id.to_i]}), {include_blank: 'Select Auditor' } %>
+                  <%= f.select :auditor, options_for_select(@auditor_users.collect{|x| [x.user_name, x.id.to_i]}), {include_blank: 'Select Auditor' } %>
                   <% if @audit.errors[:auditor].present? %>
                     <div class="error_message"><%=  @audit.errors[:auditor][0]%></div>
                   <% end %>
@@ -227,42 +244,43 @@
             </div>
 
             <div class="col-lg-4 col-sm-6 col-xs-12" id="auditee-list">
-              <% if @audit.errors[:auditees].present? %>
-                <div class="error_message"><%= @audit.errors[:auditees][0]%></div>
-              <% end %>
-              <% @audit.audit_auditees.build %>
-              <div class="form-group clearfix auditee-dropdown">
-                <div class='auditee-rows'>
-                  <%= f.fields_for :audit_auditees do |builder| %>
-                    <label class="col-sm-4 control-label">
-                      <%= builder.label :auditees, t('audit.auditee') %>
-                    </label>
-                    <div class="col-sm-7">
-                      <%= builder.select :user_id, options_for_select(@auditee_users.collect{|x| [x.full_name, x.id.to_i]}), {include_blank: 'Select Auditee' }, { :id => "locations-list"} %>
-
-                    </div>
-                  <% end %>
+                <% if @audit.errors[:auditees].present? %>
+                  <div class="error_message"><%= @audit.errors[:auditees][0]%></div>
+                <% end %>
+                <% @audit.audit_auditees.build %>
+                <div class="form-group clearfix auditee-dropdown">
+                  <div class='auditee-rows'>
+                    <% if (action_name != "new") && (action_name != "create") %>
+                      <%= f.fields_for :audit_auditees do |builder| %>
+                        <label class="col-sm-4 control-label">
+                          <%= builder.label :auditees, t('audit.auditee') %>
+                        </label>
+                        <div class="col-sm-7">
+                          <%= builder.select :user_id, options_for_select(@team.collect{|x| [x.user_name, x.id.to_i]}), {include_blank: 'Select Auditee' }, { :id => "auditees-users"} %>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
                 </div>
-              </div>
             </div>
-            <div class="col-sm-7">
+            <div class="col-sm-8" id="auditee-button" style="display:none;">
               <div class="form-group clearfix addissue">
                 <a href="javascript:void(0)" class="plus-icon" id="add_auditee">Add Auditee
                 </a>
               </div>
             </div>
-            <div class="col-lg-4 col-sm-6 col-xs-12">
+            <div class="col-lg-12 col-sm-6 col-xs-12 text-align-right">
               <br>
               <br>
               <%= f.submit "Initiate Audit", :class => "black_btn" %>
-              <!-- <a href="" class="black_btn"></a> -->
-              <a class="orange_btn" href="#">Save as Plan</a>
+              <%= f.submit "Save as Plan", :class => "orange_btn" %>
+              <a class="grey_btn" href="#add_csv" data-toggle="modal">Upload audit from CSV or XLSX</a>
               <br>
               <br>
             </div>
           <% end %>
           <div class="form-group clearfix addissue">
-            <a class="orange_btn" href="#add_csv" data-toggle="modal">Upload audit from CSV or XLSX</a>
+
             <div class="modal fade" id="add_csv">
               <div class="modal-dialog modal-dialog_large">
                 <div class="modal-content">
@@ -334,7 +352,7 @@
     var location_id = $(element).val();
     if(location_id.length>0){
       $.ajax({
-        url: "/audits/departments_list",
+        url: "/audits/department_teams_users",
         type: "GET",
         data: {"location_id" : location_id}
       });
@@ -349,9 +367,23 @@
     var department_id = $(element).val();
     if(department_id.length>0){
       $.ajax({
-        url: "/audits/teams_list",
+        url: "/audits/department_teams_users",
         type: "GET",
         data: {"department_id" : department_id}
+      });
+    }
+    else {
+      $('#teams-dropdown').hide();
+    }
+  }
+
+  function get_auditee_users(element){
+    var team_id = $(element).val();
+    if(team_id.length>0){
+      $.ajax({
+        url: "/audits/department_teams_users",
+        type: "GET",
+        data: {"team_id" : team_id}
       });
     }
     else {

@@ -1,6 +1,6 @@
 class ChecklistRecommendationsController < ApplicationController
 
-
+require 'date'
  #new for checklist recommendation
  def new
 		@audit = Audit.find_by_id(params[:id]) # need to change with permission
@@ -20,6 +20,8 @@ class ChecklistRecommendationsController < ApplicationController
 				if @checklist_recommendation.nil?	
 						score = check[:score]
 						check.delete("score") 
+						check[:is_checklist_new] = true
+						check[:auditee_id] = current_user.id
 					@checklist_recommendation = ChecklistRecommendation.new(check)
 					@checklist_recommendation.recommendation_completed = true unless params[:commit] == 'Save Draft'
 					if @checklist_recommendation.save
@@ -88,7 +90,7 @@ end
 
 	private
 	  def checklist_params
-	    params.require(:checklist_recommendation).permit(:checklist_id, :checklist_type, :auditee_id, :recommendation, :reason, :corrective, :preventive, :closure_date, :recommendation_priority_id, :recommendation_severity_id, :response_priority_id, :response_severity_id, :recommendation_status_id, :response_status_id, :dependent_recommendation, :blocking_recommendation, :observation, :recommendation_completed, :is_implemented)
+	    params.require(:checklist_recommendation).permit(:checklist_id, :checklist_type, :auditee_id, :recommendation, :reason, :corrective, :preventive, :closure_date, :recommendation_priority_id, :recommendation_severity_id, :response_priority_id, :response_severity_id, :recommendation_status_id, :response_status_id, :dependent_recommendation, :blocking_recommendation, :observation, :recommendation_completed, :is_implemented,:is_checklist_new)
 	  end
 end
 
