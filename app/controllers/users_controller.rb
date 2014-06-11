@@ -28,11 +28,7 @@ class UsersController < ApplicationController
 
   def update_password
     @user = current_user
-<<<<<<< HEAD
     if @user.update_attributes(password_params)
-=======
-    if @user.update(password_params)
->>>>>>> 32f8da1db94a1c41d9d01729ab20a2354dd367e9
       # Sign in the user by passing validation in case his password changed
       sign_in(@user, :bypass => true)
       redirect_to root_subdomain_path
