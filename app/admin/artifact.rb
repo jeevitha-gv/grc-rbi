@@ -10,7 +10,7 @@ ActiveAdmin.register Artifact do
 
     index do
       column "Compliance library" do |c|
-        c.compliance_library.name
+        c.compliance_library.try(&:name)
       end
       column :name
       actions
