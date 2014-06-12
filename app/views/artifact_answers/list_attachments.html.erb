@@ -1,0 +1,17 @@
+<div class="modal-header">
+      <button aria-hidden="true" data-dismiss="modal" class="close" type="button"> &nbsp; </button>
+      <h4 id="myModalLabel" class="modal-title">Upload files for - <%= @artifact_answer.artifact_name%></h4>
+    <div class="file-body">
+     <div id="list-file">
+      <%= render partial: 'list_files', locals: {attachments: @attachments}%>
+     </div>
+      <%= form_tag create_attachment_artifact_answers_path, multipart: true, remote: true do %>
+        <%= hidden_field_tag :id, @artifact_answer.id%>
+        <%= file_field_tag "file[]", id: "file_tag", type: :file, multiple: true %>
+        <%= submit_tag "Import", :class => "black_btn" %>
+        <%= button_tag "Cancel", type: 'button', "data-dismiss" => "modal", :class => "orange_btn" %>
+      <% end %>
+    </div>
+</div>
+
+

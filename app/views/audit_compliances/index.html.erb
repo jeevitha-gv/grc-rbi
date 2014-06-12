@@ -91,44 +91,7 @@ $(document).ready(function(){
 			$(".share_pop").hide();
 		}
 	});
-	
-	
-	/* placeholder */
-	$(".place_holder").each(function(index, element) {
-		placeholder = $(this).attr("data-original");
-		$(this).val(placeholder);
-		$(this).removeClass("active");
-    });
-
-	$(".place_holder").focus(function(){
-		placeholder = $(this).attr("data-original");
-		current_value = $(this).val();
-		if(current_value==placeholder){
-			$(this).val("");
-			$(this).addClass("active");
-		}
-	});
-	$(".place_holder").blur(function(){
-		placeholder = $(this).attr("data-original");
-		current_value = $(this).val();
-		if(current_value==""){
-			$(this).val(placeholder);
-			$(this).removeClass("active");
-		}else{
-			$(this).addClass("active");
-		}
-	});
-	$(".place_holder").click(function(){
-		placeholder = $(this).attr("data-original");
-		current_value = $(this).val();
-		if(current_value==placeholder){
-			$(this).val("");
-			$(this).addClass("active");
-		}
-	});
-	/* placeholder */
-	
-	
+		
 });
 </script> 
 
@@ -230,14 +193,7 @@ $(document).ready(function(){
           row_data = dataSource.get(row_id)
           row_data.target_date = e.sender._oldText
         }
-				
-				// More contacts show
-				$(".more-link").click(function(){
-					if($(this).html() == "More")
-						$(this).html("Less").parent().siblings(".more-info").show();
-					else
-						$(this).html("More").parent().siblings(".more-info").hide();
-				});
+
 			});
 			
 			// Edit Popup

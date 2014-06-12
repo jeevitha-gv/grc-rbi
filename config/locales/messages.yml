@@ -36,6 +36,10 @@ en:
       success: "Audit observation was created successfully"
     audit_recommendation:
       success: "Audit recommendation was created successfully"
+      
+  audit_compliance:
+    comment:
+      success: "Text response saved successfully"
   
   # company:
   #   domain:
