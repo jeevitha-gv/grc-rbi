@@ -71,6 +71,8 @@ Rails.application.routes.draw do
 
   resources :audit_compliances do
     get 'compliance_checklist', on: :collection
+    get 'response', on: :collection
+    get 'response_checklist', on: :collection
   end
 
    # resources :privileges
@@ -98,6 +100,14 @@ Rails.application.routes.draw do
 
   # delete '/activities/clear_audit' => 'activities#clear_audit', :as => :clear_audit
   resources :activities, :except => [:show]
+  
+  resources :artifact_answers do
+    get 'list_attachments', on: :collection
+    get 'list_comment', on: :collection
+    post 'create_attachment', on: :collection
+    patch 'update_comment', on: :collection
+    delete 'remove_attachment', on: :collection
+  end
 
   resources :compliance_libraries
   resources :audit_compliances
