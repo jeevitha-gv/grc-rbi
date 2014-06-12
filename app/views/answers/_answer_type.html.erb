@@ -1,0 +1,52 @@
+<div class="col-lg-4">
+  <div class="form-group clearfix">
+    <% if question.question_type_id == 1%>
+      <div class="form-group clearfix">
+        <label class="col-sm-5">Your Answer</label>
+        <div class="col-sm-7">
+          <%= f.text_area :detailed_value, :class=>"audit-big-input" %>
+        </div>
+        <br>
+        <% if question.does_require_document == 't' %>
+        <div class="form-group clearfix">
+          <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="">Attach Document</a></div>
+        </div>
+        <% end %>
+        <%= f.submit "Save Answer as Draft" , :class => "black_btn fright"%>
+      </div>
+
+    <% elsif question.question_type_id == 2 %>
+      <div class="form-group clearfix">
+        <label class="col-sm-5">Your Answer</label>
+        <div class="col-sm-7">
+          <%= f.text_area :detailed_value, :class=>"audit-big-input" %>
+        </div>
+        <br>
+        <% if question.does_require_document == 't' %>
+        <div class="form-group clearfix">
+          <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="">Attach Document</a></div>
+        </div>
+        <% end %>
+        <%= f.submit "Save Answer as Draft" , :class => "black_btn fright"%>
+      </div>
+
+    <% elsif question.question_type_id == 2 %>
+      <div class="form-group clearfix">
+        <label class="col-sm-5">Your Answer</label>
+        <div class="col-sm-7">
+          <%= f.text_area :detailed_value, :class=>"audit-big-input" %>
+        </div>
+        <br>
+        <% if question.does_require_document == 't' %>
+        <div class="form-group clearfix">
+          <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="">Attach Document</a></div>
+        </div>
+        <% end %>
+        <%= f.submit "Save Answer as Draft" , :class => "black_btn fright"%>
+      </div>
+    <% end %>
+
+
+
+  </div>
+</div>

@@ -75,7 +75,7 @@ $(window).load(function(){
 
 
 	$(".block_banner img").each(function(index, element) {
-		var screenImage = $(this);
+    var screenImage = $(this);
 
 		// Create new offscreen image to test
 		var theImage = new Image();
@@ -85,7 +85,7 @@ $(window).load(function(){
 
 		$(this).css("max-height",imageHeight);
 		$(this).css("min-height",imageHeight);
-	});
+  });
 });
 
 $(".click_icon").click(function() {
@@ -147,7 +147,8 @@ $(document).ready(function(){
 		if(current_value==""){
 			$(this).val(placeholder);
 			$(this).removeClass("active");
-		}else{
+		}
+		else{
 			$(this).addClass("active");
 		}
 	});
@@ -159,8 +160,9 @@ $(document).ready(function(){
 			$(this).addClass("active");
 		}
 	});
+	/* placeholder */
 
-  function onActivate(e) {
+	function onActivate(e) {
   	$('#search-value').val('')
   	var tabActive = e.sender.tabGroup.children("li.k-state-active").attr("aria-controls")
   	var gridForSearch = select_grid(tabActive)
@@ -172,9 +174,21 @@ $(document).ready(function(){
   });
 
 	$("#search-button").click(function(){
+		search_result();
+	})
+
+	$("#search-value").on('keyup', function(e) {
+    if (e.which == 13) {
+      e.preventDefault();
+      search_result()
+    }
+  });
+
+	function search_result()
+	{
 		var tabstrip = $("#tabstrip").kendoTabStrip().data("kendoTabStrip");
 		var tabActive = tabstrip.tabGroup.children("li.k-state-active").attr("aria-controls")
-    var val = $('#search-value').val();
+		var val = $('#search-value').val();
     var gridForSearch = select_grid(tabActive)
     $("#"+gridForSearch).data("kendoGrid").dataSource.filter({
 			logic  : "or",
@@ -206,7 +220,7 @@ $(document).ready(function(){
 				},
 			]
 		});
-	})
+	}
 
 	function select_grid(tabActive)
 		{
@@ -247,6 +261,8 @@ $(".go_to_top").click(function(){
 </script>
 
 <script type="text/javascript">
+
+
 	function set_file(e)
 	{
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
@@ -271,12 +287,14 @@ $(".go_to_top").click(function(){
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		window.location.href = "/checklist_recommendations/auditee_response/"+ dataItem.id
 	}
-		function publish_file(e)
+
+	function publish_file(e)
 	{
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		window.location.href = "/checklist_recommendations/audit_observation/"+ dataItem.id
 	}
-		function edit_file(e)
+
+	function edit_file(e)
 	{
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		window.location.href = "/audits/"+ dataItem.id + "/edit"
@@ -285,7 +303,7 @@ $(".go_to_top").click(function(){
 	function pdf_file(e)
 	{
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		window.location.href = "/audits/"+ dataItem.id
+		window.location.href = "/audits/"+ dataItem.id +".pdf"
 	}
 
 
@@ -300,27 +318,31 @@ $(".go_to_top").click(function(){
 		// Kendo Tab
 		$("#tabstrip").kendoTabStrip({
 			animation:  {
-			open: {
-				effects: "fadeIn"
+				open: {
+					effects: "fadeIn"
 				}
 			}
 		});
 
+
+
+
 		// Kendo Panel
 		$("#panelbarforall").kendoPanelBar();
-			dataSource = new kendo.data.DataSource({
+
+		dataSource = new kendo.data.DataSource({
 			transport: {
-			read: {
-				url: "/audits/audit_all",
-				type: "post",
-				dataType: 'json'
-			}
-		},
-		schema: {
-			errors: function(response) {
+				read: {
+					url: "/audits/audit_all",
+					type: "post",
+					dataType: 'json'
+				}
+			},
+			schema: {
+				errors: function(response) {
 				return response.errors;
 			},
-				data: "data",
+			data: "data",
 				model: {
 					id: "id",
 					fields:{
@@ -331,14 +353,7 @@ $(".go_to_top").click(function(){
 						compliance_type: { type: "string" },
 						auditor: {type: "string"}
 					}
-				if ( dataItem.compliance_type == "Compliance")
-	      {
-					window.location.href = "/audit_compliances?audit_id="+ dataItem.id
 				}
-       else
-      	{
-			   	window.location.href = "/nc_questions/new?audit_id="+ dataItem.id
-		    }
 			}
 		});
 
@@ -347,26 +362,24 @@ $(".go_to_top").click(function(){
 
 		$("#gridforall").kendoGrid({
 			dataSource: dataSource,
-
 			height: 'auto',
 			scrollable: true,
 			sortable: true,
 			filterable: true,
 			pageable: {
-			input: true,
-			numeric: false
-		},
-		columns: [
-			{ field: "title", title: "Audit Title" ,width: "35%"},
-			{ field: "client", title: "Client Name", width: "35%" },
-			{ field: "audit_type", title: "Audit Type", width: "35%" },
-			{ field: "compliance_type", title: "Compliance Type", width: "35%" },
-			{ field: "auditor", title: "Auditor Name", width: "35%" },
+				input: true,
+				numeric: false
+			},
+			columns: [
+				{ field: "title", title: "Audit Title" ,width: "35%"},
+				{ field: "client", title: "Client Name", width: "35%" },
+				{ field: "audit_type", title: "Audit Type", width: "35%" },
+				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
+				{ field: "auditor", title: "Auditor Name", width: "35%" },
 
-			{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
-
+				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
 			],
-		//editable: "popup"
+			//editable: "popup"
 		});
 
 		$("#panelbarforplan").kendoPanelBar();
@@ -381,18 +394,18 @@ $(".go_to_top").click(function(){
 			},
 			schema: {
 				errors: function(response) {
-					return response.errors;
-				},
-				data: "data",
-					model: {
-						id: "id",
-						fields: {
-						id: { type: "string" },
-						title: { type: "string" },
-						client: { type: "string" },
-						audit_type: { type: "string" },
-						compliance_type: { type: "string" },
-						auditor: {type: "string"}
+				return response.errors;
+			},
+			data: "data",
+			model: {
+				id: "id",
+				fields: {
+					id: { type: "string" },
+					title: { type: "string" },
+					client: { type: "string" },
+					audit_type: { type: "string" },
+					compliance_type: { type: "string" },
+					auditor: {type: "string"}
 					}
 				}
 			}
@@ -401,12 +414,12 @@ $(".go_to_top").click(function(){
 
 		//grid for planned
 		$("#gridforplan").kendoGrid({
-				dataSource: dataSourceplan,
-				height: 'auto',
-				scrollable: true,
-				sortable: true,
-				filterable: true,
-				pageable: {
+			dataSource: dataSourceplan,
+			height: 'auto',
+			scrollable: true,
+			sortable: true,
+			filterable: true,
+			pageable: {
 				input: true,
 				numeric: false
 			},
@@ -437,8 +450,8 @@ $(".go_to_top").click(function(){
 			},
 			schema: {
 				errors: function(response) {
-					return response.errors;
-				},
+				return response.errors;
+			},
 			data: "data",
 			model: {
 				id: "id",
@@ -458,11 +471,11 @@ $(".go_to_top").click(function(){
 		//grid for InProgress
 		$("#gridforprogress").kendoGrid({
 			dataSource: dataSourceprogress,
-				height: 'auto',
-				scrollable: true,
-				sortable: true,
-				filterable: true,
-				pageable: {
+			height: 'auto',
+			scrollable: true,
+			sortable: true,
+			filterable: true,
+			pageable: {
 				input: true,
 				numeric: false
 			},
@@ -473,22 +486,10 @@ $(".go_to_top").click(function(){
 				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
 				{ field: "auditor", title: "Auditor Name", width: "35%" },
 
-				function pdf_file(e)
-				{
-					var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-					window.location.href = "/audits/"+ dataItem.id +".pdf"
-				}
-
 				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},"pdf",{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
 			],
 			//editable: "popup"
 		});
-
-
-
-
-
-
 
 		$("#panelbarforpublish").kendoPanelBar();
 
@@ -505,7 +506,7 @@ $(".go_to_top").click(function(){
 				return response.errors;
 			},
 			data: "data",
-			model: {
+				model: {
 				id: "id",
 				fields: {
 					id: { type: "string" },
@@ -523,11 +524,11 @@ $(".go_to_top").click(function(){
 		//grid for published
 		$("#gridforpublish").kendoGrid({
 			dataSource: dataSourcepublish,
-				height: 'auto',
-				scrollable: true,
-				sortable: true,
-				filterable: true,
-				pageable: {
+			height: 'auto',
+			scrollable: true,
+			sortable: true,
+			filterable: true,
+			pageable: {
 				input: true,
 				numeric: false
 			},
@@ -571,12 +572,11 @@ $(".go_to_top").click(function(){
 				$(this).html("Less").parent().siblings(".more-info").show();
 			else
 				$(this).html("More").parent().siblings(".more-info").hide();
-			});
 		});
+	});
 
-		// Edit Popup
-		$(window).load(function(){
+	// Edit Popup
+	$(window).load(function(){
 		$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");
-
 	});
 </script>
