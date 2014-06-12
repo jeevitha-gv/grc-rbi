@@ -16,6 +16,7 @@ class ChecklistRecommendation < ActiveRecord::Base
 	has_many :attachments , as: :attachable
 	has_many :comments , as: :commentable
 	belongs_to :auditee, class_name: 'User', foreign_key: 'auditee_id'
+	has_many :remarks , as: :commentable, class_name: "Comment"
 
 
 	#validation

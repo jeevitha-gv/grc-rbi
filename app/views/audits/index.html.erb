@@ -285,13 +285,13 @@ $(".go_to_top").click(function(){
 	function act_file(e)
 	{
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		window.location.href = "/checklist_recommendations/auditee_response/"+ dataItem.id
+		window.location.href = "/checklist_recommendations/auditee_response/id="+ dataItem.id
 	}
 
 	function publish_file(e)
 	{
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		window.location.href = "/checklist_recommendations/audit_observation/"+ dataItem.id
+		window.location.href = "/checklist_recommendations/audit_observation/id="+ dataItem.id
 	}
 
 	function edit_file(e)
