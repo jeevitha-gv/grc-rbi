@@ -43,9 +43,8 @@
               <%= f.label :target_date, t('nc_question.target_date'), :class => "col-sm-4 control-label" %>
               <div class="col-sm-7 <%='error_inputfield' if (@audit.errors["nc_questions.target_date"].present? && f.object.target_date.blank?) %>">
                 <div class="form-group">
-                  <div class='input-group date' id='datetimepicker1'>
-                    <%= f.date_field :target_date, :class => "form-control" %>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span> </div>
+                    <%#= f.date_field :target_date, :class => "form-control" %>
+                    <%= f.text_field :target_date, :class => "datepicker", :style =>"width:150px;" %>
                     <%if (@audit.errors["nc_questions.target_date"].present? && f.object.target_date.blank?) %>
                       <div class="error_message"><%=  @audit.errors["nc_questions.target_date"][0]%></div>
                     <% end %>
@@ -77,3 +76,5 @@
           <div class="clearfix border-divider"> </div>
 
 </fieldset>
+
+

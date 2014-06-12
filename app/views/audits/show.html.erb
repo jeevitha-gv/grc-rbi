@@ -4,6 +4,11 @@
 
 </p>
 
+<label>Recommendation</label>
+	<% @audit.checklist_recommendations.each do |f| %>
+<%= f.reason %>
+<% end %>
+
 <p>
 	<label>objective:</label>
 	<%= @audit.objective %>
@@ -75,31 +80,9 @@
 	<%= @audit.client_name %>
 
 </p>
-<p>
-	<label>Standard:</label>
-	<%= @audit.client_name %>
 
-</p>
-<p>
-	<label>Start Date:</label>
-	<%= @audit.client_name %>
 
-</p>
-<p>
-	<label>End Date:</label>
-	<%= @audit.client_name %>
 
-</p>
-<p>
-	<label>Auditor:</label>
-	<%= @audit.client_name %>
-
-</p>
-<p>
-	<label>Auditee:</label>
-	<%= @audit.client_name %>
-
-</p>
 
 
 

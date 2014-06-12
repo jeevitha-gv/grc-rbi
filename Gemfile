@@ -49,13 +49,8 @@ gem 'rmagick'
 gem 'roo'
 
 gem 'cancan'
-gem 'pry'
+gem 'pry', group: [:development]
 gem 'newrelic_rpm'
-
-# search in application
-gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'tire'
 
 gem 'public_activity'
 

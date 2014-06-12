@@ -69,7 +69,7 @@ Rails.application.routes.draw do
    end
 
 
-  resources :audit_compliances do 
+  resources :audit_compliances do
     get 'compliance_checklist', on: :collection
   end
 

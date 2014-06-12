@@ -1,1 +1,46 @@
-<%= render 'form' %>
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="audit-title">
+        <h2>New Audit Plan</h2>
+        <div class="audit-content container">
+          <%= form_for(@audit) do |f| %>
+            <%= render 'form', :f => f %>
+            <div class="col-sm-8" id="auditee-button" style="<%= (action_name == "create" &&  @audit.errors[:auditees].blank?) == true ? "display:block;" : "display:none;" %>">
+              <div class="form-group clearfix addissue">
+                <a href="javascript:void(0)" class="plus-icon" id="add_auditee">Add Auditee
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-12 col-sm-6 col-xs-12 text-align-right">
+              <br>
+              <br>
+              <%= f.submit "Initiate Audit", :class => "black_btn" %>
+              <%= f.submit "Save as Plan", :class => "orange_btn" %>
+              <a class="grey_btn" href="#add_csv" data-toggle="modal">Upload audit from CSV or XLSX</a>
+              <br>
+              <br>
+            </div>
+          <% end %>
+          <div class="form-group clearfix addissue">
+            <div class="modal fade" id="add_csv">
+              <div class="modal-dialog modal-dialog_large">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"> &nbsp; </button>
+                    <h4 id="myModalLabel" class="modal-title">Upload files only CSV and XLSX</h4>
+                    <%= form_tag import_files_audits_path, multipart: true do %>
+                      <%= file_field_tag :file %>
+                      <%= submit_tag "Import" %>
+                    <% end %>
+                    <p></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

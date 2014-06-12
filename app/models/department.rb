@@ -1,6 +1,7 @@
 class Department < ActiveRecord::Base
   # associations
   has_many :audits
+  has_many :teams, :dependent => :destroy
   belongs_to :location
 
   # validations

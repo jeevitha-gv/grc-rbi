@@ -15,6 +15,14 @@ class AuditCompliancesController < ApplicationController
   
   def edit
   end
+  
+  def response    
+  end
+  
+  def response_checklist
+    @audit = Audit.find(params[:audit_id])
+    @artifact_answer = @audit.artifact_answers
+  end
 
   def create
     compliance_params.each do |k, v|
