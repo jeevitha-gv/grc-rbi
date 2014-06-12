@@ -2,16 +2,19 @@
   <div class="form-group clearfix">
     <% if question.question_type_id == 1%>
       <div class="form-group clearfix">
-        <label class="col-sm-5">Your Answer</label>
+        <label class="col-sm-5">Your Choice</label>
         <div class="col-sm-7">
-          <%= f.text_area :detailed_value, :class=>"audit-big-input" %>
+          <%= f.radio_button :value, '0' %>
+          <%= label :value, 'Yes' %>
+          <%= f.radio_button :value, '1' %>
+          <%= label :value, 'No' %>
         </div>
         <br>
-        <% if question.does_require_document == 't' %>
         <div class="form-group clearfix">
+          <% if question.does_require_document? %>
           <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="">Attach Document</a></div>
+          <% end %>
         </div>
-        <% end %>
         <%= f.submit "Save Answer as Draft" , :class => "black_btn fright"%>
       </div>
 
@@ -22,31 +25,33 @@
           <%= f.text_area :detailed_value, :class=>"audit-big-input" %>
         </div>
         <br>
-        <% if question.does_require_document == 't' %>
         <div class="form-group clearfix">
+          <% if question.does_require_document? %>
           <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="">Attach Document</a></div>
+          <% end %>
         </div>
-        <% end %>
         <%= f.submit "Save Answer as Draft" , :class => "black_btn fright"%>
       </div>
 
-    <% elsif question.question_type_id == 2 %>
+    <% elsif question.question_type_id == 3 %>
       <div class="form-group clearfix">
-        <label class="col-sm-5">Your Answer</label>
+        <label class="col-sm-5">Your Option</label>
         <div class="col-sm-7">
-          <%= f.text_area :detailed_value, :class=>"audit-big-input" %>
+          <% @options = question.question_options.map(&:value) %>
+          <% $value = 1 %>
+          <% @options.each do |option| %>
+            <%= f.radio_button :value, $value = $value+1 %>
+            <%= label :value, option %> <br>
+          <% end %>
         </div>
         <br>
-        <% if question.does_require_document == 't' %>
         <div class="form-group clearfix">
+          <% if question.does_require_document? %>
           <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="">Attach Document</a></div>
+          <% end %>
         </div>
-        <% end %>
         <%= f.submit "Save Answer as Draft" , :class => "black_btn fright"%>
       </div>
     <% end %>
-
-
-
   </div>
 </div>
