@@ -6,6 +6,7 @@
 <%= form_for(@audit, url: {controller: "nc_questions", action: "create"},:method => "post") do |f| %>
 
 <%= f.fields_for :nc_questions do |builder| %>
+  <%= f.hidden_field :audit_id, value: @audit.id %>
 	<%= render 'nc_question_fields', :f => builder %>
 <% end %>
 

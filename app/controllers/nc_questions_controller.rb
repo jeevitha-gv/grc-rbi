@@ -6,14 +6,10 @@ class NcQuestionsController < ApplicationController
 	end
 
 	def new
-		#begin
 			@audit = Audit.find(params[:audit_id])
-      # @audit = Audit.first
 			@nc_question = NcQuestion.new
 			@audit.nc_questions.build unless @audit.nc_questions.present?
-	  	# @audit.nc_questions.first.question_options.build unless @audit.nc_questions.first.question_options.present?
       @audit.nc_questions.first.question_options.build unless @audit.nc_questions.first.question_options.present?
-      # @audit.nc_questions.question_options.build unless @audit.nc_questions.question_options.present?
     # rescue
     #   @errors = "Invalid file format"
     #   redirect_to audits_path
@@ -22,8 +18,7 @@ class NcQuestionsController < ApplicationController
 
 
 	def create
-		@audit = Audit.first
-		# @nc_questions = NcQuestion.new(question_params)
+		@audit = Audit.find(params[:audit][:audit_id])
 		if @audit.update_attributes(question_params)
 			redirect_to nc_questions_path
 		else
