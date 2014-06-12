@@ -33,6 +33,7 @@ class Audit < ActiveRecord::Base
   validates :title, presence:true
   validates_format_of :title, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.title.blank? }
   validates :title, uniqueness:true, :if => Proc.new{ |f| !f.title.blank? }
+  validates :title, length: { maximum: 250 }, :if => Proc.new{|f| !f.title.blank? }
   validates :auditor, presence:true
   validates :audit_type_id, presence:true
   validates :compliance_type, presence:true
@@ -102,7 +103,7 @@ class Audit < ActiveRecord::Base
   end
 
 # ASC Score measurement
-def audit_operational_weightage(company,audit)
+def self.audit_operational_weightage(company,audit)
   over_all_maximum_score = 0
   over_all_total_score = 0
   grouped_audit_compliance = AuditCompliance.joins("join compliance_libraries ON compliance_libraries.id=audit_compliances.compliance_library_id").where("audit_id=?", audit.id).group_by {|x| x.compliance_library.parent.parent_id}
@@ -145,7 +146,7 @@ end
   end
 
   # Method to get Compliance Percentage
-  def get_compliance_rating(compliance_percentage)
+  def self.get_compliance_rating(compliance_percentage)
     case compliance_percentage
       when compliance_percentage <= 50
         return 1

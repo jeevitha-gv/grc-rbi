@@ -99,7 +99,19 @@ ActiveAdmin.register ComplianceLibrary do
     compliance = ComplianceLibrary.where('id= ?', id).first
     f.inputs "ComplianceLibrary" do
 			if params[:action] == 'new'
-				render :partial => 'new', :locals => {:compliance => compliance, :id => id}
+				# if (params[:compliance_library_id].nil? && params[:control_objective_id].nil?)
+    #      f.input :compliance_id, :as => :select, :collection => Compliance.all, :prompt => "-Select Compliance-"
+    #     else
+    #       f.input :compliance_id, :as => :hidden, :input_html => { :value => "#{compliance.compliance_id if compliance}"}
+    #     end
+    #     f.input :name
+    #     f.input :parent_id, :as => :hidden, :input_html => { :value => "#{id}"}
+    #     unless params[:control_objective_id].nil?
+    #       f.input :is_leaf, :as => :hidden, :input_html => { :value => "true"}
+    #     else
+    #       f.input :is_leaf, :as => :hidden, :input_html => { :value => "false"}
+    #     end
+        render :partial => 'new', :locals => {:compliance => compliance, :id => id}
 			else
         parent_compliance = ComplianceLibrary.where('parent_id= ? AND is_leaf= ?', params[:id], false).first
         unless parent_compliance.nil?

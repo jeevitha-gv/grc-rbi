@@ -4,25 +4,31 @@ var audit_id = "<%= params[:audit_id]%>"
 <div class="clearfix"></div>
 <div class="content">
   <div class="container">
-    <div class="row"> 
+    <div class="row">
+      <div class="fright">
+        <div class="form-group audit_search">
+          <%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value" %>
+          <%= submit_tag "Search", name: nil, :class=>"btn btn-default", :id => "search-button" %>
+        </div>
+      </div>
       <!-- Nav tabs -->
      <h4>Checklist for Compliance Audit</h4>
       <div id="example" class="k-content">
         <div class="panel-container">
           <div id="strip">
-            
+
             <div class="row panel-block">
               <div class="col-md-12">
                 <div class="box-wrapper">
                   <div id="grid"></div>
                 </div>
               </div>
-              
+
               <div class="fright"><br>
             <br>
             <a class="black_btn" href="">Back</a> <a href="javascript:save_request()" class="orange_btn">Ask</a></div>
             </div>
-            
+
           </div>
         </div>
       </div>
@@ -39,17 +45,17 @@ var audit_id = "<%= params[:audit_id]%>"
 	  itemSelector: '.item',
 	  isFitWidth: true
 	});
-	
-	
+
+
 	$(".block_banner img").each(function(index, element) {
         var screenImage = $(this);
 
 		// Create new offscreen image to test
 		var theImage = new Image();
 		theImage.src = screenImage.attr("src");
-		
+
 		var imageHeight = theImage.height;
-		
+
 		$(this).css("max-height",imageHeight);
 		$(this).css("min-height",imageHeight);
     });
@@ -62,44 +68,130 @@ $(".click_icon").click(function() {
 $(".click_icon").click(function(){
 		$(".share_pop").show();
 });
-	
+
 $(document).ready(function(){
-	
+
 	Top_postion = $(window).scrollTop();
-	
+
 	$( ".user_login" ).mouseenter(function() {
 		$(this).addClass("active");
-		$(".account_header_dropdown").slideDown(100);	  
+		$(".account_header_dropdown").slideDown(100);
 	})
 	.mouseleave(function() {
 		$(this).removeClass("active");
 		$(".account_header_dropdown").hide();
 	});
-	
+
 	//for notification drop hide in outside click
-	onclick_icon = 0;	  
+	onclick_icon = 0;
 	$(".click_icon").mouseenter(function() {
-		onclick_icon = 0;	  
+		onclick_icon = 0;
 	})
 	.mouseleave(function() {
-		onclick_icon = 1;	  
+		onclick_icon = 1;
 	});
-	
-	
+
+
 	$("body").click(function(){
 		if(onclick_icon){
 			$(".share_pop").hide();
 		}
 	});
+<<<<<<< HEAD
 		
+=======
+
+
+	/* placeholder */
+	$(".place_holder").each(function(index, element) {
+		placeholder = $(this).attr("data-original");
+		$(this).val(placeholder);
+		$(this).removeClass("active");
+    });
+
+	$(".place_holder").focus(function(){
+		placeholder = $(this).attr("data-original");
+		current_value = $(this).val();
+		if(current_value==placeholder){
+			$(this).val("");
+			$(this).addClass("active");
+		}
+	});
+	$(".place_holder").blur(function(){
+		placeholder = $(this).attr("data-original");
+		current_value = $(this).val();
+		if(current_value==""){
+			$(this).val(placeholder);
+			$(this).removeClass("active");
+		}else{
+			$(this).addClass("active");
+		}
+	});
+	$(".place_holder").click(function(){
+		placeholder = $(this).attr("data-original");
+		current_value = $(this).val();
+		if(current_value==placeholder){
+			$(this).val("");
+			$(this).addClass("active");
+		}
+	});
+	/* placeholder */
+
+  $("#search-value").on('keyup', function(e) {
+    if (e.which == 13) {
+      e.preventDefault();
+      search_result()
+    }
+  });
+
+  $("#search-button").click(function(){
+    search_result()
+  });
+  function search_result()
+  {
+    var val = $('#search-value').val();
+    $("#grid").data("kendoGrid").dataSource.filter({
+      logic  : "or",
+      filters: [
+        {
+          field: "name",
+          operator: "contains",
+          value   : val
+        },
+        {
+          field: "artifacts",
+          operator: "contains",
+          value   : val
+        },
+        {
+          field: "priority",
+          operator: "contains",
+          value   : val
+        },
+        {
+          field: "auditee",
+          operator: "contains",
+          value   : val
+        },
+        {
+          field: "response",
+          operator: "contains",
+          value   : val
+        },
+      ]
+    });
+  }
+
+
+>>>>>>> bed462929cbef96517a4192414d4975c362fec17
 });
-</script> 
+</script>
 
 <script type="text/javascript">
 			$(document).ready(function() {
 				// Fancybox
 				$(".fancybox").fancybox();
-							
+
 
 				// dataSource for Kendo grid
 
@@ -166,7 +258,7 @@ $(document).ready(function(){
               {
               row_data.auditee = row_data.auditee.split(",")[0]
               }
-						});	
+						});
 					},
 					height: 'auto',
 					scrollable: true,
@@ -185,7 +277,7 @@ $(document).ready(function(){
 						{ field: "target_date", title: "Target Date", template: kendo.template( jQuery("#datepicker").html())},
 					],
 					editable: "inline"
-				});         
+				});
 
         function onchange(e)
         {
@@ -194,11 +286,21 @@ $(document).ready(function(){
           row_data.target_date = e.sender._oldText
         }
 
+<<<<<<< HEAD
+=======
+				// More contacts show
+				$(".more-link").click(function(){
+					if($(this).html() == "More")
+						$(this).html("Less").parent().siblings(".more-info").show();
+					else
+						$(this).html("More").parent().siblings(".more-info").hide();
+				});
+>>>>>>> bed462929cbef96517a4192414d4975c362fec17
 			});
-			
+
 			// Edit Popup
 			$(window).load(function(){
-				$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");				
+				$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");
 			});
 
 		</script>
@@ -229,7 +331,7 @@ $(document).ready(function(){
 </script>
 
 <script type="text/x-kendo-template" id="datepicker">
-  <input class="datepicker" id="#= id#"/>  
+  <input class="datepicker" id="#= id#"/>
 </script>
 
 <script>

@@ -21,7 +21,7 @@ class Company < ActiveRecord::Base
 
   #validations
   validates :name, presence: true
-  validates_format_of :name, :with =>/\A[a-zA-Z1-9]+\z/, :if => Proc.new{|f| !f.name.blank? }
+  validates_format_of :name, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{|f| !f.name.blank? }
   validates :domain, presence: true
   validates :domain, uniqueness: true
   validates_format_of :domain, :with =>/\A[a-z]+\z/

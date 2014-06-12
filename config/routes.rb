@@ -41,6 +41,8 @@ Rails.application.routes.draw do
     post 'audit_all', on: :collection
     post 'import_files', on: :collection
     get 'export_files', on: :collection
+    post 'asc_calculation', on: :collection
+    get 'particular_dashboard' , on: :collection
   end
 
   resource :answers
