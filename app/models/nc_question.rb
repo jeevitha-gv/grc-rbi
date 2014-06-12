@@ -24,9 +24,8 @@ class NcQuestion < ActiveRecord::Base
   end
 
   after_create :notify_particular_auditees
-  binding.pry
+
   def notify_particular_auditees
-    binding.pry
     UniversalMailer.notify_auditees_that_checklist_is_prepared(self).deliver
   end
 
