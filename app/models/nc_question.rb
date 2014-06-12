@@ -11,7 +11,6 @@ class NcQuestion < ActiveRecord::Base
 	has_many :checklist_recommendations, as: :checklist
 	accepts_nested_attributes_for :question_options, :allow_destroy => true
 
-
 	#Validations
 	validates :question, presence: true
 	validates :target_date, presence: true
@@ -23,4 +22,12 @@ class NcQuestion < ActiveRecord::Base
     else raise "Unknown file type: #{file.original_filename}"
     end
   end
+
+  after_create :notify_particular_auditees
+  binding.pry
+  def notify_particular_auditees
+    binding.pry
+    UniversalMailer.notify_auditees_that_checklist_is_prepared(self).deliver
+  end
+
 end

@@ -138,7 +138,8 @@
               // create DatePicker from input HTML element
 
               $(".datepicker2").kendoDatePicker({		      
-				format: "dd/MM/yyyy"
+				format: "dd/MM/yyyy",
+		      parseFormats["MMMM  yyyy"]
 		});
 
               $(".score_points").click(function(){
@@ -172,7 +173,6 @@
 					beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
 					data: {'checklist_recommendation[checklist_id]':  checklist_id, 'checklist_recommendation[checklist_type]': "AuditCompliance", 'checklist_recommendation[recommendation]': recommendation, 'checklist_recommendation[reason]': reason, 'checklist_recommendation[closure_date]': closure_date, 'checklist_recommendation[recommendation_priority_id]': recommendation_priority, 'checklist_recommendation[recommendation_severity_id]': recommendation_severity, 'checklist_recommendation[recommendation_status_id]': recommendation_status, 'checklist_recommendation[recommendation_completed]': true , 'checklist_recommendation[score]': score},
 					}).done(function() {
-					alert("dd")
 			});
 		}
 			function score_input_check(id)

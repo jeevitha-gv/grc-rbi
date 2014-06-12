@@ -331,7 +331,14 @@ $(".go_to_top").click(function(){
 						compliance_type: { type: "string" },
 						auditor: {type: "string"}
 					}
+				if ( dataItem.compliance_type == "Compliance")
+	      {
+					window.location.href = "/audit_compliances?audit_id="+ dataItem.id
 				}
+       else
+      	{
+			   	window.location.href = "/nc_questions/new?audit_id="+ dataItem.id
+		    }
 			}
 		});
 
@@ -465,6 +472,12 @@ $(".go_to_top").click(function(){
 				{ field: "audit_type", title: "Audit Type", width: "35%" },
 				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
 				{ field: "auditor", title: "Auditor Name", width: "35%" },
+
+				function pdf_file(e)
+				{
+					var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+					window.location.href = "/audits/"+ dataItem.id +".pdf"
+				}
 
 				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},"pdf",{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
 			],

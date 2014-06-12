@@ -35,7 +35,7 @@ class AuditsController < ApplicationController
       end
       UniversalMailer.notify_auditor_about_audit(@audit).deliver
       UniversalMailer.notify_auditees_about_audit(@audit).deliver
-      redirect_to audits_path
+      redirect_to new_audit_path
     else
       @departments = Department.where(:location_id=>@audit.location_id) if @audit.location_id
       @teams = Team.where(:department_id=>@audit.department_id) if @audit.department_id
@@ -49,10 +49,10 @@ class AuditsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render :pdf => "pdf", :template => "audits/show.html.erb", layout: 'layouts/pdf.html.erb'
-      end
+        render :pdf => "pdf", :template => "audits/show.pdf.erb", layout: 'layouts/pdf.html.erb'
     end
   end
+end
 
 
   def update
@@ -66,7 +66,6 @@ class AuditsController < ApplicationController
   end
 
   def audit_with_status
-   # @audits = Audit.with_status(params[:audit_status_id])
      @audits = current_user.accessible_audits.select{|x| x.audit_status_id==params[:audit_status_id].to_i}
   end
 
