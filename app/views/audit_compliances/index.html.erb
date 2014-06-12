@@ -97,45 +97,7 @@ $(document).ready(function(){
 			$(".share_pop").hide();
 		}
 	});
-<<<<<<< HEAD
-		
-=======
 
-
-	/* placeholder */
-	$(".place_holder").each(function(index, element) {
-		placeholder = $(this).attr("data-original");
-		$(this).val(placeholder);
-		$(this).removeClass("active");
-    });
-
-	$(".place_holder").focus(function(){
-		placeholder = $(this).attr("data-original");
-		current_value = $(this).val();
-		if(current_value==placeholder){
-			$(this).val("");
-			$(this).addClass("active");
-		}
-	});
-	$(".place_holder").blur(function(){
-		placeholder = $(this).attr("data-original");
-		current_value = $(this).val();
-		if(current_value==""){
-			$(this).val(placeholder);
-			$(this).removeClass("active");
-		}else{
-			$(this).addClass("active");
-		}
-	});
-	$(".place_holder").click(function(){
-		placeholder = $(this).attr("data-original");
-		current_value = $(this).val();
-		if(current_value==placeholder){
-			$(this).val("");
-			$(this).addClass("active");
-		}
-	});
-	/* placeholder */
 
   $("#search-value").on('keyup', function(e) {
     if (e.which == 13) {
@@ -182,8 +144,6 @@ $(document).ready(function(){
     });
   }
 
-
->>>>>>> bed462929cbef96517a4192414d4975c362fec17
 });
 </script>
 
@@ -286,16 +246,6 @@ $(document).ready(function(){
           row_data.target_date = e.sender._oldText
         }
 
-<<<<<<< HEAD
-=======
-				// More contacts show
-				$(".more-link").click(function(){
-					if($(this).html() == "More")
-						$(this).html("Less").parent().siblings(".more-info").show();
-					else
-						$(this).html("More").parent().siblings(".more-info").hide();
-				});
->>>>>>> bed462929cbef96517a4192414d4975c362fec17
 			});
 
 			// Edit Popup
