@@ -8,7 +8,7 @@ class Role < ActiveRecord::Base
 	
  #validation
     validates :title, presence:true,:if => Proc.new{|f| f.title.blank? } 
-    validates_format_of :title, :with =>/\A(?=.*[a-z])[a-z\d\s\_\-]+\Z/i, :if => Proc.new{ |f| !f.title.blank? } 
+    validates_format_of :title, :with =>/\A[a-zA-Z ]+\z/, :if => Proc.new{ |f| !f.title.blank? } 
     validates :title, exclusion: { in: %w(company_admin) ,:if => Proc.new{ |f| (f.title.nil?) },message: MESSAGES["roles"]["company_admin_failure"]}
     validates :title, :uniqueness => {:scope => :company_id}, :if => Proc.new{ |f| !f.title.blank? }
    

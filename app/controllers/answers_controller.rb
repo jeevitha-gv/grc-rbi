@@ -4,4 +4,6 @@ class AnswersController < ApplicationController
     @answers = Answer.new
     @questions = @audit.nc_questions
   end
+  def create
+  end
 end

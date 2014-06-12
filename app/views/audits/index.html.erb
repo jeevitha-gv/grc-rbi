@@ -4,19 +4,10 @@
     <div class="row">
       <!-- Nav tabs -->
       <div class="fright">
-				<%= form_tag audits_path, method: :get do %>
-				  <div class="form-group audit_search">
-
-				    <%= text_field_tag :query, params[:query], :class=>"form-control" %>
-				    <%= submit_tag "Search", name: nil, :class=>"btn btn-default" %>
-				  </div>
-				<% end %>
-        <!-- <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-          </div>
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form> -->
+			  <div class="form-group audit_search">
+			    <%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value" %>
+			    <%= submit_tag "Search", name: nil, :class=>"btn btn-default", :id => "search-button" %>
+			  </div>
       </div>
       <div id="example" class="k-content">
         <div class="panel-container">
@@ -84,7 +75,7 @@ $(window).load(function(){
 
 
 	$(".block_banner img").each(function(index, element) {
-        var screenImage = $(this);
+    var screenImage = $(this);
 
 		// Create new offscreen image to test
 		var theImage = new Image();
@@ -94,15 +85,15 @@ $(window).load(function(){
 
 		$(this).css("max-height",imageHeight);
 		$(this).css("min-height",imageHeight);
-    });
+  });
 });
 
 $(".click_icon").click(function() {
-			$(".share_pop").show();
+	$(".share_pop").show();
 });
 
 $(".click_icon").click(function(){
-		$(".share_pop").show();
+	$(".share_pop").show();
 });
 
 $(document).ready(function(){
@@ -156,7 +147,8 @@ $(document).ready(function(){
 		if(current_value==""){
 			$(this).val(placeholder);
 			$(this).removeClass("active");
-		}else{
+		}
+		else{
 			$(this).addClass("active");
 		}
 	});
@@ -169,6 +161,86 @@ $(document).ready(function(){
 		}
 	});
 	/* placeholder */
+
+	function onActivate(e) {
+  	$('#search-value').val('')
+  	var tabActive = e.sender.tabGroup.children("li.k-state-active").attr("aria-controls")
+  	var gridForSearch = select_grid(tabActive)
+  	$("#"+gridForSearch).data("kendoGrid").dataSource.filter({});
+  }
+
+  $("#tabstrip").kendoTabStrip({
+		activate: onActivate
+  });
+
+	$("#search-button").click(function(){
+		search_result();
+	})
+
+	$("#search-value").on('keyup', function(e) {
+    if (e.which == 13) {
+      e.preventDefault();
+      search_result()
+    }
+  });
+
+	function search_result()
+	{
+		var tabstrip = $("#tabstrip").kendoTabStrip().data("kendoTabStrip");
+		var tabActive = tabstrip.tabGroup.children("li.k-state-active").attr("aria-controls")
+		var val = $('#search-value').val();
+    var gridForSearch = select_grid(tabActive)
+    $("#"+gridForSearch).data("kendoGrid").dataSource.filter({
+			logic  : "or",
+			filters: [
+				{
+					field: "title",
+					operator: "contains",
+					value   : val
+				},
+				{
+					field: "client",
+					operator: "contains",
+					value   : val
+				},
+				{
+					field: "audit_type",
+					operator: "contains",
+					value   : val
+				},
+				{
+					field: "compliance_type",
+					operator: "contains",
+					value   : val
+				},
+				{
+					field: "auditor",
+					operator: "contains",
+					value   : val
+				},
+			]
+		});
+	}
+
+	function select_grid(tabActive)
+		{
+			if(tabActive == 'tabstrip-1')
+		  {
+		    return "gridforall";
+		  }
+		  else if(tabActive == 'tabstrip-2')
+		  {
+		   	return "gridforplan";
+		  }
+		  else if(tabActive=='tabstrip-3')
+		  {
+		    return "gridforprogress";
+		  }
+		  else if(tabActive=='tabstrip-4')
+		  {
+		    return "gridforpublish";
+		  }
+		}
 
 
 });
@@ -191,338 +263,320 @@ $(".go_to_top").click(function(){
 <script type="text/javascript">
 
 
-				function set_file(e)
-				{
-	                var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+	function set_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		if ( dataItem.compliance_type == "Compliance")
+		{
+			window.location.href = "/audit_compliances?audit_id="+ dataItem.id
+		}
+		else
+		{
+			window.location.href = "/nc_questions/new?audit_id="+ dataItem.id
+		}
+	}
 
-	                if ( dataItem.compliance_type == "Compliance")
-	                {
-					window.location.href = "/audit_compliances?audit_id="+ dataItem.id
+	function check_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/checklist_recommendations/new?id="+ dataItem.id
+	}
 
+	function act_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/checklist_recommendations/auditee_response/"+ dataItem.id
+	}
+
+	function publish_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/checklist_recommendations/audit_observation/"+ dataItem.id
+	}
+
+	function edit_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/audits/"+ dataItem.id + "/edit"
+	}
+
+	function pdf_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/audits/"+ dataItem.id +".pdf"
+	}
+
+
+
+	$(document).ready(function() {
+		// Fancybox
+		$(".fancybox").fancybox();
+
+		// Kendo Datapicker
+		$("#datepicker").kendoDatePicker();
+
+		// Kendo Tab
+		$("#tabstrip").kendoTabStrip({
+			animation:  {
+				open: {
+					effects: "fadeIn"
 				}
-			       else
-			       {
-				   window.location.href = "/nc_questions/new?audit_id="+ dataItem.id
-		       alert(hi);
-				   alert(current_audit);
+			}
+		});
+
+
+
+
+		// Kendo Panel
+		$("#panelbarforall").kendoPanelBar();
+
+		dataSource = new kendo.data.DataSource({
+			transport: {
+				read: {
+					url: "/audits/audit_all",
+					type: "post",
+					dataType: 'json'
 				}
-				}
-
-				function check_file(e)
-				{
-					var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-					window.location.href = "/checklist_recommendations/new?id="+ dataItem.id
-				}
-
-				function act_file(e)
-				{
-					var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-					window.location.href = "/checklist_recommendations/auditee_response/"+ dataItem.id
-				}
-
-               	function publish_file(e)
-				{
-					var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-					window.location.href = "/checklist_recommendations/audit_observation/"+ dataItem.id
-				}
-
-                function edit_file(e)
-				{
-					var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-					window.location.href = "/audits/"+ dataItem.id + "/edit"
-				}
-
-				function pdf_file(e)
-				{
-					var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-					window.location.href = "/audits/"+ dataItem.id +".pdf"
-				}
-
-
-
-			$(document).ready(function() {
-				// Fancybox
-				$(".fancybox").fancybox();
-
-				// Kendo Datapicker
-				$("#datepicker").kendoDatePicker();
-
-				// Kendo Tab
-				$("#tabstrip").kendoTabStrip({
-					animation:  {
-					    open: {
-						effects: "fadeIn"
-					    }
+			},
+			schema: {
+				errors: function(response) {
+				return response.errors;
+			},
+			data: "data",
+				model: {
+					id: "id",
+					fields:{
+						id: { type: "string" },
+						title: { type: "string" },
+						client: { type: "string" },
+						audit_type: { type: "string" },
+						compliance_type: { type: "string" },
+						auditor: {type: "string"}
 					}
-				});
-
-
-
-
-				// Kendo Panel
-				$("#panelbarforall").kendoPanelBar();
-
-				dataSource = new kendo.data.DataSource({
-					transport: {
-						read: {
-							url: "/audits/audit_all",
-							type: "post",
-							dataType: 'json'
-
-						}
-					},
-					schema: {
-				        errors: function(response) {
-				         return response.errors;
-				      	},
-						data: "data",
-						model: {
-							id: "id",
-							fields:{
-								id: { type: "string" },
-							    title: { type: "string" },
-								client: { type: "string" },
-								audit_type: { type: "string" },
-								compliance_type: { type: "string" },
-								auditor: {type: "string"}
-							}
-						}
-					}
-				});
-
-
-				// Kendo Grid for all
-
-				$("#gridforall").kendoGrid({
-					dataSource: dataSource,
-
-					height: 'auto',
-					scrollable: true,
-					sortable: true,
-					filterable: true,
-					pageable: {
-					    input: true,
-					    numeric: false
-					},
-					columns: [
-					    { field: "title", title: "Audit Title" ,width: "35%"},
-					    { field: "client", title: "Client Name", width: "35%" },
-					    { field: "audit_type", title: "Audit Type", width: "35%" },
-					    { field: "compliance_type", title: "Compliance Type", width: "35%" },
-					    { field: "auditor", title: "Auditor Name", width: "35%" },
-
-					    {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
-
-					],
-					//editable: "popup"
-				});
-
-                $("#panelbarforplan").kendoPanelBar();
-
-				dataSourceplan = new kendo.data.DataSource({
-					transport: {
-						read: {
-							url: "/audits/audit_with_status?audit_status_id=1",
-							type: "post",
-							dataType: 'json'
-						}
-					},
-					schema: {
-				        errors: function(response) {
-				         return response.errors;
-				      	},
-						data: "data",
-						model: {
-							id: "id",
-							fields: {
-								id: { type: "string" },
-								title: { type: "string" },
-								client: { type: "string" },
-								audit_type: { type: "string" },
-								compliance_type: { type: "string" },
-								auditor: {type: "string"}
-							}
-						}
-					}
-				});
-
-
-                  //grid for planned
-				$("#gridforplan").kendoGrid({
-					dataSource: dataSourceplan,
-					height: 'auto',
-					scrollable: true,
-					sortable: true,
-					filterable: true,
-					pageable: {
-					    input: true,
-					    numeric: false
-					},
-					columns: [
-					    { field: "title", title: "Audit Title" ,width: "35%"},
-					    { field: "client", title: "Client Name", width: "35%" },
-					    { field: "audit_type", title: "Audit Type", width: "35%" },
-					    { field: "compliance_type", title: "Compliance Type", width: "35%" },
-					    { field: "auditor", title: "Auditor Name", width: "35%" },
-
-					    {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},"pdf",{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
-					],
-					//editable: "popup"
-				});
-
-
-
-
-                $("#panelbarforprogress").kendoPanelBar();
-
-				dataSourceprogress = new kendo.data.DataSource({
-					transport: {
-						read: {
-							url: "/audits/audit_with_status?audit_status_id=3",
-							type: "post",
-							dataType: 'json'
-						}
-					},
-					schema: {
-				        errors: function(response) {
-				         return response.errors;
-				      	},
-						data: "data",
-						model: {
-							id: "id",
-							fields: {
-								id: { type: "string" },
-								title: { type: "string" },
-								client: { type: "string" },
-								audit_type: { type: "string" },
-								compliance_type: { type: "string" },
-								auditor: {type: "string"}
-							}
-						}
-					}
-				});
-
-
-                 //grid for InProgress
-				$("#gridforprogress").kendoGrid({
-					dataSource: dataSourceprogress,
-					height: 'auto',
-					scrollable: true,
-					sortable: true,
-					filterable: true,
-					pageable: {
-					    input: true,
-					    numeric: false
-					},
-					columns: [
-					    { field: "title", title: "Audit Title" ,width: "35%"},
-					    { field: "client", title: "Client Name", width: "35%" },
-					    { field: "audit_type", title: "Audit Type", width: "35%" },
-					    { field: "compliance_type", title: "Compliance Type", width: "35%" },
-					    { field: "auditor", title: "Auditor Name", width: "35%" },
-
-					     {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},"pdf",{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
-					],
-					//editable: "popup"
-				});
-
-
-
-
-
-
-
-				 $("#panelbarforpublish").kendoPanelBar();
-
-				dataSourcepublish = new kendo.data.DataSource({
-					transport: {
-						read: {
-							url: "/audits/audit_with_status?audit_status_id=4",
-							type: "post",
-							dataType: 'json'
-						}
-					},
-					schema: {
-				        errors: function(response) {
-				         return response.errors;
-				      	},
-						data: "data",
-						model: {
-							id: "id",
-							fields: {
-								id: { type: "string" },
-								title: { type: "string" },
-								client: { type: "string" },
-								audit_type: { type: "string" },
-								compliance_type: { type: "string" },
-								auditor: {type: "string"}
-							}
-						}
-					}
-				});
-
-
-                  //grid for published
-				$("#gridforpublish").kendoGrid({
-					dataSource: dataSourcepublish,
-					height: 'auto',
-					scrollable: true,
-					sortable: true,
-					filterable: true,
-					pageable: {
-					    input: true,
-					    numeric: false
-					},
-					columns: [
-					    { field: "title", title: "Audit Title" ,width: "35%"},
-					    { field: "client", title: "Client Name", width: "35%" },
-					    { field: "audit_type", title: "Audit Type", width: "35%" },
-					    { field: "compliance_type", title: "Compliance Type", width: "35%" },
-					    { field: "auditor", title: "Auditor Name", width: "35%" },
-
-					     {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},"pdf",{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
-					],
-					//editable: "popup"
-				});
-
-				// Editable select box
-				$('.editable-select').change(function(){
-					modify();
-				});
-
-				function modify(){
-					$('.editable-input').val($('.editable-select').val());
-					output();
 				}
+			}
+		});
 
-				function output(){
-					$('.editable-result').text('value: ' + $('.editable-input').val());
+
+		// Kendo Grid for all
+
+		$("#gridforall").kendoGrid({
+			dataSource: dataSource,
+			height: 'auto',
+			scrollable: true,
+			sortable: true,
+			filterable: true,
+			pageable: {
+				input: true,
+				numeric: false
+			},
+			columns: [
+				{ field: "title", title: "Audit Title" ,width: "35%"},
+				{ field: "client", title: "Client Name", width: "35%" },
+				{ field: "audit_type", title: "Audit Type", width: "35%" },
+				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
+				{ field: "auditor", title: "Auditor Name", width: "35%" },
+
+				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
+			],
+			//editable: "popup"
+		});
+
+		$("#panelbarforplan").kendoPanelBar();
+
+		dataSourceplan = new kendo.data.DataSource({
+			transport: {
+				read: {
+					url: "/audits/audit_with_status?audit_status_id=1",
+					type: "post",
+					dataType: 'json'
 				}
+			},
+			schema: {
+				errors: function(response) {
+				return response.errors;
+			},
+			data: "data",
+			model: {
+				id: "id",
+				fields: {
+					id: { type: "string" },
+					title: { type: "string" },
+					client: { type: "string" },
+					audit_type: { type: "string" },
+					compliance_type: { type: "string" },
+					auditor: {type: "string"}
+					}
+				}
+			}
+		});
 
-				$('.editable-input').on('click', function(){
-					$(this).select()
+
+		//grid for planned
+		$("#gridforplan").kendoGrid({
+			dataSource: dataSourceplan,
+			height: 'auto',
+			scrollable: true,
+			sortable: true,
+			filterable: true,
+			pageable: {
+				input: true,
+				numeric: false
+			},
+			columns: [
+				{ field: "title", title: "Audit Title" ,width: "35%"},
+				{ field: "client", title: "Client Name", width: "35%" },
+				{ field: "audit_type", title: "Audit Type", width: "35%" },
+				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
+				{ field: "auditor", title: "Auditor Name", width: "35%" },
+
+				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},"pdf",{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
+			],
+			//editable: "popup"
+		});
+
+
+
+
+		$("#panelbarforprogress").kendoPanelBar();
+
+		dataSourceprogress = new kendo.data.DataSource({
+			transport: {
+				read: {
+					url: "/audits/audit_with_status?audit_status_id=3",
+					type: "post",
+					dataType: 'json'
+				}
+			},
+			schema: {
+				errors: function(response) {
+				return response.errors;
+			},
+			data: "data",
+			model: {
+				id: "id",
+				fields: {
+					id: { type: "string" },
+					title: { type: "string" },
+					client: { type: "string" },
+					audit_type: { type: "string" },
+					compliance_type: { type: "string" },
+					auditor: {type: "string"}
+					}
+				}
+			}
+		});
+
+
+		//grid for InProgress
+		$("#gridforprogress").kendoGrid({
+			dataSource: dataSourceprogress,
+			height: 'auto',
+			scrollable: true,
+			sortable: true,
+			filterable: true,
+			pageable: {
+				input: true,
+				numeric: false
+			},
+			columns: [
+				{ field: "title", title: "Audit Title" ,width: "35%"},
+				{ field: "client", title: "Client Name", width: "35%" },
+				{ field: "audit_type", title: "Audit Type", width: "35%" },
+				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
+				{ field: "auditor", title: "Auditor Name", width: "35%" },
+
+				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},"pdf",{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
+			],
+			//editable: "popup"
+		});
+
+		$("#panelbarforpublish").kendoPanelBar();
+
+		dataSourcepublish = new kendo.data.DataSource({
+			transport: {
+				read: {
+					url: "/audits/audit_with_status?audit_status_id=4",
+					type: "post",
+					dataType: 'json'
+				}
+			},
+			schema: {
+				errors: function(response) {
+				return response.errors;
+			},
+			data: "data",
+				model: {
+				id: "id",
+				fields: {
+					id: { type: "string" },
+					title: { type: "string" },
+					client: { type: "string" },
+					audit_type: { type: "string" },
+					compliance_type: { type: "string" },
+					auditor: {type: "string"}
+					}
+				}
+			}
+		});
+
+
+		//grid for published
+		$("#gridforpublish").kendoGrid({
+			dataSource: dataSourcepublish,
+			height: 'auto',
+			scrollable: true,
+			sortable: true,
+			filterable: true,
+			pageable: {
+				input: true,
+				numeric: false
+			},
+			columns: [
+				{ field: "title", title: "Audit Title" ,width: "35%"},
+				{ field: "client", title: "Client Name", width: "35%" },
+				{ field: "audit_type", title: "Audit Type", width: "35%" },
+				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
+				{ field: "auditor", title: "Auditor Name", width: "35%" },
+
+				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},"pdf",{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
+			],
+			//editable: "popup"
+		});
+
+		// Editable select box
+		$('.editable-select').change(function(){
+			modify();
+		});
+
+		function modify(){
+			$('.editable-input').val($('.editable-select').val());
+			output();
+		}
+
+		function output(){
+			$('.editable-result').text('value: ' + $('.editable-input').val());
+		}
+
+		$('.editable-input').on('click', function(){
+			$(this).select()
 				}).on('blur', function(){
-					output();
-				})
+			output();
+		})
 
-				modify();
+		modify();
 
-				// More contacts show
-				$(".more-link").click(function(){
-					if($(this).html() == "More")
-						$(this).html("Less").parent().siblings(".more-info").show();
-					else
-						$(this).html("More").parent().siblings(".more-info").hide();
-				});
-			});
+		// More contacts show
+		$(".more-link").click(function(){
+			if($(this).html() == "More")
+				$(this).html("Less").parent().siblings(".more-info").show();
+			else
+				$(this).html("More").parent().siblings(".more-info").hide();
+		});
+	});
 
-			// Edit Popup
-			$(window).load(function(){
-				$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");
-
-			});
-
-
-
-
-           </script>
+	// Edit Popup
+	$(window).load(function(){
+		$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");
+	});
+</script>

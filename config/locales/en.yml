@@ -62,8 +62,7 @@ en:
           attributes:
             name:
               blank: "Company Name can't be blank"
-              invalid: "Company Name must be alphanumeric"
-              invalid: "Please enter a valid Company Name"
+              invalid: "Please enter a valid Company Name.Company Name must be alphanumeric"
               too_long:
                 other: " Companyname cannot exceed 50 characters"
               too_short:
@@ -112,7 +111,7 @@ en:
           attributes:
             name:
               blank: "Client name can't be blank"
-              invalid: "Client name should contain alphabets"
+              invalid: "Client name should contain alphanumeric"
               too_short:
                 other: "client name should contain minimum of 4 char"
               too_long:

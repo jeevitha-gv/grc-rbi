@@ -6,6 +6,7 @@
 <%= form_for(@audit, url: {controller: "nc_questions", action: "create"},:method => "post") do |f| %>
 
 <%= f.fields_for :nc_questions do |builder| %>
+  <%= f.hidden_field :audit_id, value: @audit.id %>
 	<%= render 'nc_question_fields', :f => builder %>
 <% end %>
 
@@ -64,6 +65,9 @@
                     <% end %>
                   </div>
                     <p></p>
+                    <p>
+                      <%= link_to "Download Sample Non Compliance Checklist CSV", export_files_nc_questions_path(format: "csv") %>
+                    </p>
                   </div>
                 </div>
               </div>
