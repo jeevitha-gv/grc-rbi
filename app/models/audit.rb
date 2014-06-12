@@ -102,7 +102,7 @@ class Audit < ActiveRecord::Base
   end
 
 # ASC Score measurement
-def audit_operational_weightage(company,audit)
+def self.audit_operational_weightage(company,audit)
   over_all_maximum_score = 0
   over_all_total_score = 0
   grouped_audit_compliance = AuditCompliance.joins("join compliance_libraries ON compliance_libraries.id=audit_compliances.compliance_library_id").where("audit_id=?", audit.id).group_by {|x| x.compliance_library.parent.parent_id}
@@ -145,7 +145,7 @@ end
   end
 
   # Method to get Compliance Percentage
-  def get_compliance_rating(compliance_percentage)
+  def self.get_compliance_rating(compliance_percentage)
     case compliance_percentage
       when compliance_percentage <= 50
         return 1

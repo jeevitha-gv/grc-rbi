@@ -160,6 +160,14 @@ end
     send_data(audit_csv, :type => 'text/csv', :filename => 'sample_audit.csv')
   end
 
+
+  def asc_calculation
+    audit = Audit.find(params[:audit_id])
+    audit.update(audit_status_id: 4)
+    Audit.audit_operational_weightage(current_company,audit)
+    redirect_to particular_dashboard_audits_path
+  end
+
   private
     def audit_params
       params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :audit_status_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor, :start_date, :end_date, audit_auditees_attributes: [:user_id])

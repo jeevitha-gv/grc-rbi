@@ -60,13 +60,21 @@
               </table>
             </div>
           </div>
+
           <div class="container">
-							<%= render "observation",checklist_recommendations: @checklist_recommendations %>
+			<%= render "observation",checklist_recommendations: @checklist_recommendations %>
+		  	<div class="clearfix"></div>
+	  			<%= form_tag '/audits/asc_calculation', :method => :post do %>
+    				<div class="fright paddingtop">
+    				<%= hidden_field_tag "audit_id" , @audit.id %>
+    				<%= submit_tag "#{(@audit.audit_status_id == 4).present? ? 'Published' : 'Publish'}" , :class => "orange_btn", :disabled => (@audit.audit_status_id == 4) %>
+    				</div>
+    			<% end %>
           </div>
+
       </div>
     </div>
   </div>
-
   
 <script type="text/javascript">
 $(window).load(function(){
