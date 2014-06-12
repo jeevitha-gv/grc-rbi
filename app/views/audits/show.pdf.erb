@@ -101,12 +101,7 @@ label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12p
 <td><%= @audit.client_name %></td>
 <td><%= @audit.department_name %>
 </td>
-<!-- </tr>
-<tr>
-<td>USA</td>
-<td>FixNix</td>
-<td>HR</td>
-</tr> -->
+
 </table>
 <!-- Client Audited End-->
 <div class="cls"></div>
@@ -159,9 +154,7 @@ label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12p
 
 <label>Closure Priority : </label>
 <div class="label_content"><%= f.recommendation_priority_name %></div>
-<!-- <label>Status : </label>
-<div class="label_content">Planning</div> -->
-<!--  </div> -->
+
 <!-- Leftside Content End-->
 <!-- Rightside Content Start-->
 <div class="rightside">
@@ -209,16 +202,7 @@ label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12p
 </tr>
 <tr>
 <td rowspan="4"><%= f.observation%></td>
-<td>1. hi</td>
-</tr>
-<tr>
-<td>2. how</td>
-</tr>
-<tr>
-<td>3. are</td>
-</tr>
-<tr>
-<td>4. you</td>
+<td><%= f.remarks.collect{|x| x.comment}.join(',') unless f.remarks.nil? %></td>
 </tr>
 </table>
 <% end %>

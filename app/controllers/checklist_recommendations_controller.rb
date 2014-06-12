@@ -1,3 +1,4 @@
+
 class ChecklistRecommendationsController < ApplicationController
 
 require 'date'
@@ -17,9 +18,9 @@ require 'date'
 				checklist = {}
 				checklist[:checklist_recommendation] = check
 				@checklist_recommendation = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?',checklist[:checklist_recommendation][:checklist_id], checklist[:checklist_recommendation][:checklist_type]).first
-				if @checklist_recommendation.nil?	
+				if @checklist_recommendation.nil?
 						score = check[:score]
-						check.delete("score") 
+						check.delete("score")
 						check[:is_checklist_new] = true
 						check[:auditee_id] = current_user.id
 					@checklist_recommendation = ChecklistRecommendation.new(check)
@@ -32,25 +33,25 @@ require 'date'
 				else
 					@checklist_recommendation.recommendation_completed = true unless params[:commit] == 'Save Draft'
 					@checklist_recommendation.checklist.update(:score_id => checklist[:checklist_recommendation][:score])
-					checklist[:checklist_recommendation].delete("score") 
+					checklist[:checklist_recommendation].delete("score")
 					@checklist_recommendation.update(checklist[:checklist_recommendation])
 				end
 			end
 			redirect_to "/"
 	 end
-	
+
 	#To show auditee response
 	def auditee_response
-		@audit = Audit.where('id= ?',params[:id]).first 
+		@audit = Audit.where('id= ?',params[:id]).first
 		@checklist_recommendations = @audit.auditee_response_compliances
 		@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
 	end
 
 	def audit_observation
-		@audit = Audit.where('id= ?',params[:id]).first 
+		@audit = Audit.where('id= ?',params[:id]).first
 		@checklist_recommendations = @audit.audit_observation_compliances
 	end
-	
+
 	#To create auditee response for checklist recommendation
 	def audit_observation_create
 		@checklist_recommendation = ChecklistRecommendation.where('id= ?', params[:checklist_recommendation][:id]).first
@@ -60,10 +61,12 @@ require 'date'
 		end
 		@checklist_recommendation.comments.build(comment: params[:checklist_recommendation][:remarks]) if  params[:checklist_recommendation][:remarks].present?
 		@checklist_recommendation.response_completed = true
+		@checklist_recommendation.is_published = true
 		@checklist_recommendation.update(checklist_params)
+
 		respond_to :js
 	end
-	
+
 	def auditee_response_create
 		@checklist_recommendation = ChecklistRecommendation.where('id= ?', params[:checklist_recommendation][:id]).first
 		if params[:checklist_recommendation][:attachment].present?
@@ -73,12 +76,12 @@ require 'date'
 		@checklist_recommendation.update(checklist_params)
 		respond_to :js
 	end
-	
+
 	#To create individual checklist recommendation
 	def update_individual_score
 		@checklist_recommendation = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?',params[:checklist_recommendation][:checklist_id], params[:checklist_recommendation][:checklist_type]).first
 		score = params[:checklist_recommendation][:score]
-		params[:checklist_recommendation].delete("score") 
+		params[:checklist_recommendation].delete("score")
 	if @checklist_recommendation.nil?
 		@checklist_recommendation = ChecklistRecommendation.new(checklist_params)
 		@checklist_recommendation.checklist.update_attributes(:score_id => score) if  @checklist_recommendation.save

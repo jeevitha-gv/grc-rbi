@@ -25,7 +25,7 @@ class AuditsController < ApplicationController
     if params[:commit] == "Save as Plan"
       @audit.audit_status_id=AuditStatus.where(:name=>"Planning").first.id
     else
-      @audit.audit_status_id=AuditStatus.where(:name=>"Initiated").first.id
+      @audit.audit_status_id=AuditStatus.where(:name=>"In Progress").first.id
     end
 
     if @audit.save

@@ -1,4 +1,4 @@
-/*validation for checklist recommendation*/	
+/*validation for checklist recommendation*/
 	function save_draft_checklist()
 					{
 						var save_draft = $("#save_draft_"+id).val()
@@ -137,9 +137,9 @@
   $(document).ready(function() {
               // create DatePicker from input HTML element
 
-              $(".datepicker2").kendoDatePicker({		      
+              $(".datepicker2").kendoDatePicker({
 				format: "dd/MM/yyyy",
-		      parseFormats["MMMM  yyyy"]
+		      parseFormats: ["MMMM  yyyy"]
 		});
 
               $(".score_points").click(function(){
@@ -148,10 +148,10 @@
 								$("#score_" +control_id).val(value)
                 $(".score_points").removeClass('active')
                 $(this).addClass('active')
-              })     
+              })
             });
-              
-              
+
+
 	// ajax for submitting the score method
 	function save_individual_score(id)
 	{
@@ -284,9 +284,9 @@
 						}
 					}
 			}
-	} 
-	
-/* validation for auditee_response*/	
+	}
+
+/* validation for auditee_response*/
 function auditee_response(id)
 {
 var corrective = corrective_check()
