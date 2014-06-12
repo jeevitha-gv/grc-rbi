@@ -1,0 +1,138 @@
+<div class="col-lg-4">
+  <div class="form-group clearfix">
+    <% if question.question_type_id == 1%>
+      <h3>YesNo</h3>
+    <% elsif question.question_type_id == 2 %>
+      <div class="form-group clearfix">
+        <label class="col-sm-5">Your Answer</label>
+        <div class="col-sm-7">
+          <%= f.text_area :detailed_value, :class=>"audit-big-input" %>
+        </div>
+      </div>
+
+    <% elsif question.question_type_id == 2 %>
+      <h3>Multiple Choice</h3>
+    <% end %>
+
+
+                      <label class="col-sm-5"><b>Artifact :</b> </label>
+                      <div class="col-sm-7"><a class="blue_link" href="">Information Security Policies</a> </div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Recommendation :</b> </label>
+                      <div class="col-sm-7"> Recommendation by Auditor</div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Priority :</b> </label>
+                      <div class="col-sm-7"> High</div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5">Corrective Action</label>
+                      <div class="col-sm-7">
+                        <input class="audit-big-input" type="text">
+                      </div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5 control-label">Status</label>
+                      <div class="col-sm-7">
+                        <select>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                    <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="">Attach Document</a></div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Comment :</b> </label>
+                      <div class="col-sm-7"> Comment by Auditee</div>
+
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Reason :</b> </label>
+                      <div class="col-sm-7"> procedures as part of the Knowledge Base</div>
+
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Severity :</b> </label>
+                      <div class="col-sm-7"> High</div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5">Preventive Action</label>
+                      <div class="col-sm-7">
+                        <input class="audit-big-input" type="text">
+                      </div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5 control-label">Priority</label>
+                      <div class="col-sm-7">
+                        <select>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4"><div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Target Date :</b> </label>
+                      <div class="col-sm-7"> 18/05/2015</div>
+
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Status :</b> </label>
+                      <div class="col-sm-7"> Recommendation Status</div>
+
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Severity :</b> </label>
+                      <div class="col-sm-7"> High</div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Score :</b> </label>
+                      <div class="col-sm-7">
+                      <div class="number_link">
+                      <a class="active" href="">0</a>
+                      <a href="">1</a>
+                      <a href="">2</a>
+                      <a href="">3</a>
+                      <a href="">4</a>
+                      </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                    <label  class="col-sm-5">Issues </label>
+                    <div class="col-sm-7">
+                    <div class="block_link">
+                    <a class="active" href="">Blocking Recommandation</a>
+                    <a href="">Dependent Recomandation</a>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5 control-label">Severity</label>
+                      <div class="col-sm-7">
+                        <select>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group clearfix">
+                    <div class="col-sm-12 "><a class="black_btn fright" href="">Respond</a></div>
+
+  </div>
+</div>
