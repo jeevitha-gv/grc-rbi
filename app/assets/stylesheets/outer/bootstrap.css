@@ -3740,7 +3740,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
   float: left;
   height: 50px;
-  padding: 15px 15px;
+  padding: 3px 0 0 0;
   font-size: 18px;
   line-height: 20px;
 }
@@ -5119,6 +5119,9 @@ button.close {
   position: relative;
   width: auto;
   margin: 10px;
+}
+.modal-content-inner{
+  padding: 15px;
 }
 .modal-content {
   position: relative;

@@ -68,7 +68,7 @@ ActiveAdmin.register Privilege do
 		private
 
       def privilege_params
-        params.require(:privilege).permit(:role_id, :modular_id)
+        params.require(:privilege).permit(:role_id, modular_id: [])
 	    end
 
 			#To check company roles for previleges

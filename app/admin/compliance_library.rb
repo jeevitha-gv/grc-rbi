@@ -12,7 +12,7 @@ ActiveAdmin.register ComplianceLibrary do
 
     def compliance_domains
       p domains = ComplianceLibrary.all.group_by(&:parent_id).collect {|k,v| v}[0].collect {|x| x unless x.is_leaf }
-      render json: {:data=> domains}
+      render json: {:data=> domains.compact}
     end
 
     def compliance_control_objectives
@@ -110,7 +110,7 @@ ActiveAdmin.register ComplianceLibrary do
     #       f.input :is_leaf, :as => :hidden, :input_html => { :value => "true"}
     #     else
     #       f.input :is_leaf, :as => :hidden, :input_html => { :value => "false"}
-    #     end
+        # end
         render :partial => 'new', :locals => {:compliance => compliance, :id => id}
 			else
         parent_compliance = ComplianceLibrary.where('parent_id= ? AND is_leaf= ?', params[:id], false).first

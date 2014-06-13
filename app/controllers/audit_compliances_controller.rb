@@ -9,16 +9,16 @@ class AuditCompliancesController < ApplicationController
 			redirect_to new_audit_compliance_path if @audit.audit_compliances.blank?
 		end
   end
-  
+
   def new
   end
-  
+
   def edit
   end
-  
-  def response    
-  end
-  
+
+  # def response
+  # end
+
   def response_checklist
     @audit = Audit.find(params[:audit_id])
     @artifact_answer = @audit.artifact_answers
@@ -39,7 +39,7 @@ class AuditCompliancesController < ApplicationController
       end
     end
   end
-  
+
     private
     def compliance_params
       params.require(:checklist)
