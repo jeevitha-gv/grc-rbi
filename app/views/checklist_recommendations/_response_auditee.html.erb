@@ -1,11 +1,13 @@
 <div id="Accordion1">
  <% @checklist_recommendations.each do |checklist| %>
               <% control = checklist_control(checklist)%>
-              <h3><a href="#"><%= control.name%></a> <span class="fright pending_msg">Pending</span></h3>
-              
+              <% checklist_recommendation = audit_checklist(control, @audit.id).flatten.first%>
+            <!--   <h3><a href="#"><%= control.name%></a> <span class="fright pending_msg">Pending</span></h3> -->
+                 <h3><a href="#"><%= control.name%></a> <span class="fright pending_msg" id= "response_status"><%= checklist_recommendation.response_status == 5 ? 'Completed' : 'Pending'%></span></h3>
+
               <div>
                 <div class="row audit-title">
-                  <% checklist_recommendation = audit_checklist(control, @audit.id).flatten.first%>
+
                 <%= form_tag '/checklist_recommendations/auditee_response_create',:remote=>true, multipart: true do %>
                   <div class="col-lg-4">
                   <div class="form-group clearfix">
@@ -34,7 +36,7 @@
                 <span class="error_message" id="error_status_<%= checklist_recommendation.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["status"]%><span>
                       </div>
                     </div>
-                    
+
                     <div class="form-group clearfix">
                     <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#auditee_attachment_<%= checklist_recommendation.id%>').click();" >Attach Document</a>
                       <%= file_field_tag "checklist_recommendation[attachment]", :style => "visibility:hidden; display:none;",  :id => "auditee_attachment_#{checklist_recommendation.id}"%></div>
@@ -44,12 +46,12 @@
                     <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Comment :</b> </label>
                       <div class="col-sm-7"> Comment by Auditee</div>
-                       
+
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Reason :</b> </label>
                       <div class="col-sm-7"><%= checklist_recommendation.reason%></div>
-                       
+
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Severity :</b> </label>
@@ -73,12 +75,12 @@
                   <div class="col-lg-4"><div class="form-group clearfix">
                       <label class="col-sm-5"><b>Target Date :</b> </label>
                       <div class="col-sm-7"> <%= checklist_recommendation.closure_date%></div>
-                        
+
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Status :</b> </label>
                       <div class="col-sm-7"> <%= checklist_recommendation.recommendation_status.name%></div>
-                        
+
                     </div>
                     <!--<div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Severity :</b> </label>
@@ -97,7 +99,7 @@
                       </div>
                       </div>
                     </div>
-                    
+
                     <div class="form-group clearfix">
                     <label  class="col-sm-5">Issues </label>
                     <div class="col-sm-7">
@@ -146,9 +148,9 @@
       </div>
     </div>
     </div>
-    </div>  
-    </div>  
-    
+    </div>
+    </div>
+
 <div class="modal fade" id="myModal1">
 <div class="modal-dialog">
   <div class="modal-content">
@@ -166,5 +168,5 @@
       </div>
     </div>
     </div>
-    </div>  
+    </div>
     </div>
