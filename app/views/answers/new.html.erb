@@ -44,7 +44,7 @@
                     <span><%= @audit.compliance_type %></span></td>
                 </tr>
                 <tr>
-                  <td><label><%= @audit.compliance_type == 'NonCompliance'? Topic : Standard %></label>
+                  <td><label><%= @audit.compliance_type == 'NonCompliance'? Topic : Standard %> :</label>
                     <span><%= @audit.standard_id %></span></td>
                   <td></td>
                   <td></td>
@@ -53,11 +53,26 @@
             </div>
           </div>
           <div class="container">
-            <%= form_for(@answers) do |f| %>
-              <%= render "answers",f: f %>
+            <%= form_for :answer,  :url => "/answers", :method => :post do |f|%>
+              <div id="Accordion1">
+                <% @audit.nc_questions.each do |question| %>
+                  <h3><a href="#"><%= question.question %></a> <span class="fright pending_msg">Pending</span></h3>
+                    <div>
+                      <div class="row audit-title">
+                        <% test = question.build_answer %>
+                          <%= hidden_field_tag :audit_id, @audit.id %>
+                          <%= render :partial => "answer_type",  locals: {:question => question} %>
+                      </div>
+                    </div>
+                <% end %>
+            </div>
+
               <div class="clearfix"></div>
               <div class="clearfix"></div>
-              <div class="fright paddingtop"><a class="black_btn" href="">Back</a> <a class="grey_btn" href=""> Save Draft</a> <a class="orange_btn" href="">Submit Answers to Auditor</a></div>
+              <div class="fright paddingtop">
+                <a class="black_btn" href="">Back</a> <a class="grey_btn" href=""> Save Draft</a>
+                <%= f.submit "Submit Answers to Auditor", :class => "orange_btn" %>
+              </div>
             <% end %>
           </div>
         </div>
