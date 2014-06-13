@@ -41,6 +41,8 @@ Rails.application.routes.draw do
     post 'audit_all', on: :collection
     post 'import_files', on: :collection
     get 'export_files', on: :collection
+    post 'asc_calculation', on: :collection
+    get 'particular_dashboard' , on: :collection
   end
 
   resource :answers
@@ -71,6 +73,8 @@ Rails.application.routes.draw do
 
   resources :audit_compliances do
     get 'compliance_checklist', on: :collection
+    get 'response', on: :collection
+    get 'response_checklist', on: :collection
   end
 
    # resources :privileges
@@ -98,6 +102,14 @@ Rails.application.routes.draw do
 
   # delete '/activities/clear_audit' => 'activities#clear_audit', :as => :clear_audit
   resources :activities, :except => [:show]
+  
+  resources :artifact_answers do
+    get 'list_attachments', on: :collection
+    get 'list_comment', on: :collection
+    post 'create_attachment', on: :collection
+    patch 'update_comment', on: :collection
+    delete 'remove_attachment', on: :collection
+  end
 
   resources :compliance_libraries
   resources :audit_compliances

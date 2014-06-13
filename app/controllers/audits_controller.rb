@@ -25,7 +25,7 @@ class AuditsController < ApplicationController
     if params[:commit] == "Save as Plan"
       @audit.audit_status_id=AuditStatus.where(:name=>"Planning").first.id
     else
-      @audit.audit_status_id=AuditStatus.where(:name=>"Initiated").first.id
+      @audit.audit_status_id=AuditStatus.where(:name=>"In Progress").first.id
     end
 
     if @audit.save
@@ -158,6 +158,14 @@ end
       csv << ["Example audit;how the csv data to be filled;data filled correctly;error if data entered wrongly;by csv;csv upload for audit;ensure the row csv;Internal Audit;NonCompliance;COBIT;System Security;chennai;devlopment;test_team;dd/mm/yy;dd/mm/yy;audit@example.com;auditee2@example.com", "auditee1@example.com"]
     end
     send_data(audit_csv, :type => 'text/csv', :filename => 'sample_audit.csv')
+  end
+
+
+  def asc_calculation
+    audit = Audit.find(params[:audit_id])
+    audit.update(audit_status_id: 4)
+    Audit.audit_operational_weightage(current_company,audit)
+    redirect_to particular_dashboard_audits_path
   end
 
   private

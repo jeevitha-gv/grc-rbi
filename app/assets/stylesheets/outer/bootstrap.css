@@ -5083,7 +5083,7 @@ button.close {
   cursor: pointer;
   background: transparent;
   border: 0;
-  background-image:url(../images/close-icon.png); background-repeat:no-repeat; height:21px; width:21px;
+  background-image:url(/assets/outer/close-icon.png); background-repeat:no-repeat; height:21px; width:21px;
 }
 .modal-open {
   overflow: hidden;

@@ -1,0 +1,2 @@
+module ArtifactAnswersHelper
+end

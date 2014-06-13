@@ -7,5 +7,7 @@ class AuditCompliance < ActiveRecord::Base
 	belongs_to :audit
 	belongs_to :score
 	has_many :checklist_recommendations, as: :checklist
+  
+  delegate :name, to: :compliance_library, prefix: true, allow_nil: true
 
 end
