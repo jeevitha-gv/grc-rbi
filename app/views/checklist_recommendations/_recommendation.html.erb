@@ -1,7 +1,9 @@
 
 <div id="Accordion1">
  <% @controls.each do |control| %>
-  <h3><a href="#"><%= control.name %></a><span class="fright pending_msg">Pending</span></h3>
+   <% checklist_recommendation = audit_checklist(control, @audit.id).flatten.first%>
+  <h3><ahref="#"><%= control.name%></a> <span class="fright pending_msg" id= "recommendation_status">
+      <%= (checklist_recommendation.recommendation_status_id == 3 || checklist_recommendation.recommendation_status_id == 4) ? 'Completed' : 'Pending' unless checklist_recommendation.nil?%></span></h3>
       <div>
       <div class="row audit-title">
         <div class="col-lg-4">
@@ -10,26 +12,26 @@
               <div class="col-sm-7">
                 <a class="blue_link" href="">Information Security Policies</a></div>
           </div>
-					<%= f.hidden_field :checklist_id, :name => "checklist_recommendation[#{control.id}][checklist_id]", :id => "checklist_id_#{control.id}", :value => "#{control.audit_compliances.first.id}"%>
-					<%= f.hidden_field :checklist_type, :name => "checklist_recommendation[#{control.id}][checklist_type]", :id => "checklist_type_#{control.id}", :value => "AuditCompliance"%>
+          <%= f.hidden_field :checklist_id, :name => "checklist_recommendation[#{control.id}][checklist_id]", :id => "checklist_id_#{control.id}", :value => "#{control.audit_compliances.first.id}"%>
+          <%= f.hidden_field :checklist_type, :name => "checklist_recommendation[#{control.id}][checklist_type]", :id => "checklist_type_#{control.id}", :value => "AuditCompliance"%>
               <div class="form-group clearfix">
                 <%= f.label :recommendation, t(' checklist_recommendation.recommendation'), :class => "col-sm-5 control-label" %>
                 <!--   <label  class="col-sm-5"><b>Recommendation :</b><br></label> -->
-                    <div class="col-sm-7"> 
+                    <div class="col-sm-7">
                       <%= f.text_field :recommendation, :name => "checklist_recommendation[#{control.id}][recommendation]", :id => "recommendation_#{control.id}", :class => "audit-big-input control_recommendation" %>
-											<span class="error_message" id="error_recommendation_<%= control.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["recommendation"]%><span>
+                      <span class="error_message" id="error_recommendation_<%= control.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["recommendation"]%><span>
                       <!--  <input class="audit-big-input" type="text"> -->
-											<%if @checklist_recommendation.errors[:recommendation].present?%>
-												<div class="error_message"><%=  @checklist_recommendation.errors[:recommendation][0]%></div>
-											<% end %>
+                      <%if @checklist_recommendation.errors[:recommendation].present?%>
+                        <div class="error_message"><%=  @checklist_recommendation.errors[:recommendation][0]%></div>
+                      <% end %>
                     </div>
               </div>
               <div class="form-group clearfix">
                 <%= f.label :Priority, t(' checklist_recommendation.priority'), :class => "col-sm-5 control-label" %>
                 <!--   <label  class="col-sm-5"><b>Priority :</b> </label> -->
-                  <div class="col-sm-7">   
+                  <div class="col-sm-7">
                     <%= f.collection_select :recommendation_priority_id, Priority.all, :id, :name, {},{ :name => "checklist_recommendation[#{control.id}][recommendation_priority_id]", :id => "recommendation_priority_id_#{control.id}", :class=> "control_priority"} %>
-									<span class="error_message" id="error_recommendation_<%= control.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["priority"]%><span>
+                  <span class="error_message" id="error_recommendation_<%= control.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["priority"]%><span>
                   </div>
               </div>
 
@@ -39,71 +41,70 @@
               <%= f.label :Comment, t(' checklist_recommendation.comment'), :class => "col-sm-5 control-label" %>
                 <!--   <label class="col-sm-5"><b>Comment :</b> </label> -->
                 <div class="col-sm-7"> Some Comments by auditee</div>
-            
+
             </div>
               <div class="form-group clearfix">
                 <%= f.label :Reason, t(' checklist_recommendation.reason'), :class => "col-sm-5 control-label" %>
                            <!--    <label  class="col-sm-5"><b>Reason :</b> </label> -->
-                  <div class="col-sm-7"> 
-                    <%= f.text_field :reason, :class => "audit-big-input control_reason", :name => "checklist_recommendation[#{control.id}][reason]", :id => "reason_#{control.id}" %>
+                  <div class="col-sm-7">
+                    <%= f.text_field :reason, :class => "audit-big-input control_reason", :name => "checklist_recommendation[#{control.id}][reason]", :id => "reason_#{control.id}" ,:value => "#{checklist_recommendation.reason}"%>
                              <!--    <input class="audit-big-input" type="text"> -->
-										<span class="error_message" id="error_reason_<%= control.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["reason"]%><span>
-                  </div> 
+                    <span class="error_message" id="error_reason_<%= control.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["reason"]%><span>
+                  </div>
               </div>
               <div class="form-group clearfix">
                  <%= f.label :Severity, t(' checklist_recommendation.severity'), :class => "col-sm-5 control-label" %>
                             <!--   <label  class="col-sm-5"><b>Severity :</b> </label> -->
                     <div class="col-sm-7">  <%= f.collection_select :recommendation_severity_id, Priority.all, :id, :name, {}, {:name => "checklist_recommendation[#{control.id}][recommendation_severity_id]", :id => "recommendation_severity_id_#{control.id}", :class=> "control_severity"} %>
-								<span class="error_message" id="error_severity_<%= control.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["severity"]%><span>
+                <span class="error_message" id="error_severity_<%= control.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["severity"]%><span>
                     </div>
               </div>
-                            
-                            
+
+
               </div>
               <div class="col-lg-4">
                 <div class="form-group clearfix">
                   <%= f.label :'Closure Date', t(' checklist_recommendation.closure_date'), :class => "col-sm-5 control-label" %>
                              <!--  <label class="col-sm-5"><b>Target Date :</b> </label> -->
-                    <div class="col-sm-7"> 
+                    <div class="col-sm-7">
                       <%= f.text_field :closure_date, :class => "datepicker2 control_closure_date", :style =>"width:150px;", :name => "checklist_recommendation[#{control.id}][closure_date]", :id => "closure_date_#{control.id}" %>
                               <!--   <input id="datepicker2" value="10/10/2011" style="width:150px;" /> -->
-									<span class="error_message" id="error_closure_date_<%= control.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["closuredate"]%><span>
-                    </div> 
+                  <span class="error_message" id="error_closure_date_<%= control.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["closuredate"]%><span>
+                    </div>
                   </div>
               <div class="form-group clearfix">
                 <%= f.label :Status, t(' checklist_recommendation.status'), :class => "col-sm-5 control-label" %>
                             <!--   <label  class="col-sm-5"><b>Status :</b> </label> -->
                    <div class="col-sm-7">  <%= f.collection_select :recommendation_status_id, RecommendationStatus.all, :id, :name, {},{:name => "checklist_recommendation[#{control.id}][recommendation_status_id]", :id => "recommendation_status_id_#{control.id}", :class=> "control_status"} %> </div>
-											<span class="error_message" id="error_status_<%= control.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["status"]%><span>
+                      <span class="error_message" id="error_status_<%= control.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["status"]%><span>
                       </div>
               <div class="form-group clearfix">
                 <%= f.label :Score, t(' checklist_recommendation.score'), :class => "col-sm-5 control-label" %>
                              <!--  <label  class="col-sm-5"><b>Score :</b> </label> -->
-               
+
                       <div class="col-sm-7">
                       <div class="number_link">
-											<!--<input type="hidden" id="score_#{control.id}" name="checklist_recommendation[#{control.id}][score]" value="0" />-->
-											<%= hidden_field_tag "checklist_recommendation[#{control.id}][score]",  0 , :id => "score_#{control.id}"%>
+                      <!--<input type="hidden" id="score_#{control.id}" name="checklist_recommendation[#{control.id}][score]" value="0" />-->
+                      <%= hidden_field_tag "checklist_recommendation[#{control.id}][score]",  0 , :id => "score_#{control.id}"%>
 
-											<% @score.each_with_index do |score, index|%>
-												<a class="score_points <%= index==0 ? 'active' : ''%>" id="<%= control.id%>_<%= score.id%>" href="javascript:void(0)" data-value="<%= score.id%>"><%= score.level%></a>
-											<%end%>
+                      <% @score.each_with_index do |score, index|%>
+                        <a class="score_points <%= index==0 ? 'active' : ''%>" id="<%= control.id%>_<%= score.id%>" href="javascript:void(0)" data-value="<%= score.id%>"><%= score.level%></a>
+                      <%end%>
 
-                      </div> 
+                      </div>
                       </div>
                     </div>
               <div class="form-group clearfix">
                 <div class="col-sm-12 ">
-                   <!-- a class="black_btn fright" href=""> Score</a--> 
-									<%=button_tag "Score", :class => "black_btn fright", type: 'button', onclick: "save_individual_score(#{control.id})"%>
+                   <!-- a class="black_btn fright" href=""> Score</a-->
+                  <%=button_tag "Score", :class => "black_btn fright", type: 'button', onclick: "save_individual_score(#{control.id})"%>
                   <%#= f.submit "Score" , :class => "black_btn fright"%>
                 </div>
-                            
+
               </div>
          </div>
-                            
+
          </div>
         </div>
-        <% end %> 
-        </div>  
-                        
+        <% end %>
+        </div>

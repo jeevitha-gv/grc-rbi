@@ -58,7 +58,7 @@ Rails.application.routes.draw do
 
   # subdomain root path
   constraints(Subdomain) do
-    get '/' => 'audits#index'
+    get '/' => 'dashboard#index'
   end
 
   resources :companies do

@@ -187,10 +187,8 @@ ActiveAdmin.setup do |config|
   config.register_javascript 'bootstrap-multiselect.js'
   config.register_stylesheet 'outer/style.css'
   config.register_stylesheet 'outer/bootstrap.css'
-  config.register_stylesheet 'outer/bootstrap.css.map '
   config.register_stylesheet 'outer/bootstrap.min.css'
   config.register_stylesheet 'outer/bootstrap-theme.css'
-  config.register_stylesheet 'outer/bootstrap-theme.css.map'
   config.register_stylesheet 'outer/bootstrap-theme.min.css'
   config.register_stylesheet 'outer/docs.min.css'
   config.register_stylesheet 'outer/media.css'
@@ -199,7 +197,6 @@ ActiveAdmin.setup do |config|
   config.register_javascript 'outer/docs.min.js'
   config.register_javascript 'outer/masonry.pkgd.min.js'
   config.register_javascript 'bootstrap-3.1.1.min.js'
-  config.register_javascript 'views/compliance_libraries.js'
 
   # == CSV options
   #

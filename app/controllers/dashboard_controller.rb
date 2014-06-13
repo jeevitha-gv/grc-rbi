@@ -1,10 +1,11 @@
 class DashboardController < ApplicationController
-	
+	before_filter :authenticate_user!
+
 	def calender
-		@audit =Audit.where('id=?', 4)
+		@audit = current_user.accessible_audits
 	end
-	
-  def index  	
+
+  def index
   	@audit_status = Audit.joins( :audit_status).select("name as status,count(audit_status_id) as count").group(:name)
   	@audit_locations = Audit.joins( :location).select("name ,count(location_id) as count").group(:name)
   end

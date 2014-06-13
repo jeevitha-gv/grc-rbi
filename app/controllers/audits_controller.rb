@@ -1,7 +1,10 @@
 class AuditsController < ApplicationController
+  load_and_authorize_resource :except => [:department_teams_users, :audit_with_status, :audit_all]
+  before_filter :authorize_audit, :only => [:edit, :update]
   before_action :authenticate_user!
   before_filter :check_company_disabled
-  before_filter :audit_auditee_users, :only => [:new, :create, :edit, :update]
+  before_filter :audit_auditor_users, :only => [:new, :create, :edit, :update]
+
 
   def index
 
@@ -35,7 +38,7 @@ class AuditsController < ApplicationController
       end
       UniversalMailer.notify_auditor_about_audit(@audit).deliver
       UniversalMailer.notify_auditees_about_audit(@audit).deliver
-      redirect_to new_audit_path
+      redirect_to audits_path
     else
       @departments = Department.where(:location_id=>@audit.location_id) if @audit.location_id
       @teams = Team.where(:department_id=>@audit.department_id) if @audit.department_id
@@ -50,9 +53,9 @@ class AuditsController < ApplicationController
       format.html
       format.pdf do
         render :pdf => "pdf", :template => "audits/show.pdf.erb", layout: 'layouts/pdf.html.erb'
+      end
     end
   end
-end
 
 
   def update
@@ -141,7 +144,7 @@ end
           audit.save(:validate => false)
           auditee_users.map(&:id).collect{|x| audit.audit_auditees.create(:user_id =>x) }
         end
-        redirect_to new_audit_path, notice: "Audit imported."
+        redirect_to audits_path, notice: "Audit imported."
       rescue
         @errors = "Invalid file format"
         redirect_to new_audit_path
@@ -170,7 +173,7 @@ end
 
   private
     def audit_params
-      params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :audit_status_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor, :start_date, :end_date, audit_auditees_attributes: [:user_id])
+      params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :audit_status_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor, :start_date, :end_date, audit_auditees_attributes: [:id, :user_id])
     end
 
     # def skipped_reminder_params
@@ -184,12 +187,12 @@ end
       end
     end
 
-    def audit_auditee_users
-      # for users with role auditor
+    def audit_auditor_users
       @auditor_users = current_company.users
-      # for users with role auditee
-      # @auditee_users = User.where(:role_id=>@auditee_role.id)
     end
 
-
+    def authorize_audit
+      @audit = Audit.find_by_id(params[:id])
+      redirect_to audit_path if (@audit.auditor != current_user.id && !@audit.auditees.include?(current_user) && current_user.role != "company_admin")
+    end
 end

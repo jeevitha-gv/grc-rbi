@@ -7,7 +7,7 @@ class NcQuestion < ActiveRecord::Base
 	belongs_to :auditee, :class_name => "User", foreign_key: :auditee_id
 	belongs_to :audit
 	has_many :question_options
-	has_many :answers
+	has_one :answer
 	has_many :checklist_recommendations, as: :checklist
 	accepts_nested_attributes_for :question_options, :allow_destroy => true
 

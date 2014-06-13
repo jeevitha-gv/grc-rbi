@@ -1,4 +1,4 @@
-window.onload = function() 
+window.onload = function()
 {
 dataSource = new kendo.data.DataSource({
 		transport: {
@@ -36,7 +36,7 @@ dataSource = new kendo.data.DataSource({
 
 var element = $("#grid").kendoGrid({
 		dataSource: dataSource,
-		editable: "inline",        
+		editable: "inline",
     height    : 450,
     sortable  : true,
     pageable  : true,
@@ -86,7 +86,7 @@ function detailInit(e) {
 								{ field:"name", title: "name"},
 								{field: "Add",template:"<a href='/admin/compliance_libraries/new?control_objective_id=${id}'>Add Next control</a>"},
 								{field: "Edit",template:"<a href='/admin/compliance_libraries/${id}/edit'>Edit</a>"},
-								{command: [{ name:"Destroy parent",text: "Destroy",click: delete_compliane_parent }]}    
+								{command: [{ name:"Destroy parent",text: "Destroy",click: delete_compliane_parent }]}
 						]
 				});
 }
@@ -127,7 +127,7 @@ function childInit(e) {
 						columns   : [
 								{ field:"name", title: "name"},
 								{field: "Edit",template:"<a href='/admin/compliance_libraries/${id}/edit'>Edit</a>"},
-								{command: [{ name:"Destroy child",text: "Destroy",click: delete_compliane }]}    
+								{command: [{ name:"Destroy child",text: "Destroy",click: delete_compliane }]}
 						]
 				});
 }
@@ -135,8 +135,8 @@ function childInit(e) {
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		if (confirm('Are you sure you want to delete this record ?')) {
 				$.ajax({
-				url: "/admin/compliance_libraries/"+dataItem.id, 
-				type: 'delete', 
+				url: "/admin/compliance_libraries/"+dataItem.id,
+				type: 'delete',
 				dataType: 'json',
 				success:function(result){
 				}
@@ -150,8 +150,8 @@ function delete_compliane_parent(e) {
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		if (confirm('Are you sure you want to delete this record ?')) {
 				$.ajax({
-				url: "/admin/compliance_libraries/"+dataItem.id, 
-				type: 'delete', 
+				url: "/admin/compliance_libraries/"+dataItem.id,
+				type: 'delete',
 				dataType: 'json',
 				success:function(result){
 				}

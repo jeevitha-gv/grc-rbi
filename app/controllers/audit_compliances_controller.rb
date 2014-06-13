@@ -4,13 +4,34 @@ class AuditCompliancesController < ApplicationController
     @audit = Audit.find(params[:audit_id])
 		@compliance_libraries = ComplianceLibrary.where(:is_leaf => true)
 		@priorities = Priority.all
+<<<<<<< HEAD
+=======
+		@auditees = current_company.users.all
+		if params[:audit_id].present?
+			@audit = Audit.find(params[:audit_id])
+			redirect_to new_audit_compliance_path if @audit.audit_compliances.blank?
+		end
   end
-  
+
+  def new
+>>>>>>> 03d5d3acb95d4d7951d9a8aeacdb2fb1af51da36
+  end
+
   def edit
+<<<<<<< HEAD
     @audit = Audit.find(params[:audit_id])
     @audit_compliances = @audit.audit_compliances
   end  
  
+=======
+
+  end
+
+  # def response
+  # end
+
+
+>>>>>>> 03d5d3acb95d4d7951d9a8aeacdb2fb1af51da36
   def response_checklist
     @audit = Audit.find(params[:audit_id])
     @audit_compliances = @audit.audit_compliances
@@ -30,6 +51,7 @@ class AuditCompliancesController < ApplicationController
       end
     end
   end
+<<<<<<< HEAD
   
   def submit
     audit = Audit.find(params[:audit_id])
@@ -37,6 +59,9 @@ class AuditCompliancesController < ApplicationController
     redirect_to "/"
   end
   
+=======
+
+>>>>>>> 03d5d3acb95d4d7951d9a8aeacdb2fb1af51da36
     private
     def compliance_params
       params.require(:checklist)

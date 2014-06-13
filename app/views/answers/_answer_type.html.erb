@@ -4,10 +4,10 @@
       <div class="form-group clearfix">
         <label class="col-sm-5">Your Choice</label>
         <div class="col-sm-7">
-          <%= f.radio_button :value, '0' %>
-          <%= label :value, 'Yes' %>
-          <%= f.radio_button :value, '1' %>
-          <%= label :value, 'No' %>
+          <input type="radio" value="0" name="answer[<%= question.id %>][value]">
+          <label for="value_Yes">Yes</label>
+          <input type="radio" value="1" name="answer[<%= question.id %>][value]">
+          <label for="value_No">No</label>
         </div>
         <br>
         <div class="form-group clearfix">
@@ -15,14 +15,13 @@
           <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="">Attach Document</a></div>
           <% end %>
         </div>
-        <%= f.submit "Save Answer as Draft" , :class => "black_btn fright"%>
       </div>
 
     <% elsif question.question_type_id == 2 %>
       <div class="form-group clearfix">
         <label class="col-sm-5">Your Answer</label>
         <div class="col-sm-7">
-          <%= f.text_area :detailed_value, :class=>"audit-big-input" %>
+          <textarea name="answer[<%= question.id %>][detailed_value]" id="audit_answer_detailed_value" class="audit-big-input"></textarea>
         </div>
         <br>
         <div class="form-group clearfix">
@@ -30,19 +29,21 @@
           <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="">Attach Document</a></div>
           <% end %>
         </div>
-        <%= f.submit "Save Answer as Draft" , :class => "black_btn fright"%>
       </div>
 
     <% elsif question.question_type_id == 3 %>
       <div class="form-group clearfix">
         <label class="col-sm-5">Your Option</label>
         <div class="col-sm-7">
-          <% @options = question.question_options.map(&:value) %>
-          <% $value = 1 %>
-          <% @options.each do |option| %>
-            <%= f.radio_button :value, $value = $value+1 %>
-            <%= label :value, option %> <br>
+          <% @question_options = question.question_options %>
+          <% @question_options.each do |question_option|%>
+            <input type="radio" value="<%= question_option.id%>" name="answer[<%= question.id %>][value]" id="value_<%= question_option.id%>">
+            <label for="value_<%= question_option.id%>"><%= question_option.value%></label> <br>
           <% end %>
+          <%# @options.each do |option| %>
+            <%#= radio_button_tag :value, $value = $value+1 %>
+            <%#= label :value, option %> <br>
+          <%# end %>
         </div>
         <br>
         <div class="form-group clearfix">
@@ -50,7 +51,6 @@
           <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="">Attach Document</a></div>
           <% end %>
         </div>
-        <%= f.submit "Save Answer as Draft" , :class => "black_btn fright"%>
       </div>
     <% end %>
   </div>
