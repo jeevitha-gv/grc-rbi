@@ -1,6 +1,7 @@
 <div id="Accordion1">
   <% @audit.nc_questions.each do |question| %>
-    <h3><a href="#"><%= question.question %></a> <span class="fright pending_msg">Pending</span></h3>
+  <% binding.pry %>
+    <h3><a href="#"><%= question.question %></a> <span class="fright pending_msg"><%= if question.answer ? Pending : Completed%></span></h3>
       <div>
         <div class="row audit-title">
           <% test = question.build_answer %>
