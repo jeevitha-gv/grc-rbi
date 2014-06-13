@@ -1,7 +1,8 @@
 class DashboardController < ApplicationController
+	before_filter :authenticate_user!
 
 	def calender
-		@audit =Audit.where('id=?', 4)
+		@audit = current_user.accessible_audits
 	end
 
   def index

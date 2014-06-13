@@ -14,14 +14,16 @@ class AuditCompliancesController < ApplicationController
   end
 
   def edit
+
   end
 
   # def response
   # end
 
+
   def response_checklist
     @audit = Audit.find(params[:audit_id])
-    @artifact_answer = @audit.artifact_answers
+    @audit_compliances = @audit.audit_compliances
   end
 
   def create
@@ -34,8 +36,7 @@ class AuditCompliancesController < ApplicationController
           artifact_answer.save
         end
       else
-        audit_compliance.is_answered = true
-        audit_compliance.save
+        artifact_answer = audit_compliance.artifact_answers.create(v.reject{|x| x=="artifact_id" || x=="compliance_library_id"})
       end
     end
   end

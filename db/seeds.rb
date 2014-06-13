@@ -41,7 +41,7 @@ AuditStatus.delete_all
    AuditStatus.create([{name: 'Planning'}])
    AuditStatus.create([{name: 'Initiated'}])
    AuditStatus.create([{name: 'In Progress'}])
-   AuditStatus.create([{name: 'Closed'}])
+   AuditStatus.create([{name: 'Published'}])
    AuditStatus.create([{name: 'Halted'}])
    AuditStatus.create([{name: 'Cancelled'}])
 
@@ -73,9 +73,10 @@ ResponseStatus.delete_all
 
 Role.delete_all
 
-    Role.create([{title: 'company_admin'}])
-    Role.create([{title: 'company user'}])
-  
+    role = Role.new(title: 'company_admin')
+    role.save(validate: false)
+    Role.create(title: 'company user')
+
 Section.delete_all
 
     Section.create([{name: 'Audit'}])
