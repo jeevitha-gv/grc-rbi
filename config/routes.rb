@@ -71,7 +71,8 @@ Rails.application.routes.draw do
    end
 
 
-  resources :audit_compliances do
+  resources :audit_compliances, only: [:index, :create, :update] do
+    get 'edit', on: :collection
     get 'compliance_checklist', on: :collection
     get 'response', on: :collection
     get 'response_checklist', on: :collection
@@ -112,7 +113,9 @@ Rails.application.routes.draw do
   end
 
   resources :compliance_libraries
-  resources :audit_compliances
+  resources :audit_compliances do
+    post 'submit', on: :collection
+  end
 
   get 'welcome', to: 'companies#welcome', :as => :welcome
 

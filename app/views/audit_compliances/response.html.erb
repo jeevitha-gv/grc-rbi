@@ -20,7 +20,8 @@ var audit_id = "<%= params[:audit_id]%>"
               
               <div class="fright"><br>
             <br>
-            <!--a class="black_btn" href="">Back</a> <a href="javascript:save_request()" class="orange_btn">Ask</a></div -->
+            <a class="black_btn" href="">Back</a> <%= link_to "Submit for recommendation", submit_audit_compliances_path(audit_id: params[:audit_id]) , :class => "orange_btn", method: 'post'%>
+            </div>
             </div>
             
           </div>

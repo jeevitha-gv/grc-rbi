@@ -1,19 +1,14 @@
 class AuditCompliancesController < ApplicationController
 
 	def compliance_checklist
+    @audit = Audit.find(params[:audit_id])
 		@compliance_libraries = ComplianceLibrary.where(:is_leaf => true)
 		@priorities = Priority.all
-		@auditees = current_company.users.all
-		if params[:audit_id].present?
-			@audit = Audit.find(params[:audit_id])
-			redirect_to new_audit_compliance_path if @audit.audit_compliances.blank?
-		end
-  end
-  
-  def new
   end
   
   def edit
+    @audit = Audit.find(params[:audit_id])
+    @audit_compliances = @audit.audit_compliances
   end  
  
   def response_checklist
@@ -34,6 +29,12 @@ class AuditCompliancesController < ApplicationController
         artifact_answer = audit_compliance.artifact_answers.create(v.reject{|x| x=="artifact_id" || x=="compliance_library_id"})
       end
     end
+  end
+  
+  def submit
+    audit = Audit.find(params[:audit_id])
+    audit.audit_compliances.update_all(is_answered: true)
+    redirect_to "/"
   end
   
     private

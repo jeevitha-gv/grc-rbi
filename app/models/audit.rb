@@ -21,6 +21,7 @@ class Audit < ActiveRecord::Base
   has_one :skipped_audit_reminder
   has_many :team_users, through: :team, :source => :users
   has_many :audit_operational_weightages
+  has_many :compliance_libraries
 
 
   accepts_nested_attributes_for :nc_questions
