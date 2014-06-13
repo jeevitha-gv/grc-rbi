@@ -2690,7 +2690,7 @@ function BasicEventRenderer() {
 	var trigger = t.trigger;
 	//var setOverflowHidden = t.setOverflowHidden;
 	//~ var isEventDraggable = t.isEventDraggable;
-	var isEventResizable = t.isEventResizable;
+	//~ var isEventResizable = t.isEventResizable;
 	var reportEvents = t.reportEvents;
 	var reportEventClear = t.reportEventClear;
 	var eventElementHandlers = t.eventElementHandlers;
@@ -2757,9 +2757,9 @@ function BasicEventRenderer() {
 		//~ if (isEventDraggable(event)) {
 			//~ draggableDayEvent(event, eventElement);
 		//~ }
-		if (seg.isEnd && isEventResizable(event)) {
-			resizableDayEvent(event, eventElement, seg);
-		}
+		//~ if (seg.isEnd && isEventResizable(event)) {
+			//~ resizableDayEvent(event, eventElement, seg);
+		//~ }
 		eventElementHandlers(event, eventElement);
 			// needs to be after, because resizableDayEvent might stopImmediatePropagation on click
 	}
@@ -3767,8 +3767,8 @@ function AgendaEventRenderer() {
 	var opt = t.opt;
 	var trigger = t.trigger;
 	//var setOverflowHidden = t.setOverflowHidden;
-	var isEventDraggable = t.isEventDraggable;
-	var isEventResizable = t.isEventResizable;
+	//~ var isEventDraggable = t.isEventDraggable;
+	//~ var isEventResizable = t.isEventResizable;
 	var eventEnd = t.eventEnd;
 	var reportEvents = t.reportEvents;
 	var reportEventClear = t.reportEventClear;
@@ -3783,7 +3783,7 @@ function AgendaEventRenderer() {
 	var colContentLeft = t.colContentLeft;
 	var colContentRight = t.colContentRight;
 	var renderDaySegs = t.renderDaySegs;
-	var resizableDayEvent = t.resizableDayEvent; // TODO: streamline binding architecture
+	//~ var resizableDayEvent = t.resizableDayEvent; // TODO: streamline binding architecture
 	var getColCnt = t.getColCnt;
 	var getColWidth = t.getColWidth;
 	var getSnapHeight = t.getSnapHeight;
@@ -4032,9 +4032,9 @@ function AgendaEventRenderer() {
 		var url = event.url;
 		var skinCss = getSkinCss(event, opt);
 		var classes = ['fc-event', 'fc-event-vert'];
-		if (isEventDraggable(event)) {
-			classes.push('fc-event-draggable');
-		}
+		//~ if (isEventDraggable(event)) {
+			//~ classes.push('fc-event-draggable');
+		//~ }
 		if (seg.isStart) {
 			classes.push('fc-event-start');
 		}
@@ -4063,10 +4063,10 @@ function AgendaEventRenderer() {
 			"</div>" +
 			"</div>" +
 			"<div class='fc-event-bg'></div>";
-		if (seg.isEnd && isEventResizable(event)) {
-			html +=
-				"<div class='ui-resizable-handle ui-resizable-s'>=</div>";
-		}
+		//~ if (seg.isEnd && isEventResizable(event)) {
+			//~ html +=
+				//~ "<div class='ui-resizable-handle ui-resizable-s'>=</div>";
+		//~ }
 		html +=
 			"</" + (url ? "a" : "div") + ">";
 		return html;
@@ -4074,12 +4074,12 @@ function AgendaEventRenderer() {
 	
 	
 	function bindDaySeg(event, eventElement, seg) {
-		if (isEventDraggable(event)) {
-			draggableDayEvent(event, eventElement, seg.isStart);
-		}
-		if (seg.isEnd && isEventResizable(event)) {
-			resizableDayEvent(event, eventElement, seg);
-		}
+		//~ if (isEventDraggable(event)) {
+			//~ draggableDayEvent(event, eventElement, seg.isStart);
+		//~ }
+		//~ if (seg.isEnd && isEventResizable(event)) {
+			//~ resizableDayEvent(event, eventElement, seg);
+		//~ }
 		eventElementHandlers(event, eventElement);
 			// needs to be after, because resizableDayEvent might stopImmediatePropagation on click
 	}
@@ -4087,12 +4087,12 @@ function AgendaEventRenderer() {
 	
 	function bindSlotSeg(event, eventElement, seg) {
 		var timeElement = eventElement.find('div.fc-event-time');
-		if (isEventDraggable(event)) {
-			draggableSlotEvent(event, eventElement, timeElement);
-		}
-		if (seg.isEnd && isEventResizable(event)) {
-			resizableSlotEvent(event, eventElement, timeElement);
-		}
+		//~ if (isEventDraggable(event)) {
+			//~ draggableSlotEvent(event, eventElement, timeElement);
+		//~ }
+		//~ if (seg.isEnd && isEventResizable(event)) {
+			//~ resizableSlotEvent(event, eventElement, timeElement);
+		//~ }
 		eventElementHandlers(event, eventElement);
 	}
 	
@@ -4379,8 +4379,8 @@ function View(element, calendar, viewName) {
 	t.opt = opt;
 	t.trigger = trigger;
 	//t.setOverflowHidden = setOverflowHidden;
-	t.isEventDraggable = isEventDraggable;
-	t.isEventResizable = isEventResizable;
+	//~ t.isEventDraggable = isEventDraggable;
+	//~ t.isEventResizable = isEventResizable;
 	t.reportEvents = reportEvents;
 	t.eventEnd = eventEnd;
 	t.reportEventElement = reportEventElement;
@@ -4433,14 +4433,14 @@ function View(element, calendar, viewName) {
 	*/
 	
 	
-	function isEventDraggable(event) {
-		return isEventEditable(event) && !opt('disableDragging');
-	}
+	//~ function isEventDraggable(event) {
+		//~ return isEventEditable(event) && !opt('disableDragging');
+	//~ }
 	
 	
-	function isEventResizable(event) { // but also need to make sure the seg.isEnd == true
-		return isEventEditable(event) && !opt('disableResizing');
-	}
+	//~ function isEventResizable(event) { // but also need to make sure the seg.isEnd == true
+		//~ return isEventEditable(event) && !opt('disableResizing');
+	//~ }
 	
 	
 	function isEventEditable(event) {
@@ -4629,14 +4629,14 @@ function DayEventRenderer() {
 	
 	// exports
 	t.renderDaySegs = renderDaySegs;
-	t.resizableDayEvent = resizableDayEvent;
+	//~ t.resizableDayEvent = resizableDayEvent;
 	
 	
 	// imports
 	var opt = t.opt;
 	var trigger = t.trigger;
-	var isEventDraggable = t.isEventDraggable;
-	var isEventResizable = t.isEventResizable;
+	//~ var isEventDraggable = t.isEventDraggable;
+	//~ var isEventResizable = t.isEventResizable;
 	var eventEnd = t.eventEnd;
 	var reportEventElement = t.reportEventElement;
 	var showEvents = t.showEvents;
@@ -4761,9 +4761,9 @@ function DayEventRenderer() {
 			seg = segs[i];
 			event = seg.event;
 			classes = ['fc-event', 'fc-event-hori'];
-			if (isEventDraggable(event)) {
-				classes.push('fc-event-draggable');
-			}
+			//~ if (isEventDraggable(event)) {
+				//~ classes.push('fc-event-draggable');
+			//~ }
 			if (seg.isStart) {
 				classes.push('fc-event-start');
 			}
@@ -4806,12 +4806,12 @@ function DayEventRenderer() {
 			html +=
 				"<span class='fc-event-title'>" + htmlEscape(event.title) + "</span>" +
 				"</div>";
-			if (seg.isEnd && isEventResizable(event)) {
-				html +=
-					"<div class='ui-resizable-handle ui-resizable-" + (rtl ? 'w' : 'e') + "'>" +
-					"&nbsp;&nbsp;&nbsp;" + // makes hit area a lot better for IE6/7
-					"</div>";
-			}
+			//~ if (seg.isEnd && isEventResizable(event)) {
+				//~ html +=
+					//~ "<div class='ui-resizable-handle ui-resizable-" + (rtl ? 'w' : 'e') + "'>" +
+					//~ "&nbsp;&nbsp;&nbsp;" + // makes hit area a lot better for IE6/7
+					//~ "</div>";
+			//~ }
 			html +=
 				"</" + (url ? "a" : "div" ) + ">";
 			seg.left = left;
