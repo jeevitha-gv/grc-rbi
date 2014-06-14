@@ -6,7 +6,7 @@ class ChecklistRecommendationsController < ApplicationController
 
  	#new for checklist recommendation
  	def new
-		@audit = current_audit # need to change with permission
+		@audit = current_audit
 		@answered_compliances = @audit.answered_compliances
 		@checklist_recommendation = ChecklistRecommendation.new
 		@score = Score.all
@@ -48,6 +48,7 @@ class ChecklistRecommendationsController < ApplicationController
 		@audit = current_audit
 		@checklist_recommendations = @audit.auditee_response_compliances
 		@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
+		@score = Score.all
 	end
 
 	def audit_observation
@@ -93,6 +94,27 @@ class ChecklistRecommendationsController < ApplicationController
 		@checklist_recommendation.update(checklist_params)
 	end
 end
+
+
+ #After observed restrict to create recommendation , response & observed
+
+ def observed
+   @checklist_recommendation = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?', params[:checklist_recommendation][:checklist_id], params[:checklist_recommendation][:checklist_type]).first
+		 unless @checklist_recommendation.is_published
+		 	@path = true
+		 else
+		 	@path = false
+			end
+	 	return @path
+end
+
+
+	def list_artifacts_and_comments
+		@audit_compliance = AuditCompliance.find(params[:id])
+		@artifact_answers = @audit_compliance.artifact_answers
+   		render layout: false
+	end
+
 
 	private
 	  def checklist_params
