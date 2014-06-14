@@ -1,7 +1,7 @@
 <div id="Accordion1">
  <% @answered_ncquestions.each do |answered_ncquestion| %>
    <% ncquestion_recommendation = answered_ncquestion.checklist_recommendation%>
-  <h3><ahref="#"><%= answered_ncquestion.question %></a> <span class="fright pending_msg" id= "recommendation_status">
+  <h3><a href="#"><%= answered_ncquestion.question %></a> <span class="fright pending_msg" id= "recommendation_status">
     <% @status = ncquestion_recommendation.recommendation_status_id if ncquestion_recommendation.present? %>
       <%= (@status == 3 || @status == 4) ? 'Completed' : 'Pending' %></span></h3>
       <div>
@@ -48,9 +48,18 @@
 
           <div class="col-lg-4">
             <div class="form-group clearfix">
-              <%= f.label :Comment, t(' checklist_recommendation.comment'), :class => "col-sm-5 control-label" %>
+              <%= f.label :Answer, t(' checklist_recommendation.comment'), :class => "col-sm-5 control-label" %>
                 <!--   <label class="col-sm-5"><b>Comment :</b> </label> -->
-                <div class="col-sm-7"><%= @artifact_answers.comment_comment if @artifact_answers%></div>
+                <div class="col-sm-7">
+                  <%= @artifact_answers.comment_comment if @artifact_answers%>
+                  <% if @answered_ncquestion.question_type_id == 1 %>
+                    <%= @answered_ncquestion.answer.value == 0 ? 'Yes' : 'No' %>
+                  <% elsif @answered_ncquestion.question_type_id == 2 %>
+                    <%= @answered_ncquestion.answer.detailed_value %>
+                  <% else %>
+                    <%= QuestionOption.where(:id => n.answer.value).map(&:value).last %>
+                  <% end %>
+                </div>
 
             </div>
               <div class="form-group clearfix">
