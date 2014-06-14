@@ -13,5 +13,9 @@ class ArtifactAnswer < ActiveRecord::Base
   delegate :name, to: :priority, prefix: true, allow_nil: true
   delegate :full_name, to: :responsibility, prefix: true, allow_nil: true
   delegate :name, to: :artifact, prefix: true, allow_nil: true
+  delegate :comment, to: :comment, prefix: true, allow_nil: true
 
+  def artifact_display_name
+  	self.artifact_id ? self.artifact_name : "No Attachments"
+  end
 end

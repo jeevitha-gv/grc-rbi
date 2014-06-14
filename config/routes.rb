@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       post 'auditee_response_create'
       get 'audit_observation'
       post 'update_individual_score'
+      get 'list_artifacts_and_comments'
     end
   end
 
@@ -43,6 +44,7 @@ Rails.application.routes.draw do
     get 'export_files', on: :collection
     post 'asc_calculation', on: :collection
     get 'particular_dashboard' , on: :collection
+    get 'audit_dashboard' , on: :member
   end
 
   resource :answers

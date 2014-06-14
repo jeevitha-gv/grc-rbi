@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale, :if => :current_user
   before_filter :set_time_zone, :if => :current_user
   helper_method :current_company
+  #before_filter :set_cookie_audit
   helper_method :current_audit
   before_filter :check_subdomain
   before_filter :check_password_authenticated, :if => :current_user
@@ -28,7 +29,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def current_audit
-      @audit ||= Audit.find(session[:audit_id])
+    Audit.find(cookies[:audit_id].to_i) if cookies[:audit_id].present?
   end
 
   def configure_permitted_parameters
@@ -154,6 +155,12 @@ class ApplicationController < ActionController::Base
       return true
     else
       redirect_to '/users/sign_in'
+    end
+  end
+
+  def set_cookie_audit
+    unless cookies[:audit_id].present?
+      cookies[:audit_id] = { :value => current_user.accessible_audits.last.id, :expires => 24.hour.from_now } if current_user.accessible_audits.present?
     end
   end
 
