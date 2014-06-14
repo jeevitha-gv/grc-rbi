@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-      if user.is? (:companyadmin && :auditor && :auditee && :CRO)
+      if user.is? (:company_admin)
         can :manage, :all
       else
         user_previleges =  user.user_previleges
@@ -15,8 +15,7 @@ class Ability
         end
       end
     end
-    
-    
-    
+
+
+
 end
-  

@@ -29,14 +29,19 @@
                   <div class="modal-header">
                     <button aria-hidden="true" data-dismiss="modal" class="close" type="button"> &nbsp; </button>
                     <h4 id="myModalLabel" class="modal-title">Upload files only CSV and XLSX</h4>
-                    <%= form_tag import_files_audits_path, multipart: true do %>
-                      <%= file_field_tag :file %>
-                      <%= submit_tag "Import" %>
-                    <% end %>
-                    <p></p>
-                    <p>
-                      <%= link_to "Download Sample Audit CSV", export_files_audits_path(format: "csv") %>
-                    </p>
+                    <div class="modal-content-inner">
+                      <%= form_tag import_files_audits_path, multipart: true do %>
+                        <%= file_field_tag :file %>
+                        <br>
+                        <div class="model-footer">
+                        <%= submit_tag "Import" ,:class => "black_btn" %>
+                      <%= submit_tag "Cancel" ,:class => "orange_btn" %></div>
+                      <% end %>
+                    </div>
+                      <p></p>
+                      <p>
+                        <%= link_to "Download Sample Audit CSV", export_files_audits_path(format: "csv") %>
+                      </p>
                   </div>
                 </div>
               </div>

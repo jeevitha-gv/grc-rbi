@@ -10,7 +10,7 @@ class Audit < ActiveRecord::Base
   belongs_to :audit_status
   belongs_to :audit_type
   has_many :nc_questions
-  has_one :answer, through: :nc_questions, :source => :answer
+  has_many :answers, through: :nc_questions
   has_many :nc_checklist_recommendations, through: :answers , source: :checklist_recommendations
   has_many :compliance_checklist_recommendations, through: :audit_compliances, source: :checklist_recommendations
   has_many :audit_compliances
@@ -21,6 +21,7 @@ class Audit < ActiveRecord::Base
   has_one :skipped_audit_reminder
   has_many :team_users, through: :team, :source => :users
   has_many :audit_operational_weightages
+  has_many :compliance_libraries
 
 
   accepts_nested_attributes_for :nc_questions
@@ -124,7 +125,8 @@ def self.audit_operational_weightage(company,audit)
         weightage = total_score * operational_area.weightage
 
       # Compliance Percentage Calculation
-        maximum_rating = (v.count * operational_area.weightage).to_f
+        # maximum_rating = (v.count * operational_area.weightage).to_f
+        maximum_rating = (v.count * 4)
         maximum_score = (maximum_rating * operational_area.weightage).to_f
         over_all_maximum_score += maximum_score
         compliance_percentage = (weightage / maximum_score ) * 100
