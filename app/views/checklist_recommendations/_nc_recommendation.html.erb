@@ -1,6 +1,6 @@
 <div id="Accordion1">
  <% @answered_ncquestions.each do |answered_ncquestion| %>
-   <% checklist_recommendation = audit_compliance.checklist_recommendation%>
+   <% checklist_recommendation = answered_ncquestion.checklist_recommendation%>
   <h3><ahref="#"><%= answered_ncquestion.question %></a> <span class="fright pending_msg" id= "recommendation_status">
     <% @status = checklist_recommendation.recommendation_status_id if checklist_recommendation.present? %>
       <%= (@status == 3 || @status == 4) ? 'Completed' : 'Pending' %></span></h3>
