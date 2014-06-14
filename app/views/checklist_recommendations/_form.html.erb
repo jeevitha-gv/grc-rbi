@@ -70,7 +70,11 @@
 
                     <div class="container">
                     <%= form_for(@checklist_recommendation) do |f| %>
+                    <% if @audit.compliance_type == 'Compliance'%>
                     <%= render "recommendation",f: f %>
+                    <% else %>
+                    <%= render "nc_recommendation",f: f %>
+                    <% end %>
                     </div>
 
                     <div class="clearfix"></div>

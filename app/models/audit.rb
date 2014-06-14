@@ -47,6 +47,8 @@ class Audit < ActiveRecord::Base
   validates :objective, length: { in: 4..250 }, :if => Proc.new{ |f| !f.objective.blank? }
   validates :close_reason, length: { in: 4..250 }, :if => Proc.new{ |f| !f.close_reason.blank? }
   validates :observation, length: { in: 4..250 }, :if => Proc.new{ |f| !f.observation.blank? }
+  validates :start_date, presence: true
+  validates :end_date, presence: true
   validate :check_auditees_uniq
   validate :check_auditees_presence
   validate :validate_end_date_before_start_date
@@ -72,7 +74,7 @@ class Audit < ActiveRecord::Base
   end
 
   def auditee_response_compliances
-    self.audit_compliances.where(is_answered: true).collect{|x| x.checklist_recommendations.where('recommendation_completed= ?',true)}.flatten
+    self.audit_compliances.where(is_answered: true)
   end
 
   def audit_observation_compliances
@@ -92,6 +94,10 @@ class Audit < ActiveRecord::Base
   # Getting all the non compliance for sending reminders
   def unanswered_nc_questions
     self.nc_questions.where("target_date <= ?" , DateTime.now).select{ |x| x.answers.blank?}
+  end
+
+  def answered_ncquestions
+    self.nc_questions
   end
 
 
@@ -182,8 +188,11 @@ end
   end
 
   def validate_end_date_before_start_date
+    if start_date
+      self.errors[:start_date_validate] = MESSAGES['audit']['failure']['start_date_validate'] if start_date < Date.today
+    end
     if end_date && start_date
-      self.errors[:end_date] = MESSAGES['audit']['failure']['end_date'] if end_date < start_date
+      self.errors[:end_date] = MESSAGES['audit']['failure']['start_date_before_end_date'] if end_date < start_date
     end
   end
 end

@@ -30,7 +30,7 @@ ActiveAdmin.register User do
         render 'new'
       end
     end
-    
+
     def update
       @user = User.find_by_id(params[:id])
       if @user.update(user_params)
@@ -84,7 +84,7 @@ ActiveAdmin.register User do
         team.teams.map(&:name).join(",")
       end
       row "Role" do |r|
-        r.role_title 
+        r.role_title
       end
       row :is_disabled do |d|
         d.is_disabled? ? 'Yes': 'No'

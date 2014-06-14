@@ -10,6 +10,7 @@ require 'date'
 		@answered_compliances = @audit.answered_compliances
 		@checklist_recommendation = ChecklistRecommendation.new
 		@score = Score.all
+		@answered_ncquestions = @audit.answered_ncquestions
  end
 
  #To create checklist recommendation for auditcompliance
@@ -47,6 +48,7 @@ require 'date'
 		@audit = Audit.where('id= ?',params[:id]).first
 		@checklist_recommendations = @audit.auditee_response_compliances
 		@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
+		@score = Score.all
 	end
 
 	def audit_observation
@@ -93,6 +95,7 @@ require 'date'
 	end
 end
 
+
  #After observed restrict to create recommendation , response & observed
 
  def observed
@@ -104,6 +107,13 @@ end
 			end
 	 	return @path
 end
+
+
+	def list_artifacts_and_comments
+		@audit_compliance = AuditCompliance.find(params[:id])
+		@artifact_answers = @audit_compliance.artifact_answers
+   		render layout: false
+	end
 
 
 	private
