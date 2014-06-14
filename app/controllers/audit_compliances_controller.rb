@@ -6,16 +6,7 @@ class AuditCompliancesController < ApplicationController
     @audit_compliances = @audit.audit_compliances
 		@compliance_libraries = ComplianceLibrary.where(:is_leaf => true)
 		@priorities = Priority.all
-<<<<<<< HEAD
   end 
-=======
-  end
-
-  def edit
-    @audit = Audit.find(params[:audit_id])
-    @audit_compliances = @audit.audit_compliances
-  end
->>>>>>> 6a459ccc9b6fa63f066f4e7dc512fae8d099aee6
 
   def response_checklist
     @audit = Audit.find(params[:audit_id])
