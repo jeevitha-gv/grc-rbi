@@ -72,7 +72,7 @@ class Audit < ActiveRecord::Base
   end
 
   def auditee_response_compliances
-    self.audit_compliances.where(is_answered: true).collect{|x| x.checklist_recommendations.where('recommendation_completed= ?',true)}.flatten
+    self.audit_compliances.where(is_answered: true)
   end
 
   def audit_observation_compliances

@@ -45,6 +45,7 @@ require 'date'
 		@audit = Audit.where('id= ?',params[:id]).first
 		@checklist_recommendations = @audit.auditee_response_compliances
 		@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
+		@score = Score.all
 	end
 
 	def audit_observation
@@ -90,6 +91,12 @@ require 'date'
 		@checklist_recommendation.update(checklist_params)
 	end
 end
+
+	def list_artifacts_and_comments
+		@audit_compliance = AuditCompliance.find(params[:id])
+		@artifact_answers = @audit_compliance.artifact_answers
+   		render layout: false
+	end
 
 	private
 	  def checklist_params
