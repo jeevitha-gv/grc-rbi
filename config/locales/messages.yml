@@ -28,7 +28,7 @@ en:
   Role:
     create:
       success: "Role was created successfully"
-  
+
   checklist_recommendation:
     auditee_create:
       success: "Auditee response was created successfully"
@@ -36,11 +36,11 @@ en:
       success: "Audit observation was created successfully"
     audit_recommendation:
       success: "Audit recommendation was created successfully"
-      
+
   audit_compliance:
     comment:
       success: "Text response saved successfully"
-  
+
   # company:
   #   domain:
   #       unique: "Sorry, this domain has already been taken."
@@ -87,7 +87,8 @@ en:
     failure:
       auditee_blank: "Please select auditee"
       auditee_unique: "Please select unique auditee"
-      end_date: "End date must not be before start date"
+      start_date_before_end_date: "End date must not be before start date"
+      start_date_validate: "Start date must be in future"
 
   checklist_recommendations:
     recommendation: "Please enter recommendation"

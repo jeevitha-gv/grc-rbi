@@ -264,6 +264,10 @@ en:
               blank: "Compliance Type can't be blank"
             standard_id:
               blank: "Select any one standard"
+            start_date:
+              blank: "Please select start date"
+            end_date:
+              blank: "Please select end date"
         nc_question:
           attributes:
             question:

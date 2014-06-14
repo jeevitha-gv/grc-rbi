@@ -1,3 +1,4 @@
+<link href="/assets/bootstrap-multiselect.css" rel="stylesheet" />
 <div class="content">
   <div class="container">
     <div class="row">
@@ -6,7 +7,42 @@
         <div class="audit-content container">
           <%= form_for(@audit) do |f| %>
             <%= render 'form', :f => f %>
-            <div class="col-sm-8" id="auditee-button" style="<%= (action_name == "create" &&  @audit.errors[:auditees].blank?) == true ? "display:block;" : "display:none;" %>">
+            <div class="col-lg-4 col-sm-6 col-xs-12" id="auditee-list">
+              <% if @audit.errors[:auditees].present? %>
+                <div class="error_message"><%= @audit.errors[:auditees][0]%></div>
+              <% end %>
+              <% @audit.audit_auditees.build if action_name == "new"%>
+              <!-- && ((params[:audit][:audit_auditees_attributes].count==1) && params[:audit][:audit_auditees_attributes]['0']['user_id'].blank? -->
+              <% user_ids = @audit.audit_auditees.map(&:user_id) %>
+              <% set_index = 0 %>
+              <% user_ids.each do |user_id| %>
+                <div class="form-group clearfix auditee-dropdown">
+                  <div class='auditee-rows'>
+                    <% if (action_name != "new") %>
+                      <% if @team.present? %>
+                        <%#= f.fields_for :audit_auditees do |builder| %>
+                          <label class="col-sm-4 control-label">
+                            <label><%= t('audit.auditee')%></label>
+                            <%#= builder.label :auditees,  %>
+                          </label>
+                          <div class="col-sm-7">
+                            <select name="audit[audit_auditees_attributes][<%= set_index %>][user_id]" id="auditees-users">
+                              <option value="">Select Auditee</option>
+                              <% @team.users.each do |u| %>
+                              <% select_value = u.id if (u.id == user_id) %>
+                                <option value="<%= u.id %>" class="<%= select_value %>"><%= u.user_name %></option>
+                              <% end %>
+                            </select>
+                          </div>
+                        <%# end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+                <% set_index += 1 %>
+              <% end %>
+            </div>
+            <div class="col-sm-8" id="auditee-button" style="<%= action_name == "create" ? "display:block;" : "display:none;" %>">
               <div class="form-group clearfix addissue">
                 <a href="javascript:void(0)" class="plus-icon" id="add_auditee">Add Auditee
                 </a>
@@ -52,3 +88,19 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('#add_auditee').click(function(){
+    var size = $('#auditee-list').find('.auditee-rows').size();
+
+    // console.log(cd append)
+    $("#auditee-list").append(""+"<div class='form-group clearfix auditee-dropdown'>"+$(".auditee-dropdown").html().replace('audit[audit_auditees_attributes][0][user_id]','audit[audit_auditees_attributes]['+size+'][user_id]')+"</div>"+"")//.replace(, ''); ;
+
+    // console.log()
+  });
+
+  $("#auditees-users option").each(function( index ) {
+    var tesrt = ($(this).attr('class'))
+    if(tesrt!=""){$(this).attr('selected', true)}
+  });
+</script>

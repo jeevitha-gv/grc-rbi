@@ -181,8 +181,8 @@
 </div>
 
 <div class="col-lg-4 col-sm-6 col-xs-12">
-  <% if @audit.errors[:end_date].present? %>
-      <div class="error_message"><%= @audit.errors[:end_date][0]%></div>
+  <% if @audit.errors[:start_date_validate].present? %>
+      <div class="error_message"><%= @audit.errors[:start_date_validate][0] %></div>
     <% end %>
   <div class="form-group clearfix">
     <label class="col-sm-4 control-label">
@@ -191,6 +191,9 @@
     <div class="col-sm-7">
       <div class="form-group">
         <%= f.text_field :start_date, value: (@audit.start_date.strftime("%d/%m/%Y") if @audit.start_date.present?), :class => "datepicker", :style =>"width:150px;" %>
+        <% if @audit.errors[:start_date].present? %>
+          <div class="error_message"><%=  @audit.errors[:start_date][0]%></div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -201,7 +204,10 @@
     </label>
     <div class="col-sm-7">
       <div class="form-group">
-       <%= f.text_field :end_date, value: (@audit.end_date.strftime("%d/%m/%Y") if @audit.end_date.present?), :class => "datepicker1", :style =>"width:150px;" %>
+        <%= f.text_field :end_date, value: (@audit.end_date.strftime("%d/%m/%Y") if @audit.end_date.present?), :class => "datepicker1", :style =>"width:150px;" %>
+        <% if @audit.errors[:end_date].present? %>
+          <div class="error_message"><%=  @audit.errors[:end_date][0]%></div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -236,28 +242,7 @@
   </div>
 </div>
 
-<div class="col-lg-4 col-sm-6 col-xs-12" id="auditee-list">
-  <% if @audit.errors[:auditees].present? %>
-    <div class="error_message"><%= @audit.errors[:auditees][0]%></div>
-  <% end %>
-  <% @audit.audit_auditees.build if action_name == "new" %>
-  <div class="form-group clearfix auditee-dropdown">
-    <div class='auditee-rows'>
-      <% if (action_name != "new") %>
-        <% if @team.present? %>
-          <%= f.fields_for :audit_auditees do |builder| %>
-            <label class="col-sm-4 control-label">
-              <%= builder.label :auditees, t('audit.auditee') %>
-            </label>
-            <div class="col-sm-7">
-              <%= builder.select :user_id, options_for_select(@team.users.collect{|x| [x.user_name, x.id.to_i]}, :selected => @audit.auditor), {include_blank: 'Select Auditee' }, { :id => "auditees-users"} %>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-</div>
+
 
 
 <script>
@@ -295,12 +280,12 @@
     });
 
 
-    $('#add_auditee').click(function(){
-      var size = $('#auditee-list').find('.auditee-rows').size();
+    // $('#add_auditee').click(function(){
+    //   var size = $('#auditee-list').find('.auditee-rows').size();
 
-      // console.log(cd append)
-      $("#auditee-list").append(""+"<div class='form-group clearfix auditee-dropdown'>"+$(".auditee-dropdown").html().replace('audit[audit_auditees_attributes][0][user_id]','audit[audit_auditees_attributes]['+size+'][user_id]')+"</div>"+"");
-    });
+    //   // console.log(cd append)
+    //   $("#auditee-list").append(""+"<div class='form-group clearfix auditee-dropdown'>"+$(".auditee-dropdown").html().replace('audit[audit_auditees_attributes][0][user_id]','audit[audit_auditees_attributes]['+size+'][user_id]')+"</div>"+"");
+    // });
 
     $(".next-phase").click(function(){
       // new Messi('Planned for further phases.', {autoclose: '5000'});
