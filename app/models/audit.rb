@@ -124,7 +124,8 @@ def self.audit_operational_weightage(company,audit)
         weightage = total_score * operational_area.weightage
 
       # Compliance Percentage Calculation
-        maximum_rating = (v.count * operational_area.weightage).to_f
+        # maximum_rating = (v.count * operational_area.weightage).to_f
+        maximum_rating = (v.count * 4)
         maximum_score = (maximum_rating * operational_area.weightage).to_f
         over_all_maximum_score += maximum_score
         compliance_percentage = (weightage / maximum_score ) * 100
