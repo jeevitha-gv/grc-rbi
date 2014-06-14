@@ -13,7 +13,6 @@ class ArtifactAnswersController < ApplicationController
       params[:file].each do |attachment|
         @artifact_answer.attachments.create(attachment_file: attachment)
       end
-      
     end
     @attachments = @artifact_answer.attachments
   end
@@ -29,9 +28,8 @@ class ArtifactAnswersController < ApplicationController
   end
   
   def update_comment
-    @artifact_ans = ArtifactAnswer.find(params[:artifact_answer][:id])
-    @artifact_ans.update_attributes(comment_params)
     @artifact_answer = ArtifactAnswer.find(params[:artifact_answer][:id])
+    @artifact_answer.update_attributes(comment_params)
   end
   
   private

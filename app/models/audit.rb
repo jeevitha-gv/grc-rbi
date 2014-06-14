@@ -10,7 +10,7 @@ class Audit < ActiveRecord::Base
   belongs_to :audit_status
   belongs_to :audit_type
   has_many :nc_questions
-  has_one :answer, through: :nc_questions, :source => :answer
+  has_many :answers, through: :nc_questions
   has_many :nc_checklist_recommendations, through: :answers , source: :checklist_recommendations
   has_many :compliance_checklist_recommendations, through: :audit_compliances, source: :checklist_recommendations
   has_many :audit_compliances
@@ -21,6 +21,7 @@ class Audit < ActiveRecord::Base
   has_one :skipped_audit_reminder
   has_many :team_users, through: :team, :source => :users
   has_many :audit_operational_weightages
+  has_many :compliance_libraries
 
 
   accepts_nested_attributes_for :nc_questions
