@@ -1,11 +1,16 @@
 <% content_for :javascript_includes do %>
   <%= javascript_include_tag "/assets/views/checklist_recommendations.js" %>
-<% end %> 
+<% end %>
 <div class="clearfix"></div>
   <div class="content">
     <div class="container">
-      <div class="row"> 
-        <!-- Nav tabs --> 
+      <div class="row">
+        <!-- Nav tabs -->
+
+        <% if flash[:notice].present? %>
+        <%= flash[:notice]%>
+        <% end %>
+
         <div class="tab_main_title">Auditor Recommendation</div>
         <!-- Tab panes -->
         <div class="tab-content">
@@ -60,9 +65,9 @@
               </table>
             </div>
           </div>
-          
+
          <div class="clearfix"></div>
-                    
+
                     <div class="container">
                     <%= form_for(@checklist_recommendation) do |f| %>
                     <%= render "recommendation",f: f %>
@@ -70,14 +75,14 @@
 
                     <div class="clearfix"></div>
                     <div class="fright paddingtop">
-                      <a class="black_btn" href="">Back</a> 
+                      <a class="black_btn" href="">Back</a>
                       <!--<a class="grey_btn" href=""> Save Draft</a>-->
                       <%= f.submit "Save Draft" , :class => "grey_btn", :onclick => "return control_checklist();save_draft_checklist();"%>
-                      <%= f.submit "Overallscore" , :class => "orange_btn" , :onclick => "return control_checklist();"%></div>
+                      <%= f.submit "Overallscore" , :class => "orange_btn" , :onclick => "return control_checklist();",:disabled => (@audit.audit_status_id == 4)%></div>
                   </div>
-                </div>  
+                </div>
               </div>
-            </div>             
+            </div>
         <% end %>
 
 <script type="text/javascript">
@@ -89,43 +94,43 @@ $(".click_icon").click(function() {
 $(".click_icon").click(function(){
     $(".share_pop").show();
 });
-  
+
 $(document).ready(function(){
-  
+
   Top_postion = $(window).scrollTop();
-  
+
   $( ".user_login" ).mouseenter(function() {
     $(this).addClass("active");
-    $(".account_header_dropdown").slideDown(100);   
+    $(".account_header_dropdown").slideDown(100);
   })
   .mouseleave(function() {
     $(this).removeClass("active");
     $(".account_header_dropdown").hide();
   });
-  
+
   //for notification drop hide in outside click
-  onclick_icon = 0;   
+  onclick_icon = 0;
   $(".click_icon").mouseenter(function() {
-    onclick_icon = 0;   
+    onclick_icon = 0;
   })
   .mouseleave(function() {
-    onclick_icon = 1;   
+    onclick_icon = 1;
   });
-  
-  
+
+
   $("body").click(function(){
     if(onclick_icon){
       $(".share_pop").hide();
     }
   });
-  
 
-  
-  
+
+
+
 });
 /*$(window).scroll(function(){
   Top_postion = $(window).scrollTop();
-  
+
   if(Top_postion>10){
     $(".go_to_top").show();
   }else{
@@ -141,16 +146,16 @@ $(".go_to_top").click(function(){
 <link href="/assets/outer/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/outer/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/outer/jquery.ui.accordion.min.css" rel="stylesheet" type="text/css">
-<script src="/assets/outer/jquery-1.8.3.min.js" type="text/javascript"></script> 
-<script src="/assets/outer/jquery-ui-1.9.2.accordion.custom.min.js" type="text/javascript"></script> 
+<script src="/assets/outer/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="/assets/outer/jquery-ui-1.9.2.accordion.custom.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function() {
-  $( "#Accordion1" ).accordion(); 
+  $( "#Accordion1" ).accordion();
 });
 </script>
 <script>
-            
-              
+
+
           // ajax for submitting the score method
           function save_individual_score(id)
           {
@@ -168,5 +173,5 @@ $(function() {
                   data: {checklist_id :  id, checklist_type: 'AuditCompliance', recommendation: recommendation, reason: reason, closure_date: closure_date, recommendation_priority_id: recommendation_priority, recommendation_severity_id: recommendation_severity, recommendation_status_id: recommendation_status },
                   }).done(function() {
               });
-          } 
+          }
         </script>

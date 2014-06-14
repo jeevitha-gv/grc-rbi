@@ -10,7 +10,7 @@
       <!-- Hidden Value !-->
       <%= f.hidden_field :checklist_id, :name => "checklist_recommendation[#{audit_compliance.id}][checklist_id]", :id => "checklist_id_#{audit_compliance.id}", :value => audit_compliance.id%>
       <%= f.hidden_field :checklist_type, :name => "checklist_recommendation[#{audit_compliance.id}][checklist_type]", :id => "checklist_type_#{audit_compliance.id}", :value => "AuditCompliance"%>
-             
+
 
       <div class="row audit-title">
         <div class="col-lg-4">
@@ -66,7 +66,7 @@
               <div class="form-group clearfix">
                  <%= f.label :Severity, t(' checklist_recommendation.severity'), :class => "col-sm-5 control-label" %>
                             <!--   <label  class="col-sm-5"><b>Severity :</b> </label> -->
-                    <div class="col-sm-7">  
+                    <div class="col-sm-7">
                       <%= f.collection_select :recommendation_severity_id, Priority.all, :id, :name, checklist_recommendation.present? ? {selected: checklist_recommendation.recommendation_severity_id} : {}, {:name => "checklist_recommendation[#{audit_compliance.id}][recommendation_severity_id]", :id => "recommendation_severity_id_#{audit_compliance.id}", :class=> "control_severity"}%>
 
                 <span class="error_message" id="error_severity_<%= audit_compliance.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["severity"]%><span>
@@ -87,7 +87,7 @@
               <div class="form-group clearfix">
                 <%= f.label :Status, t(' checklist_recommendation.status'), :class => "col-sm-5 control-label" %>
                             <!--   <label  class="col-sm-5"><b>Status :</b> </label> -->
-                   <div class="col-sm-7"> 
+                   <div class="col-sm-7">
                   <%= f.collection_select :recommendation_status_id, RecommendationStatus.all, :id, :name, checklist_recommendation.present? ? {selected: checklist_recommendation.recommendation_status_id} : {},{ :name => "checklist_recommendation[#{audit_compliance.id}][recommendation_status_id]", :id => "recommendation_status_id_#{audit_compliance.id}", :class=> "control_status"} %>
                    </div>
                       <span class="error_message" id="error_status_<%= audit_compliance.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["status"]%><span>
@@ -111,7 +111,7 @@
               <div class="form-group clearfix">
                 <div class="col-sm-12 ">
                    <!-- a class="black_btn fright" href=""> Score</a-->
-                  <%=button_tag "Score", :class => "black_btn fright", type: 'button', onclick: "save_individual_score(#{audit_compliance.id})"%>
+                  <%=button_tag "Score", :class => "black_btn fright", type: 'button', onclick: "save_individual_score(#{audit_compliance.id})",:disabled => (@checklist_recommendation.recommendation_status_id == 3)%>
                   <%#= f.submit "Score" , :class => "black_btn fright"%>
                 </div>
 
