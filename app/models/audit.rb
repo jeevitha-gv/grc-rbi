@@ -67,7 +67,7 @@ class Audit < ActiveRecord::Base
   # end
 
   def answered_compliances
-    self.audit_compliances.where(is_answered: true).map(&:compliance_library)
+    self.audit_compliances.where(is_answered: true)
   end
 
   def auditee_response_compliances
