@@ -1,15 +1,14 @@
 class NcQuestionsController < ApplicationController
-	before_filter :current_audit, :only => [:new, :library_questions]
 
 	def index
 		@nc_questions = NcQuestion.all
 	end
 
 	def new
-			@audit = Audit.find(params[:audit_id])
-			@nc_question = NcQuestion.new
-			@audit.nc_questions.build unless @audit.nc_questions.present?
-      @audit.nc_questions.first.question_options.build unless @audit.nc_questions.first.question_options.present?
+		@audit = current_audit
+		@nc_question = NcQuestion.new
+		@audit.nc_questions.build unless @audit.nc_questions.present?
+    @audit.nc_questions.first.question_options.build unless @audit.nc_questions.first.question_options.present?
     # rescue
     #   @errors = "Invalid file format"
     #   redirect_to audits_path
@@ -90,9 +89,5 @@ class NcQuestionsController < ApplicationController
   private
 		def question_params
 			params.require(:audit).permit(nc_questions_attributes: [:question, :question_type_id, :priority_id, :target_date, :does_require_document, :nc_library, :auditee_id, :id, :_destroy, question_options_attributes: [:value, :id, :_destroy]])
-		end
-
-		def current_audit
-			# @audit = Audit.find(params[:audit_id])
 		end
 end

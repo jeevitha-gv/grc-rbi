@@ -1,17 +1,19 @@
-
 class ChecklistRecommendationsController < ApplicationController
+	before_filter :authorize_auditees, :only => [:auditee_response, :auditee_response_create]
+	before_filter :authorize_auditor, :only => [:new, :create, :update_individual_score, :audit_observation, :audit_observation_create]
 
-require 'date'
- #new for checklist recommendation
- def new
-		@audit = Audit.find_by_id(params[:id]) # need to change with permission
+	require 'date'
+
+ 	#new for checklist recommendation
+ 	def new
+		@audit = current_audit # need to change with permission
 		@answered_compliances = @audit.answered_compliances
 		@checklist_recommendation = ChecklistRecommendation.new
 		@score = Score.all
 		@answered_ncquestions = @audit.answered_ncquestions
- end
+ 	end
 
- #To create checklist recommendation for auditcompliance
+ 	#To create checklist recommendation for auditcompliance
 	def create
 		@checklist_recommendation = ChecklistRecommendation.new(checklist_params)
 		checklist_params = @checklist_recommendation.audit_checklist(params)
@@ -43,13 +45,13 @@ require 'date'
 
 	#To show auditee response
 	def auditee_response
-		@audit = Audit.where('id= ?',params[:id]).first
+		@audit = current_audit
 		@checklist_recommendations = @audit.auditee_response_compliances
 		@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
 	end
 
 	def audit_observation
-		@audit = Audit.where('id= ?',params[:id]).first
+		@audit = current_audit
 		@checklist_recommendations = @audit.audit_observation_compliances
 	end
 
@@ -95,6 +97,18 @@ end
 	private
 	  def checklist_params
 	    params.require(:checklist_recommendation).permit(:checklist_id, :checklist_type, :auditee_id, :recommendation, :reason, :corrective, :preventive, :closure_date, :recommendation_priority_id, :recommendation_severity_id, :response_priority_id, :response_severity_id, :recommendation_status_id, :response_status_id, :dependent_recommendation, :blocking_recommendation, :observation, :recommendation_completed, :is_implemented,:is_checklist_new)
+	  end
+
+	  def authorize_auditor
+	  	unless current_audit.auditor == current_user.id
+	  		redirect_to audits_path
+	  	end
+	  end
+
+	  def authorize_auditees
+	  	unless current_audit.auditees.map(&:id).include?(current_user.id)
+	  		redirect_to audits_path
+	  	end
 	  end
 end
 

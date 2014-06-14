@@ -9,7 +9,7 @@ class AuditCompliancesController < ApplicationController
   def edit
     @audit = Audit.find(params[:audit_id])
     @audit_compliances = @audit.audit_compliances
-  end  
+  end
 
   def response_checklist
     @audit = Audit.find(params[:audit_id])
@@ -30,13 +30,13 @@ class AuditCompliancesController < ApplicationController
       end
     end
   end
-  
+
   def submit
     audit = Audit.find(params[:audit_id])
     audit.audit_compliances.update_all(is_answered: true)
     redirect_to "/"
   end
-  
+
     private
     def compliance_params
       params.require(:checklist)

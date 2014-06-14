@@ -268,43 +268,59 @@ $(".go_to_top").click(function(){
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		if ( dataItem.compliance_type == "Compliance")
 		{
-			window.location.href = "/audit_compliances?audit_id="+ dataItem.id
+			deleteCookie()
+			setCookie("audit_id", dataItem.id)
+			window.location.href = "/audit_compliances"
 		}
 		else
 		{
-			window.location.href = "/nc_questions/new?audit_id="+ dataItem.id
+			deleteCookie()
+			setCookie("audit_id", dataItem.id)
+			window.location.href = "/nc_questions/new"
 		}
 	}
 
 	function check_file(e)
 	{
+		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		window.location.href = "/checklist_recommendations/new?id="+ dataItem.id
+		setCookie("audit_id", dataItem.id)
+		window.location.href = "/checklist_recommendations/new"
 	}
 
 	function act_file(e)
 	{
+		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		window.location.href = "/checklist_recommendations/auditee_response?id="+ dataItem.id
+		setCookie("audit_id", dataItem.id)
+		window.location.href = "/checklist_recommendations/auditee_response"
 	}
 
 	function publish_file(e)
 	{
+		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		window.location.href = "/checklist_recommendations/audit_observation?id="+ dataItem.id
+		setCookie("audit_id", dataItem.id)
+		window.location.href = "/checklist_recommendations/audit_observation"
 	}
 
 	function edit_file(e)
 	{
+		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		setCookie("audit_id", dataItem.id)
 		window.location.href = "/audits/"+ dataItem.id + "/edit"
 	}
 
 	function pdf_file(e)
 	{
+		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		setCookie("audit_id", dataItem.id)
 		window.location.href = "/audits/"+ dataItem.id +".pdf"
 	}
+
+
 
 
 
