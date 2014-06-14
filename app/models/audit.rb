@@ -94,6 +94,10 @@ class Audit < ActiveRecord::Base
     self.nc_questions.where("target_date <= ?" , DateTime.now).select{ |x| x.answers.blank?}
   end
 
+  def answered_ncquestions
+    self.nc_questions
+  end
+
 
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)

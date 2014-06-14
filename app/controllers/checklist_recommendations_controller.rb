@@ -8,6 +8,7 @@ require 'date'
 		@answered_compliances = @audit.answered_compliances
 		@checklist_recommendation = ChecklistRecommendation.new
 		@score = Score.all
+		@answered_ncquestions = @audit.answered_ncquestions
  end
 
  #To create checklist recommendation for auditcompliance
