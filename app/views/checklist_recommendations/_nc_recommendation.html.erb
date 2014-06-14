@@ -84,7 +84,7 @@
 
               <div class="col-lg-4">
                 <div class="form-group clearfix">
-                  <%= f.label :'Closure Date', t(' checklist_recommendation.closure_date'), :class => "col-sm-5 control-label" %>
+                  <%= f.label :Closure Date, t(' checklist_recommendation.closure_date'), :class => "col-sm-5 control-label" %>
                              <!--  <label class="col-sm-5"><b>Target Date :</b> </label> -->
                     <div class="col-sm-7">
                       <%= f.text_field :closure_date, :class => "datepicker2 control_closure_date", :style =>"width:150px;", :name => "checklist_recommendation[#{audit_compliance.id}][closure_date]", :id => "closure_date_#{audit_compliance.id}", :value => "#{checklist_recommendation.closure_date.to_date.strftime("%d/%m/%Y") if checklist_recommendation.present? rescue ""}", :readonly => 'readonly' %>
