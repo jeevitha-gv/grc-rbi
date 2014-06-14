@@ -12,9 +12,10 @@
   $('#team_id').attr('name', 'audit[team_id]');
   $('.auditee-rows').hide();
 <% elsif params[:team_id].present? %>
-  <%# binding.pry %>
-  <% select = select_tag(:user_id, options_for_select(@team.users.collect{|x| [x.user_name, x.id]}), {:include_blank => 'Please Select', :id=>"auditees-users"}) %>
-  $('.auditee-rows').replaceWith("<div class='auditee-rows'><label class='col-sm-4 control-label'><label for='audit_audit_auditees_attributes_0_auditees'>Auditee</label></label><div class='col-sm-7'>"+"<%= escape_javascript(select) %>"+"</div></div>");
+  <% select = select_tag(:user_id, options_for_select(@team.users.collect{|x| [x.user_name, x.id]}), {:include_blank => 'Please Select', :id=>"auditees-users" }) %>
+  $('#auditee-list').html("<div class='form-group clearfix auditee-dropdown'><div class='auditee-rows'><label class='col-sm-4 control-label'><label for='audit_audit_auditees_attributes_0_auditees'>Auditee</label></label><div class='col-sm-7'>"+"<%= escape_javascript(select) %>"+"</div></div></div>");
   $('#auditees-users').attr('name', 'audit[audit_auditees_attributes][0][user_id]');
   $('#auditee-button').show();
 <% end %>
+
+
