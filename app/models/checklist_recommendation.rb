@@ -53,4 +53,20 @@ class ChecklistRecommendation < ActiveRecord::Base
 		end
 		return checklist_params
 	end
+
+	after_create :notify_auditee_about_recommendation
+  after_update :notify_auditor_about_response
+
+  def notify_auditee_about_recommendation
+    UniversalMailer.notify_auditee_about_recommendations(self).deliver
+  end
+
+  def notify_auditor_about_response
+  	if self.preventive? && self.corrective? && self.response_status_id?
+  		UniversalMailer.notify_auditor_about_responses(self).deliver
+  	end
+  end
+
+
+
 end
