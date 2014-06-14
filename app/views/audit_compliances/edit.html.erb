@@ -1,0 +1,337 @@
+<script>
+var audit_id = "<%= params[:audit_id]%>"
+</script>
+<div class="clearfix"></div>
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="fright">
+        <div class="form-group audit_search">
+          <%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value" %>
+          <%= submit_tag "Search", name: nil, :class=>"btn btn-default", :id => "search-button" %>
+        </div>
+      </div>
+      <!-- Nav tabs -->
+     <h4>Checklist for Compliance Audit</h4>
+      <div id="example" class="k-content">
+        <div class="panel-container">
+          <div id="strip">
+
+            <div class="row panel-block">
+              <div class="col-md-12">
+                <div class="box-wrapper">
+                  <div id="grid"></div>
+                </div>
+              </div>
+
+              <div class="fright"><br>
+            <br>
+            <a class="black_btn" href="">Back</a> <a href="javascript:save_request()" class="orange_btn">Ask</a></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+ $(window).load(function(){
+	var $container = $('#grid_items');
+	// initialize
+	$container.masonry({
+	  columnWidth: 292,
+	  itemSelector: '.item',
+	  isFitWidth: true
+	});
+
+
+	$(".block_banner img").each(function(index, element) {
+        var screenImage = $(this);
+
+		// Create new offscreen image to test
+		var theImage = new Image();
+		theImage.src = screenImage.attr("src");
+
+		var imageHeight = theImage.height;
+
+		$(this).css("max-height",imageHeight);
+		$(this).css("min-height",imageHeight);
+    });
+});
+
+$(".click_icon").click(function() {
+			$(".share_pop").show();
+});
+
+$(".click_icon").click(function(){
+		$(".share_pop").show();
+});
+
+$(document).ready(function(){
+
+	Top_postion = $(window).scrollTop();
+
+	$( ".user_login" ).mouseenter(function() {
+		$(this).addClass("active");
+		$(".account_header_dropdown").slideDown(100);
+	})
+	.mouseleave(function() {
+		$(this).removeClass("active");
+		$(".account_header_dropdown").hide();
+	});
+
+	//for notification drop hide in outside click
+	onclick_icon = 0;
+	$(".click_icon").mouseenter(function() {
+		onclick_icon = 0;
+	})
+	.mouseleave(function() {
+		onclick_icon = 1;
+	});
+
+
+	$("body").click(function(){
+		if(onclick_icon){
+			$(".share_pop").hide();
+		}
+	});
+
+
+  $("#search-value").on('keyup', function(e) {
+    if (e.which == 13) {
+      e.preventDefault();
+      search_result()
+    }
+  });
+
+  $("#search-button").click(function(){
+    search_result()
+  });
+  function search_result()
+  {
+    var val = $('#search-value').val();
+    $("#grid").data("kendoGrid").dataSource.filter({
+      logic  : "or",
+      filters: [
+        {
+          field: "name",
+          operator: "contains",
+          value   : val
+        },
+        {
+          field: "artifacts",
+          operator: "contains",
+          value   : val
+        },
+        {
+          field: "priority",
+          operator: "contains",
+          value   : val
+        },
+        {
+          field: "auditee",
+          operator: "contains",
+          value   : val
+        },
+        {
+          field: "response",
+          operator: "contains",
+          value   : val
+        },
+      ]
+    });
+  }
+
+});
+</script>
+
+<script type="text/javascript">
+			$(document).ready(function() {
+				// Fancybox
+				$(".fancybox").fancybox();
+
+
+				// dataSource for Kendo grid
+
+				dataSource = new kendo.data.DataSource({
+					transport: {
+						read: {
+							url: '/audit_compliances/compliance_checklist',
+							dataType: 'json'
+						}
+					},
+					schema: {
+				        errors: function(response) {
+				         return response.errors;
+				      	},
+						data: "data",
+						model: {
+							id: "id",
+							fields: {
+								id: { type: "string" },
+								name: { type: "string" },
+								artifacts: { type: "string" },
+								priority: { type: "string" },
+								auditee: {type: "string"},
+								response: {type: "string"},
+								target_date: {type: "date"}
+							}
+						}
+					}
+				});
+
+				// Kendo Grid
+				$("#grid").kendoGrid({
+					dataSource: dataSource,
+				    dataBound: function(){
+            $('.multiselect').kendoMultiSelect({
+                animation: {
+                 close: {
+                   effects: "zoom:out",
+                   duration: 300
+                 }
+                },
+                change: change_artifact
+              });
+						$('.datepicker').kendoDatePicker({change: onchange, format: "dd/MM/yyyy"})
+						$('.check_row').on('click', function (e) {
+							var $cb = $(this);
+							var $row = $cb.parents('tr').first();
+							if ($cb.is(':checked')) {
+							$row.addClass('k-state-selected');
+							} else {
+							$row.removeClass('k-state-selected');
+							}
+              row_id = $(this).attr("id").replace("check_",'')
+              row_data = dataSource.get(row_id)
+              if(row_data.artifacts.indexOf(",") != -1)
+              {
+              row_data.artifacts = row_data.artifacts.split(",")[0]
+              }
+              if(row_data.priority.indexOf(",") != -1)
+              {
+              row_data.priority = row_data.priority.split(",")[0]
+              }
+              if(row_data.auditee.indexOf(",") != -1)
+              {
+              row_data.auditee = row_data.auditee.split(",")[0]
+              }
+						});
+					},
+					height: 'auto',
+					scrollable: true,
+					sortable: true,
+					filterable: true,
+					pageable: {
+					    input: true,
+					    numeric: false
+					},
+					columns: [
+						{ field: "check_row", title: " ", width: 30, template: "<input class='check_row' type='checkbox' id='check_#= id#'/>" },
+						{ field: "name", title: "Domain"},
+						{ field: "artifacts", title: "Checklist" , template: kendo.template( jQuery("#myTemplate").html())},
+						{ field: "priority", title: "Priority" , template: kendo.template( jQuery("#priority").html())},
+						{ field: "auditee", title: "Owner", template: kendo.template( jQuery("#auditee").html())},
+						{ field: "target_date", title: "Target Date", template: kendo.template( jQuery("#datepicker").html())},
+					],
+					editable: "inline"
+				});
+
+        function onchange(e)
+        {
+          row_id = e.sender.dateView._dateViewID.replace("_dateview",'')
+          row_data = dataSource.get(row_id)
+          row_data.target_date = e.sender._oldText
+        }
+
+			});
+
+			// Edit Popup
+			$(window).load(function(){
+				$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");
+			});
+
+		</script>
+ <script type="text/x-kendo-template" id="myTemplate">
+ <div class='checklist_select_big'>
+ <select id="artifact_#= id#" class="multiselect" multiple="multiple">
+ # for (var i = 1; i < artifacts.split(",").length; i=i+2) { #
+ <option value="#= artifacts.split(",")[i-1]#">#= artifacts.split(",")[i]#</option>
+ #}#
+ </select>
+ </div>
+</script>
+
+<script type="text/x-kendo-template" id="priority">
+ <button value="#= priority.split(",")[0]#" onclick="javascript:change_priority(this, #= id#)"  class= "high_btn priority_btn" >#= priority.split(",")[1]#</button>
+ <button value="#= priority.split(",")[2]#" onclick="javascript:change_priority(this, #= id#)" class= "medium_btn backspace active priority_btn">#= priority.split(",")[3]#</button>
+ <button value="#= priority.split(",")[4]#" onclick="javascript:change_priority(this, #= id#)" class= "low_btn backspace priority_btn">#= priority.split(",")[5]#</button>
+</script>
+
+ <script type="text/x-kendo-template" id="auditee">
+ <div class='checklist_select_big'>
+ <select id="auditee_#= id#" onchange="javascript:change_auditee(this)">
+ # for (var i = 1; i < auditee.split(",").length; i=i+2) { #
+ <option value="#= auditee.split(",")[i-1]#">#= auditee.split(",")[i]#</option>
+ #}#
+ </select>
+ </div>
+</script>
+
+<script type="text/x-kendo-template" id="datepicker">
+  <input class="datepicker" id="#= id#"/>
+</script>
+
+<script>
+function change_artifact(e)
+{
+row_id = e.sender._tagID.replace("artifact_",'').replace("_tag_active",'')
+row_data = dataSource.get(row_id)
+row_data.artifacts = e.sender._old
+}
+function change_auditee(e)
+{
+row_id = $(e).attr("id").replace("auditee_",'')
+row_data = dataSource.get(row_id)
+row_data.auditee = $(e).val()
+}
+
+function change_priority(e, id)
+{
+  $(e).parent().find(".priority_btn").removeClass('active')
+  $(e).addClass('active')
+  row_data = dataSource.get(id)
+  row_data.priority = $(e).val()
+}
+
+
+function save_request()
+{
+if($('.check_row:checked').length>0)
+{
+var data = []
+  $.each($('.check_row:checked'), function( index, value ) {
+  var row_id = $(value).attr("id").replace("check_",'')
+  var row_data = dataSource.get(row_id)
+  var row = {compliance_library_id: row_id, artifact_id: row_data.artifacts, responsibility_id: row_data.auditee, target_date: row_data.target_date, priority_id: row_data.priority}
+  data.push(row)
+  });
+  $.ajax({
+    url: "/audit_compliances",
+    type: "POST",
+    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
+    data: {"checklist" : data, "audit_id": audit_id},
+    }).done(function() {
+  });
+}
+else
+{
+new Messi("<%= MESSAGES["checklist"]["create"]["failure"] %>", {title: 'Error', titleClass: 'anim error', autoclose: 1500});
+}
+}
+
+
+
+</script>

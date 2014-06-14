@@ -5,9 +5,10 @@ require 'date'
  #new for checklist recommendation
  def new
 		@audit = Audit.find_by_id(params[:id]) # need to change with permission
-		@controls = @audit.answered_compliances
+		@answered_compliances = @audit.answered_compliances
 		@checklist_recommendation = ChecklistRecommendation.new
 		@score = Score.all
+		@answered_ncquestions = @audit.answered_ncquestions
  end
 
  #To create checklist recommendation for auditcompliance

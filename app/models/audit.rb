@@ -21,6 +21,7 @@ class Audit < ActiveRecord::Base
   has_one :skipped_audit_reminder
   has_many :team_users, through: :team, :source => :users
   has_many :audit_operational_weightages
+  has_many :compliance_libraries
 
 
   accepts_nested_attributes_for :nc_questions
@@ -69,7 +70,7 @@ class Audit < ActiveRecord::Base
   # end
 
   def answered_compliances
-    self.audit_compliances.where(is_answered: true).map(&:compliance_library)
+    self.audit_compliances.where(is_answered: true)
   end
 
   def auditee_response_compliances
@@ -93,6 +94,10 @@ class Audit < ActiveRecord::Base
   # Getting all the non compliance for sending reminders
   def unanswered_nc_questions
     self.nc_questions.where("target_date <= ?" , DateTime.now).select{ |x| x.answers.blank?}
+  end
+
+  def answered_ncquestions
+    self.nc_questions
   end
 
 
@@ -126,7 +131,8 @@ def self.audit_operational_weightage(company,audit)
         weightage = total_score * operational_area.weightage
 
       # Compliance Percentage Calculation
-        maximum_rating = (v.count * operational_area.weightage).to_f
+        # maximum_rating = (v.count * operational_area.weightage).to_f
+        maximum_rating = (v.count * 4)
         maximum_score = (maximum_rating * operational_area.weightage).to_f
         over_all_maximum_score += maximum_score
         compliance_percentage = (weightage / maximum_score ) * 100

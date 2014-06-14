@@ -44,8 +44,8 @@
                     <span><%= @audit.compliance_type %></span></td>
                 </tr>
                 <tr>
-                  <td><label><%= @audit.compliance_type == 'NonCompliance' ? "Topic" : "Standard" %> :</label>
-                    <span><%= @audit.standard_id %></span></td>
+                  <td><label>Topic :</label>
+                    <span><%= standard_name(@audit) %></span></td>
                   <td></td>
                   <td></td>
                 </tr>
@@ -56,7 +56,7 @@
             <%= form_for :answer,  :url => "/answers", :method => :post do |f|%>
               <div id="Accordion1">
                 <% @audit.nc_questions.each do |question| %>
-                  <h3><a href="#"><%= question.question %></a> <span class="fright pending_msg"><%= question.answer.blank? ? "Pending" : "Completed" %></span></h3>
+                  <h3><a href="#"><%= question.question %></a> <span class="fright <%= question.answer.blank? ? "pending_msg" : "success_msg" %>"><%= question.answer.blank? ? "Pending" : "Completed" %></span></h3>
                     <div>
                       <div class="row audit-title">
                         <% test = question.answer || question.build_answer %>

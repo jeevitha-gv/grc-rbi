@@ -170,6 +170,10 @@ class AuditsController < ApplicationController
     Audit.audit_operational_weightage(current_company,audit)
     redirect_to particular_dashboard_audits_path
   end
+  
+  def audit_dashboard
+    @audit = Audit.find_by_id(params[:id])
+  end
 
   private
     def audit_params
