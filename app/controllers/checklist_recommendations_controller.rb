@@ -115,6 +115,11 @@ end
    		render layout: false
 	end
 
+	def download_artifacts
+		attachment = Attachment.find(params[:id])
+		send_file(Rails.public_path.to_s + attachment.attachment_file_url)
+	end
+
 
 	private
 	  def checklist_params
