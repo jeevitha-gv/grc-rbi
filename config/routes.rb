@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get 'audit_observation'
       post 'update_individual_score'
       get 'list_artifacts_and_comments'
+      get 'download_artifacts'
     end
   end
 

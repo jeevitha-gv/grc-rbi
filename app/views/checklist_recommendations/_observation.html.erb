@@ -6,10 +6,17 @@
                 <div class="row audit-title">
                 <%= form_tag '/checklist_recommendations/audit_observation_create' , :remote=>true , multipart: true do%>
                   <div class="col-lg-4">
+
+                    
                     <div class="form-group clearfix">
+                      <% @artifact_answers = checklist.artifact_answers.first%>
                       <label class="col-sm-5"><b>Artifact :</b> </label>
-                      <div class="col-sm-7"><a class="blue_link" href="#myModal" data-toggle="modal" >Information Security Policies</a> </div>
+                      <div class="col-sm-7"><a class="blue_link" href=""><%= @artifact_answers.artifact_display_name if @artifact_answers%></a> </div>
+                        <% if checklist.artifact_answers.count > 1 %>
+                          <div class="col-sm-12"><a class="blue_link pull-right" href = "javascript:artifact_modal(<%= checklist.id%>);" >more</a></div>
+                        <%end%>
                     </div>
+
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Recommendation :</b> </label>
                       <div class="col-sm-7"> <%= checklist_recommendation.recommendation%></div>
@@ -22,7 +29,7 @@
                   <div class="col-lg-4">
                     <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Comment :</b> </label>
-                      <div class="col-sm-7"> Comment by Auditee</div>
+                      <div class="col-sm-7"><%= @artifact_answers.comment_comment if @artifact_answers%> </div>
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Reason :</b> </label>
@@ -62,7 +69,7 @@
                     </div>
                     <div class="form-group clearfix">
                       <label class="col-sm-5 control-label">Status</label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.response_status.name%>  </div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.response_status_name %>  </div>
                     </div>
                     <div class="form-group clearfix">
                       <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#attachment').click();" >Attach Document</a>
@@ -76,7 +83,7 @@
                     </div>
                     <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Priority :</b></label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.response_priority.name%>  </div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.response_priority_name %>  </div>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -87,10 +94,6 @@
                      <div class="form-group clearfix">
                       <label class="col-sm-5">Dependent :</label>
                       <div class="col-sm-7"> <%= checklist_recommendation.dependent_recommendation%> </div>
-                    </div>
-                     <div class="form-group clearfix">
-                      <label class="col-sm-5"><b>Priority :</b></label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.response_priority.name%>  </div>
                     </div>
                   </div>
 
@@ -135,6 +138,20 @@
               <% end %>
               <% end %>
             </div>
+<!-- Model for more Artifact  and comments -->
+<script>
+function artifact_modal(id)
+{
+  $('#artifact_modal').modal({
+    remote: "/checklist_recommendations/list_artifacts_and_comments?id=" + id
+  });
+}
+</script>
 
-
-
+<div class="modal fade" id="artifact_modal">
+  <div class="modal-dialog modal-dialog_large">
+    <div class="modal-content">
+      
+    </div>
+  </div>
+</div>

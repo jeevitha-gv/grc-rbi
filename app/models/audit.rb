@@ -78,7 +78,7 @@ class Audit < ActiveRecord::Base
   end
 
   def audit_observation_compliances
-    self.audit_compliances.where(is_answered: true).collect{|x| x.checklist_recommendations.where('response_completed= ?',true)}.flatten
+    self.audit_compliances.where(is_answered: true)
   end
 
   # Getting all the unanswered Audit compliance for sending reminders
