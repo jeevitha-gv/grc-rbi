@@ -58,12 +58,21 @@ class ChecklistRecommendation < ActiveRecord::Base
   after_update :notify_auditor_about_response
 
   def notify_auditee_about_recommendation
-    UniversalMailer.notify_auditee_about_recommendations(self).deliver
+  	if self.checklist.audit.compliance_type == 'Compliance'
+    	UniversalMailer.notify_auditee_about_recommendations(self).deliver
+    else
+    	UniversalMailer.notify_auditee_about_nc_recommendations(self).deliver
+    end
+
   end
 
   def notify_auditor_about_response
   	if self.preventive? && self.corrective? && self.response_status_id?
-  		UniversalMailer.notify_auditor_about_responses(self).deliver
+  		if self.checklist.audit.compliance_type == 'Compliance'
+  			UniversalMailer.notify_auditor_about_responses(self).deliver
+  		else
+  			UniversalMailer.notify_auditor_about_nc_responses(self).deliver
+  		end
   	end
   end
 
