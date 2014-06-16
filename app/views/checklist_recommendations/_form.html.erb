@@ -1,4 +1,4 @@
-<% content_for :javascript_includes do %>
+ <% content_for :javascript_includes do %>
   <%= javascript_include_tag "/assets/views/checklist_recommendations.js" %>
 <% end %>
 <div class="clearfix"></div>
@@ -22,7 +22,7 @@
                 </tr>
                 <tr>
                   <td><label>Client : </label>
-                   <span><%= @audit.client.name if @audit.client.name.present? %></span></td>
+                   <span><%= @audit.client.name if @audit.client.present? %></span></td>
                   <td><label>Title : </label>
                    <span><%= @audit.title.truncate(50) %></span></td>
                   <td><label>Scope : </label>
@@ -86,7 +86,7 @@
                         <a class="black_btn" href="">Back</a>
                         <!--<a class="grey_btn" href=""> Save Draft</a>-->
                         <%= f.submit "Save Draft", :class => "grey_btn" , :onclick => "return control_checklist();save_draft_checklist();"%>
-                        <%= f.submit "Submit Recommendations" , :class => "orange_btn", :disabled => (@audit.audit_status_id == 4)%>
+                        <%= f.submit "Submit Recommendations" , :class => "orange_btn", :onclick => "return control_checklist();save_draft_checklist();", :disabled => (@audit.audit_status_id == 4)%>
                       </div>
                     <% end %>
                     </div>
