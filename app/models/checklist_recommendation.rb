@@ -30,17 +30,17 @@ class ChecklistRecommendation < ActiveRecord::Base
 	validates :response_status_id, presence: true, :if => Proc.new{|f| f.recommendation_completed == true && f.is_checklist_new != true}
 	validates :response_priority_id, presence: true, :if => Proc.new{|f| f.recommendation_completed == true && f.is_checklist_new != true}
 	validates :response_severity_id, presence: true, :if => Proc.new{|f| f.recommendation_completed == true && f.is_checklist_new != true}
-	validates :observation, presence: true, :if => Proc.new{|f| f.response_completed == true}
-	validates :is_implemented, presence: true, :if => Proc.new{|f| f.response_completed == true}
+	validates :observation, presence: true, :if => Proc.new{|f| f.recommendation_completed == true && f.response_completed == true}
+	validates :is_implemented, presence: true, :if => Proc.new{|f| f.recommendation_completed == true &&  f.response_completed == true}
 	validates :recommendation_status_id, presence: true
 
 
 	delegate :name, :to => :recommendation_priority, prefix: true, allow_nil: true
 	delegate :name, :to => :recommendation_priority, prefix: true, allow_nil: true
-  	delegate :name, :to => :recommendation_status, prefix: true, allow_nil: true
-  	delegate :name, :to => :response_status, prefix: true, allow_nil: :true
-  	delegate :name, to: :response_priority, prefix: true, allow_nil: :true
-  	delegate :comment, to: :remark, prefix: true, allow_nil: :true
+  delegate :name, :to => :recommendation_status, prefix: true, allow_nil: true
+  delegate :name, :to => :response_status, prefix: true, allow_nil: :true
+  delegate :name, to: :response_priority, prefix: true, allow_nil: :true
+  delegate :comment, to: :remark, prefix: true, allow_nil: :true
 
 
 

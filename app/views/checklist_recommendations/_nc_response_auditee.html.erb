@@ -1,14 +1,11 @@
-Test Page
-
 <div id="Accordion1">
- <% @checklist_recommendations.each do |checklist| %>
-              <% control = checklist_control(checklist)%>
-              <% checklist_recommendation = audit_checklist(control, @audit.id).flatten.first%>
-            <!--   <h3><a href="#"><%= control.name%></a> <span class="fright pending_msg">Pending</span></h3> -->
-                 <h3><a href="#"><%= control.name%></a> <span class="fright pending_msg" id= "response_status"><%= checklist_recommendation.response_status == 5 ? 'Completed' : 'Pending'%></span></h3>
-
-              <div>
-                <div class="row audit-title">
+  <% @checklist_recommendations.each do |checklist| %>
+    <% control = checklist_control(checklist)%>
+    <% checklist_recommendation = audit_checklist(control, @audit.id).flatten.first%>
+    <!--   <h3><a href="#"><%= control.name%></a> <span class="fright pending_msg">Pending</span></h3> -->
+    <h3><a href="#"><%= control.name%></a> <span class="fright pending_msg" id= "response_status"><%= checklist_recommendation.response_status == 5 ? 'Completed' : 'Pending'%></span></h3>
+    <div>
+      <div class="row audit-title">
 
                 <%= form_tag '/checklist_recommendations/auditee_response_create',:remote=>true, multipart: true do %>
                   <div class="col-lg-4">

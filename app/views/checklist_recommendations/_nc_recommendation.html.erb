@@ -41,12 +41,14 @@
           <div class="form-group clearfix">
             <%= f.label :Answer, t(' checklist_recommendation.comment'), :class => "col-sm-5 control-label" %>
             <div class="col-sm-7">
-              <% if answered_ncquestion.question_type_id == 1 %>
-                <%= answered_ncquestion.answer.value == 0 ? 'Yes' : 'No' %>
-              <% elsif answered_ncquestion.question_type_id == 2 %>
-                <%= answered_ncquestion.answer.detailed_value %>
-              <% else %>
-                <%= QuestionOption.where(:id => answered_ncquestion.answer.value).last.value %>
+              <% if answered_ncquestion.answer.present? %>
+                <% if answered_ncquestion.question_type_id == 1 %>
+                  <%= answered_ncquestion.answer.value == 0 ? 'Yes' : 'No' %>
+                <% elsif answered_ncquestion.question_type_id == 2 %>
+                  <%= answered_ncquestion.answer.detailed_value %>
+                <% else %>
+                  <%= QuestionOption.where(:id => answered_ncquestion.answer.value).last.value %>
+                <% end %>
               <% end %>
             </div>
           </div>

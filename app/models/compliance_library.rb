@@ -24,6 +24,10 @@ class ComplianceLibrary < ActiveRecord::Base
     else raise "Unknown file type: #{file.original_filename}"
     end
   end
+  
+  def artifact_lists(current_company_id)
+    self.artifacts.where("company_id=? OR company_id is NULL", current_company_id)
+  end
 
  private
  def child_compliance

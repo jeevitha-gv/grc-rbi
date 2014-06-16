@@ -16,7 +16,7 @@
             <li><a href="/user/edit" class="<%= add_active_class(params) == 'User' ? 'active' : '' %>">
               <div class="overview-icon"></div>
               Over view</a></li>
-            <li><a href="/audits/new" class="<%= add_active_class(params) == 'Audit' ? 'active' : '' %>">
+            <li><a href="/audits" class="<%= add_active_class(params) == 'Audit' ? 'active' : '' %>">
               <div class="audit-icon"></div>
               Audit</a></li>
             <li class="next-phase"><a href="#" class="<%= add_active_class(params) == 'Risk' ? 'active' : '' %>">
@@ -58,22 +58,22 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <li class="next-phase"><a href="#" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
+        <li><a href="/audits/audit_dashboard" class="<%= request.fullpath.include?("audits/audit_dashboard") == true ? 'active' : '' %>">
           <div class="dash-icon"></div>
           Dashboard</a></li>
-        <li class="next-phase"><a href="#" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
+        <li><a href="/dashboard/calender" class="<%= request.fullpath.include?("dashboard/calender") == true ? 'active' : '' %>">
           <div class="calender-icon"></div>
           Calender</a></li>
-        <li><a href="/audits/new" class="<%= (request.fullpath.include?("/audits/new") && action_name=="new") == true ? 'active' : '' %>">
+        <li><a href="/audits/new" class="<%= (request.fullpath.include?("audits/new") && action_name=="new") == true ? 'active' : '' %>">
           <div class="plan-icon"></div>
           Plan</a></li>
         <li><a href="/audits" class="<%= (request.fullpath.include?("audits") && action_name=="index") == true ? 'active' : '' %>">
           <div class="list-icon"></div>
           List</a></li>
-        <li><a href="<%= current_audit.compliance_type == "Compliance" ? "/nc_questions/new" : "/audit_compliances" %>" class="<%= request.fullpath.include?("nc_questions/new") == true ? 'active' : '' %>">
+        <li><a href="<%= (current_audit && current_audit.compliance_type == "Compliance") ? "/audit_compliances" : "/nc_questions/new"  %>" class="<%= ((request.fullpath.include?("nc_questions/new") || request.fullpath.include?("audit_compliances")) == true) ? 'active' : '' %>">
           <div class="do-icon"></div>
           Do</a></li>
-        <li><a href="/checklist_recommendations/new" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
+        <li><a href="/checklist_recommendations/new" class="<%= request.fullpath.include?("checklist_recommendations/new") == true ? 'active' : '' %>">
           <div class="check-icon"></div>
           Check</a></li>
         <li><a href="/checklist_recommendations/auditee_response" class="<%= request.fullpath.include?("checklist_recommendations/auditee_response") == true ? 'active' : '' %>">
@@ -82,7 +82,7 @@
         <li><a href="/checklist_recommendations/audit_observation" class="<%= request.fullpath.include?("checklist_recommendations/audit_observation") == true ? 'active' : '' %>">
           <div class="published-icon"></div>
           Published</a></li>
-        <li class="next-phase"><a href="#" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
+        <li><a href="/user/edit" class="<%= request.fullpath.include?("user/edit") == true ? 'active' : '' %>">
           <div class="setting-icon"></div>
           Setting</a></li>
       </ul>
@@ -93,29 +93,9 @@
   <div class="alert alert-success"><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:notice] %></div>
 <%end%>
 <%if flash[:alert]%>
-  <div class="alert alert-success"><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:alert] %></div>
+  <div class="alert alert-info"><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:alert] %></div>
 <%end%>
 <%if flash[:error]%>
     <div class="alert alert-danger"><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:error]  %></div>
 <%end%>
 <!-- Notice end -->
-
-<script type="text/javascript">
-  $(document).ready(function(){
-
-    $( ".user_login" ).mouseenter(function() {
-      $(this).addClass("active");
-      $(".account_header_dropdown").slideDown(100);
-    })
-    .mouseleave(function() {
-      $(this).removeClass("active");
-      $(".account_header_dropdown").hide();
-    });
-
-    $(".next-phase").click(function(){
-      // new Messi('Planned for further phases.', {autoclose: '5000'});
-      new Messi('Planned for further phases.', {title: 'Warning', titleClass: 'warning', autoclose: 2000});
-    });
-
-  });
-</script>
