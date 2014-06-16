@@ -88,7 +88,6 @@ en:
       auditee_blank: "Please select auditee"
       auditee_unique: "Please select unique auditee"
       start_date_before_end_date: "End date must not be before start date"
-      start_date_validate: "Start date must be in future"
 
   checklist_recommendations:
     recommendation: "Please enter recommendation"
