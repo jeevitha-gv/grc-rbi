@@ -65,7 +65,7 @@ class ChecklistRecommendationsController < ApplicationController
 			@checklist_recommendation.attachments.build(attachment_file: params[:checklist_recommendation][:attachment])
 			@checklist_recommendation.attachments.last.classified = "Audit Observation"
 		end
-		@checklist_recommendation.comments.build(comment: params[:checklist_recommendation][:remarks]) if  params[:checklist_recommendation][:remarks].present?
+		@checklist_recommendation.remark.new(comment: params[:checklist_recommendation][:remarks]) if  params[:checklist_recommendation][:remarks].present?
 		@checklist_recommendation.response_completed = true
 		@checklist_recommendation.is_published = true
 		@checklist_recommendation.update(checklist_params)

@@ -66,3 +66,5 @@ gem 'wicked_pdf'
 
 gem 'remotipart', '~> 1.0'
 
+gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version
+gem 'zip-zip'

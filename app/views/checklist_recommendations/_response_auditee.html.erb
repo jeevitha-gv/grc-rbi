@@ -1,7 +1,7 @@
 <div id="Accordion1">
  <% @checklist_recommendations.each do |checklist| %>
             <% checklist_recommendation = checklist.checklist_recommendation %> 
-                 <h3><a href="#"><%= checklist.compliance_library_name%></a> <span class="fright pending_msg" id= "response_status"><%= checklist_recommendation.response_status == 5 ? 'Completed' : 'Pending'%></span></h3>
+                 <h3><a href="#"><%= checklist.compliance_library_name%></a> <span class="fright pending_msg" id= "response_status"><%= checklist_recommendation.response_status_id == 5 ? 'Completed' : 'Pending'%></span></h3>
 
               <div>
                 <div class="row audit-title">

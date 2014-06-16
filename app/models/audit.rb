@@ -12,7 +12,7 @@ class Audit < ActiveRecord::Base
   has_many :nc_questions
   has_many :answers, through: :nc_questions
   has_many :nc_checklist_recommendations, through: :answers , source: :checklist_recommendations
-  has_many :compliance_checklist_recommendations, through: :audit_compliances, source: :checklist_recommendations
+  has_many :compliance_checklist_recommendations, through: :audit_compliances, source: :checklist_recommendation
   has_many :audit_compliances
   has_many :audit_auditees
   has_many :artifact_answers, through: :audit_compliances
@@ -40,13 +40,13 @@ class Audit < ActiveRecord::Base
   validates :compliance_type, presence:true
   validates :standard_id, presence:true, :if => Proc.new{ |f| !f.compliance_type.blank? }
   validates_format_of :issue, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.issue.blank? }
-  validates :scope, length: { in: 4..250 }, :if => Proc.new{ |f| !f.scope.blank? }
-  validates :context, length: { in: 4..250 }, :if => Proc.new{ |f| !f.context.blank? }
-  validates :methodology, length: { in: 4..250 }, :if => Proc.new{ |f| !f.methodology.blank? }
-  validates :deliverables, length: { in: 4..250 }, :if => Proc.new{ |f| !f.deliverables.blank? }
-  validates :objective, length: { in: 4..250 }, :if => Proc.new{ |f| !f.objective.blank? }
-  validates :close_reason, length: { in: 4..250 }, :if => Proc.new{ |f| !f.close_reason.blank? }
-  validates :observation, length: { in: 4..250 }, :if => Proc.new{ |f| !f.observation.blank? }
+  validates :scope, length: { in: 0..250 }, :if => Proc.new{ |f| !f.scope.blank? }
+  validates :context, length: { in: 0..250 }, :if => Proc.new{ |f| !f.context.blank? }
+  validates :methodology, length: { in: 0..250 }, :if => Proc.new{ |f| !f.methodology.blank? }
+  validates :deliverables, length: { in: 0..250 }, :if => Proc.new{ |f| !f.deliverables.blank? }
+  validates :objective, length: { in: 0..250 }, :if => Proc.new{ |f| !f.objective.blank? }
+  validates :close_reason, length: { in: 0..250 }, :if => Proc.new{ |f| !f.close_reason.blank? }
+  validates :observation, length: { in: 0..250 }, :if => Proc.new{ |f| !f.observation.blank? }
   validates :start_date, presence: true
   validates :end_date, presence: true
   validate :check_auditees_uniq
@@ -168,6 +168,20 @@ end
         return 1
     end
   end
+  
+  def maximum_actual_score
+    audit_domains = self.audit_operational_weightages.collect{|x| x.operational_area.compliance_library_name}
+    audit_weightage = self.audit_operational_weightages.map(&:weightage)
+    audit_percentage = self.audit_operational_weightages.map(&:percentage)
+    audit_maximum_score = self.audit_operational_weightages.map(&:maximum_score)
+    return audit_domains, audit_weightage, audit_maximum_score, audit_percentage
+  end
+  
+  def audit_users
+    audit_users = self.auditees.map(&:full_name)
+    audit_users << self.auditory.full_name
+  end
+  
 
   # def self.search(params)
   #   tire.search(load: true) do
