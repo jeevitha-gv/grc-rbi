@@ -17,7 +17,7 @@
                 </tr>
                 <tr>
                   <td><label>Client : </label>
-                    <span> <%= @audit.client_name%></span></td>
+                    <span> <%= @audit.client.name if @audit.client.present? %></span></td>
                   <td><label>Title : </label>
                     <span> <%= @audit.title.truncate(50) %></span></td>
                   <td><label>Scope : </label>
@@ -62,9 +62,9 @@
           </div>
           <div class="container">
             <% if @audit.compliance_type == 'Compliance' %>
-				<%= render "response_auditee",controls: @answered_compliances %>
+				      <%= render "response_auditee",controls: @answered_compliances %>
             <% else %>
-            <%= render "nc_response_auditee",controls: @controls %>
+              <%= render "nc_response_auditee",controls: @controls %>
             <% end %>
         </div>
       </div>

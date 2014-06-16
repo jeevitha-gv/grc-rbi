@@ -1,6 +1,4 @@
 class Audit < ActiveRecord::Base
-  # include Tire::Model::Search
-  # include Tire::Model::Callbacks
 
   # associations
   belongs_to :location
@@ -9,8 +7,10 @@ class Audit < ActiveRecord::Base
   belongs_to :client
   belongs_to :audit_status
   belongs_to :audit_type
+  belongs_to :compliance, foreign_key: 'standard_id'
   has_many :nc_questions
   has_many :answers, through: :nc_questions
+  has_many :default_compliance_libraries, -> { where(is_leaf: true) }, through: :compliance, source: :compliance_library
   has_many :nc_checklist_recommendations, through: :answers , source: :checklist_recommendations
   has_many :compliance_checklist_recommendations, through: :audit_compliances, source: :checklist_recommendation
   has_many :audit_compliances
@@ -40,13 +40,13 @@ class Audit < ActiveRecord::Base
   validates :compliance_type, presence:true
   validates :standard_id, presence:true, :if => Proc.new{ |f| !f.compliance_type.blank? }
   validates_format_of :issue, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.issue.blank? }
-  validates :scope, length: { in: 4..250 }, :if => Proc.new{ |f| !f.scope.blank? }
-  validates :context, length: { in: 4..250 }, :if => Proc.new{ |f| !f.context.blank? }
-  validates :methodology, length: { in: 4..250 }, :if => Proc.new{ |f| !f.methodology.blank? }
-  validates :deliverables, length: { in: 4..250 }, :if => Proc.new{ |f| !f.deliverables.blank? }
-  validates :objective, length: { in: 4..250 }, :if => Proc.new{ |f| !f.objective.blank? }
-  validates :close_reason, length: { in: 4..250 }, :if => Proc.new{ |f| !f.close_reason.blank? }
-  validates :observation, length: { in: 4..250 }, :if => Proc.new{ |f| !f.observation.blank? }
+  validates :scope, length: { in: 0..250 }, :if => Proc.new{ |f| !f.scope.blank? }
+  validates :context, length: { in: 0..250 }, :if => Proc.new{ |f| !f.context.blank? }
+  validates :methodology, length: { in: 0..250 }, :if => Proc.new{ |f| !f.methodology.blank? }
+  validates :deliverables, length: { in: 0..250 }, :if => Proc.new{ |f| !f.deliverables.blank? }
+  validates :objective, length: { in: 0..250 }, :if => Proc.new{ |f| !f.objective.blank? }
+  validates :close_reason, length: { in: 0..250 }, :if => Proc.new{ |f| !f.close_reason.blank? }
+  validates :observation, length: { in: 0..250 }, :if => Proc.new{ |f| !f.observation.blank? }
   validates :start_date, presence: true
   validates :end_date, presence: true
   validate :check_auditees_uniq
@@ -54,6 +54,7 @@ class Audit < ActiveRecord::Base
   validate :validate_end_date_before_start_date
 
   delegate :name, :to => :client, prefix: true, allow_nil: true
+  delegate :name, :to => :team, prefix: true, allow_nil: true
   delegate :name, :to => :audit_type, prefix: true, allow_nil: true
   delegate :full_name, :to => :auditory, prefix: true, allow_nil: true
   delegate :email, :to => :auditory, prefix: true, allow_nil: true
@@ -73,12 +74,12 @@ class Audit < ActiveRecord::Base
     self.audit_compliances.where(is_answered: true)
   end
 
-  def auditee_response_compliances
-    self.audit_compliances.where(is_answered: true)
+  def auditee_response_compliances(user_id)
+    self.audit_compliances.joins(:checklist_recommendation).joins("left OUTER join artifact_answers on audit_compliances.id=artifact_answers.audit_compliance_id").where("is_answered = true and  checklist_recommendations.recommendation_completed = true and artifact_answers.responsibility_id=?",user_id).uniq
   end
 
   def audit_observation_compliances
-    self.audit_compliances.where(is_answered: true)
+    self.audit_compliances.joins(:checklist_recommendation).where("is_answered = true and  checklist_recommendations.response_completed = true")
   end
 
   # Getting all the unanswered Audit compliance for sending reminders
@@ -98,6 +99,10 @@ class Audit < ActiveRecord::Base
 
   def answered_ncquestions
     self.nc_questions
+  end
+  
+  def audit_compliances_for_current_user(user_id)
+    self.audit_compliances.joins("left OUTER join artifact_answers on audit_compliances.id=artifact_answers.audit_compliance_id").where("artifact_answers.responsibility_id=?",user_id).uniq
   end
 
 
@@ -179,16 +184,11 @@ end
   
   def audit_users
     audit_users = self.auditees.map(&:full_name)
-    audit_users << self.auditory.full_name
+    audit_users << self.auditory_full_name
+    audit_users.compact!
   end
   
-
-  # def self.search(params)
-  #   tire.search(load: true) do
-  #     query { string params[:query], default_operator: "AND" } if params[:query].present?
-  #   end
-  # end
-
+  
   private
   def check_auditees_uniq
     if self.audit_auditees.present?

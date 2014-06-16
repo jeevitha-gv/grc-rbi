@@ -1,6 +1,6 @@
 
 <div id="Accordion1">
- <% @answered_compliances.each do |audit_compliance| %>
+ <% @audit.answered_compliances.each do |audit_compliance| %>
    <% checklist_recommendation = audit_compliance.checklist_recommendation%>
   <h3><ahref="#"><%= audit_compliance.compliance_library_name%></a> <span class="fright pending_msg" id= "recommendation_status">
     <% @status = checklist_recommendation.recommendation_status_id if checklist_recommendation.present? %>
@@ -138,7 +138,7 @@ function artifact_modal(id)
 <div class="modal fade" id="artifact_modal">
   <div class="modal-dialog modal-dialog_large">
     <div class="modal-content">
-      
+
     </div>
   </div>
 </div>
