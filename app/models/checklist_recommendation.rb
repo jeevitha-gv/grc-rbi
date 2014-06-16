@@ -14,9 +14,8 @@ class ChecklistRecommendation < ActiveRecord::Base
 	belongs_to :blocking_checklist, :class_name => "ChecklistRecommendation", foreign_key: "blocking_recommendation"
 	belongs_to :checklist, polymorphic: true
 	has_many :attachments , as: :attachable
-	has_many :comments , as: :commentable
 	belongs_to :auditee, class_name: 'User', foreign_key: 'auditee_id'
-	has_many :remarks , as: :commentable, class_name: "Comment"
+	has_one :remark , as: :commentable, class_name: "Comment"
 
 
 	#validation
@@ -41,6 +40,7 @@ class ChecklistRecommendation < ActiveRecord::Base
   	delegate :name, :to => :recommendation_status, prefix: true, allow_nil: true
   	delegate :name, :to => :response_status, prefix: true, allow_nil: :true
   	delegate :name, to: :response_priority, prefix: true, allow_nil: :true
+  	delegate :comment, to: :remark, prefix: true, allow_nil: :true
 
 
 
