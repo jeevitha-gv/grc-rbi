@@ -6,7 +6,7 @@
 				}
 			}
 		});
-    
+
  $(document).ready(function(){
 
 	function onActivate(e) {
@@ -150,11 +150,11 @@
 		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		setCookie("audit_id", dataItem.id)
-		window.location.href = "/audits/"+ dataItem.id +".pdf"
+		window.location.href = "/audits/"+ dataItem.title +".pdf"
 	}
 
 	$(document).ready(function() {
-		
+
 		// Data source for all
 		dataSource = new kendo.data.DataSource({
 			transport: {
@@ -201,7 +201,7 @@
 				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
 				{ field: "auditor", title: "Auditor Name", width: "35%" },
 
-				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
+				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Actions", width: "180px" }
 			],
 		});
 
@@ -251,8 +251,7 @@
 				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
 				{ field: "auditor", title: "Auditor Name", width: "35%" },
 
-				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},"pdf",{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
-			],
+        {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Actions", width: "180px" }			],
 		});
 
 
@@ -303,8 +302,7 @@
 				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
 				{ field: "auditor", title: "Auditor Name", width: "35%" },
 
-				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},"pdf",{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
-			],
+        {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Actions", width: "180px" }			],
 		});
 
 
@@ -354,9 +352,8 @@
 				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
 				{ field: "auditor", title: "Auditor Name", width: "35%" },
 
-				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},"pdf",{text: "edit", click: edit_file}], title: "Edit", width: "180px" }
-			],
+        {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Actions", width: "180px" }			],
 		});
 
-	
+
 	});
