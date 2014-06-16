@@ -120,14 +120,14 @@
                   <div class="col-lg-6">
                   <div class="form-group clearfix">
                       <label  class="col-sm-3">Remarks : </label>
-                      <div class="col-sm-9"> <input class="audit-big-input" type="text" id="remarks_<%= checklist_recommendation.id%>" name="checklist_recommendation[remarks]" value ="<%= checklist_recommendation.remarks if checklist_recommendation.present?%>" >
+                      <div class="col-sm-9"> <input class="audit-big-input" type="text" id="remarks_<%= checklist_recommendation.id%>" name="checklist_recommendation[remarks]" value ="<%= checklist_recommendation.remark_comment if checklist_recommendation.present?%>" >
                   <span class="error_message" id="error_remarks_<%= checklist_recommendation.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["remarks"]%><span>
                     </div> </div>
                   <%= hidden_field_tag "checklist_recommendation[id]",  checklist_recommendation.id , :id => "id_#{checklist_recommendation.id}"%>
                   <div class="clearfix fright">
                   <!--<a class="black_btn" href="">Publish</a>-->
 
-                  <input type="submit" value="Observed" class="black_btn" onclick="return audit_observation(<%=checklist_recommendation.id%>)" disabled=<%= checklist_recommendation.is_implemented == 'true'? false : true %> >
+                  <input type="submit" value="Observed" class="black_btn" onclick="return audit_observation(<%=checklist_recommendation.id%>)" disabled= <%= checklist_recommendation.is_implemented == 'true'? false : true %> >
                   <!-- @audit.compliance_type == 'NonCompliance'? Topic : Standard -->
                   <!-- <input type="submit" value="Observed" class="black_btn" onclick="return audit_observation(<%=checklist_recommendation.id%>).disabled=false;" > -->
                   </div>
