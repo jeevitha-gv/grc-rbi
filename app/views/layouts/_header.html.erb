@@ -70,10 +70,10 @@
         <li><a href="/audits" class="<%= (request.fullpath.include?("audits") && action_name=="index") == true ? 'active' : '' %>">
           <div class="list-icon"></div>
           List</a></li>
-        <li><a href="/nc_questions/new" class="<%= request.fullpath.include?("nc_questions/new") == true ? 'active' : '' %>">
+        <li><a href="<%= current_audit.compliance_type == "Compliance" ? "/nc_questions/new" : "/audit_compliances" %>" class="<%= request.fullpath.include?("nc_questions/new") == true ? 'active' : '' %>">
           <div class="do-icon"></div>
           Do</a></li>
-        <li class="next-phase"><a href="#" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
+        <li><a href="/checklist_recommendations/new" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
           <div class="check-icon"></div>
           Check</a></li>
         <li><a href="/checklist_recommendations/auditee_response" class="<%= request.fullpath.include?("checklist_recommendations/auditee_response") == true ? 'active' : '' %>">

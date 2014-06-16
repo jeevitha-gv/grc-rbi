@@ -134,12 +134,7 @@ $(document).ready(function(){
           field: "auditee",
           operator: "contains",
           value   : val
-        },
-        {
-          field: "response",
-          operator: "contains",
-          value   : val
-        },
+        }        
       ]
     });
   }
@@ -158,7 +153,7 @@ $(document).ready(function(){
 				dataSource = new kendo.data.DataSource({
 					transport: {
 						read: {
-							url: '/audit_compliances/compliance_checklist',
+							url: '/audit_compliances/compliance_checklist?audit_id='+audit_id,
 							dataType: 'json'
 						}
 					},
@@ -175,8 +170,11 @@ $(document).ready(function(){
 								artifacts: { type: "string" },
 								priority: { type: "string" },
 								auditee: {type: "string"},
-								response: {type: "string"},
-								target_date: {type: "date"}
+								target_date: {type: "string"},
+								priority_list: {type: "string"},
+								auditee_list: {type: "string"},
+								artifacts_list: {type: "string"},
+								artifact_answers: {type: "string"}
 							}
 						}
 					}
@@ -206,19 +204,31 @@ $(document).ready(function(){
 							}
               row_id = $(this).attr("id").replace("check_",'')
               row_data = dataSource.get(row_id)
-              if(row_data.artifacts.indexOf(",") != -1)
+              if(row_data.priority == "")
               {
-              row_data.artifacts = row_data.artifacts.split(",")[0]
+              row_data.priority = row_data.priority_list.split(",")[0]
               }
-              if(row_data.priority.indexOf(",") != -1)
+              console.log(row_data.auditee)
+              console.log(row_data.auditee == "")
+              if(row_data.auditee == "")
               {
-              row_data.priority = row_data.priority.split(",")[0]
-              }
-              if(row_data.auditee.indexOf(",") != -1)
-              {
-              row_data.auditee = row_data.auditee.split(",")[0]
+              row_data.auditee = row_data.auditee_list.split(",")[0]
               }
 						});
+            
+             var grid = $("#grid").data("kendoGrid");
+            var gridData = grid.dataSource.view();
+            for (var i = 0; i < gridData.length; i++) {
+                var currentUid = gridData[i].uid;
+                if (gridData[i].already_selected == "true") {
+                    var currenRow = grid.table.find("tr[data-uid='" + currentUid + "']");
+                    var editButton = $(currenRow).find(".check_row");
+                    editButton.prop( "checked", true )
+                    currenRow.addClass('k-state-selected')
+                }
+            } 
+            
+            
 					},
 					height: 'auto',
 					scrollable: true,
@@ -253,42 +263,44 @@ $(document).ready(function(){
 				$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");
 			});
 
-		</script>
+		</script>    
  <script type="text/x-kendo-template" id="myTemplate">
  <div class='checklist_select_big'>
  <select id="artifact_#= id#" class="multiselect" multiple="multiple">
- # for (var i = 1; i < artifacts.split(",").length; i=i+2) { #
- <option value="#= artifacts.split(",")[i-1]#">#= artifacts.split(",")[i]#</option>
+ # for (var i = 1; i < artifacts_list.split(",").length; i=i+2) { #
+ <option value="#= artifacts_list.split(",")[i-1]#" #= (artifacts.split(",").indexOf(artifacts_list.split(",")[i-1]) != -1) ? "selected='selected'" : ""# >#= artifacts_list.split(",")[i]#</option>
  #}#
  </select>
  </div>
 </script>
 
 <script type="text/x-kendo-template" id="priority">
- <button value="#= priority.split(",")[0]#" onclick="javascript:change_priority(this, #= id#)"  class= "high_btn priority_btn" >#= priority.split(",")[1]#</button>
- <button value="#= priority.split(",")[2]#" onclick="javascript:change_priority(this, #= id#)" class= "medium_btn backspace active priority_btn">#= priority.split(",")[3]#</button>
- <button value="#= priority.split(",")[4]#" onclick="javascript:change_priority(this, #= id#)" class= "low_btn backspace priority_btn">#= priority.split(",")[5]#</button>
+ <button value="#= priority_list.split(",")[0]#" onclick="javascript:change_priority(this, #= id#)"  class= "high_btn #= (priority == '' || ( priority != null && priority.indexOf(priority_list.split(",")[0]) != -1)) ? 'active' : ''# priority_btn" >#= priority_list.split(",")[1]#</button>
+ <button value="#= priority_list.split(",")[2]#" onclick="javascript:change_priority(this, #= id#)" class= "medium_btn backspace #= (priority != null && priority.indexOf(priority_list.split(",")[2]) != -1) ? 'active' : ''# priority_btn">#= priority_list.split(",")[3]#</button>
+ <button value="#= priority_list.split(",")[4]#" onclick="javascript:change_priority(this, #= id#)" class= "low_btn backspace #= (priority != null && priority.indexOf(priority_list.split(",")[4]) != -1) ? 'active' : ''# priority_btn">#= priority_list.split(",")[5]#</button>
 </script>
 
  <script type="text/x-kendo-template" id="auditee">
  <div class='checklist_select_big'>
  <select id="auditee_#= id#" onchange="javascript:change_auditee(this)">
- # for (var i = 1; i < auditee.split(",").length; i=i+2) { #
- <option value="#= auditee.split(",")[i-1]#">#= auditee.split(",")[i]#</option>
+ # for (var i = 1; i < auditee_list.split(",").length; i=i+2) { #
+ <option value="#= auditee_list.split(",")[i-1]#" #= (auditee != null && auditee.indexOf(auditee_list.split(",")[i-1]) != -1) ? "selected='selected'" : ""# >#= auditee_list.split(",")[i]#</option>
  #}#
  </select>
  </div>
 </script>
 
 <script type="text/x-kendo-template" id="datepicker">
-  <input class="datepicker" id="#= id#"/>
+  <input class="datepicker" id="#= id#" value="#= target_date#"/>
 </script>
 
 <script>
 function change_artifact(e)
 {
+console.log(e)
 row_id = e.sender._tagID.replace("artifact_",'').replace("_tag_active",'')
 row_data = dataSource.get(row_id)
+console.log(e.sender._old)
 row_data.artifacts = e.sender._old
 }
 function change_auditee(e)
@@ -315,7 +327,7 @@ var data = []
   $.each($('.check_row:checked'), function( index, value ) {
   var row_id = $(value).attr("id").replace("check_",'')
   var row_data = dataSource.get(row_id)
-  var row = {compliance_library_id: row_id, artifact_id: row_data.artifacts, responsibility_id: row_data.auditee, target_date: row_data.target_date, priority_id: row_data.priority}
+  var row = {compliance_library_id: row_id, artifact_id: row_data.artifacts, responsibility_id: row_data.auditee, target_date: row_data.target_date, priority_id: row_data.priority, artifact_answers: row_data.artifact_answers}
   data.push(row)
   });
   $.ajax({

@@ -10,6 +10,7 @@ class NcQuestion < ActiveRecord::Base
 	has_one :answer
 	has_many :checklist_recommendations, as: :checklist
 	accepts_nested_attributes_for :question_options, :allow_destroy => true
+  has_one :checklist_recommendation, as: :checklist
 
 	#Validations
 	validates :question, presence: true

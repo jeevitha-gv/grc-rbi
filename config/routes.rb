@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       post 'auditee_response_create'
       get 'audit_observation'
       post 'update_individual_score'
+      get 'list_artifacts_and_comments'
+      get 'download_artifacts'
     end
   end
 

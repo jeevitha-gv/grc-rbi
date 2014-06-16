@@ -1,16 +1,19 @@
-
 class ChecklistRecommendationsController < ApplicationController
+	before_filter :authorize_auditees, :only => [:auditee_response, :auditee_response_create]
+	before_filter :authorize_auditor, :only => [:new, :create, :update_individual_score, :audit_observation, :audit_observation_create]
 
-require 'date'
- #new for checklist recommendation
- def new
-		@audit = Audit.find_by_id(params[:id]) # need to change with permission
-		@controls = @audit.answered_compliances
+	require 'date'
+
+ 	#new for checklist recommendation
+ 	def new
+		@audit = current_audit
+		@answered_compliances = @audit.answered_compliances
 		@checklist_recommendation = ChecklistRecommendation.new
 		@score = Score.all
- end
+		@answered_ncquestions = @audit.answered_ncquestions
+ 	end
 
- #To create checklist recommendation for auditcompliance
+ 	#To create checklist recommendation for auditcompliance
 	def create
 		@checklist_recommendation = ChecklistRecommendation.new(checklist_params)
 		checklist_params = @checklist_recommendation.audit_checklist(params)
@@ -42,13 +45,14 @@ require 'date'
 
 	#To show auditee response
 	def auditee_response
-		@audit = Audit.where('id= ?',params[:id]).first
+		@audit = current_audit
 		@checklist_recommendations = @audit.auditee_response_compliances
 		@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
+		@score = Score.all
 	end
 
 	def audit_observation
-		@audit = Audit.where('id= ?',params[:id]).first
+		@audit = current_audit
 		@checklist_recommendations = @audit.audit_observation_compliances
 	end
 
@@ -91,9 +95,47 @@ require 'date'
 	end
 end
 
+
+ #After observed restrict to create recommendation , response & observed
+
+ def observed
+   @checklist_recommendation = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?', params[:checklist_recommendation][:checklist_id], params[:checklist_recommendation][:checklist_type]).first
+		 unless @checklist_recommendation.is_published
+		 	@path = true
+		 else
+		 	@path = false
+			end
+	 	return @path
+end
+
+
+	def list_artifacts_and_comments
+		@audit_compliance = AuditCompliance.find(params[:id])
+		@artifact_answers = @audit_compliance.artifact_answers
+   		render layout: false
+	end
+
+	def download_artifacts
+		attachment = Attachment.find(params[:id])
+		send_file(Rails.public_path.to_s + attachment.attachment_file_url)
+	end
+
+
 	private
 	  def checklist_params
 	    params.require(:checklist_recommendation).permit(:checklist_id, :checklist_type, :auditee_id, :recommendation, :reason, :corrective, :preventive, :closure_date, :recommendation_priority_id, :recommendation_severity_id, :response_priority_id, :response_severity_id, :recommendation_status_id, :response_status_id, :dependent_recommendation, :blocking_recommendation, :observation, :recommendation_completed, :is_implemented,:is_checklist_new)
+	  end
+
+	  def authorize_auditor
+	  	unless current_audit.auditor == current_user.id
+	  		redirect_to audits_path
+	  	end
+	  end
+
+	  def authorize_auditees
+	  	unless current_audit.auditees.map(&:id).include?(current_user.id)
+	  		redirect_to audits_path
+	  	end
 	  end
 end
 

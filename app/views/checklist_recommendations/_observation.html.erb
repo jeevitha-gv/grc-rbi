@@ -1,16 +1,22 @@
 <div id="Accordion1">
  <% @checklist_recommendations.each do |checklist| %>
-              <% control = checklist_control(checklist)%>
-                <% checklist_recommendation = audit_checklist(control, @audit.id).flatten.first%>
-              <h3><a href="#"><%= control.name%></a> <span class="fright pending_msg" id= "observation_status"><%= checklist_recommendation.is_published == true ? 'Completed' : 'Pending'%></span></h3>
+            <% checklist_recommendation = checklist.checklist_recommendation %>
+              <h3><a href="#"><%= checklist.compliance_library_name%></a> <span class="fright pending_msg" id= "observation_status"><%= checklist_recommendation.is_published == true ? 'Completed' : 'Pending'%></span></h3>
               <div>
                 <div class="row audit-title">
                 <%= form_tag '/checklist_recommendations/audit_observation_create' , :remote=>true , multipart: true do%>
                   <div class="col-lg-4">
+
+                    
                     <div class="form-group clearfix">
+                      <% @artifact_answers = checklist.artifact_answers.first%>
                       <label class="col-sm-5"><b>Artifact :</b> </label>
-                      <div class="col-sm-7"><a class="blue_link" href="">Information Security Policies</a> </div>
+                      <div class="col-sm-7"><a class="blue_link" href=""><%= @artifact_answers.artifact_display_name if @artifact_answers%></a> </div>
+                        <% if checklist.artifact_answers.count > 1 %>
+                          <div class="col-sm-12"><a class="blue_link pull-right" href = "javascript:artifact_modal(<%= checklist.id%>);" >more</a></div>
+                        <%end%>
                     </div>
+
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Recommendation :</b> </label>
                       <div class="col-sm-7"> <%= checklist_recommendation.recommendation%></div>
@@ -23,7 +29,7 @@
                   <div class="col-lg-4">
                     <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Comment :</b> </label>
-                      <div class="col-sm-7"> Comment by Auditee</div>
+                      <div class="col-sm-7"><%= @artifact_answers.comment_comment if @artifact_answers%> </div>
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Reason :</b> </label>
@@ -49,8 +55,8 @@
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Score :</b> </label>
                       <div class="col-sm-7">
-                        <div class="number_link"> <a class="active" href="">0</a> <a href="">1</a> <a href="">2</a> <a href="">3</a> <a href="">4</a> </div>
-                      </div>
+                <div class="number_link"> <a class="<%= 'active' if checklist_recommendation.checklist.score_id == 0%>" href="">0</a> <a href="" class="<%= 'active' if checklist_recommendation.checklist.score_id == 1%>">1</a> <a href="" class="<%= 'active' if checklist_recommendation.checklist.score_id == 2%>">2</a> <a href="" class="<%= 'active' if checklist_recommendation.checklist.score_id == 3%>">3</a> <a href="" class="<%= 'active' if checklist_recommendation.checklist.score_id == 4%>">4</a> </div>
+                   </div>
                     </div>
                   </div>
                   <div class="clearfix"></div>
@@ -63,7 +69,7 @@
                     </div>
                     <div class="form-group clearfix">
                       <label class="col-sm-5 control-label">Status</label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.response_status.name%>  </div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.response_status_name %>  </div>
                     </div>
                     <div class="form-group clearfix">
                       <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#attachment').click();" >Attach Document</a>
@@ -77,7 +83,7 @@
                     </div>
                     <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Priority :</b></label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.response_priority.name%>  </div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.response_priority_name %>  </div>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -88,10 +94,6 @@
                      <div class="form-group clearfix">
                       <label class="col-sm-5">Dependent :</label>
                       <div class="col-sm-7"> <%= checklist_recommendation.dependent_recommendation%> </div>
-                    </div>
-                     <div class="form-group clearfix">
-                      <label class="col-sm-5"><b>Priority :</b></label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.response_priority.name%>  </div>
                     </div>
                   </div>
 
@@ -104,7 +106,7 @@
                   <div class="form-group clearfix">
                       <label  class="col-sm-3">Observation :</label>
                       <div class="col-sm-9">
-                      <input class="audit-big-input" type="text" id="observation_<%= checklist_recommendation.id%>" name="checklist_recommendation[observation]">
+                      <input class="audit-big-input" type="text" id="observation_<%= checklist_recommendation.id%>" name="checklist_recommendation[observation]" value ="<%= checklist_recommendation.observation if checklist_recommendation.present?%>" >
                       <span class="error_message" id="error_observation_<%= checklist_recommendation.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["observation"]%><span>
                       </div>
 
@@ -118,13 +120,16 @@
                   <div class="col-lg-6">
                   <div class="form-group clearfix">
                       <label  class="col-sm-3">Remarks : </label>
-                      <div class="col-sm-9"> <input class="audit-big-input" type="text" id="remarks_<%= checklist_recommendation.id%>" name="checklist_recommendation[remarks]">
+                      <div class="col-sm-9"> <input class="audit-big-input" type="text" id="remarks_<%= checklist_recommendation.id%>" name="checklist_recommendation[remarks]" value ="<%= checklist_recommendation.remarks if checklist_recommendation.present?%>" >
                   <span class="error_message" id="error_remarks_<%= checklist_recommendation.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["remarks"]%><span>
                     </div> </div>
                   <%= hidden_field_tag "checklist_recommendation[id]",  checklist_recommendation.id , :id => "id_#{checklist_recommendation.id}"%>
                   <div class="clearfix fright">
                   <!--<a class="black_btn" href="">Publish</a>-->
-                  <input type="submit" value="Observed" class="black_btn" onclick="return audit_observation(<%=checklist_recommendation.id%>);" >
+
+                  <input type="submit" value="Observed" class="black_btn" onclick="return audit_observation(<%=checklist_recommendation.id%>)" disabled=<%= checklist_recommendation.is_implemented == 'true'? false : true %> >
+                  <!-- @audit.compliance_type == 'NonCompliance'? Topic : Standard -->
+                  <!-- <input type="submit" value="Observed" class="black_btn" onclick="return audit_observation(<%=checklist_recommendation.id%>).disabled=false;" > -->
                   </div>
                   </div>
 
@@ -133,3 +138,20 @@
               <% end %>
               <% end %>
             </div>
+<!-- Model for more Artifact  and comments -->
+<script>
+function artifact_modal(id)
+{
+  $('#artifact_modal').modal({
+    remote: "/checklist_recommendations/list_artifacts_and_comments?id=" + id
+  });
+}
+</script>
+
+<div class="modal fade" id="artifact_modal">
+  <div class="modal-dialog modal-dialog_large">
+    <div class="modal-content">
+      
+    </div>
+  </div>
+</div>

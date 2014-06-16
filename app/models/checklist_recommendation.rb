@@ -38,8 +38,14 @@ class ChecklistRecommendation < ActiveRecord::Base
 
 	delegate :name, :to => :recommendation_priority, prefix: true, allow_nil: true
 	delegate :name, :to => :recommendation_priority, prefix: true, allow_nil: true
+<<<<<<< HEAD
   delegate :name, :to => :recommendation_status, prefix: true, allow_nil: true
   delegate :name, :to => :response_status, prefix: true, allow_nil: true
+=======
+  	delegate :name, :to => :recommendation_status, prefix: true, allow_nil: true
+  	delegate :name, :to => :response_status, prefix: true, allow_nil: :true
+  	delegate :name, to: :response_priority, prefix: true, allow_nil: :true
+>>>>>>> d6720277f1ec5ee3c669bdfa51e15a260d76ed6f
 
 
 
@@ -54,4 +60,34 @@ class ChecklistRecommendation < ActiveRecord::Base
 		end
 		return checklist_params
 	end
+
+	after_create :notify_auditee_about_recommendation
+  after_update :notify_auditor_about_response
+  after_update :notify_auditee_about_observation
+
+  def notify_auditee_about_recommendation
+  	if self.checklist.audit.compliance_type == 'Compliance'
+    	UniversalMailer.notify_auditee_about_recommendations(self).deliver
+    else
+    	UniversalMailer.notify_auditee_about_nc_recommendations(self).deliver
+    end
+
+  end
+
+  def notify_auditor_about_response
+  	if self.preventive? && self.corrective? && self.response_status_id?
+  		if self.checklist.audit.compliance_type == 'Compliance'
+  			UniversalMailer.notify_auditor_about_responses(self).deliver
+  		else
+  			UniversalMailer.notify_auditor_about_nc_responses(self).deliver
+  		end
+  	end
+  end
+
+  def notify_auditee_about_observation
+    if self.observation?
+      UniversalMailer.notify_auditee_about_observations(self).deliver
+    end
+  end
+
 end

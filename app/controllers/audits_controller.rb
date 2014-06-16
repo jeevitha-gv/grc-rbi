@@ -32,7 +32,7 @@ class AuditsController < ApplicationController
     end
 
     if @audit.save
-      session[:audit_id] = @audit.id
+      cookies[:audit_id] = { :value => @audit.id, :expires => 24.hour.from_now }
       if params[:skip_reminder] == "true"
         SkippedAuditReminder.create(:audit_id => @audit.id,:skipped_by => current_user.id)
       end
@@ -48,7 +48,7 @@ class AuditsController < ApplicationController
   end
 
   def show
-    @audit = Audit.find(params[:id])
+    @audit = current_audit
     respond_to do |format|
       format.html
       format.pdf do
@@ -65,6 +65,7 @@ class AuditsController < ApplicationController
     @audit = Audit.find_by_id(params[:id])
 
     if @audit.update_attributes(audit_params)
+      cookies[:audit_id] = { :value => @audit.id, :expires => 24.hour.from_now }
       redirect_to edit_audit_path
     else
       render 'edit'
@@ -173,7 +174,7 @@ class AuditsController < ApplicationController
     Audit.audit_operational_weightage(current_company,audit)
     redirect_to particular_dashboard_audits_path
   end
-  
+
   def audit_dashboard
       @audit = Audit.find_by_id(params[:id])
       @audit_domains, @audit_weightage, @audit_maximum_score , @audit_percentage= @audit.maximum_actual_score
@@ -216,6 +217,6 @@ class AuditsController < ApplicationController
 
     def authorize_audit
       @audit = Audit.find_by_id(params[:id])
-      redirect_to audit_path if (@audit.auditor != current_user.id && !@audit.auditees.include?(current_user) && current_user.role != "company_admin")
+      redirect_to audits_path if (@audit.auditor != current_user.id)
     end
 end

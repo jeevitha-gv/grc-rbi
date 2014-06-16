@@ -21,7 +21,7 @@ class Audit < ActiveRecord::Base
   has_one :skipped_audit_reminder
   has_many :team_users, through: :team, :source => :users
   has_many :audit_operational_weightages
-  has_many :compliance_libraries
+  has_many :compliance_libraries, through: :audit_compliances
 
 
   accepts_nested_attributes_for :nc_questions
@@ -47,6 +47,8 @@ class Audit < ActiveRecord::Base
   validates :objective, length: { in: 4..250 }, :if => Proc.new{ |f| !f.objective.blank? }
   validates :close_reason, length: { in: 4..250 }, :if => Proc.new{ |f| !f.close_reason.blank? }
   validates :observation, length: { in: 4..250 }, :if => Proc.new{ |f| !f.observation.blank? }
+  validates :start_date, presence: true
+  validates :end_date, presence: true
   validate :check_auditees_uniq
   validate :check_auditees_presence
   validate :validate_end_date_before_start_date
@@ -68,15 +70,15 @@ class Audit < ActiveRecord::Base
   # end
 
   def answered_compliances
-    self.audit_compliances.where(is_answered: true).map(&:compliance_library)
+    self.audit_compliances.where(is_answered: true)
   end
 
   def auditee_response_compliances
-    self.audit_compliances.where(is_answered: true).collect{|x| x.checklist_recommendations.where('recommendation_completed= ?',true)}.flatten
+    self.audit_compliances.where(is_answered: true)
   end
 
   def audit_observation_compliances
-    self.audit_compliances.where(is_answered: true).collect{|x| x.checklist_recommendations.where('response_completed= ?',true)}.flatten
+    self.audit_compliances.where(is_answered: true)
   end
 
   # Getting all the unanswered Audit compliance for sending reminders
@@ -92,6 +94,10 @@ class Audit < ActiveRecord::Base
   # Getting all the non compliance for sending reminders
   def unanswered_nc_questions
     self.nc_questions.where("target_date <= ?" , DateTime.now).select{ |x| x.answers.blank?}
+  end
+
+  def answered_ncquestions
+    self.nc_questions
   end
 
 
@@ -183,7 +189,7 @@ end
 
   def validate_end_date_before_start_date
     if end_date && start_date
-      self.errors[:end_date] = MESSAGES['audit']['failure']['end_date'] if end_date < start_date
+      self.errors[:end_date] = MESSAGES['audit']['failure']['start_date_before_end_date'] if end_date < start_date
     end
   end
 end
