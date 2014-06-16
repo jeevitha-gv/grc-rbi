@@ -1,109 +1,97 @@
 <div id="Accordion1">
- <% @answered_ncquestions.each do |answered_ncquestion| %>
-
-   <% ncquestion_recommendation = answered_ncquestion.checklist_recommendation%>
-  <h3><a href="#"><%= answered_ncquestion.question %></a> <span class="fright pending_msg" id= "recommendation_status">
-    <% @status = ncquestion_recommendation.recommendation_status_id if ncquestion_recommendation.present? %>
-      <%= (@status == 3 || @status == 4) ? 'Completed' : 'Pending' %></span></h3>
-      <div>
-
-      <!-- Hidden Value !-->
-      <%#= f.hidden_field :checklist_id, :name => "checklist_recommendation[#{audit_compliance.id}][checklist_id]", :id => "checklist_id_#{audit_compliance.id}", :value => audit_compliance.id%>
-      <%#= f.hidden_field :checklist_type, :name => "checklist_recommendation[#{audit_compliance.id}][checklist_type]", :id => "checklist_type_#{audit_compliance.id}", :value => "AuditCompliance"%>
-
-
+  <% @audit.answered_ncquestions.each do |answered_ncquestion| %>
+    <% checklist_recommendation = answered_ncquestion.checklist_recommendation%>
+    <h3>
+      <a href="#"><%= answered_ncquestion.question %></a>
+      <span class="fright pending_msg" id= "recommendation_status">
+      <% @status = checklist_recommendation.recommendation_status_id if checklist_recommendation.present? %>
+      <%= (@status == 3 || @status == 4) ? 'Completed' : 'Pending' %></span>
+    </h3>
+    <div>
+      <%= f.hidden_field :checklist_id, :name => "checklist_recommendation[#{answered_ncquestion.id}][checklist_id]", :id => "checklist_id_#{answered_ncquestion.id}", :value => answered_ncquestion.id%>
+      <%= f.hidden_field :checklist_type, :name => "checklist_recommendation[#{answered_ncquestion.id}][checklist_type]", :id => "checklist_type_#{answered_ncquestion.id}", :value => "NcQuestion"%>
       <div class="row audit-title">
         <div class="col-lg-4">
-          <%# @artifact_answers = audit_compliance.artifact_answers.first%>
           <div class="form-group clearfix">
             <label class="col-sm-5"><b>Document :</b></label>
-              <div class="col-sm-7">
-                <a class="blue_link" href=""><%= @artifact_answers.artifact_display_name if @artifact_answers%></a></div>
-              <%# if audit_compliance.artifact_answers.count > 1%>
-              <%#end%>
-          </div>
-<%# binding.pry %>
-           <div class="form-group clearfix">
-                <%= f.label :recommendation, t(' checklist_recommendation.recommendation'), :class => "col-sm-5 control-label" %>
-                    <div class="col-sm-7">
-                      <%= f.text_field :recommendation, :class => "audit-big-input control_recommendation" %>
-                      <!--  <input class="audit-big-input" type="text"> -->
-                      <%#if @checklist_recommendation.errors[:recommendation].present?%>
-                      <%# end %>
-                    </div>
-              </div>
-              <div class="form-group clearfix">
-                <%= f.label :Priority, t(' checklist_recommendation.priority'), :class => "col-sm-5 control-label" %>
-                <!--   <label  class="col-sm-5"><b>Priority :</b> </label> -->
-                  <div class="col-sm-7">
-                      <%= f.collection_select :recommendation_priority_id, Priority.all, :id, :name, {},{:class=> "control_priority"} %>
-
-                  <span class="error_message" id="error_recommendation_<%= answered_ncquestion.id%>" style="display:none;"><%#= MESSAGES["checklist_recommendations"]["priority"]%><span>
-                  </div>
-              </div>
-       </div>
-
-          <div class="col-lg-4">
-            <div class="form-group clearfix">
-              <%= f.label :Answer, t(' checklist_recommendation.comment'), :class => "col-sm-5 control-label" %>
-                <div class="col-sm-7">
-                  <%#= @artifact_answers.comment_comment if @artifact_answers%>
-                  <% if answered_ncquestion.question_type_id == 1 %>
-                    <%= answered_ncquestion.answer.value == 0 ? 'Yes' : 'No' %>
-                  <% elsif answered_ncquestion.question_type_id == 2 %>
-                    <%#= answered_ncquestion.answer.detailed_value %>
-                  <% else %>
-                    <%#= QuestionOption.where(:id => n.answer.value).map(&:value).last %>
-                  <% end %>
-                </div>
-
+            <div class="col-sm-7">
+              <a class="blue_link" href="">Documents Name<%#= @artifact_answers.artifact_display_name if @artifact_answers%></a>
             </div>
-              <div class="form-group clearfix">
-                <%= f.label :Reason, t(' checklist_recommendation.reason'), :class => "col-sm-5 control-label" %>
-                  <div class="col-sm-7">
-                    <%= f.text_field :reason, :class => "audit-big-input control_reason" %>
-                             <!--    <input class="audit-big-input" type="text"> -->
-                    <span class="error_message" id="error_reason_<%#= audit_compliance.id%>" style="display:none;"><%#= MESSAGES["checklist_recommendations"]["reason"]%><span>
-                  </div>
-              </div>
-              <div class="form-group clearfix">
-                 <%= f.label :Severity, t(' checklist_recommendation.severity'), :class => "col-sm-5 control-label" %>
-                    <div class="col-sm-7">
-                      <%= f.collection_select :recommendation_severity_id, Priority.all, :id, :name, ncquestion_recommendation.present? ? {selected: ncquestion_recommendation.recommendation_severity_id} : {} %>
-
-                <span class="error_message" id="error_severity_<%#= audit_compliance.id%>" style="display:none;"><%#= MESSAGES["checklist_recommendations"]["severity"]%><span>
-                    </div>
-              </div>
-              </div>
-
-              <div class="col-lg-4">
-                <div class="form-group clearfix">
-                  <%= f.label :'Closure Date', t(' checklist_recommendation.closure_date'), :class => "col-sm-5 control-label" %>
-                    <div class="col-sm-7">
-                      <%= f.text_field :closure_date, :class => "datepicker2 control_closure_date", :style =>"width:150px;" %>
-                              <!--   <input id="datepicker2" value="10/10/2011" style="width:150px;" /> -->
-                  <span class="error_message" id="error_closure_date_<%#= audit_compliance.id%>" style="display:none;"><%#= MESSAGES["checklist_recommendations"]["closuredate"]%><span>
-                    </div>
-                  </div>
-              <div class="form-group clearfix">
-                <%= f.label :Status, t(' checklist_recommendation.status'), :class => "col-sm-5 control-label" %>
-                   <div class="col-sm-7">
-                  <%#= f.collection_select :recommendation_status_id, RecommendationStatus.all, :id, :name, answered_ncquestions.present? ? {selected: answered_ncquestions.recommendation_status_id} : {},{ :name => "checklist_recommendation[#{audit_compliance.id}][recommendation_status_id]", :id => "recommendation_status_id_#{audit_compliance.id}", :class=> "control_status"} %>
-                   </div>
-                      <span class="error_message" id="error_status_<%#= audit_compliance.id%>" style="display:none;"><%#= MESSAGES["checklist_recommendations"]["status"]%><span>
-                      </div>
-
-              <div class="form-group clearfix">
-                <div class="col-sm-12 ">
-                   <!-- a class="black_btn fright" href=""> Score</a-->
-                  <%=button_tag "Save Draft", :class => "black_btn fright", type: 'button', onclick: "save_individual_ncrecommendation(#{answered_ncquestion.id})"%>
-                  <%#= f.submit "Score" , :class => "black_btn fright"%>
-                </div>
-
-              </div>
-         </div>
-
-         </div>
+          </div>
+          <div class="form-group clearfix">
+            <%= f.label :recommendation, t(' checklist_recommendation.recommendation'), :class => "col-sm-5 control-label" %>
+            <div class="col-sm-7">
+              <%= f.text_field :recommendation, :class => "audit-big-input control_recommendation", :name => "checklist_recommendation[#{answered_ncquestion.id}][recommendation]", :id => "recommendation_#{answered_ncquestion.id}", :value => "#{checklist_recommendation.recommendation if checklist_recommendation.present?}", :class => "audit-big-input control_recommendation"%>
+              <span class="error_message" id="error_recommendation_<%= answered_ncquestion.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["recommendation"]%><span>
+              <%if @checklist_recommendation.errors[:recommendation].present?%>
+                <div class="error_message"><%=  @checklist_recommendation.errors[:recommendation][0]%></div>
+              <% end %>
+            </div>
+          </div>
+          <div class="form-group clearfix">
+            <%= f.label :Priority, t(' checklist_recommendation.priority'), :class => "col-sm-5 control-label" %>
+            <div class="col-sm-7">
+              <%= f.collection_select :recommendation_priority_id, Priority.all, :id, :name, checklist_recommendation.present? ? {selected: checklist_recommendation.recommendation_priority_id} : {},{ :name => "checklist_recommendation[#{answered_ncquestion.id}][recommendation_priority_id]", :id => "recommendation_priority_id_#{answered_ncquestion.id}", :class=> "control_priority"} %>
+              <span class="error_message" id="error_recommendation_<%= answered_ncquestion.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["priority"]%><span>
+            </div>
+          </div>
         </div>
-        <% end %>
+
+        <div class="col-lg-4">
+          <div class="form-group clearfix">
+            <%= f.label :Answer, t(' checklist_recommendation.comment'), :class => "col-sm-5 control-label" %>
+            <div class="col-sm-7">
+              <% if answered_ncquestion.question_type_id == 1 %>
+                <%= answered_ncquestion.answer.value == 0 ? 'Yes' : 'No' %>
+              <% elsif answered_ncquestion.question_type_id == 2 %>
+                <%= answered_ncquestion.answer.detailed_value %>
+              <% else %>
+                <%= QuestionOption.where(:id => answered_ncquestion.answer.value).last.value %>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="form-group clearfix">
+            <%= f.label :Reason, t(' checklist_recommendation.reason'), :class => "col-sm-5 control-label" %>
+            <div class="col-sm-7">
+              <%= f.text_field :reason, :class => "audit-big-input control_reason", :class => "audit-big-input control_reason", :name => "checklist_recommendation[#{answered_ncquestion.id}][reason]", :id => "reason_#{answered_ncquestion.id}", :value => "#{checklist_recommendation.reason if checklist_recommendation.present?}" %>
+              <span class="error_message" id="error_reason_<%= answered_ncquestion.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["reason"]%><span>
+            </div>
+          </div>
+
+          <div class="form-group clearfix">
+            <%= f.label :Severity, t(' checklist_recommendation.severity'), :class => "col-sm-5 control-label" %>
+            <div class="col-sm-7">
+              <%= f.collection_select :recommendation_severity_id, Priority.all, :id, :name,{}, {:name => "checklist_recommendation[#{answered_ncquestion.id}][recommendation_severity_id]", :id => "recommendation_severity_id_#{answered_ncquestion.id}", :class=> "control_severity"} %>
+              <span class="error_message" id="error_severity_<%= answered_ncquestion.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["severity"]%><span>
+            </div>
+          </div>
         </div>
+
+        <div class="col-lg-4">
+          <div class="form-group clearfix">
+            <%= f.label :'Closure Date', t(' checklist_recommendation.closure_date'), :class => "col-sm-5 control-label" %>
+            <div class="col-sm-7">
+              <%= f.text_field :closure_date, :class => "datepicker2 control_closure_date", :style =>"width:150px;", :name => "checklist_recommendation[#{answered_ncquestion.id}][closure_date]", :id => "closure_date_#{answered_ncquestion.id}", :value => "#{checklist_recommendation.closure_date.to_date.strftime("%d/%m/%Y") if checklist_recommendation.present? rescue ""}", :readonly => 'readonly' %>
+              <span class="error_message" id="error_closure_date_<%= answered_ncquestion.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["closuredate"]%><span>
+            </div>
+          </div>
+          <div class="form-group clearfix">
+            <%= f.label :Status, t(' checklist_recommendation.status'), :class => "col-sm-5 control-label" %>
+            <div class="col-sm-7">
+              <%= f.collection_select :recommendation_status_id, RecommendationStatus.all, :id, :name,   checklist_recommendation.present? ? {selected: checklist_recommendation.recommendation_status_id} : {},  { :name => "checklist_recommendation[#{answered_ncquestion.id}][recommendation_status_id]", :id => "recommendation_status_id_#{answered_ncquestion.id}", :class=> "control_status"} %>
+              <span class="error_message" id="error_status_<%= answered_ncquestion.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["status"]%><span>
+            </div>
+          </div>
+
+        <div class="form-group clearfix">
+          <div class="col-sm-12 ">
+            <%=button_tag "Save Draft", :class => "black_btn fright", type: 'button', onclick: "save_individual_ncrecommendation(#{answered_ncquestion.id})"%>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  <% end %>
+</div>

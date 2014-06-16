@@ -7,10 +7,8 @@ class ChecklistRecommendationsController < ApplicationController
  	#new for checklist recommendation
  	def new
 		@audit = current_audit
-		@answered_compliances = @audit.answered_compliances
 		@checklist_recommendation = ChecklistRecommendation.new
 		@score = Score.all
-		@answered_ncquestions = @audit.answered_ncquestions
  	end
 
  	#To create checklist recommendation for auditcompliance
@@ -26,16 +24,20 @@ class ChecklistRecommendationsController < ApplicationController
 						check.delete("score")
 						check[:is_checklist_new] = true
 						check[:auditee_id] = current_user.id
+
 					@checklist_recommendation = ChecklistRecommendation.new(check)
 					@checklist_recommendation.recommendation_completed = true unless params[:commit] == 'Save Draft'
 					if @checklist_recommendation.save
-						@checklist_recommendation.checklist.update_attributes(:score_id => score)
+						@checklist_recommendation.checklist.update_attributes(:score_id => score) if checklist[:checklist_recommendation][:score]
 					else
+						@audit = current_audit
+						@score = Score.all
 						render 'new'
 					end
 				else
 					@checklist_recommendation.recommendation_completed = true unless params[:commit] == 'Save Draft'
-					@checklist_recommendation.checklist.update(:score_id => checklist[:checklist_recommendation][:score])
+					checklist[:checklist_recommendation][:is_checklist_new] = true
+					@checklist_recommendation.checklist.update(:score_id => checklist[:checklist_recommendation][:score]) if checklist[:checklist_recommendation][:score]
 					checklist[:checklist_recommendation].delete("score")
 					@checklist_recommendation.update(checklist[:checklist_recommendation])
 				end
