@@ -43,7 +43,9 @@ Rails.application.routes.draw do
     get 'export_files', on: :collection
     post 'asc_calculation', on: :collection
     get 'particular_dashboard' , on: :collection
-    get 'audit_dashboard' , on: :member
+    get 'maximum_actual_score' , on: :collection
+    get 'audit_dashboard' , on: :collection
+    get 'artifacts_download' , on: :collection
   end
 
   resource :answers
