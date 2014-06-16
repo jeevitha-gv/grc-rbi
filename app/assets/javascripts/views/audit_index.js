@@ -150,7 +150,7 @@
 		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		setCookie("audit_id", dataItem.id)
-		window.location.href = "/audits/"+ dataItem.title +".pdf"
+		window.location.href = "/audits/"+ dataItem.id +".pdf"
 	}
 
 	$(document).ready(function() {
