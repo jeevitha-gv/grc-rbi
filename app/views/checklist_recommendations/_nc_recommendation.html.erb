@@ -46,7 +46,6 @@
           <div class="col-lg-4">
             <div class="form-group clearfix">
               <%= f.label :Answer, t(' checklist_recommendation.comment'), :class => "col-sm-5 control-label" %>
-                <!--   <label class="col-sm-5"><b>Comment :</b> </label> -->
                 <div class="col-sm-7">
                   <%#= @artifact_answers.comment_comment if @artifact_answers%>
                   <% if answered_ncquestion.question_type_id == 1 %>
@@ -60,19 +59,17 @@
 
             </div>
               <div class="form-group clearfix">
-                <%#= f.label :Reason, t(' checklist_recommendation.reason'), :class => "col-sm-5 control-label" %>
-                           <!--    <label  class="col-sm-5"><b>Reason :</b> </label> -->
+                <%= f.label :Reason, t(' checklist_recommendation.reason'), :class => "col-sm-5 control-label" %>
                   <div class="col-sm-7">
-                    <%#= f.text_field :reason, :class => "audit-big-input control_reason", :name => "checklist_recommendation[#{audit_compliance.id}][reason]", :id => "reason_#{audit_compliance.id}", :value => "#{checklist_recommendation.reason if checklist_recommendation.present?}" %>
+                    <%= f.text_field :reason, :class => "audit-big-input control_reason" %>
                              <!--    <input class="audit-big-input" type="text"> -->
                     <span class="error_message" id="error_reason_<%#= audit_compliance.id%>" style="display:none;"><%#= MESSAGES["checklist_recommendations"]["reason"]%><span>
                   </div>
               </div>
               <div class="form-group clearfix">
                  <%= f.label :Severity, t(' checklist_recommendation.severity'), :class => "col-sm-5 control-label" %>
-                            <!--   <label  class="col-sm-5"><b>Severity :</b> </label> -->
                     <div class="col-sm-7">
-                      <%#= f.collection_select :recommendation_severity_id, Priority.all, :id, :name, checklist_recommendation.present? ? {selected: checklist_recommendation.recommendation_severity_id} : {}, {:name => "checklist_recommendation[#{audit_compliance.id}][recommendation_severity_id]", :id => "recommendation_severity_id_#{audit_compliance.id}", :class=> "control_severity"}%>
+                      <%= f.collection_select :recommendation_severity_id, Priority.all, :id, :name, ncquestion_recommendation.present? ? {selected: ncquestion_recommendation.recommendation_severity_id} : {} %>
 
                 <span class="error_message" id="error_severity_<%#= audit_compliance.id%>" style="display:none;"><%#= MESSAGES["checklist_recommendations"]["severity"]%><span>
                     </div>
@@ -82,18 +79,16 @@
               <div class="col-lg-4">
                 <div class="form-group clearfix">
                   <%= f.label :'Closure Date', t(' checklist_recommendation.closure_date'), :class => "col-sm-5 control-label" %>
-                             <!--  <label class="col-sm-5"><b>Target Date :</b> </label> -->
                     <div class="col-sm-7">
-                      <%#= f.text_field :closure_date, :class => "datepicker2 control_closure_date", :style =>"width:150px;", :name => "checklist_recommendation[#{audit_compliance.id}][closure_date]", :id => "closure_date_#{audit_compliance.id}", :value => "#{checklist_recommendation.closure_date.to_date.strftime("%d/%m/%Y") if checklist_recommendation.present? rescue ""}", :readonly => 'readonly' %>
+                      <%= f.text_field :closure_date, :class => "datepicker2 control_closure_date", :style =>"width:150px;" %>
                               <!--   <input id="datepicker2" value="10/10/2011" style="width:150px;" /> -->
                   <span class="error_message" id="error_closure_date_<%#= audit_compliance.id%>" style="display:none;"><%#= MESSAGES["checklist_recommendations"]["closuredate"]%><span>
                     </div>
                   </div>
               <div class="form-group clearfix">
-                <%#= f.label :Status, t(' checklist_recommendation.status'), :class => "col-sm-5 control-label" %>
-                            <!--   <label  class="col-sm-5"><b>Status :</b> </label> -->
+                <%= f.label :Status, t(' checklist_recommendation.status'), :class => "col-sm-5 control-label" %>
                    <div class="col-sm-7">
-                  <%#= f.collection_select :recommendation_status_id, RecommendationStatus.all, :id, :name, checklist_recommendation.present? ? {selected: checklist_recommendation.recommendation_status_id} : {},{ :name => "checklist_recommendation[#{audit_compliance.id}][recommendation_status_id]", :id => "recommendation_status_id_#{audit_compli#ance.id}", :class=> "control_status"} %>
+                  <%#= f.collection_select :recommendation_status_id, RecommendationStatus.all, :id, :name, answered_ncquestions.present? ? {selected: answered_ncquestions.recommendation_status_id} : {},{ :name => "checklist_recommendation[#{audit_compliance.id}][recommendation_status_id]", :id => "recommendation_status_id_#{audit_compliance.id}", :class=> "control_status"} %>
                    </div>
                       <span class="error_message" id="error_status_<%#= audit_compliance.id%>" style="display:none;"><%#= MESSAGES["checklist_recommendations"]["status"]%><span>
                       </div>

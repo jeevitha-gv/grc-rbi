@@ -52,7 +52,10 @@ class AuditsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render :pdf => "pdf", :template => "audits/show.pdf.erb", layout: 'layouts/pdf.html.erb'
+        #~ render :pdf => "pdf", :template => "audits/show.pdf.erb", layout: 'layouts/pdf.html.erb'
+         @pdf = render_to_string :pdf => "pdf", :template => "audits/show.pdf.erb", layout: 'layouts/pdf.html.erb',
+            :encoding => "UTF-8"
+        send_data(@pdf,   :type=>"application/pdf")
       end
     end
   end
@@ -173,7 +176,23 @@ class AuditsController < ApplicationController
   end
 
   def audit_dashboard
-    @audit = Audit.find_by_id(params[:id])
+      @audit = Audit.find_by_id(params[:id])
+      @audit_domains, @audit_weightage, @audit_maximum_score , @audit_percentage= @audit.maximum_actual_score
+      @to_do_list = @audit.compliance_checklist_recommendations
+      @audit_users = @audit.audit_users
+  end
+  
+  def artifacts_download
+		@audit = Audit.find_by_id(params[:id])
+		@folder = @audit.audit_answers.collect {|x| x.attachments}.flatten
+		temp = Tempfile.new("zip-file-#{Time.now}")
+		Zip::ZipOutputStream.open(temp.path) do |z|
+			@folder.each do |file|
+				z.put_next_entry(File.basename(file.attachment_file_url))
+				z.print IO.read("#{Rails.root}/public/#{file.attachment_file_url}")
+			end
+		end
+		send_file temp.path, :type => 'application/zip', :disposition => 'attachment', :filename => "artifacts.zip"
   end
 
   private
