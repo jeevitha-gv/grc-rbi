@@ -6,7 +6,7 @@
         <div class="row audit-title">
           <% test = question.build_answer %>
           <%= f.fields_for :answer do |answer| %>
-            <%= f.hidden_field :audit_id, value: @audit.id %>
+            <%= f.hidden_field :audit_id, value: current_audit.id %>
             <%= render :partial => "answer_type",  locals: {:f => f, :question => question, :answer => answer} %>
           <% end %>
         </div>

@@ -1,10 +1,9 @@
 class AuditsController < ApplicationController
-  load_and_authorize_resource :except => [:department_teams_users, :audit_with_status, :audit_all]
-  before_filter :authorize_audit, :only => [:edit, :update]
   before_action :authenticate_user!
+  load_and_authorize_resource :except => [:department_teams_users, :audit_with_status, :audit_all]
+  before_filter :authorize_audit, :only => [:edit, :update]  
   before_filter :check_company_disabled
   before_filter :audit_auditor_users, :only => [:new, :create, :edit, :update]
-
 
   def index
 
@@ -176,14 +175,14 @@ class AuditsController < ApplicationController
   end
 
   def audit_dashboard
-      @audit = Audit.find_by_id(params[:id])
+      @audit = current_audit
       @audit_domains, @audit_weightage, @audit_maximum_score , @audit_percentage= @audit.maximum_actual_score
       @to_do_list = @audit.compliance_checklist_recommendations
       @audit_users = @audit.audit_users
   end
   
   def artifacts_download
-		@audit = Audit.find_by_id(params[:id])
+		@audit = current_audit
 		@folder = @audit.audit_answers.collect {|x| x.attachments}.flatten
 		temp = Tempfile.new("zip-file-#{Time.now}")
 		Zip::ZipOutputStream.open(temp.path) do |z|

@@ -1,4 +1,6 @@
 class NcQuestionsController < ApplicationController
+  
+  before_filter :check_for_current_audit
 
 	def index
 		@nc_questions = NcQuestion.all
@@ -17,7 +19,7 @@ class NcQuestionsController < ApplicationController
 
 
 	def create
-		@audit = Audit.find(params[:audit][:audit_id])
+		@audit = current_audit
 		if @audit.update_attributes(question_params)
 			redirect_to nc_questions_path
 		else

@@ -1,6 +1,9 @@
 class ChecklistRecommendationsController < ApplicationController
-	before_filter :authorize_auditees, :only => [:auditee_response, :auditee_response_create]
-	before_filter :authorize_auditor, :only => [:new, :create, :update_individual_score, :audit_observation, :audit_observation_create]
+  before_filter :check_for_current_audit
+	before_filter :authorize_auditees, :only => [:auditee_response_create]
+	before_filter :authorize_auditees_skip_company_admin, :only => [:auditee_response]
+	before_filter :authorize_auditor_skip_company_admin, :only => [:new, :audit_observation]
+	before_filter :authorize_auditor, :only => [:create, :update_individual_score, :audit_observation_create]
 
 	require 'date'
 
@@ -46,9 +49,7 @@ class ChecklistRecommendationsController < ApplicationController
 	#To show auditee response
 	def auditee_response
 		@audit = current_audit
-		@checklist_recommendations = @audit.auditee_response_compliances
-		@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
-		@score = Score.all
+		@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
 	end
 
 	def audit_observation
@@ -124,18 +125,6 @@ end
 	private
 	  def checklist_params
 	    params.require(:checklist_recommendation).permit(:checklist_id, :checklist_type, :auditee_id, :recommendation, :reason, :corrective, :preventive, :closure_date, :recommendation_priority_id, :recommendation_severity_id, :response_priority_id, :response_severity_id, :recommendation_status_id, :response_status_id, :dependent_recommendation, :blocking_recommendation, :observation, :recommendation_completed, :is_implemented,:is_checklist_new)
-	  end
-
-	  def authorize_auditor
-	  	unless current_audit.auditor == current_user.id
-	  		redirect_to audits_path
-	  	end
-	  end
-
-	  def authorize_auditees
-	  	unless current_audit.auditees.map(&:id).include?(current_user.id)
-	  		redirect_to audits_path
-	  	end
-	  end
+	  end	 
 end
 

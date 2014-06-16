@@ -144,6 +144,12 @@ $(document).ready(function(){
 		}
 	});
 	/* placeholder */
+  
+    $(".next-phase").click(function(){
+      // new Messi('Planned for further phases.', {autoclose: '5000'});
+      new Messi('Planned for further phases.', {title: 'Warning', titleClass: 'warning', autoclose: 2000});
+    });
+    
 });
 
 // More contacts show
