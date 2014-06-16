@@ -12,7 +12,12 @@
         <br>
         <div class="form-group clearfix">
           <% if question.does_require_document? %>
-          <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="">Attach Document</a></div>
+          <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="">Attach Document</a>
+
+          <%#= file_field_tag "checklist_recommendation[attachment]", :style => "visibility:hidden; display:none;",  :id => "auditee_attachment_#{checklist_recommendation.id}"%>
+
+
+          </div>
           <% end %>
         </div>
       </div>
@@ -40,10 +45,7 @@
             <input type="radio" value="<%= question_option.id%>" name="answer[<%= question.id %>][value]" id="value_<%= question_option.id%>">
             <label for="value_<%= question_option.id%>"><%= question_option.value%></label> <br>
           <% end %>
-          <%# @options.each do |option| %>
-            <%#= radio_button_tag :value, $value = $value+1 %>
-            <%#= label :value, option %> <br>
-          <%# end %>
+          <br>
         </div>
         <br>
         <div class="form-group clearfix">
