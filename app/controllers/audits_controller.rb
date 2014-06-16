@@ -178,7 +178,7 @@ class AuditsController < ApplicationController
   def audit_dashboard
       @audit = Audit.find_by_id(params[:id])
       @audit_domains, @audit_weightage, @audit_maximum_score , @audit_percentage= @audit.maximum_actual_score
-      @to_do_list = @audit.checklist_recommendations
+      @to_do_list = @audit.compliance_checklist_recommendations
       @audit_users = @audit.audit_users
   end
   
