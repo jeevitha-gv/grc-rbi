@@ -76,7 +76,7 @@
               <label  class="col-sm-4"><b>Stakeholder:</b> </label>
               <div class="col-sm-8"><%= @audit_users.join(',') unless @audit_users.nil?%></div>
             </div>
-            <div class="db_download_btn clearfix"> <a class="download-icon" href="/audits/<%= @audit.id%>.pdf">Download Report</a> <a class="download-aff-icon" href="">Download Artifacts</a> </div>
+            <div class="db_download_btn clearfix"> <a class="download-icon" href="/audits/<%= @audit.id%>.pdf">Download Report</a> <a class="download-aff-icon" href="/audits/artifacts_download">Download Artifacts</a> </div>
           </div>
           <!--Audit Details End --> 
           <!--To do List Start -->
