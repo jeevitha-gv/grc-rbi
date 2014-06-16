@@ -21,7 +21,7 @@ class Audit < ActiveRecord::Base
   has_one :skipped_audit_reminder
   has_many :team_users, through: :team, :source => :users
   has_many :audit_operational_weightages
-  has_many :compliance_libraries
+  has_many :compliance_libraries, through: :audit_compliances
 
 
   accepts_nested_attributes_for :nc_questions
@@ -78,7 +78,7 @@ class Audit < ActiveRecord::Base
   end
 
   def audit_observation_compliances
-    self.audit_compliances.where(is_answered: true).collect{|x| x.checklist_recommendations.where('response_completed= ?',true)}.flatten
+    self.audit_compliances.where(is_answered: true)
   end
 
   # Getting all the unanswered Audit compliance for sending reminders
