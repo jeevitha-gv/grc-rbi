@@ -198,6 +198,6 @@ class AuditsController < ApplicationController
 
     def authorize_audit
       @audit = Audit.find_by_id(params[:id])
-      redirect_to audit_path if (@audit.auditor != current_user.id && !@audit.auditees.include?(current_user) && current_user.role != "company_admin")
+      redirect_to audits_path if (@audit.auditor != current_user.id)
     end
 end

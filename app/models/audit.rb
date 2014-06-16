@@ -188,9 +188,6 @@ end
   end
 
   def validate_end_date_before_start_date
-    if start_date
-      self.errors[:start_date_validate] = MESSAGES['audit']['failure']['start_date_validate'] if start_date < Date.today
-    end
     if end_date && start_date
       self.errors[:end_date] = MESSAGES['audit']['failure']['start_date_before_end_date'] if end_date < start_date
     end

@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale, :if => :current_user
   before_filter :set_time_zone, :if => :current_user
   helper_method :current_company
-  #before_filter :set_cookie_audit
+  before_filter :set_cookie_audit, :if => :current_user
   helper_method :current_audit
   before_filter :check_subdomain
   before_filter :check_password_authenticated, :if => :current_user
