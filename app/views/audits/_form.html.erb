@@ -21,6 +21,9 @@
     </label>
     <div class="col-sm-7">
       <%= f.text_area :objective, :class=>"audit-big-input" %>
+      <% if @audit.errors[:objective].present? %>
+        <div class="error_message"><%=  @audit.errors[:objective][0]%></div>
+      <% end %>
     </div>
   </div>
   <div class="form-group clearfix">
@@ -29,6 +32,9 @@
     </label>
     <div class="col-sm-7">
       <%= f.text_area :deliverables, :class=>"audit-big-input" %>
+      <% if @audit.errors[:deliverables].present? %>
+        <div class="error_message"><%=  @audit.errors[:deliverables][0]%></div>
+      <% end %>
     </div>
   </div>
 </div>
@@ -50,6 +56,9 @@
     </label>
     <div class="col-sm-7">
       <%= f.text_area :context, :class=>"audit-big-input" %>
+      <% if @audit.errors[:context].present? %>
+        <div class="error_message"><%=  @audit.errors[:context][0]%></div>
+      <% end %>
     </div>
   </div>
   <div class="form-group clearfix">
@@ -58,6 +67,9 @@
     </label>
     <div class="col-sm-7">
       <%= f.text_area :issue, :class=>"audit-big-input" %>
+      <% if @audit.errors[:issue].present? %>
+        <div class="error_message"><%=  @audit.errors[:issue][0]%></div>
+      <% end %>
     </div>
   </div>
 </div>
@@ -68,6 +80,9 @@
     </label>
     <div class="col-sm-7">
       <%= f.text_area :scope, :class=>"audit-big-input" %>
+      <% if @audit.errors[:scope].present? %>
+        <div class="error_message"><%=  @audit.errors[:scope][0]%></div>
+      <% end %>
     </div>
   </div>
   <div class="form-group clearfix">
@@ -76,6 +91,9 @@
     </label>
     <div class="col-sm-7">
       <%= f.text_area :methodology, :class=>"audit-big-input" %>
+      <% if @audit.errors[:methodology].present? %>
+        <div class="error_message"><%=  @audit.errors[:methodology][0]%></div>
+      <% end %>
     </div>
   </div>
   <div class="form-group clearfix addissue"> <a href="#add_url" data-toggle="modal" class="plus-icon next-phase">Add Issue from Risk Library</a>
