@@ -24,7 +24,7 @@ class AuditsController < ApplicationController
 
   def create
     @audit = Audit.new(audit_params)
-    @audit.company_id=current_company.id
+    @audit.company_id = current_company.id
     if params[:commit] == "Save as Plan"
       @audit.audit_status_id=AuditStatus.where(:name=>"Planning").first.id
     else
@@ -166,7 +166,7 @@ class AuditsController < ApplicationController
 
 
   def asc_calculation
-    audit = Audit.find(params[:audit_id])
+    audit = current_audit
     audit.update(audit_status_id: 4)
     Audit.audit_operational_weightage(current_company,audit)
     redirect_to particular_dashboard_audits_path
