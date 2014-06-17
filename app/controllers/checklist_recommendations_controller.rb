@@ -23,11 +23,9 @@ class ChecklistRecommendationsController < ApplicationController
 				checklist[:checklist_recommendation] = check
 				@checklist_recommendation = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?',checklist[:checklist_recommendation][:checklist_id], checklist[:checklist_recommendation][:checklist_type]).first
 				if @checklist_recommendation.nil?
-						score = check[:score]
-						check.delete("score")
-						check[:is_checklist_new] = true
-						check[:auditee_id] = current_user.id
-
+					score = check[:score]
+					check.delete("score")
+					check[:is_checklist_new] = true
 					@checklist_recommendation = ChecklistRecommendation.new(check)
 					@checklist_recommendation.recommendation_completed = true unless params[:commit] == 'Save Draft'
 					if @checklist_recommendation.save
@@ -90,6 +88,7 @@ class ChecklistRecommendationsController < ApplicationController
 			@checklist_recommendation.attachments.last.classified = "Auditee Response"
 		end
 		@checklist_recommendation.response_completed = true
+		@checklist_recommendation.auditee_id = current_user.id
 		@checklist_recommendation.update(checklist_params)
 		# UniversalMailer.delay.notify_auditor_about_responses(@checklist_recommendation)
 		respond_to :js
