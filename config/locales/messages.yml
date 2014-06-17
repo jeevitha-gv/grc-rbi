@@ -25,6 +25,12 @@ en:
       update: "Department was successfully updated."
       destroy: "Department was successfully destroyed."
 
+  User:
+    create:
+      success: "User was created successfully."
+      update: "User was successfully updated."
+      destroy: "User was successfully destroyed."
+      
   Role:
     create:
       success: "Role was created successfully"
