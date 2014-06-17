@@ -179,6 +179,7 @@ class AuditsController < ApplicationController
       @audit_domains, @audit_weightage, @audit_maximum_score , @audit_percentage= @audit.maximum_actual_score
       @to_do_list = @audit.compliance_checklist_recommendations
       @audit_users = @audit.audit_users
+      @checklist_completed_count, @checklist_pending_count, @recommendation_completed_count, @recommendation_pending_count, @observation_completed_count, @observation_pending_count,@response_completed_count, @response_pending_count = @audit.audit_status_records
   end
   
   def artifacts_download
