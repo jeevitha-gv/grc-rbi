@@ -15,36 +15,36 @@
           <!-- Dash Board Menu Start-->
           <div class="dashboard_menu">
             <ul>
-						<% audit_status_id = @audit.audit_status_id%>
+						<% audit_status_id = @audit.audit_status_id unless @audit.nil?%>
               <li>
-                <div id="arrow" class="<%=  dashboard_audit_status(audit_status_id,'Planning') %>"> <a  href="">
+                <div id="arrow" class="<%=  dashboard_audit_status(audit_status_id,'Planning') unless audit_status_id.nil? %>"> <a  href="/audits/new">
                   <div class="db-plan-icon"></div>
                   Plan </a> </div>
               </li>
               <li>
-                <div id="arrow1" class="<%= dashboard_audit_status(audit_status_id, 'In Progress')%>"> <a  href="">
+                <div id="arrow1" class="<%= dashboard_audit_status(audit_status_id, 'In Progress') unless audit_status_id.nil?%>"> <a  href="<%= (current_audit && current_audit.compliance_type == "Compliance") ? "/audit_compliances" : "/nc_questions/new"  %>">
                   <div class="db-do-icon"></div>
                   Do </a> </div>
               </li>
               <li>
-                <div id="arrow2" class="<%= dashboard_audit_status(audit_status_id, 'In Progress')%>"> <a  href="">
+                <div id="arrow2" class="<%= dashboard_audit_status(audit_status_id, 'In Progress') unless audit_status_id.nil?%>"> <a  href="/checklist_recommendations/new">
                   <div class="db-check-icon"></div>
                   Check </a> </div>	
               </li>
               <li>
-                <div id="arrow3" class="<%= dashboard_audit_status(audit_status_id, 'In Progress')%>"> <a  href="">
+                <div id="arrow3" class="<%= dashboard_audit_status(audit_status_id, 'In Progress') unless audit_status_id.nil?%>"> <a  href="/checklist_recommendations/auditee_response">
                   <div class="db-act-icon"></div>
                   Act </a> </div>
               </li>
               <li>
-                <div id="arrow4" class="<%= dashboard_audit_status(audit_status_id, 'Published')%>"> <a  href="">
+                <div id="arrow4" class="<%= dashboard_audit_status(audit_status_id, 'Published') unless audit_status_id.nil?%>"> <a  href="/checklist_recommendations/audit_observation">
                   <div class="db-publish-icon"></div>
                   Publish </a> </div>
               </li>
             </ul>
           </div>
           <!-- Dash Board Menu End--> 
-          <% if @audit.audit_status_name == 'Published'%>
+          <% if @audit && @audit.audit_status_name == 'Published'%>
           <!-- Audit Compliance Rating Start -->
           <div class="dash_sub_title">Audit Compliance Rating</div>
           <div id="auditcompliancerating"></div>
@@ -60,7 +60,7 @@
         <div class="col-lg-4 dash_bg">
           <div class="db_audit_com clearfix">
             <div class="db_audit_com_icon fleft"></div>
-            <div class="db_audit_com_txt">Audit Compliance Rating <b><%= @audit.percentage%>%</b> </div>
+            <div class="db_audit_com_txt">Audit Compliance Rating <b><%= @audit.percentage unless @audit.nil?%>%</b> </div>
           </div>
           
           <!--Audit Details Start -->
@@ -68,15 +68,15 @@
           <div class="db_aduitdetails">
             <div class="form-group clearfix">
               <label  class="col-sm-4"><b>Audit Name:</b> </label>
-              <div class="col-sm-8"><%= @audit.title%></div>
+              <div class="col-sm-8"><%= @audit.title unless @audit.nil?%></div>
             </div>
             <div class="form-group clearfix">
               <label  class="col-sm-4"><b>Start Date:</b> </label>
-              <div class="col-sm-8"><%= @audit.start_date%></div>
+              <div class="col-sm-8"><%= @audit.start_date unless @audit.nil?%></div>
             </div>
             <div class="form-group clearfix">
               <label  class="col-sm-4"><b>End Date:</b> </label>
-              <div class="col-sm-8"><%= @audit.end_date%></div>
+              <div class="col-sm-8"><%= @audit.end_date unless @audit.nil?%></div>
             </div>
             <div class="form-group clearfix">
               <label  class="col-sm-4"><b>Stakeholder:</b> </label>
@@ -88,7 +88,7 @@
           <!--To do List Start -->
           <div class="dash_sub_title">To Do List</div>
           <div class="db_todolist">
-					<% @to_do_list.each do |checklist_recommendation|%>
+					<% @to_do_list && @to_do_list.each do |checklist_recommendation|%>
 					<% if !checklist_recommendation.recommendation.nil? && checklist_recommendation.recommendation_completed.nil?%>
             <div class="db_todolist_info clearfix">
               <div class="checkbox_wrapper"></div>
