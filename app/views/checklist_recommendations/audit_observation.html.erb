@@ -17,7 +17,7 @@
                 </tr>
                 <tr>
                   <td><label>Client : </label>
-                    <span><%= @audit.client.name%></span></td>
+                    <span><%= @audit.client_name%></span></td>
                   <td><label>Title : </label>
                     <span> <%= @audit.title.truncate(50) %></span></td>
                   <td><label>Scope : </label>
@@ -25,7 +25,7 @@
                 </tr>
                 <tr>
                   <td><label>Team : </label>
-                    <span> <%= @audit.team.name %></span></td>
+                    <span> <%= @audit.team_name %></span></td>
                   <td><label>Start Date : </label>
                     <span> <%= @audit.start_date %></span></td>
                   <td><label>End Date : </label>
@@ -62,7 +62,11 @@
           </div>
 
           <div class="container">
-			<%= render "observation",checklist_recommendations: @checklist_recommendations %>
+            <% if @audit.compliance_type == 'Compliance'%>
+			        <%= render "observation",checklist_recommendations: @checklist_recommendations %>
+            <% else %>
+              <%= render "nc_observation" %>
+            <% end %>
 		  	<div class="clearfix"></div>
 	  			<%= form_tag '/audits/asc_calculation', :method => :post do %>
     				<div class="fright paddingtop">

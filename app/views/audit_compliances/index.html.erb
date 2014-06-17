@@ -1,6 +1,3 @@
-<script>
-var audit_id = "<%= params[:audit_id]%>"
-</script>
 <div class="clearfix"></div>
 <div class="content">
   <div class="container">
@@ -153,7 +150,7 @@ $(document).ready(function(){
 				dataSource = new kendo.data.DataSource({
 					transport: {
 						read: {
-							url: '/audit_compliances/compliance_checklist?audit_id='+audit_id,
+							url: '/audit_compliances/compliance_checklist',
 							dataType: 'json'
 						}
 					},
@@ -334,7 +331,7 @@ var data = []
     url: "/audit_compliances",
     type: "POST",
     beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
-    data: {"checklist" : data, "audit_id": audit_id},
+    data: {"checklist" : data},
     }).done(function() {
   });
 }

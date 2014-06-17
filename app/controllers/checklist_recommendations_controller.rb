@@ -1,16 +1,17 @@
 class ChecklistRecommendationsController < ApplicationController
-	before_filter :authorize_auditees, :only => [:auditee_response, :auditee_response_create]
-	before_filter :authorize_auditor, :only => [:new, :create, :update_individual_score, :audit_observation, :audit_observation_create]
+  before_filter :check_for_current_audit
+	before_filter :authorize_auditees, :only => [:auditee_response_create]
+	before_filter :authorize_auditees_skip_company_admin, :only => [:auditee_response]
+	before_filter :authorize_auditor_skip_company_admin, :only => [:new, :audit_observation]
+	before_filter :authorize_auditor, :only => [:create, :update_individual_score, :audit_observation_create]
 
 	require 'date'
 
  	#new for checklist recommendation
  	def new
 		@audit = current_audit
-		@answered_compliances = @audit.answered_compliances
 		@checklist_recommendation = ChecklistRecommendation.new
 		@score = Score.all
-		@answered_ncquestions = @audit.answered_ncquestions
  	end
 
  	#To create checklist recommendation for auditcompliance
@@ -26,16 +27,20 @@ class ChecklistRecommendationsController < ApplicationController
 						check.delete("score")
 						check[:is_checklist_new] = true
 						check[:auditee_id] = current_user.id
+
 					@checklist_recommendation = ChecklistRecommendation.new(check)
 					@checklist_recommendation.recommendation_completed = true unless params[:commit] == 'Save Draft'
 					if @checklist_recommendation.save
-						@checklist_recommendation.checklist.update_attributes(:score_id => score)
+						@checklist_recommendation.checklist.update_attributes(:score_id => score) if checklist[:checklist_recommendation][:score]
 					else
+						@audit = current_audit
+						@score = Score.all
 						render 'new'
 					end
 				else
 					@checklist_recommendation.recommendation_completed = true unless params[:commit] == 'Save Draft'
-					@checklist_recommendation.checklist.update(:score_id => checklist[:checklist_recommendation][:score])
+					checklist[:checklist_recommendation][:is_checklist_new] = true
+					@checklist_recommendation.checklist.update(:score_id => checklist[:checklist_recommendation][:score]) if checklist[:checklist_recommendation][:score]
 					checklist[:checklist_recommendation].delete("score")
 					@checklist_recommendation.update(checklist[:checklist_recommendation])
 				end
@@ -46,14 +51,13 @@ class ChecklistRecommendationsController < ApplicationController
 	#To show auditee response
 	def auditee_response
 		@audit = current_audit
-		@checklist_recommendations = @audit.auditee_response_compliances
-		@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
-		@score = Score.all
+		@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
 	end
 
 	def audit_observation
 		@audit = current_audit
 		@checklist_recommendations = @audit.audit_observation_compliances
+		@nc_questions = @audit.nc_questions.where(:is_answered => true)
 	end
 
 	#To create auditee response for checklist recommendation
@@ -124,18 +128,6 @@ end
 	private
 	  def checklist_params
 	    params.require(:checklist_recommendation).permit(:checklist_id, :checklist_type, :auditee_id, :recommendation, :reason, :corrective, :preventive, :closure_date, :recommendation_priority_id, :recommendation_severity_id, :response_priority_id, :response_severity_id, :recommendation_status_id, :response_status_id, :dependent_recommendation, :blocking_recommendation, :observation, :recommendation_completed, :is_implemented,:is_checklist_new)
-	  end
-
-	  def authorize_auditor
-	  	unless current_audit.auditor == current_user.id
-	  		redirect_to audits_path
-	  	end
-	  end
-
-	  def authorize_auditees
-	  	unless current_audit.auditees.map(&:id).include?(current_user.id)
-	  		redirect_to audits_path
-	  	end
 	  end
 end
 

@@ -14,7 +14,12 @@ class UniversalMailer < ActionMailer::Base
 
   def notify_auditees_that_checklist_is_prepared(nc_question)
     @nc_question = nc_question
-    mail(:to => nc_question.auditee.email, :subject => "Checklist has been prepared for Audit")
+    mail(:to => nc_question.auditee.email, :subject => "Checklist has been prepared for NonCompliance Audit")
+  end
+
+  def notify_auditee_about_checklist(artifact_answer)
+    @artifact_answer = artifact_answer
+    mail(:to => artifact_answer.responsibility.email, :subject => "Checklist has been prepared for Compliance Audit")
   end
 
   def notify_auditor_that_auditee_has_answered(audit)

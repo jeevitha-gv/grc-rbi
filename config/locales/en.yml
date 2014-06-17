@@ -268,6 +268,24 @@ en:
               blank: "Please select start date"
             end_date:
               blank: "Please select end date"
+            scope:
+              too_long:
+                other: "Scope must not exceed 250 characters"
+            objective:
+              too_long:
+                other: "Objective must not exceed 250 characters"
+            context:
+              too_long:
+                other: "Context must not exceed 250 characters"
+            methodology:
+              too_long:
+                other: "Methodology must not exceed 250 characters"
+            deliverables:
+              too_long:
+                other: "Deliverables must not exceed 250 characters"
+            issue:
+              too_long:
+                other: "Issue must not exceed 250 characters"
         nc_question:
           attributes:
             question:

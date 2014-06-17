@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_audit
   before_filter :check_subdomain
   before_filter :check_password_authenticated, :if => :current_user
+  
   unless Rails.application.config.consider_all_requests_local
     rescue_from Exception, with: lambda { |exception| render_error 500, exception }
     rescue_from ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
@@ -25,11 +26,10 @@ class ApplicationController < ActionController::Base
   end
 
 
-
   protected
 
   def current_audit
-    Audit.find(cookies[:audit_id].to_i) if cookies[:audit_id].present?
+    Audit.find(cookies[:audit_id].to_i) if cookies[:audit_id].present? rescue nil
   end
 
   def configure_permitted_parameters
@@ -139,21 +139,18 @@ class ApplicationController < ActionController::Base
 
   #To check company admin
     def check_company_admin
-      result = current_company.id == current_user.company_id ? true : false if current_user.company_id
-      redirect_to '/users/sign_in'  if result == false
-        #~ company_admin_id = current_company.roles.where('title= ?' ,'company admin').first.id if (current_company.id == current_user.company_id && current_company.roles.present?)
-        #~ current_user.role_id
-        #~ unless company_admin_id.nil?
-          #~ result = current_user.role_id == company_admin_id ?  true : false
-            #~ redirect_to '/users/sign_in'  if result == false
-          #~ end
+      unless(current_company.id == current_user.company_id)
+        flash[:alert] = "Access restricted"
+        redirect_to '/users/sign_in' 
       end
+    end
 
   def check_role
-    role = Role.where('id =?', current_user.role_id).first.title if current_user.role_id.present?
+    role = current_user.role_title
     if role == 'company_admin'
       return true
     else
+      flash[:alert] = "Access restricted"
       redirect_to '/users/sign_in'
     end
   end
@@ -163,7 +160,42 @@ class ApplicationController < ActionController::Base
       cookies[:audit_id] = { :value => current_user.accessible_audits.last.id, :expires => 24.hour.from_now } if current_user.accessible_audits.present?
     end
   end
+  
+  def check_for_current_audit
+    unless current_audit.present?
+      flash[:alert] = "Access restricted"
+      redirect_to root_path
+    end
+  end
 
+  def authorize_auditor
+	  	unless current_audit.auditor == current_user.id
+        flash[:alert] = "Access restricted"
+	  		redirect_to audits_path
+	  	end
+  end
+
+	def authorize_auditees
+	  	unless current_audit.auditees.map(&:id).include?(current_user.id)
+        flash[:alert] = "Access restricted"
+	  		redirect_to audits_path
+	  	end
+	end
+  
+  def authorize_auditor_skip_company_admin
+	  	if(current_audit.auditor != current_user.id && current_user.role_title != "company_admin")
+        flash[:alert] = "Access restricted"
+	  		redirect_to audits_path
+	  	end
+  end
+
+	def authorize_auditees_skip_company_admin
+      if(!current_audit.auditees.map(&:id).include?(current_user.id) && current_user.role_title != "company_admin")
+        flash[:alert] = "Access restricted"
+	  		redirect_to audits_path
+	  	end
+	end
+    
   private
 
   def render_error(status, exception)
