@@ -88,6 +88,7 @@ en:
       auditee_blank: "Please select auditee"
       auditee_unique: "Please select unique auditee"
       start_date_before_end_date: "End date must not be before start date"
+      auditor_not_in_auditees: "User is already selected as auditor"
 
   checklist_recommendations:
     recommendation: "Please enter recommendation"
