@@ -35,7 +35,7 @@ class UniversalMailer < ActionMailer::Base
 
   def notify_auditee_about_nc_recommendations(checklist_recommendation)
     @checklist_recommendation = checklist_recommendation
-    mail(:to => checklist_recommendation.checklist.auditee.email, :subject => "Auditor has given a recommendation")
+    mail(:to => checklist_recommendation.checklist.nc_question.auditee.email, :subject => "Auditor has given a recommendation")
   end
 
   def notify_auditor_about_responses(checklist_recommendation)

@@ -84,15 +84,17 @@
 
                     <div class="form-group clearfix">
                     <label  class="col-sm-5">Issues </label>
+
                     <div class="col-sm-7">
                     <div class="block_link">
                     <!--<a class="active" href="">Blocking Recommandation</a>-->
                     <a type="button" class="active" href="#myModal1" data-toggle="modal" onclick="recommendation(<%= checklist_recommendation.id%>);">Blocking Recommandation</a>
                     <a type="button" href="#myModal" onclick="recommendation(<%= checklist_recommendation.id%>);" data-toggle="modal" >Dependent Recomandation</a>
-                    <%= hidden_field_tag "checklist_recommendation[dependent_recommendation]",  0 , :id => "dependent_recommendation_#{checklist_recommendation.id}"%>
-                    <%= hidden_field_tag "checklist_recommendation[blocking_recommendation]",  0 , :id => "blocking_recommendation_#{checklist_recommendation.id}"%>
+                    <%= hidden_field_tag "checklist_recommendation[dependent_recommendation]", checklist_recommendation.dependent_recommendation , :id => "dependent_recommendation_#{checklist_recommendation.id}"%>
+                    <%= hidden_field_tag "checklist_recommendation[blocking_recommendation]",  checklist_recommendation.blocking_recommendation , :id => "blocking_recommendation_#{checklist_recommendation.id}"%>
                     </div>
                     </div>
+
                     </div>
                     <div class="form-group clearfix">
                       <label class="col-sm-5 control-label">Severity</label>
@@ -113,3 +115,56 @@
             <% end %>
             <% end %>
           </div>
+
+
+ <div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-dialog_large modal-dialog_addwidget">
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
+              <!--popup content Start-->
+              <div class="model-header">
+                <div class="modal-title">Dependent Recommendation</div>
+              </div>
+                <div class="model-con">
+                  <div class="form-group clearfix">
+                    <label>Recommendation : </label>
+                    <div class="clearfix"></div>
+                      <div class="select_outer">
+
+                      </div>
+                       <%= hidden_field_tag "checklist_recommendation[id]",  0 , :id => "cheklist_id"%>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="modal-footer"> <input type="button" value="Submit" class="orange_btn" onclick="dependent_recommendation_select();"> <input type="button" value="Cancel" class="black_btn"></div>
+               </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="myModal1" class="modal fade">
+    <div class="modal-dialog modal-dialog_large modal-dialog_addwidget">
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
+              <!--popup content Start-->
+              <div class="model-header">
+                <div class="modal-title">Blocking Recommendation</div>
+              </div>
+                <div class="model-con">
+                  <div class="form-group clearfix">
+                    <label>Recommendation : </label>
+                    <div class="clearfix"></div>
+                      <div class="select_outer">
+
+                      </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="modal-footer">   <input type="button" value="Submit" class="orange_btn" onclick="blocking_recommendation_select();"> <input type="button" value="Cancel" class="black_btn"> </div>
+               </div>
+          </div>
+        </div>
+    </div>
+</div>

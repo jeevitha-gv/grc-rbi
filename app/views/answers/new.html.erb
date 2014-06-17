@@ -55,7 +55,7 @@
           <div class="container">
             <%= form_for :answer,  :url => "/answers", :html => { :multipart => true } do |f|%>
               <div id="Accordion1">
-                <% @audit.nc_questions.each do |question| %>
+                <% @current_auditee_nc_questions.each do |question| %>
                   <h3><a href="#"><%= question.question %></a> <span class="fright <%= question.answer.blank? ? "pending_msg" : "success_msg" %>"><%= question.answer.blank? ? "Pending" : "Completed" %></span></h3>
                     <div>
                       <div class="row audit-title">
