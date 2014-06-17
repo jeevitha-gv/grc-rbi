@@ -189,7 +189,6 @@ end
     audit_users.compact!
   end
   
-<<<<<<< HEAD
   def audit_status_records
     recommendation_completed_status = []
     response_completed_status = []
@@ -213,9 +212,6 @@ end
     return checklist_completed_status.count, checklist_pending_status.count, recommendation_completed_status, recommendation_pending_status, observation_completed_status, observation_pending_status, response_completed_status, response_pending_status
 end
 
-=======
-  
->>>>>>> f3fbfed899ed5fbd386fe38b7741bfb10046c743
   private
   def check_auditees_uniq
     if self.audit_auditees.present?
