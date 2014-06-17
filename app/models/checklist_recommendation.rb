@@ -16,7 +16,7 @@ class ChecklistRecommendation < ActiveRecord::Base
 	has_many :attachments , as: :attachable
 	belongs_to :auditee, class_name: 'User', foreign_key: 'auditee_id'
 	has_one :remark , as: :commentable, class_name: "Comment"
-    
+
     before_create :check_for_published
     before_save :check_for_published
 
@@ -58,33 +58,16 @@ class ChecklistRecommendation < ActiveRecord::Base
 		return checklist_params
 	end
 
- # after_create :notify_auditee_about_recommendation
- #  after_update :notify_auditor_about_response
- #  after_update :notify_auditee_about_observation
+ after_create :notify_auditee_about_recommendation
+
 
   def notify_auditee_about_recommendation
-  	if self.checklist.audit.compliance_type == 'AuditCompliance'
+  	if self.checklist_type == 'AuditCompliance'
     	UniversalMailer.delay.notify_auditee_about_recommendations(self)
     else
     	UniversalMailer.delay.notify_auditee_about_nc_recommendations(self)
     end
 
-  end
-
-  def notify_auditor_about_response
-  	if self.preventive? && self.corrective? && self.response_status_id?
-  		if self.checklist.audit.compliance_type == 'Compliance'
-  			UniversalMailer.delay.notify_auditor_about_responses(self)
-  		else
-  			UniversalMailer.delay.notify_auditor_about_nc_responses(self)
-  		end
-  	end
-  end
-
-  def notify_auditee_about_observation
-    if self.observation?
-      UniversalMailer.delay.notify_auditee_about_observations(self)
-    end
   end
 
   def check_for_published
