@@ -1,5 +1,9 @@
 class AnswersController < ApplicationController
 
+  before_filter :check_for_current_audit
+  before_filter :authorize_auditees, :only => [:new]
+  before_filter :authorize_auditees_skip_company_admin, :only => [:new]
+
   def new
     @audit = current_audit
   end
