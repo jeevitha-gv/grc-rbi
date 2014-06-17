@@ -1,7 +1,8 @@
 <div id="Accordion1">
- <% @nc_questions.each do |nc_question| %>
-            <% checklist_recommendation = nc_question.checklist_recommendation %>
-              <h3><a href="#"><%= nc_question.question %></a> <span class="fright pending_msg" id= "observation_status"><%= checklist_recommendation.is_published == true ? 'Completed' : 'Pending'%></span></h3>
+ <% @observation_answers.each do |answer| %>
+            <% checklist_recommendation = answer.checklist_recommendation %>
+            <% nc_question = answer.nc_question %>
+              <h3><a href="#"><%= answer.question %></a> <span class="fright pending_msg" id= "observation_status"><%= checklist_recommendation.is_published == true ? 'Completed' : 'Pending'%></span></h3>
               <div>
                 <div class="row audit-title">
                 <%= form_tag '/checklist_recommendations/audit_observation_create' , :remote=>true , multipart: true do%>
@@ -62,6 +63,7 @@
 
                   </div>
                   <div class="clearfix"></div>
+                  <div class="border_line"></div>
                      <h3><u>Auditee Actions</u></h3>
                   <div class="col-lg-4">
 

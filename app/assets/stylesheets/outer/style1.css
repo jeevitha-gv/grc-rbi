@@ -63,7 +63,7 @@
 }
 
 .k-tabstrip-items .k-item.k-state-active, .k-tabstrip-items .k-item.k-state-active:hover {
-	
+
 	border-bottom: none;
 }
 
@@ -185,7 +185,7 @@ div.k-grid-header .k-header, .k-grid td {
 
 .k-grid-content {
 	height: auto !important;
-	max-height: 194px;
+	max-height: 260px;
 }
 
 .k-grid-Set, .k-grid-Set:hover,.k-grid-tick, .k-grid-tick:hover,.k-grid-tick1, .k-grid-tick1:hover,.k-grid-book, .k-grid-book:hover,.k-grid-pdf, .k-grid-pdf:hover,.k-grid-edit, .k-grid-edit:hover {
@@ -348,4 +348,7 @@ div.k-grid-header .k-header, .k-grid td {
 
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
 	background: #0A7F99;
+}
+.company-name {
+  padding-top: 10px;
 }

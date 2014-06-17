@@ -25,7 +25,7 @@
 <tr><td style="color:#999999; padding:10px 0 0 20px;" ><strong>Audit Summary</strong></td>
 </tr>
 <tr><td style="color:#999999; padding:10px 0 0 20px;" >Auditor : <%= @audit.auditory.full_name %></td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px;" >Auditees : <%= @audit.auditees.map(&:full_name) %></td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px;" >Auditees : <%= @audit.auditees.map(&:full_name).join(', ') %></td></tr>
 <tr><td style="color:#999999; padding:10px 0 0 20px;" >Start Date : <%= @audit.start_date %></td></tr>
 <tr><td style="color:#999999; padding:10px 0 0 20px;" >End Date : <%= @audit.start_date %></td></tr>
 <tr><td style="color:#999999; padding:10px 0 0 20px;" >Title : <%= @audit.title %></td></tr>

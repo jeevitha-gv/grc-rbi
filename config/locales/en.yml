@@ -27,6 +27,7 @@ en:
             email:
               blank: "Email can't be blank"
               invalid: "Email is invalid"
+              taken: "Email has been already used"
             full_name:
               blank: "Full Name can't be blank"
               invalid: "Full Name should contain alphabets"
@@ -34,7 +35,7 @@ en:
                 other: "Full name should contain minimum of 8 char"
             user_name:
               blank: "User Name can't be blank"
-              invalid: "User Name should contain alphabets"
+              invalid: "User Name should contain alphabets in lower case and digits"
               too_short:
                 other: "User Name should contain minimum of 8 char"
               too_long:
@@ -152,6 +153,7 @@ en:
             name:
               blank: "Department name can't be blank"
               invalid: "Department name should contain alphanumeric"
+              taken: "Department name has been already used"
             location_id:
               blank: "Location Can't be blank"
         location:

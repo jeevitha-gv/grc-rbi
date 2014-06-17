@@ -8,7 +8,9 @@
           <% unless current_company.attachment.blank? %>
             <%= image_tag(current_company.attachment.attachment_file.small, :class => "navbar-brand") %>
           <% else %>
-            <%= link_to current_company.name, root_path, :class=>"navbar-brand" %>
+            <div class="company-name">
+              <%= link_to current_company.name, root_path, :class=>"navbar-brand" %>
+            </div>
           <% end %>
           </div>
         <div class="navbar-collapse collapse fleft">
