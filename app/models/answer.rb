@@ -1,5 +1,8 @@
 class Answer < ActiveRecord::Base
 
-	has_many :checklist_recommendations, as: :checklist
+	has_one :checklist_recommendation, as: :checklist
 	belongs_to :nc_question
+
+  delegate :question, :to => :nc_question
+  delegate :question_type_id, :to => :nc_question
 end

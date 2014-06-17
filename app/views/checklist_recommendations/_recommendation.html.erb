@@ -2,9 +2,9 @@
 <div id="Accordion1">
  <% @audit.answered_compliances.each do |audit_compliance| %>
    <% checklist_recommendation = audit_compliance.checklist_recommendation%>
-  <h3><ahref="#"><%= audit_compliance.compliance_library_name%></a> <span class="fright pending_msg" id= "recommendation_status">
-    <% @status = checklist_recommendation.recommendation_status_id if checklist_recommendation.present? %>
-      <%= (@status == 3 || @status == 4) ? 'Completed' : 'Pending' %></span></h3>
+  <h3><ahref="#"><%= audit_compliance.compliance_library_name%></a> <span class="fright pending_msg" id= "recommendation_status_<%= audit_compliance.id%>">
+    <% @status = (checklist_recommendation.present? ? checklist_recommendation.recommendation_status_id : nil)%>
+      <%= (@status == 3 || @status == 4 || @status == 2) ? 'Completed' : 'Pending' %></span></h3>
       <div>
 
       <!-- Hidden Value !-->
@@ -100,7 +100,7 @@
                       <div class="col-sm-7">
                       <div class="number_link">
                       <!--<input type="hidden" id="score_#{control.id}" name="checklist_recommendation[#{control.id}][score]" value="0" />-->
-                      <%= hidden_field_tag "checklist_recommendation[#{audit_compliance.id}][score]",  0 , :id => "score_#{audit_compliance.id}"%>
+                      <%= hidden_field_tag "checklist_recommendation[#{audit_compliance.id}][score]",  (audit_compliance.score_id ? audit_compliance.score_id : 1) , :id => "score_#{audit_compliance.id}"%>
 
                       <% @score.each_with_index do |score, index|%>
                        <a class="score_points <%= (audit_compliance.score_id.present? ?  ((audit_compliance.score_id == score.id)  ?  'active' : '') : ((index==0) ? 'active' : ''))%>" id="<%= audit_compliance.id%>_<%= score.id %>" href="javascript:void(0)" data-value="<%= score.id %>"><%= score.level%></a>
@@ -112,7 +112,7 @@
               <div class="form-group clearfix">
                 <div class="col-sm-12 ">
                    <!-- a class="black_btn fright" href=""> Score</a-->
-                  <%=button_tag "Score", :class => "black_btn fright", type: 'button', onclick: "save_individual_score(#{audit_compliance.id})",:disabled => (@checklist_recommendation.recommendation_status_id == 3)%>
+                  <%=button_tag "Score", :class => "black_btn fright", type: 'button', onclick: "save_individual_score(#{audit_compliance.id})",:disabled => (checklist_recommendation && checklist_recommendation.recommendation_status_id == 3)%>
                   <%#= f.submit "Score" , :class => "black_btn fright"%>
                 </div>
 

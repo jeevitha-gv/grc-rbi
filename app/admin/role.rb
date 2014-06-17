@@ -2,15 +2,13 @@ ActiveAdmin.register Role  do
  menu :if => proc{ !current_admin_user.present? }
 
   permit_params :title, :company_id
- 
  #authentication
   controller do
    before_filter :check_role, :check_company_admin
-   action :all, except: [:new]
 
 
     def scoped_collection
-      current_company.roles
+      current_company.roles.where.not(:title=> ["company_admin"])
     end
 
     def create

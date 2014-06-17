@@ -1,8 +1,6 @@
 <% unless @path %>
 new Messi("sorry this audit already published", {title: 'Warning', titleClass: 'warning', autoclose: 1500});
 <% else %>
-
-
 new Messi("<%=  MESSAGES["checklist_recommendation"]["audit_observation"]["success"] %>", {title: 'Success', titleClass: 'success', autoclose: 1500});
 $('#observation_'+<%= @checklist_recommendation.id%>).val('')
 $('#remarks_'+<%= @checklist_recommendation.id%>).val('')

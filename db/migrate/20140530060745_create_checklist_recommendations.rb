@@ -18,9 +18,9 @@ class CreateChecklistRecommendations < ActiveRecord::Migration
       t.integer :dependent_recommendation
       t.integer :blocking_recommendation
       t.text :observation
-      t.boolean :is_implemented
-      t.boolean :recommendation_completed
-      t.boolean :response_completed
+      t.boolean :is_implemented, :default => false
+      t.boolean :recommendation_completed, :default => false
+      t.boolean :response_completed, :default => false
 
 
       t.timestamps

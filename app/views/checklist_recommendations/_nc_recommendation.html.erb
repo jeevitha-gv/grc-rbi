@@ -1,5 +1,5 @@
 <div id="Accordion1">
-  <% @audit.answered_ncquestions.each do |answered_ncquestion| %>
+  <% @audit.answered_answers.each do |answered_ncquestion| %>
     <% checklist_recommendation = answered_ncquestion.checklist_recommendation%>
     <h3>
       <a href="#"><%= answered_ncquestion.question %></a>
@@ -9,7 +9,7 @@
     </h3>
     <div>
       <%= f.hidden_field :checklist_id, :name => "checklist_recommendation[#{answered_ncquestion.id}][checklist_id]", :id => "checklist_id_#{answered_ncquestion.id}", :value => answered_ncquestion.id%>
-      <%= f.hidden_field :checklist_type, :name => "checklist_recommendation[#{answered_ncquestion.id}][checklist_type]", :id => "checklist_type_#{answered_ncquestion.id}", :value => "NcQuestion"%>
+      <%= f.hidden_field :checklist_type, :name => "checklist_recommendation[#{answered_ncquestion.id}][checklist_type]", :id => "checklist_type_#{answered_ncquestion.id}", :value => "Answer"%>
       <div class="row audit-title">
         <div class="col-lg-4">
           <div class="form-group clearfix">
@@ -41,13 +41,13 @@
           <div class="form-group clearfix">
             <%= f.label :Answer, t(' checklist_recommendation.comment'), :class => "col-sm-5 control-label" %>
             <div class="col-sm-7">
-              <% if answered_ncquestion.answer.present? %>
+              <% if answered_ncquestion.question_type_id.present? %>
                 <% if answered_ncquestion.question_type_id == 1 %>
-                  <%= answered_ncquestion.answer.value == 0 ? 'Yes' : 'No' %>
+                  <%= answered_ncquestion.value == 0 ? 'Yes' : 'No' %>
                 <% elsif answered_ncquestion.question_type_id == 2 %>
-                  <%= answered_ncquestion.answer.detailed_value %>
+                  <%= answered_ncquestion.detailed_value %>
                 <% else %>
-                  <%= QuestionOption.where(:id => answered_ncquestion.answer.value).last.value %>
+                  <%= QuestionOption.where(:id => answered_ncquestion.value).last.value %>
                 <% end %>
               <% end %>
             </div>

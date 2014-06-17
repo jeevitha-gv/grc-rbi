@@ -57,7 +57,7 @@ ActiveAdmin.register User do
       end
 
       def scoped_collection
-        current_company.users
+        current_company.users.where("role_id != ?",Role.where("title = 'company_admin'").first.id)
       end
   end
 
@@ -105,7 +105,7 @@ ActiveAdmin.register User do
       f.input :user_name
       f.input :teams, :class => "", :collection => current_company.teams
       f.input :role_id, :label => 'Role', :as => :select, :collection => current_company.roles, :prompt => "-Select Role-"
-      f.input :manager , :label => 'Manager', :as => :select , :collection => current_company.users , :prompt => "-Select Manager-"
+      f.input :manager , :label => 'Manager', :as => :select , :collection => current_company.users.map{|u| [u.display_name, u.id]}, :prompt => "-Select Manager-"
       f.input :is_disabled
     end
     f.inputs "Other Information", for: [:profile, f.object.profile] do |s|

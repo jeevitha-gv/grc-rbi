@@ -1,6 +1,6 @@
 class AuditsController < ApplicationController
   load_and_authorize_resource :except => [:department_teams_users, :audit_with_status, :audit_all]
-  before_filter :authorize_audit, :only => [:edit, :update]  
+  before_filter :authorize_audit, :only => [:edit, :update]
   before_filter :check_company_disabled
   before_filter :audit_auditor_users, :only => [:new, :create, :edit, :update]
 
@@ -66,6 +66,9 @@ class AuditsController < ApplicationController
       cookies[:audit_id] = { :value => @audit.id, :expires => 24.hour.from_now }
       redirect_to edit_audit_path
     else
+      @departments = Department.where(:location_id=>@audit.location_id) if @audit.location_id
+      @teams = Team.where(:department_id=>@audit.department_id) if @audit.department_id
+      @team = Team.where(:id=>@audit.team_id).last if @audit.location_id
       render 'edit'
     end
   end
@@ -180,7 +183,7 @@ class AuditsController < ApplicationController
       @audit_users = @audit.audit_users
       @checklist_completed_count, @checklist_pending_count, @recommendation_completed_count, @recommendation_pending_count, @observation_completed_count, @observation_pending_count,@response_completed_count, @response_pending_count = @audit.audit_status_records
   end
-  
+
   def artifacts_download
 		@audit = current_audit
 		@folder = @audit.audit_answers.collect {|x| x.attachments}.flatten

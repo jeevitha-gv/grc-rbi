@@ -51,7 +51,12 @@ class ChecklistRecommendationsController < ApplicationController
 	#To show auditee response
 	def auditee_response
 		@audit = current_audit
-		@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
+		@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
+		if @audit.compliance_type == "Compliance"
+			@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
+		else
+			@nc_answers = @audit.auditee_response_answers(current_user.id)
+		end
 	end
 
 	def audit_observation
@@ -68,10 +73,9 @@ class ChecklistRecommendationsController < ApplicationController
 			@checklist_recommendation.attachments.last.classified = "Audit Observation"
 		end
 		@checklist_recommendation.remark.new(comment: params[:checklist_recommendation][:remarks]) if  params[:checklist_recommendation][:remarks].present?
-		@checklist_recommendation.response_completed = true
 		@checklist_recommendation.is_published = true
 		@checklist_recommendation.update(checklist_params)
-
+		# UniversalMailer.notify_auditee_about_observations(@checklist_recommendation).deliver
 		respond_to :js
 	end
 
@@ -81,7 +85,9 @@ class ChecklistRecommendationsController < ApplicationController
 			@checklist_recommendation.attachments.build(attachment_file: params[:checklist_recommendation][:attachment])
 			@checklist_recommendation.attachments.last.classified = "Auditee Response"
 		end
+		@checklist_recommendation.response_completed = true
 		@checklist_recommendation.update(checklist_params)
+		# UniversalMailer.notify_auditor_about_responses(@checklist_recommendation).deliver
 		respond_to :js
 	end
 

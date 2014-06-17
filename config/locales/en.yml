@@ -58,6 +58,10 @@ en:
                 other: "Address Line 2 cannot exceed 40 characters"
               too_short:
                 other: "Address Line 2 cannot be less than 7 characters"
+            city:
+              invalid: "Please enter a valid City.City name should contain alphabets"
+            state:
+              invalid: "Please enter a valid State.State name should contain alphabets"
         company:
           attributes:
             name:
