@@ -74,12 +74,24 @@ class Audit < ActiveRecord::Base
     self.audit_compliances.where(is_answered: true)
   end
 
+  def answered_answers
+    self.answers.where("nc_questions.is_answered = true")
+  end
+
   def auditee_response_compliances(user_id)
     self.audit_compliances.joins(:checklist_recommendation).joins("left OUTER join artifact_answers on audit_compliances.id=artifact_answers.audit_compliance_id").where("is_answered = true and  checklist_recommendations.recommendation_completed = true and artifact_answers.responsibility_id=?",user_id).uniq
   end
 
+  def auditee_response_answers(user_id)
+    self.answers.joins(:checklist_recommendation).where("nc_questions.is_answered = true and  checklist_recommendations.recommendation_completed = true and nc_questions.auditee_id=?",user_id).uniq
+  end
+
   def audit_observation_compliances
     self.audit_compliances.joins(:checklist_recommendation).where("is_answered = true and  checklist_recommendations.response_completed = true")
+  end
+
+  def audit_observation_answer
+    self.answers.joins(:checklist_recommendation).where("nc_questions.is_answered = true and  checklist_recommendations.response_completed = true")
   end
 
   # Getting all the unanswered Audit compliance for sending reminders
@@ -100,7 +112,7 @@ class Audit < ActiveRecord::Base
   def answered_ncquestions
     self.nc_questions
   end
-  
+
   def audit_compliances_for_current_user(user_id)
     self.audit_compliances.joins("left OUTER join artifact_answers on audit_compliances.id=artifact_answers.audit_compliance_id").where("artifact_answers.responsibility_id=?",user_id).uniq
   end
@@ -173,7 +185,7 @@ end
         return 1
     end
   end
-  
+
   def maximum_actual_score
     audit_domains = self.audit_operational_weightages.collect{|x| x.operational_area.compliance_library_name}
     audit_weightage = self.audit_operational_weightages.map(&:weightage)
@@ -181,14 +193,14 @@ end
     audit_maximum_score = self.audit_operational_weightages.map(&:maximum_score)
     return audit_domains, audit_weightage, audit_maximum_score, audit_percentage
   end
-  
+
   def audit_users
     audit_users = self.auditees.map(&:full_name)
     audit_users << self.auditory_full_name
     audit_users.compact!
   end
-  
-  
+
+
   private
   def check_auditees_uniq
     if self.audit_auditees.present?

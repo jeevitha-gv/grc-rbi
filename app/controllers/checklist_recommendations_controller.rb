@@ -51,7 +51,11 @@ class ChecklistRecommendationsController < ApplicationController
 	#To show auditee response
 	def auditee_response
 		@audit = current_audit
-		@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
+		if @audit.compliance_type == "Compliance"
+			@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
+		else
+			@nc_answers = @audit.auditee_response_answers(current_user.id)
+		end
 	end
 
 	def audit_observation
@@ -128,6 +132,6 @@ end
 	private
 	  def checklist_params
 	    params.require(:checklist_recommendation).permit(:checklist_id, :checklist_type, :auditee_id, :recommendation, :reason, :corrective, :preventive, :closure_date, :recommendation_priority_id, :recommendation_severity_id, :response_priority_id, :response_severity_id, :recommendation_status_id, :response_status_id, :dependent_recommendation, :blocking_recommendation, :observation, :recommendation_completed, :is_implemented,:is_checklist_new)
-	  end	 
+	  end
 end
 
