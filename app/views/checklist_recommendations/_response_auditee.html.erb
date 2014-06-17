@@ -12,7 +12,7 @@
                     <div class="form-group clearfix">
                       <% @artifact_answers = checklist.artifact_answers.first%>
                       <label class="col-sm-5"><b>Artifact :</b> </label>
-                      <div class="col-sm-7"><a class="blue_link" href=""><%= @artifact_answers.artifact_display_name if @artifact_answers%></a> </div>
+                      <div class="col-sm-7"><a class="blue_link" href="javascript:artifact_modal(<%= checklist.id%>);"><%= @artifact_answers.artifact_display_name if @artifact_answers%></a> </div>
                         <% if checklist.artifact_answers.count > 1 %>
                           <div class="col-sm-12"><a class="blue_link pull-right" href = "javascript:artifact_modal(<%= checklist.id%>);" >more</a></div>
                         <%end%>
@@ -94,11 +94,11 @@
                       <label  class="col-sm-5"><b>Score :</b> </label>
                       <div class="col-sm-7">
                         <div class="number_link">
-                         <a class="<%= 'active' if checklist_recommendation.checklist.score_id == 0 %>" href="">0</a>
-                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 1 %>">1</a>
-                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 2 %>">2</a>
-                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 3 %>">3</a> 
-                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 4 %>">4</a> 
+                         <a class="<%= 'active' if checklist_recommendation.checklist.score_id == 1 %>" href="javascript:void(0);">0</a>
+                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 2 %>">1</a>
+                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 3 %>">2</a>
+                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 4 %>">3</a> 
+                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 5 %>">4</a> 
                        </div>
                       </div>
                     </div>
@@ -110,8 +110,8 @@
                     <!--<a class="active" href="">Blocking Recommandation</a>-->
                     <a type="button" class="active" href="#myModal1" data-toggle="modal" onclick="recommendation(<%= checklist_recommendation.id%>);">Blocking Recommandation</a>
                     <a type="button" href="#myModal" onclick="recommendation(<%= checklist_recommendation.id%>);" data-toggle="modal" >Dependent Recomandation</a>
-                    <%= hidden_field_tag "checklist_recommendation[dependent_recommendation]",  0 , :id => "dependent_recommendation_#{checklist_recommendation.id}"%>
-                    <%= hidden_field_tag "checklist_recommendation[blocking_recommendation]",  0 , :id => "blocking_recommendation_#{checklist_recommendation.id}"%>
+                    <%= hidden_field_tag "checklist_recommendation[dependent_recommendation]", checklist_recommendation.dependent_recommendation , :id => "dependent_recommendation_#{checklist_recommendation.id}"%>
+                    <%= hidden_field_tag "checklist_recommendation[blocking_recommendation]",  checklist_recommendation.blocking_recommendation , :id => "blocking_recommendation_#{checklist_recommendation.id}"%>
                     </div>
                     </div>
                     </div>
@@ -155,40 +155,54 @@ function artifact_modal(id)
 
 
 
-<div class="modal fade" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-        <h3 id="myModalLabel">Dependent Recommendation</h3>
-      </div>
-      <div class="modal-body">
-        <div id="flag-sucmeg">
-          <%= select("checklist_recommendation", "dependent_recommendation", options_from_collection_for_select(@auditee_recommendation, :id, :recommendation), {:prompt => "-Select-"}, {:id =>"recommendation_id" }) %>
-          <%= hidden_field_tag "checklist_recommendation[id]",  0 , :id => "cheklist_id"%>
-          <input type="button" value="Submit" class="black_btn fright" onclick="dependent_recommendation_select();">
+ <div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-dialog_large modal-dialog_addwidget">
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
+              <!--popup content Start-->
+              <div class="model-header">
+                <div class="modal-title">Dependent Recommendation</div>
+              </div>
+                <div class="model-con">
+                  <div class="form-group clearfix">
+                    <label>Recommendation : </label>
+                    <div class="clearfix"></div>
+                      <div class="select_outer">
+                       <%= select("checklist_recommendation", "dependent_recommendation", options_from_collection_for_select(@auditee_recommendation, :id, :recommendation), {:prompt => "-Select-"}, {:id =>"dependent_recommendation_id" }) %>
+                      </div>
+                       <%= hidden_field_tag "checklist_recommendation[id]",  0 , :id => "cheklist_id"%>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="modal-footer"> <input type="button" value="Submit" class="orange_btn" onclick="dependent_recommendation_select();"> <input type="button" value="Cancel" class="black_btn"></div>
+               </div>
+          </div>
         </div>
-        <div class="pull-right">
-        </div>
-      </div>
     </div>
-  </div>
 </div>
-  
-<div class="modal fade" id="myModal1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-        <h3 id="myModalLabel">Blocking Recommandation</h3>
-      </div>
-      <div class="modal-body">
-        <div id="flag-sucmeg">
-          <%= select("checklist_recommendation", "dependent_recommendation", options_from_collection_for_select(@auditee_recommendation, :id, :recommendation), {:prompt => "-Select-"}, {:id =>"recommendation_id" }) %>
-          <%= hidden_field_tag "checklist_recommendation[id]",  0 , :id => "cheklist_id"%>
-          <input type="button" value="Submit" class="black_btn fright" onclick="blocking_recommendation_select();">
+
+
+<div id="myModal1" class="modal fade">
+    <div class="modal-dialog modal-dialog_large modal-dialog_addwidget">
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
+              <!--popup content Start-->
+              <div class="model-header">
+                <div class="modal-title">Blocking Recommendation</div>
+              </div>
+                <div class="model-con">
+                  <div class="form-group clearfix">
+                    <label>Recommendation : </label>
+                    <div class="clearfix"></div>
+                      <div class="select_outer">
+                       <%= select("checklist_recommendation", "dependent_recommendation", options_from_collection_for_select(@auditee_recommendation, :id, :recommendation), {:prompt => "-Select-"}, {:id =>"blocking_recommendation_id" }) %>
+                      </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="modal-footer">   <input type="button" value="Submit" class="orange_btn" onclick="blocking_recommendation_select();"> <input type="button" value="Cancel" class="black_btn"> </div>
+               </div>
+          </div>
         </div>
-      <div class="pull-right">
     </div>
-  </div>
 </div>

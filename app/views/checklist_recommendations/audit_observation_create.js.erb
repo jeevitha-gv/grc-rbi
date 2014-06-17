@@ -1,4 +1,4 @@
-<% unless @path %>
+<% if @checklist_recommendation.errors.present? %>
 new Messi("sorry this audit already published", {title: 'Warning', titleClass: 'warning', autoclose: 1500});
 <% else %>
 new Messi("<%=  MESSAGES["checklist_recommendation"]["audit_observation"]["success"] %>", {title: 'Success', titleClass: 'success', autoclose: 1500});

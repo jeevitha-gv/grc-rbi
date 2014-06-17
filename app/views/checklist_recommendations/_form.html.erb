@@ -7,10 +7,6 @@
       <div class="row">
         <!-- Nav tabs -->
 
-        <% if flash[:notice].present? %>
-        <%= flash[:notice]%>
-        <% end %>
-
         <div class="tab_main_title">Auditor Recommendation</div>
         <!-- Tab panes -->
         <div class="tab-content">
@@ -83,7 +79,7 @@
                       <%= render "nc_recommendation",f: f %>
                       <div class="clearfix"></div>
                       <div class="fright paddingtop">
-                        <a class="black_btn" href="">Back</a>
+                        <a class="black_btn" href="javascript:void(0)" onclick="goBack()">Back</a>
                         <!--<a class="grey_btn" href=""> Save Draft</a>-->
                         <%= f.submit "Save Draft", :class => "grey_btn" , :onclick => "return control_checklist();save_draft_checklist();"%>
                         <%= f.submit "Submit Recommendations" , :class => "orange_btn", :onclick => "return control_checklist();save_draft_checklist();", :disabled => (@audit.audit_status_id == 4)%>

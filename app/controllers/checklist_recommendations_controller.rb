@@ -43,7 +43,12 @@ class ChecklistRecommendationsController < ApplicationController
 					@checklist_recommendation.update(checklist[:checklist_recommendation])
 				end
 			end
-			redirect_to "/"
+			if(params[:commit] == 'Save Draft')
+				flash[:notice] = "Recommendation is saved in Draft"
+			else
+				flash[:notice] = "Recommendation is scored successfully"
+			end
+			redirect_to new_checklist_recommendation_path
 	 end
 
 	#To show auditee response
@@ -73,6 +78,7 @@ class ChecklistRecommendationsController < ApplicationController
 			@checklist_recommendation.attachments.build(attachment_file: params[:checklist_recommendation][:attachment])
 			@checklist_recommendation.attachments.last.classified = "Audit Observation"
 		end
+		@checklist_recommendation.last_step = true
 		@checklist_recommendation.is_published = true
 		if @checklist_recommendation.update(checklist_params)
 			@checklist_recommendation.remark = Comment.new(comment: params[:checklist_recommendation][:remarks]) if  params[:checklist_recommendation][:remarks].present?
@@ -87,7 +93,9 @@ class ChecklistRecommendationsController < ApplicationController
 			@checklist_recommendation.attachments.build(attachment_file: params[:checklist_recommendation][:attachment])
 			@checklist_recommendation.attachments.last.classified = "Auditee Response"
 		end
+		@checklist_recommendation.auditee_id = current_user.id
 		@checklist_recommendation.response_completed = true
+		@checklist_recommendation.is_checklist_new = true
 		@checklist_recommendation.auditee_id = current_user.id
 		@checklist_recommendation.update(checklist_params)
 		# UniversalMailer.delay.notify_auditor_about_responses(@checklist_recommendation)
@@ -99,14 +107,16 @@ class ChecklistRecommendationsController < ApplicationController
 		@checklist_recommendation = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?',params[:checklist_recommendation][:checklist_id], params[:checklist_recommendation][:checklist_type]).first
 		score = params[:checklist_recommendation][:score]
 		params[:checklist_recommendation].delete("score")
-	if @checklist_recommendation.nil?
-		@checklist_recommendation = ChecklistRecommendation.new(checklist_params)
-		@checklist_recommendation.checklist.update_attributes(:score_id => score) if  @checklist_recommendation.save
-	else
-		@checklist_recommendation.checklist.update(:score_id => score)
-		@checklist_recommendation.update(checklist_params)
+		if @checklist_recommendation.nil?
+			@checklist_recommendation = ChecklistRecommendation.new(checklist_params)
+			@checklist_recommendation.is_checklist_new = true
+			@checklist_recommendation.checklist.update_attributes(:score_id => score) if  @checklist_recommendation.save
+		else
+			@checklist_recommendation.is_checklist_new = true
+			@checklist_recommendation.checklist.update(:score_id => score)
+			@checklist_recommendation.update(checklist_params)
+		end
 	end
-end
 
 
  #After observed restrict to create recommendation , response & observed

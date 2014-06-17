@@ -1,5 +1,5 @@
 class ChecklistRecommendation < ActiveRecord::Base
-	attr_accessor :is_checklist_new
+	attr_accessor :is_checklist_new, :last_step
 	# belongs_to :auditee_id, :class_name => "ArtifactAnswer"
 	belongs_to :rec_priority, :class_name =>"Priority", foreign_key: :recommendation_priority
 	belongs_to :rec_severity, :class_name =>"Priority", foreign_key: :recommendation_severity
@@ -16,7 +16,9 @@ class ChecklistRecommendation < ActiveRecord::Base
 	has_many :attachments , as: :attachable
 	belongs_to :auditee, class_name: 'User', foreign_key: 'auditee_id'
 	has_one :remark , as: :commentable, class_name: "Comment"
-
+    
+    before_create :check_for_published
+    before_save :check_for_published
 
 	#validation
 	validates :recommendation, presence: true
@@ -30,17 +32,17 @@ class ChecklistRecommendation < ActiveRecord::Base
 	validates :response_status_id, presence: true, :if => Proc.new{|f| f.recommendation_completed == true && f.is_checklist_new != true}
 	validates :response_priority_id, presence: true, :if => Proc.new{|f| f.recommendation_completed == true && f.is_checklist_new != true}
 	validates :response_severity_id, presence: true, :if => Proc.new{|f| f.recommendation_completed == true && f.is_checklist_new != true}
-	validates :observation, presence: true, :if => Proc.new{|f| f.recommendation_completed == true && f.response_completed == true}
-	validates :is_implemented, presence: true, :if => Proc.new{|f| f.recommendation_completed == true &&  f.response_completed == true}
+	validates :observation, presence: true, :if => Proc.new{|f| f.recommendation_completed == true && f.response_completed == true && f.is_checklist_new != true}
+	validates :is_implemented, presence: true, :if => Proc.new{|f| f.recommendation_completed == true &&  f.response_completed == true && f.is_checklist_new != true}
 	validates :recommendation_status_id, presence: true
 
 
 	delegate :name, :to => :recommendation_priority, prefix: true, allow_nil: true
 	delegate :name, :to => :recommendation_priority, prefix: true, allow_nil: true
-  delegate :name, :to => :recommendation_status, prefix: true, allow_nil: true
-  delegate :name, :to => :response_status, prefix: true, allow_nil: :true
-  delegate :name, to: :response_priority, prefix: true, allow_nil: :true
-  delegate :comment, to: :remark, prefix: true, allow_nil: :true
+	delegate :name, :to => :recommendation_status, prefix: true, allow_nil: true
+	delegate :name, :to => :response_status, prefix: true, allow_nil: :true
+    delegate :name, to: :response_priority, prefix: true, allow_nil: :true
+	delegate :comment, to: :remark, prefix: true, allow_nil: :true
 
 
 
@@ -83,6 +85,14 @@ class ChecklistRecommendation < ActiveRecord::Base
     if self.observation?
       UniversalMailer.delay.notify_auditee_about_observations(self)
     end
+  end
+
+  def check_for_published
+  	if(self.last_step)
+  		return true
+  	elsif(self.is_published)
+  		return false
+  	end
   end
 
 end

@@ -18,7 +18,7 @@
           <div class="form-group clearfix">
             <label class="col-sm-5"><b>Artifact :</b></label>
               <div class="col-sm-7">
-                <a class="blue_link" href="javascript:"><%= @artifact_answers.artifact_display_name if @artifact_answers%></a></div>
+                <a class="blue_link" href="javascript:artifact_modal(<%= audit_compliance.id%>);"><%= @artifact_answers.artifact_display_name if @artifact_answers%></a></div>
               <% if audit_compliance.artifact_answers.count > 1%>
                  <div class="col-sm-12"><a class="blue_link pull-right" href = "javascript:artifact_modal(<%= audit_compliance.id%>);" >more</a></div>
               <%end%>

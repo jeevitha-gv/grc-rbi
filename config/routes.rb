@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'admin/compliance_libraries/compliance_domains'
   post 'admin/compliance_libraries/import_files'
   post 'admin/compliance_libraries/export_files'
+  post 'admin/privileges/role_privileges'
 
   devise_for :users
 

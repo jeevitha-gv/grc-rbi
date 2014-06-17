@@ -388,14 +388,14 @@ return true
 function dependent_recommendation_select()
 {
 id = $('#cheklist_id').val()
-recommendation_id = $('#recommendation_id').val()
+recommendation_id = $('#dependent_recommendation_id').val()
 $('#dependent_recommendation_'+id).val(recommendation_id)
  $('#myModal').modal('hide');
 }
 function blocking_recommendation_select()
 {
 id = $('#cheklist_id').val()
-recommendation_id = $('#recommendation_id').val()
+recommendation_id = $('#blocking_recommendation_id').val()
 $('#blocking_recommendation_'+id).val(recommendation_id)
  $('#myModal1').modal('hide');
 }

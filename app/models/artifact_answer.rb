@@ -15,11 +15,14 @@ class ArtifactAnswer < ActiveRecord::Base
   delegate :name, to: :artifact, prefix: true, allow_nil: true
   delegate :comment, to: :comment, prefix: true, allow_nil: true
 
+  validates :responsibility_id, presence: true
+  validates :target_date, presence: true
+
   def artifact_display_name
   	self.artifact_id ? self.artifact_name : "No Attachments"
   end
 
-  # after_create :notify_auditee_about_checklist
+  after_create :notify_auditee_about_checklist
 
   def notify_auditee_about_checklist
     UniversalMailer.delay.notify_auditee_about_checklist(self)

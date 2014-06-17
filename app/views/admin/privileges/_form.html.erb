@@ -26,8 +26,9 @@
 	 dataSource = new kendo.data.DataSource({
 		transport: {
 			read: {
-				url: '/admin/privileges',
-				dataType: 'json'
+				url: '/admin/privileges/role_privileges?role_id=<%= params[:role_id]%>',
+				dataType: 'json',
+				type: 'POST'
 			},
 			destroy: {
 				url: function (privilege) {

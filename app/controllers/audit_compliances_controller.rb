@@ -30,7 +30,7 @@ class AuditCompliancesController < ApplicationController
       if(v["artifact_id"].present?)
          artifact_ids =  v["artifact_id"].class == Array ? v["artifact_id"] : v["artifact_id"].split(",")
         artifact_ids.each do |artifact_id|
-          artifact_answer = ArtifactAnswer.find_or_create_by(artifact_id: artifact_id.to_i,audit_compliance_id: audit_compliance.id)
+          artifact_answer = ArtifactAnswer.find_or_initialize_by(artifact_id: artifact_id.to_i,audit_compliance_id: audit_compliance.id)
           old_artifact_answers.delete(artifact_answer.id)
           artifact_answer.update(v.reject{|x| x=="artifact_id" || x=="compliance_library_id" || x=="artifact_answers"})
         end
