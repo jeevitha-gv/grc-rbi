@@ -4,7 +4,7 @@
     <div class="file-body">
 	<% @artifact_answers.each do |artifacts|%>
 	<div>
-		<h4>Artifact</h4>
+		<h4>Artifact - <%= artifacts.artifact_display_name%></h4>
 		<% artifacts.attachments.each do |attachment|%>
 			<li><%= link_to(File.basename(attachment.attachment_file_url), download_artifacts_checklist_recommendations_path(id: attachment.id))%></li>
 		<%end%>

@@ -160,3 +160,6 @@ $(".more-link").click(function(){
     $(this).html("More").parent().siblings(".more-info").hide();
 });
 
+function goBack() {
+    window.history.go(-1)
+}

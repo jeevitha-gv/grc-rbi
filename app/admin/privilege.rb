@@ -43,6 +43,11 @@ ActiveAdmin.register Privilege do
 			@role_privilege = Privilege.where('role_id= ?', @privilege.role_id)
 		end
 
+		def role_privileges
+			role = Role.where(id: params[:role_id]).first
+			@privileges = role.privileges
+		end
+
 		def update
 			params[:privilege][:modular_id].reject(&:empty?).each do |controller_name|
   			modular_id = Modular.where('modal_name =?', controller_name).first.id

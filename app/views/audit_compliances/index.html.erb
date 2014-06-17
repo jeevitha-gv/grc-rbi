@@ -240,8 +240,8 @@ $(document).ready(function(){
 						{ field: "name", title: "Domain"},
 						{ field: "artifacts", title: "Checklist" , template: kendo.template( jQuery("#myTemplate").html())},
 						{ field: "priority", title: "Priority" , template: kendo.template( jQuery("#priority").html())},
-						{ field: "auditee", title: "Owner", template: kendo.template( jQuery("#auditee").html())},
-						{ field: "target_date", title: "Target Date", template: kendo.template( jQuery("#datepicker").html())},
+						{ field: "auditee", title: "Owner *", template: kendo.template( jQuery("#auditee").html())},
+						{ field: "target_date", title: "Target Date *", template: kendo.template( jQuery("#datepicker").html())},
 					],
 					editable: "inline"
 				});
@@ -288,7 +288,7 @@ $(document).ready(function(){
 </script>
 
 <script type="text/x-kendo-template" id="datepicker">
-  <input class="datepicker" id="#= id#" value="#= target_date#"/>
+  <input class="datepicker" id="#= id#" value="#= target_date#" readonly=true/>
 </script>
 
 <script>
@@ -319,19 +319,32 @@ function save_request()
 if($('.check_row:checked').length>0)
 {
 var data = []
+var validate = true
   $.each($('.check_row:checked'), function( index, value ) {
   var row_id = $(value).attr("id").replace("check_",'')
   var row_data = dataSource.get(row_id)
-  var row = {compliance_library_id: row_id, artifact_id: row_data.artifacts, responsibility_id: row_data.auditee, target_date: row_data.target_date, priority_id: row_data.priority, artifact_answers: row_data.artifact_answers}
-  data.push(row)
+  if( row_data.auditee != "" && row_data.target_date != "")
+  {
+    var row = {compliance_library_id: row_id, artifact_id: row_data.artifacts, responsibility_id: row_data.auditee, target_date: row_data.target_date, priority_id: row_data.priority, artifact_answers: row_data.artifact_answers}
+    data.push(row)
+  }
+  else
+  {
+    new Messi("Please select all necessary fields", {title: 'Error', titleClass: 'anim error', autoclose: 1500});
+    validate = false
+    return false;
+  }
   });
-  $.ajax({
-    url: "/audit_compliances",
-    type: "POST",
-    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
-    data: {"checklist" : data},
-    }).done(function() {
-  });
+  if(validate)
+  {
+    $.ajax({
+      url: "/audit_compliances",
+      type: "POST",
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
+      data: {"checklist" : data},
+      }).done(function() {
+    });
+  }
 }
 else
 {
