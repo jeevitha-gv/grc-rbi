@@ -63,7 +63,7 @@
 }
 
 .k-tabstrip-items .k-item.k-state-active, .k-tabstrip-items .k-item.k-state-active:hover {
-	
+
 	border-bottom: none;
 }
 
@@ -348,4 +348,7 @@ div.k-grid-header .k-header, .k-grid td {
 
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
 	background: #0A7F99;
+}
+.company-name {
+  padding-top: 10px;
 }
