@@ -1,5 +1,4 @@
 class AuditCompliancesController < ApplicationController
-    before_filter :authenticate_user!
     before_filter :check_for_current_audit
     before_filter :authorize_auditees_skip_company_admin, :only => [:response, :response_checklist]
     before_filter :authorize_auditees, :only => [:submit]

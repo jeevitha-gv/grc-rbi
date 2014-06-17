@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   #  :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :confirmable, :lockable, :authentication_keys => [:login]
+         :recoverable, :rememberable, :trackable, :confirmable, :lockable, :authentication_keys => [:login, :domain]
 
   belongs_to :role
   has_many :privileges, through: :role
@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 
 
 # attribute to login with username or email
-  attr_accessor :login
+  attr_accessor :login, :domain
 
    validates_format_of :full_name, :with =>/\A[a-zA-Z ]+\z/, :if => Proc.new{|f| !f.full_name.blank? }
    validates :full_name, length: { maximum: 50 }, :if => Proc.new{|f| !f.full_name.blank? }
@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
 
   delegate :title, to: :dealer, prefix: true
   delegate :title, to: :role, prefix: true, allow_nil: true
-
+  
   def is?( requested_role)
     self.role.title == requested_role.to_s if self.role.present?
   end
@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
   end
 
   protected
-
+  
   def password_required?
     super if confirmed?
   end
@@ -89,8 +89,12 @@ class User < ActiveRecord::Base
 
     def self.find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup
-      if login = conditions.delete(:login)
-        where(conditions).where(["lower(user_name) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      if((domain = conditions.delete(:domain)) && (login = conditions.delete(:login)))
+        if(domain && (company = Company.where(domain: domain).first))  
+          where(conditions).where(["(lower(user_name) = :value OR lower(email) = :value) AND company_id = :company_id", { :value => login.downcase, :company_id => company.id }]).first
+        else
+          where(conditions).where(["lower(user_name) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+        end
       else
         where(conditions).first
       end
