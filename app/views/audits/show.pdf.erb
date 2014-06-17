@@ -202,7 +202,7 @@ label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12p
 </tr>
 <tr>
 <td rowspan="4"><%= f.observation%></td>
-<td><%= f.remarks.collect{|x| x.comment}.join(',') unless f.remarks.nil? %></td>
+<td><%= f.remark if f && !f.remark.nil? %></td>
 </tr>
 </table>
 <% end %>
