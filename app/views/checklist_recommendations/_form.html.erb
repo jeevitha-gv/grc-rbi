@@ -70,10 +70,14 @@
                       <%= render "recommendation",f: f %>
                       <div class="clearfix"></div>
                       <div class="fright paddingtop">
-                        <a class="black_btn" href="">Back</a>
+                        <a class="black_btn" href="javascript:void(0)">Back</a>
                         <!--<a class="grey_btn" href=""> Save Draft</a>-->
-                        <%= f.submit "Save Draft" , :class => "grey_btn", :onclick => "return control_checklist();save_draft_checklist();"%>
-                        <%= f.submit "Overallscore" , :class => "orange_btn" , :onclick => "return control_checklist();",:disabled => (@audit.audit_status_id == 4)%>
+                        <%unless(@audit.audit_status_id == 4)%>
+                          <%unless(@audit.recommendation_status)%>
+                            <%= f.submit "Save Draft" , :class => "grey_btn", :onclick => "return control_checklist();save_draft_checklist();"%>
+                           <%end%>
+                            <%= f.submit "Overallscore" , :class => "orange_btn" , :onclick => "return control_checklist();"%>
+                         <%end%>
                       </div>
                     <% else %>
                       <%= render "nc_recommendation",f: f %>
@@ -81,8 +85,12 @@
                       <div class="fright paddingtop">
                         <a class="black_btn" href="javascript:void(0)" onclick="goBack()">Back</a>
                         <!--<a class="grey_btn" href=""> Save Draft</a>-->
-                        <%= f.submit "Save Draft", :class => "grey_btn" , :onclick => "return control_checklist();save_draft_checklist();"%>
-                        <%= f.submit "Submit Recommendations" , :class => "orange_btn", :onclick => "return control_checklist();save_draft_checklist();", :disabled => (@audit.audit_status_id == 4)%>
+                       <%unless(@audit.audit_status_id == 4)%>
+                       <%unless(@audit.recommendation_status)%>
+                          <%= f.submit "Save Draft", :class => "grey_btn" , :onclick => "return control_checklist();save_draft_checklist();"%>
+                       <%end%>
+                        <%= f.submit "Submit Recommendations" , :class => "orange_btn", :onclick => "return control_checklist();save_draft_checklist();"%>
+                      <%end%>
                       </div>
                     <% end %>
                     </div>
@@ -98,7 +106,6 @@
 <link href="/assets/outer/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/outer/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/outer/jquery.ui.accordion.min.css" rel="stylesheet" type="text/css">
-<script src="/assets/outer/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="/assets/outer/jquery-ui-1.9.2.accordion.custom.min.js" type="text/javascript"></script>
 <script type="text/javascript">
  $(function() {

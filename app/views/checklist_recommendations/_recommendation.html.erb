@@ -101,9 +101,14 @@
                       <div class="number_link">
                       <!--<input type="hidden" id="score_#{control.id}" name="checklist_recommendation[#{control.id}][score]" value="0" />-->
                       <%= hidden_field_tag "checklist_recommendation[#{audit_compliance.id}][score]",  (audit_compliance.score_id ? audit_compliance.score_id : 1) , :id => "score_#{audit_compliance.id}"%>
-
-                      <% @score.each_with_index do |score, index|%>
-                       <a class="score_points <%= (audit_compliance.score_id.present? ?  ((audit_compliance.score_id == score.id)  ?  'active' : '') : ((index==0) ? 'active' : ''))%>" id="<%= audit_compliance.id%>_<%= score.id %>" href="javascript:void(0)" data-value="<%= score.id %>"><%= score.level%></a>
+                      
+                      <% score_id = (audit_compliance.score_id.present? ?  audit_compliance.score_id : nil) %>                                          
+                      <% @score.each_with_index do |score, index|%>                      
+                         <%if score_id%>
+                         <a class="score_points <%= (score_id == score.id)  ?  'active' : ''%>" id="<%= audit_compliance.id%>_<%= score.id %>" href="javascript:void(0)" data-value="<%= score.id %>"><%= score.level%></a>
+                         <%else%>
+                         <a class="score_points  <%= (index==0) ? 'active' : ''%>" id="<%= audit_compliance.id%>_<%= score.id %>" href="javascript:void(0)" data-value="<%= score.id %>"><%= score.level%></a>
+                        <%end%>
                       <%end%>
 
                       </div>
@@ -112,8 +117,9 @@
               <div class="form-group clearfix">
                 <div class="col-sm-12 ">
                    <!-- a class="black_btn fright" href=""> Score</a-->
-                  <%=button_tag "Score", :class => "black_btn fright", type: 'button', onclick: "save_individual_score(#{audit_compliance.id})",:disabled => (checklist_recommendation && checklist_recommendation.recommendation_status_id == 3)%>
-                  <%#= f.submit "Score" , :class => "black_btn fright"%>
+                  <%unless(@audit.audit_status_id == 4)%>
+                    <%=button_tag "Score", :class => "black_btn fright", type: 'button', onclick: "save_individual_score(#{audit_compliance.id})",:disabled => (checklist_recommendation && checklist_recommendation.recommendation_status_id == 3)%>
+                  <%end%>
                 </div>
 
               </div>

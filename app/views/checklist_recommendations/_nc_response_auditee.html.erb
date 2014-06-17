@@ -105,9 +105,11 @@
                     </div>
                       <%= hidden_field_tag "checklist_recommendation[id]",  checklist_recommendation.id , :id => "id_#{checklist_recommendation.id}"%>
                     <div class="form-group clearfix">
-                    <!--<div class="col-sm-12 "><a class="black_btn fright" href="" onclick="auditee_response(<%#= checklist_recommendation.id%>);">Respond</a></div>-->
-                    <div class="col-sm-12 "><input type="submit" value="Respond" class="black_btn fright" onclick="auditee_response(<%= checklist_recommendation.id%>);">
-</div>
+                    <div class="col-sm-12 ">
+                     <%unless(@audit.audit_status_id == 4)%>
+                      <input type="submit" value="Respond" class="black_btn fright" onclick="auditee_response(<%= checklist_recommendation.id%>);">
+                    <%end%>
+                    </div>
                     </div>
                     </div>
                 </div>
@@ -131,7 +133,7 @@
                     <label>Recommendation : </label>
                     <div class="clearfix"></div>
                       <div class="select_outer">
-
+                        <%= select("checklist_recommendation", "dependent_recommendation", options_from_collection_for_select(@auditee_recommendation, :id, :recommendation), {:prompt => "-Select-"}, {:id =>"dependent_recommendation_id" }) %>
                       </div>
                        <%= hidden_field_tag "checklist_recommendation[id]",  0 , :id => "cheklist_id"%>
                   </div>
@@ -158,7 +160,7 @@
                     <label>Recommendation : </label>
                     <div class="clearfix"></div>
                       <div class="select_outer">
-
+                        <%= select("checklist_recommendation", "dependent_recommendation", options_from_collection_for_select(@auditee_recommendation, :id, :recommendation), {:prompt => "-Select-"}, {:id =>"blocking_recommendation_id" }) %>
                       </div>
                   </div>
                   <div class="clearfix"></div>

@@ -134,10 +134,9 @@
                   <%= hidden_field_tag "checklist_recommendation[id]",  checklist_recommendation.id , :id => "id_#{checklist_recommendation.id}"%>
                   <div class="clearfix fright">
                   <!--<a class="black_btn" href="">Publish</a>-->
-
-                  <input type="submit" value="Observed" class="black_btn" onclick="return audit_observation(<%=checklist_recommendation.id%>)">
-                  <!-- @audit.compliance_type == 'NonCompliance'? Topic : Standard -->
-                  <!-- <input type="submit" value="Observed" class="black_btn" onclick="return audit_observation(<%=checklist_recommendation.id%>).disabled=false;" > -->
+                  <%unless(@audit.audit_status_id == 4)%>
+                    <input type="submit" value="Observed" class="black_btn" onclick="return audit_observation(<%=checklist_recommendation.id%>)">
+                  <%end%>
                   </div>
                   </div>
 

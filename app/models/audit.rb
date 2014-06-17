@@ -224,27 +224,9 @@ class Audit < ActiveRecord::Base
     end
     return checklist_completed_status.count, checklist_pending_status.count, recommendation_completed_status, recommendation_pending_status, observation_completed_status, observation_pending_status, response_completed_status, response_pending_status
   end
-
-  private
-  def check_auditees_uniq
-    if self.audit_auditees.present?
-      check_user_id = audit_auditees.size == audit_auditees.collect{|x| x.user_id}.uniq.size
-      errors.add(:auditees, ("Please select unique auditees")) if check_user_id == false
-    end
-  end
-
-  def check_auditees_presence
-    self.errors[:auditees] = MESSAGES['audit']['failure']['auditee_blank'] unless audit_auditees.present?
-  end
-
-  def validate_end_date_before_start_date
-    if end_date && start_date
-      self.errors[:end_date] = MESSAGES['audit']['failure']['start_date_before_end_date'] if end_date < start_date
-    end
-  end
-
-  def check_for_auditor_in_auditees
-    self.errors[:auditees] = MESSAGES['audit']['failure']['auditor_not_in_auditees'] if audit_auditees.map(&:user_id).include?(self.auditor)
+  
+  def recommendation_status
+    self.checklist_recommendations.map(&:recommendation_completed).all?{ |x| x == true }
   end
   
   def build_audit_compliance(compliance_params)
@@ -274,6 +256,29 @@ class Audit < ActiveRecord::Base
         ArtifactAnswer.delete(old_artifact_answers) if old_artifact_answers.present?
       end
       AuditCompliance.delete(old_compliance) if old_compliance.present?
+  end
+  
+
+  private
+  def check_auditees_uniq
+    if self.audit_auditees.present?
+      check_user_id = audit_auditees.size == audit_auditees.collect{|x| x.user_id}.uniq.size
+      errors.add(:auditees, ("Please select unique auditees")) if check_user_id == false
     end
-    
+  end
+
+  def check_auditees_presence
+    self.errors[:auditees] = MESSAGES['audit']['failure']['auditee_blank'] unless audit_auditees.present?
+  end
+
+  def validate_end_date_before_start_date
+    if end_date && start_date
+      self.errors[:end_date] = MESSAGES['audit']['failure']['start_date_before_end_date'] if end_date < start_date
+    end
+  end
+
+  def check_for_auditor_in_auditees
+    self.errors[:auditees] = MESSAGES['audit']['failure']['auditor_not_in_auditees'] if audit_auditees.map(&:user_id).include?(self.auditor)
+  end
+  
 end
