@@ -75,7 +75,7 @@ class ChecklistRecommendationsController < ApplicationController
 		@checklist_recommendation.response_completed = true
 		@checklist_recommendation.is_published = true
 		@checklist_recommendation.update(checklist_params)
-
+		UniversalMailer.notify_auditee_about_observations(@checklist_recommendation).deliver
 		respond_to :js
 	end
 
