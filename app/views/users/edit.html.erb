@@ -1,4 +1,4 @@
-<% p @user.errors%>
+<%p @user.errors%>
 <%if @user.errors[:"attachment.attachment_file"].present?%>
 		<div class="error_message">Error: <%=  @user.errors[:"attachment.attachment_file"][0]%></div>
 <% end %>
@@ -96,14 +96,20 @@
 				</div>
 				<div class="form-group clearfix">
 						<label class="col-sm-4"><%= profile.label :city, t('profile.city') %></label>
-						<div class="col-sm-7">
+						<div class="col-sm-7 <%='error_inputfield' if @user.errors[:"profile.city"].present?%>">
 							<%= profile.text_field :city %>
+							<%if @user.errors[:"profile.city"].present?%>
+							<div class="error_message"><%=  @user.errors[:"profile.city"][0]%></div>
+							<% end %>
 						</div>
 				</div>
 				<div class="form-group clearfix">
 						<label class="col-sm-4"><%= profile.label :state, t('profile.state') %></label>
-						<div class="col-sm-7">
+						<div class="col-sm-7 <%='error_inputfield' if @user.errors[:"profile.state"].present?%>">
 							<%= profile.text_field :state %>
+							<%if @user.errors[:"profile.state"].present?%>
+							<div class="error_message"><%=  @user.errors[:"profile.state"][0]%></div>
+							<% end %>
 						</div>
 				</div>
 				<div class="form-group clearfix">
