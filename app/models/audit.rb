@@ -11,7 +11,7 @@ class Audit < ActiveRecord::Base
   has_many :nc_questions
   has_many :answers, through: :nc_questions
   has_many :default_compliance_libraries, -> { where(is_leaf: true) }, through: :compliance, source: :compliance_library
-  has_many :nc_checklist_recommendations, through: :answers , source: :checklist_recommendations
+  has_many :nc_checklist_recommendations, through: :answers , source: :checklist_recommendation
   has_many :compliance_checklist_recommendations, through: :audit_compliances, source: :checklist_recommendation
   has_many :audit_compliances
   has_many :audit_auditees
@@ -158,7 +158,7 @@ class Audit < ActiveRecord::Base
       rating = get_compliance_rating(compliance_percentage)
 
       # AuditOperationalWeightage
-      AuditOperationalWeightage.create(operational_area_id: operational_area.id, audit_id: audit.id, weightage: weightage, total_score: total_score, percentage: compliance_percentage, rating: rating)
+      AuditOperationalWeightage.create(operational_area_id: operational_area.id, audit_id: audit.id, weightage: weightage, total_score: total_score, percentage: compliance_percentage, rating: rating, maximum_score: maximum_score)
     end
     # total compliance percentage
     total_maximum_score = over_all_maximum_score.to_f
@@ -199,7 +199,7 @@ class Audit < ActiveRecord::Base
   def audit_users
     audit_users = self.auditees.map(&:full_name)
     audit_users << self.auditory_full_name
-    audit_users.compact!
+    audit_users.compact
   end
 
   def audit_status_records
@@ -215,12 +215,12 @@ class Audit < ActiveRecord::Base
       checklist.recommendation_completed.nil? ? checklist_pending_status << checklist.recommendation_completed  : checklist_completed_status << checklist.recommendation_completed
       checklist.response_completed.nil? ? checklist_pending_status << checklist.response_completed : checklist_completed_status << checklist.response_completed
       checklist.is_published.nil? ? checklist_pending_status << checklist.is_published  : checklist_completed_status << checklist.is_published
-      recommendation_completed_status = ChecklistRecommendation.where('recommendation_completed= ?',true).count
-      recommendation_pending_status = ChecklistRecommendation.all.count - recommendation_completed_status
-      response_completed_status = ChecklistRecommendation.where('response_completed= ?',true).count
-      response_pending_status = ChecklistRecommendation.all.count - response_completed_status
-      observation_completed_status = ChecklistRecommendation.where('is_published= ?',true).count
-      observation_pending_status = ChecklistRecommendation.all.count - observation_completed_status
+      recommendation_completed_status = self.checklist_recommendations.map(&:recommendation_completed).compact.count
+      recommendation_pending_status = self.checklist_recommendations.count - recommendation_completed_status
+      response_completed_status = self.checklist_recommendations.map(&:response_completed).compact.count
+      response_pending_status = self.checklist_recommendations.count - response_completed_status
+      observation_completed_status = self.checklist_recommendations.map(&:is_published).compact.count
+      observation_pending_status = self.checklist_recommendations.count - observation_completed_status
     end
     return checklist_completed_status.count, checklist_pending_status.count, recommendation_completed_status, recommendation_pending_status, observation_completed_status, observation_pending_status, response_completed_status, response_pending_status
   end

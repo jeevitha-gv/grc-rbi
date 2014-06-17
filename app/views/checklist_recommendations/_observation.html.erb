@@ -29,7 +29,7 @@
                   <div class="col-lg-4">
                     <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Comment :</b> </label>
-                      <div class="col-sm-7"><%= @artifact_answers.comment_comment.truncate(60) if @artifact_answers && @artifact_answers.comment_comment %> </div>
+                      <div class="col-sm-7"><%= @artifact_answers.comment_comment.truncate(50) if @artifact_answers && @artifact_answers.comment_comment %> </div>
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Reason :</b> </label>
@@ -97,11 +97,11 @@
                   <div class="col-lg-4">
                     <div class="form-group clearfix">
                       <label class="col-sm-5"> <b> Blocking :</b></label>
-                      <div class="col-sm-7"><%= checklist_recommendation.blocking_recommendation%> </div>
+                      <div class="col-sm-7"><%= checklist_recommendation.blocking_checklist.recommendation unless checklist_recommendation.blocking_checklist.nil? %> </div>
                     </div>
                      <div class="form-group clearfix">
                       <label class="col-sm-5"> <b>Dependent :</b></label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.dependent_recommendation%> </div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.dependent_checklist.recommendation unless checklist_recommendation.blocking_checklist.nil?%> </div>
                     </div>
                   </div>
 
