@@ -59,6 +59,7 @@ class Audit < ActiveRecord::Base
   delegate :email, :to => :auditory, prefix: true, allow_nil: true
   delegate :name, :to => :location, prefix: true, allow_nil: true
   delegate :name, :to => :department, prefix: true, allow_nil: true
+  delegate :name, :to => :audit_status, prefix: true, allow_nil: true
 
   scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
 
@@ -182,12 +183,28 @@ end
     audit_users << self.auditory.full_name
   end
   
-
-  # def self.search(params)
-  #   tire.search(load: true) do
-  #     query { string params[:query], default_operator: "AND" } if params[:query].present?
-  #   end
-  # end
+  def audit_status_records
+    recommendation_completed_status = []
+    response_completed_status = []
+    observation_completed_status = []
+    recommendation_pending_status = []
+    response_pending_status = []
+    observation_pending_status = []
+    checklist_completed_status = []
+    checklist_pending_status = []
+    self.checklist_recommendations.each do |checklist|
+        checklist.recommendation_completed.nil? ? checklist_pending_status << checklist.recommendation_completed  : checklist_completed_status << checklist.recommendation_completed
+        checklist.response_completed.nil? ? checklist_pending_status << checklist.response_completed : checklist_completed_status << checklist.response_completed
+        checklist.is_published.nil? ? checklist_pending_status << checklist.is_published  : checklist_completed_status << checklist.is_published
+        recommendation_completed_status = ChecklistRecommendation.where('recommendation_completed= ?',true).count
+        recommendation_pending_status = ChecklistRecommendation.all.count - recommendation_completed_status
+        response_completed_status = ChecklistRecommendation.where('response_completed= ?',true).count
+        response_pending_status = ChecklistRecommendation.all.count - response_completed_status
+        observation_completed_status = ChecklistRecommendation.where('is_published= ?',true).count
+        observation_pending_status = ChecklistRecommendation.all.count - observation_completed_status
+    end
+    return checklist_completed_status.count, checklist_pending_status.count, recommendation_completed_status, recommendation_pending_status, observation_completed_status, observation_pending_status, response_completed_status, response_pending_status
+end
 
   private
   def check_auditees_uniq

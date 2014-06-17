@@ -1,4 +1,8 @@
-  <div class="clearfix"></div>
+<script src="/assets/outer/highcharts.js"></script> 
+<script src="/assets/outer/exporting.js"></script> 
+<script src="/assets/outer/drilldown.js"></script> 
+<script src="/assets/outer/data.js"></script> 
+ <div class="clearfix"></div>
   <!-- Dash Board Start -->
   <div class="dashboard_main">
     <div class="container">
@@ -13,34 +17,34 @@
             <ul>
 						<% audit_status_id = @audit.audit_status_id%>
               <li>
-                <div id="arrow"> <a class="<%= audit_status_id >= 1 ? 'lightgreen' : 'grey'%>" href="">
+                <div id="arrow" class="<%=  dashboard_audit_status(audit_status_id,'Planning') %>"> <a  href="">
                   <div class="db-plan-icon"></div>
                   Plan </a> </div>
               </li>
               <li>
-                <div id="arrow1"> <a class="<%= audit_status_id >= 2 ? 'lightgreen' : 'grey'%>" href="">
+                <div id="arrow1" class="<%= dashboard_audit_status(audit_status_id, 'In Progress')%>"> <a  href="">
                   <div class="db-do-icon"></div>
                   Do </a> </div>
               </li>
               <li>
-                <div id="arrow2"> <a class="drakgreen" href="">
+                <div id="arrow2" class="<%= dashboard_audit_status(audit_status_id, 'In Progress')%>"> <a  href="">
                   <div class="db-check-icon"></div>
-                  Check </a> </div>
+                  Check </a> </div>	
               </li>
               <li>
-                <div id="arrow3"> <a class="grey" href="">
+                <div id="arrow3" class="<%= dashboard_audit_status(audit_status_id, 'In Progress')%>"> <a  href="">
                   <div class="db-act-icon"></div>
                   Act </a> </div>
               </li>
               <li>
-                <div id="arrow4"> <a class="grey" href="">
+                <div id="arrow4" class="<%= dashboard_audit_status(audit_status_id, 'Published')%>"> <a  href="">
                   <div class="db-publish-icon"></div>
                   Publish </a> </div>
               </li>
             </ul>
           </div>
           <!-- Dash Board Menu End--> 
-          
+          <% if @audit.audit_status_name == 'Published'%>
           <!-- Audit Compliance Rating Start -->
           <div class="dash_sub_title">Audit Compliance Rating</div>
           <div id="auditcompliancerating"></div>
@@ -49,12 +53,14 @@
           <!-- ISMS Audit Score Start -->
           <div class="dash_sub_title">ISMS Audit Score</div>
           <div id="ISMSAuditScore"></div>
+				
           <!-- ISMS Audit Score End --> 
+					<% end %>
         </div>
         <div class="col-lg-4 dash_bg">
           <div class="db_audit_com clearfix">
             <div class="db_audit_com_icon fleft"></div>
-            <div class="db_audit_com_txt">Audit Compliance Rating <b>62%</b> </div>
+            <div class="db_audit_com_txt">Audit Compliance Rating <b><%= @audit.percentage%>%</b> </div>
           </div>
           
           <!--Audit Details Start -->
@@ -115,12 +121,10 @@
           <!--To do List Start --> 
           
           <!--Audit Status  Start-->
-          <div class="dash_sub_title">Audit Status</div>
-          <script src="http://code.highcharts.com/highcharts.js"></script> 
-          <script src="http://code.highcharts.com/modules/data.js"></script> 
-          <script src="http://code.highcharts.com/modules/drilldown.js"></script>
-          <div id="container" class="aduit_status"></div>
-          
+					<% if @audit.audit_status_name == 'Published'%>
+						<div class="dash_sub_title">Audit Status</div>
+						<div id="container" class="aduit_status"></div>
+          <% end %>
           <!-- Data from www.netmarketshare.com. Select Browsers => Desktop share by version. Download as tsv. -->
           <pre id="tsv" style="display:none">
 Completed 8.0	0.55%
@@ -174,13 +178,13 @@ var percentages = <%= raw @audit_percentage%>;
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Value'
+                    text: 'Percentage'
                 }
             },
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
@@ -192,7 +196,7 @@ var percentages = <%= raw @audit_percentage%>;
                 }
             },
             series: [{
-                name: 'Organize',
+                name: 'Percentage',
                 data: percentages
     
             }]
@@ -200,14 +204,9 @@ var percentages = <%= raw @audit_percentage%>;
     });
     
 $(function () {
-//~ alert(1111111)
 var domains = <%= raw @audit_domains%>;
 var weightages = <%= raw @audit_weightage%>;
 var maximum_scores = <%= raw @audit_maximum_score%>;
-console.log(333333)
-console.log(domains)
-console.log(weightages)
-console.log(maximum_scores)
         $('#ISMSAuditScore').highcharts({
             chart: {
                 type: 'bar'
@@ -235,7 +234,7 @@ console.log(maximum_scores)
                 }
             },
             tooltip: {
-                valueSuffix: ' millions'
+                valueSuffix: ' '
             },
             plotOptions: {
                 bar: {
@@ -271,78 +270,21 @@ console.log(maximum_scores)
 
 
 $(function () {
-
-    Highcharts.data({
+			var completed_status = <%= raw @checklist_completed_count %>;
+			var pending_status = <%= raw @checklist_pending_count %>;
+			var recommendation_completed_count = <%= raw @recommendation_completed_count %>;
+			var recommendation_pending_count = <%= raw @recommendation_pending_count %>;
+			var observation_completed_count = <%= raw @observation_completed_count %>;
+			var observation_pending_count = <%= raw @observation_pending_count %>;
+			var response_completed_count = <%= raw @response_completed_count %>;
+			var response_pending_count = <%= raw @response_pending_count %>;
+			Highcharts.data({
         csv: document.getElementById('tsv').innerHTML,
         itemDelimiter: '\t',
         parsed: function (columns) {
-
-            var brands = {},
-                brandsData = [],
-                versions = {},
-                drilldownSeries = [];
-            
-            // Parse percentage strings
-            columns[1] = $.map(columns[1], function (value) {
-                if (value.indexOf('%') === value.length - 1) {
-                    value = parseFloat(value);
-                }
-                return value;
-            });
-
-            $.each(columns[0], function (i, name) {
-                var brand,
-                    version;
-
-                if (i > 0) {
-
-                    // Remove special edition notes
-                    name = name.split(' -')[0];
-
-                    // Split into brand and version
-                    version = name.match(/([0-9]+[\.0-9x]*)/);
-                    if (version) {
-                        version = version[0];
-                    }
-                    brand = name.replace(version, '');
-
-                    // Create the main data
-                    if (!brands[brand]) {
-                        brands[brand] = columns[1][i];
-                    } else {
-                        brands[brand] += columns[1][i];
-                    }
-
-                    // Create the version data
-                    if (version !== null) {
-                        if (!versions[brand]) {
-                            versions[brand] = [];
-                        }
-                        versions[brand].push(['v' + version, columns[1][i]]);
-                    }
-                }
-                
-            });
-
-            $.each(brands, function (name, y) {
-                brandsData.push({ 
-                    name: name, 
-                    y: y,
-                    drilldown: versions[name] ? name : null
-                });
-            });
-            $.each(versions, function (key, value) {
-                drilldownSeries.push({
-                    name: key,
-                    id: key,
-                    data: value
-                });
-            });
-					//~ alert(555)
-						console.log(brandsData)
+                drilldownSeries = [];           
             // Create the chart
-            $('#container').highcharts({
-					
+                 $('#container').highcharts({
                 chart: {
                     type: 'pie'
                 },
@@ -363,18 +305,41 @@ $(function () {
 
                 tooltip: {
                     headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                    //~ pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
                 }, 
 
-                series: [{
-                    name: 'Brands',
-                    colorByPoint: true,
-                    data: [{name: "completed", y: 0.55, drilldown: "completed"},{name: "test", y:10, drilldown:"sdd"}]
-                }],
-                drilldown: {
-                    series: drilldownSeries
-                }
-            })
+						 series: [{
+						name: 'Audit status',
+						colorByPoint: true,
+						data: [{
+            name: 'Completed',
+            y: completed_status,
+            drilldown: 'completed'
+						}, {
+            name: 'Pending',
+            y: pending_status,
+            drilldown: 'pending'
+						}]
+					}],
+							drilldown: {
+						series: [{
+								id: 'completed',
+								name: 'Completed',
+								data: [['Recommendation', recommendation_completed_count],
+										['Response', response_completed_count],
+										['Observation', observation_completed_count]
+								]
+						}, {
+								id: 'pending',
+								name: 'pending',
+								data: [ ['Recommendation', recommendation_pending_count],
+										['Response', response_pending_count],
+										['Observation', observation_pending_count]
+								]
+						}]
+				}
+				})
+				
 
         }
     });
@@ -382,9 +347,5 @@ $(function () {
     
 
 </script> 
-<script src="http://code.highcharts.com/highcharts.js"></script> 
-<script src="http://code.highcharts.com/modules/exporting.js"></script> 
-<script src="http://code.highcharts.com/modules/drilldown.js"></script> 
-<script src="http://code.highcharts.com/modules/data.js"></script>
-</body>
-</html>
+
+
