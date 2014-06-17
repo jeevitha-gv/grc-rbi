@@ -20,8 +20,13 @@
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
-                      <h4 class="modal-title" id="myModalLabel">Request Library</h4>
-                      <div id="test-check">
+<div class="model-header">
+                      <div class="modal-title" id="myModalLabel">Request Library</div>
+                    </div>
+
+                      <div class="model-con">
+
+<div id="test-check">
                         <% nc_questions = current_company.nc_questions.where(:nc_library => "true") %>
                         <% audit_nc_questions = @audit.nc_questions.map(&:id) %>
                         <% library_questions = nc_questions.where("id NOT IN (?)", audit_nc_questions) %>
@@ -34,9 +39,16 @@
                             </tr>
                             <% end %>
                           </tbody>
-                          <%= submit_tag "Submit", :type => 'button', :id=>"submit_questions" %>
+
+                          <div class="modal-footer">
+                        <%= submit_tag "Submit", :type => 'button', :id=>"submit_questions" ,:class => "orange_btn"%>
                         <% end %>
+                          </div>
+
                       </div>
+                      </div>
+
+
                          <div>
                           </br>
                          </div>

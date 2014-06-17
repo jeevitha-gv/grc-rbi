@@ -1,5 +1,5 @@
 class NcQuestionsController < ApplicationController
-  
+
   before_filter :check_for_current_audit
 
 	def index

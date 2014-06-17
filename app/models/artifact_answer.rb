@@ -19,10 +19,10 @@ class ArtifactAnswer < ActiveRecord::Base
   	self.artifact_id ? self.artifact_name : "No Attachments"
   end
 
-  # after_create :notify_auditee_about_checklist
+  after_create :notify_auditee_about_checklist
 
   def notify_auditee_about_checklist
-    UniversalMailer.notify_auditee_about_checklist(self).deliver
+    UniversalMailer.delay.notify_auditee_about_checklist(self)
   end
 
 
