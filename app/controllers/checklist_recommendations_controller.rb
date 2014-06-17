@@ -52,7 +52,6 @@ class ChecklistRecommendationsController < ApplicationController
 	def auditee_response
 		@audit = current_audit
 		@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
-		@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
 		if @audit.compliance_type == "Compliance"
 			@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
 		else
