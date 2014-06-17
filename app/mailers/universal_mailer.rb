@@ -42,11 +42,6 @@ class UniversalMailer < ActionMailer::Base
     mail(:to => checklist_recommendation.checklist.auditor.auditory.email, :subject => "Auditee has submitted a response to your recommendation")
   end
 
-  def notify_auditor_about_nc_responses(checklist_recommendation)
-    # @checklist_recommendation = checklist_recommendation
-    # mail(:to => checklist_recommendation.checklist.auditor.auditory.email, :subject => "Auditee has submitted a response to your recommendation")
-  end
-
   def notify_auditee_about_observations(audit)
     @audit = audit
     mail(:to => audit.auditees.map(&:email), :subject => "Auditor has submitted an observation for your response")

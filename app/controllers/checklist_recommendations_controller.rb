@@ -86,6 +86,7 @@ class ChecklistRecommendationsController < ApplicationController
 			@checklist_recommendation.attachments.last.classified = "Auditee Response"
 		end
 		@checklist_recommendation.update(checklist_params)
+		UniversalMailer.notify_auditor_about_responses(@checklist_recommendation).deliver
 		respond_to :js
 	end
 
