@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Reason :</b> </label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_severity.name%></div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.reason %></div>
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Severity :</b> </label>
@@ -129,7 +129,7 @@
                   <div class="clearfix fright">
                   <!--<a class="black_btn" href="">Publish</a>-->
 
-                  <input type="submit" value="Observed" class="black_btn" onclick="return audit_observation(<%=checklist_recommendation.id%>)" disabled= <%= checklist_recommendation.is_implemented == 'true'? false : true %> >
+                  <input type="submit" value="Observed" class="black_btn" onclick="return audit_observation(<%=checklist_recommendation.id%>)" >
                   <!-- @audit.compliance_type == 'NonCompliance'? Topic : Standard -->
                   <!-- <input type="submit" value="Observed" class="black_btn" onclick="return audit_observation(<%=checklist_recommendation.id%>).disabled=false;" > -->
                   </div>
