@@ -60,6 +60,10 @@ class User < ActiveRecord::Base
     @grouped_modular_action ||= self.role.privileges.map(&:modular).group_by(&:action_name) if self.role.present?
   end
 
+  def display_name
+    self.full_name || self.user_name
+  end
+
 
 # Restricting user to login if the account is disable
   def active_for_authentication?

@@ -51,6 +51,7 @@ class ChecklistRecommendationsController < ApplicationController
 	#To show auditee response
 	def auditee_response
 		@audit = current_audit
+		@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
 		@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
 	end
 
@@ -68,7 +69,6 @@ class ChecklistRecommendationsController < ApplicationController
 			@checklist_recommendation.attachments.last.classified = "Audit Observation"
 		end
 		@checklist_recommendation.remark.new(comment: params[:checklist_recommendation][:remarks]) if  params[:checklist_recommendation][:remarks].present?
-		@checklist_recommendation.response_completed = true
 		@checklist_recommendation.is_published = true
 		@checklist_recommendation.update(checklist_params)
 
@@ -81,6 +81,7 @@ class ChecklistRecommendationsController < ApplicationController
 			@checklist_recommendation.attachments.build(attachment_file: params[:checklist_recommendation][:attachment])
 			@checklist_recommendation.attachments.last.classified = "Auditee Response"
 		end
+		@checklist_recommendation.response_completed = true
 		@checklist_recommendation.update(checklist_params)
 		respond_to :js
 	end

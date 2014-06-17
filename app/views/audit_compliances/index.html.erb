@@ -250,7 +250,7 @@ $(document).ready(function(){
         {
           row_id = e.sender.dateView._dateViewID.replace("_dateview",'')
           row_data = dataSource.get(row_id)
-          row_data.target_date = e.sender._oldText
+          row_data.target_date = e.sender._old
         }
 
 			});
@@ -294,10 +294,8 @@ $(document).ready(function(){
 <script>
 function change_artifact(e)
 {
-console.log(e)
 row_id = e.sender._tagID.replace("artifact_",'').replace("_tag_active",'')
 row_data = dataSource.get(row_id)
-console.log(e.sender._old)
 row_data.artifacts = e.sender._old
 }
 function change_auditee(e)

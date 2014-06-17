@@ -95,10 +95,10 @@
                       <div class="col-sm-7">
                         <div class="number_link">
                          <a class="<%= 'active' if checklist_recommendation.checklist.score_id == 0 %>" href="">0</a>
-                         <a href="" class="<%= 'active' if checklist_recommendation.checklist.score_id == 1 %>">1</a>
-                         <a href="" class="<%= 'active' if checklist_recommendation.checklist.score_id == 2 %>">2</a>
-                         <a href="" class="<%= 'active' if checklist_recommendation.checklist.score_id == 3 %>">3</a> 
-                         <a href="" class="<%= 'active' if checklist_recommendation.checklist.score_id == 4 %>">4</a> 
+                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 1 %>">1</a>
+                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 2 %>">2</a>
+                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 3 %>">3</a> 
+                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 4 %>">4</a> 
                        </div>
                       </div>
                     </div>
@@ -125,7 +125,7 @@
                       <%= hidden_field_tag "checklist_recommendation[id]",  checklist_recommendation.id , :id => "id_#{checklist_recommendation.id}"%>
                     <div class="form-group clearfix">
                     <!--<div class="col-sm-12 "><a class="black_btn fright" href="" onclick="auditee_response(<%#= checklist_recommendation.id%>);">Respond</a></div>-->
-                    <div class="col-sm-12 "><input type="submit" value="Respond" class="black_btn fright" onclick="auditee_response(<%= checklist_recommendation.id%>);">
+                    <div class="col-sm-12 "><input type="submit" value="Respond" class="black_btn fright" onclick="return auditee_response(<%= checklist_recommendation.id%>);">
 </div>
                     </div>
                     </div>
@@ -149,6 +149,46 @@ function artifact_modal(id)
   <div class="modal-dialog modal-dialog_large">
     <div class="modal-content">
       
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h3 id="myModalLabel">Dependent Recommendation</h3>
+      </div>
+      <div class="modal-body">
+        <div id="flag-sucmeg">
+          <%= select("checklist_recommendation", "dependent_recommendation", options_from_collection_for_select(@auditee_recommendation, :id, :recommendation), {:prompt => "-Select-"}, {:id =>"recommendation_id" }) %>
+          <%= hidden_field_tag "checklist_recommendation[id]",  0 , :id => "cheklist_id"%>
+          <input type="button" value="Submit" class="black_btn fright" onclick="dependent_recommendation_select();">
+        </div>
+        <div class="pull-right">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<div class="modal fade" id="myModal1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h3 id="myModalLabel">Blocking Recommandation</h3>
+      </div>
+      <div class="modal-body">
+        <div id="flag-sucmeg">
+          <%= select("checklist_recommendation", "dependent_recommendation", options_from_collection_for_select(@auditee_recommendation, :id, :recommendation), {:prompt => "-Select-"}, {:id =>"recommendation_id" }) %>
+          <%= hidden_field_tag "checklist_recommendation[id]",  0 , :id => "cheklist_id"%>
+          <input type="button" value="Submit" class="black_btn fright" onclick="blocking_recommendation_select();">
+        </div>
+      <div class="pull-right">
     </div>
   </div>
 </div>
