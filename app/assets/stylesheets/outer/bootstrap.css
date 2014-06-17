@@ -5077,14 +5077,19 @@ a.list-group-item-danger.active:focus {
   filter: alpha(opacity=50);
   opacity: .8;
 }
+
+
 button.close {
   -webkit-appearance: none;
-  padding: 0;
+  background: url("/assets/outer/close-icon.png") no-repeat scroll 0 8px transparent;
+  border: 0 none;
   cursor: pointer;
-  background: transparent;
-  border: 0;
-  background-image:url(/assets/outer/close-icon.png); background-repeat:no-repeat; height:21px; width:21px;
+  height: 28px;
+  padding: 0;
+  width: 30px;
 }
+
+
 .modal-open {
   overflow: hidden;
 }
@@ -5155,8 +5160,9 @@ button.close {
 
 .modal-header {
   border-bottom: medium none !important;
-  min-height: 250px;
-  padding: 0 !important;
+  display: inline-block;
+  min-height: 200px;
+  padding: 0 0 15px;width:100%;
 }
 .model-content {
     padding: 15px;

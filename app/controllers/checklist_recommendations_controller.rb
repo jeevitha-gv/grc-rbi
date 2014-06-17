@@ -23,11 +23,9 @@ class ChecklistRecommendationsController < ApplicationController
 				checklist[:checklist_recommendation] = check
 				@checklist_recommendation = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?',checklist[:checklist_recommendation][:checklist_id], checklist[:checklist_recommendation][:checklist_type]).first
 				if @checklist_recommendation.nil?
-						score = check[:score]
-						check.delete("score")
-						check[:is_checklist_new] = true
-						check[:auditee_id] = current_user.id
-
+					score = check[:score]
+					check.delete("score")
+					check[:is_checklist_new] = true
 					@checklist_recommendation = ChecklistRecommendation.new(check)
 					@checklist_recommendation.recommendation_completed = true unless params[:commit] == 'Save Draft'
 					if @checklist_recommendation.save
@@ -85,7 +83,7 @@ class ChecklistRecommendationsController < ApplicationController
 		if @checklist_recommendation.update(checklist_params)
 			@checklist_recommendation.remark = Comment.new(comment: params[:checklist_recommendation][:remarks]) if  params[:checklist_recommendation][:remarks].present?
 		end
-		# UniversalMailer.notify_auditee_about_observations(@checklist_recommendation).deliver
+		# UniversalMailer.delay.notify_auditee_about_observations(@checklist_recommendation)
 		respond_to :js
 	end
 
@@ -98,8 +96,9 @@ class ChecklistRecommendationsController < ApplicationController
 		@checklist_recommendation.auditee_id = current_user.id
 		@checklist_recommendation.response_completed = true
 		@checklist_recommendation.is_checklist_new = true
+		@checklist_recommendation.auditee_id = current_user.id
 		@checklist_recommendation.update(checklist_params)
-		# UniversalMailer.notify_auditor_about_responses(@checklist_recommendation).deliver
+		# UniversalMailer.delay.notify_auditor_about_responses(@checklist_recommendation)
 		respond_to :js
 	end
 

@@ -34,8 +34,8 @@ class AuditsController < ApplicationController
       if params[:skip_reminder] == "true"
         SkippedAuditReminder.create(:audit_id => @audit.id,:skipped_by => current_user.id)
       end
-      UniversalMailer.notify_auditor_about_audit(@audit).deliver
-      UniversalMailer.notify_auditees_about_audit(@audit).deliver
+      UniversalMailer.delay.notify_auditor_about_audit(@audit)
+      UniversalMailer.delay.notify_auditees_about_audit(@audit)
       redirect_to audits_path
     else
       @departments = Department.where(:location_id=>@audit.location_id) if @audit.location_id

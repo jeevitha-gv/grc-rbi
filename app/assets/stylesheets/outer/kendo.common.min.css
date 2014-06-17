@@ -1723,7 +1723,10 @@ body .k-datetimepicker .k-select {
 	border-radius: 4px;
 	border-color: #c5c5c5;
 	background-color: #F2F1F0;
-	min-height: 2.04em
+	display:inline-block;
+	padding: 5px 2px;
+	width: 100%;
+	/*min-height: 2.04em*/
 }
 .k-multiselect-wrap .k-input {
 	background-color: transparent;
@@ -3279,5 +3282,5 @@ html .k-upload {
 	bottom: 2px
 }
 .k-multiselect {
-    border: 1px solid #CFCFCF!important;
+   /* border: 1px solid #CFCFCF!important;*/
 }

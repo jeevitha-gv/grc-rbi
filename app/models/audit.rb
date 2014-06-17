@@ -52,6 +52,7 @@ class Audit < ActiveRecord::Base
   validate :check_auditees_uniq
   validate :check_auditees_presence
   validate :validate_end_date_before_start_date
+  validate :check_for_auditor_in_auditees
 
   delegate :name, :to => :client, prefix: true, allow_nil: true
   delegate :name, :to => :team, prefix: true, allow_nil: true
@@ -240,5 +241,9 @@ class Audit < ActiveRecord::Base
     if end_date && start_date
       self.errors[:end_date] = MESSAGES['audit']['failure']['start_date_before_end_date'] if end_date < start_date
     end
+  end
+
+  def check_for_auditor_in_auditees
+    self.errors[:auditees] = MESSAGES['audit']['failure']['auditor_not_in_auditees'] if audit_auditees.map(&:user_id).include?(self.auditor)
   end
 end

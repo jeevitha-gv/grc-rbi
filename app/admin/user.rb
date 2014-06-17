@@ -23,7 +23,8 @@ ActiveAdmin.register User do
           @user_team.user_id = @user.id
           @user_team.save
         end
-      end
+end
+	flash[:now] = MESSAGES["User"]["create"]["success"]
         redirect_to admin_users_path
       else
         # redirect_to new_admin_user_path

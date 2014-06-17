@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :set_locale, :if => :current_user
   before_filter :set_time_zone, :if => :current_user
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :if => :admin_function
   helper_method :current_company
   before_filter :set_cookie_audit, :if => :current_user
   helper_method :current_audit
@@ -31,6 +31,14 @@ class ApplicationController < ActionController::Base
 
   def current_audit
     Audit.find(cookies[:audit_id].to_i) if cookies[:audit_id].present? rescue nil
+  end
+  
+  def admin_function
+    if request.url.include?("/admin")
+      return false 
+    else
+      return true
+    end
   end
 
   def configure_permitted_parameters

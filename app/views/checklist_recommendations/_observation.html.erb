@@ -7,7 +7,7 @@
                 <%= form_tag '/checklist_recommendations/audit_observation_create' , :remote=>true , multipart: true do%>
                   <div class="col-lg-4">
 
-                    
+
                     <div class="form-group clearfix">
                       <% @artifact_answers = checklist.artifact_answers.first%>
                       <label class="col-sm-5"><b>Artifact :</b> </label>
@@ -56,6 +56,7 @@
                       <label  class="col-sm-5"><b>Score :</b> </label>
                       <div class="col-sm-7">
                         <div class="number_link">
+
                          <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 1 %>">0</a>
                          <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 2 %>">1</a>
                          <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 3 %>">2</a>
@@ -66,6 +67,7 @@
                     </div>
                   </div>
                   <div class="clearfix"></div>
+                  <div class="border_line"></div>
                      <h3><b>Audit Details</b></h3>
                   <div class="col-lg-4">
 
@@ -157,7 +159,7 @@ function artifact_modal(id)
 <div class="modal fade" id="artifact_modal">
   <div class="modal-dialog modal-dialog_large">
     <div class="modal-content">
-      
+
     </div>
   </div>
 </div>

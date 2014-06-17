@@ -64,9 +64,9 @@ class ChecklistRecommendation < ActiveRecord::Base
 
   def notify_auditee_about_recommendation
   	if self.checklist.audit.compliance_type == 'AuditCompliance'
-    	UniversalMailer.notify_auditee_about_recommendations(self).deliver
+    	UniversalMailer.delay.notify_auditee_about_recommendations(self)
     else
-    	UniversalMailer.notify_auditee_about_nc_recommendations(self).deliver
+    	UniversalMailer.delay.notify_auditee_about_nc_recommendations(self)
     end
 
   end
@@ -74,16 +74,16 @@ class ChecklistRecommendation < ActiveRecord::Base
   def notify_auditor_about_response
   	if self.preventive? && self.corrective? && self.response_status_id?
   		if self.checklist.audit.compliance_type == 'Compliance'
-  			UniversalMailer.notify_auditor_about_responses(self).deliver
+  			UniversalMailer.delay.notify_auditor_about_responses(self)
   		else
-  			UniversalMailer.notify_auditor_about_nc_responses(self).deliver
+  			UniversalMailer.delay.notify_auditor_about_nc_responses(self)
   		end
   	end
   end
 
   def notify_auditee_about_observation
     if self.observation?
-      UniversalMailer.notify_auditee_about_observations(self).deliver
+      UniversalMailer.delay.notify_auditee_about_observations(self)
     end
   end
 
