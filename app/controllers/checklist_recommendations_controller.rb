@@ -53,12 +53,17 @@ class ChecklistRecommendationsController < ApplicationController
 		@audit = current_audit
 		@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
 		@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
+		if @audit.compliance_type == "Compliance"
+			@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
+		else
+			@nc_answers = @audit.auditee_response_answers(current_user.id)
+		end
 	end
 
 	def audit_observation
 		@audit = current_audit
 		@checklist_recommendations = @audit.audit_observation_compliances
-		@nc_questions = @audit.nc_questions
+		@nc_questions = @audit.nc_questions.where(:is_answered => true)
 	end
 
 	#To create auditee response for checklist recommendation
@@ -71,7 +76,7 @@ class ChecklistRecommendationsController < ApplicationController
 		@checklist_recommendation.remark.new(comment: params[:checklist_recommendation][:remarks]) if  params[:checklist_recommendation][:remarks].present?
 		@checklist_recommendation.is_published = true
 		@checklist_recommendation.update(checklist_params)
-
+		UniversalMailer.notify_auditee_about_observations(@checklist_recommendation).deliver
 		respond_to :js
 	end
 
@@ -83,6 +88,7 @@ class ChecklistRecommendationsController < ApplicationController
 		end
 		@checklist_recommendation.response_completed = true
 		@checklist_recommendation.update(checklist_params)
+		UniversalMailer.notify_auditor_about_responses(@checklist_recommendation).deliver
 		respond_to :js
 	end
 
@@ -129,6 +135,6 @@ end
 	private
 	  def checklist_params
 	    params.require(:checklist_recommendation).permit(:checklist_id, :checklist_type, :auditee_id, :recommendation, :reason, :corrective, :preventive, :closure_date, :recommendation_priority_id, :recommendation_severity_id, :response_priority_id, :response_severity_id, :recommendation_status_id, :response_status_id, :dependent_recommendation, :blocking_recommendation, :observation, :recommendation_completed, :is_implemented,:is_checklist_new)
-	  end	 
+	  end
 end
 

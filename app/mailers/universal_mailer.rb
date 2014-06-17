@@ -14,7 +14,12 @@ class UniversalMailer < ActionMailer::Base
 
   def notify_auditees_that_checklist_is_prepared(nc_question)
     @nc_question = nc_question
-    mail(:to => nc_question.auditee.email, :subject => "Checklist has been prepared for Audit")
+    mail(:to => nc_question.auditee.email, :subject => "Checklist has been prepared for NonCompliance Audit")
+  end
+
+  def notify_auditee_about_checklist(artifact_answer)
+    @artifact_answer = artifact_answer
+    mail(:to => artifact_answer.responsibility.email, :subject => "Checklist has been prepared for Compliance Audit")
   end
 
   def notify_auditor_that_auditee_has_answered(audit)
@@ -28,8 +33,8 @@ class UniversalMailer < ActionMailer::Base
   end
 
   def notify_auditee_about_nc_recommendations(checklist_recommendation)
-    # @checklist_recommendation = checklist_recommendation
-    # mail(:to => checklist_recommendation.auditee.email, :subject => "Auditor has given a recommendation")
+    @checklist_recommendation = checklist_recommendation
+    mail(:to => checklist_recommendation.auditee.email, :subject => "Auditor has given a recommendation")
   end
 
   def notify_auditor_about_responses(checklist_recommendation)
@@ -37,14 +42,9 @@ class UniversalMailer < ActionMailer::Base
     mail(:to => checklist_recommendation.checklist.auditor.auditory.email, :subject => "Auditee has submitted a response to your recommendation")
   end
 
-  def notify_auditor_about_nc_responses(checklist_recommendation)
-    # @checklist_recommendation = checklist_recommendation
-    # mail(:to => checklist_recommendation.checklist.auditor.auditory.email, :subject => "Auditee has submitted a response to your recommendation")
-  end
-
-  def notify_auditee_about_observations(audit)
-    @audit = audit
-    mail(:to => audit.auditees.map(&:email), :subject => "Auditor has submitted an observation for your response")
+  def notify_auditee_about_observations(checklist_recommendation)
+    @checklist_recommendation = checklist_recommendation
+    mail(:to => checklist_recommendation.auditee.email, :subject => "Auditor has submitted an observation for your response")
   end
 
   # Mailer for Artifact Priority

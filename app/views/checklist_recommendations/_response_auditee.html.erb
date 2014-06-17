@@ -1,7 +1,7 @@
 <div id="Accordion1">
  <% @checklist_recommendations.each do |checklist| %>
-            <% checklist_recommendation = checklist.checklist_recommendation %> 
-                 <h3><a href="#"><%= checklist.compliance_library_name%></a> <span class="fright pending_msg" id= "response_status"><%= checklist_recommendation.response_status_id == 5 ? 'Completed' : 'Pending' if checklist_recommendation.present?  %></span></h3>
+            <% checklist_recommendation = checklist.checklist_recommendation %>
+                 <h3><a href="#"><%= checklist.compliance_library_name%></a> <span class="fright pending_msg" id= "response_status"><%= checklist_recommendation.response_status_id == 5 ? 'Completed' : 'Pending'%></span></h3>
 
               <div>
                 <div class="row audit-title">
@@ -49,7 +49,7 @@
                   <div class="col-lg-4">
                     <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Comment :</b> </label>
-                      <div class="col-sm-7"> <%= @artifact_answers.comment_comment.truncate(60) if @artifact_answers && @artifact_answers.comment_comment %></div>
+                      <div class="col-sm-7"> <%= @artifact_answers.comment_comment if @artifact_answers%></div>
 
                     </div>
                     <div class="form-group clearfix">
@@ -126,7 +126,7 @@
                     <div class="form-group clearfix">
                     <!--<div class="col-sm-12 "><a class="black_btn fright" href="" onclick="auditee_response(<%#= checklist_recommendation.id%>);">Respond</a></div>-->
                     <div class="col-sm-12 "><input type="submit" value="Respond" class="black_btn fright" onclick="return auditee_response(<%= checklist_recommendation.id%>);">
-</div>
+                    </div>
                     </div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@ function artifact_modal(id)
 <div class="modal fade" id="artifact_modal">
   <div class="modal-dialog modal-dialog_large">
     <div class="modal-content">
-      
+
     </div>
   </div>
 </div>
