@@ -51,7 +51,11 @@ class ChecklistRecommendationsController < ApplicationController
 	#To show auditee response
 	def auditee_response
 		@audit = current_audit
-		@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
+		if @audit.compliance_type == "Compliance"
+			@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
+		else
+			@nc_answers = @audit.auditee_response_answers(current_user.id)
+		end
 	end
 
 	def audit_observation

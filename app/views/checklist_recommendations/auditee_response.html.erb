@@ -64,7 +64,7 @@
             <% if @audit.compliance_type == 'Compliance' %>
 				      <%= render "response_auditee",controls: @answered_compliances %>
             <% else %>
-              <%= render "nc_response_auditee",controls: @controls %>
+              <%= render "nc_response_auditee"  %>
             <% end %>
         </div>
       </div>
