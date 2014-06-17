@@ -33,7 +33,7 @@ label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12p
 <div class="wrapper">
 
   <div class="logo">
-    <img src="../uploads/attachment/attachment_file/1/Logo.jpg" alt="Small logo">
+
   </div>
 <!--Title Start-->
 <h2 class="textaligncenter">Report for Audit</h2>
@@ -202,7 +202,7 @@ label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12p
 </tr>
 <tr>
 <td rowspan="4"><%= f.observation%></td>
-<td><%= f.remark if f && !f.remark.nil? %></td>
+<td><%= f.remark_comment %></td>
 </tr>
 </table>
 <% end %>
