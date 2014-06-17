@@ -79,7 +79,7 @@ class ChecklistRecommendationsController < ApplicationController
 		if @checklist_recommendation.update(checklist_params)
 			@checklist_recommendation.remark = Comment.new(comment: params[:checklist_recommendation][:remarks]) if  params[:checklist_recommendation][:remarks].present?
 		end
-		# UniversalMailer.notify_auditee_about_observations(@checklist_recommendation).deliver
+		# UniversalMailer.delay.notify_auditee_about_observations(@checklist_recommendation)
 		respond_to :js
 	end
 
@@ -91,7 +91,7 @@ class ChecklistRecommendationsController < ApplicationController
 		end
 		@checklist_recommendation.response_completed = true
 		@checklist_recommendation.update(checklist_params)
-		# UniversalMailer.notify_auditor_about_responses(@checklist_recommendation).deliver
+		# UniversalMailer.delay.notify_auditor_about_responses(@checklist_recommendation)
 		respond_to :js
 	end
 
