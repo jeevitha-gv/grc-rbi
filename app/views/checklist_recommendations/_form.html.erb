@@ -20,9 +20,9 @@
                   <td><label>Client : </label>
                    <span><%= @audit.client_name%></span></td>
                   <td><label>Title : </label>
-                   <span><%= @audit.title.truncate(50) %></span></td>
+                   <span><%= @audit.title.truncate(50) unless @audit.title.nil?%></span></td>
                   <td><label>Scope : </label>
-                    <span><%= @audit.scope.truncate(50) %></span></td>
+                    <span><%= @audit.scope.truncate(50) unless @audit.scope.nil? %></span></td>
                 </tr>
                 <tr>
                   <td><label>Team : </label>
@@ -36,15 +36,15 @@
                   <td><label>Deliverable : </label>
                     <span><%= @audit.deliverables %> </span></td>
                   <td><label>Objective : </label>
-                    <span><%= @audit.objective.truncate(50) %> </span></td>
+                    <span><%= @audit.objective.truncate(50) unless @audit.objective.nil?%> </span></td>
                   <td><label>Context :</label>
-                    <span><%= @audit.context.truncate(50)%>   </span></td>
+                    <span><%= @audit.context.truncate(50) unless @audit.context.nil?%>   </span></td>
                 </tr>
                 <tr>
                   <td><label>Method : </label>
-                    <span><%= @audit.methodology.truncate(50) %> </span></td>
+                    <span><%= @audit.methodology.truncate(50) unless @audit.methodology.nil?%> </span></td>
                   <td><label>Issues : </label>
-                    <span>  <%= @audit.issue.truncate(50) %></span></td>
+                    <span>  <%= @audit.issue.truncate(50) unless @audit.issue.nil?%></span></td>
                   <td><label>Compliance : </label>
                     <span><%= @audit.compliance_type %></span></td>
                 </tr>

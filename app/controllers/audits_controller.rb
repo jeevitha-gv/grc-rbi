@@ -51,9 +51,9 @@ class AuditsController < ApplicationController
       format.html
       format.pdf do
         #~ render :pdf => "pdf", :template => "audits/show.pdf.erb", layout: 'layouts/pdf.html.erb'
-         @pdf = render_to_string :pdf => "pdf", :template => "audits/show.pdf.erb", layout: 'layouts/pdf.html.erb',
-            :encoding => "UTF-8"
-        send_data(@pdf,   :type=>"application/pdf")
+          @pdf = (render_to_string :pdf => "PDF", :template => "audits/show.pdf.erb", layout: 'layouts/pdf.html.erb',
+            :encoding => "UTF-8")
+        send_data(@pdf,   :type=>"application/pdf", :filename => @audit.title)
       end
     end
   end
@@ -173,7 +173,7 @@ class AuditsController < ApplicationController
     audit = current_audit
     audit.update(audit_status_id: 4)
     Audit.audit_operational_weightage(current_company,audit)
-    redirect_to particular_dashboard_audits_path
+    redirect_to audit_dashboard_audits_path
   end
 
   def audit_dashboard
@@ -186,7 +186,7 @@ class AuditsController < ApplicationController
 
   def artifacts_download
 		@audit = current_audit
-		@folder = @audit.audit_answers.collect {|x| x.attachments}.flatten
+		@folder = @audit.artifact_answers.collect {|x| x.attachments}.flatten
 		temp = Tempfile.new("zip-file-#{Time.now}")
 		Zip::ZipOutputStream.open(temp.path) do |z|
 			@folder.each do |file|
