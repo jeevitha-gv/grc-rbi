@@ -153,6 +153,7 @@ en:
             name:
               blank: "Department name can't be blank"
               invalid: "Department name should contain alphanumeric"
+              taken: "Department name has been already used"
             location_id:
               blank: "Location Can't be blank"
         location:
