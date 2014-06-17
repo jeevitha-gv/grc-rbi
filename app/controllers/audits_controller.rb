@@ -1,5 +1,4 @@
 class AuditsController < ApplicationController
-  before_action :authenticate_user!
   load_and_authorize_resource :except => [:department_teams_users, :audit_with_status, :audit_all]
   before_filter :authorize_audit, :only => [:edit, :update]
   before_filter :check_company_disabled

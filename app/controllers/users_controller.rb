@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate_user!
   #before_filter :check_password , only: [:edit, :update]
   skip_before_filter :check_password_authenticated, :only => [:password, :update_password]
 

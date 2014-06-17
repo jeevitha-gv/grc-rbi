@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :set_locale, :if => :current_user
   before_filter :set_time_zone, :if => :current_user
+  before_filter :authenticate_user!
   helper_method :current_company
   before_filter :set_cookie_audit, :if => :current_user
   helper_method :current_audit
@@ -35,7 +36,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :user_name
     devise_parameter_sanitizer.for(:sign_up) << :full_name
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me) }
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me, :domain) }
   end
 
   #To check company admin for settings
@@ -60,6 +61,13 @@ class ApplicationController < ActionController::Base
   # Escape the subdomain from the given url
   def escape_subdomain
     if(request.subdomain.present?)
+      redirect_to current_path_without_subdomain
+    end
+  end
+
+# Escape the subdomain if there is no company
+  def escape_subdomain_with_company
+    if(request.subdomain.present? && !Company.where(domain: request.subdomain).present?)
       redirect_to current_path_without_subdomain
     end
   end

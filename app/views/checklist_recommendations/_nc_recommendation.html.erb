@@ -85,12 +85,6 @@
               <span class="error_message" id="error_status_<%= answered_ncquestion.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["status"]%><span>
             </div>
           </div>
-
-        <div class="form-group clearfix">
-          <div class="col-sm-12 ">
-            <%=button_tag "Save Draft", :class => "black_btn fright", type: 'button', onclick: "save_individual_ncrecommendation(#{answered_ncquestion.id})"%>
-          </div>
-        </div>
       </div>
 
     </div>

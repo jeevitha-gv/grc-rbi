@@ -45,7 +45,6 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
       f.input :timezone, :as => :select, :collection => Company::TIMEZONES
       f.input :country
       f.input :contact_no
-      f.input :is_disabled
     end
     f.inputs "Attachments", for: [:attachment, f.object.attachment] do |s|
       s.input :attachment_file, :as => :file, :hint => s.template.image_tag(s.object.attachment_file.thumb) if s.object.attachment_file.present?
