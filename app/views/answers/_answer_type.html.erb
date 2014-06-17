@@ -12,8 +12,8 @@
         <br>
         <div class="form-group clearfix">
           <% if question.does_require_document? %>
-						<div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#answer_document').click();" >Attach Document</a>
-					<%= file_field_tag "answer[#{ question.id}][attachment]", :style => "visibility:hidden; display:none;",  :id => "answer_document"%>
+						<div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#answer_document_<%= question.id %>').click();" >Attach Document</a>
+					<%= file_field_tag "answer[#{question.id}][attachment]", :style => "visibility:hidden; display:none;",  :id => "answer_document_#{question.id}"%>
           </div>
           <% end %>
         </div>
@@ -28,8 +28,8 @@
         <br>
         <div class="form-group clearfix">
           <% if question.does_require_document? %>
-          <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#answer_document').click();" >Attach Document</a>
-          <%= file_field_tag "answer[#{ question.id}][attachment]", :style => "visibility:hidden; display:none;",  :id => "answer_document"%>
+          <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#answer_document_<%= question.id %>').click();" >Attach Document</a>
+          <%= file_field_tag "answer[#{question.id}][attachment]", :style => "visibility:hidden; display:none;",  :id => "answer_document_#{question.id}"%>
           </div>
           <% end %>
         </div>
@@ -49,8 +49,8 @@
         <br>
         <div class="form-group clearfix">
           <% if question.does_require_document? %>
-          <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#answer_document').click();" >Attach Document</a>
-          <%= file_field_tag "answer[#{ question.id}][attachment]", :style => "visibility:hidden; display:none;",  :id => "answer_document"%>
+          <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#answer_document_<%= question.id %>').click();" >Attach Document</a>
+          <%= file_field_tag "answer[#{question.id}][attachment]", :style => "visibility:hidden; display:none;",  :id => "answer_document_#{question.id}"%>
           </div>
           <% end %>
         </div>
