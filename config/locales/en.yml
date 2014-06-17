@@ -27,6 +27,7 @@ en:
             email:
               blank: "Email can't be blank"
               invalid: "Email is invalid"
+              taken: "Email has been already used"
             full_name:
               blank: "Full Name can't be blank"
               invalid: "Full Name should contain alphabets"
