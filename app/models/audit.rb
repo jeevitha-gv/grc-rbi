@@ -11,7 +11,7 @@ class Audit < ActiveRecord::Base
   has_many :nc_questions
   has_many :answers, through: :nc_questions
   has_many :default_compliance_libraries, -> { where(is_leaf: true) }, through: :compliance, source: :compliance_library
-  has_many :nc_checklist_recommendations, through: :answers , source: :checklist_recommendations
+  has_many :nc_checklist_recommendations, through: :answers , source: :checklist_recommendation
   has_many :compliance_checklist_recommendations, through: :audit_compliances, source: :checklist_recommendation
   has_many :audit_compliances
   has_many :audit_auditees
