@@ -3,6 +3,7 @@ class AuditCompliancesController < ApplicationController
     before_filter :check_for_current_audit
     before_filter :authorize_auditees_skip_company_admin, :only => [:response, :response_checklist]
     before_filter :authorize_auditees, :only => [:submit]
+    before_filter :check_for_auditee_response, only: [:index]
     before_filter :authorize_auditor_skip_company_admin, :only => [:index, :compliance_checklist]
     before_filter :authorize_auditor, :only => [:create]
 
@@ -60,6 +61,12 @@ class AuditCompliancesController < ApplicationController
   def compliance_params
     params.require(:checklist)
   end
+
+  def check_for_auditee_response
+    if(current_audit.auditees.map(&:id).include?(current_user.id))
+      redirect_to response_audit_compliances_path
+    end
+  end
   
   def build_response
     response = []
@@ -74,7 +81,7 @@ class AuditCompliancesController < ApplicationController
             json["audit_compliance"] = compliance.id
             json["priority"] = artifact_answer.priority_name
             json["auditee"] = artifact_answer.responsibility_full_name
-            json["target_date"] = artifact_answer.target_date
+            json["target_date"] = (artifact_answer.target_date.present? ? artifact_answer.target_date.to_date.strftime("%d/%m/%Y") : "")
             response << json
           end   
         end

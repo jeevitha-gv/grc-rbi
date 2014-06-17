@@ -294,6 +294,14 @@ var preventive = preventive_check()
 var status = status_check()
 var priority = priority_check()
 var severity = severity_check()
+if(corrective && preventive && status && priority && severity)
+{
+	return true;
+}
+else
+{
+	return false
+}  
 function corrective_check()
 {
 corrective_value = $('#corrective_'+id).val()
