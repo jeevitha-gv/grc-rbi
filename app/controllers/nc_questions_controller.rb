@@ -1,6 +1,7 @@
 class NcQuestionsController < ApplicationController
 
   before_filter :check_for_current_audit
+  before_filter :check_for_auditee_response
 
 	def index
 		@nc_questions = NcQuestion.all
@@ -34,6 +35,12 @@ class NcQuestionsController < ApplicationController
 		@response_types = QuestionType.all
     # @response_type_selected = @nc_question.map(&:question_type_id)
 		@auditees = @audit.auditees.all
+  end
+
+  def check_for_auditee_response
+    if(current_audit.auditees.map(&:id).include?(current_user.id))
+      redirect_to new_answers_path
+    end
   end
 
 	def import_files
