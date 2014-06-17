@@ -94,93 +94,37 @@
             </div>
         <% end %>
 
-<script type="text/javascript">
 
-$(".click_icon").click(function() {
-      $(".share_pop").show();
-});
-
-$(".click_icon").click(function(){
-    $(".share_pop").show();
-});
-
-$(document).ready(function(){
-
-  Top_postion = $(window).scrollTop();
-
-  $( ".user_login" ).mouseenter(function() {
-    $(this).addClass("active");
-    $(".account_header_dropdown").slideDown(100);
-  })
-  .mouseleave(function() {
-    $(this).removeClass("active");
-    $(".account_header_dropdown").hide();
-  });
-
-  //for notification drop hide in outside click
-  onclick_icon = 0;
-  $(".click_icon").mouseenter(function() {
-    onclick_icon = 0;
-  })
-  .mouseleave(function() {
-    onclick_icon = 1;
-  });
-
-
-  $("body").click(function(){
-    if(onclick_icon){
-      $(".share_pop").hide();
-    }
-  });
-
-
-
-
-});
-/*$(window).scroll(function(){
-  Top_postion = $(window).scrollTop();
-
-  if(Top_postion>10){
-    $(".go_to_top").show();
-  }else{
-    $(".go_to_top").hide();
-  }
-});
-$(".go_to_top").click(function(){
-  top = 0;
-  $("html, body").animate({scrollTop: "0"}, 800);
-});
-*/
-</script>
 <link href="/assets/outer/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/outer/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/outer/jquery.ui.accordion.min.css" rel="stylesheet" type="text/css">
 <script src="/assets/outer/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="/assets/outer/jquery-ui-1.9.2.accordion.custom.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-$(function() {
+ $(function() {
   $( "#Accordion1" ).accordion();
+});
+$('body').on('hidden.bs.modal', '.modal', function () {
+  $(this).removeData('bs.modal');
 });
 </script>
 <script>
-
-
-          // ajax for submitting the score method
-          function save_individual_score(id)
-          {
-              var recommendation = $("#recommendation_" +id).val()
-              var recommendation_priority = $("#recommendation_priority_id_" +id).val()
-              var reason = $("#reason_" +id).val()
-              var recommendation_severity = $("#recommendation_severity_id_" +id).val()
-              var closure_date = $("#closure_date_" +id).val()
-              var recommendation_status = $("#recommendation_status_id_" +id).val()
-              var recommendation_severity = $("#recommendation_severity_id_" +id).val()
-              $.ajax({
-                  url: "/checklist_recommendations/update_individual_score",
-                  type: "POST",
-                  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
-                  data: {checklist_id :  id, checklist_type: 'AuditCompliance', recommendation: recommendation, reason: reason, closure_date: closure_date, recommendation_priority_id: recommendation_priority, recommendation_severity_id: recommendation_severity, recommendation_status_id: recommendation_status },
-                  }).done(function() {
-              });
-          }
-        </script>
+    // ajax for submitting the score method
+    function save_individual_score(id)
+    {
+        var recommendation = $("#recommendation_" +id).val()
+        var recommendation_priority = $("#recommendation_priority_id_" +id).val()
+        var reason = $("#reason_" +id).val()
+        var recommendation_severity = $("#recommendation_severity_id_" +id).val()
+        var closure_date = $("#closure_date_" +id).val()
+        var recommendation_status = $("#recommendation_status_id_" +id).val()
+        var recommendation_severity = $("#recommendation_severity_id_" +id).val()
+        $.ajax({
+            url: "/checklist_recommendations/update_individual_score",
+            type: "POST",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
+            data: {checklist_id :  id, checklist_type: 'AuditCompliance', recommendation: recommendation, reason: reason, closure_date: closure_date, recommendation_priority_id: recommendation_priority, recommendation_severity_id: recommendation_severity, recommendation_status_id: recommendation_status },
+            }).done(function() {
+        });
+    }
+</script>
