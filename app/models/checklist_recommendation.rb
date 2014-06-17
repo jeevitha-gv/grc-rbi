@@ -56,9 +56,9 @@ class ChecklistRecommendation < ActiveRecord::Base
 		return checklist_params
 	end
 
-	after_create :notify_auditee_about_recommendation
-  after_update :notify_auditor_about_response
-  after_update :notify_auditee_about_observation
+	# after_create :notify_auditee_about_recommendation
+ #  after_update :notify_auditor_about_response
+ #  after_update :notify_auditee_about_observation
 
   def notify_auditee_about_recommendation
   	if self.checklist.audit.compliance_type == 'Compliance'
