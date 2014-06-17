@@ -6,6 +6,7 @@ class AnswersController < ApplicationController
 
   def new
     @audit = current_audit
+    @current_auditee_nc_questions = @audit.nc_questions.where(:auditee_id => current_user.id)
   end
 
   def create
