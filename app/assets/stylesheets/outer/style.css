@@ -908,7 +908,7 @@ a.plus-background{
 #arrow {
 	width: 138px;
 	height: 100px;
-	background-color: #60DB47;
+	background-color: #D2D2D1;
     /*border: 1px solid #fff;*/
 	position: relative;
     float:left;
@@ -923,7 +923,7 @@ a.plus-background{
 	width: 0;
 	height: 0;
 	border: 50px solid transparent;
-	border-left: 30px solid #60DB47;
+	border-left: 30px solid #D2D2D1;
 }
 #arrow:before {
 	content: '';
@@ -940,7 +940,7 @@ a.plus-background{
 #arrow1 {
 	width: 138px;
 	height: 100px;
-	background-color: #60DB47;
+	background-color: #D2D2D1;
    /* border: 1px solid #fff;*/
 	position: relative;
     float:left;
@@ -955,7 +955,7 @@ a.plus-background{
 	width: 0;
 	height: 0;
 	border: 50px solid transparent;
-	border-left: 30px solid #60DB47;
+	border-left: 30px solid #D2D2D1;
 }
 #arrow1:before {
 	content: '';
@@ -973,7 +973,7 @@ a.plus-background{
 #arrow2 {
 	width: 138px;
 	height: 100px;
-	background-color: #42BC29;
+	background-color: #D2D2D1;
    /* border: 1px solid #fff;*/
 	position: relative;
     float:left;
@@ -988,7 +988,7 @@ a.plus-background{
 	width: 0;
 	height: 0;
 	border: 50px solid transparent;
-	border-left: 30px solid #42BC29;
+	border-left: 30px solid #D2D2D1;
 }
 #arrow2:before {
 	content: '';
@@ -1065,3 +1065,16 @@ a.plus-background{
 	border-left: 30px solid #fff;
 }
 /*DashBoard page End*/
+
+
+
+.a_lightgreen{  background-color: #60DB47!important;}
+.a_lightgreen:after{border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #60DB47!important;}
+
+
+.a_drakgreen{  background-color: #42BC29!important;}
+.a_drakgreen:after{border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #42BC29!important;}
+
+
+.a_grey{  background-color: #D2D2D1!important;}
+.a_grey:after{border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #D2D2D1!important;}

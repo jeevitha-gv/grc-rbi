@@ -61,7 +61,7 @@ class ChecklistRecommendationsController < ApplicationController
 	def audit_observation
 		@audit = current_audit
 		@checklist_recommendations = @audit.audit_observation_compliances
-		@nc_questions = @audit.nc_questions
+		@nc_questions = @audit.nc_questions.where(:is_answered => true)
 	end
 
 	#To create auditee response for checklist recommendation

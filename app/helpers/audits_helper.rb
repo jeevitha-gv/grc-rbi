@@ -9,5 +9,16 @@ module AuditsHelper
 			topic.name unless topic.nil?
 		end
 	end
+	
+	def  dashboard_audit_status(audit_status_id, status)
+		id = AuditStatus.where('name= ?', status).first.id
+		if audit_status_id == id
+			'a_drakgreen'
+		elsif audit_status_id > id
+			'a_lightgreen'
+		else
+			'a_grey'
+		end
+	end
 
 end
