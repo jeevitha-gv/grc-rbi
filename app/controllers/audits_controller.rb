@@ -186,7 +186,7 @@ class AuditsController < ApplicationController
 
   def artifacts_download
 		@audit = current_audit
-		@folder = @audit.audit_answers.collect {|x| x.attachments}.flatten
+		@folder = @audit.artifact_answers.collect {|x| x.attachments}.flatten
 		temp = Tempfile.new("zip-file-#{Time.now}")
 		Zip::ZipOutputStream.open(temp.path) do |z|
 			@folder.each do |file|
