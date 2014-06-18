@@ -54,6 +54,7 @@ class ChecklistRecommendationsController < ApplicationController
 			@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
 			@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
 		else
+			@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
 			@response_answers = @audit.auditee_response_answers(current_user.id)
 		end
 	end
@@ -130,7 +131,7 @@ class ChecklistRecommendationsController < ApplicationController
 			end
 	 	return @path
   end
-  
+
   def remove_attachment
     attachment = Attachment.find(params[:id])
     attachment.delete
