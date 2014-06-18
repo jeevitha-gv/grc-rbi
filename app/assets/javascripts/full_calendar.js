@@ -4052,7 +4052,7 @@ function AgendaEventRenderer() {
 		}
 		html +=
 			" class='" + classes.join(' ') + "'" +
-			" style='position:absolute;z-index:8;top:" + seg.top + "px;left:" + seg.left + "px;" + skinCss + "'" +
+			" style='position:absolute;top:" + seg.top + "px;left:" + seg.left + "px;" + skinCss + "'" +
 			">" +
 			"<div class='fc-event-inner'>" +
 			"<div class='fc-event-time'>" +
@@ -4335,7 +4335,7 @@ function AgendaEventRenderer() {
 				if (snapDelta) {
 					eventResize(this, event, 0, snapMinutes*snapDelta, ev, ui);
 				}else{
-					eventElement.css('z-index', 8);
+					//eventElement.css('z-index', 8);
 					showEvents(event, eventElement);
 					// BUG: if event was really short, need to put title back in span
 				}
@@ -4794,7 +4794,7 @@ function DayEventRenderer() {
 			}
 			html +=
 				" class='" + classes.join(' ') + "'" +
-				" style='position:absolute;z-index:8;left:"+left+"px;" + skinCss + "'" +
+				" style='position:absolute;left:"+left+"px;" + skinCss + "'" +
 				">" +
 				"<div class='fc-event-inner'>";
 			if (!event.allDay && seg.isStart) {

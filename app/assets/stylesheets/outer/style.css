@@ -639,8 +639,8 @@ html, body {
 .audit-title h3 {
     color: #4A4848;
     font-family: 'Open Sans',sans-serif;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: bold;
     margin: 5px 0 10px;
     padding: 0 0 0 20px;
 }
@@ -752,7 +752,7 @@ text-align: left;
   border: medium none;
   color: rgba(0, 0, 0, 0);
   height: 38px;
-  width: 38px; 
+  width: 38px;
 }
 
 .audit_search{ background-image: url("/assets/outer/search_bg.png"); width:287px; height: 38px;}
@@ -815,7 +815,7 @@ a.plus-background{
 .dashboard_main{ padding-bottom:100px;}
 .dash_sub_title{ background-color:#8d9094; padding: 10px 15px; color:#fff;box-shadow: 0 0 5px #d5d6d6;}
 .dashboard-title{ color:#5b5a5a; font-size:20px;font-family: 'Open Sans'; font-weight:600; padding:15px 20px;}
-.dashboard_menu{ border:1px solid #dfdfdf; padding:20px 0 0; background-color:#fff; margin-bottom:15px; height:135px;} 
+.dashboard_menu{ border:1px solid #dfdfdf; padding:20px 0 0; background-color:#fff; margin-bottom:15px; height:135px;}
 .dash_menu_a{margin-top: 35px;}
 .dashboard_menu li{float: left; list-style:none;}
 .dashboard_menu li a {
@@ -877,7 +877,6 @@ a.plus-background{
 .db_inform{ float:left;padding: 0 25px 0 18px;}
 .checkbox_wrapper.active{
     background:url("/assets/outer/checked.jpg") no-repeat;
-   
 }
 .db_aduitdetails label{ color:#181818;}
 .db_audit_com{ margin-bottom:15px;}
@@ -917,7 +916,6 @@ a.plus-background{
 	position: relative;
     float:left;
     z-index:10;
-    
 }
 #arrow:after {
 	content: '';
@@ -949,7 +947,6 @@ a.plus-background{
 	position: relative;
     float:left;
     z-index:8;
-    
 }
 #arrow1:after {
 	content: '';
@@ -982,7 +979,6 @@ a.plus-background{
 	position: relative;
     float:left;
     z-index:7;
-    
 }
 #arrow2:after {
 	content: '';
@@ -1015,7 +1011,6 @@ a.plus-background{
 	position: relative;
     float:left;
     z-index:6;
-    
 }
 #arrow3:after {
 	content: '';
@@ -1046,7 +1041,6 @@ a.plus-background{
 	position: relative;
     float:left;
     z-index:5;
-    
 }
 #arrow4:after {
 	content: '';
@@ -1117,8 +1111,7 @@ a.plus-background{
 }
 .db_setting_dropdown a,.db_setting_dropdown1 a,.db_setting_dropdown2 a,.db_setting_dropdown3 a{ color:#8D9094; text-align:left;}
 .db_setting_dropdown a:hover,.db_setting_dropdown1 a:hover,.db_setting_dropdown2 a:hover,.db_setting_dropdown3 a:hover{ color:#fff;}
-
-.db_setting_main{ margin-bottom:15px;}	
+.db_setting_main{ margin-bottom:15px;}
 .db_setting_dropdown li,.db_setting_dropdown1 li,.db_setting_dropdown2 li,.db_setting_dropdown3 li{ list-style:none;}
 .db_setting_dropdown ul,.db_setting_dropdown1 ul,.db_setting_dropdown2 ul,.db_setting_dropdown3 ul{ padding:0;}
 .db_chart_content{box-shadow: 0 0 5px #d5d6d6; }
@@ -1139,7 +1132,6 @@ a.plus-background{
     overflow: hidden;
     padding: 0 3px;
     width: 140px;
-		 
 	}
 .select_outer select {
   background-color: transparent;
@@ -1180,4 +1172,7 @@ a.plus-background{
     background: none repeat scroll 0 0 #E7E7E8;
     height: 1px;
     margin: 5px 0 15px;
+}
+.company-name {
+  padding-top: 9px;
 }

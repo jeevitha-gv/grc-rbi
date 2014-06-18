@@ -6,9 +6,11 @@
         <div class="navbar-header">
           <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
           <% unless current_company.attachment.blank? %>
-            <%= image_tag(current_company.attachment.attachment_file.small, :class => "navbar-brand") %>
+            <%= image_tag(current_company.attachment.attachment_file, :class => "navbar-brand") %>
           <% else %>
-            <%= link_to current_company.name, root_path, :class=>"navbar-brand" %>
+            <div class="company-name">
+              <%= link_to current_company.name, root_path, :class=>"navbar-brand" %>
+            </div>
           <% end %>
           </div>
         <div class="navbar-collapse collapse fleft">
@@ -63,7 +65,7 @@
 	  <li><a href="/admin/locations" class="<%= request.fullpath.include?("admin/locations") == true ? 'active' : '' %>">
           Locations</a></li>
         <li><a href="/admin/departments" class="<%= request.fullpath.include?("admin/departments") == true ? 'active' : '' %>">
-          Departments</a></li>        
+          Departments</a></li>
         <li><a href="/admin/roles" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
           Roles</a></li>
         <li><a href="/admin/settings" class="<%= request.fullpath.include?("admin/settings") == true ? 'active' : '' %>">
