@@ -27,7 +27,12 @@ class AnswersController < ApplicationController
       else
         nc.answer.attachment = nc.answer.attachment.nil? ? nc.answer.attachment = Attachment.new : nc.answer.attachment
         nc.answer.attachment.update(:attachment_file => attachment) if attachment.present?
-        nc.answer.update(answer)
+        if nc.answer.update(answer)
+          if params[:commit] == "Submit Answers to Auditor"
+            nc.is_answered = true
+            nc.save
+          end
+        end
       end
   end
     redirect_to new_answers_path
