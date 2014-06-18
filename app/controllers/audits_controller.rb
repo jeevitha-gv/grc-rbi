@@ -168,8 +168,11 @@ class AuditsController < ApplicationController
 
   def asc_calculation
     audit = current_audit
-    audit.update(audit_status_id: 4)
-    Audit.audit_operational_weightage(current_company,audit)
+    status_id = AuditStatus.where('name= ?','Published').first.id
+    unless audit.audit_status_id == status_id
+      audit.update(audit_status_id: status_id)
+      Audit.audit_operational_weightage(current_company)
+    end
     redirect_to "/audits/audit_dashboard"
   end
 
