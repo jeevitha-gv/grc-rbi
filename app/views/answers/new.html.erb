@@ -1,3 +1,6 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "/assets/views/answers.js" %>
+<% end %>
 <div id="wrapper">
   <div class="clearfix"></div>
   <div class="content">
@@ -70,8 +73,8 @@
               <div class="clearfix"></div>
               <div class="clearfix"></div>
               <div class="fright paddingtop">
-                <a class="black_btn" href="">Back</a> <a class="grey_btn" href=""> Save Draft</a>
-                <%= f.submit "Submit Answers to Auditor", :class => "orange_btn" %>
+                <%= f.submit "Save Draft", :class => "black_btn", :onclick=>"return answer_response();" %>
+                <%= f.submit "Submit Answers to Auditor", :class => "orange_btn", :onclick=>"return answer_response();" %>
               </div>
             <% end %>
           </div>

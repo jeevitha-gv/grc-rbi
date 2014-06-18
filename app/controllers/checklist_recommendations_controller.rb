@@ -30,10 +30,6 @@ class ChecklistRecommendationsController < ApplicationController
 					@checklist_recommendation.recommendation_completed = true unless params[:commit] == 'Save Draft'
 					if @checklist_recommendation.save
 						@checklist_recommendation.checklist.update_attributes(:score_id => score) if checklist[:checklist_recommendation][:score]
-					else
-						@audit = current_audit
-						@score = Score.all
-						render 'new'
 					end
 				else
 					@checklist_recommendation.recommendation_completed = true unless params[:commit] == 'Save Draft'
@@ -81,7 +77,11 @@ class ChecklistRecommendationsController < ApplicationController
 		@checklist_recommendation.last_step = true
 		@checklist_recommendation.is_published = true
 		if @checklist_recommendation.update(checklist_params)
-			@checklist_recommendation.remark = Comment.new(comment: params[:checklist_recommendation][:remarks]) if  params[:checklist_recommendation][:remarks].present?
+			if params[:checklist_recommendation][:remarks].present? && @checklist_recommendation.remark.nil?
+				@checklist_recommendation.remark = Comment.new(comment: params[:checklist_recommendation][:remarks])
+			else
+				@checklist_recommendation.remark.update(comment: params[:checklist_recommendation][:remarks])
+			end
 		end
 		# UniversalMailer.delay.notify_auditee_about_observations(@checklist_recommendation)
 		respond_to :js
