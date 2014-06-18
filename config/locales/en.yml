@@ -24,6 +24,14 @@ en:
       models:
         user:
           attributes:
+            password:
+              blank: "Password can't be blank"     
+              too_short:
+                other: "Password should contain minimum of 6 char"
+              too_long:
+                other: "Password should contains maximum of 20 char"
+            password_confirmation:
+              confirmation: "Password Confirmation doesn't match password"
             email:
               blank: "Email can't be blank"
               invalid: "Email is invalid"
