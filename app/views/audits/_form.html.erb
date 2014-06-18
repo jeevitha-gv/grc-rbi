@@ -132,7 +132,8 @@
       <%= f.label :location, t('audit.location') %>
     </label>
     <div class="col-sm-7">
-      <%= f.select :location_id, options_for_select(Location.all.collect{|x| [x.name, x.id.to_i]}, :selected => @audit.location_id), {include_blank: 'Select Location' }, { :id => "locations-list", :onChange => "get_departments(this);"} %>
+      <% binding.pry %>
+      <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => @audit.location_id), {include_blank: 'Select Location' }, { :id => "locations-list", :onChange => "get_departments(this);"} %>
     </div>
   </div>
   <div class="form-group clearfix" id="department-dropdown" style="<%= 'display:block;' if (@audit.department_id.present? && (action_name == "create" || action_name == "edit" || action_name == "update")) %>">
