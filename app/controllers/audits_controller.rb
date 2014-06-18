@@ -151,11 +151,11 @@ class AuditsController < ApplicationController
         end
         redirect_to audits_path, notice: "Audit imported."
       rescue
-        @errors = "Invalid file format"
+        flash[:error]=  "Invalid file format"
         redirect_to new_audit_path
       end
     else
-      @errors = "Please select a file."
+      flash[:error] = "Please select a file."
       redirect_to new_audit_path
     end
   end

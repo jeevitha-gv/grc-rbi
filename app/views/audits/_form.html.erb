@@ -132,7 +132,6 @@
       <%= f.label :location, t('audit.location') %>
     </label>
     <div class="col-sm-7">
-      <% binding.pry %>
       <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => @audit.location_id), {include_blank: 'Select Location' }, { :id => "locations-list", :onChange => "get_departments(this);"} %>
     </div>
   </div>
