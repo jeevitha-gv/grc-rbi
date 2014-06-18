@@ -278,7 +278,7 @@ class Audit < ActiveRecord::Base
   end
 
   def check_for_auditor_in_auditees
-    self.errors[:auditees] = MESSAGES['audit']['failure']['auditor_not_in_auditees'] if audit_auditees.map(&:user_id).include?(self.auditor)
+    #~ self.errors[:auditees] = MESSAGES['audit']['failure']['auditor_not_in_auditees'] if audit_auditees.map(&:user_id).include?(self.auditor)
   end
   
 end

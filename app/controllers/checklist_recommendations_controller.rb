@@ -129,7 +129,12 @@ class ChecklistRecommendationsController < ApplicationController
 		 	@path = false
 			end
 	 	return @path
-end
+  end
+  
+  def remove_attachment
+    attachment = Attachment.find(params[:id])
+    attachment.delete
+  end
 
 
 	def list_artifacts_and_comments
