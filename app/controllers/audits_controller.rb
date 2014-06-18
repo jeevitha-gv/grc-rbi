@@ -83,7 +83,7 @@ class AuditsController < ApplicationController
 
   def department_teams_users
     @departments = Department.where(:location_id=>params[:location_id]) if params[:location_id]
-    @teams = Team.where(:department_id=>params[:department_id]) if params[:department_id]
+    @teams = Team.where(:department_id=>params[:department_id], :company_id => current_company.id) if params[:department_id]
     @team = Team.where(:id=>params[:team_id]).last if params[:team_id]
     render 'department_locations_list'
   end
@@ -105,28 +105,25 @@ class AuditsController < ApplicationController
           end
 
           auditee_array << row_data[17]
-          audit_type = AuditType.where("lower(name) = ?", "#{row_data[7].to_s.downcase}").first
+          audit_type = AuditType.where("lower(name) = ?", "#{row_data[7].to_s.strip.downcase}").first
 
-          if row_data[8].downcase=="compliance"
+          if row_data[8].strip.downcase=="compliance"
             comp_type = "Compliance"
             stand_id = Compliance.where("lower(name) = ?", row_data[9].to_s.downcase).first
-          elsif row_data[8].downcase=="noncompliance"
+          elsif row_data[8].strip.downcase=="noncompliance"
             comp_type = "NonCompliance"
             stand_id = Topic.where("lower(name) = ?", row_data[10].to_s.downcase).first
           end
 
-          location = Location.where("lower(name)=? and company_id=?", "#{row_data[11].to_s.downcase}",current_company.id).first
-          department = Department.where("lower(name) = ? and location_id=?", "#{row_data[12].to_s.downcase}",location.id).first if location.present?
-          team = Team.where("lower(name) = ? and department_id=?", "#{row_data[13].to_s.downcase}",department.id).first if department.present?
+          location = Location.where("lower(name)=? and company_id=?", "#{row_data[11].to_s.strip.downcase}",current_company.id).first
+          department = Department.where("lower(name) = ? and location_id=?", "#{row_data[12].to_s.strip.downcase}",location.id).first if location.present?
+          team = Team.where("lower(name) = ? and department_id=?", "#{row_data[13].to_s.strip.downcase}",department.id).first if department.present?
 
-          auditor_user = User.where("lower(email) = ?", "#{row_data[16].to_s.downcase}").last
-          user_role = auditor_user.role.title == "auditor" if auditor_user.present?
-          auditor = user_role == true ? auditor_user : nil
+          auditor_user = User.where("lower(email) = ?", "#{row_data[16].to_s.strip.downcase}").first
           user_email = auditee_array.collect{|x| x.strip if x.present?}
-          auditee_role = Role.where(:title=>"auditee", :company_id=>current_company.id).last
-          auditee_users = User.where("lower(email) IN (?) and role_id IN(?)", user_email, auditee_role)
+          auditee_users = User.where(:email => user_email)
 
-          audit = new
+          audit = Audit.new
           audit.attributes ={:title => row_data[0],
             :scope => row_data[1],
             :objective => row_data[2],
@@ -142,7 +139,7 @@ class AuditsController < ApplicationController
             :team_id =>  team.present? ? team.id : nil,
             :start_date =>  row_data[14],
             :end_date =>  row_data[15],
-            :auditor => auditor.present? ? auditor.id : nil,
+            :auditor => auditor_user.present? ? auditor_user.id : nil,
             :company_id => current_company.id,
             :audit_status_id => AuditStatus.where(:name=>"Initiated").first.id
           }
@@ -151,11 +148,11 @@ class AuditsController < ApplicationController
         end
         redirect_to audits_path, notice: "Audit imported."
       rescue
-        @errors = "Invalid file format"
+        flash[:error]=  "Invalid file format"
         redirect_to new_audit_path
       end
     else
-      @errors = "Please select a file."
+      flash[:error] = "Please select a file."
       redirect_to new_audit_path
     end
   end
@@ -173,7 +170,7 @@ class AuditsController < ApplicationController
     audit = current_audit
     audit.update(audit_status_id: 4)
     Audit.audit_operational_weightage(current_company,audit)
-    redirect_to particular_dashboard_audits_path
+    redirect_to "/audits/audit_dashboard"
   end
 
   def audit_dashboard
