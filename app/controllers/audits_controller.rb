@@ -83,7 +83,7 @@ class AuditsController < ApplicationController
 
   def department_teams_users
     @departments = Department.where(:location_id=>params[:location_id]) if params[:location_id]
-    @teams = Team.where(:department_id=>params[:department_id]) if params[:department_id]
+    @teams = Team.where(:department_id=>params[:department_id], :company_id => current_company.id) if params[:department_id]
     @team = Team.where(:id=>params[:team_id]).last if params[:team_id]
     render 'department_locations_list'
   end
@@ -151,11 +151,11 @@ class AuditsController < ApplicationController
         end
         redirect_to audits_path, notice: "Audit imported."
       rescue
-        @errors = "Invalid file format"
+        flash[:error]=  "Invalid file format"
         redirect_to new_audit_path
       end
     else
-      @errors = "Please select a file."
+      flash[:error] = "Please select a file."
       redirect_to new_audit_path
     end
   end
@@ -178,10 +178,12 @@ class AuditsController < ApplicationController
 
   def audit_dashboard
       @audit = current_audit
+    unless @audit.nil?
       @audit_domains, @audit_weightage, @audit_maximum_score , @audit_percentage= @audit.maximum_actual_score
       @to_do_list = @audit.compliance_checklist_recommendations
       @audit_users = @audit.audit_users
       @checklist_completed_count, @checklist_pending_count, @recommendation_completed_count, @recommendation_pending_count, @observation_completed_count, @observation_pending_count,@response_completed_count, @response_pending_count = @audit.audit_status_records
+    end
   end
 
   def artifacts_download

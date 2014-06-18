@@ -196,3 +196,25 @@ and (max-width : 1024px) {
 .dashboard_menu{ height:130px;}
 	.dashboard_menu {margin-top: 7px;}
 }
+
+/*  Menu New Css 13June2014 */
+
+@media only screen 
+and (min-width : 320px) 
+and (max-width : 480px) {
+	.navbar-nav li a{ width:100%;}
+.navbar-inverse .navbar-toggle{ background:#0085c8 !important;}
+.subbar-nav li{ width:100%;}
+.subbar-nav li a {
+  background-color: #434343;
+  height: 35px;
+  line-height: 30px;
+  margin-bottom: 1px;
+  padding: 3px 15px;
+  text-align: left; width:100%;
+}
+.subbar-nav li a.active, .subbar-nav li a:hover{ border-bottom:none !important; background-color:#F19A01 !important;}
+
+.dash-icon,.calender-icon,.plan-icon,.list-icon,.do-icon,.check-icon,.act-icon,.published-icon,.setting-icon{ float:left;}
+	
+}
