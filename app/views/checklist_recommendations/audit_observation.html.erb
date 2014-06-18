@@ -89,4 +89,9 @@
   $(function() {
     $( "#Accordion1" ).accordion();
   });
+  function display_selected_files(e)
+{
+$(e).parent().find("#selected_files").html("<h5>selected: " + $(e).val() + "</h5>");
+}
+
 </script>

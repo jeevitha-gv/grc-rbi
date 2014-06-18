@@ -30,7 +30,7 @@ en:
       success: "User was created successfully."
       update: "User was successfully updated."
       destroy: "User was successfully destroyed."
-      
+
   Role:
     create:
       success: "Role was created successfully"
@@ -108,3 +108,6 @@ en:
     observation: "Please enter observation"
     is_implemented: "Please select implementation status"
     remarks: "Please enter remarks"
+
+  answers:
+    detailed_value: "Please enter answer"

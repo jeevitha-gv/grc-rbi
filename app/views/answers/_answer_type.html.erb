@@ -4,10 +4,13 @@
       <div class="form-group clearfix">
         <label class="col-sm-5">Your Choice</label>
         <div class="col-sm-7">
-          <input type="radio" value="0" name="answer[<%= question.id %>][value]">
+          <input type="radio" value="0" name="answer[<%= question.id %>][value]" class="answer_check">
           <label for="value_Yes">Yes</label>
-          <input type="radio" value="1" name="answer[<%= question.id %>][value]">
+          <input type="radio" value="1" name="answer[<%= question.id %>][value]" class="answer_check">
           <label for="value_No">No</label>
+          <br>
+          <input type="hidden" value="<%= question.id %>" name="audit_id" id="answer_<%= question.id %>">
+          <span class="error_message" id="answer_check_<%= question.id %>" style="display:none;"><%= MESSAGES["answers"]["detailed_value"]%><span>
         </div>
         <br>
         <div class="form-group clearfix">
@@ -23,7 +26,8 @@
       <div class="form-group clearfix">
         <label class="col-sm-5">Your Answer</label>
         <div class="col-sm-7">
-          <textarea name="answer[<%= question.id %>][detailed_value]" id="audit_answer_detailed_value" class="audit-big-input" value ="<%= question.answer.detailed_value if question.answer.present?%>"></textarea>
+          <textarea name="answer[<%= question.id %>][detailed_value]" id="detailed_value_<%= question.id %>" class="audit-big-input nc_question_answer" value ="<%= question.answer.detailed_value if question.answer.present?%>"></textarea>
+          <span class="error_message" id="error_detailed_value_<%= question.id%>" style="display:none;"><%= MESSAGES["answers"]["detailed_value"]%><span>
         </div>
         <br>
         <div class="form-group clearfix">
@@ -44,6 +48,10 @@
             <input type="radio" value="<%= question_option.id%>" name="answer[<%= question.id %>][value]" id="value_<%= question_option.id%>">
             <label for="value_<%= question_option.id%>"><%= question_option.value%></label> <br>
           <% end %>
+
+          <br>
+          <input type="hidden" value="<%= question.id %>" name="audit_id" id="answer_<%= question.id %>">
+          <span class="error_message" id="answer_check_<%= question.id %>" style="display:none;"><%= MESSAGES["answers"]["detailed_value"]%><span>
           <br>
         </div>
         <br>

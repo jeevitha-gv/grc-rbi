@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       post 'update_individual_score'
       get 'list_artifacts_and_comments'
       get 'download_artifacts'
+      delete 'remove_attachment'
     end
   end
 

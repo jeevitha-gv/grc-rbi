@@ -1,7 +1,7 @@
 class NcQuestionsController < ApplicationController
 
   before_filter :check_for_current_audit
-  before_filter :check_for_auditee_response
+  before_filter :check_for_auditee_response, :only => [:new]
 
 	def index
 		@nc_questions = NcQuestion.all
@@ -18,7 +18,6 @@ class NcQuestionsController < ApplicationController
     # end
 	end
 
-
 	def create
 		@audit = current_audit
 		if @audit.update_attributes(question_params)
@@ -28,19 +27,12 @@ class NcQuestionsController < ApplicationController
 		end
 	end
 
-
 	def library_questions
 		@nc_questions = NcQuestion.where(:id=>params[:nc_question])
 		@priorities = Priority.all
 		@response_types = QuestionType.all
     # @response_type_selected = @nc_question.map(&:question_type_id)
 		@auditees = @audit.auditees.all
-  end
-
-  def check_for_auditee_response
-    if(current_audit.auditees.map(&:id).include?(current_user.id))
-      redirect_to new_answers_path
-    end
   end
 
 	def import_files
@@ -83,7 +75,6 @@ class NcQuestionsController < ApplicationController
     end
   end
 
-
   def export_files
     nc_question_csv = CSV.generate do |csv|
       csv << ["Question Name;Question Type;Mutilpe Type Options;"]
@@ -99,4 +90,10 @@ class NcQuestionsController < ApplicationController
 		def question_params
 			params.require(:audit).permit(nc_questions_attributes: [:question, :question_type_id, :priority_id, :target_date, :does_require_document, :nc_library, :auditee_id, :id, :_destroy, question_options_attributes: [:value, :id, :_destroy]])
 		end
+
+    def check_for_auditee_response
+      if(current_audit.auditees.map(&:id).include?(current_user.id))
+        redirect_to new_answers_path
+      end
+    end
 end

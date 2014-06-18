@@ -43,7 +43,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    if(model.attachable_type == "User")
+    if(model.attachable_type == "User" || model.attachable_type == "Company")
       %w(jpg jpeg gif png)
     end
   end
@@ -55,6 +55,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # end
 protected
 def icon_only? picture
-  (model.attachable_type == "User")
+  p model.attachable_type
+  (model.attachable_type == "User" || model.attachable_type == "Company")
  end
 end
