@@ -1,3 +1,8 @@
+<style>
+.ui-accordion-content{
+height: auto !important;
+}
+</style>
 <div id="Accordion1">
  <% @checklist_recommendations.each do |checklist| %>
             <% checklist_recommendation = checklist.checklist_recommendation %>
@@ -42,8 +47,21 @@
                     </div>
 
                     <div class="form-group clearfix">
-                    <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#auditee_attachment_<%= checklist_recommendation.id%>').click();" >Attach Document</a>
-                      <%= file_field_tag "checklist_recommendation[attachment]", :style => "visibility:hidden; display:none;",  :id => "auditee_attachment_#{checklist_recommendation.id}"%></div>
+                    <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#auditee_attachment_<%= checklist_recommendation.id%>').click();" >Attach Document</a></div>
+                      <div class="form-group clearfix ">
+                      <div class="col-sm-12">
+                        <%= "<h4>Attachments</h4>".html_safe if checklist_recommendation.response_attachments.present?%>
+                        <%checklist_recommendation.response_attachments.each do |attachment|%>
+                          <div id="attach_<%= attachment.id%>"><%= link_to (File.basename(attachment.attachment_file_url)).truncate(20), download_artifacts_checklist_recommendations_path(id: attachment.id), class: "blue_link" %>
+                          <%unless(@audit.audit_status_id == 4)%> 
+                          <div class="addissue" style="float: right;"> <%= link_to "remove", remove_attachment_checklist_recommendations_path(id: attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon"%></div> 
+                          <%end%>
+                          </div>                                                 
+                        <%end%>
+                      </div>
+                      <%= file_field_tag "checklist_recommendation[attachment]", :style => "visibility:hidden; display:none;",  :id => "auditee_attachment_#{checklist_recommendation.id}", onchange: "display_selected_files(this)"%>
+                        <div class="clearfix" id="selected_files"></div>
+                      </div>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -125,7 +143,10 @@
                       <%= hidden_field_tag "checklist_recommendation[id]",  checklist_recommendation.id , :id => "id_#{checklist_recommendation.id}"%>
                     <div class="form-group clearfix">
                     <!--<div class="col-sm-12 "><a class="black_btn fright" href="" onclick="auditee_response(<%#= checklist_recommendation.id%>);">Respond</a></div>-->
-                    <div class="col-sm-12 "><input type="submit" value="Respond" class="black_btn fright" onclick="return auditee_response(<%= checklist_recommendation.id%>);">
+                    <div class="col-sm-12 ">
+                     <%unless(@audit.audit_status_id == 4)%>
+                      <input type="submit" value="Respond" class="black_btn fright" onclick="return auditee_response(<%= checklist_recommendation.id%>);">
+                    <%end%>
                     </div>
                     </div>
                     </div>

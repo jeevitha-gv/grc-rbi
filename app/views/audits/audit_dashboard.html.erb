@@ -1,17 +1,17 @@
-<script src="/assets/outer/highcharts.js"></script> 
-<script src="/assets/outer/exporting.js"></script> 
-<script src="/assets/outer/drilldown.js"></script> 
-<script src="/assets/outer/data.js"></script> 
+<script src="/assets/outer/highcharts.js"></script>
+<script src="/assets/outer/exporting.js"></script>
+<script src="/assets/outer/drilldown.js"></script>
+<script src="/assets/outer/data.js"></script>
  <div class="clearfix"></div>
   <!-- Dash Board Start -->
   <div class="dashboard_main">
     <div class="container">
-      <div class="row"> 
+      <div class="row">
         <!-- Dash Board Title Start -->
         <div class="dashboard-title col-lg-12">Dash Board</div>
         <!-- Dash Board Title End -->
-        <div class="col-lg-8 dash_bg"> 
-          
+        <div class="col-lg-8 dash_bg">
+
           <!-- Dash Board Menu Start-->
           <div class="dashboard_menu">
             <ul>
@@ -29,7 +29,7 @@
               <li>
                 <div id="arrow2" class="<%= dashboard_audit_status(audit_status_id, 'In Progress') unless audit_status_id.nil?%>"> <a  href="/checklist_recommendations/new">
                   <div class="db-check-icon"></div>
-                  Check </a> </div>	
+                  Check </a> </div>
               </li>
               <li>
                 <div id="arrow3" class="<%= dashboard_audit_status(audit_status_id, 'In Progress') unless audit_status_id.nil?%>"> <a  href="/checklist_recommendations/auditee_response">
@@ -43,26 +43,26 @@
               </li>
             </ul>
           </div>
-          <!-- Dash Board Menu End--> 
+          <!-- Dash Board Menu End-->
           <% if @audit && @audit.audit_status_name == 'Published'%>
           <!-- Audit Compliance Rating Start -->
           <div class="dash_sub_title">Audit Compliance Rating</div>
           <div id="auditcompliancerating"></div>
-          <!-- Audit Compliance Rating End --> 
-          
+          <!-- Audit Compliance Rating End -->
+
           <!-- ISMS Audit Score Start -->
           <div class="dash_sub_title">ISMS Audit Score</div>
           <div id="ISMSAuditScore"></div>
-				
-          <!-- ISMS Audit Score End --> 
+
+          <!-- ISMS Audit Score End -->
 					<% end %>
         </div>
         <div class="col-lg-4 dash_bg">
           <div class="db_audit_com clearfix">
             <div class="db_audit_com_icon fleft"></div>
-            <div class="db_audit_com_txt">Audit Compliance Rating <b><%= @audit.percentage.round(2) unless @audit.nil?%>%</b> </div>
+            <div class="db_audit_com_txt">Audit Compliance Rating <b><%= @audit.percentage.round(2) if  @audit.percentage && @audit.nil?%>%</b> </div>
           </div>
-          
+
           <!--Audit Details Start -->
           <div class="dash_sub_title">Audit Details</div>
           <div class="db_aduitdetails">
@@ -84,7 +84,7 @@
             </div>
             <div class="db_download_btn clearfix"> <a class="download-icon" href="/audits/<%= @audit.id%>.pdf">Download Report</a> <a class="download-aff-icon" href="/audits/artifacts_download">Download Artifacts</a> </div>
           </div>
-          <!--Audit Details End --> 
+          <!--Audit Details End -->
           <!--To do List Start -->
           <div class="dash_sub_title">To Do List</div>
           <div class="db_todolist">
@@ -95,7 +95,7 @@
               <div class="db_inform">
                 <div class="db_todolist_insec"><%= checklist_recommendation.checklist.compliance_library_name%> - Recommendation</div>
 							</div>
-              <a class="pendinglink" href=""><%= 'Pending'%></a> 
+              <a class="pendinglink" href=""><%= 'Pending'%></a>
 							</div>
           <% end %>
 					<% if !checklist_recommendation.corrective.nil? && checklist_recommendation.response_completed.nil?%>
@@ -104,7 +104,7 @@
               <div class="db_inform">
                 <div class="db_todolist_insec"><%= checklist_recommendation.checklist.compliance_library_name%> - Response</div>
                 <span class="time-icon"><%= checklist_recommendation.closure_date%></span> </div>
-              <a class="pendinglink" href=""><%= 'Pending' %></a> 
+              <a class="pendinglink" href=""><%= 'Pending' %></a>
 							</div>
           <% end %>
 					<% if !checklist_recommendation.observation.nil? && checklist_recommendation.is_published.nil?%>
@@ -113,13 +113,13 @@
               <div class="db_inform">
                 <div class="db_todolist_insec"><%= checklist_recommendation.checklist.compliance_library_name%> - Observation</div>
 								</div>
-              <a class="pendinglink" href=""><%= 'Pending' %></a> 
+              <a class="pendinglink" href=""><%= 'Pending' %></a>
 							</div>
           <% end %>
           <% end %>
 						</div>
-          <!--To do List Start --> 
-          
+          <!--To do List Start -->
+
           <!--Audit Status  Start-->
 					<% if @audit.audit_status_name == 'Published'%>
 						<div class="dash_sub_title">Audit Status</div>
@@ -133,8 +133,8 @@ Inprogress 5.0	0.85%
 Rejected 9.0	0.65%
 Pending 8.0	0.55%
 </pre>
-          
-          <!--Audit Status  End--> 
+
+          <!--Audit Status  End-->
         </div>
       </div>
     </div>
@@ -142,20 +142,20 @@ Pending 8.0	0.55%
   <!-- Dash Board End -->
 
 <script type="text/javascript">
-	
+
 $(document).ready(function(){
-	
+
 	Top_postion = $(window).scrollTop();
-	
+
 	$( ".user_login" ).mouseenter(function() {
 		$(this).addClass("active");
-		$(".account_header_dropdown").slideDown(100);	  
+		$(".account_header_dropdown").slideDown(100);
 	})
 	.mouseleave(function() {
 		$(this).removeClass("active");
 		$(".account_header_dropdown").hide();
 	});
-	
+
 });
 
 
@@ -196,13 +196,13 @@ var percentages = <%= raw @audit_percentage%>;
                 }
             },
             series: [{
-                name: 'Percentage',
+                name: 'Domains',
                 data: percentages
-    
+
             }]
         });
     });
-    
+
 $(function () {
 var domains = <%= raw @audit_domains%>;
 var weightages = <%= raw @audit_weightage%>;
@@ -263,10 +263,10 @@ var maximum_scores = <%= raw @audit_maximum_score%>;
             }, {
                 name: 'Maximum scores',
                 data: maximum_scores
-            }]	
+            }]
         });
     });
-    
+
 
 
 $(function () {
@@ -282,7 +282,7 @@ $(function () {
         csv: document.getElementById('tsv').innerHTML,
         itemDelimiter: '\t',
         parsed: function (columns) {
-                drilldownSeries = [];           
+                drilldownSeries = [];
             // Create the chart
                  $('#container').highcharts({
                 chart: {
@@ -306,7 +306,7 @@ $(function () {
                 tooltip: {
                     headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
                     //~ pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-                }, 
+                },
 
 						 series: [{
 						name: 'Audit status',
@@ -339,13 +339,13 @@ $(function () {
 						}]
 				}
 				})
-				
+
 
         }
     });
 });
-    
 
-</script> 
+
+</script>
 
 

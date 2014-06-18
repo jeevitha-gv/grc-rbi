@@ -83,7 +83,7 @@ class ChecklistRecommendationsController < ApplicationController
 				@checklist_recommendation.remark.update(comment: params[:checklist_recommendation][:remarks])
 			end
 		end
-		# UniversalMailer.delay.notify_auditee_about_observations(@checklist_recommendation)
+		UniversalMailer.delay.notify_auditee_about_observations(@checklist_recommendation)
 		respond_to :js
 	end
 
@@ -98,7 +98,7 @@ class ChecklistRecommendationsController < ApplicationController
 		@checklist_recommendation.is_checklist_new = true
 		@checklist_recommendation.auditee_id = current_user.id
 		@checklist_recommendation.update(checklist_params)
-		# UniversalMailer.delay.notify_auditor_about_responses(@checklist_recommendation)
+		UniversalMailer.delay.notify_auditor_about_responses(@checklist_recommendation)
 		respond_to :js
 	end
 
@@ -129,7 +129,12 @@ class ChecklistRecommendationsController < ApplicationController
 		 	@path = false
 			end
 	 	return @path
-end
+  end
+  
+  def remove_attachment
+    attachment = Attachment.find(params[:id])
+    attachment.delete
+  end
 
 
 	def list_artifacts_and_comments

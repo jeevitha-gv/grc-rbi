@@ -83,7 +83,7 @@ $(document).on('ready page:load', function(){
 				
         // http://arshaw.com/fullcalendar/docs/mouse/eventClick/
         eventClick: function(event, jsEvent, view){
-            window.location.replace("/audits/"+event.id);
+            window.location.replace("/audits/audit_dashboard");
         },
   });
 	

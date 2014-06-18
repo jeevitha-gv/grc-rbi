@@ -137,16 +137,22 @@
   $(document).ready(function() {
               // create DatePicker from input HTML element
 
-              $(".datepicker2").kendoDatePicker({
-				format: "dd/MM/yyyy",
-		      parseFormats: ["MMMM  yyyy"]
-		});
+                
+                var datepicker = $(".datepicker2").kendoDatePicker({
+                     format: "dd/MM/yyyy",
+                    parseFormats: ["MMMM  yyyy"]
+                }).data("kendoDatePicker");
+                
+                $(".datepicker2").bind("focus", function() {
+                    $(this).data("kendoDatePicker").open();
+                });
+                $('.datepicker2').attr('readonly', true);
 
               $(".score_points").click(function(){
 								value =$(this).data("value");
 								control_id = $(this).attr("id").replace("_"+value,'')
 								$("#score_" +control_id).val(value)
-                $(".score_points").removeClass('active')
+                $(this).parent().find(".score_points").removeClass('active')
                 $(this).addClass('active')
               })
             });
