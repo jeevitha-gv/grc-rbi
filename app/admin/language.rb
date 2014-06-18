@@ -9,6 +9,7 @@ ActiveAdmin.register Language do
   end
 
   index do
+    selectable_column
     column :name
     column :code
     actions

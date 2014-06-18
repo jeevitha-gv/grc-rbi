@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
    validates :user_name, length: { maximum: 52 }, :if => Proc.new{|f| !f.user_name.blank? }
    validates :email, presence: true
    validates :email, uniqueness: true, :if => Proc.new{|f| !f.email.blank? }
+   validates :email, length: {  maximum: 50  },:if => Proc.new{|f| !f.email.blank? }
    validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, :if => Proc.new{|f| !f.email.blank? }
    validates :role_id, presence: true
    validates :password, presence: true, :if => Proc.new{ |f| (f.password.blank?) }
@@ -52,7 +53,7 @@ class User < ActiveRecord::Base
 
   delegate :title, to: :dealer, prefix: true
   delegate :title, to: :role, prefix: true, allow_nil: true
-  
+
   def is?( requested_role)
     self.role.title == requested_role.to_s if self.role.present?
   end
@@ -80,7 +81,7 @@ class User < ActiveRecord::Base
   end
 
   protected
-  
+
   def password_required?
     super if confirmed?
   end
@@ -95,7 +96,7 @@ class User < ActiveRecord::Base
     def self.find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup
       if((domain = conditions.delete(:domain)) && (login = conditions.delete(:login)))
-        if(domain && (company = Company.where(domain: domain).first))  
+        if(domain && (company = Company.where(domain: domain).first))
           where(conditions).where(["(lower(user_name) = :value OR lower(email) = :value) AND company_id = :company_id", { :value => login.downcase, :company_id => company.id }]).first
         else
           where(conditions).where(["lower(user_name) = :value OR lower(email) = :value", { :value => login.downcase }]).first

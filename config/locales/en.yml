@@ -25,7 +25,7 @@ en:
         user:
           attributes:
             password:
-              blank: "Password can't be blank"     
+              blank: "Password can't be blank"
               too_short:
                 other: "Password should contain minimum of 6 char"
               too_long:
@@ -36,6 +36,8 @@ en:
               blank: "Email can't be blank"
               invalid: "Email is invalid"
               taken: "Email has been already used"
+              too_long:
+                other: "User email should not contains maximum of 50 char"
             full_name:
               blank: "Full Name can't be blank"
               invalid: "Full Name should contain alphabets"
@@ -100,8 +102,12 @@ en:
                 other: " Domain name cannot be less than 2 characters"
             secondary_email:
               invalid: "Secondary Email is invalid"
+              too_long:
+                other: "Email should not contains maximum of 50 char"
             primary_email:
               invalid: "Primary Email is invalid"
+              too_long:
+                other: "Email should not contains maximum of 50 char"
             contact_no:
               not_a_number: "is not a number"
               wrong_length:
@@ -128,12 +134,14 @@ en:
               too_short:
                 other: "client name should contain minimum of 4 char"
               too_long:
-                other: "client name should contains maximum of 52 char"
+                other: "client name should not contains maximum of 52 char"
             contact_no:
               not_a_number: "is not a number"
               blank: "Contact number can't be blank"
-              wrong_length:
-                other: "Contact no should be 10 digits"
+              too_long:
+                other: "Contact No cannot exceed 20 digits"
+              too_short:
+                other: "Contact No cannot be less than 10 digits"
             address1:
               too_short:
                 other: "Address should contain minimum of 7 char"
@@ -148,6 +156,8 @@ en:
               blank: "Email can't be blank"
               invalid: "Email is invalid"
               taken: "Email has been already used"
+              too_long:
+                other: "client email should not contains maximum of 50 char"
         compliance:
           attributes:
             name:
