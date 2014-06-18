@@ -47,7 +47,7 @@
                 <% elsif answered_ncquestion.question_type_id == 2 %>
                   <%= answered_ncquestion.detailed_value %>
                 <% else %>
-                  <%= QuestionOption.where(:id => answered_ncquestion.value).last.value %>
+                  <%= QuestionOption.where(:id => answered_ncquestion.value).last.value  if answered_ncquestion.value.present? %>
                 <% end %>
               <% end %>
             </div>

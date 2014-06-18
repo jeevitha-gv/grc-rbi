@@ -60,7 +60,7 @@
         <div class="col-lg-4 dash_bg">
           <div class="db_audit_com clearfix">
             <div class="db_audit_com_icon fleft"></div>
-            <div class="db_audit_com_txt">Audit Compliance Rating <b><% unless @audit.nil?%><%= @audit.percentage.round(2)%>%<% end %></b> </div>
+            <div class="db_audit_com_txt">Audit Compliance Rating <b><% unless @audit.nil?%><%= @audit.percentage.to_f.round(2)%>%<% end %></b> </div>
           </div>
 
           <!--Audit Details Start -->
