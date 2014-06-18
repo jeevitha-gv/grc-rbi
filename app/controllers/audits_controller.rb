@@ -50,10 +50,8 @@ class AuditsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        #~ render :pdf => "pdf", :template => "audits/show.pdf.erb", layout: 'layouts/pdf.html.erb'
-         @pdf = render_to_string :pdf => "pdf", :template => "audits/show.pdf.erb", layout: 'layouts/pdf.html.erb',
-            :encoding => "UTF-8"
-        send_data(@pdf,   :type=>"application/pdf")
+        @pdf = (render_to_string :pdf => "PDF", :template => "audits/show.pdf.erb", layout: 'layouts/pdf.html.erb', :encoding => "UTF-8")
+        send_data(@pdf,   :type=>"application/pdf", :filename => @audit.title)
       end
     end
   end
