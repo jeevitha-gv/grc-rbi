@@ -1,2 +1,3 @@
 $("#file_tag").val('')
 $("#list-file").html("<%= escape_javascript(render partial: 'list_files', locals: {attachments: @attachments}) %>")
+ $('#add_file').modal('hide');
