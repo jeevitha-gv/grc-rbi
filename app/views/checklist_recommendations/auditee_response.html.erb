@@ -83,4 +83,8 @@ $('body').on('hidden.bs.modal', '.modal', function () {
   $(this).removeData('bs.modal');
 });
 
+function display_selected_files(e)
+{
+$(e).parent().find("#selected_files").html("<h5>selected: " + $(e).val() + "</h5>");
+}
 </script>

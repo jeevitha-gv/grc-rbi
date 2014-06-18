@@ -69,6 +69,14 @@ class ChecklistRecommendation < ActiveRecord::Base
     end
 
   end
+  
+  def response_attachments
+    self.attachments.where(classified: "Auditee Response")
+  end
+  
+  def observation_attachments
+    self.attachments.where(classified: "Audit Observation")
+  end
 
   def check_for_published
   	if(self.last_step)

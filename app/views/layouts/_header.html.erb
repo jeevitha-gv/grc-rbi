@@ -6,7 +6,7 @@
         <div class="navbar-header">
           <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
           <% unless current_company.attachment.blank? %>
-            <%= image_tag(current_company.attachment.attachment_file.small, :class => "navbar-brand") %>
+            <%= image_tag(current_company.attachment.attachment_file, :class => "navbar-brand") %>
           <% else %>
             <div class="company-name">
               <%= link_to current_company.name, root_path, :class=>"navbar-brand" %>

@@ -6,4 +6,7 @@ class Answer < ActiveRecord::Base
 
   delegate :question, :to => :nc_question
   delegate :question_type_id, :to => :nc_question
+
+  # validates :detailed_value, presence:true
+  # validates :value, presence:true
 end
