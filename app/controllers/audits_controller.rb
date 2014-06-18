@@ -83,7 +83,7 @@ class AuditsController < ApplicationController
 
   def department_teams_users
     @departments = Department.where(:location_id=>params[:location_id]) if params[:location_id]
-    @teams = Team.where(:department_id=>params[:department_id]) if params[:department_id]
+    @teams = Team.where(:department_id=>params[:department_id], :company_id => current_company.id) if params[:department_id]
     @team = Team.where(:id=>params[:team_id]).last if params[:team_id]
     render 'department_locations_list'
   end
