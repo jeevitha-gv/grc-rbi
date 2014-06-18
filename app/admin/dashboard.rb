@@ -5,6 +5,7 @@ ActiveAdmin.register_page "Dashboard" do
   #authentication
   controller do
     before_filter :authenticate_admin_user!
+    before_filter :check_subdomain
   end
   
   content title: proc{ I18n.t("active_admin.dashboard") } do

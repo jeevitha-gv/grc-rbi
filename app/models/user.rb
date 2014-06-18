@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
    validates :email, uniqueness: true, :if => Proc.new{|f| !f.email.blank? }
    validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, :if => Proc.new{|f| !f.email.blank? }
    validates :role_id, presence: true
-   validates :password, presence: true, :if => Proc.new{ |f| (f.password.blank?) }
+   # validates :password, presence: true, :if => Proc.new{ |f| (f.password.blank?) }
    validates :password, confirmation: true
    validates :password, length: {in: 6..20}, :unless => lambda{ |a| a.password.blank? }
   # validates :user_name, :full_name , presence: true, uniqueness: true

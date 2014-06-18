@@ -31,7 +31,7 @@ class Audit < ActiveRecord::Base
   COMPLIANCE_TYPES = [["Compliance Audit", "Compliance"], ["NonCompliance Audit", "NonCompliance"]]
 
   # validations
-  validates :title, presence:true
+  validates :title, presence:true, length: { in: 0..50 }
   validates_format_of :title, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.title.blank? }
   validates :title, uniqueness:true, :if => Proc.new{ |f| !f.title.blank? }
   validates :title, length: { maximum: 250 }, :if => Proc.new{|f| !f.title.blank? }
@@ -39,7 +39,7 @@ class Audit < ActiveRecord::Base
   validates :audit_type_id, presence:true
   validates :compliance_type, presence:true
   validates :standard_id, presence:true, :if => Proc.new{ |f| !f.compliance_type.blank? }
-  validates_format_of :issue, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.issue.blank? }
+  validates :issue, length: { in: 0..250 }, :if => Proc.new{ |f| !f.issue.blank? }
   validates :scope, length: { in: 0..250 }, :if => Proc.new{ |f| !f.scope.blank? }
   validates :context, length: { in: 0..250 }, :if => Proc.new{ |f| !f.context.blank? }
   validates :methodology, length: { in: 0..250 }, :if => Proc.new{ |f| !f.methodology.blank? }
@@ -129,7 +129,7 @@ class Audit < ActiveRecord::Base
   end
 
   # ASC Score measurement
-  def self.audit_operational_weightage(company)
+  def audit_operational_weightage(company)
     over_all_maximum_score = 0
     over_all_total_score = 0
     grouped_audit_compliance = AuditCompliance.joins("join compliance_libraries ON compliance_libraries.id=audit_compliances.compliance_library_id").where("audit_id=?", self.id).group_by {|x| x.compliance_library.parent.parent_id}

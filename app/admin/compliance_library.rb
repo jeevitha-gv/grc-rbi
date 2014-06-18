@@ -5,6 +5,7 @@ ActiveAdmin.register ComplianceLibrary do
   #authentication for superadmin
   controller do
     before_filter :authenticate_admin_user!
+    before_filter :check_subdomain
 
     def scoped_collection
   		ComplianceLibrary.all

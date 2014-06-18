@@ -4,6 +4,7 @@ ActiveAdmin.register Location do
   #authentication
   controller do
     before_filter :check_company_admin, :check_role
+    before_filter :check_subdomain
   end
 
   permit_params :name, :company_id

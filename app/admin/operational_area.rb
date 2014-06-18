@@ -36,6 +36,9 @@ ActiveAdmin.register OperationalArea do
 
   controller do 
 
+    before_filter :check_company_admin, :check_role
+    before_filter :check_subdomain
+
 
     def create
       @operational_area = OperationalArea.new(operational_area_params)

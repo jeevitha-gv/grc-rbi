@@ -169,7 +169,7 @@ class AuditsController < ApplicationController
     status_id = AuditStatus.where('name= ?','Published').first.id
     unless audit.audit_status_id == status_id
       audit.update(audit_status_id: status_id)
-      Audit.audit_operational_weightage(current_company)
+      audit.audit_operational_weightage(current_company)
     end
     redirect_to "/audits/audit_dashboard"
   end
