@@ -139,7 +139,7 @@ en:
               not_a_number: "is not a number"
               blank: "Contact number can't be blank"
               too_long:
-                other: "Contact No cannot exceed 20 digits"
+                other: "Contact No cannot exceed 15 digits"
               too_short:
                 other: "Contact No cannot be less than 10 digits"
             address1:
