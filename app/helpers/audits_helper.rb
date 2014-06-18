@@ -11,13 +11,15 @@ module AuditsHelper
 	end
 	
 	def  dashboard_audit_status(audit_status_id, status)
-		id = AuditStatus.where('name= ?', status).first.id
-		if audit_status_id == id
-			'a_drakgreen'
-		elsif audit_status_id > id
-			'a_lightgreen'
-		else
-			'a_grey'
+		id = AuditStatus.where('name= ?', status).first.try(&:id)
+		if id.present?
+			if audit_status_id == id
+				'a_drakgreen'
+			elsif audit_status_id > id
+				'a_lightgreen'
+			else
+				'a_grey'
+			end
 		end
 	end
 
