@@ -170,7 +170,7 @@ class AuditsController < ApplicationController
     audit = current_audit
     audit.update(audit_status_id: 4)
     Audit.audit_operational_weightage(current_company,audit)
-    redirect_to particular_dashboard_audits_path
+    redirect_to "/audits/audit_dashboard"
   end
 
   def audit_dashboard
