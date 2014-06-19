@@ -8,9 +8,9 @@ class CreateClassicScorings < ActiveRecord::Migration
       t.timestamps
     end
     
-  add_index :classic_scorings, :likelihood, unique: true
-  add_index :classic_scorings, :impact, unique: true
-  add_index :classic_scorings, :velocity, unique: true
-  add_index :classic_scorings, :vulnerability, unique: true
+  add_index :classic_scorings, :likelihood
+  add_index :classic_scorings, :impact
+  add_index :classic_scorings, :velocity
+  add_index :classic_scorings, :vulnerability
   end
 end

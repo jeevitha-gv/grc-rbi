@@ -18,20 +18,20 @@ class CreateCvssScorings < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :cvss_scorings, :cvss_access_vector, unique: true
-    add_index :cvss_scorings, :cvss_access_complexity, unique: true
-    add_index :cvss_scorings, :cvss_authentication, unique: true
-    add_index :cvss_scorings, :cvss_conf_impact, unique: true
-    add_index :cvss_scorings, :cvss_integ_impact, unique: true
-    add_index :cvss_scorings, :cvss_avail_impact, unique: true
-    add_index :cvss_scorings, :cvss_exploitability, unique: true
-    add_index :cvss_scorings, :cvss_remediation_level, unique: true
-    add_index :cvss_scorings, :cvss_report_confidence, unique: true
-    add_index :cvss_scorings, :cvss_collateral_damage_potential, unique: true
-    add_index :cvss_scorings, :cvss_target_distribution, unique: true
-    add_index :cvss_scorings, :cvss_confidentiality_requirement, unique: true
-    add_index :cvss_scorings, :cvss_integrity_requirement, unique: true
-    add_index :cvss_scorings, :cvss_availability_requirement, unique: true
+    add_index :cvss_scorings, :cvss_access_vector
+    add_index :cvss_scorings, :cvss_access_complexity
+    add_index :cvss_scorings, :cvss_authentication
+    add_index :cvss_scorings, :cvss_conf_impact
+    add_index :cvss_scorings, :cvss_integ_impact
+    add_index :cvss_scorings, :cvss_avail_impact
+    add_index :cvss_scorings, :cvss_exploitability
+    add_index :cvss_scorings, :cvss_remediation_level
+    add_index :cvss_scorings, :cvss_report_confidence
+    add_index :cvss_scorings, :cvss_collateral_damage_potential
+    add_index :cvss_scorings, :cvss_target_distribution
+    add_index :cvss_scorings, :cvss_confidentiality_requirement
+    add_index :cvss_scorings, :cvss_integrity_requirement
+    add_index :cvss_scorings, :cvss_availability_requirement
     
   end
 end
