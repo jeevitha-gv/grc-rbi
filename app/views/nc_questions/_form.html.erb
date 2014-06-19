@@ -6,7 +6,8 @@
 <%= form_for(@audit, url: {controller: "nc_questions", action: "create"},:method => "post") do |f| %>
 
 <%= f.fields_for :nc_questions do |builder| %>
-  <%= f.hidden_field :audit_id, value: @audit.id %>
+  <%#= f.hidden_field :audit_id, value: @audit.id %>
+  <%#= f.hidden_field :company_id, value: current_company.id %>
 	<%= render 'nc_question_fields', :f => builder %>
 <% end %>
 
@@ -58,7 +59,7 @@
               </div>
             </div>
 
-          <div class="form-group clearfix addissue"> <a class="upload-icon" data-toggle="modal" href="#add_files">Upload Requests from CSV or XLSX</a>
+          <div class="form-group clearfix addissue"> <a class="upload-icon" data-toggle="modal" href="#add_files">Upload Requests to Library</a>
             <div id="add_files" class="modal fade">
               <div class="modal-dialog modal-dialog_large">
                 <div class="modal-content">
@@ -77,7 +78,7 @@
                   </div>
                     <p></p>
                     <p>
-                      <%= link_to "Download Sample Non Compliance Checklist CSV", export_files_nc_questions_path(format: "csv") %>
+                      <%= link_to "Download Sample Non Compliance Checklist CSV", export_files_nc_questions_path(format: "csv"), :class =>'download-file-icon' %>
                     </p>
                   </div>
                 </div>
@@ -93,7 +94,8 @@
     <div class="col-lg-4 col-sm-6 col-xs-12"><br><br>
     	&nbsp; &nbsp; &nbsp; &nbsp;
     	<a class="black_btn" href="">Cancel</a>
-    	<a class="black_btn" href="">Reset</a>
+    	<!-- <a class="black_btn" href="">Reset</a> -->
+      <%= button_tag 'Reset', :type => 'reset', :class => "black_btn" %>
         <%= f.submit "Ask Auditee", :class => "orange_btn" %>
     </div>
 <% end %>

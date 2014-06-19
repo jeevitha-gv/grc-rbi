@@ -113,11 +113,11 @@
     });
     /* placeholder */
 
-    $(document).on("change", "#question_response", function(){
+    $(document).on("change", ".question_response", function(){
       if($(this).val() == "3"){
         $(this).parent().parent().parent().find(".hidden-item").fadeIn('fast');
       }
-      if($("#question_response").val() != "3"){
+      else{
         $(this).parent().parent().parent().find(".hidden-item").fadeOut('fast');
       }
     });

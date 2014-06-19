@@ -13,13 +13,13 @@
             <div class="form-group clearfix">
               <%= f.label :question_type_id, t('nc_question.resp_type'), :class => "col-sm-4 control-label" %>
               <div class="col-sm-7">
-                <%= f.collection_select(:question_type_id, QuestionType.all, :id, :name, {}, {:id => 'question_response'}) %>
+                <%= f.collection_select(:question_type_id, QuestionType.all, :id, :name, {}, {class: 'question_response'}) %>
               </div>
 
             </div>
             <div class="form-group clearfix">
-            <div class="col-sm-7 add-btn hidden-item">
-                <%= f.fields_for :question_options do |builder| %>
+            <div class="col-sm-7 add-btn <%= 'hidden-item' if(f.object.question_type_id != 3)%>">
+                <%= f.fields_for :question_options,(f.object.question_options.present? ? f.object.question_options : QuestionOption.new) do |builder| %>
                   <%= render 'question_option_fields', :f => builder %>
                 <% end %>
                 <div class="form-group clearfix addissue">
