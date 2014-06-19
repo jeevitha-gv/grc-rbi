@@ -50,7 +50,6 @@ class User < ActiveRecord::Base
    validates :password, confirmation: true
    validates :password, length: {in: 6..20}, :unless => lambda{ |a| a.password.blank? }
   # validates :user_name, :full_name , presence: true, uniqueness: true
-   validates :secondary_email, uniqueness: { scope: :primary_email }
 
   delegate :title, to: :dealer, prefix: true
   delegate :title, to: :role, prefix: true, allow_nil: true
