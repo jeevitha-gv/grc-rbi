@@ -14,49 +14,39 @@
             <div class="table-responsive">
               <table class="table table-striped list-table">
                 <tr>
-                  <th colspan="6">Audit of the equal Oppertunities Policy</th>
+                  <th colspan="6"><%= @audit.title.truncate(50) unless @audit.title.nil?%></th>
                 </tr>
                 <tr>
                   <td><label>Client : </label>
                    <span><%= @audit.client_name%></span></td>
-                  <td><label>Title : </label>
-                   <span><%= @audit.title.truncate(50) unless @audit.title.nil?%></span></td>
                   <td><label>Scope : </label>
-                    <span><%= @audit.scope.truncate(50) unless @audit.scope.nil? %></span></td>
-                </tr>
-                <tr>
+                   <span><%= @audit.scope.truncate(50) unless @audit.scope.nil? %></span></td>
                   <td><label>Team : </label>
-                  <span> <%= @audit.team_name %></span> </td>
-                  <td><label>Start Date : </label>
-                  <span> <%= @audit.start_date %></span> </td>
-                  <td><label>End Date : </label>
-                  <span><%= @audit.end_date %></span></td>
+                    <span><%= @audit.team_name %></span></td>
                 </tr>
                 <tr>
-                  <td><label>Deliverable : </label>
-                    <span><%= @audit.deliverables %> </span></td>
+                  <td><label>Start Date : </label>
+                  <span><%= @audit.start_date %> </span> </td>
+                  <td><label>End Date : </label>
+                  <span><%= @audit.end_date %> </span> </td>
+                  <td><label>Deliverables : </label>
+                  <span><%= @audit.deliverables %></span></td>
+                </tr>
+                <tr>
                   <td><label>Objective : </label>
                     <span><%= @audit.objective.truncate(50) unless @audit.objective.nil?%> </span></td>
                   <td><label>Context :</label>
-                    <span><%= @audit.context.truncate(50) unless @audit.context.nil?%>   </span></td>
+                    <span><%= @audit.context.truncate(50) unless @audit.context.nil?%> </span></td>
+                  <td><label>Methodology : </label>
+                    <span><%= @audit.methodology.truncate(50) unless @audit.methodology.nil?%>   </span></td>
                 </tr>
                 <tr>
-                  <td><label>Method : </label>
-                    <span><%= @audit.methodology.truncate(50) unless @audit.methodology.nil?%> </span></td>
                   <td><label>Issues : </label>
-                    <span>  <%= @audit.issue.truncate(50) unless @audit.issue.nil?%></span></td>
+                    <span><%= @audit.issue.truncate(50) unless @audit.issue.nil?%> </span></td>
                   <td><label>Compliance : </label>
-                    <span><%= @audit.compliance_type %></span></td>
-                </tr>
-                <tr>
-                <% if @audit.compliance_type == 'Compliance' %>
-                  <td><label>Standard : </label>
+                    <span><%= @audit.compliance_type %>  </span></td>
+                  <td><label><%= @audit.compliance_type == 'Compliance' ? "Standard" : "Topic"%> :</label>
                     <span><%= standard_name(@audit) %></span></td>
-                <% else %>
-                  <td><label>Topic : </label>
-                    <span> <%= standard_name(@audit) %></span></td>
-                  <td></td>
-                <% end %>
                 </tr>
               </table>
             </div>
