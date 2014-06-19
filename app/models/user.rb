@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
 
   belongs_to :user_manager, class_name: 'User', foreign_key: 'manager'
 
+  # Associations with Risk Tables
+  has_many :mgmt_reviews
+  has_many :closures
+
 
 # attribute to login with username or email
   attr_accessor :login, :domain
