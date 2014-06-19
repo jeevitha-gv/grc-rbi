@@ -11,5 +11,9 @@ class CreateCppMeasures < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :cpp_measures, :implementation_status_id
+    add_index :cpp_measures, :compliance_id
+    add_index :cpp_measures, :company_id
   end
 end

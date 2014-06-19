@@ -8,5 +8,10 @@ class CreateMgmtReviews < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :mgmt_reviews, :risk_id
+    add_index :mgmt_reviews, :review_id
+    add_index :mgmt_reviews, :reviewer
+    add_index :mgmt_reviews, :next_step_id
   end
 end

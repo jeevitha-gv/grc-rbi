@@ -5,6 +5,7 @@ class CreateRoles < ActiveRecord::Migration
       t.integer :company_id
       t.timestamps
     end
-    
+
+    add_index :roles, :company_id
   end
 end

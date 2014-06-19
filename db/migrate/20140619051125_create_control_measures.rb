@@ -12,5 +12,8 @@ class CreateControlMeasures < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :control_measures, :risk_id
+    add_index :control_measures, :risk_scoring_id
   end
 end

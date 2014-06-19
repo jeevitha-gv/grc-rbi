@@ -13,5 +13,8 @@ class CreateProfiles < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :profiles, :user_id
+    add_index :profiles, :country_id
   end
 end

@@ -9,5 +9,10 @@ class CreateArtifactAnswers < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :artifact_answers, :audit_compliance_id
+    add_index :artifact_answers, :artifact_id
+    add_index :artifact_answers, :responsibility_id
+    add_index :artifact_answers, :priority_id
   end
 end

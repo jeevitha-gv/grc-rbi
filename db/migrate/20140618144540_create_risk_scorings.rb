@@ -8,5 +8,8 @@ class CreateRiskScorings < ActiveRecord::Migration
       t.float :custom_value
       t.timestamps
     end
+
+    add_index :risk_scorings, :risk_id
+    add_index :risk_scorings, :scoring_id
   end
 end
