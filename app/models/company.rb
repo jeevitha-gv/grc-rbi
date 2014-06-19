@@ -15,6 +15,9 @@ class Company < ActiveRecord::Base
   has_many :reminders
   has_many :clients
   has_one :company_admin, -> { where role_id: Role.where(title: 'company_admin').first.id }, class_name: 'User'
+  has_many :technologies
+  has_many :risk_review_levels
+  has_many :cpp_measures
 
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users
