@@ -111,3 +111,6 @@ en:
 
   answers:
     detailed_value: "Please enter answer"
+    
+  nc_questions:
+    upload_csv: "Please attach a file"
