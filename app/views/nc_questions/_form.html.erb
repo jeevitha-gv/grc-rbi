@@ -68,10 +68,11 @@
                     <h4 class="modal-title" id="myModalLabel">Upload files only CSV and XLSX</h4>
                     <div class="model-content">
                     <%= form_tag import_files_nc_questions_path, multipart: true do %>
-                      <%= file_field_tag :file %>
+                      <%= file_field_tag :file , :id =>"file_input"%>
+											<span class="error_message" style="display:none;" id="error_file"><%= MESSAGES["nc_questions"]["upload_csv"]%></span>
                       <br>
                       <div class="model-footer">
-                      <%= submit_tag "Import" ,:class => "black_btn" %>
+                      <%= submit_tag "Import" ,:class => "black_btn" , :onclick => "return file_presence_check();" %>
                       <%= button_tag "Cancel" ,:class => "orange_btn"%>
                     </div>
                     <% end %>
@@ -123,4 +124,19 @@ $("#submit_questions").click(function(){
  $(".datepicker").kendoDatePicker({
         format: "dd/MM/yyyy"
         });
+				
+	function file_presence_check()
+	{
+		var file = $('#file_input').val()
+		if (file == '')
+		{
+		$('#error_file').show()
+		return false
+		}
+		else
+		{
+		$('#error_file').hide()
+		return true
+		}
+	}
 </script>

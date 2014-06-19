@@ -62,7 +62,7 @@ class ChecklistRecommendationsController < ApplicationController
   def audit_observation
     @audit = current_audit
 		@pending_observation = @audit.checklist_recommendations.collect {|x| x.is_published}.include?(nil)
-		@observation = @audit.checklist_recommendations.map(&:response_completed).include?(nil)
+		@observation = @audit.checklist_recommendations.map(&:response_completed).include?(true)
 		@published_status = AuditStatus.where('name= ?', "Published").first
     if @audit.compliance_type == "Compliance"
       @checklist_recommendations = @audit.audit_observation_compliances
