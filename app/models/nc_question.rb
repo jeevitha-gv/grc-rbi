@@ -27,7 +27,7 @@ class NcQuestion < ActiveRecord::Base
   after_create :notify_particular_auditees
 
   def notify_particular_auditees
-    UniversalMailer.delay.notify_auditees_that_checklist_is_prepared(self)
+    ReminderMailer.delay.notify_auditees_that_checklist_is_prepared(self)
   end
 
 end
