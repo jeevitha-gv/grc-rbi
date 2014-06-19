@@ -184,8 +184,9 @@ div.k-grid-header .k-header, .k-grid td {
 }
 
 .k-grid-content {
-	max-height: 270px;
-	min-height: 60px;
+	max-height: 270px !important;
+	min-height: 60px !important;
+	height: auto !important;
 }
 
 .k-grid-Set, .k-grid-Set:hover,.k-grid-tick, .k-grid-tick:hover,.k-grid-tick1, .k-grid-tick1:hover,.k-grid-book, .k-grid-book:hover,.k-grid-pdf, .k-grid-pdf:hover,.k-grid-edit, .k-grid-edit:hover {

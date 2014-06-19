@@ -45,7 +45,7 @@ en:
                 other: "Full name should contain minimum of 8 char"
             user_name:
               blank: "User Name can't be blank"
-              invalid: "User Name should contain alphabets in lower case and digits"
+              invalid: "User Name should be AlphaNumeric"
               too_short:
                 other: "User Name should contain minimum of 8 char"
               too_long:
@@ -139,7 +139,7 @@ en:
               not_a_number: "is not a number"
               blank: "Contact number can't be blank"
               too_long:
-                other: "Contact No cannot exceed 20 digits"
+                other: "Contact No cannot exceed 15 digits"
               too_short:
                 other: "Contact No cannot be less than 10 digits"
             address1:
@@ -277,6 +277,8 @@ en:
             title:
               blank: "Title can't be blank"
               taken: "Title has been already used"
+              too_long:
+                other: "Title must not exceed 50 characters"
             audit_type_id:
               blank: "Auditor Type can't be blank"
             auditor:

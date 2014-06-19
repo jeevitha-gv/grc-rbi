@@ -4,6 +4,7 @@ ActiveAdmin.register Company do
   #authentication
   controller do
     before_filter :authenticate_admin_user!
+    before_filter :check_subdomain
   end
   # Remove new company creation option from ActiveAdmin
   actions :all, :except => [:new, :destroy]

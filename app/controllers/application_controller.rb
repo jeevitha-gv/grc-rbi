@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_company
   before_filter :set_cookie_audit, :if => :current_user
   helper_method :current_audit
-  before_filter :check_subdomain
+  before_filter :check_subdomain, :if => :admin_function
   before_filter :check_password_authenticated, :if => :current_user
   
   unless Rails.application.config.consider_all_requests_local
@@ -156,7 +156,7 @@ class ApplicationController < ActionController::Base
 
   #To check company admin
     def check_company_admin
-      unless(current_company.id == current_user.company_id)
+      if(!current_user || current_company.id != current_user.company_id)
         flash[:alert] = "Access restricted"
         redirect_to '/users/sign_in' 
       end
