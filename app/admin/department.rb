@@ -4,6 +4,7 @@ ActiveAdmin.register Department do
  #authentication
   controller do
     before_filter :check_company_admin, :check_role
+    before_filter :check_subdomain
     
      def scoped_collection
       Department.where(:location_id=>current_company.locations.map(&:id))

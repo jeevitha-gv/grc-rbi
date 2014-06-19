@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
 
   belongs_to :user_manager, class_name: 'User', foreign_key: 'manager'
 
+  # Associations with Risk Tables
+  has_many :mgmt_reviews
+  has_many :closures
+
 
 # attribute to login with username or email
   attr_accessor :login, :domain
@@ -46,10 +50,11 @@ class User < ActiveRecord::Base
    validates :email, length: {  maximum: 50  },:if => Proc.new{|f| !f.email.blank? }
    validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, :if => Proc.new{|f| !f.email.blank? }
    validates :role_id, presence: true
-   validates :password, presence: true, :if => Proc.new{ |f| (f.password.blank?) }
+   # validates :password, presence: true, :if => Proc.new{ |f| (f.password.blank?) }
    validates :password, confirmation: true
    validates :password, length: {in: 6..20}, :unless => lambda{ |a| a.password.blank? }
   # validates :user_name, :full_name , presence: true, uniqueness: true
+   validates :secondary_email, uniqueness: { scope: :primary_email }
 
   delegate :title, to: :dealer, prefix: true
   delegate :title, to: :role, prefix: true, allow_nil: true

@@ -17,6 +17,10 @@ class Company < ActiveRecord::Base
   has_one :company_admin, -> { where role_id: Role.where(title: 'company_admin').first.id }, class_name: 'User'
   has_one :risk_review_level
 
+
+  # Associations with Risk table
+  has_many :projects
+
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users
 

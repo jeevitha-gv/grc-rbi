@@ -4,6 +4,7 @@ ActiveAdmin.register Compliance do
   #authentication
   controller do
     before_filter :authenticate_admin_user!
+    before_filter :check_subdomain
   end
    permit_params :name
 

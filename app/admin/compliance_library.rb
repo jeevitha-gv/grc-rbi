@@ -5,13 +5,14 @@ ActiveAdmin.register ComplianceLibrary do
   #authentication for superadmin
   controller do
     before_filter :authenticate_admin_user!
+    before_filter :check_subdomain
 
     def scoped_collection
   		ComplianceLibrary.all
   	end
 
     def compliance_domains
-      p domains = ComplianceLibrary.all.group_by(&:parent_id).collect {|k,v| v}[0].collect {|x| x unless x.is_leaf }
+      domains = ComplianceLibrary.all.group_by(&:parent_id).collect {|k,v| v}[0].collect {|x| x unless x.is_leaf }
       render json: {:data=> domains.compact}
     end
 

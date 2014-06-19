@@ -5,6 +5,7 @@ ActiveAdmin.register Score do
   #authentication
   controller do
     before_filter :authenticate_admin_user!
+    before_filter :check_subdomain
   end
 
   # remove new record creation option
