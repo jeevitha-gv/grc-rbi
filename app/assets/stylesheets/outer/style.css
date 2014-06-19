@@ -810,6 +810,12 @@ a.plus-background{
   background-repeat: no-repeat;
 }
 
+.download-file-icon {
+  background-image: url("/assets/outer/download-icon-file.png");
+  background-position: 15px 6px;
+  background-repeat: no-repeat;
+}
+
 
 /*DashBoard page start*/
 .dashboard_main{ padding-bottom:100px;}
