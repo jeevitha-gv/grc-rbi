@@ -1,8 +1,8 @@
 class Closure < ActiveRecord::Base
 
 	# Associations
-	belong_to :risk
-	belong_to :user
-	belong_to :close_reason
+	belongs_to :risk
+	belongs_to :user
+	belongs_to :close_reason
 
 end
