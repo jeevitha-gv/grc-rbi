@@ -21,8 +21,6 @@ class NcQuestionsController < ApplicationController
 	def create
 		@audit = current_audit
 		if @audit.update_attributes(question_params)
-			redirect_to nc_questions_path
-		else
 			render "new"
 		end
 	end

@@ -6,6 +6,7 @@ ActiveAdmin.register Reminder do
 
   controller do
     before_filter :check_company_admin, :check_role
+    before_filter :check_subdomain
 
 
     def scoped_collection

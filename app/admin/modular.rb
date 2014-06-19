@@ -5,6 +5,7 @@ ActiveAdmin.register Modular do
 
   controller do
     before_filter :authenticate_admin_user!
+    before_filter :check_subdomain
   end
 
   index do

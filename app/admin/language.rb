@@ -6,9 +6,11 @@ ActiveAdmin.register Language do
 
   controller do
     before_filter :authenticate_admin_user!
+    before_filter :check_subdomain
   end
 
   index do
+    selectable_column
     column :name
     column :code
     actions

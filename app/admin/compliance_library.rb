@@ -5,13 +5,14 @@ ActiveAdmin.register ComplianceLibrary do
   #authentication for superadmin
   controller do
     before_filter :authenticate_admin_user!
+    before_filter :check_subdomain
 
     def scoped_collection
   		ComplianceLibrary.all
   	end
 
     def compliance_domains
-      p domains = ComplianceLibrary.all.group_by(&:parent_id).collect {|k,v| v}[0].collect {|x| x unless x.is_leaf }
+      domains = ComplianceLibrary.all.group_by(&:parent_id).collect {|k,v| v}[0].collect {|x| x unless x.is_leaf }
       render json: {:data=> domains.compact}
     end
 
@@ -39,21 +40,21 @@ ActiveAdmin.register ComplianceLibrary do
           (start..spreadsheet.last_row).each do |i|
             row_data = spreadsheet.row(i)[0].split(";")
 
-            compliance = Compliance.where("lower(name) = ?", "#{row_data[1]}").first
+            compliance = Compliance.where("lower(name) = ?", "#{row_data[1].to_s.downcase}").first.id
             parent = ComplianceLibrary.where("lower(name) = ?", "#{row_data[2].to_s.downcase}").first
 
             compliance_library = ComplianceLibrary.new
-            compliance_library.attributes ={:name => row_data[0], :compliance_id => row_data[1], :parent_id => parent.present? ? parent.id : nil, :is_leaf => row_data[3].present? ? true : false}
 
+            compliance_library.attributes ={:name => row_data[0], :compliance_id => compliance.present? ? compliance : nil, :parent_id => parent.present? ? parent.id : nil, :is_leaf => row_data[3].present? ? true : false}
             compliance_library.save(:validate => false)
           end
-          redirect_to new_admin_compliance_library_path
+          redirect_to new_admin_compliance_library_path, notice: "Compliance Library imported."
         rescue
-          @errors = "Invalid file format"
+          flash[:error] = "Invalid file format"
           redirect_to new_admin_compliance_library_path
         end
       else
-        @errors = "Please select a file."
+        flash[:error] = "Please select a file."
         redirect_to new_admin_compliance_library_path
       end
     end

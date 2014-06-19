@@ -195,7 +195,7 @@ function artifact_modal(id)
                        <%= hidden_field_tag "checklist_recommendation[id]",  0 , :id => "cheklist_id"%>
                   </div>
                   <div class="clearfix"></div>
-                  <div class="modal-footer"> <input type="button" value="Submit" class="orange_btn" onclick="dependent_recommendation_select();"> <input type="button" value="Cancel" class="black_btn"></div>
+                  <div class="modal-footer"> <input type="button" value="Submit" class="orange_btn" onclick="dependent_recommendation_select();"> <input type="button" value="Cancel" class="black_btn" data-dismiss= "modal"></div>
                </div>
           </div>
         </div>
@@ -221,7 +221,7 @@ function artifact_modal(id)
                       </div>
                   </div>
                   <div class="clearfix"></div>
-                  <div class="modal-footer">   <input type="button" value="Submit" class="orange_btn" onclick="blocking_recommendation_select();"> <input type="button" value="Cancel" class="black_btn"> </div>
+                  <div class="modal-footer">   <input type="button" value="Submit" class="orange_btn" onclick="blocking_recommendation_select();"> <input type="button" value="Cancel" class="black_btn" data-dismiss= "modal"> </div>
                </div>
           </div>
         </div>

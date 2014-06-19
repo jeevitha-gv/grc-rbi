@@ -5,6 +5,7 @@ ActiveAdmin.register Role  do
  #authentication
   controller do
    before_filter :check_role, :check_company_admin
+   before_filter :check_subdomain
 
 
     def scoped_collection

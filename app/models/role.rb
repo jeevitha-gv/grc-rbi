@@ -7,7 +7,8 @@ class Role < ActiveRecord::Base
      #~ tracked ip: ->(controller,model) {controller && controller.current_user.current_sign_in_ip}
 	
  #validation
-    validates :title, presence:true,:if => Proc.new{|f| f.title.blank? } 
+    validates :title, presence:true,:if => Proc.new{|f| f.title.blank? }
+    validates :title, length: { in: 2..25 } 
     validates_format_of :title, :with =>/\A[a-zA-Z ]+\z/, :if => Proc.new{ |f| !f.title.blank? } 
     validates :title, exclusion: { in: %w(company_admin) ,:if => Proc.new{ |f| (f.title.nil?) },message: MESSAGES["roles"]["company_admin_failure"]}
     validates :title, :uniqueness => {:scope => :company_id}, :if => Proc.new{ |f| !f.title.blank? }

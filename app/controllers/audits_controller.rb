@@ -158,7 +158,7 @@ class AuditsController < ApplicationController
   def export_files
     audit_csv = CSV.generate do |csv|
       csv << ["title;scope;objective;issue;methodology;deliverables;context;audit_type;compliance_type;standard;topic;location;department;team;start_date;end_date;auditor;auditees"]
-      csv << ["Example audit;how the csv data to be filled;data filled correctly;error if data entered wrongly;by csv;csv upload for audit;ensure the row csv;Internal Audit;NonCompliance;COBIT;System Security;chennai;devlopment;test_team;dd/mm/yy;dd/mm/yy;audit@example.com;auditee2@example.com", "auditee1@example.com"]
+      csv << ["Example audit;how the csv data to be filled;data filled correctly;error if data entered wrongly;by csv;csv upload for audit;ensure the row csv;Internal Audit;NonCompliance;COBIT;System Security;chennai;devlopment;test_team;YYYY/mm/dd;YYYY/mm/dd;audit@example.com;auditee2@example.com", "auditee1@example.com"]
     end
     send_data(audit_csv, :type => 'text/csv', :filename => 'sample_audit.csv')
   end
@@ -169,7 +169,7 @@ class AuditsController < ApplicationController
     status_id = AuditStatus.where('name= ?','Published').first.id
     unless audit.audit_status_id == status_id
       audit.update(audit_status_id: status_id)
-      Audit.audit_operational_weightage(current_company)
+      audit.audit_operational_weightage(current_company)
     end
     redirect_to "/audits/audit_dashboard"
   end
