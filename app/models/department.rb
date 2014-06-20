@@ -11,4 +11,7 @@ class Department < ActiveRecord::Base
   validates_uniqueness_of :name, scope: [:location_id]
   validates :location_id, presence:true
 
+  #scope
+  scope :for_location, lambda {|location_id| where(location_id: location_id)}
+
 end

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   #before_filter :check_password , only: [:edit, :update]
   skip_before_filter :check_password_authenticated, :only => [:password, :update_password]
 
-
+  # Edit particular user details
   def edit
     @user = current_user
     @user.build_attachment unless @user.attachment.present?
@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   end
 
+  #
   def update
     @user = current_user
     if @user.update_attributes(user_params)
