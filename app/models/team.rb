@@ -15,5 +15,6 @@ class Team < ActiveRecord::Base
   #scope
   scope :for_department_and_company, lambda {|department_id, company_id| where(department_id: department_id, company_id: company_id)}
   scope :for_id, lambda {|team_id| where(id: team_id)}
+  scope :for_name_by_department, lambda { |team_name, department_id| where("lower(name) = ? and department_id = ?", team_name, department_id) }
 
 end

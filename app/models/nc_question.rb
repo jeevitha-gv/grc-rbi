@@ -15,7 +15,7 @@ class NcQuestion < ActiveRecord::Base
 	#Validations
 	validates :question, presence: true
 	validates :target_date, presence: true
-  
+
   #scope
   scope :for_auditee, lambda {|auditee_id| where(auditee_id: auditee_id)}
 
@@ -26,15 +26,15 @@ class NcQuestion < ActiveRecord::Base
     else raise "Unknown file type: #{file.original_filename}"
     end
   end
-  
-  def self.build_from_import(file)
+
+  def self.build_from_import(file, current_company)
     spreadsheet = NcQuestion.open_spreadsheet(file)
     start = 2
     (start..spreadsheet.last_row).each do |i|
       row_data = spreadsheet.row(i)
       question_type = QuestionType.where("lower(name) = ?", "#{row_data[1].to_s.downcase}").first
 
-      nc_question = NcQuestion.new(question: row_data[0], question_type_id: (question_type.present? ? question_type.id : nil), audit_id: current_audit.id)
+      nc_question = NcQuestion.new(question: row_data[0], question_type_id: (question_type.present? ? question_type.id : nil), company_id: current_company.id, nc_library: true)
       nc_question.save(:validate => false)
 
       if(row_data[2].present? && (options = row_data[2].split(",").compact).present?)

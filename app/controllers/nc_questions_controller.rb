@@ -35,7 +35,7 @@ class NcQuestionsController < ApplicationController
 	def import_files
 		if(params[:file].present?)
       begin
-				NcQuestion.build_from_import(params[:file])
+				NcQuestion.build_from_import(params[:file], current_company)
         flash[:notice] = MESSAGES["nc_question"]["csv_upload"]["success"]
         redirect_to new_nc_question_path
       rescue
@@ -50,14 +50,8 @@ class NcQuestionsController < ApplicationController
 
   # Download NcQuestion sample file
   def export_files
-    nc_question_csv = CSV.generate do |csv|
-      csv << ["Question Name;Question Type;Mutilpe Type Options;"]
-      csv_options = [["Example Question;Yes or no;"], ["Second Question;Multiple choice;question option1", " question option2", " question option3", " question option4"], ["Third Question;Descriptive type"]]
-      csv_options.each do |nc_question|
-        csv << nc_question
-      end
-    end
-    send_data(nc_question_csv, :type => 'text/csv', :filename => 'sample_non_compliance_question.csv')
+    file_to_download = "sample_non_compliance_question.csv"
+    send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
   end
 
   private
