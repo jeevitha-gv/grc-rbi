@@ -6,7 +6,6 @@
 <div class="clearfix">
   <h3>Audit Details</h3>
 </div>
-<% audit = @audit %>
 <div class="col-lg-4 col-sm-6 col-xs-12">
   <div class="form-group clearfix">
     <label class="col-sm-4 control-label">
@@ -141,8 +140,8 @@
       <%= f.label :department_id, t('audit.department') %>
     </label>
     <div class="col-sm-7">
-      <% if @departments.present? %>
-        <%= f.select :department_id, options_for_select(@departments.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.department_id), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
+      <% if departments.present? %>
+        <%= f.select :department_id, options_for_select(departments.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.department_id), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
       <% else %>
         <%= f.select :department_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
       <% end %>
@@ -153,8 +152,8 @@
       <%= f.label :team_id, t('audit.team') %>
     </label>
     <div class="col-sm-7">
-      <% if @teams.present? %>
-        <%= f.select :team_id, options_for_select(@teams.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.team_id), {include_blank: 'Select Team' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
+      <% if teams.present? %>
+        <%= f.select :team_id, options_for_select(teams.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.team_id), {include_blank: 'Select Team' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
       <% else %>
         <%= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
       <% end %>
@@ -253,7 +252,7 @@
       <%= f.label :auditor, t('audit.auditor') %>
     </label>
     <div class="col-sm-7 <%='error_inputfield' if audit.errors[:auditor].present? %>">
-      <%= f.select :auditor, options_for_select(@auditor_users.collect{|x| [x.user_name, x.id.to_i]}, :selected => audit.auditor), {include_blank: 'Select Auditor' } %>
+      <%= f.select :auditor, options_for_select(auditor_users.collect{|x| [x.user_name, x.id.to_i]}, :selected => audit.auditor), {include_blank: 'Select Auditor' } %>
       <% if audit.errors[:auditor].present? %>
         <div class="error_message"><%=  audit.errors[:auditor][0]%></div>
       <% end %>
