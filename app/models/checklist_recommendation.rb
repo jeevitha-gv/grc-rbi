@@ -38,11 +38,13 @@ class ChecklistRecommendation < ActiveRecord::Base
 
 
 	delegate :name, :to => :recommendation_priority, prefix: true, allow_nil: true
-	delegate :name, :to => :recommendation_priority, prefix: true, allow_nil: true
+	delegate :name, :to => :recommendation_severity, prefix: true, allow_nil: true
 	delegate :name, :to => :recommendation_status, prefix: true, allow_nil: true
 	delegate :name, :to => :response_status, prefix: true, allow_nil: :true
-    delegate :name, to: :response_priority, prefix: true, allow_nil: :true
+  delegate :name, to: :response_priority, prefix: true, allow_nil: :true
 	delegate :comment, to: :remark, prefix: true, allow_nil: :true
+  delegate :checklist_recommendation, to: :blocking_recommendation, prefix: true, allow_nil: :true
+  delegate :checklist_recommendation, to: :dependent_recommendation, prefix: true, allow_nil: :true
 
 
 

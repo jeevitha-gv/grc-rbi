@@ -5,10 +5,14 @@ class Reminder < ActiveRecord::Base
 	belongs_to :company
 	belongs_to :mail_to, class_name: 'ReminderAssignment', foreign_key: 'to'
 	belongs_to :mail_cc, class_name: 'ReminderAssignment', foreign_key: 'cc'
+	belongs_to :company_admin, class_name: 'User'
 
 	delegate :name, to: :priority, prefix: true, allow_nil: true
 	delegate :name, to: :mail_to, prefix: true, allow_nil: true
 	delegate :name, to: :mail_cc, prefix: true, allow_nil: true
+
+
+
 
 	# validation
 	validates :priority_id ,:uniqueness => {:scope => :company_id}
@@ -37,19 +41,19 @@ class Reminder < ActiveRecord::Base
 	def reminder_mail(mail,company,user,audit)
 		case mail
 			when "Auditor"
-				return audit.auditory.email
+				return audit.auditory_email
 			when "Auditee"
 				return user.email
 			when "Company Admin"
-				return company.company_admin.email
+				return company.company_admin_email
 			when "Reporting Manager"
-				return user.user_manager.email
+				return user.user_manager_email
 			when "Manager of Manager"
-				return user.user_manager.user_manager.email if user.user_manager && user.user_manager.user_manager
+				return user.user_manager.user_manager_email if user.user_manager && user.user_manager.user_manager
 			when "Team"
 				return audit.team_users.map(&:email)
 			else
-				return company.company_admin.email
+				return company.company_admin_email
 		end
 	end
 
