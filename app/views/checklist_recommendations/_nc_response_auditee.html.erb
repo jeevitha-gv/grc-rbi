@@ -60,15 +60,15 @@
                   <div class="col-lg-4">
                     <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Answer :</b> </label>
-                      <div class="col-sm-7"> 
+                      <div class="col-sm-7">
 											<div class="col-sm-7">
                         <% if answer.present? %>
                           <% if answer.question_type_name == 'Yes or No' %>
-                            <%= answer.value == 0 ? 'Yes' : 'No' %>
+                            <%= answer_value == 0 ? 'Yes' : 'No' %>
                           <% elsif answer.question_type_name == 'Descriptive Type' %>
                             <%= answer.detailed_value %>
                           <% else %>
-                            <%= QuestionOption.where(:id => nc_question.answer.value).last.value unless nc_question.answer.value.nil? %>
+                            <%= QuestionOption.where(:id => nc_question.answer_value).last.value unless nc_question.answer_value.nil? %>
                           <% end %>
                         <% end %>
                       </div>
