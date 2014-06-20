@@ -61,6 +61,9 @@ class ChecklistRecommendationsController < ApplicationController
 
   def audit_observation
     @audit = current_audit
+		@pending_observation = @audit.checklist_recommendations.collect {|x| x.is_published}.include?(nil)
+		@observation = @audit.checklist_recommendations.map(&:response_completed).include?(true)
+		@published_status = AuditStatus.where('name= ?', "Published").first
     if @audit.compliance_type == "Compliance"
       @checklist_recommendations = @audit.audit_observation_compliances
     else
@@ -84,7 +87,7 @@ class ChecklistRecommendationsController < ApplicationController
 				@checklist_recommendation.remark.update(comment: params[:checklist_recommendation][:remarks])
 			end
 		end
-		UniversalMailer.delay.notify_auditee_about_observations(@checklist_recommendation)
+		ReminderMailer.delay.notify_auditee_about_observations(@checklist_recommendation)
 		respond_to :js
 	end
 
@@ -99,7 +102,7 @@ class ChecklistRecommendationsController < ApplicationController
 		@checklist_recommendation.is_checklist_new = true
 		@checklist_recommendation.auditee_id = current_user.id
 		@checklist_recommendation.update(checklist_params)
-		UniversalMailer.delay.notify_auditor_about_responses(@checklist_recommendation)
+		ReminderMailer.delay.notify_auditor_about_responses(@checklist_recommendation)
 		respond_to :js
 	end
 

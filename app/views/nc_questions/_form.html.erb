@@ -6,7 +6,8 @@
 <%= form_for(@audit, url: {controller: "nc_questions", action: "create"},:method => "post") do |f| %>
 
 <%= f.fields_for :nc_questions do |builder| %>
-  <%= f.hidden_field :audit_id, value: @audit.id %>
+  <%#= f.hidden_field :audit_id, value: @audit.id %>
+  <%#= f.hidden_field :company_id, value: current_company.id %>
 	<%= render 'nc_question_fields', :f => builder %>
 <% end %>
 
@@ -58,7 +59,7 @@
               </div>
             </div>
 
-          <div class="form-group clearfix addissue"> <a class="upload-icon" data-toggle="modal" href="#add_files">Upload Requests from CSV or XLSX</a>
+          <div class="form-group clearfix addissue"> <a class="upload-icon" data-toggle="modal" href="#add_files">Upload Requests to Library</a>
             <div id="add_files" class="modal fade">
               <div class="modal-dialog modal-dialog_large">
                 <div class="modal-content">
@@ -67,17 +68,18 @@
                     <h4 class="modal-title" id="myModalLabel">Upload files only CSV and XLSX</h4>
                     <div class="model-content">
                     <%= form_tag import_files_nc_questions_path, multipart: true do %>
-                      <%= file_field_tag :file %>
+                      <%= file_field_tag :file , :id =>"file_input"%>
+											<span class="error_message" style="display:none;" id="error_file"><%= MESSAGES["nc_questions"]["upload_csv"]%></span>
                       <br>
                       <div class="model-footer">
-                      <%= submit_tag "Import" ,:class => "black_btn" %>
+                      <%= submit_tag "Import" ,:class => "black_btn" , :onclick => "return file_presence_check();" %>
                       <%= button_tag "Cancel" ,:class => "orange_btn"%>
                     </div>
                     <% end %>
                   </div>
                     <p></p>
                     <p>
-                      <%= link_to "Download Sample Non Compliance Checklist CSV", export_files_nc_questions_path(format: "csv") %>
+                      <%= link_to "Download Sample Non Compliance Checklist CSV", export_files_nc_questions_path(format: "csv"), :class =>'download-file-icon' %>
                     </p>
                   </div>
                 </div>
@@ -93,7 +95,8 @@
     <div class="col-lg-4 col-sm-6 col-xs-12"><br><br>
     	&nbsp; &nbsp; &nbsp; &nbsp;
     	<a class="black_btn" href="">Cancel</a>
-    	<a class="black_btn" href="">Reset</a>
+    	<!-- <a class="black_btn" href="">Reset</a> -->
+      <%= button_tag 'Reset', :type => 'reset', :class => "black_btn" %>
         <%= f.submit "Ask Auditee", :class => "orange_btn" %>
     </div>
 <% end %>
@@ -121,4 +124,19 @@ $("#submit_questions").click(function(){
  $(".datepicker").kendoDatePicker({
         format: "dd/MM/yyyy"
         });
+				
+	function file_presence_check()
+	{
+		var file = $('#file_input').val()
+		if (file == '')
+		{
+		$('#error_file').show()
+		return false
+		}
+		else
+		{
+		$('#error_file').hide()
+		return true
+		}
+	}
 </script>

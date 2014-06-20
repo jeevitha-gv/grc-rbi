@@ -196,7 +196,7 @@ en:
           attributes:
             title:
               blank: "Role  can't be blank"
-              invalid: "Role type name should contain alphabets"
+              invalid: "Role title should be in alphabets"
               taken: "Role has been already used"
         team:
           attributes:
