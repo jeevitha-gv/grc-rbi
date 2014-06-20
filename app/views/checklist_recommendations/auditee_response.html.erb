@@ -17,11 +17,11 @@
                 </tr>
                 <tr>
                   <td><label>Client : </label>
-                    <span> <%= @audit.client.name if @audit.client.present? %></span></td>
+                    <span> <%= @audit.client_name if @audit.client.present? %></span></td>
                   <td><label>Scope : </label>
                     <span><%= @audit.scope.truncate(50) %> </span></td>
                   <td><label>Team : </label>
-                    <span> <%= @audit.team.name unless @audit.team.nil?%></span></td>
+                    <span> <%= @audit.team_name unless @audit.team.nil?%></span></td>
                 </tr>
                 <tr>
                   <td><label>Start Date : </label>

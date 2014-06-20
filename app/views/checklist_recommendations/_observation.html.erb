@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Priority :</b> </label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_priority.name%></div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_priority_name%></div>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Severity :</b> </label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_severity.name%></div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_severity_name%></div>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Status :</b> </label>
-                      <div class="col-sm-7"><%= checklist_recommendation.recommendation_status.name%></div>
+                      <div class="col-sm-7"><%= checklist_recommendation.recommendation_status_name%></div>
                     </div>
 
 
@@ -96,7 +96,9 @@
                       <%= file_field_tag "checklist_recommendation[attachment]", :style => "visibility:hidden; display:none;",  :id => "attachment", onchange: "display_selected_files(this)"%>
                         <div class="clearfix" id="selected_files"></div>
                       </div>
-                    </div>
+
+                   </div>
+
                   </div>
                   <div class="col-lg-4">
                     <div class="form-group clearfix">
@@ -111,11 +113,11 @@
                   <div class="col-lg-4">
                     <div class="form-group clearfix">
                       <label class="col-sm-5"> <b> Blocking :</b></label>
-                      <div class="col-sm-7"><%= checklist_recommendation.blocking_checklist.recommendation unless checklist_recommendation.blocking_checklist.nil? %> </div>
+                      <div class="col-sm-7"><%= checklist_recommendation.blocking_checklist_recommendation unless checklist_recommendation.blocking_checklist.nil? %> </div>
                     </div>
                      <div class="form-group clearfix">
                       <label class="col-sm-5"> <b>Dependent :</b></label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.dependent_checklist.recommendation unless checklist_recommendation.blocking_checklist.nil?%> </div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.dependent_checklist_recommendation unless checklist_recommendation.blocking_checklist.nil?%> </div>
                     </div>
                   </div>
 
