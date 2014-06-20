@@ -62,7 +62,7 @@
     				<div class="fright paddingtop">
     				<%= hidden_field_tag "audit_id" , @audit.id %>
 						<% if @observation	%>
-    				<%= submit_tag "#{(@audit.audit_status_id == @published_status.id).present? ? 'Published' : 'Publish'}" , :class => "orange_btn", :disabled => (@audit.audit_status_id == 4) , :onclick => "return check_observed();"%>
+    				<%= submit_tag "#{(@audit.audit_status_id == @published_status.id).present? ? 'Published' : 'Publish'}" , :class => "orange_btn", :disabled => (@audit.audit_status_id == audit_status) , :onclick => "return check_observed();"%>
 						<% end %>
     				</div>
     			<% end %>
@@ -87,7 +87,7 @@ $(e).parent().find("#selected_files").html("<h5>selected: " + $(e).val() + "</h5
 }
 function check_observed()
 {
-var audit_status = <%= raw @published_status.name%>
+var audit_status = <%= audit_status %>
 var observed_status = <%= raw @pending_observation %>;
 	if (audit_status != 'Published' && observed_status)
 	{
