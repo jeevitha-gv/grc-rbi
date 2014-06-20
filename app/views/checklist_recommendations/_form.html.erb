@@ -14,13 +14,13 @@
             <div class="table-responsive">
               <table class="table table-striped list-table">
                 <tr>
-                  <th colspan="6"><%= audit.title.truncate(50) unless audit.title.nil?%></th>
+                  <th colspan="6"><%= audit.title.truncate(50) if audit.title?%></th>
                 </tr>
                 <tr>
                   <td><label>Client : </label>
                    <span><%= audit.client_name%></span></td>
                   <td><label>Scope : </label>
-                   <span><%= audit.scope.truncate(50) unless audit.scope.nil? %></span></td>
+                   <span><%= audit.scope.truncate(50) if audit.scope? %></span></td>
                   <td><label>Team : </label>
                     <span><%= audit.team_name %></span></td>
                 </tr>
@@ -34,15 +34,15 @@
                 </tr>
                 <tr>
                   <td><label>Objective : </label>
-                    <span><%= audit.objective.truncate(50) unless audit.objective.nil?%> </span></td>
+                    <span><%= audit.objective.truncate(50) if audit.objective?%> </span></td>
                   <td><label>Context :</label>
-                    <span><%= audit.context.truncate(50) unless audit.context.nil?%> </span></td>
+                    <span><%= audit.context.truncate(50) if audit.context?%> </span></td>
                   <td><label>Methodology : </label>
-                    <span><%= audit.methodology.truncate(50) unless audit.methodology.nil?%>   </span></td>
+                    <span><%= audit.methodology.truncate(50) if audit.methodology?%>   </span></td>
                 </tr>
                 <tr>
                   <td><label>Issues : </label>
-                    <span><%= audit.issue.truncate(50) unless audit.issue.nil?%> </span></td>
+                    <span><%= audit.issue.truncate(50) if audit.issue?%> </span></td>
                   <td><label>Compliance : </label>
                     <span><%= audit.compliance_type %>  </span></td>
                   <td><label><%= audit.compliance_type == 'Compliance' ? "Standard" : "Topic"%> :</label>
