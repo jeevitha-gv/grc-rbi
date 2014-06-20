@@ -31,11 +31,11 @@
                         <% if nc_question.answer.present? %>
 
                           <% if nc_question.question_type_name == 'Yes or No' %>
-                            <%= nc_question.answer.value == 0 ? 'Yes' : 'No' %>
+                            <%= nc_question.answer_value == 0 ? 'Yes' : 'No' %>
                           <% elsif nc_question.question_type_name == 'Descriptive Type' %>
-                            <%= nc_question.answer.detailed_value %>
+                            <%= nc_question.answer_detailed_value %>
                           <% else %>
-                            <%= QuestionOption.where(:id => nc_question.answer.value).last.value unless nc_question.answer.value.nil? %>
+                            <%= QuestionOption.where(:id => nc_question.answer_value).last.value unless nc_question.answer_value.nil? %>
                           <% end %>
                         <% end %>
                       </div>
