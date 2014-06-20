@@ -7,5 +7,7 @@ class CreateModulars < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :modulars, :section_id
   end
 end

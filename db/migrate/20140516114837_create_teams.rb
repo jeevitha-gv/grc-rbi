@@ -8,5 +8,9 @@ class CreateTeams < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :teams, :section_id
+    add_index :teams, :company_id
+    add_index :teams, :department_id
   end
 end

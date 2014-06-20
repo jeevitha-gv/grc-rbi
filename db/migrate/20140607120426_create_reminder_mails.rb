@@ -7,5 +7,8 @@ class CreateReminderMails < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :reminder_mails, :mail_type
+    add_index :reminder_mails, :mail_id
   end
 end

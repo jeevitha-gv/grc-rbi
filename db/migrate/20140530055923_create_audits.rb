@@ -26,5 +26,16 @@ class CreateAudits < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :audits, :company_id
+    add_index :audits, :audit_type_id
+    add_index :audits, :audit_status_id
+    add_index :audits, :standard_id
+    add_index :audits, :location_id
+    add_index :audits, :department_id
+    add_index :audits, :team_id
+    add_index :audits, :auditor
+    add_index :audits, :client_id
+    add_index :audits, :risk_id
   end
 end

@@ -8,5 +8,9 @@ class CreateAuditCompliances < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :audit_compliances, :compliance_library_id
+    add_index :audit_compliances, :audit_id
+    add_index :audit_compliances, :score_id
   end
 end
