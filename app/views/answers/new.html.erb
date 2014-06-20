@@ -198,6 +198,11 @@ $(".go_to_top").click(function(){
 });
 */
 
+function display_selected_files(e)
+{
+$(e).parent().find("#selected_files").html("<h5>selected: " + $(e).val() + "</h5>");
+}
+
 </script>
 <link href="/assets/outer/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/outer/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">

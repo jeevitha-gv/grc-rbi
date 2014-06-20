@@ -16,6 +16,8 @@ class NcQuestion < ActiveRecord::Base
 	validates :question, presence: true
 	validates :target_date, presence: true
   
+	delegate :name, to: :question_type, prefix: true, allow_nil: true
+	
   #scope
   scope :for_auditee, lambda {|auditee_id| where(auditee_id: auditee_id)}
 
