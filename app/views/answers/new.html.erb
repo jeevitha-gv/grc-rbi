@@ -64,7 +64,7 @@
                       <div class="row audit-title">
                         <% test = question.answer || question.build_answer %>
                           <%= hidden_field_tag :audit_id, current_audit.id %>
-                          <%= render :partial => "answer_type",  locals: {:question => question} %>
+                          <%= render "answer_type", :question => question %>
                       </div>
                     </div>
                 <% end %>

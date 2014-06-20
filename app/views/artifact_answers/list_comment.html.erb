@@ -3,7 +3,7 @@
       <h4 id="myModalLabel" class="modal-title">Text response for - <%= (@artifact_answer.artifact_name || @artifact_answer.audit_compliance.compliance_library_name)%></h4>
       <div class="model-con">
       <div id="list-file">
-         <%= render partial: 'comment_form', locals: {artifact_answer: @artifact_answer}%>
+         <%= render 'comment_form', artifact_answer: @artifact_answer %>
       </div>
     </div>
 </div>
