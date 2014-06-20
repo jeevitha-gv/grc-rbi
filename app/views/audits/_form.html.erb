@@ -167,7 +167,7 @@
       <%= f.label :compliance_type, t('audit.compliance_type') %>
     </label>
     <div class="col-sm-7 <%='error_inputfield' if audit.errors[:compliance_type].present? %>">
-        <%= f.select(:compliance_type, Audit::COMPLIANCE_TYPES, :selected => (audit.compliance_type if audit.compliance_type.present?), :include_blank => "Select Type", :id=>"compliance_type") %>
+        <%= f.select(:compliance_type, Audit::COMPLIANCE_TYPES, :selected => (audit.compliance_type if audit.compliance_type?), :include_blank => "Select Type", :id=>"compliance_type") %>
       <% if audit.errors[:compliance_type].present? %>
         <div class="error_message"><%=  audit.errors[:compliance_type][0]%></div>
       <% end %>
@@ -209,7 +209,7 @@
     </label>
     <div class="col-sm-7">
       <div class="form-group">
-        <%= f.text_field :start_date, value: (audit.start_date.strftime("%d/%m/%Y") if audit.start_date.present?), :class => "datepicker", :style =>"width:150px;" %>
+        <%= f.text_field :start_date, value: (audit.start_date.strftime("%d/%m/%Y") if audit.start_date?), :class => "datepicker", :style =>"width:150px;" %>
         <% if audit.errors[:start_date].present? %>
           <div class="error_message"><%=  audit.errors[:start_date][0]%></div>
         <% end %>
@@ -223,7 +223,7 @@
     </label>
     <div class="col-sm-7">
       <div class="form-group">
-        <%= f.text_field :end_date, value: (audit.end_date.strftime("%d/%m/%Y") if audit.end_date.present?), :class => "datepicker1", :style =>"width:150px;" %>
+        <%= f.text_field :end_date, value: (audit.end_date.strftime("%d/%m/%Y") if audit.end_date?), :class => "datepicker1", :style =>"width:150px;" %>
         <% if audit.errors[:end_date].present? %>
           <div class="error_message"><%=  audit.errors[:end_date][0]%></div>
         <% end %>
