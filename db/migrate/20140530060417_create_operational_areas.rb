@@ -4,7 +4,7 @@ class CreateOperationalAreas < ActiveRecord::Migration
       t.integer :compliance_library_id
       t.integer :weightage
       t.integer :company_id
-      
+
       t.timestamps
     end
   end

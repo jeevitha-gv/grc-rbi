@@ -6,7 +6,7 @@ class CreateAuditOperationalWeightages < ActiveRecord::Migration
       t.integer :weightage
       t.integer :total_score
       t.integer :percentage
-      
+
       t.timestamps
     end
   end
