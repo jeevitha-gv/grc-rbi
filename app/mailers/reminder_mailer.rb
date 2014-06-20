@@ -1,4 +1,4 @@
-class UniversalMailer < ActionMailer::Base
+class ReminderMailer < ActionMailer::Base
 
   default from: "noreply@fixrnix.in"
 

@@ -5,7 +5,8 @@ class AuditCompliancesController < ApplicationController
     before_filter :check_for_auditee_response, only: [:index]
     before_filter :authorize_auditor_skip_company_admin, :only => [:index, :compliance_checklist]
     before_filter :authorize_auditor, :only => [:create]
-
+    
+  # List the compliance for particular audit - JSON grid
 	def compliance_checklist
     @audit = current_audit
     @auditees = @audit.auditees
@@ -14,34 +15,40 @@ class AuditCompliancesController < ApplicationController
 		@priorities = Priority.all
   end 
 
+  # Response List for audit compliance of particular audit - JSON grid
   def response_checklist
     @audit = current_audit
     @audit_compliances = @audit.audit_compliances_for_current_user(current_user.id)
-    render json: {data: build_response}
+    render json: {data: build_response_list}
   end
 
+  # Create the Selected audit compliance for audit
   def create
     audit = current_audit
     audit.build_audit_compliance(compliance_params) unless(audit.audit_status_id == 4)
   end
 
+  # Submit the audit compliance to the recommendation
   def submit
     current_audit.audit_compliances.update_all(is_answered: true)  unless(current_audit.audit_status_id == 4)
     redirect_to audits_path
   end
 
   private
+  # Strong parameters audit compliance
   def compliance_params
     params.require(:checklist)
   end
 
+  # Check for Auditee response and redirect accordingly
   def check_for_auditee_response
     if(current_audit.auditees.map(&:id).include?(current_user.id))
       redirect_to response_audit_compliances_path
     end
   end
   
-  def build_response
+  # Json builder for response list.
+  def build_response_list
     response = []
       @audit_compliances.each do |compliance|        
         if(compliance.artifact_answers.present?)
@@ -60,6 +67,6 @@ class AuditCompliancesController < ApplicationController
         end
       end
       response
-    end
+  end
   
 end

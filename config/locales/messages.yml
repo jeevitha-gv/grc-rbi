@@ -112,5 +112,10 @@ en:
   answers:
     detailed_value: "Please enter answer"
     
-  nc_questions:
-    upload_csv: "Please attach a file"
+  nc_question:
+    csv_upload:
+      success: "Non Compliance Questions have been imported successfully "
+  
+  csv_upload:
+    error: "Invalid file format"
+    presence: "Please attach a file."

@@ -5,18 +5,15 @@ class CompaniesController < ApplicationController
   prepend_before_filter :skip_if_authenticated, only: [ :new, :create ]
   skip_before_filter :check_subdomain, only: [ :new, :create ]
   before_filter :escape_subdomain, only: [ :new, :create ]
-  # load_and_authorize_resource
 
-  def index
-    @companies = Company.all
-  end
-
+  # Initialize the new company
   def new
     @company = Company.new
     @company.build_attachment
     @company.users.build
   end
 
+  # Create new company along with company admin
   def create
     params[:company][:users_attributes]["0"][:role_id] = Role.first.id
     @company = Company.new(company_params)
@@ -24,15 +21,11 @@ class CompaniesController < ApplicationController
       redirect_to welcome_path
     else
       render 'new'
-  end
-  end
-
-
-
-  def settings
+    end
   end
 
   private
+  # Strong parameters 
   def company_params
     params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :timezone, attachment_attributes: [:id, :attachment_file], users_attributes: [:user_name, :email, :role_id])
   end

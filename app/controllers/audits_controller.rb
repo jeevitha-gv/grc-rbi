@@ -1,91 +1,77 @@
 class AuditsController < ApplicationController
-  # load_and_authorize_resource :except => [:department_teams_users, :audit_with_status, :audit_all]
-  # before_filter :authorize_audit, :only => [:edit, :update]
+  load_and_authorize_resource :except => [:department_teams_users, :audit_with_status, :audit_all]
+  before_filter :authorize_audit, :only => [:edit, :update]
   before_filter :check_company_disabled
   before_filter :audit_auditor_users, :only => [:new, :create, :edit, :update]
 
-  def index
-
-  end
-
+  # Intialize new audit
   def new
     @audit = Audit.new
     @audit.build_skipped_audit_reminder
   end
 
+  # Edit Individual audit
   def edit
-    @audit = Audit.find_by_id(params[:id])
-    @departments = Department.where(:location_id=>@audit.location_id) if @audit.location_id
-    @teams = Team.where(:department_id=>@audit.department_id) if @audit.department_id
-    @team = Team.where(:id=>@audit.team_id).last if @audit.location_id
+    @audit = Audit.find(params[:id])
+    audit_intializers(@audit.location_id, @audit.department_id, @audit.team_id)
   end
 
+  # Create Individual audit
   def create
     @audit = Audit.new(audit_params)
     @audit.company_id = current_company.id
-    if params[:commit] == "Save as Plan"
-      @audit.audit_status_id=AuditStatus.where(:name=>"Planning").first.id
-    else
-      @audit.audit_status_id=AuditStatus.where(:name=>"In Progress").first.id
-    end
-
+    @audit.audit_status_id = (params[:commit] == "Save as Plan" ?  AuditStatus.for_name("Planning").id : AuditStatus.for_name("In Progress").id)
     if @audit.save
-      cookies[:audit_id] = { :value => @audit.id, :expires => 24.hour.from_now }
-      if params[:skip_reminder] == "true"
-        SkippedAuditReminder.create(:audit_id => @audit.id,:skipped_by => current_user.id)
-      end
-      UniversalMailer.delay.notify_auditor_about_audit(@audit)
-      UniversalMailer.delay.notify_auditees_about_audit(@audit)
+      SkippedAuditReminder.create(audit_id: @audit.id, skipped_by: current_user.id) if params[:skip_reminder] == "true"
+      ReminderMailer.delay.notify_auditor_about_audit(@audit)
+      ReminderMailer.delay.notify_auditees_about_audit(@audit)
       redirect_to audits_path
     else
-      @departments = Department.where(:location_id=>@audit.location_id) if @audit.location_id
-      @teams = Team.where(:department_id=>@audit.department_id) if @audit.department_id
-      @team = Team.where(:id=>@audit.team_id).last if @audit.team_id
+      audit_intializers(@audit.location_id, @audit.department_id, @audit.team_id)
       render 'new'
     end
   end
 
+  # Show audit and render to pdf
   def show
     @audit = current_audit
     respond_to do |format|
       format.html
       format.pdf do
-        @pdf = (render_to_string :pdf => "PDF", :template => "audits/show.pdf.erb", layout: 'layouts/pdf.html.erb', :encoding => "UTF-8")
-        send_data(@pdf,   :type=>"application/pdf", :filename => @audit.title)
+        @pdf = (render_to_string pdf: "PDF", template: "audits/show.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
+        send_data(@pdf, type: "application/pdf", filename: @audit.title)
       end
     end
   end
 
-
+   # Update individual audits
   def update
-    @audit = Audit.find_by_id(params[:id])
-
+    @audit = Audit.find(params[:id])
     if @audit.update_attributes(audit_params)
-      cookies[:audit_id] = { :value => @audit.id, :expires => 24.hour.from_now }
       redirect_to edit_audit_path
     else
-      @departments = Department.where(:location_id=>@audit.location_id) if @audit.location_id
-      @teams = Team.where(:department_id=>@audit.department_id) if @audit.department_id
-      @team = Team.where(:id=>@audit.team_id).last if @audit.location_id
+      audit_intializers(@audit.location_id, @audit.department_id, @audit.team_id)
       render 'edit'
     end
   end
 
+  # list audits based on status for current user
   def audit_with_status
-     @audits = current_user.accessible_audits.select{|x| x.audit_status_id==params[:audit_status_id].to_i}
+     @audits = current_user.accessible_audits.select{|x| x.audit_status_id == params[:audit_status_id].to_i}
   end
 
+  # List all audits for current user
   def audit_all
    @audits = current_user.accessible_audits
   end
 
+  #audit intializer data
   def department_teams_users
-    @departments = Department.where(:location_id=>params[:location_id]) if params[:location_id]
-    @teams = Team.where(:department_id=>params[:department_id], :company_id => current_company.id) if params[:department_id]
-    @team = Team.where(:id=>params[:team_id]).last if params[:team_id]
+    audit_intializers(params[:location_id], params[:department_id], params[:team_id])
     render 'department_locations_list'
   end
 
+  # Import audit from csv list
   def audit_imports
     if(params[:file].present?)
       begin
@@ -146,6 +132,7 @@ class AuditsController < ApplicationController
     end
   end
 
+  # download sample audit
   def export_files
     audit_csv = CSV.generate do |csv|
       csv << ["title;scope;objective;issue;methodology;deliverables;context;audit_type;compliance_type;standard;topic;location;department;team;start_date;end_date;auditor;auditees"]
@@ -188,14 +175,17 @@ class AuditsController < ApplicationController
 		send_file temp.path, :type => 'application/zip', :disposition => 'attachment', :filename => "artifacts.zip"
   end
 
+  protected
+    def audit_intializers(location_id=nil, department_id=nil, team_id=nil)
+      @departments = Department.for_location(location_id) if location_id
+      @teams = Team.for_department_and_company(department_id, current_company.id) if department_id
+      @team = Team.for_id(team_id).last if team_id
+    end
+
   private
     def audit_params
       params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :audit_status_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor, :start_date, :end_date, audit_auditees_attributes: [:id, :user_id])
     end
-
-    # def skipped_reminder_params
-    #   params.require(:skipped_reminder).permit(:audit_id,:skipped_by)
-    # end
 
     def current_company_disabled
       if Company.find(current_user.company_id).is_disabled == true

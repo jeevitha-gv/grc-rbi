@@ -33,7 +33,6 @@ class Audit < ActiveRecord::Base
   # validations
   validates :title, presence:true, length: { in: 0..50 }
   validates_format_of :title, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.title.blank? }
-  validates :title, uniqueness:true, :if => Proc.new{ |f| !f.title.blank? }
   validates :title, length: { maximum: 250 }, :if => Proc.new{|f| !f.title.blank? }
   validates :auditor, presence:true
   validates :audit_type_id, presence:true

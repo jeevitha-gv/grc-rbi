@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < BaseController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   #publicactivity gem
@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_subdomain, :if => :admin_function
   before_filter :check_password_authenticated, :if => :current_user
   
+  # Rescue for 400 and 500 errors 
   unless Rails.application.config.consider_all_requests_local
     rescue_from Exception, with: lambda { |exception| render_error 500, exception }
     rescue_from ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
@@ -27,13 +28,13 @@ class ApplicationController < ActionController::Base
     params[resource] &&= send(method) if respond_to?(method, true)
   end
 
-
   protected
-
+  # Fetch Audit from Cookie
   def current_audit
     Audit.find(cookies[:audit_id].to_i) if cookies[:audit_id].present? rescue nil
   end
   
+  # Check functions is for company admin and Super admin
   def admin_function
     if request.url.include?("/admin")
       return false 
@@ -41,7 +42,8 @@ class ApplicationController < ActionController::Base
       return true
     end
   end
-
+  
+  # Devise Strong Parameters
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :user_name
     devise_parameter_sanitizer.for(:sign_up) << :full_name
@@ -60,69 +62,10 @@ class ApplicationController < ActionController::Base
     @company ||= current_user.company if current_user.present?
   end
 
-  # will check for sudomain presence and correct subdomain
-  def check_subdomain
-    if(request.subdomain.present? || current_company.present?)
-      current_company.present? ? check_current_company_domain : (redirect_to current_path_without_subdomain)
-    end
-  end
-
-  # Escape the subdomain from the given url
-  def escape_subdomain
-    if(request.subdomain.present?)
-      redirect_to current_path_without_subdomain
-    end
-  end
-
-# Escape the subdomain if there is no company
-  def escape_subdomain_with_company
-    if(request.subdomain.present? && !Company.where(domain: request.subdomain).present?)
-      redirect_to current_path_without_subdomain
-    end
-  end
-
-  # Checks whether current domain matches the logged_in company domain
-  def check_current_company_domain
-    unless(current_company.domain.eql?(request.subdomain))
-      redirect_to current_path_with_subdomain
-    end
-  end
-
   # Will not allow to access the page if authenticated
   def skip_if_authenticated
     if(current_user)
       redirect_to root_subdomain_path
-    end
-  end
-
-  def set_locale
-      I18n.locale  = current_user.language_id.present? ? ::Language.current_user_language(current_user.language_id).first.code : I18n.default_locale
-      MESSAGES.replace ::ALLMESSAGES["#{I18n.locale}"]
-  end
-
-  # Returns URL with subdomain.. Call this function after User logged_in areas
-  def current_path_with_subdomain
-    request.protocol + current_company.domain + "." + request.domain + (request.port.nil? ? '' : ":#{request.port}") + request.fullpath
-  end
-
- # Returns URL with subdomain.. Call this function after User logged_in areas
-  def root_subdomain_path
-    request.protocol + current_company.domain + "." + request.domain + (request.port.nil? ? '' : ":#{request.port}")
-  end
-
-  # Returns URL without subdomain..
-  def current_path_without_subdomain
-    "http://" + request.domain + (request.port.nil? ? '' : ":#{request.port}") + request.fullpath
-  end
-
-  def set_time_zone
-    case current_user.timezone || current_company.timezone
-    when current_user.timezone
-      Time.zone = current_user.timezone
-    when current_company.timezone
-      Time.zone = current_company.timezone
-    else
-      Time.zone = "Mumbai"
     end
   end
 
@@ -146,73 +89,7 @@ class ApplicationController < ActionController::Base
     redirect_to password_user_path unless current_user.encrypted_password.present?
   end
 
-  # check for company disable status
-  def check_company_disabled
-     if current_company.is_disabled == true
-      sign_out current_user
-      redirect_to root_path
-    end
-  end
-
-  #To check company admin
-    def check_company_admin
-      if(!current_user || current_company.id != current_user.company_id)
-        flash[:alert] = "Access restricted"
-        redirect_to '/users/sign_in' 
-      end
-    end
-
-  def check_role
-    role = current_user.role_title
-    if role == 'company_admin'
-      return true
-    else
-      flash[:alert] = "Access restricted"
-      redirect_to '/users/sign_in'
-    end
-  end
-
-  def set_cookie_audit
-    unless cookies[:audit_id].present?
-      cookies[:audit_id] = { :value => current_user.accessible_audits.last.id, :expires => 24.hour.from_now } if current_user.accessible_audits.present?
-    end
-  end
-  
-  def check_for_current_audit
-    unless current_audit.present?
-      flash[:alert] = "Access restricted"
-      redirect_to root_path
-    end
-  end
-
-  def authorize_auditor
-	  	unless current_audit.auditor == current_user.id
-        flash[:alert] = "Access restricted"
-	  		redirect_to audits_path
-	  	end
-  end
-
-	def authorize_auditees
-	  	unless current_audit.auditees.map(&:id).include?(current_user.id)
-        flash[:alert] = "Access restricted"
-	  		redirect_to audits_path
-	  	end
-	end
-  
-  def authorize_auditor_skip_company_admin
-	  	if(current_audit.auditor != current_user.id && current_user.role_title != "company_admin")
-        flash[:alert] = "Access restricted"
-	  		redirect_to audits_path
-	  	end
-  end
-
-	def authorize_auditees_skip_company_admin
-      if(!current_audit.auditees.map(&:id).include?(current_user.id) && current_user.role_title != "company_admin")
-        flash[:alert] = "Access restricted"
-	  		redirect_to audits_path
-	  	end
-  end
-    
+  # Clear the header and Cache
   def set_cache_buster
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
     response.headers["Pragma"] = "no-cache"
@@ -221,6 +98,7 @@ class ApplicationController < ActionController::Base
     
   private
 
+  # Render error from rescue
   def render_error(status, exception)
     respond_to do |format|
       format.html { render template: "errors/error_#{status}", layout: false, :locals => {status: status, exception: exception}  }

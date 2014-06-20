@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UniversalMailerTest < ActionMailer::TestCase
+class ReminderMailerTest < ActionMailer::TestCase
   # test "the truth" do
   #   assert true
   # end

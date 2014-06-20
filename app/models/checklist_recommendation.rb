@@ -63,17 +63,17 @@ class ChecklistRecommendation < ActiveRecord::Base
 
   def notify_auditee_about_recommendation
   	if self.checklist_type == 'AuditCompliance'
-    	UniversalMailer.delay.notify_auditee_about_recommendations(self)
+    	ReminderMailer.delay.notify_auditee_about_recommendations(self)
     else
-    	UniversalMailer.delay.notify_auditee_about_nc_recommendations(self)
+    	ReminderMailer.delay.notify_auditee_about_nc_recommendations(self)
     end
 
   end
-  
+
   def response_attachments
     self.attachments.where(classified: "Auditee Response")
   end
-  
+
   def observation_attachments
     self.attachments.where(classified: "Audit Observation")
   end
