@@ -2,8 +2,7 @@
   <% @response_answers.each do |answer| %>
     <% checklist_recommendation = answer.checklist_recommendation %>
     <!--   <h3><a href="#"><%#= control.name%></a> <span class="fright pending_msg">Pending</span></h3> -->
-    <%#binding.pry %>
-    <h3><a href="#"><%= answer.question %></a> <span class="fright pending_msg" id= "response_status"><%= checklist_recommendation.response_status == 5 ? 'Completed' : 'Pending'%></span></h3>
+    <h3><a href="#"><%= answer.question %></a> <span class="fright pending_msg" id= "response_status"><%= checklist_recommendation.response_status_id == audit_response_status ? 'Completed' : 'Pending'%></span></h3>
     <div>
       <div class="row audit-title">
 
@@ -11,7 +10,7 @@
                   <div class="col-lg-4">
                   <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Artifact :</b> </label>
-                      <div class="col-sm-7"><a class="blue_link" href="">Information Security Policies</a> </div>
+                      <div class="col-sm-7"><%= link_to (File.basename(answer.attachment.attachment_file_url)).truncate(20), download_artifacts_checklist_recommendations_path(id: answer.attachment.id), class: "blue_link" %> </div>
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Recommendation :</b> </label>
@@ -19,7 +18,7 @@
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Priority :</b> </label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_priority.name%></div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_priority_name%></div>
                     </div>
                     <div class="form-group clearfix">
                       <label class="col-sm-5">Corrective Action</label>
@@ -45,7 +44,7 @@
                               <%= "<h4>Attachments</h4>".html_safe if checklist_recommendation.response_attachments.present?%>
                               <%checklist_recommendation.response_attachments.each do |attachment|%>
                                 <div id="attach_<%= attachment.id%>"><%= link_to (File.basename(attachment.attachment_file_url)).truncate(20), download_artifacts_checklist_recommendations_path(id: attachment.id), class: "blue_link" %>
-                                <%unless(@audit.audit_status_id == 4)%>
+                                <%unless(@audit.audit_status_id == audit_status)%>
                                 <div class="addissue" style="float: right;"> <%= link_to "remove", remove_attachment_checklist_recommendations_path(id: attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon"%>
                                 </div>
                                 <%end%>
@@ -61,7 +60,19 @@
                   <div class="col-lg-4">
                     <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Answer :</b> </label>
-                      <div class="col-sm-7"> Answer by Auditee</div>
+                      <div class="col-sm-7">
+											<div class="col-sm-7">
+                        <% if answer.present? %>
+                          <% if answer.question_type_name == 'Yes or No' %>
+                            <%= answer_value == 0 ? 'Yes' : 'No' %>
+                          <% elsif answer.question_type_name == 'Descriptive Type' %>
+                            <%= answer.detailed_value %>
+                          <% else %>
+                            <%= QuestionOption.where(:id => nc_question.answer_value).last.value unless nc_question.answer_value.nil? %>
+                          <% end %>
+                        <% end %>
+                      </div>
+											</div>
 
                     </div>
                     <div class="form-group clearfix">
@@ -71,7 +82,7 @@
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Severity :</b> </label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_severity.name%></div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_severity_name%></div>
                     </div>
                     <div class="form-group clearfix">
                       <label class="col-sm-5">Preventive Action</label>
@@ -95,7 +106,7 @@
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Status :</b> </label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_status.name%></div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_status_name%></div>
 
                     </div>
 
@@ -123,7 +134,7 @@
                       <%= hidden_field_tag "checklist_recommendation[id]",  checklist_recommendation.id , :id => "id_#{checklist_recommendation.id}"%>
                     <div class="form-group clearfix">
                     <div class="col-sm-12 ">
-                     <%unless(@audit.audit_status_id == 4)%>
+                     <%unless(@audit.audit_status_id == audit_status)%>
                       <input type="submit" value="Respond" class="black_btn fright" onclick="auditee_response(<%= checklist_recommendation.id%>);">
                     <%end%>
                     </div>

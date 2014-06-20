@@ -36,15 +36,12 @@ class NcQuestionsController < ApplicationController
 		if(params[:file].present?)
       begin
 				NcQuestion.build_from_import(params[:file], current_company)
-        flash[:notice] = MESSAGES["nc_question"]["csv_upload"]["success"]
-        redirect_to new_nc_question_path
+        redirect_to new_nc_question_path, :flash => { :notice => MESSAGES["nc_question"]["csv_upload"]["success"]}
       rescue
-        flash[:notice] = MESSAGES["csv_upload"]["error"]
-        redirect_to new_nc_question_path
+        redirect_to new_nc_question_path, :flash => { :notice => MESSAGES["csv_upload"]["error"]}
       end
     else
-      flash[:notice] = MESSAGES["csv_upload"]["presence"]
-      redirect_to new_nc_question_path
+      redirect_to new_nc_question_path , :flash => { :notice => MESSAGES["csv_upload"]["presence"]}
     end
   end
 

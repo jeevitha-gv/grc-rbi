@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                   <td><label>Team : </label>
-                    <span><%= @audit.team.name %></span></td>
+                    <span><%= @audit.team_name %></span></td>
                   <td><label>Start Date : </label>
                     <span><%= @audit.start_date %></span></td>
                   <td><label>End Date : </label>
@@ -64,7 +64,7 @@
                       <div class="row audit-title">
                         <% test = question.answer || question.build_answer %>
                           <%= hidden_field_tag :audit_id, current_audit.id %>
-                          <%= render :partial => "answer_type",  locals: {:question => question} %>
+                          <%= render "answer_type", :question => question %>
                       </div>
                     </div>
                 <% end %>
@@ -197,6 +197,11 @@ $(".go_to_top").click(function(){
   $("html, body").animate({scrollTop: "0"}, 800);
 });
 */
+
+function display_selected_files(e)
+{
+$(e).parent().find("#selected_files").html("<h5>selected: " + $(e).val() + "</h5>");
+}
 
 </script>
 <link href="/assets/outer/jquery.ui.core.min.css" rel="stylesheet" type="text/css">

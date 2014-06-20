@@ -4,8 +4,9 @@
     <h3>
       <a href="#"><%= answered_ncquestion.question %></a>
       <span class="fright pending_msg" id= "recommendation_status">
+			<% closed_id, closed_duplicate_id, risk_accepted = recommendation_status%>
       <% @status = checklist_recommendation.recommendation_status_id if checklist_recommendation.present? %>
-      <%= (@status == 3 || @status == 4) ? 'Completed' : 'Pending' %></span>
+      <%= (@status == closed_id || @status == closed_duplicate_id || @status == risk_accepted) ? 'Completed' : 'Pending' %></span>
     </h3>
     <div>
       <%= f.hidden_field :checklist_id, :name => "checklist_recommendation[#{answered_ncquestion.id}][checklist_id]", :id => "checklist_id_#{answered_ncquestion.id}", :value => answered_ncquestion.id%>
@@ -47,7 +48,8 @@
                 <% elsif answered_ncquestion.question_type_id == 2 %>
                   <%= answered_ncquestion.detailed_value %>
                 <% else %>
-                  <%= QuestionOption.where(:id => answered_ncquestion.value).last.value  if answered_ncquestion.value.present? %>
+                  <% question_option = QuestionOption.where(:id => answered_ncquestion.value).last  if answered_ncquestion.value.present? %>
+									<%= question_option.value unless question_option.nil?%>
                 <% end %>
               <% end %>
             </div>

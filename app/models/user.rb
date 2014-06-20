@@ -53,6 +53,8 @@ class User < ActiveRecord::Base
 
   delegate :title, to: :dealer, prefix: true
   delegate :title, to: :role, prefix: true, allow_nil: true
+  delegate :email, to: :user_manager, prefix: true, allow_nil: true
+  delegate :attachment_file, to: :attachment, prefix: true, allow_nil: true
 
   #scope
   scope :for_users_by_company, lambda {|email, company_id| where(email: email, company_id: company_id)}

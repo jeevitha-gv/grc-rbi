@@ -12,6 +12,7 @@ class ArtifactAnswer < ActiveRecord::Base
 
   delegate :name, to: :priority, prefix: true, allow_nil: true
   delegate :full_name, to: :responsibility, prefix: true, allow_nil: true
+  delegate :email, to: :responsibility, prefix: true, allow_nil: true
   delegate :name, to: :artifact, prefix: true, allow_nil: true
   delegate :comment, to: :comment, prefix: true, allow_nil: true
 

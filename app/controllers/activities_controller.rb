@@ -1,7 +1,6 @@
 class ActivitiesController < ApplicationController
 
   helper_method :parse_and_convert
- 
  # List all activity performed
   def index
    @activities = PublicActivity::Activity.all
@@ -14,5 +13,4 @@ class ActivitiesController < ApplicationController
   	activity = action + " a " + thing + " at "
     return activity
   end
-  
 end

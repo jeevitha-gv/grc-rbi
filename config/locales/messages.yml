@@ -116,7 +116,7 @@ en:
 
   nc_question:
     csv_upload:
-      success: "Non Compliance Questions have been imported successfully"
+      success: "Non Compliance Questions have been imported successfully".
 
   csv_upload:
     error: "Invalid file format"
