@@ -13,7 +13,7 @@ class AuditsController < ApplicationController
   # Edit Individual audit
   def edit
     @audit = Audit.find(params[:id])
-    audit_intializers(@audit.location_id, @audit.department_id, @audit.team_id)
+    audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
   end
 
   # Create Individual audit
@@ -27,7 +27,7 @@ class AuditsController < ApplicationController
       ReminderMailer.delay.notify_auditees_about_audit(@audit)
       redirect_to audits_path
     else
-      audit_intializers(@audit.location_id, @audit.department_id, @audit.team_id)
+      audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
       render 'new'
     end
   end
@@ -50,7 +50,7 @@ class AuditsController < ApplicationController
     if @audit.update_attributes(audit_params)
       redirect_to edit_audit_path
     else
-      audit_intializers(@audit.location_id, @audit.department_id, @audit.team_id)
+      audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
       render 'edit'
     end
   end
@@ -67,7 +67,7 @@ class AuditsController < ApplicationController
 
   #audit intializer data
   def department_teams_users
-    audit_intializers(params[:location_id], params[:department_id], params[:team_id])
+    audit_initializers(params[:location_id], params[:department_id], params[:team_id])
     render 'department_locations_list'
   end
 
@@ -129,7 +129,7 @@ class AuditsController < ApplicationController
   end
 
   protected
-    def audit_intializers(location_id=nil, department_id=nil, team_id=nil)
+    def audit_initializers(location_id=nil, department_id=nil, team_id=nil)
       @departments = Department.for_location(location_id) if location_id
       @teams = Team.for_department_and_company(department_id, current_company.id) if department_id
       @team = Team.for_id(team_id).last if team_id
