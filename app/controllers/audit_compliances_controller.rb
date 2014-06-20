@@ -58,7 +58,7 @@ class AuditCompliancesController < ApplicationController
             json["audit_compliance"] = compliance.id
             json["priority"] = artifact_answer.priority_name
             json["auditee"] = artifact_answer.responsibility_full_name
-            json["target_date"] = (artifact_answer.target_date.present? ? artifact_answer.target_date.to_date.strftime("%d/%m/%Y") : "")
+            json["target_date"] = (artifact_answer.target_date? ? artifact_answer.target_date.to_date.strftime("%d/%m/%Y") : "")
             response << json
           end
         end
