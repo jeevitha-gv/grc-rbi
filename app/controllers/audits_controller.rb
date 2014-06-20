@@ -22,18 +22,9 @@ class AuditsController < ApplicationController
     @audit.company_id = current_company.id
     @audit.audit_status_id = (params[:commit] == "Save as Plan" ?  AuditStatus.for_name("Planning").id : AuditStatus.for_name("In Progress").id)
     if @audit.save
-<<<<<<< HEAD
       SkippedAuditReminder.create(audit_id: @audit.id, skipped_by: current_user.id) if params[:skip_reminder] == "true"
-      UniversalMailer.delay.notify_auditor_about_audit(@audit)
-      UniversalMailer.delay.notify_auditees_about_audit(@audit)
-=======
-      cookies[:audit_id] = { :value => @audit.id, :expires => 24.hour.from_now }
-      if params[:skip_reminder] == "true"
-        SkippedAuditReminder.create(:audit_id => @audit.id,:skipped_by => current_user.id)
-      end
       ReminderMailer.delay.notify_auditor_about_audit(@audit)
       ReminderMailer.delay.notify_auditees_about_audit(@audit)
->>>>>>> f7a02ac1994ebfb0ef2e23b213e0ec4af86f72a6
       redirect_to audits_path
     else
       audit_intializers(@audit.location_id, @audit.department_id, @audit.team_id)

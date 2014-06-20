@@ -112,15 +112,10 @@ en:
   answers:
     detailed_value: "Please enter answer"
     
-<<<<<<< HEAD
   nc_question:
     csv_upload:
       success: "Non Compliance Questions have been imported successfully "
   
   csv_upload:
     error: "Invalid file format"
-    presence: "Please select a file."
-=======
-  nc_questions:
-    upload_csv: "Please attach a file"
->>>>>>> f7a02ac1994ebfb0ef2e23b213e0ec4af86f72a6
+    presence: "Please attach a file."
