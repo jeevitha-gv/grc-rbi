@@ -100,7 +100,6 @@ class ChecklistRecommendationsController < ApplicationController
 		@checklist_recommendation.auditee_id = current_user.id
 		@checklist_recommendation.response_completed = true
 		@checklist_recommendation.is_checklist_new = true
-		@checklist_recommendation.auditee_id = current_user.id
 		@checklist_recommendation.update(checklist_params)
 		ReminderMailer.delay.notify_auditor_about_responses(@checklist_recommendation)
 		respond_to :js
