@@ -63,6 +63,7 @@
 			</div>
 		</div>
 
+<<<<<<< HEAD
 	<% elsif question.question_type.name == "Multiple Choice" %>
 		<div class="form-group clearfix">
 			<label class="col-sm-5">Your Option</label>
@@ -88,4 +89,32 @@
 		</div>
 	<% end %>
 	</div>
+=======
+    <% elsif question.question_type_id == 3 %>
+      <div class="form-group clearfix">
+        <label class="col-sm-5">Your Option</label>
+        <div class="col-sm-7">
+          <% question_options = question.question_options %>
+          <% question_options.each do |question_option|%>
+            <input type="radio" value="<%= question_option.id%>" name="answer[<%= question.id %>][value]" id="value_<%= question_option.id%>">
+            <label for="value_<%= question_option.id%>"><%= question_option.value%></label> <br>
+          <% end %>
+
+          <br>
+          <input type="hidden" value="<%= question.id %>" name="audit_id" id="answer_<%= question.id %>">
+          <span class="error_message" id="answer_check_<%= question.id %>" style="display:none;"><%= MESSAGES["answers"]["detailed_value"]%><span>
+          <br>
+        </div>
+        <br>
+        <div class="form-group clearfix">
+          <% if question.does_require_document? %>
+          <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#answer_document_<%= question.id %>').click();" >Attach Document</a>
+          <%= file_field_tag "answer[#{question.id}][attachment]", :style => "visibility:hidden; display:none;",  :id => "answer_document_#{question.id}"%>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+>>>>>>> 884405f8f161e044f4a62c0876e94ad6c5e4647c
 </div>
