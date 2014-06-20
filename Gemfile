@@ -50,7 +50,7 @@ gem 'roo'
 
 gem 'cancan'
 gem 'pry', group: [:development]
-gem 'newrelic_rpm'                                                 
+gem 'newrelic_rpm'
 
 gem 'public_activity'
 
