@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     get 'department_teams_users', on: :collection
     post 'audit_with_status', on: :collection
     post 'audit_all', on: :collection
-    post 'import_files', on: :collection
+    post 'audit_imports', on: :collection
     get 'export_files', on: :collection
     post 'asc_calculation', on: :collection
     get 'maximum_actual_score' , on: :collection
@@ -109,7 +109,7 @@ Rails.application.routes.draw do
 
   # delete '/activities/clear_audit' => 'activities#clear_audit', :as => :clear_audit
   resources :activities, :except => [:show]
-  
+
   resources :artifact_answers do
     get 'list_attachments', on: :collection
     get 'list_comment', on: :collection

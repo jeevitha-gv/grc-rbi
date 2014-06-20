@@ -6,6 +6,7 @@
 <div class="clearfix">
   <h3>Audit Details</h3>
 </div>
+<% audit = @audit %>
 <div class="col-lg-4 col-sm-6 col-xs-12">
   <div class="form-group clearfix">
     <label class="col-sm-4 control-label">
@@ -21,8 +22,8 @@
     </label>
     <div class="col-sm-7">
       <%= f.text_area :objective, :class=>"audit-big-input" %>
-      <% if @audit.errors[:objective].present? %>
-        <div class="error_message"><%=  @audit.errors[:objective][0]%></div>
+      <% if audit.errors[:objective].present? %>
+        <div class="error_message"><%=  audit.errors[:objective][0]%></div>
       <% end %>
     </div>
   </div>
@@ -32,8 +33,8 @@
     </label>
     <div class="col-sm-7">
       <%= f.text_area :deliverables, :class=>"audit-big-input" %>
-      <% if @audit.errors[:deliverables].present? %>
-        <div class="error_message"><%=  @audit.errors[:deliverables][0]%></div>
+      <% if audit.errors[:deliverables].present? %>
+        <div class="error_message"><%=  audit.errors[:deliverables][0]%></div>
       <% end %>
     </div>
   </div>
@@ -43,10 +44,10 @@
     <label class="col-sm-4">
       <%= f.label :title, t('audit.title') %>
     </label>
-    <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:title].present? %>">
+    <div class="col-sm-7 <%='error_inputfield' if audit.errors[:title].present? %>">
       <%= f.text_area :title, :class=>"audit-normal-input" %>
-      <% if @audit.errors[:title].present? %>
-        <div class="error_message"><%=  @audit.errors[:title][0]%></div>
+      <% if audit.errors[:title].present? %>
+        <div class="error_message"><%=  audit.errors[:title][0]%></div>
       <% end %>
     </div>
   </div>
@@ -56,8 +57,8 @@
     </label>
     <div class="col-sm-7">
       <%= f.text_area :context, :class=>"audit-big-input" %>
-      <% if @audit.errors[:context].present? %>
-        <div class="error_message"><%=  @audit.errors[:context][0]%></div>
+      <% if audit.errors[:context].present? %>
+        <div class="error_message"><%=  audit.errors[:context][0]%></div>
       <% end %>
     </div>
   </div>
@@ -67,8 +68,8 @@
     </label>
     <div class="col-sm-7">
       <%= f.text_area :issue, :class=>"audit-big-input" %>
-      <% if @audit.errors[:issue].present? %>
-        <div class="error_message"><%=  @audit.errors[:issue][0]%></div>
+      <% if audit.errors[:issue].present? %>
+        <div class="error_message"><%=  audit.errors[:issue][0]%></div>
       <% end %>
     </div>
   </div>
@@ -80,8 +81,8 @@
     </label>
     <div class="col-sm-7">
       <%= f.text_area :scope, :class=>"audit-big-input" %>
-      <% if @audit.errors[:scope].present? %>
-        <div class="error_message"><%=  @audit.errors[:scope][0]%></div>
+      <% if audit.errors[:scope].present? %>
+        <div class="error_message"><%=  audit.errors[:scope][0]%></div>
       <% end %>
     </div>
   </div>
@@ -91,8 +92,8 @@
     </label>
     <div class="col-sm-7">
       <%= f.text_area :methodology, :class=>"audit-big-input" %>
-      <% if @audit.errors[:methodology].present? %>
-        <div class="error_message"><%=  @audit.errors[:methodology][0]%></div>
+      <% if audit.errors[:methodology].present? %>
+        <div class="error_message"><%=  audit.errors[:methodology][0]%></div>
       <% end %>
     </div>
   </div>
@@ -119,10 +120,10 @@
     <label class="col-sm-4 control-label">
       <%= f.label :audit_type, t('audit.audit_type') %>
     </label>
-    <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:title].present? %>">
+    <div class="col-sm-7 <%='error_inputfield' if audit.errors[:title].present? %>">
       <%= f.collection_select(:audit_type_id, AuditType.all, :id, :name, :prompt => true) %>
-      <% if @audit.errors[:audit_type_id].present? %>
-        <div class="error_message"><%=  @audit.errors[:audit_type_id][0]%></div>
+      <% if audit.errors[:audit_type_id].present? %>
+        <div class="error_message"><%=  audit.errors[:audit_type_id][0]%></div>
       <% end %>
     </div>
   </div>
@@ -132,28 +133,28 @@
       <%= f.label :location, t('audit.location') %>
     </label>
     <div class="col-sm-7">
-      <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => @audit.location_id), {include_blank: 'Select Location' }, { :id => "locations-list", :onChange => "get_departments(this);"} %>
+      <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => audit.location_id), {include_blank: 'Select Location' }, { :id => "locations-list", :onChange => "get_departments(this);"} %>
     </div>
   </div>
-  <div class="form-group clearfix" id="department-dropdown" style="<%= 'display:block;' if (@audit.department_id.present? && (action_name == "create" || action_name == "edit" || action_name == "update")) %>">
+  <div class="form-group clearfix" id="department-dropdown" style="<%= 'display:block;' if (audit.department_id.present? && (action_name == "create" || action_name == "edit" || action_name == "update")) %>">
     <label class="col-sm-4 control-label">
       <%= f.label :department_id, t('audit.department') %>
     </label>
     <div class="col-sm-7">
       <% if @departments.present? %>
-        <%= f.select :department_id, options_for_select(@departments.all.collect{|x| [x.name, x.id.to_i]}, :selected => @audit.department_id), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
+        <%= f.select :department_id, options_for_select(@departments.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.department_id), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
       <% else %>
         <%= f.select :department_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
       <% end %>
     </div>
   </div>
-  <div class="form-group clearfix" id="teams-dropdown" style="<%= 'display:block;' if (@audit.team_id.present?) %>">
+  <div class="form-group clearfix" id="teams-dropdown" style="<%= 'display:block;' if (audit.team_id.present?) %>">
     <label class="col-sm-4 control-label">
       <%= f.label :team_id, t('audit.team') %>
     </label>
     <div class="col-sm-7">
       <% if @teams.present? %>
-        <%= f.select :team_id, options_for_select(@teams.all.collect{|x| [x.name, x.id.to_i]}, :selected => @audit.team_id), {include_blank: 'Select Team' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
+        <%= f.select :team_id, options_for_select(@teams.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.team_id), {include_blank: 'Select Team' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
       <% else %>
         <%= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
       <% end %>
@@ -165,33 +166,33 @@
     <label class="col-sm-4 control-label">
       <%= f.label :compliance_type, t('audit.compliance_type') %>
     </label>
-    <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:compliance_type].present? %>">
-        <%= f.select(:compliance_type, Audit::COMPLIANCE_TYPES, :selected => (@audit.compliance_type if @audit.compliance_type.present?), :include_blank => "Select Type", :id=>"compliance_type") %>
-      <% if @audit.errors[:compliance_type].present? %>
-        <div class="error_message"><%=  @audit.errors[:compliance_type][0]%></div>
+    <div class="col-sm-7 <%='error_inputfield' if audit.errors[:compliance_type].present? %>">
+        <%= f.select(:compliance_type, Audit::COMPLIANCE_TYPES, :selected => (audit.compliance_type if audit.compliance_type.present?), :include_blank => "Select Type", :id=>"compliance_type") %>
+      <% if audit.errors[:compliance_type].present? %>
+        <div class="error_message"><%=  audit.errors[:compliance_type][0]%></div>
       <% end %>
     </div>
   </div>
-  <div class="form-group clearfix" id="standard-topic" style="<%= 'display:block;' if (@audit.compliance_type == 'NonCompliance' && (@audit.errors[:standard_id].present? || @audit.standard_id.present?)) %>">
+  <div class="form-group clearfix" id="standard-topic" style="<%= 'display:block;' if (audit.compliance_type == 'NonCompliance' && (audit.errors[:standard_id].present? || audit.standard_id.present?)) %>">
     <label class="col-sm-4 control-label">
       <%= f.label :standard_id, t('audit.topic') %>
     </label>
-    <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:standard_id].present? %>">
-      <%= f.collection_select(:standard_id, Topic.all, :id, :name, :selected => (@audit.standard_id if @audit.compliance_type == 'NonCompliance'), :prompt => true, :name => "((@audit.compliance_type == 'NonCompliance' && (@audit.errors[:standard_id].present? || @audit.standard_id.present?)) == true ? audit[:standard_id] : "" )") %>
-      <% if @audit.errors[:standard_id].present? %>
-        <div class="error_message"><%=  @audit.errors[:standard_id][0]%></div>
+    <div class="col-sm-7 <%='error_inputfield' if audit.errors[:standard_id].present? %>">
+      <%= f.collection_select(:standard_id, Topic.all, :id, :name, :selected => (audit.standard_id if audit.compliance_type == 'NonCompliance'), :prompt => true, :name => "((audit.compliance_type == 'NonCompliance' && (audit.errors[:standard_id].present? || audit.standard_id.present?)) == true ? audit[:standard_id] : "" )") %>
+      <% if audit.errors[:standard_id].present? %>
+        <div class="error_message"><%=  audit.errors[:standard_id][0]%></div>
       <% end %>
     </div>
   </div>
 
-  <div class="form-group clearfix" id="standard-compliance" style="<%= 'display:block;' if (@audit.compliance_type == 'Compliance' && (@audit.errors[:standard_id].present? || @audit.standard_id.present?)) %>">
+  <div class="form-group clearfix" id="standard-compliance" style="<%= 'display:block;' if (audit.compliance_type == 'Compliance' && (audit.errors[:standard_id].present? || audit.standard_id.present?)) %>">
     <label class="col-sm-4 control-label">
       <%= f.label :standard_id, t('audit.standard') %>
     </label>
     <div class="col-sm-7">
-      <%= f.collection_select(:standard_id, Compliance.all, :id, :name, :selected => (@audit.standard_id if @audit.compliance_type == 'Compliance'), :prompt => true, :name => "((@audit.compliance_type == 'Compliance' && (@audit.errors[:standard_id].present? || @audit.standard_id.present?)) == true ? audit[:standard_id] : "" )") %>
-      <% if @audit.errors[:standard_id].present? %>
-        <div class="error_message"><%=  @audit.errors[:standard_id][0]%></div>
+      <%= f.collection_select(:standard_id, Compliance.all, :id, :name, :selected => (audit.standard_id if audit.compliance_type == 'Compliance'), :prompt => true, :name => "((audit.compliance_type == 'Compliance' && (audit.errors[:standard_id].present? || audit.standard_id.present?)) == true ? audit[:standard_id] : "" )") %>
+      <% if audit.errors[:standard_id].present? %>
+        <div class="error_message"><%=  audit.errors[:standard_id][0]%></div>
       <% end %>
     </div>
   </div>
@@ -199,8 +200,8 @@
 </div>
 
 <div class="col-lg-4 col-sm-6 col-xs-12">
-  <% if @audit.errors[:start_date_validate].present? %>
-      <div class="error_message"><%= @audit.errors[:start_date_validate][0] %></div>
+  <% if audit.errors[:start_date_validate].present? %>
+      <div class="error_message"><%= audit.errors[:start_date_validate][0] %></div>
     <% end %>
   <div class="form-group clearfix">
     <label class="col-sm-4 control-label">
@@ -208,9 +209,9 @@
     </label>
     <div class="col-sm-7">
       <div class="form-group">
-        <%= f.text_field :start_date, value: (@audit.start_date.strftime("%d/%m/%Y") if @audit.start_date.present?), :class => "datepicker", :style =>"width:150px;" %>
-        <% if @audit.errors[:start_date].present? %>
-          <div class="error_message"><%=  @audit.errors[:start_date][0]%></div>
+        <%= f.text_field :start_date, value: (audit.start_date.strftime("%d/%m/%Y") if audit.start_date.present?), :class => "datepicker", :style =>"width:150px;" %>
+        <% if audit.errors[:start_date].present? %>
+          <div class="error_message"><%=  audit.errors[:start_date][0]%></div>
         <% end %>
       </div>
     </div>
@@ -222,9 +223,9 @@
     </label>
     <div class="col-sm-7">
       <div class="form-group">
-        <%= f.text_field :end_date, value: (@audit.end_date.strftime("%d/%m/%Y") if @audit.end_date.present?), :class => "datepicker1", :style =>"width:150px;" %>
-        <% if @audit.errors[:end_date].present? %>
-          <div class="error_message"><%=  @audit.errors[:end_date][0]%></div>
+        <%= f.text_field :end_date, value: (audit.end_date.strftime("%d/%m/%Y") if audit.end_date.present?), :class => "datepicker1", :style =>"width:150px;" %>
+        <% if audit.errors[:end_date].present? %>
+          <div class="error_message"><%=  audit.errors[:end_date][0]%></div>
         <% end %>
       </div>
     </div>
@@ -251,10 +252,10 @@
     <label class="col-sm-4 control-label">
       <%= f.label :auditor, t('audit.auditor') %>
     </label>
-    <div class="col-sm-7 <%='error_inputfield' if @audit.errors[:auditor].present? %>">
-      <%= f.select :auditor, options_for_select(@auditor_users.collect{|x| [x.user_name, x.id.to_i]}, :selected => @audit.auditor), {include_blank: 'Select Auditor' } %>
-      <% if @audit.errors[:auditor].present? %>
-        <div class="error_message"><%=  @audit.errors[:auditor][0]%></div>
+    <div class="col-sm-7 <%='error_inputfield' if audit.errors[:auditor].present? %>">
+      <%= f.select :auditor, options_for_select(@auditor_users.collect{|x| [x.user_name, x.id.to_i]}, :selected => audit.auditor), {include_blank: 'Select Auditor' } %>
+      <% if audit.errors[:auditor].present? %>
+        <div class="error_message"><%=  audit.errors[:auditor][0]%></div>
       <% end %>
     </div>
   </div>

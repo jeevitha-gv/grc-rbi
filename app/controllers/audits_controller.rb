@@ -86,23 +86,14 @@ class AuditsController < ApplicationController
     render 'department_locations_list'
   end
 
-  def import_files
+  def audit_imports
     if(params[:file].present?)
       begin
         spreadsheet = Audit.open_spreadsheet(params[:file])
         start = 2
         (start..spreadsheet.last_row).each do |i|
           row_data = spreadsheet.row(i)[0].split(";")
-          set = 1
-          auditee_array = []
-          while set < 50
-            auditee_check = spreadsheet.row(i)[set]
-            auditee_array << auditee_check if auditee_check.present?
-            break if auditee_check.blank?
-            set += 1
-          end
 
-          auditee_array << row_data[17]
           audit_type = AuditType.where("lower(name) = ?", "#{row_data[7].to_s.strip.downcase}").first
 
           if row_data[8].strip.downcase=="compliance"

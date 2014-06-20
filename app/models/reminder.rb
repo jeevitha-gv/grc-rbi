@@ -15,7 +15,7 @@ class Reminder < ActiveRecord::Base
 	validates :value, :numericality => { :greater_than_or_equal_to => 1, :less_than_or_equal_to => 30, :only_integer => true}
 	validates :mail_count, :numericality => { :greater_than_or_equal_to => 1, :less_than_or_equal_to => 30 , :only_integer => true}
 
-	 
+
 	# Method to check priority and send mail according to the priority
 	def self.check_priority(company_id, priority_id)
 	    reminder = Reminder.where("company_id = ? AND priority_id = ?", company_id, priority_id).last

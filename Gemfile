@@ -50,7 +50,7 @@ gem 'roo'
 
 gem 'cancan'
 gem 'pry', group: [:development]
-gem 'newrelic_rpm'
+gem 'newrelic_rpm'                                                 
 
 gem 'public_activity'
 
@@ -71,3 +71,6 @@ gem 'zip-zip'
 
 # delayed job
 gem 'delayed_job_active_record'
+
+# for rails best practices
+gem "rails_best_practices"

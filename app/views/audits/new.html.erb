@@ -84,7 +84,7 @@
                     <button aria-hidden="true" data-dismiss="modal" class="close" type="button"> &nbsp; </button>
                     <h4 id="myModalLabel" class="modal-title">Upload files only CSV and XLSX</h4>
                     <div class="modal-content-inner">
-                      <%= form_tag import_files_audits_path, multipart: true do %>
+                      <%= form_tag audit_imports_audits_path, multipart: true do %>
                         <%= file_field_tag :file %>
                         <br>
                         <div class="model-footer">
