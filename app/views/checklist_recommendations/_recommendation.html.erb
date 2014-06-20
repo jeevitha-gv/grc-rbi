@@ -5,6 +5,7 @@
   <h3><a href="#"><%= audit_compliance.compliance_library_name%></a> <span class="fright pending_msg" id= "recommendation_status_<%= audit_compliance.id%>">
 				<% closed_id, closed_duplicate_id, risk_accepted = recommendation_status%>
     <% @status = (checklist_recommendation.present? ? checklist_recommendation.recommendation_status_id : nil)%>
+    <% closed_id, closed_duplicate_id, risk_accepted = recommendation_status %>
       <%= (@status == closed_id || @status == closed_duplicate_id || @status == risk_accepted) ? 'Completed' : 'Pending' %></span></h3>
       <div>
 
