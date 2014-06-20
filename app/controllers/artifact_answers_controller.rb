@@ -1,12 +1,12 @@
 class ArtifactAnswersController < ApplicationController
-  
+
   #List attachements for particular artifacts
   def list_attachments
     @artifact_answer = ArtifactAnswer.find(params[:id])
     @attachments = @artifact_answer.attachments
     render layout: false
   end
- 
+
  # Create attachment for artifact
   def create_attachment
     @artifact_answer = ArtifactAnswer.find(params[:id])
@@ -17,25 +17,25 @@ class ArtifactAnswersController < ApplicationController
     end
     @attachments = @artifact_answer.attachments
   end
- 
+
  # remove attached artifacts
   def remove_attachment
     attachment = Attachment.find(params[:id])
     attachment.delete
   end
-  
+
   # List comment for artifacts
   def list_comment
     @artifact_answer = ArtifactAnswer.find(params[:id])
     render layout: false
   end
-  
+
   # update Comment for artifacts
   def update_comment
     @artifact_answer = ArtifactAnswer.find(params[:artifact_answer][:id])
     @artifact_answer.update_attributes(comment_params)
   end
-  
+
   private
   # Strong Parameters for comment to artifacts
   def comment_params

@@ -17,31 +17,25 @@ ActiveAdmin.register Artifact do
       actions
     end
 
-
     form do |f|
       all_compliance = ComplianceLibrary.where(:is_leaf => true)
-      f.inputs "Artifacts" do 
+      f.inputs "Artifacts" do
         f.input :compliance_library_id , :label => 'Control', :as => :select, :collection => all_compliance, :prompt => "-Select Control-"
         f.input :name
       end
       f.actions
     end
 
-
-
-  controller do 
-
-
+  controller do
     def create
       @artifact = Artifact.new(artifact_params)
       @artifact.company_id = current_user.company_id
-      if @artifact.save 
+      if @artifact.save
         redirect_to admin_artifacts_path
       else
         render 'new'
       end
     end
-
 
     private
 
@@ -49,11 +43,8 @@ ActiveAdmin.register Artifact do
       params.require(:artifact).permit(:compliance_library_id, :name ,:company_id)
     end
 
-
     def scoped_collection
       current_company.artifacts
     end
-
   end
-  
 end

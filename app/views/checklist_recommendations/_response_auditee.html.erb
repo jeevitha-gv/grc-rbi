@@ -53,10 +53,11 @@ height: auto !important;
                         <%= "<h4>Attachments</h4>".html_safe if checklist_recommendation.response_attachments.present?%>
                         <%checklist_recommendation.response_attachments.each do |attachment|%>
                           <div id="attach_<%= attachment.id%>"><%= link_to (File.basename(attachment.attachment_file_url)).truncate(20), download_artifacts_checklist_recommendations_path(id: attachment.id), class: "blue_link" %>
-                          <%unless(@audit.audit_status_id == 4)%> 
-                          <div class="addissue" style="float: right;"> <%= link_to "remove", remove_attachment_checklist_recommendations_path(id: attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon"%></div> 
+                          <%unless(@audit.audit_status_id == 4)%>
+                          <div class="addissue" style="float: right;">
+                            <%= link_to "remove", remove_attachment_checklist_recommendations_path(id: attachment.id), data: {confirm: "Are you sure?"}, method: :delete, remote: true, class: "minus-icon"%></div>
                           <%end%>
-                          </div>                                                 
+                          </div>
                         <%end%>
                       </div>
                       <%= file_field_tag "checklist_recommendation[attachment]", :style => "visibility:hidden; display:none;",  :id => "auditee_attachment_#{checklist_recommendation.id}", onchange: "display_selected_files(this)"%>
@@ -115,8 +116,8 @@ height: auto !important;
                          <a class="<%= 'active' if checklist_recommendation.checklist.score_id == 1 %>" href="javascript:void(0);">0</a>
                          <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 2 %>">1</a>
                          <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 3 %>">2</a>
-                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 4 %>">3</a> 
-                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 5 %>">4</a> 
+                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 4 %>">3</a>
+                         <a href="javascript:void(0);" class="<%= 'active' if checklist_recommendation.checklist.score_id == 5 %>">4</a>
                        </div>
                       </div>
                     </div>

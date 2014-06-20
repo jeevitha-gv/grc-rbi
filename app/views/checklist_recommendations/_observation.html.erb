@@ -82,28 +82,26 @@
                     <div class="form-group clearfix">
                       <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#attachment').click();" >Attach Document</a>
                       </div>
-                   
                      <div class="form-group clearfix ">
                       <div class="col-sm-12">
                         <%= "<h4>Attachments</h4>".html_safe if checklist_recommendation.observation_attachments.present?%>
                         <%checklist_recommendation.observation_attachments.each do |attachment|%>
                           <div id="attach_<%= attachment.id%>"><%= link_to (File.basename(attachment.attachment_file_url)).truncate(20), download_artifacts_checklist_recommendations_path(id: attachment.id), class: "blue_link" %>
-                         <%unless(@audit.audit_status_id == 4)%> 
-                          <div class="addissue" style="float: right;"> <%= link_to "remove", remove_attachment_checklist_recommendations_path(id: attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon"%></div> 
+                         <%unless(@audit.audit_status_id == 4)%>
+                          <div class="addissue" style="float: right;"> <%= link_to "remove", remove_attachment_checklist_recommendations_path(id: attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon"%></div>
                           <%end%>
-                          </div>                                                 
+                          </div>
                         <%end%>
                       </div>
                       <%= file_field_tag "checklist_recommendation[attachment]", :style => "visibility:hidden; display:none;",  :id => "attachment", onchange: "display_selected_files(this)"%>
                         <div class="clearfix" id="selected_files"></div>
                       </div>
-                      
-                   </div>
+                    </div>
                   </div>
                   <div class="col-lg-4">
                     <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Preventive Action</b></label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.preventive%>  </div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.preventive%></div>
                     </div>
                     <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Priority :</b></label>
