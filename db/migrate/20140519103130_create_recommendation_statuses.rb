@@ -5,6 +5,5 @@ class CreateRecommendationStatuses < ActiveRecord::Migration
 
       t.timestamps
     end
-    
   end
 end

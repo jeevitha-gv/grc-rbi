@@ -34,7 +34,7 @@ ActiveAdmin.register OperationalArea do
   permit_params :compliance_library_id, :weightage
 
 
-  controller do 
+  controller do
 
     before_filter :check_company_admin, :check_role
     before_filter :check_subdomain
@@ -43,7 +43,7 @@ ActiveAdmin.register OperationalArea do
     def create
       @operational_area = OperationalArea.new(operational_area_params)
       @operational_area.company_id = current_user.company_id
-      if @operational_area.save 
+      if @operational_area.save
         redirect_to admin_operational_areas_path
       else
         render 'new'
@@ -60,7 +60,5 @@ ActiveAdmin.register OperationalArea do
     def scoped_collection
       current_company.operational_areas
     end
-
   end
-  
 end

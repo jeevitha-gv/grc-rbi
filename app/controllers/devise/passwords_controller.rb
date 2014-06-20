@@ -14,7 +14,7 @@ class Devise::PasswordsController < DeviseController
     yield resource if block_given?
 
     if successfully_sent?(resource)
-	flash[:forgot_notice]   = "You will receive an email with instructions on how to reset your password in a few minutes."  
+	flash[:forgot_notice]   = "You will receive an email with instructions on how to reset your password in a few minutes."
 	respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
     else
       respond_with(resource)
