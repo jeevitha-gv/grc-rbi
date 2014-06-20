@@ -42,7 +42,7 @@ class ChecklistRecommendationsController < ApplicationController
 			if(params[:commit] == 'Save Draft')
 				flash[:notice] = "Recommendation is saved in Draft"
 			else
-				flash[:notice] = "Recommendation is scored successfully"
+				@checklist_recommendation.checklist_type == 'AuditCompliance' ? flash[:notice] = "Recommendation is scored successfully" : flash[:notice] = "Recommendation is submitted successfully"
 			end
 			redirect_to new_checklist_recommendation_path
 	 end
