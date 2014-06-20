@@ -53,6 +53,8 @@ class User < ActiveRecord::Base
 
   delegate :title, to: :dealer, prefix: true
   delegate :title, to: :role, prefix: true, allow_nil: true
+  delegate :email, to: :user_manager, prefix: true, allow_nil: true
+  delegate :attachment_file, to: :attachment, prefix: true, allow_nil: true
 
   def is?( requested_role)
     self.role.title == requested_role.to_s if self.role.present?

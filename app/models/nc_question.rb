@@ -15,9 +15,13 @@ class NcQuestion < ActiveRecord::Base
 	#Validations
 	validates :question, presence: true
 	validates :target_date, presence: true
-  
+
+  #delegates
+  delegate :value, to: :answer, prefix: true, allow_nill: :true
+  delegate :detailed_value, to: :answer, prefix: true, allow_nill: :true
+  delegate :email, to: :auditee, prefix: true, allow_nill: :true
 	delegate :name, to: :question_type, prefix: true, allow_nil: true
-	
+
   #scope
   scope :for_auditee, lambda {|auditee_id| where(auditee_id: auditee_id)}
 
@@ -28,7 +32,7 @@ class NcQuestion < ActiveRecord::Base
     else raise "Unknown file type: #{file.original_filename}"
     end
   end
-  
+
   def self.build_from_import(file)
     spreadsheet = NcQuestion.open_spreadsheet(file)
     start = 2

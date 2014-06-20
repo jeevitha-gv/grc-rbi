@@ -21,7 +21,7 @@
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Priority :</b> </label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_priority.name%></div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_priority_name%></div>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -29,13 +29,13 @@
                       <label class="col-sm-5"><b>Answer :</b> </label>
                       <div class="col-sm-7">
                         <% if nc_question.answer.present? %>
+
                           <% if nc_question.question_type_name == 'Yes or No' %>
-                            <%= nc_question.answer.value == 0 ? 'Yes' : 'No' %>
+                            <%= nc_question.answer_value == 0 ? 'Yes' : 'No' %>
                           <% elsif nc_question.question_type_name == 'Descriptive Type' %>
-                            <%= nc_question.answer.detailed_value %>
+                            <%= nc_question.answer_detailed_value %>
                           <% else %>
-													<%= nc_question.answer.inspect %>
-                            <%= QuestionOption.where(:id => nc_question.answer.value).last.value unless nc_question.answer.value.nil? %>
+                            <%= QuestionOption.where(:id => nc_question.answer_value).last.value unless nc_question.answer_value.nil? %>
                           <% end %>
                         <% end %>
                       </div>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Severity :</b> </label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_severity.name%></div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.recommendation_severity_name%></div>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -56,7 +56,7 @@
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Status :</b> </label>
-                      <div class="col-sm-7"><%= checklist_recommendation.recommendation_status.name%></div>
+                      <div class="col-sm-7"><%= checklist_recommendation.recommendation_status_name%></div>
                     </div>
 
 
@@ -79,7 +79,7 @@
                     <div class="form-group clearfix">
 											<div class="col-sm-12">
                       </div>
-                    
+
 
                    </div>
                   </div>
@@ -96,11 +96,11 @@
                   <div class="col-lg-4">
                     <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Blocking :</b></label>
-                      <div class="col-sm-7"><%= checklist_recommendation.blocking_checklist.recommendation unless checklist_recommendation.blocking_checklist.nil? %> </div>
+                      <div class="col-sm-7"><%= checklist_recommendation.blocking_checklist_recommendation unless checklist_recommendation.blocking_checklist.nil? %> </div>
                     </div>
                      <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Dependent :</b></label>
-                      <div class="col-sm-7"> <%= checklist_recommendation.dependent_checklist.recommendation unless checklist_recommendation.blocking_checklist.nil?%> </div>
+                      <div class="col-sm-7"> <%= checklist_recommendation.dependent_checklist_recommendation unless checklist_recommendation.blocking_checklist.nil?%> </div>
                     </div>
                   </div>
 
