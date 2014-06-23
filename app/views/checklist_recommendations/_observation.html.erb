@@ -11,7 +11,7 @@
                     <div class="form-group clearfix">
                       <% artifact_answers = checklist.artifact_answers.first%>
                       <label class="col-sm-5"><b>Artifact :</b> </label>
-                      <div class="col-sm-7"><a class="blue_link" href="javascript:artifact_modal(<%= checklist.id%>);"><%= artifact_answers.artifact_display_name if @artifact_answers%></a> </div>
+                      <div class="col-sm-7"><a class="blue_link" href="javascript:artifact_modal(<%= checklist.id%>);"><%= artifact_answers.artifact_display_name if artifact_answers%></a> </div>
                         <% if checklist.artifact_answers.count > 1 %>
                           <div class="col-sm-12"><a class="blue_link pull-right" href = "javascript:artifact_modal(<%= checklist.id%>);" >more</a></div>
                         <%end%>
@@ -29,7 +29,7 @@
                   <div class="col-lg-4">
                     <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Comment :</b> </label>
-                      <div class="col-sm-7"><%= artifact_answers.comment_comment.truncate(50) if @artifact_answers && artifact_answers.comment_comment %> </div>
+                      <div class="col-sm-7"><%= artifact_answers.comment_comment.truncate(50) if artifact_answers && artifact_answers.comment_comment %> </div>
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Reason :</b> </label>

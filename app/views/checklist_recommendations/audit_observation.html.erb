@@ -55,7 +55,7 @@
             <% if @audit.compliance_type == 'Compliance'%>
 			        <%= render "observation",checklist_recommendations: @checklist_recommendations, audit: @audit %>
             <% else %>
-              <%= render "nc_observation" %>
+              <%= render "nc_observation", observation_answers: @observation_answers, audit: @audit %>
             <% end %>
 		  	<div class="clearfix"></div>
 	  			<%= form_tag '/audits/asc_calculation', :method => :post do %>
