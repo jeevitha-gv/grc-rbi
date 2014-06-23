@@ -29,8 +29,12 @@ class ReminderMailer < ActionMailer::Base
 
   def notify_auditee_about_recommendations(checklist_recommendation)
     @checklist_recommendation = checklist_recommendation
-    mail(:to => checklist_recommendation.checklist.artifact_answers.last.responsibility_email, :subject => "Auditor has given a recommendation")
-
+    if checklist_recommendation.checklist_type == "AuditCompliance"
+      email = checklist_recommendation.checklist.artifact_answers.last.responsibility_email
+    elsif checklist_recommendation.checklist_type == "Answer"
+      email = checklist_recommendation.checklist.nc_question.auditee.email
+    end
+    mail(:to => email , :subject => "Auditor has given a recommendation")
   end
 
   def notify_auditee_about_nc_recommendations(checklist_recommendation)
