@@ -525,3 +525,8 @@ Modular.delete_all
     Modular.create([{model_name: 'User', action_name: 'index', section_id: '1'}])
     Modular.create([{model_name: 'User', action_name: 'update', section_id: '1'}])
     Modular.create([{model_name: 'User', action_name: 'delete', section_id: '1'}])
+
+Language.delete_all
+
+    Language.create(:name => 'English', :code => 'en')
+    Language.create(:name => 'French', :code => 'fr')
