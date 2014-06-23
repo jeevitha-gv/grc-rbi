@@ -29,7 +29,7 @@ class ReminderMailer < ActionMailer::Base
 
   def notify_auditee_about_recommendations(checklist_recommendation)
     @checklist_recommendation = checklist_recommendation
-    mail(:to => checklist_recommendation.artifact_answers.last.responsibility_email, :subject => "Auditor has given a recommendation")
+    mail(:to => checklist_recommendation.checklist.artifact_answers.last.responsibility_email, :subject => "Auditor has given a recommendation")
 
   end
 
@@ -68,8 +68,18 @@ class ReminderMailer < ActionMailer::Base
   end
 
   # Mailer for Escalation Matrix
-  def escalation_matrix_mail(reminder_mail_to, reminder_mail_cc,escalation_details)
-    @escalation_details = escalation_details
+  def escalation_mail_arifact_answer(reminder_mail_to, reminder_mail_cc,answered_artifacts)
+    @answered_artifact = answered_artifacts
+    mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Alert Mail for giving response")
+  end
+
+  def escalation_mail_recommendation(reminder_mail_to, reminder_mail_cc,recommendation)
+    @recommendation = recommendation
+    mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Alert Mail for giving response")
+  end
+
+  def escalation_mail_nc_questions(reminder_mail_to, reminder_mail_cc,nc_question)
+    @nc_question = nc_question
     mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Alert Mail for giving response")
   end
 
