@@ -74,17 +74,17 @@ class ReminderMailer < ActionMailer::Base
   # Mailer for Escalation Matrix
   def escalation_mail_arifact_answer(reminder_mail_to, reminder_mail_cc,answered_artifacts)
     @answered_artifact = answered_artifacts
-    mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Alert Mail for giving response")
+    mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Escalation for giving response")
   end
 
   def escalation_mail_recommendation(reminder_mail_to, reminder_mail_cc,recommendation)
     @recommendation = recommendation
-    mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Alert Mail for giving response")
+    mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Escalation for giving response")
   end
 
   def escalation_mail_nc_questions(reminder_mail_to, reminder_mail_cc,nc_question)
     @nc_question = nc_question
-    mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Alert Mail for giving response")
+    mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Escalation for giving response")
   end
 
 end

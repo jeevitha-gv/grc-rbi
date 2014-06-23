@@ -5,10 +5,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mail For Escalation</title>
-
-  <style>
-  body{background:#99c155; font-family:arial; margin:0; background-image:url(main_bg.jpg); background-repeat:repeat-x; }
-  </style>
+	<style>
+	  body{background:#99c155; font-family:arial; margin:0; background-image:url(main_bg.jpg); background-repeat:repeat-x; }
+	  </style>
 </head>
 
 <body>
@@ -30,14 +29,22 @@ Having trouble viewing this email? <a style="color:#74ac37; text-decoration:none
 </table>
 
 <table style="margin:0 auto; width:625px;background-image:url(middle_content.png);background-repeat:repeat-y; "  cellpadding="0" cellspacing="0" border="0" >
-<tr><td style="color:#64972f; padding:10px 0 0 20px; font-size:20px;" >Dear <%= @answered_artifact.responsibility.user_name %>,</td>
+<tr><td style="color:#64972f; padding:10px 0 0 20px; font-size:20px;" >Dear Manager,</td>
 </tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:16px;" >We would like to request to take necessary steps to take it for quick closure.</td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:16px;" >Please be advised the following Audit task is pending with your Team member </td></tr>
 
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Audit Name: <%= @answered_artifact.audit_compliance.audit.title %> </td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >	Auditor Name : <%= @answered_artifact.audit_compliance.audit.auditory.user_name %> </td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >	 Control / Checklist Pending : <%= @answered_artifact.audit_compliance.compliance_library_name%> / <%= @answered_artifact.artifact_name %> </td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >	Due date : <%= @answered_artifact.target_date %> </td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >	Priority : <%= @answered_artifact.priority_name %> </td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Audit Name:<%= @recommendation.checklist.audit.title %> </td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >	Auditor Name :<%= @recommendation.checklist.audit.auditory.user_name %> </td></tr>
+
+<% if @recommendation.checklist_type = "AuditCompliance" %>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Auditee Name : <%= @recommendation.checklist.artifact_answers.last.responsibility.user_name %> </td></tr>
+<% else %>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Auditee Name : <%= @recommendation.checklist.nc_question.auditee_email %> </td></tr>
+<% end %>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >	Recommendation: <%= @recommendation.recommendation %> </td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >	Due date : <%= @recommendation.closure_date %> </td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >	Priority : <%= @recommendation.recommendation_priority_name %> </td></tr>
 
 <table style="margin:0 auto; width:625px; padding: 20px 0;background-image:url(middle_content.png);background-repeat:repeat-y;"  cellpadding="0" cellspacing="0" border="0">
 <tr><td><a style="background:#74ac37; color:#fff; border-radius:5px; padding:10px 30px; border:1px solid #6c9c39; text-decoration:none; margin: 0 0 0 15px; font-size:12px;"  href="">View Audit Details</a></td></tr>
