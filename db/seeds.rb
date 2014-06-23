@@ -528,5 +528,5 @@ Modular.delete_all
 
 Language.delete_all
 
-    Language.create(:name => 'English', :code => 'en')
-    Language.create(:name => 'French', :code => 'fr')
+    Language.create(name: 'English', code: 'en')
+    Language.create(name: 'French', code: 'fr')
