@@ -68,7 +68,7 @@
 			<div class="col-sm-7">
 			<% question_options = question.question_options %>
 				<% question_options.each do |question_option|%>
-					<input type="radio" value="<%= question_option.id%>" name="answer[<%= question.id %>][value]" id="value_<%= question_option.id%>">
+					<input type="radio" value="<%= question_option.id%>" name="answer[<%= question.id %>][value]" id="value_<%= question_option.id%>" <%= 'checked' if question.answer.question_option.value == question_option.value %>>
 					<label for="value_<%= question_option.id%>"><%= question_option.value%></label> <br>
 				<% end %>
 				<br>
