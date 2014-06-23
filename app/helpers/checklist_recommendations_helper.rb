@@ -9,15 +9,15 @@ module ChecklistRecommendationsHelper
 	# 	checklist.checklist.compliance_library
 	# end
 	
-	def audit_compliance_id(control_id, audit_id)
-		AuditCompliance.where('compliance_library_id= ? AND audit_id= ?',control_id,audit_id).first.id
-	end
- 
+	# def audit_compliance_id(control_id, audit_id)
+	# 	AuditCompliance.where('compliance_library_id= ? AND audit_id= ?',control_id,audit_id).first.id
+	# end
+
 	def recommendation_status
 		closed = RecommendationStatus.where('name= ?','Closed Recommendation').first.id
 		closed_duplicate = RecommendationStatus.where('name= ?','Closed duplicate Recommendation').first.id
 		risk_accepted = RecommendationStatus.where('name= ?','Risk accepted for Recommendation').first.id
-		return closed, closed_duplicate
+		return closed, closed_duplicate, risk_accepted
 	end
 	
 	def audit_status

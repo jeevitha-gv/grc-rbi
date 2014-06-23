@@ -6,8 +6,11 @@ class CreateAuditOperationalWeightages < ActiveRecord::Migration
       t.integer :weightage
       t.integer :total_score
       t.integer :percentage
-      
+
       t.timestamps
     end
+
+    add_index :audit_operational_weightages, :operational_area_id
+    add_index :audit_operational_weightages, :audit_id
   end
 end

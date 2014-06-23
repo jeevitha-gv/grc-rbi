@@ -7,7 +7,7 @@ class AuditStatus < ActiveRecord::Base
 
    # associations
    has_many :audits
-   
+
    #Scope
    scope :for_name, lambda {|name| where(name: name).first}
 end

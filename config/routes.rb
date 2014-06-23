@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     post 'audit_with_status', on: :collection
     post 'audit_all', on: :collection
     post 'audit_imports', on: :collection
-    get 'export_files', on: :collection
+    get 'audit_export', on: :collection
     post 'asc_calculation', on: :collection
     get 'maximum_actual_score' , on: :collection
     get 'audit_dashboard' , on: :collection

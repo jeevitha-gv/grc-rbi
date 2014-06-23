@@ -127,6 +127,25 @@ class Audit < ActiveRecord::Base
     end
   end
 
+  # Audit create from csv
+  def self.import_from_file(file, company)
+    spreadsheet = Audit.open_spreadsheet(file)
+    start = 2
+    (start..spreadsheet.last_row).each do |i|
+      row_data = spreadsheet.row(i)
+      audit_type = AuditType.where("lower(name) = ?", "#{row_data[7].to_s.strip.downcase}").first
+      compliance = row_data[8].strip.downcase=="compliance" ? (comp_type = "Compliance", stand_id = Compliance.where("lower(name) = ?", row_data[9].to_s.strip.downcase).first)  : (comp_type = "NonCompliance", stand_id = Topic.where("lower(name) = ?", row_data[10].to_s.strip.downcase).first)
+      audit_initializers(row_data[11].to_s.strip.downcase, row_data[12].to_s.strip.downcase, row_data[13].to_s.strip.downcase, company)
+      auditor_user = User.for_users_by_company(row_data[16].to_s.strip.downcase, company.id).last
+
+      audit = Audit.new(:title => row_data[0], :scope => row_data[1], :objective => row_data[2], :issue => row_data[3], :methodology => row_data[4], :deliverables => row_data[5], :context => row_data[6], :audit_type_id => audit_type.present? ? audit_type.id : nil, :compliance_type => compliance[0], :standard_id =>  compliance[1].present? ? compliance[1].id : nil, :location_id =>  @location.present? ? @location.id : nil, :department_id =>  @department.present? ? @department.id : nil, :team_id =>  @team.present? ? @team.id : nil, :start_date =>  row_data[14], :end_date =>  row_data[15], :auditor => auditor_user.present? ? auditor_user.id : nil, :company_id => company.id, :audit_status_id => AuditStatus.where(:name=>"Initiated").first.id)
+      audit.save(:validate => false)
+
+      auditee_users = row_data[17].split(', ').collect{|x| User.for_users_by_company(x.strip, company.id)}
+      auditee_users.collect{|x| audit.audit_auditees.create(:user_id =>x[0].id) if(@team.present? && @team.users.present? && @team.users.map(&:id).include?(x[0].id))}
+    end
+  end
+
   # ASC Score measurement
   def audit_operational_weightage(company)
     over_all_maximum_score = 0
@@ -223,11 +242,11 @@ class Audit < ActiveRecord::Base
     end
     return checklist_completed_status.count, checklist_pending_status.count, recommendation_completed_status, recommendation_pending_status, observation_completed_status, observation_pending_status, response_completed_status, response_pending_status
   end
-  
+
   def recommendation_status
     self.checklist_recommendations.map(&:recommendation_completed).all?{ |x| x == true }
   end
-  
+
   def build_audit_compliance(compliance_params)
       old_compliance = self.audit_compliances.map(&:id)
       compliance_params.each do |k, v|
@@ -251,33 +270,39 @@ class Audit < ActiveRecord::Base
             else
               artifact_answer = audit_compliance.artifact_answers.create(v.reject{|x| x=="artifact_id" || x=="compliance_library_id" || x == "artifact_answers"})
             end
-        end      
+        end
         ArtifactAnswer.delete(old_artifact_answers) if old_artifact_answers.present?
       end
       AuditCompliance.delete(old_compliance) if old_compliance.present?
   end
-  
+
+  protected
+    def self.audit_initializers(location_name, department_name, team_name, company)
+      @location = Location.for_name_by_company(location_name, company.id).first
+      @department = Department.for_name_by_location(department_name, @location.id).first if @location.present?
+      @team = Team.for_name_by_department(team_name, @department.id).first if @department.present?
+    end
 
   private
-  def check_auditees_uniq
-    if self.audit_auditees.present?
-      check_user_id = audit_auditees.size == audit_auditees.collect{|x| x.user_id}.uniq.size
-      errors.add(:auditees, ("Please select unique auditees")) if check_user_id == false
+    def check_auditees_uniq
+      if self.audit_auditees.present?
+        check_user_id = audit_auditees.size == audit_auditees.collect{|x| x.user_id}.uniq.size
+        errors.add(:auditees, ("Please select unique auditees")) if check_user_id == false
+      end
     end
-  end
 
-  def check_auditees_presence
-    self.errors[:auditees] = MESSAGES['audit']['failure']['auditee_blank'] unless audit_auditees.present?
-  end
-
-  def validate_end_date_before_start_date
-    if end_date && start_date
-      self.errors[:end_date] = MESSAGES['audit']['failure']['start_date_before_end_date'] if end_date < start_date
+    def check_auditees_presence
+      self.errors[:auditees] = MESSAGES['audit']['failure']['auditee_blank'] unless audit_auditees.present?
     end
-  end
 
-  def check_for_auditor_in_auditees
-    #~ self.errors[:auditees] = MESSAGES['audit']['failure']['auditor_not_in_auditees'] if audit_auditees.map(&:user_id).include?(self.auditor)
-  end
-  
+    def validate_end_date_before_start_date
+      if end_date && start_date
+        self.errors[:end_date] = MESSAGES['audit']['failure']['start_date_before_end_date'] if end_date < start_date
+      end
+    end
+
+    def check_for_auditor_in_auditees
+      #~ self.errors[:auditees] = MESSAGES['audit']['failure']['auditor_not_in_auditees'] if audit_auditees.map(&:user_id).include?(self.auditor)
+    end
+
 end
