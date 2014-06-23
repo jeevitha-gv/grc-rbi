@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
       self.accessible_audits.select{ |x| audits << x if(x.checklist_recommendations.blank?) }
       audits
     when 'check'
-      self.accessible_audits.select{ |x| audits << x if(!x.recommendation_status) }
+      self.accessible_audits.select{ |x| audits << x if(x.checklist_recommendations.present? && !x.recommendation_status) }
       audits
     when 'act'
       self.accessible_audits.select{ |x| audits << x if(x.recommendation_status && !x.response_status) }
