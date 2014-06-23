@@ -41,8 +41,10 @@ class ChecklistRecommendation < ActiveRecord::Base
 	delegate :name, :to => :recommendation_severity, prefix: true, allow_nil: true
 	delegate :name, :to => :recommendation_status, prefix: true, allow_nil: true
 	delegate :name, :to => :response_status, prefix: true, allow_nil: :true
-    delegate :name, to: :response_priority, prefix: true, allow_nil: :true
+  delegate :name, to: :response_priority, prefix: true, allow_nil: :true
+  delegate :name, to: :response_severity, prefix: true, allow_nil: :true
 	delegate :comment, to: :remark, prefix: true, allow_nil: :true
+  delegate :email, to: :auditee, prefix: true, allow_nil: :true
 
 
 
