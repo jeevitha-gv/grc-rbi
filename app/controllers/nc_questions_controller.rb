@@ -9,6 +9,11 @@ class NcQuestionsController < ApplicationController
 		@nc_question = NcQuestion.new
 		@audit.nc_questions.build unless @audit.nc_questions.present?
     @audit.nc_questions.first.question_options.build unless @audit.nc_questions.first.question_options.present?
+
+    # nc_questions from library
+    nc_questions = current_company.nc_questions.where(:nc_library => "true")
+    audit_nc_questions = @audit.nc_questions.map(&:id)
+    @library_questions = nc_questions.where("id NOT IN (?)", audit_nc_questions)
 	end
 
   # Create Nc Questions for audit
