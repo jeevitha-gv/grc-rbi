@@ -70,7 +70,7 @@
                          <%end%>
                       </div>
                     <% else %>
-                      <%= render "nc_recommendation",f: f %>
+                      <%= render "nc_recommendation",f: f, audit: @audit, checklist_recommendation: @checklist_recommendation %>
                       <div class="clearfix"></div>
                       <div class="fright paddingtop">
                         <a class="black_btn" href="javascript:void(0)" onclick="goBack()">Back</a>
