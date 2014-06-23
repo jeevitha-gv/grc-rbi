@@ -14,39 +14,39 @@
             <div class="table-responsive">
               <table class="table table-striped list-table">
                 <tr>
-                  <th colspan="6"><%= @audit.title.truncate(50) unless @audit.title.nil?%></th>
+                  <th colspan="6"><%= audit.title.truncate(50) if audit.title?%></th>
                 </tr>
                 <tr>
                   <td><label>Client : </label>
-                   <span><%= @audit.client_name%></span></td>
+                   <span><%= audit.client_name%></span></td>
                   <td><label>Scope : </label>
-                   <span><%= @audit.scope.truncate(50) unless @audit.scope.nil? %></span></td>
+                   <span><%= audit.scope.truncate(50) if audit.scope? %></span></td>
                   <td><label>Team : </label>
-                    <span><%= @audit.team_name %></span></td>
+                    <span><%= audit.team_name %></span></td>
                 </tr>
                 <tr>
                   <td><label>Start Date : </label>
-                  <span><%= @audit.start_date %> </span> </td>
+                  <span><%= audit.start_date %> </span> </td>
                   <td><label>End Date : </label>
-                  <span><%= @audit.end_date %> </span> </td>
+                  <span><%= audit.end_date %> </span> </td>
                   <td><label>Deliverables : </label>
-                  <span><%= @audit.deliverables %></span></td>
+                  <span><%= audit.deliverables %></span></td>
                 </tr>
                 <tr>
                   <td><label>Objective : </label>
-                    <span><%= @audit.objective.truncate(50) unless @audit.objective.nil?%> </span></td>
+                    <span><%= audit.objective.truncate(50) if audit.objective?%> </span></td>
                   <td><label>Context :</label>
-                    <span><%= @audit.context.truncate(50) unless @audit.context.nil?%> </span></td>
+                    <span><%= audit.context.truncate(50) if audit.context?%> </span></td>
                   <td><label>Methodology : </label>
-                    <span><%= @audit.methodology.truncate(50) unless @audit.methodology.nil?%>   </span></td>
+                    <span><%= audit.methodology.truncate(50) if audit.methodology?%>   </span></td>
                 </tr>
                 <tr>
                   <td><label>Issues : </label>
-                    <span><%= @audit.issue.truncate(50) unless @audit.issue.nil?%> </span></td>
+                    <span><%= audit.issue.truncate(50) if audit.issue?%> </span></td>
                   <td><label>Compliance : </label>
-                    <span><%= @audit.compliance_type %>  </span></td>
-                  <td><label><%= @audit.compliance_type == 'Compliance' ? "Standard" : "Topic"%> :</label>
-                    <span><%= standard_name(@audit) %></span></td>
+                    <span><%= audit.compliance_type %>  </span></td>
+                  <td><label><%= audit.compliance_type == 'Compliance' ? "Standard" : "Topic"%> :</label>
+                    <span><%= standard_name(audit) %></span></td>
                 </tr>
               </table>
             </div>
@@ -56,14 +56,14 @@
 
                     <div class="container">
                     <%= form_for(@checklist_recommendation) do |f| %>
-                    <% if @audit.compliance_type == 'Compliance'%>
+                    <% if audit.compliance_type == 'Compliance'%>
                       <%= render "recommendation",f: f %>
                       <div class="clearfix"></div>
                       <div class="fright paddingtop">
                         <a class="black_btn" href="javascript:void(0)">Back</a>
                         <!--<a class="grey_btn" href=""> Save Draft</a>-->
-                        <%unless(@audit.audit_status_id == 4)%>
-                          <%unless(@audit.recommendation_status)%>
+                        <%unless(audit.audit_status_id == 4)%>
+                          <%unless(audit.recommendation_status)%>
                             <%= f.submit "Save Draft" , :class => "grey_btn", :onclick => "return control_checklist();save_draft_checklist();"%>
                            <%end%>
                             <%= f.submit "Overallscore" , :class => "orange_btn" , :onclick => "return control_checklist();"%>
@@ -75,8 +75,8 @@
                       <div class="fright paddingtop">
                         <a class="black_btn" href="javascript:void(0)" onclick="goBack()">Back</a>
                         <!--<a class="grey_btn" href=""> Save Draft</a>-->
-                       <%unless(@audit.audit_status_id == 4)%>
-                       <%unless(@audit.recommendation_status)%>
+                       <%unless(audit.audit_status_id == 4)%>
+                       <%unless(audit.recommendation_status)%>
                           <%= f.submit "Save Draft", :class => "grey_btn" , :onclick => "return control_checklist();save_draft_checklist();"%>
                        <%end%>
                         <%= f.submit "Submit Recommendations" , :class => "orange_btn", :onclick => "return control_checklist();save_draft_checklist();"%>

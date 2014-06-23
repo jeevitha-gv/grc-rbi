@@ -4,53 +4,54 @@
 <div class="clearfix"></div>
 <div class="content">
   <div class="container">
-    <div class="row"> 
+    <div class="row">
       <!-- Nav tabs -->
      <h4>Response for Compliance Audit</h4>
       <div id="example" class="k-content">
         <div class="panel-container">
           <div id="strip">
-            
             <div class="row panel-block">
               <div class="col-md-12">
                 <div class="box-wrapper">
                   <div id="grid"></div>
                 </div>
               </div>
-              
               <div class="fright"><br>
             <br>
+<<<<<<< HEAD
             <a class="black_btn" href="javascript:goBack()">Back</a> 
             <% unless current_audits.audit_status_id == 4%>
               <%= link_to "Submit for recommendation", audit_audit_compliance_path(audit_id: params[:audit_id], id: 'response') , :class => "orange_btn", method: 'post'%>
+=======
+            <a class="black_btn" href="javascript:goBack()">Back</a>
+            <% unless current_audit.audit_status_id == 4%>
+              <%= link_to "Submit for recommendation", submit_audit_compliances_path() , :class => "orange_btn", method: 'post'%>
+>>>>>>> a2405e42227a5a8817d76472a0c4730fee841a63
             <%end%>
             </div>
             </div>
-            
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 <div class="modal fade" id="add_file">
   <div class="modal-dialog modal-dialog_large">
     <div class="modal-content">
-      
+  	<!-- Partial file -->
     </div>
   </div>
 </div>
 <div class="modal fade" id="add_comment">
   <div class="modal-dialog modal-dialog_large">
     <div class="modal-content">
-      
+    <!-- Partial file -->
     </div>
   </div>
 </div>
 
 <script type="text/javascript">
-	        
 				// dataSource for Kendo grid
 				dataSource = new kendo.data.DataSource({
 					transport: {
@@ -79,7 +80,6 @@
 						}
 					}
 				});
-        
     $(document).ready(function() {
 				// Fancybox
 				$(".fancybox").fancybox();					
@@ -87,7 +87,7 @@
 				// Kendo Grid
 				$("#grid").kendoGrid({
 					dataSource: dataSource,
-				    dataBound: function(){                                
+				    dataBound: function(){
             var grid = $("#grid").data("kendoGrid");
             var gridData = grid.dataSource.view();
             for (var i = 0; i < gridData.length; i++) {
@@ -97,7 +97,7 @@
                     var editButton = $(currenRow).find(".k-grid-attach");
                     editButton.hide();
                 }
-            }            
+            }
 					},
 					height: 'auto',
 					scrollable: true,
@@ -116,9 +116,8 @@
 						{ field: "target_date", title: "Target Date"},
 					],
 					editable: "inline"
-				});         
-      });         
-
+				});
+      });
 			// Edit Popup
 			$(window).load(function(){
 				$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");				

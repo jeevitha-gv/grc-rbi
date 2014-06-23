@@ -95,6 +95,8 @@ en:
       auditee_unique: "Please select unique auditee"
       start_date_before_end_date: "End date must not be before start date"
       auditor_not_in_auditees: "User is already selected as auditor"
+    csv_upload:
+      success: "Audit have been imported successfully"
 
   checklist_recommendations:
     recommendation: "Please enter recommendation"
@@ -111,11 +113,15 @@ en:
 
   answers:
     detailed_value: "Please enter answer"
-    
+
   nc_question:
     csv_upload:
-      success: "Non Compliance Questions have been imported successfully "
-  
+      success: "Non Compliance Questions have been imported successfully"
+
   csv_upload:
     error: "Invalid file format"
     presence: "Please attach a file."
+
+  compliance_libraries:
+    csv_upload:
+      success: "ComplianceLibrary domains have been imported successfully"

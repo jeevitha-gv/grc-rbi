@@ -7,5 +7,8 @@ class CreateArtifacts < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :artifacts, :company_id
+    add_index :artifacts, :compliance_library_id
   end
 end

@@ -4,7 +4,7 @@ class ReminderMailer < ActionMailer::Base
 
   def notify_auditor_about_audit(audit)
   	@audit = audit
-  	mail(:to => audit.auditory.email, :subject => "Your Audit has been successfully created")
+  	mail(:to => audit.auditory_email, :subject => "Your Audit has been successfully created")
   end
 
   def notify_auditees_about_audit(audit)
@@ -14,38 +14,38 @@ class ReminderMailer < ActionMailer::Base
 
   def notify_auditees_that_checklist_is_prepared(nc_question)
     @nc_question = nc_question
-    mail(:to => nc_question.auditee.email, :subject => "Checklist has been prepared for NonCompliance Audit")
+    mail(:to => nc_question.auditee_email, :subject => "Checklist has been prepared for NonCompliance Audit")
   end
 
   def notify_auditee_about_checklist(artifact_answer)
     @artifact_answer = artifact_answer
-    mail(:to => artifact_answer.responsibility.email, :subject => "Checklist has been prepared for Compliance Audit")
+    mail(:to => artifact_answer.responsibility_email, :subject => "Checklist has been prepared for Compliance Audit")
   end
 
   def notify_auditor_that_auditee_has_answered(audit)
     @audit = audit
-    mail(:to => audit.auditory.email, :subject => "All auditees has answered your Checklist")
+    mail(:to => audit.auditory_email, :subject => "All auditees has answered your Checklist")
   end
 
   def notify_auditee_about_recommendations(checklist_recommendation)
     @checklist_recommendation = checklist_recommendation
-    mail(:to => checklist_recommendation.artifact_answers.last.responsibility.email, :subject => "Auditor has given a recommendation")
+    mail(:to => checklist_recommendation.artifact_answers.last.responsibility_email, :subject => "Auditor has given a recommendation")
 
   end
 
   def notify_auditee_about_nc_recommendations(checklist_recommendation)
     @checklist_recommendation = checklist_recommendation
-    mail(:to => checklist_recommendation.checklist.nc_question.auditee.email, :subject => "Auditor has given a recommendation")
+    mail(:to => checklist_recommendation.checklist.nc_question.auditee_email, :subject => "Auditor has given a recommendation")
   end
 
   def notify_auditor_about_responses(checklist_recommendation)
     @checklist_recommendation = checklist_recommendation
-    mail(:to => checklist_recommendation.checklist.audit.auditory.email, :subject => "Auditee has submitted a response to your recommendation")
+    mail(:to => checklist_recommendation.checklist.audit.auditory_email, :subject => "Auditee has submitted a response to your recommendation")
   end
 
   def notify_auditee_about_observations(checklist_recommendation)
     @checklist_recommendation = checklist_recommendation
-    mail(:to => checklist_recommendation.auditee.email, :subject => "Auditor has submitted an observation for your response")
+    mail(:to => checklist_recommendation.auditee_email, :subject => "Auditor has submitted an observation for your response")
   end
 
   # Mailer for Artifact Priority

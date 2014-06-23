@@ -8,5 +8,8 @@ class CreateComplianceLibraries < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :compliance_libraries, :compliance_id
+    add_index :compliance_libraries, :parent_id
   end
 end

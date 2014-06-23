@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
 
   resources :audits do
+<<<<<<< HEAD
     collection do
       get 'department_teams_users'
       post 'audit_with_status'
@@ -60,6 +61,17 @@ Rails.application.routes.draw do
         get 'export_files'
       end
   end
+=======
+    get 'department_teams_users', on: :collection
+    post 'audit_with_status', on: :collection
+    post 'audit_all', on: :collection
+    post 'audit_imports', on: :collection
+    get 'audit_export', on: :collection
+    post 'asc_calculation', on: :collection
+    get 'maximum_actual_score' , on: :collection
+    get 'audit_dashboard' , on: :collection
+    get 'artifacts_download' , on: :collection
+>>>>>>> a2405e42227a5a8817d76472a0c4730fee841a63
   end
 
   resource :answers
@@ -89,7 +101,7 @@ Rails.application.routes.draw do
 
   # delete '/activities/clear_audit' => 'activities#clear_audit', :as => :clear_audit
   resources :activities, :except => [:show]
-  
+
   resources :artifact_answers do
     collection do
       get 'list_attachments'

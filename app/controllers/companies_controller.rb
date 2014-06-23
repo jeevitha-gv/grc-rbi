@@ -1,5 +1,4 @@
 class CompaniesController < ApplicationController
-  
   skip_before_filter :authenticate_user!, only: [ :new, :create ]
   before_filter :authenticate_admin_user, :only => [:settings]
   prepend_before_filter :skip_if_authenticated, only: [ :new, :create ]
@@ -25,7 +24,7 @@ class CompaniesController < ApplicationController
   end
 
   private
-  # Strong parameters 
+  # Strong parameters
   def company_params
     params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :timezone, attachment_attributes: [:id, :attachment_file], users_attributes: [:user_name, :email, :role_id])
   end

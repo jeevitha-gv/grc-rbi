@@ -5,6 +5,5 @@ class CreateCompliances < ActiveRecord::Migration
 
       t.timestamps
     end
-  
   end
 end

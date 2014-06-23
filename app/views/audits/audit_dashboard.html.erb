@@ -91,7 +91,7 @@
           <div class="dash_sub_title">To Do List</div>
           <div class="db_todolist">
 					<% @to_do_list && @to_do_list.each do |checklist_recommendation|%>
-					<% if !checklist_recommendation.recommendation.nil? && checklist_recommendation.recommendation_completed.nil?%>
+					<% if !checklist_recommendation.recommendation? && checklist_recommendation.recommendation_completed? %>
             <div class="db_todolist_info clearfix">
               <div class="checkbox_wrapper"></div>
               <div class="db_inform">
@@ -100,7 +100,7 @@
               <a class="pendinglink" href=""><%= 'Pending'%></a>
 							</div>
           <% end %>
-					<% if !checklist_recommendation.corrective.nil? && checklist_recommendation.response_completed.nil?%>
+					<% if !checklist_recommendation.corrective? && checklist_recommendation.response_completed?%>
             <div class="db_todolist_info clearfix">
               <div class="checkbox_wrapper"></div>
               <div class="db_inform">
@@ -109,7 +109,7 @@
               <a class="pendinglink" href=""><%= 'Pending' %></a>
 							</div>
           <% end %>
-					<% if !checklist_recommendation.observation.nil? && checklist_recommendation.is_published.nil?%>
+					<% if !checklist_recommendation.observation? && checklist_recommendation.is_published?%>
             <div class="db_todolist_info clearfix">
               <div class="checkbox_wrapper"></div>
               <div class="db_inform">

@@ -15,8 +15,7 @@ class ApplicationController < BaseController
   helper_method :current_audits
   before_filter :check_subdomain, :if => :admin_function
   before_filter :check_password_authenticated, :if => :current_user
-  
-  # Rescue for 400 and 500 errors 
+  # Rescue for 400 and 500 errors
   unless Rails.application.config.consider_all_requests_local
     rescue_from Exception, with: lambda { |exception| render_error 500, exception }
     rescue_from ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
@@ -33,23 +32,20 @@ class ApplicationController < BaseController
   def current_audits
     Audit.find(cookies[:audit_id].to_i) if cookies[:audit_id].present? rescue nil
   end
-  
   # Check functions is for company admin and Super admin
   def admin_function
     if request.url.include?("/admin")
-      return false 
+      return false
     else
       return true
     end
   end
-  
   # Devise Strong Parameters
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :user_name
     devise_parameter_sanitizer.for(:sign_up) << :full_name
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me, :domain) }
   end
-
   #To check company admin for settings
   def authenticate_admin_user
     if current_user.role_title == 'company_admin'
@@ -95,7 +91,7 @@ class ApplicationController < BaseController
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
-    
+
   private
 
   # Render error from rescue

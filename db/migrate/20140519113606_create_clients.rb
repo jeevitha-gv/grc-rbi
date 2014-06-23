@@ -11,5 +11,7 @@ class CreateClients < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :clients, :company_id
   end
 end

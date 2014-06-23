@@ -13,5 +13,11 @@ class CreateNcQuestions < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :nc_questions, :audit_id
+    add_index :nc_questions, :question_type_id
+    add_index :nc_questions, :priority_id
+    add_index :nc_questions, :company_id
+    add_index :nc_questions, :auditee_id
   end
 end

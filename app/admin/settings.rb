@@ -38,7 +38,7 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
     f.object.build_attachment unless f.object.attachment.present?
     f.inputs "Company Details" do
       f.input :name
-      f.input :primary_email 
+      f.input :primary_email
       f.input :secondary_email
       f.input :domain , :input_html => { :disabled => true }
       f.input :address1

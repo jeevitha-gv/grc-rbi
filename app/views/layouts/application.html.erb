@@ -17,10 +17,10 @@
     <link rel="stylesheet" type="text/css" href="/assets/outer/editablestyle.css">
     <script src="/assets/outer/masonry.pkgd.min.js"></script>
     <script src="/assets/outer/messi.js"></script>
-   <script src="/assets/outer/kendo.all.min.js" type="text/javascript"></script> 
-   <script src="/assets/outer/kendo.web.min.js" type="text/javascript"></script> 
+   <script src="/assets/outer/kendo.all.min.js" type="text/javascript"></script>
+   <script src="/assets/outer/kendo.web.min.js" type="text/javascript"></script>
    <script src="/assets/outer/jquery.fancybox.js" type="text/javascript"></script>
-   <script type="text/javascript" src="/assets/messi.min.js"></script>  
+   <script type="text/javascript" src="/assets/messi.min.js"></script>
     <%= yield :head%>
   <%= csrf_meta_tags %>
 </head>
@@ -29,7 +29,6 @@
   <%= render :partial => "layouts/header" if user_signed_in? %>
   <%= yield %>
   <%= yield :javascript_includes%>
-
   <%= render :partial => "layouts/footer" if user_signed_in? %>
 </div>
 </body>

@@ -35,6 +35,8 @@ class Company < ActiveRecord::Base
   validates :address2, length: { in: 7..40 }, :if => Proc.new{|f| !f.address2.blank? }
   validates :secondary_email, uniqueness: { scope: :primary_email }
 
+  delegate :email, to: :company_admin, prefix: true, allow_nil: true
+
   after_save :company_role_create
 
   scope :active, -> { where(is_disabled: false) }

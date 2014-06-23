@@ -11,8 +11,8 @@ ActiveAdmin.register Company do
 
   index do
     column :name
-    column :primary_email    
-    column :domain    
+    column :primary_email
+    column :domain
     column :timezone
     column :country
     column :contact_no
@@ -45,5 +45,4 @@ ActiveAdmin.register Company do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-  
 end

@@ -7,4 +7,5 @@ class AuditType < ActiveRecord::Base
   # associations
   has_many :audits
 
+
 end

@@ -86,7 +86,7 @@ $(document).ready(function(){
           field: "auditee",
           operator: "contains",
           value   : val
-        }        
+        }
       ]
     });
   }
@@ -167,7 +167,6 @@ $(document).ready(function(){
               row_data.auditee = row_data.auditee_list.split(",")[0]
               }
 						});
-            
              var grid = $("#grid").data("kendoGrid");
             var gridData = grid.dataSource.view();
             for (var i = 0; i < gridData.length; i++) {
@@ -178,9 +177,7 @@ $(document).ready(function(){
                     editButton.prop( "checked", true )
                     currenRow.addClass('k-state-selected')
                 }
-            } 
-            
-            
+            }
 					},
 					height: 'auto',
 					scrollable: true,
@@ -215,7 +212,7 @@ $(document).ready(function(){
 				$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");
 			});
 
-		</script>    
+		</script>
  <script type="text/x-kendo-template" id="myTemplate">
  <div class='checklist_select_big'>
  <select id="artifact_#= id#" class="multiselect" multiple="multiple">

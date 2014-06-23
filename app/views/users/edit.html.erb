@@ -18,7 +18,7 @@
             <div>
               <%= attach.label :attachment, "Profile Photo" %><br />
               <div class="profile_photo">
-                <%= image_tag((@user.attachment.present? && @user.attachment.attachment_file.present?) ? @user.attachment.attachment_file.thumb : "/assets/outer/face-image.jpg", :id => "profile_img", :class => "profile_img") %>
+                <%= image_tag((@user.attachment.present? && @user.attachment_attachment_file.present?) ? @user.attachment_attachment_file.thumb : "/assets/outer/face-image.jpg", :id => "profile_img", :class => "profile_img") %>
                 <div class="profile_photo_sec">
                 </div>
               </div>

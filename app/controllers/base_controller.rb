@@ -75,7 +75,7 @@ class BaseController < ActionController::Base
     def check_company_admin
       if(!current_user || current_company.id != current_user.company_id)
         flash[:alert] = "Access restricted"
-        redirect_to '/users/sign_in' 
+        redirect_to '/users/sign_in'
       end
     end
 
@@ -96,7 +96,6 @@ class BaseController < ActionController::Base
       cookies[:audit_id] = { :value => current_user.accessible_audits.last.id, :expires => 24.hour.from_now } if current_user.accessible_audits.present?
     end
   end
-  
   # If there is no Current Audit then the access is restricted
   def check_for_current_audits
     unless current_audits.present?
@@ -120,7 +119,6 @@ class BaseController < ActionController::Base
 	  		redirect_to audits_path
 	  	end
 	end
-  
   # Authorize the Auditor for current audit and Skip current admin alone
   def authorize_auditor_skip_company_admin
 	  	if(current_audits.auditor != current_user.id && current_user.role_title != "company_admin")

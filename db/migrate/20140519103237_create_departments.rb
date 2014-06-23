@@ -6,5 +6,7 @@ class CreateDepartments < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :departments, :location_id
   end
 end
