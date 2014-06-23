@@ -57,6 +57,7 @@ ActiveAdmin.register ComplianceLibrary do
         redirect_to new_audit_path
       end
     end
+  end
 
   #Index page fields customization
   index do
