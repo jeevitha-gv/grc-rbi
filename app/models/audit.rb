@@ -58,6 +58,7 @@ class Audit < ActiveRecord::Base
   delegate :name, :to => :audit_type, prefix: true, allow_nil: true
   delegate :full_name, :to => :auditory, prefix: true, allow_nil: true
   delegate :email, :to => :auditory, prefix: true, allow_nil: true
+  delegate :user_name, :to => :auditory, prefix: true, allow_nil: true
   delegate :name, :to => :location, prefix: true, allow_nil: true
   delegate :name, :to => :department, prefix: true, allow_nil: true
   delegate :name, :to => :audit_status, prefix: true, allow_nil: true
