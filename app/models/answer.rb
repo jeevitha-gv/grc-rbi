@@ -3,17 +3,17 @@ class Answer < ActiveRecord::Base
 	has_one :checklist_recommendation, as: :checklist
 	belongs_to :nc_question
 	has_one :attachment , as: :attachable
-
+  belongs_to :question_option, :class_name => "QuestionOption", foreign_key: "value"
+    
   delegate :question, :to => :nc_question
   delegate :question_type_name, :to => :nc_question
 
   # validates :detailed_value, presence:true
   # validates :value, presence:true
-  
   # Build Answer form Nc Question selected
   def self.build_answer(params)
     params[:answer] && params[:answer].each do |nc_id, answer|
-        attachment = answer.delete("attachment")          
+        attachment = answer.delete("attachment")
         nc_que = NcQuestion.where(id: nc_id).last
         unless nc_que.answer.present?
             nc_que.answer = Answer.new(answer)
@@ -34,5 +34,4 @@ class Answer < ActiveRecord::Base
         end
     end
   end
-  
 end

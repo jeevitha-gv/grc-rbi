@@ -56,6 +56,10 @@ class User < ActiveRecord::Base
   delegate :email, to: :user_manager, prefix: true, allow_nil: true
   delegate :attachment_file, to: :attachment, prefix: true, allow_nil: true
 
+  #scope
+  scope :for_users_by_company, lambda {|email, company_id| where(email: email, company_id: company_id)}
+  # scope :for_id, lambda {|team_id| where(id: team_id)}
+
   def is?( requested_role)
     self.role.title == requested_role.to_s if self.role.present?
   end

@@ -7,5 +7,7 @@ class CreateAnswers < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :answers, :nc_question_id
   end
 end

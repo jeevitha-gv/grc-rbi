@@ -2,7 +2,9 @@
 new Messi("sorry this audit already published", {title: 'Warning', titleClass: 'warning', autoclose: 1500});
 <% else %>
 new Messi("<%=  MESSAGES["checklist_recommendation"]["audit_recommendation"]["success"] %>", {title: 'Success', titleClass: 'success', autoclose: 1500});
-<% if(@checklist_recommendation.recommendation_status_id == 2 || @checklist_recommendation.recommendation_status_id == 3 || @checklist_recommendation.recommendation_status_id == 4)%>
+<% @status = @checklist_recommendation.recommendation_status_id %>
+<% closed_id, closed_duplicate_id, risk_accepted = recommendation_status %>
+<% if( @status == closed_id || @status == closed_duplicate_id || @status  == risk_accepted)%>
 $('#recommendation_status_<%= @checklist_recommendation.checklist_id%>').html('Completed')
 <%else%>
 $('#recommendation_status_<%= @checklist_recommendation.checklist_id%>').html('Pending')
