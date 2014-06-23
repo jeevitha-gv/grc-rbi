@@ -62,7 +62,11 @@ class AuditsController < ApplicationController
 
   # List all audits for current user
   def audit_all
-   @audits = current_user.accessible_audits
+    if params[:stage].present?
+      @audits = current_user.audits_stage(params)
+    else
+      @audits = current_user.accessible_audits
+    end
   end
 
   #audit intializer data
