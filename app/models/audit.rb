@@ -245,7 +245,15 @@ class Audit < ActiveRecord::Base
   end
 
   def recommendation_status
-    self.checklist_recommendations.map(&:recommendation_completed).all?{ |x| x == true }
+    self.checklist_recommendations.present? ? self.checklist_recommendations.map(&:recommendation_completed).all?{ |x| x == true } : false
+  end
+
+  def response_status
+    self.checklist_recommendations.present? ? self.checklist_recommendations.map(&:response_completed).all?{ |x| x == true } : false
+  end
+
+  def observation_status
+    self.checklist_recommendations.present? ? self.checklist_recommendations.map(&:is_published).all?{ |x| x == true } : false
   end
 
   def build_audit_compliance(compliance_params)
