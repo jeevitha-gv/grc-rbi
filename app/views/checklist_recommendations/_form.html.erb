@@ -55,9 +55,9 @@
          <div class="clearfix"></div>
 
                     <div class="container">
-                    <%= form_for(@checklist_recommendation) do |f| %>
+                    <%= form_for(checklist_recommendation) do |f| %>
                     <% if audit.compliance_type == 'Compliance'%>
-                      <%= render "recommendation",f: f, audit: @audit, checklist_recommendation: @checklist_recommendation, score: @score %>
+                      <%= render "recommendation",f: f, audit: audit, checklist_recommendation: checklist_recommendation, score: score %>
                       <div class="clearfix"></div>
                       <div class="fright paddingtop">
                         <a class="black_btn" href="javascript:void(0)">Back</a>
@@ -70,7 +70,7 @@
                          <%end%>
                       </div>
                     <% else %>
-                      <%= render "nc_recommendation",f: f, audit: @audit, checklist_recommendation: @checklist_recommendation %>
+                      <%= render "nc_recommendation",f: f, audit: audit, checklist_recommendation: checklist_recommendation %>
                       <div class="clearfix"></div>
                       <div class="fright paddingtop">
                         <a class="black_btn" href="javascript:void(0)" onclick="goBack()">Back</a>
