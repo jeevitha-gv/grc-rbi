@@ -1,44 +1,62 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>FixNix Audit Notifications</title>
+      <title>Minty-Multipurpose Responsive Email Template</title>
 
 
       <style>
-      body{background:#f7f7f7; font-family:arial;}
+      body{background:#99c155; font-family:arial; margin:0; background-image:url("/assets/mailer/main_bg.jpg"); background-repeat:repeat-x; }
 
       </style>
 
 
    </head>
 <body>
-<table style="margin:0 auto; width:580px;">
-<tr><td align="right" style="font-family: Helvetica, arial, sans-serif; font-size: 10px;color: #999999;padding: 5px 0 10px;" st-content="preheader">If you cannot read this email, please  <a class="hlite" href="#" style="text-decoration: none; color: #0085c8">click here</a> </td></tr>
-</table>
-
-<table style="margin:0 auto; width:580px;"  cellpadding="0" cellspacing="0" border="0" >
-<tr bgcolor="#0085c8" ><td style="color:#fff; padding:20px;" ><strong>You have been invited to audit</strong></td></tr>
-</table>
-
-
-<table style="margin:0 auto; width:580px;"  cellpadding="0" cellspacing="0" border="0" >
-<tr><td style="color:#999999; padding:10px 0 0 20px;" ><strong>Audit Summary</strong></td>
+<table  style="margin:0 auto; width:625px;border-spacing: 0;">
+<tr>
+<td style="background-image:url('/assets/mailer/header_top.png'); background-repeat:no-repeat; width:625px; height:59px; text-align:right; color:#82837a; font-size:12px; vertical-align: top; padding: 10px 50px; background-position: center top;">
+Having trouble viewing this email? <a style="color:#74ac37; text-decoration:none;" href="">View it in your browser</a>
+</td>
 </tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px;" >Auditor : <%= @audit.auditory_full_name %></td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px;" >Auditees : <%= @audit.auditees.map(&:full_name).join(', ') %></td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px;" >Start Date : <%= @audit.start_date %></td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px;" >End Date : <%= @audit.start_date %></td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px;" >Title : <%= @audit.title %></td></tr>
 </table>
 
-<table style="margin:15px auto; width:580px;"  cellpadding="0" cellspacing="0" border="0">
-<tr><td><a style="background:#0085c8; color:#fff; border-radius:5px; padding:5px 20px; text-decoration:none; margin: 0 0 0 15px;"  href="">Go to App</a></td></tr>
+<table style="background-image:url('/assets/mailer/header_right_bg.png'); background-repeat:no-repeat;margin:0 auto; width:625px;background-position: right top;">
+<tr><td style="color:#fff; font-size:20px; font-weight:bold;">Company Name</td><td style="font-size: 14px;padding: 10px 20px;text-align: right; color:#64972f"> Note : <span>Completed</span></td></tr>
 </table>
-<table style="margin:0px auto; width:580px;"  cellpadding="0" cellspacing="0" border="0">
+
+
+<table style="background-image:url('/assets/mailer/content_top.png'); background-repeat:no-repeat;margin:-6px auto 0; width:625px;">
+<tr><td>&nbsp;</td></tr>
+</table>
+
+<table style="margin:0 auto; width:625px;background-image:url('/assets/mailer/middle_content.png');background-repeat:repeat-y; "  cellpadding="0" cellspacing="0" border="0" >
+<tr><td style="color:#64972f; padding:10px 0 0 20px; font-size:20px;" >You have been invited to audit "<%= @audit.title %>"</td>
+</tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Below is the summary about your audit.</td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Auditor : <%= @audit.auditory_full_name %></td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Auditees : <%= @audit.auditees.map(&:full_name).join(', ') %></td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Start Date : <%= @audit.start_date %></td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >End Date : <%= @audit.start_date %></td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Title : <%= @audit.title %></td></tr>
+</table>
+
+<table style="margin:0 auto; width:625px; padding: 20px 0;background-image:url('/assets/mailer/middle_content.png');background-repeat:repeat-y;"  cellpadding="0" cellspacing="0" border="0">
+<tr><td><%= link_to 'View Audit', "" , :style => "background:#74ac37; color:#fff; border-radius:5px; padding:10px 30px; border:1px solid #6c9c39; text-decoration:none; margin: 0 0 0 15px; font-size:12px;" %></td></tr>
+</table>
+
+
+
+
+<table style="background-image:url('/assets/mailer/bottom_content.png'); background-repeat:no-repeat;margin:0 auto; width:625px;">
+<tr><td>&nbsp;</td></tr>
+</table>
+
+
+<table style="margin:0px auto; width:625px;"  cellpadding="0" cellspacing="0" border="0">
 <tr><td>&nbsp;</td></tr>
 <tr><td>&nbsp;</td></tr>
 <tr><td>&nbsp;</td></tr>
-<tr bgcolor="#0085c8"><td>&nbsp;</td></tr>
+
 </table>
 
 
