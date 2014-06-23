@@ -53,7 +53,7 @@
 
           <div class="container">
             <% if @audit.compliance_type == 'Compliance'%>
-			        <%= render "observation",checklist_recommendations: @checklist_recommendations %>
+			        <%= render "observation",checklist_recommendations: @checklist_recommendations, audit: @audit %>
             <% else %>
               <%= render "nc_observation" %>
             <% end %>
