@@ -102,7 +102,7 @@ class Audit < ActiveRecord::Base
 
   # Getting all the checklist recommendations for sending reminders
   def unresponsive_recommendation
-    self.checklist_recommendations.where("recommendation_completed = true AND response_completed = false")
+    self.checklist_recommendations.collect { |x| x if (x.recommendation_completed== true && x.response_completed == false)}
   end
 
   # Getting all the non compliance for sending reminders

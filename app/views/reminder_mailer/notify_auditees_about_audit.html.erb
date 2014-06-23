@@ -33,7 +33,7 @@ Having trouble viewing this email? <a style="color:#74ac37; text-decoration:none
 <tr><td style="color:#64972f; padding:10px 0 0 20px; font-size:20px;" >You have been invited to audit "<%= @audit.title %>"</td>
 </tr>
 <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Below is the summary about your audit.</td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Auditor : <%= @audit.auditory_full_name %></td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Auditor : <%= @audit.auditory.user_name %></td></tr>
 <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Auditees : <%= @audit.auditees.map(&:full_name).join(', ') %></td></tr>
 <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Start Date : <%= @audit.start_date %></td></tr>
 <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >End Date : <%= @audit.start_date %></td></tr>
