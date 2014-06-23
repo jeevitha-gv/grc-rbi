@@ -124,15 +124,15 @@ class ChecklistRecommendationsController < ApplicationController
 
  #After observed restrict to create recommendation , response & observed
 
- def observed
-   @checklist_recommendation = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?', params[:checklist_recommendation][:checklist_id], params[:checklist_recommendation][:checklist_type]).first
-		 unless @checklist_recommendation.is_published
-		 	@path = true
-		 else
-		 	@path = false
-			end
-	 	return @path
-  end
+ # def observed
+ #   @checklist_recommendation = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?', params[:checklist_recommendation][:checklist_id], params[:checklist_recommendation][:checklist_type]).first
+	# 	 unless @checklist_recommendation.is_published
+	# 	 	@path = true
+	# 	 else
+	# 	 	@path = false
+	# 		end
+	#  	return @path
+ #  end
 
   def remove_attachment
     attachment = Attachment.find(params[:id])

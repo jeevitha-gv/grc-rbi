@@ -4,7 +4,7 @@ class ReminderMailer < ActionMailer::Base
 
   def notify_auditor_about_audit(audit)
   	@audit = audit
-  	mail(:to => audit.auditory_email, :subject => "Your Audit has been successfully created")
+    mail(:to => audit.auditory_email, content_type: "text/html", :subject => "Your Audit has been successfully created")
   end
 
   def notify_auditees_about_audit(audit)

@@ -69,19 +69,19 @@
         <li><a href="/audits/new" class="<%= (request.fullpath.include?("audits/new") && action_name=="new") == true ? 'active' : '' %>">
           <div class="plan-icon"></div>
           Plan</a></li>
-        <li><a href="/audits" class="<%= (request.fullpath.include?("audits") && action_name=="index") == true ? 'active' : '' %>">
+        <li><a href="/audits" class="<%= ((request.fullpath.include?("audits") && action_name=="index") == true ? 'active' : '') unless request.fullpath.include? '/audits?stage' %>">
           <div class="list-icon"></div>
           List</a></li>
-        <li><a href="<%= (current_audit && current_audit.compliance_type == "Compliance") ? "/audit_compliances" : "/nc_questions/new"  %>" class="<%= ((request.fullpath.include?("nc_questions/new") || request.fullpath.include?("audit_compliances")) == true) ? 'active' : '' %>">
+        <li><a href="<%= '/audits?stage=do' %>" class="<%= ((request.fullpath.include?('stage=do') || request.fullpath.include?("nc_questions/new") || request.fullpath.include?("audit_compliances")) == true) ? 'active' : '' %>">
           <div class="do-icon"></div>
           Do</a></li>
-        <li><a href="/checklist_recommendations/new" class="<%= request.fullpath.include?("checklist_recommendations/new") == true ? 'active' : '' %>">
+        <li><a href="/audits?stage=check" class="<%= (request.fullpath.include?('stage=check') || request.fullpath.include?("checklist_recommendations/new")) == true ? 'active' : '' %>">
           <div class="check-icon"></div>
           Check</a></li>
-        <li><a href="/checklist_recommendations/auditee_response" class="<%= request.fullpath.include?("checklist_recommendations/auditee_response") == true ? 'active' : '' %>">
+        <li><a href="/audits?stage=act" class="<%= (request.fullpath.include?('stage=act') || request.fullpath.include?("checklist_recommendations/auditee_response")) == true ? 'active' : '' %>">
           <div class="act-icon"></div>
           Act</a></li>
-        <li><a href="/checklist_recommendations/audit_observation" class="<%= request.fullpath.include?("checklist_recommendations/audit_observation") == true ? 'active' : '' %>">
+        <li><a href="/audits?stage=published" class="<%= (request.fullpath.include?('stage=published') || request.fullpath.include?("checklist_recommendations/audit_observation")) == true ? 'active' : '' %>">
           <div class="published-icon"></div>
           Published</a></li>
         <li><a href="/user/edit" class="<%= request.fullpath.include?("user/edit") == true ? 'active' : '' %>">
