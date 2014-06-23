@@ -12,7 +12,7 @@ class ApplicationController < BaseController
   before_filter :authenticate_user!, :if => :admin_function
   helper_method :current_company
   before_filter :set_cookie_audit, :if => :current_user
-  helper_method :current_audit
+  helper_method :current_audits
   before_filter :check_subdomain, :if => :admin_function
   before_filter :check_password_authenticated, :if => :current_user
   
@@ -30,7 +30,7 @@ class ApplicationController < BaseController
 
   protected
   # Fetch Audit from Cookie
-  def current_audit
+  def current_audits
     Audit.find(cookies[:audit_id].to_i) if cookies[:audit_id].present? rescue nil
   end
   

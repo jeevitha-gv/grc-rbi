@@ -98,8 +98,8 @@ class BaseController < ActionController::Base
   end
   
   # If there is no Current Audit then the access is restricted
-  def check_for_current_audit
-    unless current_audit.present?
+  def check_for_current_audits
+    unless current_audits.present?
       flash[:alert] = "Access restricted"
       redirect_to root_path
     end
@@ -107,7 +107,7 @@ class BaseController < ActionController::Base
 
   # Authorize the Auditor for current audit
   def authorize_auditor
-	  	unless current_audit.auditor == current_user.id
+	  	unless current_audits.auditor == current_user.id
         flash[:alert] = "Access restricted"
 	  		redirect_to audits_path
 	  	end
@@ -115,7 +115,7 @@ class BaseController < ActionController::Base
 
   # Authorize the Auditee for current audit
 	def authorize_auditees
-	  	unless current_audit.auditees.map(&:id).include?(current_user.id)
+	  	unless current_audits.auditees.map(&:id).include?(current_user.id)
         flash[:alert] = "Access restricted"
 	  		redirect_to audits_path
 	  	end
@@ -123,7 +123,7 @@ class BaseController < ActionController::Base
   
   # Authorize the Auditor for current audit and Skip current admin alone
   def authorize_auditor_skip_company_admin
-	  	if(current_audit.auditor != current_user.id && current_user.role_title != "company_admin")
+	  	if(current_audits.auditor != current_user.id && current_user.role_title != "company_admin")
         flash[:alert] = "Access restricted"
 	  		redirect_to audits_path
 	  	end
@@ -131,7 +131,7 @@ class BaseController < ActionController::Base
 
   # Authorize the Auditee for current audit and Skip current admin alone
 	def authorize_auditees_skip_company_admin
-	  if(!current_audit.auditees.map(&:id).include?(current_user.id) && current_user.role_title != "company_admin")
+	  if(!current_audits.auditees.map(&:id).include?(current_user.id) && current_user.role_title != "company_admin")
 	    flash[:alert] = "Access restricted"
 	  		redirect_to audits_path
 	  	end

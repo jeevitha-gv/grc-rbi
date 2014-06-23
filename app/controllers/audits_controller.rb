@@ -34,7 +34,7 @@ class AuditsController < ApplicationController
 
   # Show audit and render to pdf
   def show
-    @audit = current_audit
+    @audit = current_audits
     respond_to do |format|
       format.html
       format.pdf do
@@ -152,7 +152,7 @@ class AuditsController < ApplicationController
 
 
   def asc_calculation
-    audit = current_audit
+    audit = current_audits
     status_id = AuditStatus.where('name= ?','Published').first.id
     unless audit.audit_status_id == status_id
       audit.update(audit_status_id: status_id)
@@ -162,7 +162,7 @@ class AuditsController < ApplicationController
   end
 
   def audit_dashboard
-      @audit = current_audit
+      @audit = current_audits
     unless @audit.nil?
       @audit_domains, @audit_weightage, @audit_maximum_score , @audit_percentage= @audit.maximum_actual_score
       @to_do_list = @audit.compliance_checklist_recommendations
@@ -172,7 +172,7 @@ class AuditsController < ApplicationController
   end
 
   def artifacts_download
-		@audit = current_audit
+		@audit = current_audits
 		@folder = @audit.artifact_answers.collect {|x| x.attachments}.flatten
 		temp = Tempfile.new("zip-file-#{Time.now}")
 		Zip::ZipOutputStream.open(temp.path) do |z|

@@ -1,3 +1,6 @@
+<script>
+	var audit_id = "<%= params[:audit_id]%>"
+</script>
 <div class="clearfix"></div>
 <div class="content">
   <div class="container">
@@ -18,8 +21,8 @@
               <div class="fright"><br>
             <br>
             <a class="black_btn" href="javascript:goBack()">Back</a> 
-            <% unless current_audit.audit_status_id == 4%>
-              <%= link_to "Submit for recommendation", submit_audit_compliances_path() , :class => "orange_btn", method: 'post'%>
+            <% unless current_audits.audit_status_id == 4%>
+              <%= link_to "Submit for recommendation", audit_audit_compliance_path(audit_id: params[:audit_id], id: 'response') , :class => "orange_btn", method: 'post'%>
             <%end%>
             </div>
             </div>
@@ -52,7 +55,7 @@
 				dataSource = new kendo.data.DataSource({
 					transport: {
 						read: {
-							url: '/audit_compliances/response_checklist',
+							url: '/audits/'+audit_id+'/audit_compliances/response_checklist',
 							dataType: 'json'
 						}
 					},

@@ -72,7 +72,7 @@
         <li><a href="/audits" class="<%= (request.fullpath.include?("audits") && action_name=="index") == true ? 'active' : '' %>">
           <div class="list-icon"></div>
           List</a></li>
-        <li><a href="<%= (current_audit && current_audit.compliance_type == "Compliance") ? "/audit_compliances" : "/nc_questions/new"  %>" class="<%= ((request.fullpath.include?("nc_questions/new") || request.fullpath.include?("audit_compliances")) == true) ? 'active' : '' %>">
+        <li><a href="<%= (current_audits && current_audits.compliance_type == "Compliance") ? "/audit_compliances" : "/nc_questions/new"  %>" class="<%= ((request.fullpath.include?("nc_questions/new") || request.fullpath.include?("audit_compliances")) == true) ? 'active' : '' %>">
           <div class="do-icon"></div>
           Do</a></li>
         <li><a href="/checklist_recommendations/new" class="<%= request.fullpath.include?("checklist_recommendations/new") == true ? 'active' : '' %>">

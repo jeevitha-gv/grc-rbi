@@ -36,11 +36,6 @@ function remove_options(link) {
     jQuery(link).parents(".choices").hide();
 }
 
-function deleteCookie()
-{
-	document.cookie = 'audit_id="";-1; path=/';
-}
-
 function setCookie(name, value) {
     var d = new Date();
     d.setTime(d.getTime() + (1*24*60*60*1000));

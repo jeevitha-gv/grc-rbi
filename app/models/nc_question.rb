@@ -34,7 +34,7 @@ class NcQuestion < ActiveRecord::Base
       row_data = spreadsheet.row(i)
       question_type = QuestionType.where("lower(name) = ?", "#{row_data[1].to_s.downcase}").first
 
-      nc_question = NcQuestion.new(question: row_data[0], question_type_id: (question_type.present? ? question_type.id : nil), audit_id: current_audit.id)
+      nc_question = NcQuestion.new(question: row_data[0], question_type_id: (question_type.present? ? question_type.id : nil), audit_id: current_audits.id)
       nc_question.save(:validate => false)
 
       if(row_data[2].present? && (options = row_data[2].split(",").compact).present?)

@@ -22,7 +22,7 @@
                   Plan </a> </div>
               </li>
               <li>
-                <div id="arrow1" class="<%= dashboard_audit_status(audit_status_id, 'In Progress') unless audit_status_id.nil?%>"> <a  href="<%= (current_audit && current_audit.compliance_type == "Compliance") ? "/audit_compliances" : "/nc_questions/new"  %>">
+                <div id="arrow1" class="<%= dashboard_audit_status(audit_status_id, 'In Progress') unless audit_status_id.nil?%>"> <a  href="<%= (current_audits && current_audits.compliance_type == "Compliance") ? "/audit_compliances" : "/nc_questions/new"  %>">
                   <div class="db-do-icon"></div>
                   Do </a> </div>
               </li>

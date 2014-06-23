@@ -101,55 +101,41 @@
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		if ( dataItem.compliance_type == "Compliance")
 		{
-			deleteCookie()
-			setCookie("audit_id", dataItem.id)
-			window.location.href = "/audit_compliances"
+			window.location.href = "/audits/"+dataItem.id+"-"+dataItem.title+"/audit_compliances"
 		}
 		else
 		{
-			deleteCookie()
-			setCookie("audit_id", dataItem.id)
-			window.location.href = "/nc_questions/new"
+			window.location.href = "/audits/"+dataItem.id+"-"+dataItem.title+"/nc_questions/new"
 		}
 	}
 
 	function check_file(e)
 	{
-		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		setCookie("audit_id", dataItem.id)
-		window.location.href = "/checklist_recommendations/new"
+		window.location.href = "/audits/"+dataItem.id+"-"+dataItem.title+"/checklist_recommendations/new"
 	}
 
 	function act_file(e)
 	{
-		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		setCookie("audit_id", dataItem.id)
-		window.location.href = "/checklist_recommendations/auditee_response"
+		window.location.href = "/audits/"+dataItem.id+"-"+dataItem.title+"/checklist_recommendations/auditee_response"
 	}
 
 	function publish_file(e)
 	{
-		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		setCookie("audit_id", dataItem.id)
-		window.location.href = "/checklist_recommendations/audit_observation"
+		window.location.href = "/audits/"+dataItem.id+"-"+dataItem.title+"/checklist_recommendations/audit_observation"
 	}
 
 	function edit_file(e)
 	{
-		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		setCookie("audit_id", dataItem.id)
 		window.location.href = "/audits/"+ dataItem.id + "/edit"
 	}
 
 	function pdf_file(e)
 	{
-		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		setCookie("audit_id", dataItem.id)
 		window.location.href = "/audits/"+ dataItem.id +".pdf"
 	}
 

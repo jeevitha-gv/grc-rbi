@@ -1,5 +1,6 @@
 class AuditCompliancesController < ApplicationController
-    before_filter :check_for_current_audit
+    before_filter :current_audit
+    authorize_resource
     before_filter :authorize_auditees_skip_company_admin, :only => [:response, :response_checklist]
     before_filter :authorize_auditees, :only => [:submit]
     before_filter :check_for_auditee_response, only: [:index]
@@ -8,7 +9,6 @@ class AuditCompliancesController < ApplicationController
     
   # List the compliance for particular audit - JSON grid
 	def compliance_checklist
-    @audit = current_audit
     @auditees = @audit.auditees
     @audit_compliances = @audit.audit_compliances
 		@compliance_libraries = @audit.default_compliance_libraries
@@ -17,24 +17,29 @@ class AuditCompliancesController < ApplicationController
 
   # Response List for audit compliance of particular audit - JSON grid
   def response_checklist
-    @audit = current_audit
     @audit_compliances = @audit.audit_compliances_for_current_user(current_user.id)
     render json: {data: build_response_list}
   end
 
   # Create the Selected audit compliance for audit
   def create
-    audit = current_audit
-    audit.build_audit_compliance(compliance_params) unless(audit.audit_status_id == 4)
+    @audit.build_audit_compliance(compliance_params) unless(@audit.audit_status_id == 4)
   end
 
   # Submit the audit compliance to the recommendation
-  def submit
-    current_audit.audit_compliances.update_all(is_answered: true)  unless(current_audit.audit_status_id == 4)
+  def update
+    @audit.audit_compliances.update_all(is_answered: true)  unless(@audit.audit_status_id == 4)
     redirect_to audits_path
   end
 
   private
+  
+  # Find Audit
+  def current_audit
+    @audit = Audit.find(params[:audit_id])
+     authorize!(:read,  @audit)
+  end
+  
   # Strong parameters audit compliance
   def compliance_params
     params.require(:checklist)
@@ -42,8 +47,8 @@ class AuditCompliancesController < ApplicationController
 
   # Check for Auditee response and redirect accordingly
   def check_for_auditee_response
-    if(current_audit.auditees.map(&:id).include?(current_user.id))
-      redirect_to response_audit_compliances_path
+    if(current_audits.auditees.map(&:id).include?(current_user.id))
+      redirect_to response_audit_audit_compliances_path(@audit)
     end
   end
   
@@ -53,15 +58,7 @@ class AuditCompliancesController < ApplicationController
       @audit_compliances.each do |compliance|        
         if(compliance.artifact_answers.present?)
           compliance.artifact_answers.each do |artifact_answer|
-            json = {} 
-            json["id"] = artifact_answer.id
-            json["name"] = compliance.compliance_library_name
-            json["artifact_id"] = artifact_answer.artifact_id
-            json["artifact_name"] = artifact_answer.artifact_name
-            json["audit_compliance"] = compliance.id
-            json["priority"] = artifact_answer.priority_name
-            json["auditee"] = artifact_answer.responsibility_full_name
-            json["target_date"] = (artifact_answer.target_date.present? ? artifact_answer.target_date.to_date.strftime("%d/%m/%Y") : "")
+            json = artifact_answer.build_checklist(compliance)
             response << json
           end   
         end

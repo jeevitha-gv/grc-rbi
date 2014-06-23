@@ -1,5 +1,5 @@
 class ChecklistRecommendationsController < ApplicationController
-  before_filter :check_for_current_audit
+  before_filter :check_for_current_audits
 	before_filter :authorize_auditees, :only => [:auditee_response_create]
 	before_filter :authorize_auditees_skip_company_admin, :only => [:auditee_response]
 	before_filter :authorize_auditor_skip_company_admin, :only => [:new, :audit_observation]
@@ -9,7 +9,7 @@ class ChecklistRecommendationsController < ApplicationController
 
  	#new for checklist recommendation
  	def new
-		@audit = current_audit
+		@audit = current_audits
 		@checklist_recommendation = ChecklistRecommendation.new
 		@score = Score.all
  	end
@@ -49,7 +49,7 @@ class ChecklistRecommendationsController < ApplicationController
 
 	#To show auditee response
 	def auditee_response
-		@audit = current_audit
+		@audit = current_audits
 		if @audit.compliance_type == "Compliance"
 			@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
 			@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
@@ -60,7 +60,7 @@ class ChecklistRecommendationsController < ApplicationController
 	end
 
   def audit_observation
-    @audit = current_audit
+    @audit = current_audits
 		@pending_observation = @audit.checklist_recommendations.collect {|x| x.is_published}.include?(nil)
 		@observation = @audit.checklist_recommendations.map(&:response_completed).include?(true)
 		@published_status = AuditStatus.where('name= ?', "Published").first
