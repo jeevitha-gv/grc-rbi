@@ -63,13 +63,8 @@
                     <div>
                       <div class="row audit-title">
                         <% test = question.answer || question.build_answer %>
-<<<<<<< HEAD
                           <%= hidden_field_tag :audit_id, @audit.id %>
-                          <%= render "answer_type", :question => question %>
-=======
-                          <%= hidden_field_tag :audit_id, current_audit.id %>
                           <%= render "answer_type", :question => question, audit: @audit %>
->>>>>>> e349e03befd61087d03202f0757c0344160b3a46
                       </div>
                     </div>
                 <% end %>
