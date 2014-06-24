@@ -28,10 +28,18 @@ module ApplicationHelper
 
 
 
-def link_to_add_fields(name, f, association)
+# def link_to_add_fields(name, f, association)
+#   new_object = f.object.class.reflect_on_association(association).klass.new
+#   fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
+#     render(association.to_s.singularize + "_fields", :f => builder)
+#   end
+#   link_to "#{name}" ,'javascript:void(0)',  {onclick: "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", class: "plus-icon"}
+# end
+
+def link_to_add_nc_question_fields(name, f, association, audit)
   new_object = f.object.class.reflect_on_association(association).klass.new
   fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
-    render(association.to_s.singularize + "_fields", :f => builder)
+    render(association.to_s.singularize + "_fields", :f => builder, audit: audit)
   end
   link_to "#{name}" ,'javascript:void(0)',  {onclick: "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", class: "plus-icon"}
 end
@@ -50,6 +58,10 @@ end
 
 def link_to_remove_choices(name, f)
   f.hidden_field(:_destroy) + link_to("#{name}", 'javascript:void(0)', {onclick: "remove_options(this)", class: "minusround-icon"})
+end
+
+def check_stage(stage, compliance_url, non_compliance_url)
+ return true if ((request.fullpath.include?('stage=do') || request.fullpath.include?(non_compliance_url) || request.fullpath.include?(compliance_url)) == true)
 end
 
 end
