@@ -51,7 +51,7 @@
                   </tbody>
                   <div class="modal-footer">
 
-                    <%= submit_tag "Add to Current Audit", :type => 'button', href: 'javascript:void(0);', :id=>"submit_questions" ,:class => "black_btn"%>
+                    <%= submit_tag "Add to Current Audit", :type => 'button', href: 'javascript:void(0);', :id=>"submit_questions" ,:class => "black_btn" , :onclick=> "question_submit();"%>
 
                   </div>
                 <% end %>
@@ -93,43 +93,3 @@
     </div>
   </div>
 
-<script>
-$("#submit_questions").click(function(){
-  selected = []
-  $('#test-check input:checked').each(function() {
-    selected.push($(this).attr('value'));
-  });
-  var audit_id = $('#select_audit').attr('value');
-  $('#add_url').modal('hide');
-  if(selected.length>0){
-      $.ajax({
-        url: "/audits/"+audit_id+"/nc_questions/library_questions",
-        type: "GET",
-        data: {"nc_question" : selected}
-      });
-    }
-});
-
-  $('.orange_btn').click(function(){
-    $('.edit_audit').submit();
-  });
-
- $(".datepicker").kendoDatePicker({
-        format: "dd/MM/yyyy"
-        });
-
-	function file_presence_check()
-	{
-		var file = $('#file_input').val()
-		if (file == '')
-		{
-		$('#error_file').show()
-		return false
-		}
-		else
-		{
-		$('#error_file').hide()
-		return true
-		}
-	}
-</script>
