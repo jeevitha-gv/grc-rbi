@@ -42,7 +42,7 @@
                         <tr>
                           <td><%= check_box_tag "nc_questions[]", nc_question.id %></td>
 
-                          <%= nc_question.question %><br>
+                          <%= nc_question.question %> - <%= nc_question.question_type_name %> <br>
                         </tr>
                       <% end %>
                       <%= hidden_field_tag :audit_id, @audit.id, id: "select_audit" %>
