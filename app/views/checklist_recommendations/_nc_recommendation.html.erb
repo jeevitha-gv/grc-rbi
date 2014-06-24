@@ -48,8 +48,7 @@
                 <% elsif answered_ncquestion.nc_question.question_type.name == "Descriptive Type" %>
                   <%= answered_ncquestion.detailed_value %>
                 <% elsif answered_ncquestion.nc_question.question_type.name == "Multiple Choice"  %>
-                  <% question_option = QuestionOption.where(:id => answered_ncquestion.value).last  if answered_ncquestion.value.present? %>
-									<%= question_option.value unless question_option.nil?%>
+                  <%  answered_ncquestion.question_option.value if answered_ncquestion.value.present? %>
                 <% end %>
               <% end %>
             </div>

@@ -1,3 +1,6 @@
+<script>
+  var audit_id = "<%= params[:audit_id]%>"
+</script>
 <div class="clearfix"></div>
 <div class="content">
   <div class="container">
@@ -24,7 +27,7 @@
               <div class="fright"><br>
             <br>
             <a class="black_btn" href="javascript:goBack()">Back</a>
-            <% unless current_audit.audit_status_id == 4%>
+            <% unless @audit.audit_status_id == 4%>
               <a href="javascript:save_request()" class="orange_btn">Ask</a></div>
             <%end%>
             </div>
@@ -37,59 +40,8 @@
 </div>
 
 <script type="text/javascript">
- $(window).load(function(){
-	var $container = $('#grid_items');
-	// initialize
-	$container.masonry({
-	  columnWidth: 292,
-	  itemSelector: '.item',
-	  isFitWidth: true
-	});
-
-
-	$(".block_banner img").each(function(index, element) {
-        var screenImage = $(this);
-
-		// Create new offscreen image to test
-		var theImage = new Image();
-		theImage.src = screenImage.attr("src");
-
-		var imageHeight = theImage.height;
-
-		$(this).css("max-height",imageHeight);
-		$(this).css("min-height",imageHeight);
-    });
-});
-
-$(".click_icon").click(function() {
-			$(".share_pop").show();
-});
-
-$(".click_icon").click(function(){
-		$(".share_pop").show();
-});
 
 $(document).ready(function(){
-
-	Top_postion = $(window).scrollTop();
-
-	$( ".user_login" ).mouseenter(function() {
-		$(this).addClass("active");
-		$(".account_header_dropdown").slideDown(100);
-	})
-	.mouseleave(function() {
-		$(this).removeClass("active");
-		$(".account_header_dropdown").hide();
-	});
-
-	//for notification drop hide in outside click
-	onclick_icon = 0;
-	$(".click_icon").mouseenter(function() {
-		onclick_icon = 0;
-	})
-	.mouseleave(function() {
-		onclick_icon = 1;
-	});
 
 
 	$("body").click(function(){
@@ -153,7 +105,7 @@ $(document).ready(function(){
 				dataSource = new kendo.data.DataSource({
 					transport: {
 						read: {
-							url: '/audit_compliances/compliance_checklist',
+							url: '/audits/'+audit_id+'/audit_compliances/compliance_checklist',
 							dataType: 'json'
 						}
 					},

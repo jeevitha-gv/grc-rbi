@@ -12,7 +12,7 @@
                     <div class="form-group clearfix">
                       <%# @artifact_answers = checklist.artifact_answers.first%>
                       <label class="col-sm-5"><b>Document :</b> </label>
-                      <div class="col-sm-7"><%= link_to (File.basename(answer.attachment.attachment_file_url)).truncate(20), download_artifacts_checklist_recommendations_path(id: answer.attachment.id), class: "blue_link" %></div>
+                      <div class="col-sm-7"><%= link_to (File.basename(answer.attachment.attachment_file_url)).truncate(20), download_artifacts_checklist_recommendations_path(id: answer.attachment.id), class: "blue_link" if answer.attachment.present?%></div>
                     </div>
 
                     <div class="form-group clearfix">
@@ -35,7 +35,7 @@
                           <% elsif nc_question.question_type_name == 'Descriptive Type' %>
                             <%= nc_question.answer_detailed_value %>
                           <% else %>
-                            <%= QuestionOption.where(:id => nc_question.answer_value).last.value unless nc_question.answer_value.nil? %>
+                            <%= nc_question.answer.question_option.value unless nc_question.answer_value.nil? %>
                           <% end %>
                         <% end %>
                       </div>
@@ -159,15 +159,6 @@
               <% end %>
             </div>
 <!-- Model for more Artifact  and comments -->
-<script>
-function artifact_modal(id)
-{
-  $('#artifact_modal').modal({
-    remote: "/checklist_recommendations/list_artifacts_and_comments?id=" + id
-  });
-}
-</script>
-
 <div class="modal fade" id="artifact_modal">
   <div class="modal-dialog modal-dialog_large">
     <div class="modal-content">

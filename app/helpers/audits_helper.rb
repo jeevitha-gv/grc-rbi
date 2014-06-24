@@ -23,4 +23,13 @@ module AuditsHelper
 		end
 	end
 
+	def check_non_compliance_type(audit,errors)
+		return true if (audit.compliance_type == 'NonCompliance' && (errors[:standard_id].present? || audit.standard_id.present?))
+	end
+
+	def check_compliance_type(audit,errors)
+		return true if (audit.compliance_type == 'Compliance' && (errors[:standard_id].present? || audit.standard_id.present?))
+	end
+
+
 end

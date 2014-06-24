@@ -1,11 +1,11 @@
 // Kendo Tab
-		$("#tabstrip").kendoTabStrip({
-			animation:  {
-				open: {
-					effects: "fadeIn"
-				}
+	$("#tabstrip").kendoTabStrip({
+		animation:  {
+			open: {
+				effects: "fadeIn"
 			}
-		});
+		}
+	});
 
  $(document).ready(function(){
 
@@ -101,55 +101,41 @@
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		if ( dataItem.compliance_type == "Compliance")
 		{
-			deleteCookie()
-			setCookie("audit_id", dataItem.id)
-			window.location.href = "/audit_compliances"
+			window.location.href = "/audits/"+dataItem.id+"-"+dataItem.title+"/audit_compliances"
 		}
 		else
 		{
-			deleteCookie()
-			setCookie("audit_id", dataItem.id)
-			window.location.href = "/nc_questions/new"
+			window.location.href = "/audits/"+dataItem.id+"-"+dataItem.title+"/nc_questions/new"
 		}
 	}
 
 	function check_file(e)
 	{
-		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		setCookie("audit_id", dataItem.id)
-		window.location.href = "/checklist_recommendations/new"
+		window.location.href = "/audits/"+dataItem.id+"-"+dataItem.title+"/checklist_recommendations/new"
 	}
 
 	function act_file(e)
 	{
-		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		setCookie("audit_id", dataItem.id)
-		window.location.href = "/checklist_recommendations/auditee_response"
+		window.location.href = "/audits/"+dataItem.id+"-"+dataItem.title+"/checklist_recommendations/auditee_response"
 	}
 
 	function publish_file(e)
 	{
-		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		setCookie("audit_id", dataItem.id)
-		window.location.href = "/checklist_recommendations/audit_observation"
+		window.location.href = "/audits/"+dataItem.id+"-"+dataItem.title+"/checklist_recommendations/audit_observation"
 	}
 
 	function edit_file(e)
 	{
-		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		setCookie("audit_id", dataItem.id)
 		window.location.href = "/audits/"+ dataItem.id + "/edit"
 	}
 
 	function pdf_file(e)
 	{
-		deleteCookie()
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		setCookie("audit_id", dataItem.id)
 		window.location.href = "/audits/"+ dataItem.id +".pdf"
 	}
 
@@ -163,18 +149,29 @@
 		  {
 		   	return "k-grid-tick";
 		  }
-		  else if(stage_class=='act')
+		  else if(stage_class == 'act')
 		  {
 		    return "k-grid-tick1";
 		  }
-		  else if(stage_class=='published')
+		  else if(stage_class == 'published')
 		  {
 		    return "k-grid-book";
 		  }
 		}
 
 
-	$(document).ready(function() {
+	$(document).ready(function(){
+
+	Top_postion = $(window).scrollTop();
+
+	$( ".user_login" ).mouseenter(function() {
+		$(this).addClass("active");
+		$(".account_header_dropdown").slideDown(100);
+	})
+	.mouseleave(function() {
+		$(this).removeClass("active");
+		$(".account_header_dropdown").hide();
+	});
 
 		if ( stage.length > 0 )
 		{
@@ -410,9 +407,5 @@
 
         {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Actions", width: "180px" }			],
 		});
-
-
-
-
 
 	});

@@ -12,9 +12,8 @@
   <% end %>
   <div id="questions_libraries"></div>
 	<div class="form-group clearfix addissue">
-  	<%= link_to_add_fields "Add New Request", f, :nc_questions %>
-  </div>
-
+    	<%= link_to_add_fields "Add New Request", f, :nc_questions %>
+    </div>
 	<div class="col-lg-4 col-sm-6 col-xs-12"></div>
     <div class="col-lg-4 col-sm-6 col-xs-12"></div>
     <div class="col-lg-4 col-sm-6 col-xs-12"><br>
@@ -38,7 +37,7 @@
             <div class="model-con">
 
               <div id="test-check">
-                <%= form_tag library_questions_nc_questions_path, :id => "submit_library" do %>
+                <%= form_tag library_questions_audit_nc_questions_path(@audit), :id => "submit_library" do %>
                   <tbody>
                     <% if @library_questions.present? %>
                       <% @library_questions.each do |nc_question| %>
@@ -71,7 +70,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
             <h4 class="modal-title" id="myModalLabel">Upload files only CSV and XLSX</h4>
             <div class="model-content">
-            <%= form_tag import_files_nc_questions_path, multipart: true do %>
+            <%= form_tag import_files_audit_nc_questions_path(@audit), multipart: true do %>
               <%= file_field_tag :file , :id =>"file_input"%>
               <span class="error_message" style="display:none;" id="error_file"><%= MESSAGES["csv_upload"]["presence"]%></span>
               <br>
@@ -83,7 +82,7 @@
           </div>
             <p></p>
             <p>
-              <%= link_to "Download Sample Non Compliance Checklist CSV", export_files_nc_questions_path(format: "csv"), :class =>'download-file-icon' %>
+              <%= link_to "Download Sample Non Compliance Checklist CSV", export_files_audit_nc_questions_path(audit_id: @audit.id, format: "csv"), :class =>'download-file-icon' %>
             </p>
           </div>
         </div>

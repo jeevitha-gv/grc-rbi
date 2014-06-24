@@ -8,13 +8,13 @@ class Audit < ActiveRecord::Base
   belongs_to :audit_status
   belongs_to :audit_type
   belongs_to :compliance, foreign_key: 'standard_id'
-  has_many :nc_questions
+  has_many :nc_questions, :dependent => :destroy
   has_many :answers, through: :nc_questions
   has_many :default_compliance_libraries, -> { where(is_leaf: true) }, through: :compliance, source: :compliance_library
   has_many :nc_checklist_recommendations, through: :answers , source: :checklist_recommendation
   has_many :compliance_checklist_recommendations, through: :audit_compliances, source: :checklist_recommendation
-  has_many :audit_compliances
-  has_many :audit_auditees
+  has_many :audit_compliances, :dependent => :destroy
+  has_many :audit_auditees, :dependent => :destroy
   has_many :artifact_answers, through: :audit_compliances
   has_many :auditees, through: :audit_auditees, :source => :user
   belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
@@ -63,7 +63,7 @@ class Audit < ActiveRecord::Base
   delegate :name, :to => :department, prefix: true, allow_nil: true
   delegate :name, :to => :audit_status, prefix: true, allow_nil: true
 
-  scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
+  #scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
 
   # mapping do
   #   indexes :_id, :index => :not_analyzed
@@ -72,6 +72,9 @@ class Audit < ActiveRecord::Base
   #   indexes :observation
   # end
 
+  def to_param
+    "#{self.id}-#{self.title}"
+  end
   def answered_compliances
     self.audit_compliances.where(is_answered: true)
   end
@@ -111,9 +114,9 @@ class Audit < ActiveRecord::Base
     self.nc_questions.where("target_date <= ?" , DateTime.now).select{ |x| x.answers.blank?}
   end
 
-  def answered_ncquestions
-    self.nc_questions
-  end
+  # def answered_ncquestions
+  #   self.nc_questions
+  # end
 
   def audit_compliances_for_current_user(user_id)
     self.audit_compliances.joins("left OUTER join artifact_answers on audit_compliances.id=artifact_answers.audit_compliance_id").where("artifact_answers.responsibility_id=?",user_id).uniq
