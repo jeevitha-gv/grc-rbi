@@ -1,5 +1,5 @@
 class AuditsController < ApplicationController
-  before_filter :current_audit, only: [:show, :asc_calculation, :audit_dashboard, :artifacts_download  ]
+  before_filter :current_audit_with_id, only: [:show, :asc_calculation, :audit_dashboard, :artifacts_download]
   load_and_authorize_resource :except => [:department_teams_users, :audit_with_status, :audit_all, :index, :asc_calculation]
   before_filter :authorize_audit, :only => [:edit, :update]
   before_filter :check_company_disabled

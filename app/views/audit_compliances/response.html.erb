@@ -18,9 +18,9 @@
               </div>
               <div class="fright"><br>
             <br>
-            <a class="black_btn" href="javascript:goBack()">Back</a> 
+            <a class="black_btn" href="javascript:goBack()">Back</a>
             <% unless @audit.audit_status_id == 4%>
-              <%= link_to "Submit for recommendation", audit_audit_compliance_path(audit_id: params[:audit_id], id: 'response') , :class => "orange_btn", method: 'post'%>
+              <%= link_to "Submit for recommendation", audit_audit_compliance_path(audit_id: params[:audit_id], id: 'response') , :class => "orange_btn", method: 'PATCH'%>
             <%end%>
             </div>
             </div>
@@ -76,7 +76,7 @@
 				});
     $(document).ready(function() {
 				// Fancybox
-				$(".fancybox").fancybox();					
+				$(".fancybox").fancybox();
 
 				// Kendo Grid
 				$("#grid").kendoGrid({
@@ -114,7 +114,7 @@
       });
 			// Edit Popup
 			$(window).load(function(){
-				$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");				
+				$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");
 			});
 
   $('body').on('hidden.bs.modal', '.modal', function () {

@@ -32,7 +32,7 @@ class ReminderMailer < ActionMailer::Base
     if checklist_recommendation.checklist_type == "AuditCompliance"
       email = checklist_recommendation.checklist.artifact_answers.last.responsibility_email
     elsif checklist_recommendation.checklist_type == "Answer"
-      email = checklist_recommendation.checklist.nc_question.auditee.email
+      email = checklist_recommendation.checklist.nc_question.auditee_email
     end
     mail(:to => email , :subject => "Auditor has given a recommendation", content_type: "text/html")
   end
