@@ -133,15 +133,21 @@
 		window.location.href = "/audits/"+ dataItem.id + "/edit"
 	}
 
+	function graph_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/audits/"+ dataItem.id + "/graph"
+	}
+
 	function pdf_file(e)
 	{
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		window.location.href = "/audits/"+ dataItem.id +".pdf"
 	}
 
-	
 
-	
+
+
 	$(document).ready(function(){
 
 	Top_postion = $(window).scrollTop();
@@ -154,7 +160,7 @@
 		$(this).removeClass("active");
 		$(".account_header_dropdown").hide();
 	});
-	
+
 		if ( stage.length > 0 )
 		{
 			var	audits_url = "/audits/audit_all?stage="+stage;
@@ -209,7 +215,7 @@
 				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
 				{ field: "auditor", title: "Auditor Name", width: "35%" },
 
-				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Actions", width: "180px" }
+				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}, {text: "graph", click: graph_file}], title: "Actions", width: "216px" }
 			],
 		});
 
@@ -232,7 +238,7 @@
 				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
 				{ field: "auditor", title: "Auditor Name", width: "35%" },
 
-				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Actions", width: "180px" }
+				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file},{text: "graph", click: graph_file}], title: "Actions", width: "216px" }
 			],
 		});
 
@@ -282,7 +288,7 @@
 				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
 				{ field: "auditor", title: "Auditor Name", width: "35%" },
 
-        {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Actions", width: "180px" }			],
+        {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}, {text: "graph", click: graph_file} ], title: "Actions", width: "216px" }			],
 		});
 
 
@@ -333,7 +339,7 @@
 				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
 				{ field: "auditor", title: "Auditor Name", width: "35%" },
 
-        {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Actions", width: "180px" }			],
+        {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}, {text: "graph", click: graph_file}], title: "Actions", width: "216px" }			],
 		});
 
 
@@ -383,7 +389,7 @@
 				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
 				{ field: "auditor", title: "Auditor Name", width: "35%" },
 
-        {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Actions", width: "180px" }			],
+        {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}, {text: "graph", click: graph_file}], title: "Actions", width: "216px" }			],
 		});
 
 
