@@ -4,6 +4,8 @@ class ActivitiesController < ApplicationController
  # List all activity performed
   def index
    @activities = PublicActivity::Activity.all
+    user_ids = current_company.users.map(&:id)
+   @filtered_activities = PublicActivity::Activity.where("owner_id IN(?)",user_ids)
   end
 
 # Parse the activity text for displaying

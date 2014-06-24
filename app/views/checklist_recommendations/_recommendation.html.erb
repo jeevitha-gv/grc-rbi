@@ -1,12 +1,12 @@
 
 <div id="Accordion1">
- <% @audit.answered_compliances.each do |audit_compliance| %>
+ <% audit.answered_compliances.each do |audit_compliance| %>
    <% checklist_recommendation = audit_compliance.checklist_recommendation%>
   <h3><a href="#"><%= audit_compliance.compliance_library_name%></a> <span class="fright pending_msg" id= "recommendation_status_<%= audit_compliance.id%>">
 				<% closed_id, closed_duplicate_id, risk_accepted = recommendation_status%>
-    <% @status = (checklist_recommendation.present? ? checklist_recommendation.recommendation_status_id : nil)%>
+    <% status = (checklist_recommendation.present? ? checklist_recommendation.recommendation_status_id : nil)%>
     <% closed_id, closed_duplicate_id, risk_accepted = recommendation_status %>
-      <%= (@status == closed_id || @status == closed_duplicate_id || @status == risk_accepted) ? 'Completed' : 'Pending' %></span></h3>
+      <%= (status == closed_id || status == closed_duplicate_id || status == risk_accepted) ? 'Completed' : 'Pending' %></span></h3>
       <div>
 
       <!-- Hidden Value !-->
@@ -16,11 +16,11 @@
 
       <div class="row audit-title">
         <div class="col-lg-4">
-          <% @artifact_answers = audit_compliance.artifact_answers.first%>
+          <% artifact_answers = audit_compliance.artifact_answers.first%>
           <div class="form-group clearfix">
             <label class="col-sm-5"><b>Artifact :</b></label>
               <div class="col-sm-7">
-                <a class="blue_link" href="javascript:artifact_modal(<%= audit_compliance.id%>);"><%= @artifact_answers.artifact_display_name if @artifact_answers%></a></div>
+                <a class="blue_link" href="javascript:artifact_modal(<%= audit_compliance.id%>);"><%= artifact_answers.artifact_display_name if artifact_answers%></a></div>
               <% if audit_compliance.artifact_answers.count > 1%>
                  <div class="col-sm-12"><a class="blue_link pull-right" href = "javascript:artifact_modal(<%= audit_compliance.id%>);" >more</a></div>
               <%end%>
@@ -34,7 +34,7 @@
                       <span class="error_message" id="error_recommendation_<%= audit_compliance.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["recommendation"]%><span>
                       <!--  <input class="audit-big-input" type="text"> -->
                       <%if @checklist_recommendation.errors[:recommendation].present?%>
-                        <div class="error_message"><%=  @checklist_recommendation.errors[:recommendation][0]%></div>
+                        <div class="error_message"><%=  checklist_recommendation.errors[:recommendation][0]%></div>
                       <% end %>
                     </div>
               </div>
@@ -53,7 +53,7 @@
             <div class="form-group clearfix">
               <%= f.label :Comment, t(' checklist_recommendation.comment'), :class => "col-sm-5 control-label" %>
                 <!--   <label class="col-sm-5"><b>Comment :</b> </label> -->
-                <div class="col-sm-7"><%= @artifact_answers.comment_comment.truncate(50) if @artifact_answers && @artifact_answers.comment_comment%></div>
+                <div class="col-sm-7"><%= artifact_answers.comment_comment.truncate(50) if artifact_answers && artifact_answers.comment_comment%></div>
 
             </div>
               <div class="form-group clearfix">
@@ -103,7 +103,7 @@
                       <!--<input type="hidden" id="score_#{control.id}" name="checklist_recommendation[#{control.id}][score]" value="0" />-->
                       <%= hidden_field_tag "checklist_recommendation[#{audit_compliance.id}][score]",  (audit_compliance.score_id ? audit_compliance.score_id : 1) , :id => "score_#{audit_compliance.id}"%>
                       <% score_id = (audit_compliance.score_id.present? ?  audit_compliance.score_id : nil) %>
-                      <% @score.each_with_index do |score, index|%>
+                      <% score.each_with_index do |score, index|%>
                          <%if score_id%>
                          <a class="score_points <%= (score_id == score.id)  ?  'active' : ''%>" id="<%= audit_compliance.id%>_<%= score.id %>" href="javascript:void(0)" data-value="<%= score.id %>"><%= score.level%></a>
                          <%else%>
@@ -116,7 +116,7 @@
               <div class="form-group clearfix">
                 <div class="col-sm-12 ">
                    <!-- a class="black_btn fright" href=""> Score</a-->
-                  <%unless(@audit.audit_status_id == 4)%>
+                  <%unless(audit.audit_status_id == 4)%>
                     <%=button_tag "Score", :class => "black_btn fright", type: 'button', onclick: "save_individual_score(#{audit_compliance.id})",:disabled => (checklist_recommendation && checklist_recommendation.recommendation_status_id == 3)%>
                   <%end%>
                 </div>

@@ -8,13 +8,13 @@ class Audit < ActiveRecord::Base
   belongs_to :audit_status
   belongs_to :audit_type
   belongs_to :compliance, foreign_key: 'standard_id'
-  has_many :nc_questions
+  has_many :nc_questions, :dependent => :destroy
   has_many :answers, through: :nc_questions
   has_many :default_compliance_libraries, -> { where(is_leaf: true) }, through: :compliance, source: :compliance_library
   has_many :nc_checklist_recommendations, through: :answers , source: :checklist_recommendation
   has_many :compliance_checklist_recommendations, through: :audit_compliances, source: :checklist_recommendation
-  has_many :audit_compliances
-  has_many :audit_auditees
+  has_many :audit_compliances, :dependent => :destroy
+  has_many :audit_auditees, :dependent => :destroy
   has_many :artifact_answers, through: :audit_compliances
   has_many :auditees, through: :audit_auditees, :source => :user
   belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
@@ -58,11 +58,12 @@ class Audit < ActiveRecord::Base
   delegate :name, :to => :audit_type, prefix: true, allow_nil: true
   delegate :full_name, :to => :auditory, prefix: true, allow_nil: true
   delegate :email, :to => :auditory, prefix: true, allow_nil: true
+  delegate :user_name, :to => :auditory, prefix: true, allow_nil: true
   delegate :name, :to => :location, prefix: true, allow_nil: true
   delegate :name, :to => :department, prefix: true, allow_nil: true
   delegate :name, :to => :audit_status, prefix: true, allow_nil: true
 
-  scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
+  #scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
 
   # mapping do
   #   indexes :_id, :index => :not_analyzed
@@ -105,7 +106,7 @@ class Audit < ActiveRecord::Base
 
   # Getting all the checklist recommendations for sending reminders
   def unresponsive_recommendation
-    self.checklist_recommendations.where("recommendation_completed = true AND response_completed = false")
+    self.checklist_recommendations.collect { |x| x if (x.recommendation_completed== true && x.response_completed == false)}
   end
 
   # Getting all the non compliance for sending reminders
@@ -113,9 +114,9 @@ class Audit < ActiveRecord::Base
     self.nc_questions.where("target_date <= ?" , DateTime.now).select{ |x| x.answers.blank?}
   end
 
-  def answered_ncquestions
-    self.nc_questions
-  end
+  # def answered_ncquestions
+  #   self.nc_questions
+  # end
 
   def audit_compliances_for_current_user(user_id)
     self.audit_compliances.joins("left OUTER join artifact_answers on audit_compliances.id=artifact_answers.audit_compliance_id").where("artifact_answers.responsibility_id=?",user_id).uniq
@@ -247,7 +248,15 @@ class Audit < ActiveRecord::Base
   end
 
   def recommendation_status
-    self.checklist_recommendations.map(&:recommendation_completed).all?{ |x| x == true }
+    self.checklist_recommendations.present? ? self.checklist_recommendations.map(&:recommendation_completed).all?{ |x| x == true } : false
+  end
+
+  def response_status
+    self.checklist_recommendations.present? ? self.checklist_recommendations.map(&:response_completed).all?{ |x| x == true } : false
+  end
+
+  def observation_status
+    self.checklist_recommendations.present? ? self.checklist_recommendations.map(&:is_published).all?{ |x| x == true } : false
   end
 
   def build_audit_compliance(compliance_params)

@@ -49,8 +49,13 @@ ActiveAdmin.register ComplianceLibrary do
     end
 
     def export_files
-      file_to_download = "sample_compliance_library.csv"
-      send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
+      begin
+        file_to_download = "sample_compliance_library.csv"
+        send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
+      rescue
+        flash[:error] = MESSAGES["csv_export"]["error"]
+        redirect_to new_audit_path
+      end
     end
   end
 

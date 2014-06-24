@@ -5,15 +5,16 @@
 </style>
 <%= form_for(@audit, url: {controller: "nc_questions", action: "create"},:method => "post") do |f| %>
 
-<%= f.fields_for :nc_questions do |builder| %>
-  <%#= f.hidden_field :audit_id, value: @audit.id %>
-  <%#= f.hidden_field :company_id, value: current_company.id %>
-	<%= render 'nc_question_fields', :f => builder %>
-<% end %>
+  <%= f.fields_for :nc_questions do |builder| %>
+    <%#= f.hidden_field :audit_id, value: @audit.id %>
+    <%#= f.hidden_field :company_id, value: current_company.id %>
+  	<%= render 'nc_question_fields', :f => builder %>
+  <% end %>
   <div id="questions_libraries"></div>
 	<div class="form-group clearfix addissue">
     	<%= link_to_add_fields "Add New Request", f, :nc_questions %>
     </div>
+<<<<<<< HEAD
     <div class="form-group clearfix addissue"> <a class="plus-icon" data-toggle="modal" href="#add_url">Add Request from Library</a><br><br>
               <div id="add_url" class="modal fade">
                 <div class="modal-dialog modal-dialog_large">
@@ -88,17 +89,84 @@
 
 
 
+=======
+>>>>>>> e349e03befd61087d03202f0757c0344160b3a46
 
 	<div class="col-lg-4 col-sm-6 col-xs-12"></div>
     <div class="col-lg-4 col-sm-6 col-xs-12"></div>
-    <div class="col-lg-4 col-sm-6 col-xs-12"><br><br>
+    <div class="col-lg-4 col-sm-6 col-xs-12"><br>
     	&nbsp; &nbsp; &nbsp; &nbsp;
     	<a class="black_btn" href="">Cancel</a>
     	<!-- <a class="black_btn" href="">Reset</a> -->
       <%= button_tag 'Reset', :type => 'reset', :class => "black_btn" %>
-        <%= f.submit "Ask Auditee", :class => "orange_btn" %>
+      <%= f.submit "Ask Auditee", :class => "orange_btn" %><br /><br />
     </div>
 <% end %>
+
+  <div class="form-group clearfix addissue"><a class="plus-icon" data-toggle="modal" href="#add_url">Add Request from Library</a><br><br>
+    <div id="add_url" class="modal fade">
+      <div class="modal-dialog modal-dialog_large">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
+            <div class="model-header">
+              <div class="modal-title" id="myModalLabel">Request Library</div>
+            </div>
+            <div class="model-con">
+
+              <div id="test-check">
+                <%= form_tag library_questions_nc_questions_path, :id => "submit_library" do %>
+                  <tbody>
+                    <% if @library_questions.present? %>
+                      <% @library_questions.each do |nc_question| %>
+                        <tr>
+                          <td><%= check_box_tag "nc_questions[]", nc_question.id %></td>
+                          <%= nc_question.question %><br>
+                        </tr>
+                      <% end %>
+                    <% end %>
+                  </tbody>
+                  <div class="modal-footer">
+                    <%= submit_tag "Submit", :type => 'button', href: 'javascript:void(0);', :id=>"submit_questions" ,:class => "orange_btn"%>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div>
+              </br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group clearfix addissue"> <a class="upload-icon" data-toggle="modal" href="#add_files">Upload Requests to Library</a>
+    <div id="add_files" class="modal fade">
+      <div class="modal-dialog modal-dialog_large">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
+            <h4 class="modal-title" id="myModalLabel">Upload files only CSV and XLSX</h4>
+            <div class="model-content">
+            <%= form_tag import_files_nc_questions_path, multipart: true do %>
+              <%= file_field_tag :file , :id =>"file_input"%>
+              <span class="error_message" style="display:none;" id="error_file"><%= MESSAGES["csv_upload"]["presence"]%></span>
+              <br>
+              <div class="model-footer">
+                <%= submit_tag "Import" ,:class => "black_btn" , :onclick => "return file_presence_check();" %>
+                <%= button_tag "Cancel" ,:class => "orange_btn"%>
+              </div>
+            <% end %>
+          </div>
+            <p></p>
+            <p>
+              <%= link_to "Download Sample Non Compliance Checklist CSV", export_files_nc_questions_path(format: "csv"), :class =>'download-file-icon' %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <script>
 $("#submit_questions").click(function(){
