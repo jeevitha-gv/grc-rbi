@@ -96,3 +96,56 @@ $(document).ready(function(){
           }
       });
 });
+
+//~ $("#submit_questions").click(function(){
+function question_submit()
+{
+  selected = []
+  $('#test-check input:checked').each(function() {
+    selected.push($(this).attr('value'));
+  });
+  var audit_id = $('#select_audit').attr('value');
+  $('#add_url').modal('hide');
+  if(selected.length>0){
+      $.ajax({
+        url: "/audits/"+audit_id+"/nc_questions/library_questions",
+        type: "GET",
+        data: {"nc_question" : selected}
+      });
+    }
+}
+
+  $('.orange_btn').click(function(){
+    $('.edit_audit').submit();
+  });
+
+ $(".datepicker").kendoDatePicker({
+        format: "dd/MM/yyyy"
+        });
+
+	function file_presence_check()
+	{
+		var file = $('#file_input').val()
+		if (file == '')
+		{
+		$('#error_file').show()
+		return false
+		}
+		else
+		{
+		$('#error_file').hide()
+		return true
+		}
+	}
+	
+	$(document).ready(function(){
+
+    $(document).on("change", ".question_response", function(){
+      if($(this).val() == "3"){
+        $(this).parent().parent().parent().find(".hidden-item").fadeIn('fast');
+      }
+      else{
+        $(this).parent().parent().parent().find(".hidden-item").fadeOut('fast');
+      }
+    });
+  });
