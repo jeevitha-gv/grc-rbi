@@ -153,6 +153,27 @@
 		window.location.href = "/audits/"+ dataItem.id +".pdf"
 	}
 
+	function select_stage_class(stage_class)
+		{
+			if(stage_class == 'do')
+		  {
+		    return "k-grid-Set";
+		  }
+		  else if(stage_class == 'check')
+		  {
+		   	return "k-grid-tick";
+		  }
+		  else if(stage_class=='act')
+		  {
+		    return "k-grid-tick1";
+		  }
+		  else if(stage_class=='published')
+		  {
+		    return "k-grid-book";
+		  }
+		}
+
+
 	$(document).ready(function() {
 
 		if ( stage.length > 0 )
@@ -194,6 +215,10 @@
 		// Kendo Grid for all
 		$("#gridforstage").kendoGrid({
 			dataSource: dataSource,
+				dataBound: function(){
+					var selected_stage = select_stage_class(stage)
+					$('.'+selected_stage).addClass('active');
+			},
 			height: 'auto',
 			scrollable: true,
 			sortable: true,
@@ -385,6 +410,9 @@
 
         {command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Actions", width: "180px" }			],
 		});
+
+
+
 
 
 	});
