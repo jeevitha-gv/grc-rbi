@@ -12,7 +12,7 @@ class NcQuestionsController < ApplicationController
     # nc_questions from library
     nc_questions = current_company.nc_questions.where(:nc_library => "true")
     audit_nc_questions = @audit.nc_questions.map(&:id)
-    @library_questions = nc_questions.where("id NOT IN (?)", audit_nc_questions)
+    @library_questions = audit_nc_questions.compact.blank? ? nc_questions : nc_questions.where("id NOT IN (?)", audit_nc_questions)
 	end
 
   # Create Nc Questions for audit

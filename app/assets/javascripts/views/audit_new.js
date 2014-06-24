@@ -4,19 +4,15 @@
     if(user_value!=""){$(this).attr('selected', true)}
   });
 	});
-	
-	function auditee_add()
-	{
-    var size = $('#auditee-list').find('.auditee-rows').size();
-    $("#auditee-list").append(""+"<div class='form-group clearfix auditee-dropdown'>"+$(".auditee-dropdown").html().replace('audit[audit_auditees_attributes][0][user_id]','audit[audit_auditees_attributes]['+size+'][user_id]')+"</div>"+"")//.replace(, ''); ;
-  }
 
-	
- $(document).ready(function(){
-    $("#audit_compliance_type").change(function () {
-      $('#standard-compliance  select').attr('name', '');
-      $('#standard-topic  select').attr('name', '');
-      var getStandardVal = this.value;
+	// function auditee_add()
+	// {
+ //    var size = $('#auditee-list').find('.auditee-rows').size();
+ //    $("#auditee-list").append(""+"<div class='form-group clearfix auditee-dropdown'>"+$(".auditee-dropdown").html().replace('audit[audit_auditees_attributes][0][user_id]','audit[audit_auditees_attributes]['+size+'][user_id]')+"</div>"+"")//.replace(, ''); ;
+ //  }
+
+  function standard_display(getStandardVal)
+  {
       if(getStandardVal == 'Compliance')
         {
           $('#standard-compliance').show();
@@ -36,6 +32,14 @@
           $('#standard-compliance').hide();
           $('#standard-topic').hide();
         }
+  }
+
+ $(document).ready(function(){
+  standard_display($("#audit_compliance_type").val());
+    $("#audit_compliance_type").change(function () {
+      $('#standard-compliance  select').attr('name', '');
+      $('#standard-topic  select').attr('name', '');
+      standard_display(this.value)
     });
 
     $(".datepicker").kendoDatePicker({
@@ -58,7 +62,7 @@
       new Messi('Planned for further phases.', {title: 'Warning', titleClass: 'warning', autoclose: 2000});
     });
   });
-	
+
 	 function get_departments(element){
     var location_id = $(element).val();
     if(location_id.length>0){

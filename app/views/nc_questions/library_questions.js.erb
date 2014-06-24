@@ -1,5 +1,6 @@
 <% if @nc_questions.present? %>
   <% @nc_questions.each do |nc_question| %>
-  <% time_stamp = Time.now.to_i %>
-  $('#questions_libraries').append("<%= j render(:partial => 'library_questions', :locals => { :f => nc_question, :time_variable => time_stamp, :priorities => @priorities, :response_types => @response_types, :audit => @audit, :auditees => @auditees }) %>");  <% end %>
+    <% time_stamp = "#{SecureRandom.random_number((2**(0.size * 8-2)-1))}"[0..6]  %>
+    $('#questions_libraries').append("<%= j render(:partial => 'library_questions', :locals => { :f => nc_question, :time_variable => time_stamp, :priorities => @priorities, :response_types => @response_types, :audit => @audit, :auditees => @auditees }) %>");
+    <% end %>
 <% end %>
