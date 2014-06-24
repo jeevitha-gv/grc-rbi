@@ -6,8 +6,6 @@
 <%= form_for(@audit, url: {controller: "nc_questions", action: "create"},:method => "post") do |f| %>
 
   <%= f.fields_for :nc_questions do |builder| %>
-    <%#= f.hidden_field :audit_id, value: @audit.id %>
-    <%#= f.hidden_field :company_id, value: current_company.id %>
   	<%= render 'nc_question_fields', :f => builder %>
   <% end %>
   <div id="questions_libraries"></div>
@@ -37,7 +35,7 @@
             <div class="model-con">
 
               <div id="test-check">
-                <%= form_tag library_questions_audit_nc_questions_path(@audit), :id => "submit_library" do %>
+                <%= form_tag "/audits/#{@audit.id}/nc_questions/library_questions", :id => "submit_library" do %>
                   <tbody>
                     <% if @library_questions.present? %>
                       <% @library_questions.each do |nc_question| %>
@@ -46,10 +44,11 @@
                           <%= nc_question.question %><br>
                         </tr>
                       <% end %>
+                      <%= hidden_field_tag :audit_id, @audit.id, id: "select_audit" %>
                     <% end %>
                   </tbody>
                   <div class="modal-footer">
-                    <%= submit_tag "Submit", :type => 'button', href: 'javascript:void(0);', :id=>"submit_questions" ,:class => "orange_btn"%>
+                    <%= submit_tag "Submit", :type => 'button', href: 'javascript:void(0);', :id=>"submit_questions" ,:class => ""%>
                   </div>
                 <% end %>
               </div>
@@ -96,10 +95,11 @@ $("#submit_questions").click(function(){
   $('#test-check input:checked').each(function() {
     selected.push($(this).attr('value'));
   });
+  var audit_id = $('#select_audit').attr('value');
   $('#add_url').modal('hide');
   if(selected.length>0){
       $.ajax({
-        url: "/nc_questions/library_questions",
+        url: "/audits/"+audit_id+"/nc_questions/library_questions",
         type: "GET",
         data: {"nc_question" : selected}
       });
