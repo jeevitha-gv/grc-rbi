@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+AdminUser.create!(email: 'admin@fixnix.com', password: 'adminfixnix', password_confirmation: 'adminfixnix')
+
 QuestionType.delete_all
 
     QuestionType.create([{name: 'Yes or No'}])
