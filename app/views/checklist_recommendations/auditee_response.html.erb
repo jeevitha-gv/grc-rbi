@@ -65,16 +65,4 @@
 <link href="/assets/outer/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/outer/jquery.ui.accordion.min.css" rel="stylesheet" type="text/css">
 <script src="/assets/outer/jquery-ui-1.9.2.accordion.custom.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-$(function() {
-	$( "#Accordion1" ).accordion();
-});
-$('body').on('hidden.bs.modal', '.modal', function () {
-  $(this).removeData('bs.modal');
-});
 
-function display_selected_files(e)
-{
-$(e).parent().find("#selected_files").html("<h5>selected: " + $(e).val() + "</h5>");
-}
-</script>

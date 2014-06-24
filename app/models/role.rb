@@ -15,4 +15,7 @@ class Role < ActiveRecord::Base
     has_many :privileges
     has_many :roles
     belongs_to :company
+    
+  scope :title, ->(role_id) { where(id: role_id).first.title}
+  
 end
