@@ -15,11 +15,8 @@
     </div>
 	<div class="col-lg-4 col-sm-6 col-xs-12"></div>
     <div class="col-lg-4 col-sm-6 col-xs-12"></div>
-    <div class="col-lg-4 col-sm-6 col-xs-12"><br>
-    	&nbsp; &nbsp; &nbsp; &nbsp;
-    	<a class="black_btn" href="">Cancel</a>
-    	<!-- <a class="black_btn" href="">Reset</a> -->
-      <%= button_tag 'Reset', :type => 'reset', :class => "black_btn" %>
+    <div class="col-lg-4 col-sm-6 col-xs-12">
+    	<a class="black_btn" href="javascript:goBack()">Back</a>
       <%= f.submit "Ask Auditee", :class => "orange_btn" %><br /><br />
     </div>
 <% end %>
