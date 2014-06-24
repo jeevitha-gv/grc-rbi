@@ -47,6 +47,11 @@ class BaseController < ActionController::Base
     authorize!(:read,  @audit)
   end
 
+  def current_audit_with_id
+    @audit = Audit.find(params[:id])
+    authorize!(:read,  @audit)
+  end
+
  # Returns URL with subdomain.. Call this function after User logged_in areas
   def root_subdomain_path
     request.protocol + current_company.domain + "." + request.domain + (request.port.nil? ? '' : ":#{request.port}")

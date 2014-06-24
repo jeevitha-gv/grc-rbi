@@ -290,7 +290,7 @@ var validate = true
   if(validate)
   {
     $.ajax({
-      url: "/audit_compliances",
+      url: "/audits/"+audit_id+"/audit_compliances",
       type: "POST",
       beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
       data: {"checklist" : data},

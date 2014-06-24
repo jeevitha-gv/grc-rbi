@@ -68,7 +68,7 @@ class NcQuestionsController < ApplicationController
     # Filter for Authenticate auditee response based on the Audit
     def check_for_auditee_response
       if(@audit.auditees.map(&:id).include?(current_user.id))
-        redirect_to new_answers_path(@audit)
+        redirect_to new_audit_answers_path(@audit)
       end
     end
 end

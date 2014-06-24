@@ -1,6 +1,5 @@
 class AnswersController < ApplicationController
   before_filter :current_audit
-  authorize_resource
   before_filter :authorize_auditees, :only => [:new]
   before_filter :authorize_auditees_skip_company_admin, :only => [:new]
 
@@ -12,7 +11,7 @@ class AnswersController < ApplicationController
   # Create answer for nc_question belongs to audit
   def create
     Answer.build_answer(params)
-    redirect_to new_answers_path
+    redirect_to new_audit_answers_path(@audit)
   end
 
 end
