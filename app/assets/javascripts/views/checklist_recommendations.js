@@ -496,21 +496,3 @@ $('body').on('hidden.bs.modal', '.modal', function () {
   $(this).removeData('bs.modal');
 });
 
-// ajax for submitting the score method
-    function save_individual_score(id)
-    {
-        var recommendation = $("#recommendation_" +id).val()
-        var recommendation_priority = $("#recommendation_priority_id_" +id).val()
-        var reason = $("#reason_" +id).val()
-        var recommendation_severity = $("#recommendation_severity_id_" +id).val()
-        var closure_date = $("#closure_date_" +id).val()
-        var recommendation_status = $("#recommendation_status_id_" +id).val()
-        var recommendation_severity = $("#recommendation_severity_id_" +id).val()
-        $.ajax({
-            url: "/checklist_recommendations/update_individual_score",
-            type: "POST",
-            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
-            data: {checklist_id :  id, checklist_type: 'AuditCompliance', recommendation: recommendation, reason: reason, closure_date: closure_date, recommendation_priority_id: recommendation_priority, recommendation_severity_id: recommendation_severity, recommendation_status_id: recommendation_status },
-            }).done(function() {
-        });
-    }

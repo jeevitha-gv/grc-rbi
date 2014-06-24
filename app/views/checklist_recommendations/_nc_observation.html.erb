@@ -5,7 +5,7 @@
               <h3><a href="#"><%= answer.question %></a> <span class="fright pending_msg" id= "observation_status"><%= checklist_recommendation.is_published == true ? 'Completed' : 'Pending'%></span></h3>
               <div>
                 <div class="row audit-title">
-                <%= form_tag '/checklist_recommendations/audit_observation_create' , :remote=>true , multipart: true do%>
+                <%= form_tag audit_observation_create_audit_checklist_recommendations_path(audit)  , :remote=>true , multipart: true do%>
                   <div class="col-lg-4">
 
 
