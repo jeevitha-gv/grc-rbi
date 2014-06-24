@@ -36,7 +36,7 @@
             <div class="model-con">
 
               <div id="test-check">
-                <%= form_tag "/audits/#{@audit.id}/nc_questions/library_questions", :id => "submit_library" do %>
+                <%= form_tag "/audits/#{audit.id}/nc_questions/library_questions", :id => "submit_library" do %>
                   <tbody>
                     <% if library_questions.present? %>
                       <% library_questions.each do |nc_question| %>
@@ -46,7 +46,7 @@
                           <%= nc_question.question %><br>
                         </tr>
                       <% end %>
-                      <%= hidden_field_tag :audit_id, @audit.id, id: "select_audit" %>
+                      <%= hidden_field_tag :audit_id, audit.id, id: "select_audit" %>
                     <% end %>
                   </tbody>
                   <div class="modal-footer">

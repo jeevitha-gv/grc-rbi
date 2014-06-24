@@ -288,6 +288,12 @@ class Audit < ActiveRecord::Base
       AuditCompliance.delete(old_compliance) if old_compliance.present?
   end
 
+  def set_audit_status(audit, commit_name)
+    audit.audit_status_id = (commit_name == "Save as Plan" ?  AuditStatus.for_name("Planning").id : AuditStatus.for_name("In Progress").id)
+    return audit
+  end
+
+
   protected
     def self.audit_initializers(location_name, department_name, team_name, company)
       @location = Location.for_name_by_company(location_name, company.id).first
