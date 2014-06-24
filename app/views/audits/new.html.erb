@@ -1,3 +1,4 @@
+<%= javascript_include_tag "/assets/views/audit_index.js" %>
 <link href="/assets/bootstrap-multiselect.css" rel="stylesheet" />
 <div class="content">
   <div class="container">
@@ -62,7 +63,7 @@
             </div>
             <div class="col-sm-8" id="auditee-button" style="<%= action_name == "create" ? "display:block;" : "display:none;" %>">
               <div class="form-group clearfix addissue">
-                <a href="javascript:void(0)" class="plus-icon" id="add_auditee">Add Auditee
+                <a href="javascript:void(0)" class="plus-icon" id="add_auditee" onclick="auditee_add();">Add Auditee
                 </a>
               </div>
             </div>
@@ -106,19 +107,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $('#add_auditee').click(function(){
-    var size = $('#auditee-list').find('.auditee-rows').size();
-
-    // console.log(cd append)
-    $("#auditee-list").append(""+"<div class='form-group clearfix auditee-dropdown'>"+$(".auditee-dropdown").html().replace('audit[audit_auditees_attributes][0][user_id]','audit[audit_auditees_attributes]['+size+'][user_id]')+"</div>"+"")//.replace(, ''); ;
-
-    // console.log()
-  });
-
-  $("#auditees-users option").each(function( index ) {
-    var tesrt = ($(this).attr('class'))
-    if(tesrt!=""){$(this).attr('selected', true)}
-  });
-</script>

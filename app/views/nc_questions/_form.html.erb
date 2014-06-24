@@ -27,9 +27,7 @@
                       <div class="model-con">
 
                       <div id="test-check">
-                        <% nc_questions = current_company.nc_questions.where(:nc_library => "true") %>
-                        <% audit_nc_questions = @audit.nc_questions.map(&:id) %>
-                        <% library_questions = nc_questions.where("id NOT IN (?)", audit_nc_questions) %>
+                        <% library_questions = nc_library_questions(@audit) %>
                         <%= form_tag library_questions_nc_questions_path, :id => "submit_library" do %>
                           <tbody>
                             <% library_questions.each do |nc_qs| %>

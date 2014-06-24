@@ -8,13 +8,13 @@ class Audit < ActiveRecord::Base
   belongs_to :audit_status
   belongs_to :audit_type
   belongs_to :compliance, foreign_key: 'standard_id'
-  has_many :nc_questions
+  has_many :nc_questions, :dependent => :destroy
   has_many :answers, through: :nc_questions
   has_many :default_compliance_libraries, -> { where(is_leaf: true) }, through: :compliance, source: :compliance_library
   has_many :nc_checklist_recommendations, through: :answers , source: :checklist_recommendation
   has_many :compliance_checklist_recommendations, through: :audit_compliances, source: :checklist_recommendation
-  has_many :audit_compliances
-  has_many :audit_auditees
+  has_many :audit_compliances, :dependent => :destroy
+  has_many :audit_auditees, :dependent => :destroy
   has_many :artifact_answers, through: :audit_compliances
   has_many :auditees, through: :audit_auditees, :source => :user
   belongs_to :auditory, class_name: 'User', foreign_key: 'auditor'
