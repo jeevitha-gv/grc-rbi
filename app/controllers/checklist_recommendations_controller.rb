@@ -43,7 +43,7 @@ class ChecklistRecommendationsController < ApplicationController
 			else
 				@checklist_recommendation.checklist_type == 'AuditCompliance' ? flash[:notice] = "Recommendation is scored successfully" : flash[:notice] = "Recommendation is submitted successfully"
 			end
-			redirect_to new_checklist_recommendation_path
+			redirect_to new_audit_checklist_recommendation_path
 	 end
 
 	#To show auditee response
