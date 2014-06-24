@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
 
   resources :audits do
-    collection do                                                                 
+    collection do
       get 'department_teams_users'
       post 'audit_with_status'
       post 'audit_all'
@@ -59,10 +59,10 @@ Rails.application.routes.draw do
         post 'import_files'
         get 'export_files'
       end
-  end
+    end
+    resource :answers, only: [:index, :create, :new]
  end
 
-  resource :answers
 
   resource :user do
     collection do

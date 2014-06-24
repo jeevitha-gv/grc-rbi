@@ -1,6 +1,5 @@
 class ChecklistRecommendationsController < ApplicationController
 	before_filter :current_audit
-    authorize_resource
 	before_filter :authorize_auditees, :only => [:auditee_response_create]
 	before_filter :authorize_auditees_skip_company_admin, :only => [:auditee_response]
 	before_filter :authorize_auditor_skip_company_admin, :only => [:new, :audit_observation]

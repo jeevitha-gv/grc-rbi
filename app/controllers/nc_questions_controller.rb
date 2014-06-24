@@ -1,6 +1,6 @@
 class NcQuestionsController < ApplicationController
   before_filter :current_audit
-  authorize_resource
+  #authorize_resource
   before_filter :check_for_auditee_response, :only => [:new]
 
   # Intialize Nc Questions for audit
@@ -68,7 +68,7 @@ class NcQuestionsController < ApplicationController
     # Filter for Authenticate auditee response based on the Audit
     def check_for_auditee_response
       if(@audit.auditees.map(&:id).include?(current_user.id))
-        redirect_to new_answers_path
+        redirect_to new_answers_path(@audit)
       end
     end
 end
