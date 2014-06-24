@@ -488,7 +488,7 @@ $(e).parent().find("#selected_files").html("<h5>selected: " + $(e).val() + "</h5
 function artifact_modal(id)
 {
   $('#artifact_modal').modal({
-    remote: "/checklist_recommendations/list_artifacts_and_comments?id=" + id
+    remote: "/audits/"+audit_id+"/checklist_recommendations/list_artifacts_and_comments?id=" + id
   });
 }
 

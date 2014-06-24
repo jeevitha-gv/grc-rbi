@@ -6,7 +6,7 @@
 	<div>
 		<h4>Artifact - <%= artifacts.artifact_display_name%></h4>
 		<% artifacts.attachments.each do |attachment|%>
-			<li><%= link_to(File.basename(attachment.attachment_file_url), download_artifacts_checklist_recommendations_path(id: attachment.id))%></li>
+			<li><%= link_to(File.basename(attachment.attachment_file_url), download_artifacts_audit_checklist_recommendations_path(id: attachment.id))%></li>
 		<%end%>
 		<br>
 		<h4>Comments</h4>
