@@ -20,7 +20,7 @@ class NcQuestionsController < ApplicationController
 		if @audit.update_attributes(question_params)
       @audit.nc_questions.update_all(company_id: current_company.id)
       flash[:notice] = "Your requests were added successfully"
-      redirect_to new_nc_question_path
+      redirect_to new_audit_nc_question_path
     else
       flash[:error] = "Something went wrong and requests were not added"
 			render "new"
