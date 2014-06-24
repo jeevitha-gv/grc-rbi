@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       get 'audit_export'
       post 'asc_calculation'
       get 'maximum_actual_score'
-      get ':id/audit_dashboard', to: 'audits#audit_dashboard'
+      get ':id/audit_dashboard', to: 'audits#audit_dashboard', as: 'audit_dashboard'
       get 'artifacts_download'
     end
     resources :checklist_recommendations do
