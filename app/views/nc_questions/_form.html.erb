@@ -5,9 +5,13 @@
 </style>
 <%= form_for(audit, url: {controller: "nc_questions", action: "create"},:method => "post") do |f| %>
   <%= f.fields_for :nc_questions do |builder| %>
+<<<<<<< HEAD
     <%#= f.hidden_field :audit_id, value: audit.id %>
     <%#= f.hidden_field :company_id, value: current_company.id %>
   	<%= render 'nc_question_fields', audit: audit, f: builder %>
+=======
+  	<%= render 'nc_question_fields', :f => builder %>
+>>>>>>> 6a74189210f6e8c72f2442b46dfb091efb9bb75d
   <% end %>
   <div id="questions_libraries"></div>
 	<div class="form-group clearfix addissue">
@@ -36,19 +40,27 @@
             <div class="model-con">
 
               <div id="test-check">
+<<<<<<< HEAD
                 <%= form_tag library_questions_audit_nc_questions_path(audit), :id => "submit_library" do %>
+=======
+                <%= form_tag "/audits/#{@audit.id}/nc_questions/library_questions", :id => "submit_library" do %>
+>>>>>>> 6a74189210f6e8c72f2442b46dfb091efb9bb75d
                   <tbody>
                     <% if library_questions.present? %>
                       <% library_questions.each do |nc_question| %>
                         <tr>
                           <td><%= check_box_tag "nc_questions[]", nc_question.id %></td>
-                          <%= nc_question.question %><br>
+
+                          <%= nc_question.question %> - <%= nc_question.question_type_name %> <br>
                         </tr>
                       <% end %>
+                      <%= hidden_field_tag :audit_id, @audit.id, id: "select_audit" %>
                     <% end %>
                   </tbody>
                   <div class="modal-footer">
-                    <%= submit_tag "Submit", :type => 'button', href: 'javascript:void(0);', :id=>"submit_questions" ,:class => "orange_btn"%>
+
+                    <%= submit_tag "Add to Current Audit", :type => 'button', href: 'javascript:void(0);', :id=>"submit_questions" ,:class => "black_btn"%>
+
                   </div>
                 <% end %>
               </div>
@@ -95,10 +107,11 @@ $("#submit_questions").click(function(){
   $('#test-check input:checked').each(function() {
     selected.push($(this).attr('value'));
   });
+  var audit_id = $('#select_audit').attr('value');
   $('#add_url').modal('hide');
   if(selected.length>0){
       $.ajax({
-        url: "/nc_questions/library_questions",
+        url: "/audits/"+audit_id+"/nc_questions/library_questions",
         type: "GET",
         data: {"nc_question" : selected}
       });

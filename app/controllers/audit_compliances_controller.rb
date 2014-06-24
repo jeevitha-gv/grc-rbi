@@ -1,6 +1,5 @@
 class AuditCompliancesController < ApplicationController
     before_filter :current_audit
-    authorize_resource
     before_filter :authorize_auditees_skip_company_admin, :only => [:response, :response_checklist]
     before_filter :authorize_auditees, :only => [:submit]
     before_filter :check_for_auditee_response, only: [:index]
@@ -31,7 +30,7 @@ class AuditCompliancesController < ApplicationController
     redirect_to audits_path
   end
 
-  private  
+  private
   # Strong parameters audit compliance
   def compliance_params
     params.require(:checklist)

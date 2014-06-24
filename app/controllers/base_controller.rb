@@ -44,7 +44,7 @@ class BaseController < ActionController::Base
     # Find Audit
   def current_audit
     @audit = Audit.find(params[:audit_id])
-     authorize!(:read,  @audit)
+    authorize!(:read,  @audit)
   end
 
  # Returns URL with subdomain.. Call this function after User logged_in areas

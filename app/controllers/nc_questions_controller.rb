@@ -1,6 +1,6 @@
 class NcQuestionsController < ApplicationController
   before_filter :current_audit
-  authorize_resource
+  #authorize_resource
   before_filter :check_for_auditee_response, :only => [:new]
 
   # Intialize Nc Questions for audit
@@ -20,7 +20,7 @@ class NcQuestionsController < ApplicationController
 		if @audit.update_attributes(question_params)
       @audit.nc_questions.update_all(company_id: current_company.id)
       flash[:notice] = "Your requests were added successfully"
-      redirect_to new_nc_question_path
+      redirect_to new_audit_nc_question_path
     else
       flash[:error] = "Something went wrong and requests were not added"
 			render "new"
@@ -39,12 +39,12 @@ class NcQuestionsController < ApplicationController
 		if(params[:file].present?)
       begin
 				NcQuestion.build_from_import(params[:file], current_company)
-        redirect_to new_nc_question_path, :flash => { :notice => MESSAGES["nc_question"]["csv_upload"]["success"]}
+        redirect_to new_audit_nc_question_path, :flash => { :notice => MESSAGES["nc_question"]["csv_upload"]["success"]}
       rescue
-        redirect_to new_nc_question_path, :flash => { :notice => MESSAGES["csv_upload"]["error"]}
+        redirect_to new_audit_nc_question_path, :flash => { :notice => MESSAGES["csv_upload"]["error"]}
       end
     else
-      redirect_to new_nc_question_path , :flash => { :notice => MESSAGES["csv_upload"]["presence"]}
+      redirect_to new_audit_nc_question_path , :flash => { :notice => MESSAGES["csv_upload"]["presence"]}
     end
   end
 
@@ -68,7 +68,7 @@ class NcQuestionsController < ApplicationController
     # Filter for Authenticate auditee response based on the Audit
     def check_for_auditee_response
       if(@audit.auditees.map(&:id).include?(current_user.id))
-        redirect_to new_answers_path
+        redirect_to new_answers_path(@audit)
       end
     end
 end
