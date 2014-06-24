@@ -12,7 +12,6 @@ class ApplicationController < BaseController
   before_filter :authenticate_user!, :if => :admin_function
   helper_method :current_company
   before_filter :set_cookie_audit, :if => :current_user
-  helper_method :current_audit
   before_filter :check_subdomain, :if => :admin_function
   before_filter :check_password_authenticated, :if => :current_user
   # Rescue for 400 and 500 errors
@@ -28,10 +27,7 @@ class ApplicationController < BaseController
   end
 
   protected
-  # Fetch Audit from Cookie
-  def current_audit
-    Audit.find(cookies[:audit_id].to_i) if cookies[:audit_id].present? rescue nil
-  end
+
   # Check functions is for company admin and Super admin
   def admin_function
     if request.url.include?("/admin")

@@ -72,6 +72,9 @@ class Audit < ActiveRecord::Base
   #   indexes :observation
   # end
 
+  def to_param
+    "#{self.id}-#{self.title}"
+  end
   def answered_compliances
     self.audit_compliances.where(is_answered: true)
   end
