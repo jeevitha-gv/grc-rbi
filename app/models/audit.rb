@@ -58,11 +58,12 @@ class Audit < ActiveRecord::Base
   delegate :name, :to => :audit_type, prefix: true, allow_nil: true
   delegate :full_name, :to => :auditory, prefix: true, allow_nil: true
   delegate :email, :to => :auditory, prefix: true, allow_nil: true
+  delegate :user_name, :to => :auditory, prefix: true, allow_nil: true
   delegate :name, :to => :location, prefix: true, allow_nil: true
   delegate :name, :to => :department, prefix: true, allow_nil: true
   delegate :name, :to => :audit_status, prefix: true, allow_nil: true
 
-  scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
+  #scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
 
   # mapping do
   #   indexes :_id, :index => :not_analyzed
@@ -110,9 +111,9 @@ class Audit < ActiveRecord::Base
     self.nc_questions.where("target_date <= ?" , DateTime.now).select{ |x| x.answers.blank?}
   end
 
-  def answered_ncquestions
-    self.nc_questions
-  end
+  # def answered_ncquestions
+  #   self.nc_questions
+  # end
 
   def audit_compliances_for_current_user(user_id)
     self.audit_compliances.joins("left OUTER join artifact_answers on audit_compliances.id=artifact_answers.audit_compliance_id").where("artifact_answers.responsibility_id=?",user_id).uniq
@@ -244,7 +245,15 @@ class Audit < ActiveRecord::Base
   end
 
   def recommendation_status
-    self.checklist_recommendations.map(&:recommendation_completed).all?{ |x| x == true }
+    self.checklist_recommendations.present? ? self.checklist_recommendations.map(&:recommendation_completed).all?{ |x| x == true } : false
+  end
+
+  def response_status
+    self.checklist_recommendations.present? ? self.checklist_recommendations.map(&:response_completed).all?{ |x| x == true } : false
+  end
+
+  def observation_status
+    self.checklist_recommendations.present? ? self.checklist_recommendations.map(&:is_published).all?{ |x| x == true } : false
   end
 
   def build_audit_compliance(compliance_params)
