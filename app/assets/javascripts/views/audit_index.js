@@ -136,7 +136,7 @@
 	function graph_file(e)
 	{
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		window.location.href = "/audits/"+ dataItem.id + "/audit_dashboard"
+		window.location.href = "/audits/"+dataItem.id+"-"+dataItem.title+"/audit_dashboard"
 	}
 
 	function pdf_file(e)
