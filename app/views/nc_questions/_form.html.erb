@@ -43,13 +43,14 @@
                       <% @library_questions.each do |nc_question| %>
                         <tr>
                           <td><%= check_box_tag "nc_questions[]", nc_question.id %></td>
+                          <% binding.pry %>
                           <%= nc_question.question %><br>
                         </tr>
                       <% end %>
                     <% end %>
                   </tbody>
                   <div class="modal-footer">
-                    <%= submit_tag "Submit", :type => 'button', href: 'javascript:void(0);', :id=>"submit_questions" ,:class => "orange_btn"%>
+                    <%= submit_tag "Add to Current Audit", :type => 'button', href: 'javascript:void(0);', :id=>"submit_questions" ,:class => "orange_btn"%>
                   </div>
                 <% end %>
               </div>
