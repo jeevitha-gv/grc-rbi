@@ -1,6 +1,5 @@
 class ChecklistRecommendationsController < ApplicationController
 	before_filter :current_audit
-    authorize_resource
 	before_filter :authorize_auditees, :only => [:auditee_response_create]
 	before_filter :authorize_auditees_skip_company_admin, :only => [:auditee_response]
 	before_filter :authorize_auditor_skip_company_admin, :only => [:new, :audit_observation]
@@ -44,7 +43,7 @@ class ChecklistRecommendationsController < ApplicationController
 			else
 				@checklist_recommendation.checklist_type == 'AuditCompliance' ? flash[:notice] = "Recommendation is scored successfully" : flash[:notice] = "Recommendation is submitted successfully"
 			end
-			redirect_to new_checklist_recommendation_path
+			redirect_to new_audit_checklist_recommendation_path
 	 end
 
 	#To show auditee response

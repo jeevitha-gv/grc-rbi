@@ -4,7 +4,7 @@
               <h3><a href="#"><%= checklist.compliance_library_name%></a> <span class="fright pending_msg" id= "observation_status"><%= checklist_recommendation.is_published == true ? 'Completed' : 'Pending' if checklist_recommendation.present? %></span></h3>
               <div>
                 <div class="row audit-title">
-                <%= form_tag '/checklist_recommendations/audit_observation_create' , :remote=>true , multipart: true do%>
+                <%= form_tag audit_observation_create_audit_checklist_recommendations_path(audit) , :remote=>true , multipart: true do%>
                   <div class="col-lg-4">
 
 
@@ -162,15 +162,6 @@
               <% end %>
             </div>
 <!-- Model for more Artifact  and comments -->
-<script>
-function artifact_modal(id)
-{
-  $('#artifact_modal').modal({
-    remote: "/checklist_recommendations/list_artifacts_and_comments?id=" + id
-  });
-}
-</script>
-
 <div class="modal fade" id="artifact_modal">
   <div class="modal-dialog modal-dialog_large">
     <div class="modal-content">

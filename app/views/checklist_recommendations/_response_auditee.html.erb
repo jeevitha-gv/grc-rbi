@@ -11,7 +11,7 @@ height: auto !important;
               <div>
                 <div class="row audit-title">
 
-                <%= form_tag '/checklist_recommendations/auditee_response_create',:remote=>true, multipart: true do %>
+                <%= form_tag auditee_response_create_audit_checklist_recommendations_path(audit),:remote=>true, multipart: true do %>
                   <div class="col-lg-4">
 
                     <div class="form-group clearfix">
@@ -52,9 +52,9 @@ height: auto !important;
                       <div class="col-sm-12">
                         <%= "<h4>Attachments</h4>".html_safe if checklist_recommendation.response_attachments.present?%>
                         <%checklist_recommendation.response_attachments.each do |attachment|%>
-                          <div id="attach_<%= attachment.id%>"><%= link_to (File.basename(attachment.attachment_file_url)).truncate(20), download_artifacts_checklist_recommendations_path(id: attachment.id), class: "blue_link" %>
+                          <div id="attach_<%= attachment.id%>"><%= link_to (File.basename(attachment.attachment_file_url)).truncate(20), download_artifacts_audit_checklist_recommendations_path(id: attachment.id), class: "blue_link" %>
                           <%unless(audit.audit_status_id == 4)%>
-                          <div class="addissue" style="float: right;"> <%= link_to "remove", remove_attachment_checklist_recommendations_path(id: attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon"%></div>
+                          <div class="addissue" style="float: right;"> <%= link_to "remove", remove_attachment_audit_checklist_recommendations_path(id: attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon"%></div>
                           <%end%>
                           </div>
                         <%end%>
@@ -157,15 +157,6 @@ height: auto !important;
           </div>
 
 <!-- Model for more Artifact  and comments -->
-<script>
-function artifact_modal(id)
-{
-  $('#artifact_modal').modal({
-    remote: "/checklist_recommendations/list_artifacts_and_comments?id=" + id
-  });
-}
-</script>
-
 <div class="modal fade" id="artifact_modal">
   <div class="modal-dialog modal-dialog_large">
     <div class="modal-content">

@@ -1,4 +1,4 @@
-<%p @user.errors%>
+<%= javascript_include_tag "/assets/views/users.js" %>
 <%if @user.errors[:"attachment.attachment_file"].present?%>
 		<div class="error_message">Error: <%=  @user.errors[:"attachment.attachment_file"][0]%></div>
 <% end %>
@@ -127,29 +127,3 @@
     <% end %>
   </div>
 </div>
-
-<script>
-  $(document).ready(function(){
-    $( ".profile_photo" ).click(function(){
-      $(".image-select").click();
-    });
-  });
-
-  function addFiles(fileInput) {
-    var files = fileInput.files;
-    var file = files[0];
-    var imageType = /image.*/;
-    if (!file.type.match(imageType)) {
-      return true;
-    }
-    var img = $("#profile_img")[0]
-    img.file = file;
-    var reader = new FileReader();
-    reader.onload = (function(aImg) {
-      return function(e) {
-        aImg.src = e.target.result;
-      };
-    })(img);
-    reader.readAsDataURL(file);
-  }
-</script>

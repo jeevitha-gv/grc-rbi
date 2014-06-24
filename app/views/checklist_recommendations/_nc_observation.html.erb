@@ -5,14 +5,16 @@
               <h3><a href="#"><%= answer.question %></a> <span class="fright pending_msg" id= "observation_status"><%= checklist_recommendation.is_published == true ? 'Completed' : 'Pending'%></span></h3>
               <div>
                 <div class="row audit-title">
-                <%= form_tag '/checklist_recommendations/audit_observation_create' , :remote=>true , multipart: true do%>
+
+                <%= form_tag audit_observation_create_audit_checklist_recommendations_path(audit) , :remote=>true , multipart: true do%>
+
                   <div class="col-lg-4">
 
 
                     <div class="form-group clearfix">
                       <%# @artifact_answers = checklist.artifact_answers.first%>
                       <label class="col-sm-5"><b>Document :</b> </label>
-                      <div class="col-sm-7"><%= link_to (File.basename(answer.attachment.attachment_file_url)).truncate(20), download_artifacts_checklist_recommendations_path(id: answer.attachment.id), class: "blue_link" if answer.attachment.present?%></div>
+                      <div class="col-sm-7"><%= link_to (File.basename(answer.attachment.attachment_file_url)).truncate(20), download_artifacts_audit_checklist_recommendations_path(id: answer.attachment.id), class: "blue_link" if answer.attachment.present?%></div>
                     </div>
 
                     <div class="form-group clearfix">

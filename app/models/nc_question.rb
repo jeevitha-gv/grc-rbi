@@ -21,6 +21,7 @@ class NcQuestion < ActiveRecord::Base
   delegate :detailed_value, to: :answer, prefix: true, allow_nill: :true
   delegate :email, to: :auditee, prefix: true, allow_nill: :true
 	delegate :name, to: :question_type, prefix: true, allow_nil: true
+  delegate :value, to: :question_options, prefix: true, allow_nil: true
   delegate :name, to: :priority, prefix: true, allow_nil: true
   delegate :title, to: :audit, prefix: true, allow_nil: true
   delegate :user_name, to: :auditee, prefix: true, allow_nil: true

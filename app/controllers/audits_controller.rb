@@ -1,5 +1,5 @@
 class AuditsController < ApplicationController
-  before_filter :current_audit, only: [:show, :asc_calculation, :audit_dashboard, :artifacts_download  ]
+  before_filter :current_audit_with_id, only: [:show, :asc_calculation, :audit_dashboard, :artifacts_download]
   load_and_authorize_resource :except => [:department_teams_users, :audit_with_status, :audit_all, :index, :asc_calculation]
   before_filter :authorize_audit, :only => [:edit, :update]
   before_filter :check_company_disabled
@@ -19,9 +19,8 @@ class AuditsController < ApplicationController
 
   # Create Individual audit
   def create
-    @audit = Audit.new(audit_params)
-    @audit.company_id = current_company.id
-    @audit.audit_status_id = (params[:commit] == "Save as Plan" ?  AuditStatus.for_name("Planning").id : AuditStatus.for_name("In Progress").id)
+    @audit = current_company.audits.build(audit_params)
+    @audit.set_audit_status(@audit, params[:commit])
     if @audit.save
       SkippedAuditReminder.create(audit_id: @audit.id, skipped_by: current_user.id) if params[:skip_reminder] == "true"
       ReminderMailer.delay.notify_auditor_about_audit(@audit)
@@ -110,7 +109,7 @@ class AuditsController < ApplicationController
       @audit.update(audit_status_id: status_id)
       @audit.audit_operational_weightage(current_company)
     end
-    redirect_to "/audits/audit_dashboard"
+    redirect_to audit_dashboard_audits(id: @audit.id)
   end
 
   def audit_dashboard

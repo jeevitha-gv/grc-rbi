@@ -2,11 +2,12 @@ class Answer < ActiveRecord::Base
 
 	has_one :checklist_recommendation, as: :checklist
 	belongs_to :nc_question
+  has_one :question_type , through: :nc_question
 	has_one :attachment , as: :attachable
   belongs_to :question_option, :class_name => "QuestionOption", foreign_key: "value"
 
-  delegate :question, :to => :nc_question
-  delegate :question_type_name, :to => :nc_question
+  delegate :question, :to => :nc_question, allow_nil: true
+  delegate :name, :to => :question_type, prefix: true, allow_nil: true
 
   # validates :detailed_value, presence:true
   # validates :value, presence:true

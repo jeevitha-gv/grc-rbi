@@ -1,3 +1,4 @@
+<%= javascript_include_tag "/assets/views/nc_questions.js" %>
 <div class="clearfix"></div>
 <div class="content">
   <div class="container">
@@ -6,25 +7,10 @@
       <div class="audit-title">
         <h2>Audit : <%= @audit.title %></h2>
         <div class="audit-content container">
-          <%= render 'form' %>
+          <%= render 'form',audit: @audit, library_questions: @library_questions %>
 
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-<script type="text/javascript">
-  $(document).ready(function(){
-
-    $(document).on("change", ".question_response", function(){
-      if($(this).val() == "3"){
-        $(this).parent().parent().parent().find(".hidden-item").fadeIn('fast');
-      }
-      else{
-        $(this).parent().parent().parent().find(".hidden-item").fadeOut('fast');
-      }
-    });
-  });
-</script>
