@@ -1,4 +1,7 @@
  <% content_for :javascript_includes do %>
+ <script>
+ var audit_id = "<%= audit.id%>"
+ </script>
   <%= javascript_include_tag "/assets/views/checklist_recommendations.js" %>
 <% end %>
 <div class="clearfix"></div>

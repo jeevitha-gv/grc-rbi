@@ -62,7 +62,7 @@ var observed_status = "<%= @pending_observation %>";
 		  	<div class="clearfix"></div>
 	  			<%= form_tag '/audits/asc_calculation', :method => :post do %>
     				<div class="fright paddingtop">
-    				<%= hidden_field_tag "audit_id" , @audit.id %>
+    				<%= hidden_field_tag "id" , @audit.id %>
 						<% if @observation	%>
     				<%= submit_tag "#{(@audit.audit_status_id == @published_status.id).present? ? 'Published' : 'Publish'}" , :class => "orange_btn", :disabled => (@audit.audit_status_id == audit_status) , :onclick => "return check_observed();"%>
 						<% end %>
