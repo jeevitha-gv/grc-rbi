@@ -6,7 +6,8 @@
     <div>
       <div class="row audit-title">
 
-                <%= form_tag '/checklist_recommendations/auditee_response_create',:remote=>true, multipart: true do %>
+
+                <%= form_tag auditee_response_create_audit_checklist_recommendations_path(audit),:remote=>true, multipart: true do %>
                   <div class="col-lg-4">
                   <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Artifact :</b> </label>
