@@ -1,11 +1,10 @@
 class NcQuestionsController < ApplicationController
-
-  before_filter :check_for_current_audits
+  before_filter :current_audit
+  authorize_resource
   before_filter :check_for_auditee_response, :only => [:new]
 
   # Intialize Nc Questions for audit
   def new
-		@audit = current_audits
 		@nc_question = NcQuestion.new
 		@audit.nc_questions.build unless @audit.nc_questions.present?
     @audit.nc_questions.first.question_options.build unless @audit.nc_questions.first.question_options.present?
@@ -13,7 +12,6 @@ class NcQuestionsController < ApplicationController
 
   # Create Nc Questions for audit
 	def create
-		@audit = current_audits
 		if @audit.update_attributes(question_params)
       @audit.nc_questions.update_all(company_id: current_company.id)
       flash[:notice] = "Your requests were added successfully"
@@ -59,7 +57,7 @@ class NcQuestionsController < ApplicationController
 
     # Filter for Authenticate auditee response based on the Audit
     def check_for_auditee_response
-      if(current_audits.auditees.map(&:id).include?(current_user.id))
+      if(@audit.auditees.map(&:id).include?(current_user.id))
         redirect_to new_answers_path
       end
     end

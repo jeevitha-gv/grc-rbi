@@ -22,16 +22,15 @@ Rails.application.routes.draw do
 
 
   resources :audits do
-<<<<<<< HEAD
-    collection do
+    collection do                                                                 
       get 'department_teams_users'
       post 'audit_with_status'
       post 'audit_all'
-      post 'import_files'
-      get 'export_files'
+      post 'audit_imports'
+      get 'audit_export'
       post 'asc_calculation'
       get 'maximum_actual_score'
-      get 'audit_dashboard'
+      get ':id/audit_dashboard', to: 'audits#audit_dashboard'
       get 'artifacts_download'
     end
     resources :checklist_recommendations do
@@ -61,18 +60,7 @@ Rails.application.routes.draw do
         get 'export_files'
       end
   end
-=======
-    get 'department_teams_users', on: :collection
-    post 'audit_with_status', on: :collection
-    post 'audit_all', on: :collection
-    post 'audit_imports', on: :collection
-    get 'audit_export', on: :collection
-    post 'asc_calculation', on: :collection
-    get 'maximum_actual_score' , on: :collection
-    get 'audit_dashboard' , on: :collection
-    get 'artifacts_download' , on: :collection
->>>>>>> a2405e42227a5a8817d76472a0c4730fee841a63
-  end
+ end
 
   resource :answers
 

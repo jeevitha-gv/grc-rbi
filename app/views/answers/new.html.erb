@@ -58,18 +58,13 @@
           <div class="container">
             <%= form_for :answer,  :url => "/answers", :html => { :multipart => true } do |f|%>
               <div id="Accordion1">
-                <% @current_auditsee_nc_questions.each do |question| %>
+                <% @current_auditee_nc_questions.each do |question| %>
                   <h3><a href="#"><%= question.question %></a> <span class="fright <%= question.answer.blank? ? "pending_msg" : "success_msg" %>"><%= question.answer.blank? ? "Pending" : "Completed" %></span></h3>
                     <div>
                       <div class="row audit-title">
                         <% test = question.answer || question.build_answer %>
-<<<<<<< HEAD
-                          <%= hidden_field_tag :audit_id, current_audits.id %>
-                          <%= render :partial => "answer_type",  locals: {:question => question} %>
-=======
-                          <%= hidden_field_tag :audit_id, current_audit.id %>
+                          <%= hidden_field_tag :audit_id, @audit.id %>
                           <%= render "answer_type", :question => question %>
->>>>>>> a2405e42227a5a8817d76472a0c4730fee841a63
                       </div>
                     </div>
                 <% end %>

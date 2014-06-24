@@ -18,15 +18,9 @@
               </div>
               <div class="fright"><br>
             <br>
-<<<<<<< HEAD
             <a class="black_btn" href="javascript:goBack()">Back</a> 
-            <% unless current_audits.audit_status_id == 4%>
+            <% unless @audit.audit_status_id == 4%>
               <%= link_to "Submit for recommendation", audit_audit_compliance_path(audit_id: params[:audit_id], id: 'response') , :class => "orange_btn", method: 'post'%>
-=======
-            <a class="black_btn" href="javascript:goBack()">Back</a>
-            <% unless current_audit.audit_status_id == 4%>
-              <%= link_to "Submit for recommendation", submit_audit_compliances_path() , :class => "orange_btn", method: 'post'%>
->>>>>>> a2405e42227a5a8817d76472a0c4730fee841a63
             <%end%>
             </div>
             </div>

@@ -31,21 +31,14 @@ class AuditCompliancesController < ApplicationController
     redirect_to audits_path
   end
 
-  private
-  
-  # Find Audit
-  def current_audit
-    @audit = Audit.find(params[:audit_id])
-     authorize!(:read,  @audit)
-  end
-  
+  private  
   # Strong parameters audit compliance
   def compliance_params
     params.require(:checklist)
   end
   # Check for Auditee response and redirect accordingly
   def check_for_auditee_response
-    if(current_audits.auditees.map(&:id).include?(current_user.id))
+    if(@audit.auditees.map(&:id).include?(current_user.id))
       redirect_to response_audit_audit_compliances_path(@audit)
     end
   end
@@ -55,19 +48,7 @@ class AuditCompliancesController < ApplicationController
       @audit_compliances.each do |compliance|
         if(compliance.artifact_answers.present?)
           compliance.artifact_answers.each do |artifact_answer|
-<<<<<<< HEAD
             json = artifact_answer.build_checklist(compliance)
-=======
-            json = {}
-            json["id"] = artifact_answer.id
-            json["name"] = compliance.compliance_library_name
-            json["artifact_id"] = artifact_answer.artifact_id
-            json["artifact_name"] = artifact_answer.artifact_name
-            json["audit_compliance"] = compliance.id
-            json["priority"] = artifact_answer.priority_name
-            json["auditee"] = artifact_answer.responsibility_full_name
-            json["target_date"] = (artifact_answer.target_date? ? artifact_answer.target_date.to_date.strftime("%d/%m/%Y") : "")
->>>>>>> a2405e42227a5a8817d76472a0c4730fee841a63
             response << json
           end
         end

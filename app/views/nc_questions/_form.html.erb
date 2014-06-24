@@ -30,7 +30,7 @@
                         <% nc_questions = current_company.nc_questions.where(:nc_library => "true") %>
                         <% audit_nc_questions = @audit.nc_questions.map(&:id) %>
                         <% library_questions = nc_questions.where("id NOT IN (?)", audit_nc_questions) %>
-                        <%= form_tag library_questions_nc_questions_path, :id => "submit_library" do %>
+                        <%= form_tag library_questions_audit_nc_questions_path(@audit), :id => "submit_library" do %>
                           <tbody>
                             <% library_questions.each do |nc_qs| %>
                             <tr>
@@ -66,7 +66,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
                     <h4 class="modal-title" id="myModalLabel">Upload files only CSV and XLSX</h4>
                     <div class="model-content">
-                    <%= form_tag import_files_nc_questions_path, multipart: true do %>
+                    <%= form_tag import_files_audit_nc_questions_path(@audit), multipart: true do %>
                       <%= file_field_tag :file , :id =>"file_input"%>
 											<span class="error_message" style="display:none;" id="error_file"><%= MESSAGES["csv_upload"]["presence"]%></span>
                       <br>
@@ -78,7 +78,7 @@
                   </div>
                     <p></p>
                     <p>
-                      <%= link_to "Download Sample Non Compliance Checklist CSV", export_files_nc_questions_path(format: "csv"), :class =>'download-file-icon' %>
+                      <%= link_to "Download Sample Non Compliance Checklist CSV", export_files_audit_nc_questions_path(audit_id: @audit.id, format: "csv"), :class =>'download-file-icon' %>
                     </p>
                   </div>
                 </div>

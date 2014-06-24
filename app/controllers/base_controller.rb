@@ -41,6 +41,12 @@ class BaseController < ActionController::Base
     request.protocol + current_company.domain + "." + request.domain + (request.port.nil? ? '' : ":#{request.port}") + request.fullpath
   end
 
+    # Find Audit
+  def current_audit
+    @audit = Audit.find(params[:audit_id])
+     authorize!(:read,  @audit)
+  end
+
  # Returns URL with subdomain.. Call this function after User logged_in areas
   def root_subdomain_path
     request.protocol + current_company.domain + "." + request.domain + (request.port.nil? ? '' : ":#{request.port}")
@@ -96,17 +102,10 @@ class BaseController < ActionController::Base
       cookies[:audit_id] = { :value => current_user.accessible_audits.last.id, :expires => 24.hour.from_now } if current_user.accessible_audits.present?
     end
   end
-  # If there is no Current Audit then the access is restricted
-  def check_for_current_audits
-    unless current_audits.present?
-      flash[:alert] = "Access restricted"
-      redirect_to root_path
-    end
-  end
 
   # Authorize the Auditor for current audit
   def authorize_auditor
-	  	unless current_audits.auditor == current_user.id
+	  	unless @audit.auditor == current_user.id
         flash[:alert] = "Access restricted"
 	  		redirect_to audits_path
 	  	end
@@ -114,14 +113,14 @@ class BaseController < ActionController::Base
 
   # Authorize the Auditee for current audit
 	def authorize_auditees
-	  	unless current_audits.auditees.map(&:id).include?(current_user.id)
+	  	unless @audit.auditees.map(&:id).include?(current_user.id)
         flash[:alert] = "Access restricted"
 	  		redirect_to audits_path
 	  	end
 	end
   # Authorize the Auditor for current audit and Skip current admin alone
   def authorize_auditor_skip_company_admin
-	  	if(current_audits.auditor != current_user.id && current_user.role_title != "company_admin")
+	  	if(@audit.auditor != current_user.id && current_user.role_title != "company_admin")
         flash[:alert] = "Access restricted"
 	  		redirect_to audits_path
 	  	end
@@ -129,7 +128,7 @@ class BaseController < ActionController::Base
 
   # Authorize the Auditee for current audit and Skip current admin alone
 	def authorize_auditees_skip_company_admin
-	  if(!current_audits.auditees.map(&:id).include?(current_user.id) && current_user.role_title != "company_admin")
+	  if(!@audit.auditees.map(&:id).include?(current_user.id) && current_user.role_title != "company_admin")
 	    flash[:alert] = "Access restricted"
 	  		redirect_to audits_path
 	  	end

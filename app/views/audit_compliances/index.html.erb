@@ -27,7 +27,7 @@
               <div class="fright"><br>
             <br>
             <a class="black_btn" href="javascript:goBack()">Back</a>
-            <% unless current_audits.audit_status_id == 4%>
+            <% unless @audit.audit_status_id == 4%>
               <a href="javascript:save_request()" class="orange_btn">Ask</a></div>
             <%end%>
             </div>

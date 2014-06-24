@@ -1,4 +1,5 @@
 class AuditsController < ApplicationController
+  before_filter :current_audit, only: [:show, :asc_calculation, :audit_dashboard, :artifacts_download  ]
   load_and_authorize_resource :except => [:department_teams_users, :audit_with_status, :audit_all, :index, :asc_calculation]
   before_filter :authorize_audit, :only => [:edit, :update]
   before_filter :check_company_disabled
@@ -34,7 +35,6 @@ class AuditsController < ApplicationController
 
   # Show audit and render to pdf
   def show
-    @audit = current_audits
     respond_to do |format|
       format.html
       format.pdf do
@@ -96,27 +96,22 @@ class AuditsController < ApplicationController
 
 
   def asc_calculation
-    audit = current_audits
     status_id = AuditStatus.where('name= ?','Published').first.id
-    unless audit.audit_status_id == status_id
-      audit.update(audit_status_id: status_id)
-      audit.audit_operational_weightage(current_company)
+    unless @audit.audit_status_id == status_id
+      @audit.update(audit_status_id: status_id)
+      @audit.audit_operational_weightage(current_company)
     end
     redirect_to "/audits/audit_dashboard"
   end
 
   def audit_dashboard
-      @audit = current_audits
-    unless @audit.nil?
       @audit_domains, @audit_weightage, @audit_maximum_score , @audit_percentage= @audit.maximum_actual_score
       @to_do_list = @audit.compliance_checklist_recommendations
       @audit_users = @audit.audit_users
       @checklist_completed_count, @checklist_pending_count, @recommendation_completed_count, @recommendation_pending_count, @observation_completed_count, @observation_pending_count,@response_completed_count, @response_pending_count = @audit.audit_status_records
-    end
   end
 
   def artifacts_download
-		@audit = current_audits
 		@folder = @audit.artifact_answers.collect {|x| x.attachments}.flatten
 		temp = Tempfile.new("zip-file-#{Time.now}")
 		Zip::ZipOutputStream.open(temp.path) do |z|
@@ -136,6 +131,7 @@ class AuditsController < ApplicationController
     end
 
   private
+
     def audit_params
       params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :audit_status_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor, :start_date, :end_date, audit_auditees_attributes: [:id, :user_id])
     end

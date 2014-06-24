@@ -39,12 +39,7 @@ class NcQuestion < ActiveRecord::Base
     (start..spreadsheet.last_row).each do |i|
       row_data = spreadsheet.row(i)
       question_type = QuestionType.where("lower(name) = ?", "#{row_data[1].to_s.downcase}").first
-
-<<<<<<< HEAD
-      nc_question = NcQuestion.new(question: row_data[0], question_type_id: (question_type.present? ? question_type.id : nil), audit_id: current_audits.id)
-=======
       nc_question = NcQuestion.new(question: row_data[0], question_type_id: (question_type.present? ? question_type.id : nil), company_id: current_company.id, nc_library: true)
->>>>>>> a2405e42227a5a8817d76472a0c4730fee841a63
       nc_question.save(:validate => false)
 
       options.collect{|x| nc_question.question_options.create(value: x) } if(row_data[2].present? && (options = row_data[2].split(",").compact).present?)
