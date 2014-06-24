@@ -1,0 +1,2 @@
+title;scope;objective;issue;methodology;deliverables;context;audit_type;compliance_type;standard;topic;location;department;team;start_date;end_date;auditor;auditees
+Example audit;how the csv data to be filled;data filled correctly;error if data entered wrongly;by csv;csv upload for audit;ensure the row csv;Internal Audit;NonCompliance;COBIT;System Security;chennai;devlopment;test_team;dd/mm/yy;dd/mm/yy;audit@example.com;auditee2@example.com,auditee1@example.com

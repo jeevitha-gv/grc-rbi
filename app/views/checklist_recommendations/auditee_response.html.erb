@@ -54,7 +54,7 @@
             <% if @audit.compliance_type == 'Compliance' %>
 				      <%= render "response_auditee",controls: @answered_compliances, checklist_recommendations: @checklist_recommendations, audit: @audit, auditee_recommendation: @auditee_recommendation %>
             <% else %>
-              <%= render "nc_response_auditee"  %>
+              <%= render "nc_response_auditee", response_answers: @response_answers, audit: @audit, auditee_recommendation: @auditee_recommendation  %>
             <% end %>
         </div>
       </div>

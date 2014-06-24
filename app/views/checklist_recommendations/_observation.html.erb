@@ -1,5 +1,5 @@
 <div id="Accordion1">
- <% @checklist_recommendations.each do |checklist| %>
+ <% checklist_recommendations.each do |checklist| %>
             <% checklist_recommendation = checklist.checklist_recommendation %>
               <h3><a href="#"><%= checklist.compliance_library_name%></a> <span class="fright pending_msg" id= "observation_status"><%= checklist_recommendation.is_published == true ? 'Completed' : 'Pending' if checklist_recommendation.present? %></span></h3>
               <div>
@@ -9,9 +9,9 @@
 
 
                     <div class="form-group clearfix">
-                      <% @artifact_answers = checklist.artifact_answers.first%>
+                      <% artifact_answers = checklist.artifact_answers.first%>
                       <label class="col-sm-5"><b>Artifact :</b> </label>
-                      <div class="col-sm-7"><a class="blue_link" href="javascript:artifact_modal(<%= checklist.id%>);"><%= @artifact_answers.artifact_display_name if @artifact_answers%></a> </div>
+                      <div class="col-sm-7"><a class="blue_link" href="javascript:artifact_modal(<%= checklist.id%>);"><%= artifact_answers.artifact_display_name if artifact_answers%></a> </div>
                         <% if checklist.artifact_answers.count > 1 %>
                           <div class="col-sm-12"><a class="blue_link pull-right" href = "javascript:artifact_modal(<%= checklist.id%>);" >more</a></div>
                         <%end%>
@@ -29,7 +29,7 @@
                   <div class="col-lg-4">
                     <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Comment :</b> </label>
-                      <div class="col-sm-7"><%= @artifact_answers.comment_comment.truncate(50) if @artifact_answers && @artifact_answers.comment_comment %> </div>
+                      <div class="col-sm-7"><%= artifact_answers.comment_comment.truncate(50) if artifact_answers && artifact_answers.comment_comment %> </div>
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Reason :</b> </label>
@@ -87,7 +87,7 @@
                         <%= "<h4>Attachments</h4>".html_safe if checklist_recommendation.observation_attachments.present?%>
                         <%checklist_recommendation.observation_attachments.each do |attachment|%>
                           <div id="attach_<%= attachment.id%>"><%= link_to (File.basename(attachment.attachment_file_url)).truncate(20), download_artifacts_checklist_recommendations_path(id: attachment.id), class: "blue_link" %>
-                         <%unless(@audit.audit_status_id == 4)%>
+                         <%unless(audit.audit_status_id == 4)%>
                           <div class="addissue" style="float: right;"> <%= link_to "remove", remove_attachment_checklist_recommendations_path(id: attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon"%></div>
                           <%end%>
                           </div>
@@ -150,7 +150,7 @@
                   <%= hidden_field_tag "checklist_recommendation[id]",  checklist_recommendation.id , :id => "id_#{checklist_recommendation.id}"%>
                   <div class="clearfix fright">
                   <!--<a class="black_btn" href="">Publish</a>-->
-                  <%unless(@audit.audit_status_id == audit_status)%>
+                  <%unless(audit.audit_status_id == audit_status)%>
                     <input type="submit" value="Observed" class="black_btn" onclick="return audit_observation(<%=checklist_recommendation.id%>)">
                   <%end%>
                   </div>

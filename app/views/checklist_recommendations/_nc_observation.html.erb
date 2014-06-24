@@ -1,5 +1,5 @@
 <div id="Accordion1">
- <% @observation_answers.each do |answer| %>
+ <% observation_answers.each do |answer| %>
             <% checklist_recommendation = answer.checklist_recommendation %>
             <% nc_question = answer.nc_question %>
               <h3><a href="#"><%= answer.question %></a> <span class="fright pending_msg" id= "observation_status"><%= checklist_recommendation.is_published == true ? 'Completed' : 'Pending'%></span></h3>
@@ -128,7 +128,7 @@
                         <%= "<h4>Attachments</h4>".html_safe if checklist_recommendation.observation_attachments.present?%>
                         <%checklist_recommendation.observation_attachments.each do |attachment|%>
                           <div id="attach_<%= attachment.id%>"><%= link_to (File.basename(attachment.attachment_file_url)).truncate(20), download_artifacts_checklist_recommendations_path(id: attachment.id), class: "blue_link" %>
-                          <%unless(@audit.audit_status_id == 4)%>
+                          <%unless(audit.audit_status_id == 4)%>
                           <div class="addissue" style="float: right;"> <%= link_to "remove", remove_attachment_checklist_recommendations_path(id: attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon"%></div>
                           <%end%>
                           </div>
@@ -147,7 +147,7 @@
                   <%= hidden_field_tag "checklist_recommendation[id]",  checklist_recommendation.id , :id => "id_#{checklist_recommendation.id}"%>
                   <div class="clearfix fright">
                   <!--<a class="black_btn" href="">Publish</a>-->
-                <%unless(@audit.audit_status_id == audit_status)%>
+                <%unless(audit.audit_status_id == audit_status)%>
                   <input type="submit" value="Observed" class="black_btn" onclick="return audit_observation(<%=checklist_recommendation.id%>)" >
                 <%end%>
                   </div>

@@ -24,7 +24,7 @@
 					<% if attachment.present? %>
 						<%= "<h4>Attachments</h4>".html_safe if attachment.present?%>
 						<div id="attach_<%= attachment.id%>"><%= link_to (File.basename(attachment.attachment_file_url)).truncate(20), download_artifacts_checklist_recommendations_path(id: attachment.id), class: "blue_link"%>
-							<%unless(@audit.audit_status_id == audit_status)%>
+							<%unless(audit.audit_status_id == audit_status)%>
 							<div class="addissue" style="float: right;"> <%= link_to "remove", remove_attachment_checklist_recommendations_path(id: attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon"%></div>
 							<%end%>
 						</div>
@@ -52,7 +52,7 @@
 									<% attachment = question.answer.attachment %>
 									<%= "<h4>Attachments</h4>".html_safe if attachment.present?%>
 									<div id="attach_<%= attachment.id%>"><%= link_to (File.basename(attachment.attachment_file_url)).truncate(20), download_artifacts_checklist_recommendations_path(id: attachment.id), class: "blue_link"  %>
-										<%unless(@audit.audit_status_id == audit_status)%>
+										<%unless(audit.audit_status_id == audit_status)%>
 										<div class="addissue" style="float: right;"> <%= link_to "remove", remove_attachment_checklist_recommendations_path(id: attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon"%></div>
 										<%end%>
 									</div>
@@ -68,7 +68,8 @@
 			<div class="col-sm-7">
 			<% question_options = question.question_options %>
 				<% question_options.each do |question_option|%>
-					<input type="radio" value="<%= question_option.id%>" name="answer[<%= question.id %>][value]" id="value_<%= question_option.id%>" <%= 'checked' if question.answer.question_option.value == question_option.value %>>
+					<input type="radio" value="<%= question_option.id%>" name="answer[<%= question.id %>][value]" id="value_<%= question_option.id%>"
+					<%= 'checked' if(!question.answer.question_option.nil? && question.answer.question_option.value == question_option.value) %>
 					<label for="value_<%= question_option.id%>"><%= question_option.value%></label> <br>
 				<% end %>
 				<br>

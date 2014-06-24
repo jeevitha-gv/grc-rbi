@@ -86,6 +86,25 @@ class User < ActiveRecord::Base
     end
   end
 
+
+  def audits_stage(params)
+    audits = []
+    case params[:stage]
+    when 'do'
+      self.accessible_audits.select{ |x| audits << x if(x.checklist_recommendations.blank?) }
+      audits
+    when 'check'
+      self.accessible_audits.select{ |x| audits << x if(x.checklist_recommendations.present? && !x.recommendation_status) }
+      audits
+    when 'act'
+      self.accessible_audits.select{ |x| audits << x if(x.recommendation_status && !x.response_status) }
+      audits
+    when 'published'
+      self.accessible_audits.select{ |x| audits << x if(x.response_status && !x.observation_status) }
+      audits
+    end
+  end
+
   protected
 
   def password_required?

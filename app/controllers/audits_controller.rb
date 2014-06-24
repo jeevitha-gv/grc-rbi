@@ -62,7 +62,11 @@ class AuditsController < ApplicationController
 
   # List all audits for current user
   def audit_all
-   @audits = current_user.accessible_audits
+    if params[:stage].present?
+      @audits = current_user.audits_stage(params)
+    else
+      @audits = current_user.accessible_audits
+    end
   end
 
   #audit intializer data
@@ -90,8 +94,13 @@ class AuditsController < ApplicationController
 
   # download sample audit
   def audit_export
-    file_to_download = "sample_audit.csv"
-    send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
+    begin
+      file_to_download = "sample_audit.csv"
+      send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
+    rescue
+      flash[:error] = MESSAGES["csv_export"]["error"]
+      redirect_to new_audit_path
+    end
   end
 
 

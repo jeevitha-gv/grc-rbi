@@ -1,12 +1,12 @@
 <div id="Accordion1">
-  <% @audit.answered_answers.each do |answered_ncquestion| %>
+  <% audit.answered_answers.each do |answered_ncquestion| %>
     <% checklist_recommendation = answered_ncquestion.checklist_recommendation%>
     <h3>
       <a href="#"><%= answered_ncquestion.question %></a>
       <span class="fright pending_msg" id= "recommendation_status">
 			<% closed_id, closed_duplicate_id, risk_accepted = recommendation_status%>
-      <% @status = checklist_recommendation.recommendation_status_id if checklist_recommendation.present? %>
-      <%= (@status == closed_id || @status == closed_duplicate_id || @status == risk_accepted) ? 'Completed' : 'Pending' %></span>
+      <% status = checklist_recommendation.recommendation_status_id if checklist_recommendation.present? %>
+      <%= (status == closed_id || status == closed_duplicate_id || status == risk_accepted) ? 'Completed' : 'Pending' %></span>
     </h3>
     <div>
       <%= f.hidden_field :checklist_id, :name => "checklist_recommendation[#{answered_ncquestion.id}][checklist_id]", :id => "checklist_id_#{answered_ncquestion.id}", :value => answered_ncquestion.id%>
@@ -25,7 +25,7 @@
               <%= f.text_field :recommendation, :class => "audit-big-input control_recommendation", :name => "checklist_recommendation[#{answered_ncquestion.id}][recommendation]", :id => "recommendation_#{answered_ncquestion.id}", :value => "#{checklist_recommendation.recommendation if checklist_recommendation.present?}", :class => "audit-big-input control_recommendation"%>
               <span class="error_message" id="error_recommendation_<%= answered_ncquestion.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["recommendation"]%><span>
               <%if @checklist_recommendation.errors[:recommendation].present?%>
-                <div class="error_message"><%=  @checklist_recommendation.errors[:recommendation][0]%></div>
+                <div class="error_message"><%=  checklist_recommendation.errors[:recommendation][0]%></div>
               <% end %>
             </div>
           </div>

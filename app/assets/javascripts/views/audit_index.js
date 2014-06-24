@@ -155,11 +155,19 @@
 
 	$(document).ready(function() {
 
+		if ( stage.length > 0 )
+		{
+			var	audits_url = "/audits/audit_all?stage="+stage;
+		}
+		else
+		{
+			var audits_url = "/audits/audit_all"
+		}
 		// Data source for all
 		dataSource = new kendo.data.DataSource({
 			transport: {
 				read: {
-					url: "/audits/audit_all",
+					url: audits_url,
 					type: "post",
 					dataType: 'json'
 				}
@@ -182,6 +190,29 @@
 				}
 			}
 		});
+
+		// Kendo Grid for all
+		$("#gridforstage").kendoGrid({
+			dataSource: dataSource,
+			height: 'auto',
+			scrollable: true,
+			sortable: true,
+			filterable: true,
+			pageable: {
+				input: true,
+				numeric: false
+			},
+			columns: [
+				{ field: "title", title: "Audit Title" ,width: "35%"},
+				{ field: "client", title: "Client Name", width: "35%" },
+				{ field: "audit_type", title: "Audit Type", width: "35%" },
+				{ field: "compliance_type", title: "Compliance Type", width: "35%" },
+				{ field: "auditor", title: "Auditor Name", width: "35%" },
+
+				{command: [{text: "Set", click: set_file},{text: "tick", click: check_file},{text: "tick1", click: act_file},{text: "book", click: publish_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Actions", width: "180px" }
+			],
+		});
+
 
 		// Kendo Grid for all
 		$("#gridforall").kendoGrid({

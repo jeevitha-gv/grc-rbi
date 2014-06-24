@@ -41,8 +41,10 @@ class ChecklistRecommendation < ActiveRecord::Base
 	delegate :name, :to => :recommendation_severity, prefix: true, allow_nil: true
 	delegate :name, :to => :recommendation_status, prefix: true, allow_nil: true
 	delegate :name, :to => :response_status, prefix: true, allow_nil: :true
-    delegate :name, to: :response_priority, prefix: true, allow_nil: :true
+  delegate :name, to: :response_priority, prefix: true, allow_nil: :true
+  delegate :name, to: :response_severity, prefix: true, allow_nil: :true
 	delegate :comment, to: :remark, prefix: true, allow_nil: :true
+  delegate :email, to: :auditee, prefix: true, allow_nil: :true
 
 
 
@@ -62,12 +64,7 @@ class ChecklistRecommendation < ActiveRecord::Base
 
 
   def notify_auditee_about_recommendation
-  	if self.checklist_type == 'AuditCompliance'
-    	ReminderMailer.delay.notify_auditee_about_recommendations(self)
-    else
-    	ReminderMailer.delay.notify_auditee_about_nc_recommendations(self)
-    end
-
+    ReminderMailer.delay.notify_auditee_about_recommendations(self)
   end
 
   def response_attachments

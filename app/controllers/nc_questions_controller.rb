@@ -9,6 +9,11 @@ class NcQuestionsController < ApplicationController
 		@nc_question = NcQuestion.new
 		@audit.nc_questions.build unless @audit.nc_questions.present?
     @audit.nc_questions.first.question_options.build unless @audit.nc_questions.first.question_options.present?
+
+    # nc_questions from library
+    nc_questions = current_company.nc_questions.where(:nc_library => "true")
+    audit_nc_questions = @audit.nc_questions.map(&:id)
+    @library_questions = nc_questions.where("id NOT IN (?)", audit_nc_questions)
 	end
 
   # Create Nc Questions for audit
@@ -47,8 +52,13 @@ class NcQuestionsController < ApplicationController
 
   # Download NcQuestion sample file
   def export_files
-    file_to_download = "sample_non_compliance_question.csv"
-    send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
+    begin
+      file_to_download = "sample_non_compliance_question.csv"
+      send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
+    rescue
+      flash[:error] = MESSAGES["csv_export"]["error"]
+      redirect_to new_audit_path
+    end
   end
 
   private

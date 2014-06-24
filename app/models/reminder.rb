@@ -25,7 +25,7 @@ class Reminder < ActiveRecord::Base
 	    reminder = Reminder.where("company_id = ? AND priority_id = ?", company_id, priority_id).last
 	    if reminder
 		    reminder_value = (reminder.time_line == 1 ? reminder.value : reminder.value * 24)
-		    if(reminder.last_sent.nil? || (reminder_value.to_i.minutes + reminder.last_sent) <= Time.now)
+		    if(reminder.last_sent.nil? || (reminder_value.to_i.hours + reminder.last_sent) <= Time.now)
 		      return reminder
 		    end
 	    end

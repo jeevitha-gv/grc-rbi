@@ -125,3 +125,6 @@ en:
   compliance_libraries:
     csv_upload:
       success: "ComplianceLibrary domains have been imported successfully"
+
+  csv_export:
+    error: "File not found."
