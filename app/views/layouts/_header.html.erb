@@ -27,8 +27,8 @@
           </ul>
         </div>
         <div class="user_login">
-          <% unless current_user.attachment.blank? || current_user.attachment.attachment_file.blank? %>
-            <%= image_tag(current_user.attachment.attachment_file.small) %>
+          <% if current_user.attachment.present? %>
+            <%= image_tag(current_user.attachment.attachment_file.small) if current_user.attachment.attachment_file.present? %>
           <% else %>
             <img src="/assets/outer/user-icon.jpg">
           <% end %>
@@ -72,7 +72,7 @@
         <li><a href="/audits" class="<%= ((request.fullpath.include?("audits") && action_name=="index") == true ? 'active' : '') unless request.fullpath.include? '/audits?stage' %>">
           <div class="list-icon"></div>
           List</a></li>
-        <li><a href="<%= '/audits?stage=do' %>" class="<%= ((request.fullpath.include?('stage=do') || request.fullpath.include?("nc_questions/new") || request.fullpath.include?("audit_compliances")) == true) ? 'active' : '' %>">
+        <li><a href="<%= '/audits?stage=do' %>" class="<%= check_stage('do','nc_questions/new','audit_compliances') ? 'active' : '' %>">
           <div class="do-icon"></div>
           Do</a></li>
         <li><a href="/audits?stage=check" class="<%= (request.fullpath.include?('stage=check') || request.fullpath.include?("checklist_recommendations/new")) == true ? 'active' : '' %>">

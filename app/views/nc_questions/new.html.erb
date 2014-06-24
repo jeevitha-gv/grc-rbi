@@ -6,7 +6,7 @@
       <div class="audit-title">
         <h2>Audit : <%= @audit.title %></h2>
         <div class="audit-content container">
-          <%= render 'form' %>
+          <%= render 'form',audit: @audit, library_questions: @library_questions %>
 
         </div>
       </div>
