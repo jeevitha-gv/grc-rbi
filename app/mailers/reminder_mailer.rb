@@ -4,11 +4,7 @@ class ReminderMailer < ActionMailer::Base
 
   def notify_auditor_about_audit(audit)
   	@audit = audit
-<<<<<<< HEAD
   	mail(:to => audit.auditory_email, content_type: "text/html", :subject => "Your Audit has been successfully created" )
-=======
-    mail(:to => audit.auditory_email, content_type: "text/html", :subject => "Your Audit has been successfully created")
->>>>>>> 94fc3d4cc3016cb6180df3b510f4f2a1be7f2368
   end
 
   def notify_auditees_about_audit(audit)
@@ -33,36 +29,22 @@ class ReminderMailer < ActionMailer::Base
 
   def notify_auditee_about_recommendations(checklist_recommendation)
     @checklist_recommendation = checklist_recommendation
-<<<<<<< HEAD
-    mail(:to => checklist_recommendation.checklist.artifact_answers.last.responsibility_email, :subject => "Auditor has given a recommendation",content_type: "text/html")
-
-  end
-
-  def notify_auditee_about_nc_recommendations(checklist_recommendation)
-    @checklist_recommendation = checklist_recommendation
-    mail(:to => checklist_recommendation.checklist.nc_question.auditee_email, :subject => "Auditor has given a recommendation",content_type: "text/html")
-=======
     if checklist_recommendation.checklist_type == "AuditCompliance"
       email = checklist_recommendation.checklist.artifact_answers.last.responsibility_email
     elsif checklist_recommendation.checklist_type == "Answer"
       email = checklist_recommendation.checklist.nc_question.auditee.email
     end
-    mail(:to => email , :subject => "Auditor has given a recommendation")
->>>>>>> 94fc3d4cc3016cb6180df3b510f4f2a1be7f2368
+    mail(:to => email , :subject => "Auditor has given a recommendation", content_type: "text/html")
   end
 
   def notify_auditor_about_responses(checklist_recommendation)
     @checklist_recommendation = checklist_recommendation
-<<<<<<< HEAD
-    mail(:to => checklist_recommendation.checklist.audit.auditory_email, :subject => "Auditee has submitted a response to your recommendation",content_type: "text/html")
-=======
     if checklist_recommendation.checklist_type == "AuditCompliance"
       email = checklist_recommendation.checklist.audit.auditory_email
     elsif checklist_recommendation.checklist_type == "Answer"
       email = checklist_recommendation.checklist.nc_question.audit.auditory_email
     end
-    mail(:to => email, :subject => "Auditee has submitted a response to your recommendation")
->>>>>>> 94fc3d4cc3016cb6180df3b510f4f2a1be7f2368
+    mail(:to => email, :subject => "Auditee has submitted a response to your recommendation", content_type: "text/html")
   end
 
   def notify_auditee_about_observations(checklist_recommendation)
