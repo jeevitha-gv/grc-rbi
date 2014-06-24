@@ -30,7 +30,7 @@ class ArtifactAnswer < ActiveRecord::Base
   end
 
   def build_checklist(compliance)
-    json = {} 
+    json = {}
     json["id"] = self.id
     json["name"] = compliance.compliance_library_name
     json["artifact_id"] = self.artifact_id

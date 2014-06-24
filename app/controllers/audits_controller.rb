@@ -19,9 +19,8 @@ class AuditsController < ApplicationController
 
   # Create Individual audit
   def create
-    @audit = Audit.new(audit_params)
-    @audit.company_id = current_company.id
-    @audit.audit_status_id = (params[:commit] == "Save as Plan" ?  AuditStatus.for_name("Planning").id : AuditStatus.for_name("In Progress").id)
+    @audit = current_company.audits.build(audit_params)
+    @audit.set_audit_status(@audit, params[:commit])
     if @audit.save
       SkippedAuditReminder.create(audit_id: @audit.id, skipped_by: current_user.id) if params[:skip_reminder] == "true"
       ReminderMailer.delay.notify_auditor_about_audit(@audit)
