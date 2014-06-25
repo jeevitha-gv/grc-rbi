@@ -109,7 +109,7 @@ class AuditsController < ApplicationController
       @audit.update(audit_status_id: status_id)
       @audit.audit_operational_weightage(current_company)
     end
-    redirect_to audit_dashboard_audits(id: @audit.id)
+    redirect_to audit_dashboard_audits_path(id: @audit.id)
   end
 
   def audit_dashboard
