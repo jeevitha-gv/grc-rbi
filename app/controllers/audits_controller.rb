@@ -58,13 +58,9 @@ class AuditsController < ApplicationController
 
     # end
     if @audit.update_attributes(audit_params)
-<<<<<<< HEAD
-      redirect_to edit_audit_path, :flash => { :notice => MESSAGES["audit"]["update"]["success"]}
-=======
       SkippedAuditReminder.create(audit_id: @audit.id, skipped_by: current_user.id) if(params[:skip_reminder] == "true" && !@audit.skipped_audit_reminder.present?)
       @audit.skipped_audit_reminder.destroy if params[:skip_reminder] == "false"
-      redirect_to edit_audit_path
->>>>>>> 6d3daceee6ee20fb7b74c118e085ac456a20c21a
+      redirect_to edit_audit_path, :flash => { :notice => MESSAGES["audit"]["update"]["success"]}
     else
       audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
       @team_users = @team.users
