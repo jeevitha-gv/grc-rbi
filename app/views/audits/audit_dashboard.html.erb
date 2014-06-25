@@ -11,6 +11,7 @@
 	var observation_pending_count = <%= raw @observation_pending_count %>;
 	var response_completed_count = <%= raw @response_completed_count %>;
 	var response_pending_count = <%= raw @response_pending_count %>;
+
 </script>
 <%= javascript_include_tag "/assets/views/audit_dashboard.js" %>
 <script src="/assets/outer/highcharts.js"></script>
@@ -32,27 +33,27 @@
             <ul>
 						<% audit_status_id = @audit.audit_status_id unless @audit.nil?%>
               <li>
-                <div id="arrow" class="<%=  dashboard_audit_status(audit_status_id,'Planning') unless audit_status_id.nil? %>"> <a  href="/audits/new">
+                <div id="arrow" class="<%=  dashboard_audit_status(audit_status_id,'Planning') unless audit_status_id.nil? %>"> <a  href="/audits/<%= @audit.id%>/edit">
                   <div class="db-plan-icon"></div>
                   Plan </a> </div>
               </li>
               <li>
-                <div id="arrow1" class="<%= dashboard_audit_status(audit_status_id, 'In Progress') unless audit_status_id.nil?%>"> <a  href="<%= (@audit && @audit.compliance_type == "Compliance") ? "/audit_compliances" : "/nc_questions/new"  %>">
+                <div id="arrow1" class="<%= dashboard_audit_status(audit_status_id, 'In Progress') unless audit_status_id.nil?%>"> <a  href="<%= (@audit && @audit.compliance_type == "Compliance") ? "/audits/#{@audit.id}-#{@audit.title}/audit_compliances" : "/audits/#{@audit.id}-#{@audit.title}/nc_questions/new"  %>">
                   <div class="db-do-icon"></div>
                   Do </a> </div>
               </li>
               <li>
-                <div id="arrow2" class="<%= dashboard_audit_status(audit_status_id, 'In Progress') unless audit_status_id.nil?%>"> <a  href="/checklist_recommendations/new">
+                <div id="arrow2" class="<%= dashboard_audit_status(audit_status_id, 'In Progress') unless audit_status_id.nil?%>"> <a  href="/audits/<%= @audit.id%>-<%= @audit.title%>/checklist_recommendations/new">
                   <div class="db-check-icon"></div>
                   Check </a> </div>
               </li>
               <li>
-                <div id="arrow3" class="<%= dashboard_audit_status(audit_status_id, 'In Progress') unless audit_status_id.nil?%>"> <a  href="/checklist_recommendations/auditee_response">
+                <div id="arrow3" class="<%= dashboard_audit_status(audit_status_id, 'In Progress') unless audit_status_id.nil?%>"> <a  href= "/audits/<%= @audit.id%>-<%= @audit.title%>/checklist_recommendations/auditee_response">
                   <div class="db-act-icon"></div>
                   Act </a> </div>
               </li>
               <li>
-                <div id="arrow4" class="<%= dashboard_audit_status(audit_status_id, 'Published') unless audit_status_id.nil?%>"> <a  href="/checklist_recommendations/audit_observation">
+                <div id="arrow4" class="<%= dashboard_audit_status(audit_status_id, 'Published') unless audit_status_id.nil?%>"> <a  href= "/audits/<%= @audit.id%>-<%= @audit.title%>/checklist_recommendations/audit_observation">
                   <div class="db-publish-icon"></div>
                   Publish </a> </div>
               </li>
@@ -98,7 +99,7 @@
               <div class="col-sm-8"><%= @audit_users.join(',') unless @audit_users.nil?%></div>
             </div>
 						<% unless @audit.nil? %>
-            <div class="db_download_btn clearfix"> <a class="download-icon" href="/audits/<%= @audit.id unless @audit.nil?%>.pdf">Download Report</a> <a class="download-aff-icon" href="/audits/artifacts_download">Download Artifacts</a> </div>
+            <div class="db_download_btn clearfix"> <a class="download-icon" href="/audits/<%= @audit.id unless @audit.nil?%>.pdf">Download Report</a> <a class="download-aff-icon" href=" /audits/artifacts_download">Download Artifacts</a> </div>
 						<% end %>
           </div>
           <!--Audit Details End -->
