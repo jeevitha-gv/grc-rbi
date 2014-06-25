@@ -99,7 +99,7 @@
               <div class="col-sm-8"><%= @audit_users.join(',') unless @audit_users.nil?%></div>
             </div>
 						<% unless @audit.nil? %>
-            <div class="db_download_btn clearfix"> <a class="download-icon" href="/audits/<%= @audit.id unless @audit.nil?%>.pdf">Download Report</a> <a class="download-aff-icon" href=" /audits/artifacts_download">Download Artifacts</a> </div>
+            <div class="db_download_btn clearfix"> <a class="download-icon" href="/audits/<%= @audit.id unless @audit.nil?%>.pdf">Download Report</a> <a class="download-aff-icon" href="<%= artifacts_download_audits_path(@audit)%>">Download Artifacts</a> </div>
 						<% end %>
           </div>
           <!--Audit Details End -->
