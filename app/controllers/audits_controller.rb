@@ -46,7 +46,7 @@ class AuditsController < ApplicationController
     end
   end
 
-   # Update individual audits
+  # Update individual audits
   def update
     @audit = Audit.find(params[:id])
     if @audit.update_attributes(audit_params)
@@ -61,7 +61,7 @@ class AuditsController < ApplicationController
   end
 
 
-  # list audits based on status for current user
+  # List audits based on status for current user
   def audit_with_status
      @audits = current_user.accessible_audits.select{|x| x.audit_status_id == params[:audit_status_id].to_i}
   end
@@ -75,7 +75,7 @@ class AuditsController < ApplicationController
     end
   end
 
-  #audit intializer data
+  # Audit intializer data
   def department_teams_users
     audit_initializers(params[:location_id], params[:department_id], params[:team_id])
     render 'department_locations_list'
@@ -98,7 +98,7 @@ class AuditsController < ApplicationController
     end
   end
 
-  # download sample audit
+  # Download sample audit
   def audit_export
     begin
       file_to_download = "sample_audit.csv"
@@ -109,7 +109,7 @@ class AuditsController < ApplicationController
     end
   end
 
-
+  # ACS Measurement & Calculation
   def asc_calculation
     status_id = AuditStatus.where('name= ?','Published').first.id
     unless @audit.audit_status_id == status_id
@@ -119,6 +119,7 @@ class AuditsController < ApplicationController
     redirect_to audit_dashboard_audits_path(id: @audit.id)
   end
 
+  # Audit Dashboard
   def audit_dashboard
       @audit_domains, @audit_weightage, @audit_maximum_score , @audit_percentage= @audit.maximum_actual_score
       @to_do_list = @audit.compliance_checklist_recommendations
@@ -127,6 +128,7 @@ class AuditsController < ApplicationController
       @checklist_completed_count, @checklist_pending_count, @recommendation_completed_count, @recommendation_pending_count, @observation_completed_count, @observation_pending_count,@response_completed_count, @response_pending_count = @audit.audit_status_records
   end
 
+  # Download artifacts for Audits as a zip file
   def artifacts_download
     if @audit.compliance_type == 'Compliance'
 		  @folder = @audit.artifact_answers.collect {|x| x.attachments}.flatten
