@@ -1,6 +1,12 @@
 ActiveAdmin.register Location do
   menu :if => proc{ !current_admin_user.present? }
 
+    breadcrumb do
+      [
+        link_to('Location', '/admin/locations')
+      ]
+    end
+
   #authentication
   controller do
     before_filter :check_company_admin, :check_role

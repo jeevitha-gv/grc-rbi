@@ -1,5 +1,11 @@
 ActiveAdmin.register Artifact do
 
+    breadcrumb do
+      [
+        link_to('Artifact', '/admin/artifacts')
+      ]
+    end
+
     menu :if => proc{ !current_admin_user.present? }
 
     controller do
