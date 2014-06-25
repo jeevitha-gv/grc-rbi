@@ -102,7 +102,7 @@ $(function () {
             }]
         });
     });
-		
+
 		$(function () {
 				Highcharts.data({
         csv: document.getElementById('tsv').innerHTML,
