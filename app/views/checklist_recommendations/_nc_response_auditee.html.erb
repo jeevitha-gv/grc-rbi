@@ -69,7 +69,7 @@
                           <% elsif answer.question_type_name == 'Descriptive Type' %>
                             <%= answer.detailed_value %>
                           <% elsif answer.question_type_name == 'Multiple Choice' %>
-                            <%= answer.question_option.value if nc_question.answer.value.present? %>
+                            <%= answer.question_option.value if answer.value.present? %>
                           <% end %>
                         <% end %>
                       </div>
