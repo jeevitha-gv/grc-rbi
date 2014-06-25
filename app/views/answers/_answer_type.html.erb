@@ -1,6 +1,6 @@
 <div class="col-lg-4">
 	<div class="form-group clearfix">
-	<% if question.question_type.name == "Yes or No"%>
+	<% if question.question_type_name == "Yes or No"%>
 		<div class="form-group clearfix">
 		<label class="col-sm-5">Your Choice</label>
 			<div class="col-sm-7">
@@ -34,7 +34,7 @@
 			</div>
 		</div>
 
-	<% elsif question.question_type.name == "Descriptive Type" %>
+	<% elsif question.question_type_name == "Descriptive Type" %>
 		<div class="form-group clearfix">
 			<label class="col-sm-5">Your Answer</label>
 			<div class="col-sm-7">
@@ -62,7 +62,7 @@
 				<% end %>
 			</div>
 		</div>
-	<% elsif question.question_type.name == "Multiple Choice" %>
+	<% elsif question.question_type_name == "Multiple Choice" %>
 		<div class="form-group clearfix">
 			<label class="col-sm-5">Your Option</label>
 			<div class="col-sm-7">

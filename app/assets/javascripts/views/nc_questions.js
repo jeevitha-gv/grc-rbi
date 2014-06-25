@@ -119,9 +119,7 @@ function question_submit()
     $('.edit_audit').submit();
   });
 
- $(".datepicker").kendoDatePicker({
-        format: "dd/MM/yyyy"
-        });
+
 
 	function file_presence_check()
 	{
@@ -137,8 +135,11 @@ function question_submit()
 		return true
 		}
 	}
-	
+
 	$(document).ready(function(){
+    $(".datepicker").kendoDatePicker({
+        format: "dd/MM/yyyy"
+        });
 
     $(document).on("change", ".question_response", function(){
       if($(this).val() == "3"){
