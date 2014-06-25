@@ -11,7 +11,7 @@
                   <div class="col-lg-4">
                   <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Artifact :</b> </label>
-                      <div class="col-sm-7"><%= link_to (File.basename(answer.attachment.attachment_file_url)).truncate(20), artifacts_download_audits_path(id: answer.attachment.id), class: "blue_link" if answer.attachment.attachment_file_url.present? %> </div>
+                      <div class="col-sm-7"><%= link_to (File.basename(answer.attachment.attachment_file_url)).truncate(20), artifacts_download_audits_path(id: answer.attachment.id), class: "blue_link" if(answer.attachment.present? && answer.attachment.attachment_file_url.present?) %> </div>
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Recommendation :</b> </label>
@@ -68,8 +68,8 @@
                             <%= answer.value == 0 ? 'Yes' : 'No' %>
                           <% elsif answer.question_type_name == 'Descriptive Type' %>
                             <%= answer.detailed_value %>
-                          <% else %>
-                            <%= answer.question_option.value unless nc_question.answer_value.nil? %>
+                          <% elsif answer.question_type_name == 'Multiple Choice' %>
+                            <%= answer.question_option.value if nc_question.answer.value.present? %>
                           <% end %>
                         <% end %>
                       </div>
