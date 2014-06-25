@@ -23,8 +23,12 @@ namespace :reminder do
         #Checlist Recommendation Reminders
         # logger.info "Checklist Recommendation Reminder"
         audit.unresponsive_recommendation.each do |recommendation|
+          p 3333333333333
+          p recommendation
+          p recommendation.checklist.artifact_answers.last.responsibility
+          p 444444444444
           if( reminder = Reminder.check_priority(company.id,recommendation.recommendation_priority_id))
-            user = recommendation.auditee
+            user = recommendation.checklist.artifact_answers.last.responsibility
             if ReminderMailer.recommendation_reminder(recommendation, user).deliver
               if(ReminderMail.escalation_matrix("ChecklistRecommendation", recommendation.id, reminder.mail_count))
                 reminder_mail_to,reminder_mail_cc = reminder.get_escalation_mails(company,user,audit)
