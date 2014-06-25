@@ -57,6 +57,7 @@ class ChecklistRecommendationsController < ApplicationController
 		end
 	end
 
+	# To show auditor observation page
   def audit_observation
 		@pending_observation = @audit.checklist_recommendations.collect {|x| x.is_published}.include?(nil)
 		@observation = @audit.checklist_recommendations.map(&:response_completed).include?(true)
