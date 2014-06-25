@@ -46,6 +46,8 @@ en:
   audit_compliance:
     comment:
       success: "Text response saved successfully"
+    attachment:
+      success: "Attachment has been imported successfully."
 
   # company:
   #   domain:
@@ -90,6 +92,10 @@ en:
     company_admin_failure: "You can't create a role with this title"
 
   audit:
+    create:
+      success: "Audit has been created successfully"
+    update:
+      success: "Audit has been updated successfully"
     failure:
       auditee_blank: "Please select auditee"
       auditee_unique: "Please select unique auditee"

@@ -106,7 +106,7 @@
           <div class="dash_sub_title">To Do List</div>
           <div class="db_todolist">
 					<% @to_do_list && @to_do_list.each do |checklist_recommendation|%>
-					<% if !checklist_recommendation.recommendation? && checklist_recommendation.recommendation_completed? %>
+					<% if checklist_recommendation.recommendation? && !checklist_recommendation.recommendation_completed? %>
             <div class="db_todolist_info clearfix">
               <div class="checkbox_wrapper"></div>
               <div class="db_inform">
@@ -115,7 +115,7 @@
               <a class="pendinglink" href=""><%= 'Pending'%></a>
 							</div>
           <% end %>
-					<% if !checklist_recommendation.corrective? && checklist_recommendation.response_completed?%>
+					<% if checklist_recommendation.corrective? && !checklist_recommendation.response_completed?%>
             <div class="db_todolist_info clearfix">
               <div class="checkbox_wrapper"></div>
               <div class="db_inform">
@@ -124,13 +124,24 @@
               <a class="pendinglink" href=""><%= 'Pending' %></a>
 							</div>
           <% end %>
-					<% if !checklist_recommendation.observation? && checklist_recommendation.is_published?%>
+					<% if checklist_recommendation.observation? && !checklist_recommendation.is_published?%>
             <div class="db_todolist_info clearfix">
               <div class="checkbox_wrapper"></div>
               <div class="db_inform">
                 <div class="db_todolist_insec"><%= checklist_recommendation.checklist.compliance_library_name%> - Observation</div>
 								</div>
               <a class="pendinglink" href=""><%= 'Pending' %></a>
+							</div>
+          <% end %>
+          <% end %>
+					<% @artifacts_answers && @artifacts_answers.each do |artifact_answer|%>
+					<% if !artifact_answer.comment.present? && artifact_answer.attachments.empty? %>
+            <div class="db_todolist_info clearfix">
+              <div class="checkbox_wrapper"></div>
+              <div class="db_inform">
+                <div class="db_todolist_insec"><%= artifact_answer.audit_compliance.compliance_library_name%> - Artifacts</div>
+							</div>
+              <a class="pendinglink" href=""><%= 'Pending'%></a>
 							</div>
           <% end %>
           <% end %>
