@@ -135,12 +135,16 @@ class AuditsController < ApplicationController
   end
 
   def artifacts_download
-		@folder = @audit.artifact_answers.collect {|x| x.attachments}.flatten
+    if @audit.compliance_type == 'Compliance'
+		  @folder = @audit.artifact_answers.collect {|x| x.attachments}.flatten
+    elsif @audit.compliance_type == 'NonCompliance'
+      @folder = @audit.answers.collect {|x| x.attachment}.flatten
+    end
 		temp = Tempfile.new("zip-file-#{Time.now}")
 		Zip::ZipOutputStream.open(temp.path) do |z|
 			@folder.each do |file|
-				z.put_next_entry(File.basename(file.attachment_file_url))
-				z.print IO.read("#{Rails.root}/public/#{file.attachment_file_url}")
+				z.put_next_entry(File.basename(file.attachment_file_url)) if file.present? && file.attachment_file_url.present?
+				z.print IO.read("#{Rails.root}/public/#{file.attachment_file_url}") if file.present? && file.attachment_file_url.present?
 			end
 		end
 		send_file temp.path, :type => 'application/zip', :disposition => 'attachment', :filename => "artifacts.zip"
