@@ -457,9 +457,9 @@ function audit_observation(id)
 
 }
 
-function check_observed()
+function check_observed(status_id)
 {
-	if (audit_status != 'Published' && observed_status)
+	if (status_id != audit_status && observed_status)
 	{
 		if (confirm('Still some observations are pending. Are you sure to publish this audit?')) {
 			return true
