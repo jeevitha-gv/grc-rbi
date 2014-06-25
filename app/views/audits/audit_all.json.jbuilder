@@ -6,6 +6,6 @@ json.data do |json|
 		json.compliance_type audit.compliance_type
 		json.client audit.client_name
 		json.audit_type audit.audit_type_name
-    json.auditor audit.auditory_full_name
+    json.auditor audit.auditory_user_name
 	end
 end
