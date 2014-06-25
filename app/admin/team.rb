@@ -45,7 +45,7 @@ ActiveAdmin.register Team do
 
   form do |f|
     f.inputs "New Team" do
-      f.input :department_id, :label => 'Department', :as => :select, :collection => Department.where(:location_id=>current_company.locations.map(&:id))
+      f.input :department_id, :label => 'Department', :as => :select, :collection => Department.where(:location_id=>current_company.locations.map(&:id)), :prompt => "-Select Department-"
       f.input :name
     end
     f.actions

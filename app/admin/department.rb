@@ -34,7 +34,7 @@ ActiveAdmin.register Department do
 
   form do |f|
     f.inputs "New Department" do
-      f.input :location_id, :label => 'Location', :as => :select, :collection => current_company.locations
+      f.input :location_id, :label => 'Location', :as => :select, :collection => current_company.locations, :prompt => "-Select Location-"
       f.input :name
     end
     f.actions

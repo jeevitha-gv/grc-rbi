@@ -1,16 +1,3 @@
-	$(document).ready(function(){
-	 $("#auditees-users option").each(function( index ) {
-    var user_value = ($(this).attr('class'))
-    if(user_value!=""){$(this).attr('selected', true)}
-  });
-	});
-
-	// function auditee_add()
-	// {
- //    var size = $('#auditee-list').find('.auditee-rows').size();
- //    $("#auditee-list").append(""+"<div class='form-group clearfix auditee-dropdown'>"+$(".auditee-dropdown").html().replace('audit[audit_auditees_attributes][0][user_id]','audit[audit_auditees_attributes]['+size+'][user_id]')+"</div>"+"")//.replace(, ''); ;
- //  }
-
   function standard_display(getStandardVal)
   {
       if(getStandardVal == 'Compliance')
@@ -35,7 +22,7 @@
   }
 
  $(document).ready(function(){
-  standard_display($("#audit_compliance_type").val());
+    standard_display($("#audit_compliance_type").val());
     $("#audit_compliance_type").change(function () {
       $('#standard-compliance  select').attr('name', '');
       $('#standard-topic  select').attr('name', '');

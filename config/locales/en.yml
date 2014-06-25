@@ -132,7 +132,7 @@ en:
               blank: "Client name can't be blank"
               invalid: "Client name should contain alphanumeric"
               too_short:
-                other: "client name should contain minimum of 4 char"
+                other: "client name should contain minimum of 2 char"
               too_long:
                 other: "client name should not contains maximum of 52 char"
             contact_no:
