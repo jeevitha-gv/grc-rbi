@@ -1,6 +1,6 @@
 <script>
 var audit_status = "<%= audit_status %>";
-var observed_status = "<%= @pending_observation %>";
+var observed_status = <%= @pending_observation %>;
 </script>
 <%= javascript_include_tag "/assets/views/checklist_recommendations.js" %>
 <div class="clearfix"></div>
@@ -64,7 +64,7 @@ var observed_status = "<%= @pending_observation %>";
     				<div class="fright paddingtop">
     				<%= hidden_field_tag "id" , @audit.id %>
 						<% if @observation	%>
-    				<%= submit_tag "#{(@audit.audit_status_id == @published_status.id).present? ? 'Published' : 'Publish'}" , :class => "orange_btn", :disabled => (@audit.audit_status_id == audit_status) , :onclick => "return check_observed();"%>
+								<input type="submit" value="<%= (@audit.audit_status_id == @published_status.id).present? ? 'Published' : 'Publish' %>" class="orange_btn"  <%= 'disabled' if (@audit.audit_status_id == audit_status) %> onclick="return check_observed(<%= @audit.audit_status_id%>);">
 						<% end %>
     				</div>
     			<% end %>
