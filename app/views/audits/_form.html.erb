@@ -3,6 +3,7 @@
   display: none;
 }
 </style>
+<%= javascript_include_tag "/assets/views/audit_new.js" %>
 <div class="clearfix">
   <h3>Audit Details</h3>
 </div>
@@ -172,7 +173,7 @@
       <% end %>
     </div>
   </div>
-  <div class="form-group clearfix" id="standard-topic" style="<%= 'display:block;' if check_non_compliance_type(audit, audit.errors) %>">
+  <div class="form-group clearfix" id="standard-topic">
     <label class="col-sm-4 control-label">
       <%= f.label :standard_id, t('audit.topic') %>
     </label>
@@ -184,7 +185,7 @@
     </div>
   </div>
 
-  <div class="form-group clearfix" id="standard-compliance" style="<%= 'display:block;' if check_compliance_type(audit, audit.errors) %>">
+  <div class="form-group clearfix" id="standard-compliance">
     <label class="col-sm-4 control-label">
       <%= f.label :standard_id, t('audit.standard') %>
     </label>
@@ -257,5 +258,33 @@
         <div class="error_message"><%=  audit.errors[:auditor][0]%></div>
       <% end %>
     </div>
+  </div>
+</div>
+<div class="col-lg-4 col-sm-6 col-xs-12" id="auditee-list">
+  <% if @audit.errors[:auditees].present? %>
+    <div class="error_message"><%= @audit.errors[:auditees][0]%></div>
+  <% end %>
+  <% @audit.audit_auditees.build if action_name == "new" %>
+  <div class="form-group clearfix auditee-dropdown">
+    <div class='auditee-rows'>
+      <% if (action_name != "new") %>
+        <% if @team.present? %>
+          <%= f.fields_for :audit_auditees do |builder| %>
+            <label class="col-sm-4 control-label">
+              <%= builder.label :auditees, t('audit.auditee') %>
+            </label>
+            <div class="col-sm-7">
+              <%= builder.select :user_id, options_for_select(@team.users.collect{|x| [x.user_name, x.id.to_i]}, :elected => @audit.auditor), {include_blank: 'Select Auditee' }, { :id => "auditees-users"} %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="col-sm-8" id="auditee-button" style="<%= action_name == "create" ? "display:block;" : "display:none;" %>">
+  <div class="form-group clearfix addissue">
+    <a href="javascript:void(0)" class="plus-icon" id="add_auditee" onclick="auditee_add();">Add Auditee
+    </a>
   </div>
 </div>
