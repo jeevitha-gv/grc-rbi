@@ -48,18 +48,10 @@ class AuditsController < ApplicationController
 
    # Update individual audits
   def update
-    # binding.pry
     @audit = Audit.find(params[:id])
-    # unless @audit.team_id == params[:audit][:team_id]
-    #   # @audit.audit_auditees.destroy_all
-    #   binding.pry
-    #   # @audit.
-    # else
-
-    # end
     if @audit.update_attributes(audit_params)
       SkippedAuditReminder.create(audit_id: @audit.id, skipped_by: current_user.id) if(params[:skip_reminder] == "true" && !@audit.skipped_audit_reminder.present?)
-      @audit.skipped_audit_reminder.destroy if params[:skip_reminder] == "false"
+      @audit.skipped_audit_reminder.destroy if(params[:skip_reminder] == "false" && @audit.skipped_audit_reminder.present?)
       redirect_to edit_audit_path, :flash => { :notice => MESSAGES["audit"]["update"]["success"]}
     else
       audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
@@ -67,6 +59,7 @@ class AuditsController < ApplicationController
       render 'edit'
     end
   end
+
 
   # list audits based on status for current user
   def audit_with_status
