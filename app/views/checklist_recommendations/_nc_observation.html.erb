@@ -36,7 +36,7 @@
                             <%= nc_question.answer_value == 0 ? 'Yes' : 'No' %>
                           <% elsif nc_question.question_type_name == 'Descriptive Type' %>
                             <%= nc_question.answer_detailed_value %>
-                          <% else %>
+                          <% elsif nc_question.question_type_name == 'Multiple Choice' %>
                             <%= nc_question.answer.question_option.value unless nc_question.answer_value.nil? %>
                           <% end %>
                         <% end %>

@@ -26,6 +26,14 @@ function add_fields(link, association, content) {
     return false;
 }
 
+function add_auditees(link, association) {
+    var content = $(".team-auditee").html()
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("[0]", "g");
+    $(link).parent().parent().find("#auditee-list").append(content.replace(regexp, new_id));
+    return false;
+}
+
 function remove_fields(link) {
     jQuery(link).parent().find("input[type=hidden]").val(1);
     jQuery(link).parents(".fields").hide();
@@ -139,12 +147,12 @@ $(document).ready(function(){
 		}
 	});
 	/* placeholder */
-  
+
     $(".next-phase").click(function(){
       // new Messi('Planned for further phases.', {autoclose: '5000'});
       new Messi('Planned for further phases.', {title: 'Warning', titleClass: 'warning', autoclose: 2000});
     });
-    
+
 });
 
 // More contacts show
