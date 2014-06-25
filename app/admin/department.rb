@@ -1,4 +1,12 @@
 ActiveAdmin.register Department do
+
+
+  breadcrumb do
+    [
+      link_to('Department', '/admin/departments')
+    ]
+  end
+
   menu :if => proc{ !current_admin_user.present? }
 
  #authentication

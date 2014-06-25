@@ -27,7 +27,7 @@ class AuditsController < ApplicationController
       SkippedAuditReminder.create(audit_id: @audit.id, skipped_by: current_user.id) if params[:skip_reminder] == "true"
       ReminderMailer.delay.notify_auditor_about_audit(@audit)
       ReminderMailer.delay.notify_auditees_about_audit(@audit)
-      redirect_to audits_path
+      redirect_to audits_path, :flash => { :notice => MESSAGES["audit"]["create"]["success"]}
     else
       audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
       @team_users = @team.users
@@ -52,13 +52,14 @@ class AuditsController < ApplicationController
     if @audit.update_attributes(audit_params)
       SkippedAuditReminder.create(audit_id: @audit.id, skipped_by: current_user.id) if(params[:skip_reminder] == "true" && !@audit.skipped_audit_reminder.present?)
       @audit.skipped_audit_reminder.destroy if(params[:skip_reminder] == "false" && @audit.skipped_audit_reminder.present?)
-      redirect_to edit_audit_path
+      redirect_to edit_audit_path, :flash => { :notice => MESSAGES["audit"]["update"]["success"]}
     else
       audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
       @team_users = @team.users
       render 'edit'
     end
   end
+
 
   # list audits based on status for current user
   def audit_with_status
@@ -121,6 +122,7 @@ class AuditsController < ApplicationController
   def audit_dashboard
       @audit_domains, @audit_weightage, @audit_maximum_score , @audit_percentage= @audit.maximum_actual_score
       @to_do_list = @audit.compliance_checklist_recommendations
+      @artifacts_answers = @audit.artifact_answers
       @audit_users = @audit.audit_users
       @checklist_completed_count, @checklist_pending_count, @recommendation_completed_count, @recommendation_pending_count, @observation_completed_count, @observation_pending_count,@response_completed_count, @response_pending_count = @audit.audit_status_records
   end

@@ -2,6 +2,12 @@ ActiveAdmin.register Reminder do
 
   menu :if => proc{ !current_admin_user.present? }
 
+  breadcrumb do
+    [
+      link_to('Reminder', '/admin/reminders')
+    ]
+  end
+
   actions :all, :except => [:destroy]
 
   controller do

@@ -1,5 +1,12 @@
 ActiveAdmin.register Company, { :as => 'Settings'} do
   menu :if => proc{ !current_admin_user.present? }
+
+  breadcrumb do
+    [
+      link_to('Settings', '/admin/settings')
+    ]
+  end
+
   actions :all, :except => [:new, :create, :show, :destroy]
   config.filters = false
   config.batch_actions = false

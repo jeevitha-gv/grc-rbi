@@ -2,6 +2,12 @@ ActiveAdmin.register Team do
 
       menu :if => proc{ !current_admin_user.present? }
 
+  breadcrumb do
+    [
+      link_to('Teams', '/admin/teams')
+    ]
+  end
+
 
  controller do
     before_filter :check_company_admin, :check_role

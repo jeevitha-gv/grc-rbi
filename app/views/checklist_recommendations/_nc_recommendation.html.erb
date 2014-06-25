@@ -23,7 +23,7 @@
           <div class="form-group clearfix">
             <%= f.label :recommendation, t(' checklist_recommendation.recommendation'), :class => "col-sm-5 control-label" %>
             <div class="col-sm-7">
-              <%= f.text_field :recommendation, :class => "audit-big-input control_recommendation", :name => "checklist_recommendation[#{answered_ncquestion.id}][recommendation]", :id => "recommendation_#{answered_ncquestion.id}", :value => "#{checklist_recommendation.recommendation if checklist_recommendation.present?}", :class => "audit-big-input control_recommendation"%>
+              <%= f.text_area :recommendation, :class => "audit-big-input control_recommendation", :name => "checklist_recommendation[#{answered_ncquestion.id}][recommendation]", :id => "recommendation_#{answered_ncquestion.id}", :value => "#{checklist_recommendation.recommendation if checklist_recommendation.present?}", :class => "audit-big-input control_recommendation"%>
               <span class="error_message" id="error_recommendation_<%= answered_ncquestion.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["recommendation"]%><span>
               <%if @checklist_recommendation.errors[:recommendation].present?%>
                 <div class="error_message"><%=  checklist_recommendation.errors[:recommendation][0]%></div>
@@ -58,7 +58,7 @@
           <div class="form-group clearfix">
             <%= f.label :Reason, t(' checklist_recommendation.reason'), :class => "col-sm-5 control-label" %>
             <div class="col-sm-7">
-              <%= f.text_field :reason, :class => "audit-big-input control_reason", :class => "audit-big-input control_reason", :name => "checklist_recommendation[#{answered_ncquestion.id}][reason]", :id => "reason_#{answered_ncquestion.id}", :value => "#{checklist_recommendation.reason if checklist_recommendation.present?}" %>
+              <%= f.text_area :reason, :class => "audit-big-input control_reason", :class => "audit-big-input control_reason", :name => "checklist_recommendation[#{answered_ncquestion.id}][reason]", :id => "reason_#{answered_ncquestion.id}", :value => "#{checklist_recommendation.reason if checklist_recommendation.present?}" %>
               <span class="error_message" id="error_reason_<%= answered_ncquestion.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["reason"]%><span>
             </div>
           </div>
