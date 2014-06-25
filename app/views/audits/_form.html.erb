@@ -237,7 +237,8 @@
     </label>
       <div class="col-sm-7">
         <div class="form-group">
-          <%= check_box_tag 'skip_reminder','true'%>
+          <%=hidden_field_tag 'skip_reminder', 'false'%>
+          <%= check_box_tag 'skip_reminder', 'true', ({checked: true} if audit.skipped_audit_reminder.present?) %>
         </div>
       </div>
   </div>
@@ -260,31 +261,23 @@
     </div>
   </div>
 </div>
-<div class="col-lg-4 col-sm-6 col-xs-12" id="auditee-list">
+<div class="col-lg-4 col-sm-6 col-xs-12">
   <% if @audit.errors[:auditees].present? %>
     <div class="error_message"><%= @audit.errors[:auditees][0]%></div>
   <% end %>
-  <% @audit.audit_auditees.build if action_name == "new" %>
   <div class="form-group clearfix auditee-dropdown">
     <div class='auditee-rows'>
-      <% if (action_name != "new") %>
-        <% if @team.present? %>
-          <%= f.fields_for :audit_auditees do |builder| %>
-            <label class="col-sm-4 control-label">
-              <%= builder.label :auditees, t('audit.auditee') %>
-            </label>
-            <div class="col-sm-7">
-              <%= builder.select :user_id, options_for_select(@team.users.collect{|x| [x.user_name, x.id.to_i]}, :elected => @audit.auditor), {include_blank: 'Select Auditee' }, { :id => "auditees-users"} %>
+      <div id="auditee-list">
+        <%= f.fields_for :audit_auditees, (f.object.audit_auditees.present? ? f.object.audit_auditees : AuditAuditee.new) do |builder| %>
+            <div class="team-auditee">
+              <%= render 'audit_auditee_fields', audit: audit, f: builder, team_users: team_users %>
             </div>
-          <% end %>
+            <%#= builder.select :user_id, options_for_select(@team.users.collect{|x| [x.user_name, x.id.to_i]}, :elected => @audit.auditor), {include_blank: 'Select Auditee' }, { :id => "auditees-users"} %>
         <% end %>
-      <% end %>
+       </div>
+      <div class="form-group clearfix addissue">
+        <%= link_to_add_auditee "", :audit_auditees %>
+      </div>
     </div>
-  </div>
-</div>
-<div class="col-sm-8" id="auditee-button" style="<%= action_name == "create" ? "display:block;" : "display:none;" %>">
-  <div class="form-group clearfix addissue">
-    <a href="javascript:void(0)" class="plus-icon" id="add_auditee" onclick="auditee_add();">Add Auditee
-    </a>
   </div>
 </div>
