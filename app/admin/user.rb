@@ -1,6 +1,12 @@
 ActiveAdmin.register User do
   menu :if => proc{ !current_admin_user.present? }
 
+  breadcrumb do
+    [
+      link_to('Users', '/admin/users')
+    ]
+  end
+
   # removing delete option
   actions :all, :except => [:destroy]
 

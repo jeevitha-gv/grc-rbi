@@ -2,6 +2,12 @@ ActiveAdmin.register OperationalArea do
 
   menu :if => proc{ current_admin_user.present? }
 
+  breadcrumb do
+    [
+      link_to('Weightage', '/admin/operational_areas')
+    ]
+  end
+
   actions :all, :except => [:destroy]
 
   index do

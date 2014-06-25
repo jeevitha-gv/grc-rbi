@@ -52,6 +52,10 @@ def link_to_add_choices(name, f, association)
   link_to "#{name}" ,'javascript:void(0)',  {onclick: "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", class: "plusround-icon plus-background"}
 end
 
+def link_to_add_auditee(name, association)
+  link_to "#{name}" ,'javascript:void(0)',  {onclick: "add_auditees(this, \"#{association}\")", class: "plusround-icon plus-background"}
+end
+
 def link_to_remove_fields(name, f)
   f.hidden_field(:_destroy) + link_to("#{name}", 'javascript:void(0)', {onclick: "remove_fields(this)", class: "minus-icon"})
 end

@@ -9,12 +9,14 @@ class AuditsController < ApplicationController
   def new
     @audit = Audit.new
     @audit.build_skipped_audit_reminder
+    @team_users = []
   end
 
   # Edit Individual audit
   def edit
     @audit = Audit.find(params[:id])
     audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
+    @team_users = @team.users
   end
 
   # Create Individual audit
@@ -28,6 +30,7 @@ class AuditsController < ApplicationController
       redirect_to audits_path, :flash => { :notice => MESSAGES["audit"]["create"]["success"]}
     else
       audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
+      @team_users = @team.users
       render 'new'
     end
   end
@@ -45,11 +48,26 @@ class AuditsController < ApplicationController
 
    # Update individual audits
   def update
+    # binding.pry
     @audit = Audit.find(params[:id])
+    # unless @audit.team_id == params[:audit][:team_id]
+    #   # @audit.audit_auditees.destroy_all
+    #   binding.pry
+    #   # @audit.
+    # else
+
+    # end
     if @audit.update_attributes(audit_params)
+<<<<<<< HEAD
       redirect_to edit_audit_path, :flash => { :notice => MESSAGES["audit"]["update"]["success"]}
+=======
+      SkippedAuditReminder.create(audit_id: @audit.id, skipped_by: current_user.id) if(params[:skip_reminder] == "true" && !@audit.skipped_audit_reminder.present?)
+      @audit.skipped_audit_reminder.destroy if params[:skip_reminder] == "false"
+      redirect_to edit_audit_path
+>>>>>>> 6d3daceee6ee20fb7b74c118e085ac456a20c21a
     else
       audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
+      @team_users = @team.users
       render 'edit'
     end
   end
@@ -109,7 +127,7 @@ class AuditsController < ApplicationController
       @audit.update(audit_status_id: status_id)
       @audit.audit_operational_weightage(current_company)
     end
-    redirect_to audit_dashboard_audits(id: @audit.id)
+    redirect_to audit_dashboard_audits_path(id: @audit.id)
   end
 
   def audit_dashboard

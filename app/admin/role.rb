@@ -1,6 +1,12 @@
 ActiveAdmin.register Role  do
  menu :if => proc{ !current_admin_user.present? }
 
+  breadcrumb do
+    [
+      link_to('Roles', '/admin/roles')
+    ]
+  end
+
   permit_params :title, :company_id
  #authentication
   controller do
