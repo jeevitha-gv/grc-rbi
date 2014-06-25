@@ -30,7 +30,7 @@
                 <%= f.label :recommendation, t(' checklist_recommendation.recommendation'), :class => "col-sm-5 control-label" %>
                 <!--   <label  class="col-sm-5"><b>Recommendation :</b><br></label> -->
                     <div class="col-sm-7">
-                      <%= f.text_field :recommendation, :name => "checklist_recommendation[#{audit_compliance.id}][recommendation]", :id => "recommendation_#{audit_compliance.id}", :class => "audit-big-input control_recommendation", :value => "#{checklist_recommendation.recommendation if checklist_recommendation.present?}"  %>
+                      <%= f.text_area :recommendation, :name => "checklist_recommendation[#{audit_compliance.id}][recommendation]", :id => "recommendation_#{audit_compliance.id}", :class => "audit-big-input control_recommendation", :value => "#{checklist_recommendation.recommendation if checklist_recommendation.present?}"  %>
                       <span class="error_message" id="error_recommendation_<%= audit_compliance.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["recommendation"]%><span>
                       <!--  <input class="audit-big-input" type="text"> -->
                       <%if @checklist_recommendation.errors[:recommendation].present?%>
@@ -60,7 +60,7 @@
                 <%= f.label :Reason, t(' checklist_recommendation.reason'), :class => "col-sm-5 control-label" %>
                            <!--    <label  class="col-sm-5"><b>Reason :</b> </label> -->
                   <div class="col-sm-7">
-                    <%= f.text_field :reason, :class => "audit-big-input control_reason", :name => "checklist_recommendation[#{audit_compliance.id}][reason]", :id => "reason_#{audit_compliance.id}", :value => "#{checklist_recommendation.reason if checklist_recommendation.present?}" %>
+                    <%= f.text_area :reason, :class => "audit-big-input control_reason", :name => "checklist_recommendation[#{audit_compliance.id}][reason]", :id => "reason_#{audit_compliance.id}", :value => "#{checklist_recommendation.reason if checklist_recommendation.present?}" %>
                              <!--    <input class="audit-big-input" type="text"> -->
                     <span class="error_message" id="error_reason_<%= audit_compliance.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["reason"]%><span>
                   </div>

@@ -63,7 +63,7 @@
                       <%= render "recommendation",f: f, audit: audit, checklist_recommendation: checklist_recommendation, score: score %>
                       <div class="clearfix"></div>
                       <div class="fright paddingtop">
-                        <a class="black_btn" href="javascript:void(0)">Back</a>
+                        <a class="black_btn" href="javascript:goBack()">Back</a>
                         <!--<a class="grey_btn" href=""> Save Draft</a>-->
                         <%unless(audit.audit_status_id == 4)%>
                           <%unless(audit.recommendation_status)%>

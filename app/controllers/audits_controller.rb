@@ -46,20 +46,12 @@ class AuditsController < ApplicationController
     end
   end
 
-   # Update individual audits
+  # Update individual audits
   def update
-    # binding.pry
     @audit = Audit.find(params[:id])
-    # unless @audit.team_id == params[:audit][:team_id]
-    #   # @audit.audit_auditees.destroy_all
-    #   binding.pry
-    #   # @audit.
-    # else
-
-    # end
     if @audit.update_attributes(audit_params)
       SkippedAuditReminder.create(audit_id: @audit.id, skipped_by: current_user.id) if(params[:skip_reminder] == "true" && !@audit.skipped_audit_reminder.present?)
-      @audit.skipped_audit_reminder.destroy if params[:skip_reminder] == "false"
+      @audit.skipped_audit_reminder.destroy if(params[:skip_reminder] == "false" && @audit.skipped_audit_reminder.present?)
       redirect_to edit_audit_path, :flash => { :notice => MESSAGES["audit"]["update"]["success"]}
     else
       audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
@@ -68,7 +60,8 @@ class AuditsController < ApplicationController
     end
   end
 
-  # list audits based on status for current user
+
+  # List audits based on status for current user
   def audit_with_status
      @audits = current_user.accessible_audits.select{|x| x.audit_status_id == params[:audit_status_id].to_i}
   end
@@ -82,7 +75,7 @@ class AuditsController < ApplicationController
     end
   end
 
-  #audit intializer data
+  # Audit intializer data
   def department_teams_users
     audit_initializers(params[:location_id], params[:department_id], params[:team_id])
     render 'department_locations_list'
@@ -105,7 +98,7 @@ class AuditsController < ApplicationController
     end
   end
 
-  # download sample audit
+  # Download sample audit
   def audit_export
     begin
       file_to_download = "sample_audit.csv"
@@ -116,7 +109,7 @@ class AuditsController < ApplicationController
     end
   end
 
-
+  # ACS Measurement & Calculation
   def asc_calculation
     status_id = AuditStatus.where('name= ?','Published').first.id
     unless @audit.audit_status_id == status_id
@@ -126,6 +119,7 @@ class AuditsController < ApplicationController
     redirect_to audit_dashboard_audits_path(id: @audit.id)
   end
 
+  # Audit Dashboard
   def audit_dashboard
       @audit_domains, @audit_weightage, @audit_maximum_score , @audit_percentage= @audit.maximum_actual_score
       @to_do_list = @audit.compliance_checklist_recommendations
@@ -134,13 +128,18 @@ class AuditsController < ApplicationController
       @checklist_completed_count, @checklist_pending_count, @recommendation_completed_count, @recommendation_pending_count, @observation_completed_count, @observation_pending_count,@response_completed_count, @response_pending_count = @audit.audit_status_records
   end
 
+  # Download artifacts for Audits as a zip file
   def artifacts_download
-		@folder = @audit.artifact_answers.collect {|x| x.attachments}.flatten
+    if @audit.compliance_type == 'Compliance'
+		  @folder = @audit.artifact_answers.collect {|x| x.attachments}.flatten
+    elsif @audit.compliance_type == 'NonCompliance'
+      @folder = @audit.answers.collect {|x| x.attachment}.flatten
+    end
 		temp = Tempfile.new("zip-file-#{Time.now}")
 		Zip::ZipOutputStream.open(temp.path) do |z|
 			@folder.each do |file|
-				z.put_next_entry(File.basename(file.attachment_file_url))
-				z.print IO.read("#{Rails.root}/public/#{file.attachment_file_url}")
+				z.put_next_entry(File.basename(file.attachment_file_url)) if file.present? && file.attachment_file_url.present?
+				z.print IO.read("#{Rails.root}/public/#{file.attachment_file_url}") if file.present? && file.attachment_file_url.present?
 			end
 		end
 		send_file temp.path, :type => 'application/zip', :disposition => 'attachment', :filename => "artifacts.zip"
