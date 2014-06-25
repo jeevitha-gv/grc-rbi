@@ -68,8 +68,8 @@
                             <%= answer.value == 0 ? 'Yes' : 'No' %>
                           <% elsif answer.question_type_name == 'Descriptive Type' %>
                             <%= answer.detailed_value %>
-                          <% else %>
-                            <%= answer.question_option.value unless nc_question.answer_value.nil? %>
+                          <% elsif answer.question_type_name == 'Multiple Choice' %>
+                            <%= answer.question_option.value if nc_question.answer.value.present? %>
                           <% end %>
                         <% end %>
                       </div>
