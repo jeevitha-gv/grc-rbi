@@ -262,6 +262,7 @@ fr:
     city: "Ville"
     state: "État"
     country: "Pays"
+    role: "Role"
 
 
   priorities:
