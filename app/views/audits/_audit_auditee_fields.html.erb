@@ -1,3 +1,4 @@
+<div class="team-auditee">
 <div class='choices'>
   <label class="col-sm-4 control-label">
     <%= f.label :auditees, t('audit.auditee') %>
@@ -7,6 +8,7 @@
     <%= f.select :user_id, options_for_select(team_users.collect{|x| [x.user_name, x.id.to_i]}, :selected => f.object.user_id), {include_blank: 'Select Auditee' } %>
     </div>
     <%#= f.text_field :user_id, :class => "audit-normal-input col-sm-10" %>
-    <%= link_to_remove_choices "", f %>
+    <%= link_to_remove_auditee "", f %>
   </div>
+</div>
 </div>

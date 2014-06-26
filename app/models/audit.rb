@@ -24,8 +24,8 @@ class Audit < ActiveRecord::Base
   has_many :compliance_libraries, through: :audit_compliances
 
 
-  accepts_nested_attributes_for :nc_questions
-  accepts_nested_attributes_for :audit_auditees, reject_if: lambda { |a| a[:user_id].blank? }
+  accepts_nested_attributes_for :nc_questions, :allow_destroy => true
+  accepts_nested_attributes_for :audit_auditees, reject_if: lambda { |a| a[:user_id].blank? },:allow_destroy => true
   accepts_nested_attributes_for :nc_questions, :allow_destroy => true
 
   COMPLIANCE_TYPES = [["Compliance Audit", "Compliance"], ["NonCompliance Audit", "NonCompliance"]]
@@ -64,13 +64,6 @@ class Audit < ActiveRecord::Base
   delegate :name, :to => :audit_status, prefix: true, allow_nil: true
 
   #scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
-
-  # mapping do
-  #   indexes :_id, :index => :not_analyzed
-  #   indexes :title
-  #   indexes :context
-  #   indexes :observation
-  # end
 
   def to_param
     "#{self.id}-#{self.title}"
@@ -112,6 +105,11 @@ class Audit < ActiveRecord::Base
   # Getting all the non compliance for sending reminders
   def unanswered_nc_questions
     self.nc_questions.where("target_date <= ?" , DateTime.now).select{ |x| x.answers.blank?}
+  end
+
+  def update_skipped_audit_reminder(params, user)
+    self.skipped_audit_reminder.present? ? self.skipped_audit_reminder.update(skipped_by: user.id) : self.build_skipped_audit_reminder(skipped_by: user.id).save if params[:skip_reminder] == "true"
+    self.skipped_audit_reminder.destroy if(params[:skip_reminder] == "false" && self.skipped_audit_reminder.present?)
   end
 
   # def answered_ncquestions
