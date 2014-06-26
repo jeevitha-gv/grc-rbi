@@ -85,6 +85,7 @@ class ChecklistRecommendationsController < ApplicationController
 				@checklist_recommendation.remark.update(comment: params[:checklist_recommendation][:remarks])
 			end
 		end
+		@pending_observation = @audit.checklist_recommendations.collect {|x| x.is_published}.include?(nil)
 		ReminderMailer.delay.notify_auditee_about_observations(@checklist_recommendation)
 		respond_to :js
 	end

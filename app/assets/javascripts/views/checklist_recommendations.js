@@ -460,7 +460,7 @@ function audit_observation(id)
 
 function check_observed(status_id)
 {
-	if (status_id != audit_status && observed_status)
+	if (status_id != audit_status && observed_status && publish)
 	{
 		if (confirm('Still some observations are pending. Are you sure to publish this audit?')) {
 			return true
