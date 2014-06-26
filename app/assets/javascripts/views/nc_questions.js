@@ -138,8 +138,14 @@ function question_submit()
 
 	$(document).ready(function(){
     $(".datepicker").kendoDatePicker({
+       min: new Date(),
         format: "dd/MM/yyyy"
         });
+    $(".datepicker").bind("focus", function() {
+      $(this).data("kendoDatePicker").open();
+    });
+    $('.datepicker').attr('readonly', true);
+
 
     $(document).on("change", ".question_response", function(){
       if($(this).val() == "3"){

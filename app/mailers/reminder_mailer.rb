@@ -22,6 +22,11 @@ class ReminderMailer < ActionMailer::Base
     mail(:to => artifact_answer.responsibility_email, :subject => "Checklist has been prepared for Compliance Audit", content_type: "text/html")
   end
 
+  def notify_auditee_about_checklist_update(artifact_answer)
+    @artifact_answer = artifact_answer
+    mail(to: artifact_answer.responsibility_email, subject: "Checklist has been updated")
+  end
+
   def notify_auditor_that_auditee_has_answered(audit)
     @audit = audit
     mail(:to => audit.auditory_email, :subject => "All auditees has answered your Checklist", content_type: "text/html")

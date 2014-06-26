@@ -36,8 +36,7 @@ Having trouble viewing this email? <a style="color:#74ac37; text-decoration:none
 <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Auditor : <%= @audit.auditory_user_name %></td></tr>
 <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Auditees : <%= @audit.auditees.map(&:full_name).join(', ') %></td></tr>
 <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Start Date : <%= @audit.start_date %></td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >End Date : <%= @audit.start_date %></td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Title : <%= @audit.title %></td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >End Date : <%= @audit.end_date %></td></tr>
 </table>
 
 <table style="margin:0 auto; width:625px; padding: 20px 0;background-image:url('/assets/mailer/middle_content.png');background-repeat:repeat-y;"  cellpadding="0" cellspacing="0" border="0">
