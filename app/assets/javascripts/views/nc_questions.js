@@ -138,7 +138,7 @@ function question_submit()
 
 	$(document).ready(function(){
     $(".datepicker").kendoDatePicker({
-       min: new Date(),
+        min: new Date(),
         format: "dd/MM/yyyy"
         });
     $(".datepicker").bind("focus", function() {
