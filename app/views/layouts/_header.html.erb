@@ -69,7 +69,7 @@
         <li><a href="/audits/new" class="<%= (request.fullpath.include?("audits/new") && action_name=="new") == true ? 'active' : '' %>">
           <div class="plan-icon"></div>
           Plan</a></li>
-        <li><a href="/audits" class="<%= ((request.fullpath.include?("audits") && action_name=="index") == true ? 'active' : '') unless request.fullpath.include? '/audits?stage' %>">
+        <li><a href="/audits" class="<%= ((request.fullpath.include?("audits") && controller_name == 'audits' && action_name=="index") == true ? 'active' : '') unless request.fullpath.include? '/audits?stage' %>">
           <div class="list-icon"></div>
           List</a></li>
         <li><a href="<%= '/audits?stage=do' %>" class="<%= check_stage('do','nc_questions/new','audit_compliances') ? 'active' : '' %>">
