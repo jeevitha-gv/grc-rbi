@@ -29,11 +29,7 @@ class AuditsController < ApplicationController
       redirect_to audits_path, :flash => { :notice => MESSAGES["audit"]["create"]["success"]}
     else
       audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
-<<<<<<< HEAD
       @team_users = @audit.team.users unless @audit.team.nil?
-=======
-      @team_users = @audit.team.users
->>>>>>> c53cdb7be8309a29ef9dec00586d39a67c66f61c
       render 'new'
     end
   end
