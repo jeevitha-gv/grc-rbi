@@ -1,3 +1,4 @@
+<div class="team-auditee">
 <div class='choices'>
   <label class="col-sm-4 control-label">
     <%= f.label :auditees, t('audit.auditee') %>
@@ -11,6 +12,7 @@
       <% end %>
     </div>
     <%#= f.text_field :user_id, :class => "audit-normal-input col-sm-10" %>
-    <%= link_to_remove_choices "", f %>
+    <%= link_to_remove_auditee "", f %>
   </div>
+</div>
 </div>

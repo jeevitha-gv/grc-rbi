@@ -30,7 +30,8 @@ function add_auditees(link, association) {
     var content = $(".team-auditee").html()
     var new_id = new Date().getTime();
     var regexp = new RegExp("[0]", "g");
-    $(link).parent().parent().find("#auditee-list").append(content.replace(regexp, new_id));
+    var regexp_new = new RegExp('selected="selected"', "g");
+    $(link).parent().parent().find("#auditee-list").append("<div class='team-auditee'>"+content.replace(regexp, new_id).replace(regexp_new , "")+"</div>");
     return false;
 }
 

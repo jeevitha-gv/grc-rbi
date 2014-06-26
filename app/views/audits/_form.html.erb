@@ -269,9 +269,7 @@
     <div class='auditee-rows'>
       <div id="auditee-list">
         <%= f.fields_for :audit_auditees, (f.object.audit_auditees.present? ? f.object.audit_auditees : AuditAuditee.new) do |builder| %>
-          <div class="team-auditee">
             <%= render 'audit_auditee_fields', audit: audit, f: builder, team_users: team_users %>
-          </div>
         <% end %>
       </div>
       <div class="form-group clearfix addissue">

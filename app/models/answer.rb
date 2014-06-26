@@ -10,7 +10,6 @@ class Answer < ActiveRecord::Base
   delegate :name, :to => :question_type, prefix: true, allow_nil: true
 
   # validates :value, presence: true, :if => Proc.new{|f|  f.nc_question.does_require_document == true }
-validate :presence_of_attachment
   # validates :detailed_value, presence:true
   # validates :value, presence:true
   # Build Answer form Nc Question selected
@@ -20,14 +19,19 @@ validate :presence_of_attachment
         # attachment = answer.delete("attachment")
         nc_que = NcQuestion.where(id: nc_id).last
         unless nc_que.answer.present?
-            nc_que.answer = Answer.new(answer)
+            answer_val = {}
+            answer_val[:value] = answer[:value].present? ? answer[:value] : answer[:detailed_value]
+            answer_val[:nc_question_id] = nc_que.id
+            Answer.new(answer_val).save
             if params[:commit] == "Submit Answers to Auditor"
               nc_que.is_answered = true
               nc_que.answer.attachment = Attachment.new(attachment_file: answer[:attachment]) if answer[:attachment].present?
               nc_que.save
             end
         else
-            if nc_que.answer.update(answer)
+            answer_val = {}
+            answer_val[:value] = answer[:value].present? ? answer[:value] : answer[:detailed_value]
+            if nc_que.answer.update(answer_val)
               if params[:commit] == "Submit Answers to Auditor"
                 nc_que.is_answered = true
                 nc_que.save
@@ -38,9 +42,4 @@ validate :presence_of_attachment
         end
     end
   end
-
-  private
-    def presence_of_attachment
-      self.errors[:document_reuired] = MESSAGES['audit']['failure']['auditor_not_in_auditees'] if self.nc_question.does_require_document
-    end
 end

@@ -20,7 +20,7 @@
             <br>
             <a class="black_btn" href="javascript:goBack()">Back</a>
             <% unless @audit.audit_status_id == 4%>
-              <%= link_to "Submit for recommendation", audit_audit_compliance_path(audit_id: params[:audit_id], id: 'response') , :class => "orange_btn", method: 'PATCH'%>
+              <%= link_to "Submit for recommendation", audit_audit_compliance_path(id: 'response') , :class => "orange_btn", method: 'PATCH'%>
             <%end%>
             </div>
             </div>
