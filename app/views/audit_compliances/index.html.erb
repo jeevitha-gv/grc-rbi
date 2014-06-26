@@ -145,7 +145,12 @@ $(document).ready(function(){
                 },
                 change: change_artifact
               });
-						$('.datepicker').kendoDatePicker({change: onchange, format: "dd/MM/yyyy"})
+						$('.datepicker').kendoDatePicker({change: onchange, min: new Date(), format: "dd/MM/yyyy"})
+            $(".datepicker").bind("focus", function() {
+            $(this).data("kendoDatePicker").open();
+            });
+            $('.datepicker').attr('readonly', true);
+
 						$('.check_row').on('click', function (e) {
 							var $cb = $(this);
 							var $row = $cb.parents('tr').first();
