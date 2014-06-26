@@ -100,6 +100,7 @@ $(document).ready(function(){
 //~ $("#submit_questions").click(function(){
 function question_submit()
 {
+  $('.ajax-loader').show()
   selected = []
   $('#test-check input:checked').each(function() {
     selected.push($(this).attr('value'));

@@ -88,6 +88,7 @@
   });
 
 	 function get_departments(element){
+    $('.ajax-loader').show();
     var location_id = $(element).val();
     if(location_id.length>0){
       $.ajax({
@@ -103,6 +104,7 @@
   }
 
   function get_teams(element){
+    $('.ajax-loader-department').show();
     var department_id = $(element).val();
     if(department_id.length>0){
       $.ajax({
@@ -117,6 +119,7 @@
   }
 
   function get_auditee_users(element){
+    $('.ajax-loader-team').show();
     var team_id = $(element).val();
     if(team_id.length>0){
       $.ajax({
