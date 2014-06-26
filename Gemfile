@@ -71,3 +71,6 @@ gem 'zip-zip'
 
 # delayed job
 gem 'delayed_job_active_record'
+
+#for payment using paypal
+gem 'paypal-express'
