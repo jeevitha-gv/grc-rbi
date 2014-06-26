@@ -139,6 +139,7 @@
 
 
                 var datepicker = $(".datepicker2").kendoDatePicker({
+                	    min: new Date(),
                      format: "dd/MM/yyyy",
                     parseFormats: ["MMMM  yyyy"]
                 }).data("kendoDatePicker");
