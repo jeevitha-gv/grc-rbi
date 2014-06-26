@@ -135,6 +135,9 @@
     <div class="col-sm-7">
       <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => audit.location_id), {include_blank: 'Select Location' }, { :id => "locations-list", :onChange => "get_departments(this);"} %>
     </div>
+    <div class="ajax-loader" style="display:none;">
+      <%= image_tag("/assets/outer/ajax-loader-small.gif", :alt => "ajax-loader") %>
+    </div>
   </div>
   <div class="form-group clearfix" id="department-dropdown" style="<%= 'display:block;' if (audit.department_id.present? && (action_name == "create" || action_name == "edit" || action_name == "update")) %>">
     <label class="col-sm-4 control-label">
@@ -146,6 +149,9 @@
       <% else %>
         <%= f.select :department_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
       <% end %>
+    </div>
+    <div class="ajax-loader-department" style="display:none;">
+      <%= image_tag("/assets/outer/ajax-loader-small.gif", :alt => "ajax-loader") %>
     </div>
   </div>
   <div class="form-group clearfix" id="teams-dropdown" style="<%= 'display:block;' if (audit.team_id.present?) %>">
@@ -159,6 +165,9 @@
         <%= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
       <% end %>
     </div>
+    <div class="ajax-loader-team" style="display:none;">
+      <%= image_tag("/assets/outer/ajax-loader-small.gif", :alt => "ajax-loader") %>
+    </div>
   </div>
 </div>
 <div class="col-lg-4 col-sm-6 col-xs-12">
@@ -171,6 +180,9 @@
       <% if audit.errors[:compliance_type].present? %>
         <div class="error_message"><%=  audit.errors[:compliance_type][0]%></div>
       <% end %>
+    </div>
+    <div class="ajax-loader-compliance" style="display:none;">
+      <%= image_tag("/assets/outer/ajax-loader-small.gif", :alt => "ajax-loader") %>
     </div>
   </div>
   <div class="form-group clearfix" id="standard-topic">

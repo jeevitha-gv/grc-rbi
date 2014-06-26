@@ -348,6 +348,7 @@ en:
     city: "City"
     state: "State"
     country: "Country"
+    role: "Role"
 
 
   priorities:

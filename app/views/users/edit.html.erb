@@ -36,6 +36,12 @@
 						 <%= @user.email %>
 						</div>
 				</div>
+        <div class="form-group clearfix">
+            <label class="col-sm-4"> <%= f.label :email, t('profile.role') %></label>
+            <div class="col-sm-7">
+             <%= @user.role.title %>
+            </div>
+        </div>
 				<div class="form-group clearfix">
 						<label class="col-sm-4"> <%= f.label :full_name, t('profile.name') %></label>
 						<div class="col-sm-7 <%='error_inputfield' if @user.errors[:full_name].present?%>">
