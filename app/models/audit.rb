@@ -164,7 +164,7 @@ class Audit < ActiveRecord::Base
       end
 
       #  Sum of scores of each control
-      total_score = v.sum{|x| x.score.level}
+      total_score = v.sum{|x| x.score_level.to_i}
       over_all_total_score += total_score
 
       # Weightage
