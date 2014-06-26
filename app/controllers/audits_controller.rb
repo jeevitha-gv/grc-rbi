@@ -30,7 +30,7 @@ class AuditsController < ApplicationController
       redirect_to audits_path, :flash => { :notice => MESSAGES["audit"]["create"]["success"]}
     else
       audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
-      @team_users = @team.users
+      @team_users = @audit.team.users unless @audit.team.nil?
       render 'new'
     end
   end
@@ -55,7 +55,7 @@ class AuditsController < ApplicationController
       redirect_to edit_audit_path, :flash => { :notice => MESSAGES["audit"]["update"]["success"]}
     else
       audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
-      @team_users = @team.users
+      @team_users = @audit.team.users unless @audit.team.nil?
       render 'edit'
     end
   end
