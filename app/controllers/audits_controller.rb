@@ -169,7 +169,9 @@ class AuditsController < ApplicationController
 
     def authorize_audit
       @audit = Audit.find_by_id(params[:id])
-      flash[:alert] = "Access restricted"
-      redirect_to audits_path if (@audit.auditor != current_user.id)
+      if (@audit.auditor != current_user.id)
+        flash[:alert] = "Access restricted"
+        redirect_to audits_path
+      end
     end
 end
