@@ -8,7 +8,6 @@ class AuditsController < ApplicationController
   # Intialize new audit
   def new
     @audit = Audit.new
-    @audit.build_skipped_audit_reminder
     @team_users = []
   end
 
@@ -30,7 +29,7 @@ class AuditsController < ApplicationController
       redirect_to audits_path, :flash => { :notice => MESSAGES["audit"]["create"]["success"]}
     else
       audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
-      @team_users = @team.users
+      @team_users = @audit.team.users
       render 'new'
     end
   end
@@ -50,8 +49,7 @@ class AuditsController < ApplicationController
   def update
     @audit = Audit.find(params[:id])
     if @audit.update_attributes(audit_params)
-      SkippedAuditReminder.create(audit_id: @audit.id, skipped_by: current_user.id) if(params[:skip_reminder] == "true" && !@audit.skipped_audit_reminder.present?)
-      @audit.skipped_audit_reminder.destroy if(params[:skip_reminder] == "false" && @audit.skipped_audit_reminder.present?)
+      @audit.update_skipped_audit_reminder(params, current_user)
       redirect_to edit_audit_path, :flash => { :notice => MESSAGES["audit"]["update"]["success"]}
     else
       audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
@@ -155,7 +153,7 @@ class AuditsController < ApplicationController
   private
 
     def audit_params
-      params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :audit_status_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor, :start_date, :end_date, audit_auditees_attributes: [:id, :user_id])
+      params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :audit_status_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor, :start_date, :end_date, audit_auditees_attributes: [:id, :user_id, :_destroy])
     end
 
     def current_company_disabled

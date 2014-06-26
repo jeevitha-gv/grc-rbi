@@ -10,10 +10,12 @@
   $('#teams-dropdown').show();
   $('#team_id').attr('name', 'audit[team_id]');
 <% elsif params[:team_id].present? %>
-  <% select = select_tag('audit[audit_auditees_attributes][0][user_id]', options_for_select(@team.users.collect{|x| [x.user_name, x.id]}), prompt: 'Select Auditee') %>
+  <% select = select_tag('audit[audit_auditees_attributes][123456789][user_id]', options_for_select(@team.users.collect{|x| [x.user_name, x.id]}), prompt: 'Select Auditee') %>
    var content = $(".team-auditee").html()
-  $('#auditee-list').html("<div class='team-auditee'>"+content+"</div>");
+   $(".auditee-rows").append($(".auditee-remove").val(1))
+   var regexp = new RegExp("0", "g");
+   content = content.replace(regexp, "123456789")
+   $(".team-auditee").remove()
+  $('#auditee-list').append("<div class='team-auditee'>"+content+"</div>");
   $('.auditees-users').html("<%= escape_javascript(select)%>");
 <% end %>
-
-
