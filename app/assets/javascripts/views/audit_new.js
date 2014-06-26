@@ -29,12 +29,49 @@
       standard_display(this.value)
     });
 
-    $(".datepicker").kendoDatePicker({
+    function startChange() {
+      var startDate = start.value();
+
+      if (startDate) {
+          startDate = new Date(startDate);
+          startDate.setDate(startDate.getDate() + 1);
+          end.min(startDate);
+      }
+  }
+
+  function endChange() {
+      var endDate = end.value();
+
+      if (endDate) {
+          endDate = new Date(endDate);
+          endDate.setDate(endDate.getDate() - 1);
+          start.max(endDate);
+      }
+  }
+
+    var start = $(".datepicker").kendoDatePicker({
+      change: startChange,
+      min: new Date(),
       format: "dd/MM/yyyy"
-    });
-    $(".datepicker1").kendoDatePicker({
+  }).data("kendoDatePicker");
+
+  var end = jQuery(".datepicker1").kendoDatePicker({
+      change: endChange,
       format: "dd/MM/yyyy"
+  }).data("kendoDatePicker");
+
+  start.max(end.value());
+  end.min(start.value());
+
+    $(".datepicker").bind("focus", function() {
+      $(this).data("kendoDatePicker").open();
     });
+    $('.datepicker').attr('readonly', true);
+
+    $(".datepicker1").bind("focus", function() {
+      $(this).data("kendoDatePicker").open();
+    });
+    $('.datepicker1').attr('readonly', true);
 
 
     // $('#add_auditee').click(function(){
