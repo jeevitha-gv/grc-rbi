@@ -1,0 +1,16 @@
+<%= form_for @plan do |f|%>
+
+<ul>
+<%@subscriptions.each do |subscription|%>
+<li> 
+<a href="<%= new_company_path(subscription_id: subscription.id)%>"><%= subscription.name%></a>
+<%= subscription.description%>
+<%= subscription.amount%>
+<%= subscription.valid_log%>
+<%= subscription.valid_period%>
+</li>
+<%end%>
+</ul>
+
+
+<%end%>
