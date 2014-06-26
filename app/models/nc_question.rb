@@ -53,9 +53,14 @@ class NcQuestion < ActiveRecord::Base
   end
 
   after_create :notify_particular_auditees
+  after_update :notify_auditee_about_ncchecklist_update
 
   def notify_particular_auditees
     ReminderMailer.delay.notify_auditees_that_checklist_is_prepared(self)
+  end
+
+  def notify_auditee_about_ncchecklist_update
+    ReminderMailer.delay.notify_auditee_about_ncchecklist_update(self)
   end
 
 end
