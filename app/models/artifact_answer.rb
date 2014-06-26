@@ -24,9 +24,14 @@ class ArtifactAnswer < ActiveRecord::Base
   end
 
   after_create :notify_auditee_about_checklist
+  after_update :notify_auditee_about_checklist_update
 
   def notify_auditee_about_checklist
     ReminderMailer.delay.notify_auditee_about_checklist(self)
+  end
+
+  def notify_auditee_about_checklist_update
+    ReminderMailer.delay.notify_auditee_about_checklist_update(self)
   end
 
   def build_checklist(compliance)
