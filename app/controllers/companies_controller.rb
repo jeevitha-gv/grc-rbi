@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   
-  skip_before_filter :authenticate_user!, only: [ :new, :create ]
+  skip_before_filter :authenticate_user!, only: [ :new, :create,:welcome]
   before_filter :authenticate_admin_user, :only => [:settings]
   prepend_before_filter :skip_if_authenticated, only: [ :new, :create ]
   skip_before_filter :check_subdomain, only: [ :new, :create ]
@@ -19,9 +19,23 @@ class CompaniesController < ApplicationController
 
   def create
     params[:company][:users_attributes]["0"][:role_id] = Role.first.id
+    subscription_id = params[:company][:subscription_id]
     @company = Company.new(company_params)
     if @company.save
-      redirect_to welcome_path
+
+      subscribe = Subscription.where("id = ?",subscription_id).first
+      if subscribe.amount.eql?(0.0)
+         plan = Plan.new(subscription_id: subscription_id ,company_id: @company.id,starts: @company.created_at ,expires: "")
+         plan.save!
+         redirect_to welcome_path
+        else
+          payment = @company.transactions.create(:company_id => @company.id,:subscription_id=> subscription_id)
+          payment.setup!(
+          "http://audit.loc/payments/success",
+          "http://audit.loc/payments/cancel"
+          )
+          redirect_to payment.redirect_uri
+      end
     else
       render 'new'
   end
@@ -34,6 +48,6 @@ class CompaniesController < ApplicationController
 
   private
   def company_params
-    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :timezone, attachment_attributes: [:id, :attachment_file], users_attributes: [:user_name, :email, :role_id])
+    params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :timezone,:subscription_id, attachment_attributes: [:id, :attachment_file], users_attributes: [:user_name, :email, :role_id])
   end
 end

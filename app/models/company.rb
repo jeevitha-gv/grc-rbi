@@ -21,7 +21,7 @@ class Company < ActiveRecord::Base
   has_many :projects
   has_many :cpp_measures
   has_one :risk_review_level
-
+  has_many :transactions
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users
 
@@ -42,7 +42,7 @@ class Company < ActiveRecord::Base
   validates :secondary_email, uniqueness: { scope: :primary_email }
 
   after_save :company_role_create
-
+  attr_accessor :subscription_id
   scope :active, -> { where(is_disabled: false) }
 
   def active_audits

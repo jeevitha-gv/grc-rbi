@@ -7,6 +7,7 @@ class Subscription < ActiveRecord::Base
     validates_format_of :name, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.name.blank? }
     validates :name, uniqueness:true, :if => Proc.new{ |f| !f.name.blank? }
     validates :name, length: { in: 4..50 }, :if => Proc.new{ |f| !f.name.blank? }
+    validates :amount, presence: true , :if => Proc.new {|f| f.amount.blank? }
 	validates :amount,:numericality => { :greater_than_or_equal_to => 0 }, :if => Proc.new{ |f| !f.amount.blank? }
 	validates :valid_log,presence: true, :if => Proc.new {|f| f.valid_log.blank? }
 	validates :valid_log,:numericality => { :greater_than_or_equal_to => 1,:less_than_or_equal_to => 500, :only_integer => true  },:if => Proc.new{ |f| !f.valid_log.blank? }

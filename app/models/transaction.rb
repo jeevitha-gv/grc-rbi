@@ -22,7 +22,7 @@ class Transaction < ActiveRecord::Base
   end
   
   def cancel!
-    self.canceled = true
+    self.pay_cancel = true
     self.save!
     self
   end
@@ -31,8 +31,8 @@ class Transaction < ActiveRecord::Base
       response = client.checkout!(self.token, payer_id, payment_request)
       self.payer_id = payer_id
       self.identifier = response.payment_info.first.transaction_id
-    self.completed = true
-    self.save!
+      self.pay_complete = true
+      self.save!
     self
   end
 
@@ -48,14 +48,13 @@ class Transaction < ActiveRecord::Base
       end
 
       def payment_request
-          pay_amount = 1 
+          pay_amount = self.try(:subscription).try(:amount)
           pay_desc = 'Audit Risk Subscription'
-        request_attributes =
+          request_attributes =
           item = {
             name: pay_desc,
             description: pay_desc,
-            amount: pay_amount,
-            currency_code: 'SGD'
+            amount: pay_amount           
           }
         Paypal::Payment::Request.new request_attributes
       end

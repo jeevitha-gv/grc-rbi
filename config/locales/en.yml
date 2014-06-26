@@ -331,6 +331,7 @@ en:
               too_long:
                 other: "Name should not exceed 50 characters"
             amount:
+              blank: "Amount can't be blank"
               greater_than_or_equal_to: "Amount should be greater than or equal to 0"
             valid_log:
               blank: "Valid log can't be blank"

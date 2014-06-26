@@ -1,14 +1,20 @@
 class PaymentsController < ApplicationController
- 
+ skip_before_filter :authenticate_user!
  def show
     @payment = Transaction.where('identifier=?', params[:id]).first
     if @payment.company
-      @company=@payment.company
-      #@payment_status=@company.update_attributes(:payment_status =>@payment.completed)
-      #UserMailer.invoice_success(@invoice).deliver if @payment.completed
+       @company=@payment.company
+       if @payment.pay_complete.eql?(true)
+
+         subscribe = Subscription.where("id = ?",@payment.subscription_id).first
+         plan = Plan.new(subscription_id: subscribe.id ,company_id: @company.id,starts: @company.created_at ,expires:"")
+         plan.save!
+         #UserMailer.deliver if @payment.pay_complete
+        
       respond_to do |format|
-        format.html {redirect_to company_welcome_path(@company), :notice=>"Payment is successfully completed"}
-        #format.json { render :json=>{:header=>{:status=>200}, :notice=>"Your Payment is successfull, awaiting admin's approval", :body=>{:payment=>@payment, :payment_status=>@payment_status}}}
+        format.html {redirect_to "/welcome", :notice=>"Payment is successfully completed"}
+      end
+    elsif @payment.pay_complete.eql?()
       end
     end
   end
