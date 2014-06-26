@@ -21,8 +21,13 @@ function add_fields(link, association, content) {
     var regexp = new RegExp("new_" + association, "g");
     $(link).parent().before(content.replace(regexp, new_id));
     $($(link).parent().prev().find(".datepicker")).kendoDatePicker({
+        min: new Date(),
         format: "dd/MM/yyyy"
         });
+     $(".datepicker").bind("focus", function() {
+      $(this).data("kendoDatePicker").open();
+    });
+    $('.datepicker').attr('readonly', true);
     return false;
 }
 
