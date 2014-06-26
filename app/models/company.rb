@@ -46,7 +46,7 @@ class Company < ActiveRecord::Base
   # end
 
   def active_audits_with_skipped
-    self.audits.where("end_date <= ?", Date.today) - SkippedAuditReminder.audits
+    self.audits.where("end_date >= ?", Date.today) - SkippedAuditReminder.audits
   end
 
   private
