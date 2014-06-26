@@ -19,15 +19,19 @@ class Answer < ActiveRecord::Base
         # attachment = answer.delete("attachment")
         nc_que = NcQuestion.where(id: nc_id).last
         unless nc_que.answer.present?
-
-            nc_que.answer = Answer.new(answer)
+            answer_val = {}
+            answer_val[:value] = answer[:value].present? ? answer[:value] : answer[:detailed_value]
+            answer_val[:nc_question_id] = nc_que.id
+            Answer.new(answer_val).save
             if params[:commit] == "Submit Answers to Auditor"
               nc_que.is_answered = true
               nc_que.answer.attachment = Attachment.new(attachment_file: answer[:attachment]) if answer[:attachment].present?
               nc_que.save
             end
         else
-            if nc_que.answer.update(answer)
+            answer_val = {}
+            answer_val[:value] = answer[:value].present? ? answer[:value] : answer[:detailed_value]
+            if nc_que.answer.update(answer_val)
               if params[:commit] == "Submit Answers to Auditor"
                 nc_que.is_answered = true
                 nc_que.save
