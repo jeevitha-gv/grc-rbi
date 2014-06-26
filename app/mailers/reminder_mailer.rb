@@ -14,7 +14,7 @@ class ReminderMailer < ActionMailer::Base
 
   def notify_auditees_that_checklist_is_prepared(nc_question)
     @nc_question = nc_question
-    mail(:to => nc_question.auditee_email, :subject => "Checklist has been prepared for NonCompliance Audit", content_type: "text/html")
+    mail(:to => nc_question.auditee_email, :subject => "Checklist has been prepared for NonCompliance Audit", content_type: "text/html") if nc_question.auditee
   end
 
    def notify_auditee_about_ncchecklist_update(nc_question)
