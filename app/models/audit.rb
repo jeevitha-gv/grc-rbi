@@ -8,6 +8,7 @@ class Audit < ActiveRecord::Base
   belongs_to :audit_status
   belongs_to :audit_type
   belongs_to :compliance, foreign_key: 'standard_id'
+  belongs_to :company
   has_many :nc_questions, :dependent => :destroy
   has_many :answers, through: :nc_questions
   has_many :default_compliance_libraries, -> { where(is_leaf: true) }, through: :compliance, source: :compliance_library
