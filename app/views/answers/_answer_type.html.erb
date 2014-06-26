@@ -80,8 +80,20 @@
 			<br>
 			<div class="form-group clearfix">
 				<% if question.does_require_document? %>
-					<div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#answer_document_<%= question.id %>').click();" >Attach Document</a>
-						<%= file_field_tag "answer[#{question.id}][attachment]", :style => "visibility:hidden; display:none;",  :id => "answer_document_#{question.id}"%>
+				<div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#answer_document_<%= question.id %>').click();" >Attach Document</a>
+						<%= file_field_tag "answer[#{question.id}][attachment]", :style => "visibility:hidden; display:none;",  :id => "answer_document_#{question.id}", onchange: "display_selected_files(this)"%></br>
+							<div class="clearfix" id="selected_files"></div>
+							<div class="col-sm-12">
+								<% if question.answer.attachment.present? %>
+									<% attachment = question.answer.attachment %>
+									<%= "<h4>Attachments</h4>".html_safe if attachment.present?%>
+									<div id="attach_<%= attachment.id%>"><%= (link_to (File.basename(attachment.attachment_file_url)).truncate(20), artifacts_download_audits_path(id: attachment.id), class: "blue_link") if attachment.attachment_file_url  %>
+										<%unless(audit.audit_status_id == audit_status)%>
+										<div class="addissue" style="float: right;"> <%= link_to "remove", remove_attachment_audit_checklist_recommendations_path(id: attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon"%></div>
+										<%end%>
+									</div>
+								<%end%>
+							</div>
 					</div>
 				<% end %>
 			</div>

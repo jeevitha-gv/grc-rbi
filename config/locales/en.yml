@@ -104,6 +104,7 @@ en:
               invalid: "Secondary Email is invalid"
               too_long:
                 other: "Email should not contains maximum of 50 char"
+              exclusion: "Primary email and Secondary email should not be same"
             primary_email:
               invalid: "Primary Email is invalid"
               too_long:

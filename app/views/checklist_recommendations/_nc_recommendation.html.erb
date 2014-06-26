@@ -16,8 +16,11 @@
           <div class="form-group clearfix">
             <label class="col-sm-5"><b>Document :</b></label>
             <div class="col-sm-7">
-              <%= link_to (File.basename(answered_ncquestion.attachment.attachment_file_url)).truncate(20), download_artifacts_audit_checklist_recommendations_path(id: answered_ncquestion.attachment.id), class: "blue_link" if(answered_ncquestion.attachment.present? && answered_ncquestion.attachment.attachment_file_url.present?) %>
-
+              <% if answered_ncquestion.attachment.present? && answered_ncquestion.attachment.attachment_file_url.present?%>
+               <%= link_to (File.basename(answered_ncquestion.attachment.attachment_file_url)).truncate(20), download_artifacts_audit_checklist_recommendations_path(id: answered_ncquestion.attachment.id), class: "blue_link" %>
+              <% else %>
+                <div class="blue_link">No attachments found</div>
+              <% end %>
             </div>
           </div>
           <div class="form-group clearfix">

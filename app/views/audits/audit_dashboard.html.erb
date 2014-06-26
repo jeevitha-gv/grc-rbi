@@ -113,7 +113,7 @@
               <div class="db_inform">
                 <div class="db_todolist_insec"><%= checklist_recommendation.checklist.compliance_library_name%> - Recommendation</div>
 							</div>
-              <a class="pendinglink" href=""><%= 'Pending'%></a>
+              <a class="pendinglink" href="javascript:void(0)"><%= 'Pending'%></a>
 							</div>
           <% end %>
 					<% if checklist_recommendation.corrective? && !checklist_recommendation.response_completed?%>
@@ -122,7 +122,7 @@
               <div class="db_inform">
                 <div class="db_todolist_insec"><%= checklist_recommendation.checklist.compliance_library_name%> - Response</div>
                 <span class="time-icon"><%= checklist_recommendation.closure_date%></span> </div>
-              <a class="pendinglink" href=""><%= 'Pending' %></a>
+              <a class="pendinglink" href="javascript:void(0)"><%= 'Pending' %></a>
 							</div>
           <% end %>
 					<% if checklist_recommendation.observation? && !checklist_recommendation.is_published?%>
@@ -131,7 +131,7 @@
               <div class="db_inform">
                 <div class="db_todolist_insec"><%= checklist_recommendation.checklist.compliance_library_name%> - Observation</div>
 								</div>
-              <a class="pendinglink" href=""><%= 'Pending' %></a>
+              <a class="pendinglink" href="javascript:void(0)"><%= 'Pending' %></a>
 							</div>
           <% end %>
           <% end %>
@@ -142,7 +142,7 @@
               <div class="db_inform">
                 <div class="db_todolist_insec"><%= artifact_answer.audit_compliance.compliance_library_name%> - Artifacts</div>
 							</div>
-              <a class="pendinglink" href=""><%= 'Pending'%></a>
+              <a class="pendinglink" href="javascript:void(0)"><%= 'Pending'%></a>
 							</div>
           <% end %>
           <% end %>
