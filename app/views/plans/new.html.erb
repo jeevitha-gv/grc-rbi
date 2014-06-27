@@ -4,7 +4,7 @@
 <%@subscriptions.each do |subscription|%>
 <li> 
 Subscription Name:	
-<a href="<%= new_company_path(subscription_id: subscription.id)%>"><%= subscription.name%></a>
+<a href="<%= new_company_path(subscription: subscription.name)%>"><%= subscription.name%></a>
 Description:
 <%= subscription.description%>
 Amount:

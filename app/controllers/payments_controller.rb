@@ -7,7 +7,8 @@ class PaymentsController < ApplicationController
        if @payment.pay_complete.eql?(true)
 
          subscribe = Subscription.where("id = ?",@payment.subscription_id).first
-         plan = Plan.new(subscription_id: subscribe.id ,company_id: @company.id,starts: @company.created_at ,expires:"")
+         calculate_plan_expiration(subscribe.valid_period,subscribe.valid_log,@company.created_at)
+         plan = Plan.new(subscription_id: subscribe.id ,company_id: @company.id,starts: @company.created_at ,expires: @expire)
          plan.save!
          #UserMailer.deliver if @payment.pay_complete
         

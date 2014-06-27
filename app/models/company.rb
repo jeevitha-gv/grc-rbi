@@ -42,7 +42,7 @@ class Company < ActiveRecord::Base
   validates :secondary_email, uniqueness: { scope: :primary_email }
 
   after_save :company_role_create
-  attr_accessor :subscription_id
+  attr_accessor :subscription
   scope :active, -> { where(is_disabled: false) }
 
   def active_audits
