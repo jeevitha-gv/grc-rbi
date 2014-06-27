@@ -179,7 +179,7 @@ en:
           attributes:
             name:
               blank: "Location name can't be blank"
-              invalid: "Location name should contain alphanumeric"
+              invalid: "Location name should contain alphabets."
               taken: "Location name has been already used"
               too_short:
                 other: "Location should contain minimum of 7 char"
