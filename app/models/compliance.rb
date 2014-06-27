@@ -11,10 +11,6 @@ class Compliance < ActiveRecord::Base
 
     scope :by_name, lambda {|name| where("lower(name) = ?", name)}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> cc5766c2a0b24a80385a8551666dd92a4b3a9119
     #Association
     has_many :audits
     has_many :compliance_library
