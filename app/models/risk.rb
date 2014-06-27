@@ -9,6 +9,7 @@ class Risk < ActiveRecord::Base
 	belongs_to :risk_status
 	belongs_to :compliance
 	belongs_to :location
+	belongs_to :company
 	# need clarification for categories
 	# belongs_to :category, class_name: 'RiskCategory', foreign_key: 'category_id'
 	belongs_to :team

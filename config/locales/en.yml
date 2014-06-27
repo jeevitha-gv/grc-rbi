@@ -404,3 +404,16 @@ en:
     score: "Score"
     comment: "Comment"
 
+  risk:
+    subject: "Subject"
+    reference: "External Reference ID"
+    compliance: "Regulatory Compliance"
+    control_number: "Control Number"
+    location: "Location"
+    team: "Team"
+    technology: "Technology"
+    owner: "Owner"
+    assessment: "Assessment"
+    notes: "Notes"
+
+
