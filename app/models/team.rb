@@ -6,6 +6,7 @@ class Team < ActiveRecord::Base
   has_many :audits
   belongs_to :company
   belongs_to :department
+  has_many :risks
 
   # validations
   validates :name, presence:true

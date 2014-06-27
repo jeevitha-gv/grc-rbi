@@ -15,4 +15,5 @@ class Location < ActiveRecord::Base
   has_many :departments, :dependent => :destroy
   belongs_to :company
   has_many :audits
+  has_many :risks
 end
