@@ -13,9 +13,14 @@ module ActiveAdmin::ViewsHelper #camelized file name
   end
   
   def add_sub_menu(action_path)
-    action = 'overview' if ["clients","locations", "departments", "teams","roles","users","settings"].include?(action_path)
-    action = 'audit' if ["operational_areas","artifacts", "reminders"].include?(action_path)
-    action = 'risk' if ["controls","procedures", "processes"].include?(action_path)
-    return action
+    if ["clients","locations", "departments", "teams","roles","users","settings"].include?(action_path)
+      'overview'
+    elsif ["operational_areas","artifacts", "reminders"].include?(action_path)
+      'audit'
+    elsif ["controls","procedures", "processes"].include?(action_path)
+     'risk' 
+    else
+      ''
+    end
   end
 end
