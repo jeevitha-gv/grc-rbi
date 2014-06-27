@@ -134,3 +134,118 @@ en:
 
   csv_export:
     error: "File not found."
+
+
+fr:
+
+  location:
+    create:
+      success: "Emplacement a été créé avec succès"
+      update: "Lieu été mis à jour"
+      destroy: "Lieu a été détruit avec succès"
+
+
+  client:
+    create:
+      success: "client a été créé avec succès."
+      update: "client a été mis à jour."
+      destroy: "client a été détruit avec succès."
+
+  Team:
+    create:
+      success: "L'équipe a été créé avec succès."
+      update: "L'équipe a été mise à jour avec succès."
+      destroy: "L'équipe a été détruit avec succès."
+
+  Department:
+    create:
+      success: "Département a été créé avec succès."
+      update: "Département a été mis à jour."
+      destroy: "Département a été détruit avec succès."
+
+  User:
+    create:
+      success: "L'utilisateur a été créé avec succès."
+      update: "L'utilisateur a été mis à jour."
+      destroy: "L'utilisateur a été détruit avec succès."
+
+  Role:
+    create:
+      success: "Rôle a été créé avec succès"
+
+  checklist_recommendation:
+    auditee_create:
+      success: "réponse de l'entité vérifiée a été créé avec succès"
+    audit_observation:
+      success: "observation d'audit a été créé avec succès"
+    audit_recommendation:
+      success: "recommandation d'audit a été créé avec succès"
+
+  audit_compliance:
+    comment:
+      success: "réponse du texte enregistré avec succès"
+
+  # company:
+  #   domain:
+  #       unique: "Désolé, ce domaine a déjà été prise."
+
+  section:
+    create:
+      success: "Section a été créée avec succès."
+      update: "Section a été mise à jour avec succès."
+      destroy: "Section a été détruit avec succès."
+      create: "Section a été créée avec succès."
+      failure: ""
+
+  priorities:
+    create:
+      success: "Section a été créée avec succès."
+      update: "Section a été mise à jour avec succès."
+      destroy: "Section a été détruit avec succès."
+      create: "Section a été créée avec succès."
+      failure: ""
+
+  modulars:
+    create:
+      success: "Section a été créée avec succès."
+      update: "Section a été mise à jour avec succès."
+      destroy: "Section a été détruit avec succès."
+      create: "Section a été créée avec succès."
+      failure: ""
+
+  previlages:
+    create:
+      success: "Previlege a été créé avec succès."
+      failure: "Certains des privilèges déjà ajouté."
+      action: "S'il vous plaît sélectionner l'action pour créer privilège."
+
+  checklist:
+    create:
+      success: "Liste a été créé avec succès"
+      failure: "S'il vous plaît sélectionner n'importe quel domaine"
+
+  roles:
+    company_admin_failure: "Vous ne pouvez pas créer un rôle à ce titre"
+
+  audit:
+    failure:
+      auditee_blank: "S'il vous plaît sélectionner audité"
+      auditee_unique: "S'il vous plaît sélectionner audité uniques"
+      start_date_before_end_date: "Date de fin ne doit pas être avant la date de départ"
+      auditor_not_in_auditees: "L'utilisateur est déjà sélectionné à titre de vérificateur"
+
+  checklist_recommendations:
+    recommendation: "S'il vous plaît entrer recommandation"
+    priority: "S'il vous plaît sélectionner priorité"
+    reason: "S'il vous plaît entrer raison"
+    severity: "S'il vous plaît sélectionner gravité"
+    closuredate: "S'il vous plaît sélectionner closuredate"
+    status: "S'il vous plaît sélectionnez l'état"
+    corrective: "S'il vous plaît entrer correctives"
+    preventive: "S'il vous plaît entrer préventive"
+    observation: "S'il vous plaît entrer observation"
+    is_implemented: "S'il vous plaît sélectionnez l'état de mise en œuvre"
+    remarks: "S'il vous plaît entrer remarques"
+
+  answers:
+    detailed_value: "S'il vous plaît entrer réponse"
