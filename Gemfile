@@ -71,3 +71,6 @@ gem 'zip-zip'
 
 # delayed job
 gem 'delayed_job_active_record'
+
+# for rails best practices
+gem "rails_best_practices"

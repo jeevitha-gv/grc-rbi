@@ -1,3 +1,4 @@
+new Messi("<%=  MESSAGES["audit_compliance"]["attachment"]["success"] %>", {title: 'Success', titleClass: 'success', autoclose: 1500});
 $("#file_tag").val('')
-$("#list-file").html("<%= escape_javascript(render partial: 'list_files', locals: {attachments: @attachments}) %>")
+$("#list-file").html("<%= escape_javascript(render 'list_files', attachments: @attachments ) %>")
  $('#add_file').modal('hide');

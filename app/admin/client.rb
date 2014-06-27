@@ -1,5 +1,11 @@
 ActiveAdmin.register Client do
 
+  breadcrumb do
+    [
+      link_to('Client', '/admin/clients')
+    ]
+  end
+
   menu :if => proc{ !current_admin_user.present? }
 
   permit_params :name, :company_id, :address1, :address2, :contact_no, :email

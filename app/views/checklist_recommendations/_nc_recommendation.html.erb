@@ -1,11 +1,12 @@
 <div id="Accordion1">
-  <% @audit.answered_answers.each do |answered_ncquestion| %>
+  <% audit.answered_answers.each do |answered_ncquestion| %>
     <% checklist_recommendation = answered_ncquestion.checklist_recommendation%>
     <h3>
       <a href="#"><%= answered_ncquestion.question %></a>
       <span class="fright pending_msg" id= "recommendation_status">
-      <% @status = checklist_recommendation.recommendation_status_id if checklist_recommendation.present? %>
-      <%= (@status == 3 || @status == 4) ? 'Completed' : 'Pending' %></span>
+			<% closed_id, closed_duplicate_id, risk_accepted = recommendation_status%>
+      <% status = checklist_recommendation.recommendation_status_id if checklist_recommendation.present? %>
+      <%= (status == closed_id || status == closed_duplicate_id || status == risk_accepted) ? 'Completed' : 'Pending' %></span>
     </h3>
     <div>
       <%= f.hidden_field :checklist_id, :name => "checklist_recommendation[#{answered_ncquestion.id}][checklist_id]", :id => "checklist_id_#{answered_ncquestion.id}", :value => answered_ncquestion.id%>
@@ -15,16 +16,20 @@
           <div class="form-group clearfix">
             <label class="col-sm-5"><b>Document :</b></label>
             <div class="col-sm-7">
-              <a class="blue_link" href="">Documents Name<%#= @artifact_answers.artifact_display_name if @artifact_answers%></a>
+              <% if answered_ncquestion.attachment.present? && answered_ncquestion.attachment.attachment_file_url.present?%>
+               <%= link_to (File.basename(answered_ncquestion.attachment.attachment_file_url)).truncate(20), download_artifacts_audit_checklist_recommendations_path(id: answered_ncquestion.attachment.id), class: "blue_link" %>
+              <% else %>
+                <div class="blue_link">No attachments found</div>
+              <% end %>
             </div>
           </div>
           <div class="form-group clearfix">
             <%= f.label :recommendation, t(' checklist_recommendation.recommendation'), :class => "col-sm-5 control-label" %>
             <div class="col-sm-7">
-              <%= f.text_field :recommendation, :class => "audit-big-input control_recommendation", :name => "checklist_recommendation[#{answered_ncquestion.id}][recommendation]", :id => "recommendation_#{answered_ncquestion.id}", :value => "#{checklist_recommendation.recommendation if checklist_recommendation.present?}", :class => "audit-big-input control_recommendation"%>
+              <%= f.text_area :recommendation, :class => "audit-big-input control_recommendation", :name => "checklist_recommendation[#{answered_ncquestion.id}][recommendation]", :id => "recommendation_#{answered_ncquestion.id}", :value => "#{checklist_recommendation.recommendation if checklist_recommendation.present?}", :class => "audit-big-input control_recommendation"%>
               <span class="error_message" id="error_recommendation_<%= answered_ncquestion.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["recommendation"]%><span>
               <%if @checklist_recommendation.errors[:recommendation].present?%>
-                <div class="error_message"><%=  @checklist_recommendation.errors[:recommendation][0]%></div>
+                <div class="error_message"><%=  checklist_recommendation.errors[:recommendation][0]%></div>
               <% end %>
             </div>
           </div>
@@ -41,13 +46,13 @@
           <div class="form-group clearfix">
             <%= f.label :Answer, t(' checklist_recommendation.comment'), :class => "col-sm-5 control-label" %>
             <div class="col-sm-7">
-              <% if answered_ncquestion.question_type_id.present? %>
-                <% if answered_ncquestion.question_type_id == 1 %>
+              <% if answered_ncquestion.nc_question.question_type_id.present? %>
+                <% if answered_ncquestion.nc_question.question_type.name == "Yes or No" %>
                   <%= answered_ncquestion.value == 0 ? 'Yes' : 'No' %>
-                <% elsif answered_ncquestion.question_type_id == 2 %>
+                <% elsif answered_ncquestion.nc_question.question_type.name == "Descriptive Type" %>
                   <%= answered_ncquestion.detailed_value %>
-                <% else %>
-                  <%= QuestionOption.where(:id => answered_ncquestion.value).last.value  if answered_ncquestion.value.present? %>
+                <% elsif answered_ncquestion.nc_question.question_type.name == "Multiple Choice"  %>
+                  <%  answered_ncquestion.question_option.value if answered_ncquestion.value.present? %>
                 <% end %>
               <% end %>
             </div>
@@ -56,7 +61,7 @@
           <div class="form-group clearfix">
             <%= f.label :Reason, t(' checklist_recommendation.reason'), :class => "col-sm-5 control-label" %>
             <div class="col-sm-7">
-              <%= f.text_field :reason, :class => "audit-big-input control_reason", :class => "audit-big-input control_reason", :name => "checklist_recommendation[#{answered_ncquestion.id}][reason]", :id => "reason_#{answered_ncquestion.id}", :value => "#{checklist_recommendation.reason if checklist_recommendation.present?}" %>
+              <%= f.text_area :reason, :class => "audit-big-input control_reason", :class => "audit-big-input control_reason", :name => "checklist_recommendation[#{answered_ncquestion.id}][reason]", :id => "reason_#{answered_ncquestion.id}", :value => "#{checklist_recommendation.reason if checklist_recommendation.present?}" %>
               <span class="error_message" id="error_reason_<%= answered_ncquestion.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["reason"]%><span>
             </div>
           </div>

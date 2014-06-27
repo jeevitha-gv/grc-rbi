@@ -11,6 +11,8 @@ class ComplianceLibrary < ActiveRecord::Base
  validates :compliance_id, presence: true
  validates :name, presence: true
 
+ scope :by_name, lambda { |name| where("lower(name) = ?", name)}
+
  before_destroy :child_compliance
  before_update :child_compliance_update
 
@@ -24,7 +26,20 @@ class ComplianceLibrary < ActiveRecord::Base
     else raise "Unknown file type: #{file.original_filename}"
     end
   end
-  
+
+  def self.build_from_file(file)
+    spreadsheet = ComplianceLibrary.open_spreadsheet(file)
+    start = 2
+    (start..spreadsheet.last_row).each do |i|
+      row_data = spreadsheet.row(i)
+      compliance = Compliance.by_name(row_data[1].to_s.strip.downcase).first.id
+      parent = ComplianceLibrary.by_name(row_data[2].to_s.strip.downcase).first
+
+      compliance_library = ComplianceLibrary.new(:name => row_data[0], :compliance_id => compliance.present? ? compliance : nil, :parent_id => parent.present? ? parent.id : nil, :is_leaf => row_data[3].present? ? true : false)
+      compliance_library.save(:validate => false)
+    end
+  end
+
   def artifact_lists(current_company_id)
     self.artifacts.where("company_id=? OR company_id is NULL", current_company_id)
   end
