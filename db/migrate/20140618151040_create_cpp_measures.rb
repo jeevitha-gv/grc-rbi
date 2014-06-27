@@ -3,10 +3,10 @@ class CreateCppMeasures < ActiveRecord::Migration
     create_table :cpp_measures do |t|
       t.string :name
       t.string :description
-      t.string :type
+      t.string :measure_type
       t.integer :implementation_status_id
       t.integer :compliance_id
-      t.integer :duration
+      t.string :duration
       t.integer :company_id
 
       t.timestamps
