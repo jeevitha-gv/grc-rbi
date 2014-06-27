@@ -406,14 +406,15 @@ en:
 
   risk:
     subject: "Subject"
-    reference: "External Reference ID"
-    compliance: "Regulatory Compliance"
-    control_number: "Control Number"
+    reference: "Ref. ID"
+    compliance: "Compliance"
+    control_number: "Control No."
     location: "Location"
     team: "Team"
     technology: "Technology"
-    owner: "Owner"
-    assessment: "Assessment"
-    notes: "Notes"
+    owner: "Risk Owner"
+    assessment: "Risk Description"
+    notes: "Additional Notes"
+    category: "Category"
 
 
