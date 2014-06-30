@@ -9,11 +9,8 @@ class Compliance < ActiveRecord::Base
     validates :name, uniqueness:true, :if => Proc.new{|f| !f.name.blank? }
     validates :name, length: { in: 2..52 }, :if => Proc.new{ |f| !f.name.blank? }
 
-<<<<<<< HEAD
-=======
     scope :by_name, lambda {|name| where("lower(name) = ?", name)}
 
->>>>>>> 651ae6f4ea863cffcd3c32a63bc1bac257a9ef20
     #Association
     has_many :audits
     has_many :compliance_library
