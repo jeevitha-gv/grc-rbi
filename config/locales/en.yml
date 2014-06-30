@@ -408,7 +408,7 @@ en:
     subject: "Subject"
     reference: "Ref. ID"
     compliance: "Compliance"
-    control_number: "Control No."
+    control_number: "Control No"
     location: "Location"
     team: "Team"
     technology: "Technology"
