@@ -37,29 +37,32 @@ class ReminderMailer < ActionMailer::Base
     mail(:to => audit.auditory_email, :subject => "All auditees has answered your Checklist", content_type: "text/html")
   end
 
-  def notify_auditee_about_recommendations(checklist_recommendation)
+  def notify_auditee_about_recommendations(checklist_recommendation, action)
     @checklist_recommendation = checklist_recommendation
     if checklist_recommendation.checklist_type == "AuditCompliance"
       email = checklist_recommendation.checklist.artifact_answers.last.responsibility_email
     elsif checklist_recommendation.checklist_type == "Answer"
       email = checklist_recommendation.checklist.nc_question.auditee_email
     end
-    mail(:to => email , :subject => "Auditor has given a recommendation", content_type: "text/html")
+    subject_for_auditee = action == "created" ? "Auditor has given a recommendation" : "Auditor has updated recommendation"
+    mail(:to => email , :subject => "#{subject_for_auditee}", content_type: "text/html")
   end
 
-  def notify_auditor_about_responses(checklist_recommendation)
+  def notify_auditor_about_responses(checklist_recommendation, action)
     @checklist_recommendation = checklist_recommendation
     if checklist_recommendation.checklist_type == "AuditCompliance"
       email = checklist_recommendation.checklist.audit.auditory_email
     elsif checklist_recommendation.checklist_type == "Answer"
       email = checklist_recommendation.checklist.nc_question.audit.auditory_email
     end
-    mail(:to => email, :subject => "Auditee has submitted a response to your recommendation", content_type: "text/html")
+    subject_for_auditor = action == "created" ? "Auditee has submitted a response to your recommendation" : "Auditee has updated response to your recommendation"
+    mail(:to => email, :subject => "#{subject_for_auditor}", content_type: "text/html")
   end
 
-  def notify_auditee_about_observations(checklist_recommendation)
+  def notify_auditee_about_observations(checklist_recommendation, action)
     @checklist_recommendation = checklist_recommendation
-    mail(:to => checklist_recommendation.auditee_email, :subject => "Auditor has submitted an observation for your response",content_type: "text/html")
+    subject_for_auditee = action == "created" ? "Auditor has submitted an observation for your response" : "Auditor has updated an observation for your response"
+    mail(:to => checklist_recommendation.auditee_email, :subject => "#{subject_for_auditee}",content_type: "text/html")
   end
 
   # Mailer for Artifact Priority
