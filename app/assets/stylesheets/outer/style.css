@@ -1259,7 +1259,7 @@ a.plus-background{
   border: 1px solid #dad9d9 !important;  /*Removes border*/
   -webkit-appearance: none;  /*Removes default chrome and safari style*/
   -moz-appearance: none; /* Removes Default Firefox style*/
-  background: #fff url(../images/select_bg.jpg) no-repeat 100% 0px;
+  background: #fff url("/assets/outer/select_bg.jpg") no-repeat 100% 0px;
   width: 100%; /*Width of select dropdown to give space for arrow image*/
   text-indent: 0.01px; /* Removes default arrow from firefox*/
   text-overflow: "";  /*Removes default arrow from firefox*/ /*My custom style for fonts*/
@@ -1526,4 +1526,35 @@ html,body{
   margin:0 0 150px 0;
 }
 
+.download-icons{
+  background:url("/assets/outer/download-icons.png") no-repeat;
+  width:25px;
+  height:22px;
+  display:block;
+  background-color:transparent;
+  display:inline-block;
+  float:left;
+  margin:0 10px 0 0;
+
+}
+.import-btn{
+  background:#fe9537;
+  border:1px solid #dc771d;
+  padding:8px 8px;
+  border-radius:6px;
+  width:150px;
+  float:right;
+  margin:15px 17px 10px 0;
+  color:#ffffff;
+  text-shadow: 1px 0px 0px #ac5405;
+  font-size:14px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.import-btn:hover{
+  color:#FFF;
+}
+.gr-btn{
+  padding:0 -10px 0 0;
+}
 
