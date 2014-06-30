@@ -77,9 +77,9 @@ class ChecklistRecommendation < ActiveRecord::Base
     checklist_created = self.response_completed_changed? ? "created" : "updated"
     ReminderMailer.delay.notify_auditor_about_responses(self, checklist_created) if response
 
-    publish = (self.observation_changed? || self.is_implemented_changed? || self.remarks_changed?)
+    publish = (self.observation_changed? || self.is_implemented_changed?)
     published = self.is_published_changed? ? "created" : "updated"
-    ReminderMailer.delay.notify_auditee_about_observations(self, published)
+    ReminderMailer.delay.notify_auditee_about_observations(self, published) if publish
   end
 
   def response_attachments
