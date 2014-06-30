@@ -6,5 +6,7 @@ class CreateLocations < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :locations, :company_id
   end
 end

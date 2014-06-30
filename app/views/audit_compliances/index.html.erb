@@ -1,3 +1,6 @@
+<script>
+  var audit_id = "<%= params[:audit_id]%>"
+</script>
 <div class="clearfix"></div>
 <div class="content">
   <div class="container">
@@ -9,7 +12,7 @@
         </div>
       </div>
       <!-- Nav tabs -->
-     <h4>Checklist for Compliance Audit</h4>
+     <h4>Checklist for Compliance Audit - <b><%= @audit.title %></b></h4>
       <div id="example" class="k-content">
         <div class="panel-container">
           <div id="strip">
@@ -24,7 +27,7 @@
               <div class="fright"><br>
             <br>
             <a class="black_btn" href="javascript:goBack()">Back</a>
-            <% unless current_audit.audit_status_id == 4%>
+            <% unless @audit.audit_status_id == 4%>
               <a href="javascript:save_request()" class="orange_btn">Ask</a></div>
             <%end%>
             </div>
@@ -37,59 +40,8 @@
 </div>
 
 <script type="text/javascript">
- $(window).load(function(){
-	var $container = $('#grid_items');
-	// initialize
-	$container.masonry({
-	  columnWidth: 292,
-	  itemSelector: '.item',
-	  isFitWidth: true
-	});
-
-
-	$(".block_banner img").each(function(index, element) {
-        var screenImage = $(this);
-
-		// Create new offscreen image to test
-		var theImage = new Image();
-		theImage.src = screenImage.attr("src");
-
-		var imageHeight = theImage.height;
-
-		$(this).css("max-height",imageHeight);
-		$(this).css("min-height",imageHeight);
-    });
-});
-
-$(".click_icon").click(function() {
-			$(".share_pop").show();
-});
-
-$(".click_icon").click(function(){
-		$(".share_pop").show();
-});
 
 $(document).ready(function(){
-
-	Top_postion = $(window).scrollTop();
-
-	$( ".user_login" ).mouseenter(function() {
-		$(this).addClass("active");
-		$(".account_header_dropdown").slideDown(100);
-	})
-	.mouseleave(function() {
-		$(this).removeClass("active");
-		$(".account_header_dropdown").hide();
-	});
-
-	//for notification drop hide in outside click
-	onclick_icon = 0;
-	$(".click_icon").mouseenter(function() {
-		onclick_icon = 0;
-	})
-	.mouseleave(function() {
-		onclick_icon = 1;
-	});
 
 
 	$("body").click(function(){
@@ -134,7 +86,7 @@ $(document).ready(function(){
           field: "auditee",
           operator: "contains",
           value   : val
-        }        
+        }
       ]
     });
   }
@@ -153,7 +105,7 @@ $(document).ready(function(){
 				dataSource = new kendo.data.DataSource({
 					transport: {
 						read: {
-							url: '/audit_compliances/compliance_checklist',
+							url: '/audits/'+audit_id+'/audit_compliances/compliance_checklist',
 							dataType: 'json'
 						}
 					},
@@ -193,7 +145,12 @@ $(document).ready(function(){
                 },
                 change: change_artifact
               });
-						$('.datepicker').kendoDatePicker({change: onchange, format: "dd/MM/yyyy"})
+						$('.datepicker').kendoDatePicker({change: onchange, min: new Date(), format: "dd/MM/yyyy"})
+            $(".datepicker").bind("focus", function() {
+            $(this).data("kendoDatePicker").open();
+            });
+            $('.datepicker').attr('readonly', true);
+
 						$('.check_row').on('click', function (e) {
 							var $cb = $(this);
 							var $row = $cb.parents('tr').first();
@@ -215,7 +172,6 @@ $(document).ready(function(){
               row_data.auditee = row_data.auditee_list.split(",")[0]
               }
 						});
-            
              var grid = $("#grid").data("kendoGrid");
             var gridData = grid.dataSource.view();
             for (var i = 0; i < gridData.length; i++) {
@@ -226,9 +182,7 @@ $(document).ready(function(){
                     editButton.prop( "checked", true )
                     currenRow.addClass('k-state-selected')
                 }
-            } 
-            
-            
+            }
 					},
 					height: 'auto',
 					scrollable: true,
@@ -263,7 +217,7 @@ $(document).ready(function(){
 				$(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");
 			});
 
-		</script>    
+		</script>
  <script type="text/x-kendo-template" id="myTemplate">
  <div class='checklist_select_big'>
  <select id="artifact_#= id#" class="multiselect" multiple="multiple">
@@ -341,7 +295,7 @@ var validate = true
   if(validate)
   {
     $.ajax({
-      url: "/audit_compliances",
+      url: "/audits/"+audit_id+"/audit_compliances",
       type: "POST",
       beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
       data: {"checklist" : data},

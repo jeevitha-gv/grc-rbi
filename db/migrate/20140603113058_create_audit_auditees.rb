@@ -6,5 +6,8 @@ class CreateAuditAuditees < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :audit_auditees, :audit_id
+    add_index :audit_auditees, :user_id
   end
 end

@@ -1,11 +1,18 @@
 ActiveAdmin.register Department do
+
+
+  breadcrumb do
+    [
+      link_to('Department', '/admin/departments')
+    ]
+  end
+
   menu :if => proc{ !current_admin_user.present? }
 
  #authentication
   controller do
     before_filter :check_company_admin, :check_role
     before_filter :check_subdomain
-    
      def scoped_collection
       Department.where(:location_id=>current_company.locations.map(&:id))
     end
@@ -27,7 +34,6 @@ ActiveAdmin.register Department do
   end
 
   permit_params :name, :location_id
-  
   index do
     selectable_column
     column :name
@@ -36,7 +42,7 @@ ActiveAdmin.register Department do
 
   form do |f|
     f.inputs "New Department" do
-      f.input :location_id, :label => 'Location', :as => :select, :collection => current_company.locations
+      f.input :location_id, :label => 'Location', :as => :select, :collection => current_company.locations, :prompt => "-Select Location-"
       f.input :name
     end
     f.actions

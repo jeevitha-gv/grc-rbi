@@ -1,5 +1,5 @@
 class ChecklistRecommendationsController < ApplicationController
-  before_filter :check_for_current_audit
+	before_filter :current_audit
 	before_filter :authorize_auditees, :only => [:auditee_response_create]
 	before_filter :authorize_auditees_skip_company_admin, :only => [:auditee_response]
 	before_filter :authorize_auditor_skip_company_admin, :only => [:new, :audit_observation]
@@ -9,7 +9,6 @@ class ChecklistRecommendationsController < ApplicationController
 
  	#new for checklist recommendation
  	def new
-		@audit = current_audit
 		@checklist_recommendation = ChecklistRecommendation.new
 		@score = Score.all
  	end
@@ -42,14 +41,13 @@ class ChecklistRecommendationsController < ApplicationController
 			if(params[:commit] == 'Save Draft')
 				flash[:notice] = "Recommendation is saved in Draft"
 			else
-				flash[:notice] = "Recommendation is scored successfully"
+				@checklist_recommendation.checklist_type == 'AuditCompliance' ? flash[:notice] = "Recommendation is scored successfully" : flash[:notice] = "Recommendation is submitted successfully"
 			end
-			redirect_to new_checklist_recommendation_path
+			redirect_to new_audit_checklist_recommendation_path
 	 end
 
 	#To show auditee response
 	def auditee_response
-		@audit = current_audit
 		if @audit.compliance_type == "Compliance"
 			@auditee_recommendation = ChecklistRecommendation.where('auditee_id= ?',current_user.id)
 			@checklist_recommendations = @audit.auditee_response_compliances(current_user.id)
@@ -59,8 +57,11 @@ class ChecklistRecommendationsController < ApplicationController
 		end
 	end
 
+	# To show auditor observation page
   def audit_observation
-    @audit = current_audit
+		@pending_observation = @audit.checklist_recommendations.collect {|x| x.is_published}.include?(nil)
+		@observation = @audit.checklist_recommendations.map(&:response_completed).include?(true)
+		@published_status = AuditStatus.where('name= ?', "Published").first
     if @audit.compliance_type == "Compliance"
       @checklist_recommendations = @audit.audit_observation_compliances
     else
@@ -84,7 +85,7 @@ class ChecklistRecommendationsController < ApplicationController
 				@checklist_recommendation.remark.update(comment: params[:checklist_recommendation][:remarks])
 			end
 		end
-		UniversalMailer.delay.notify_auditee_about_observations(@checklist_recommendation)
+		@pending_observation = @audit.checklist_recommendations.collect {|x| x.is_published}.include?(nil)
 		respond_to :js
 	end
 
@@ -97,9 +98,7 @@ class ChecklistRecommendationsController < ApplicationController
 		@checklist_recommendation.auditee_id = current_user.id
 		@checklist_recommendation.response_completed = true
 		@checklist_recommendation.is_checklist_new = true
-		@checklist_recommendation.auditee_id = current_user.id
 		@checklist_recommendation.update(checklist_params)
-		UniversalMailer.delay.notify_auditor_about_responses(@checklist_recommendation)
 		respond_to :js
 	end
 
@@ -122,15 +121,15 @@ class ChecklistRecommendationsController < ApplicationController
 
  #After observed restrict to create recommendation , response & observed
 
- def observed
-   @checklist_recommendation = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?', params[:checklist_recommendation][:checklist_id], params[:checklist_recommendation][:checklist_type]).first
-		 unless @checklist_recommendation.is_published
-		 	@path = true
-		 else
-		 	@path = false
-			end
-	 	return @path
-  end
+ # def observed
+ #   @checklist_recommendation = ChecklistRecommendation.where('checklist_id= ? AND checklist_type= ?', params[:checklist_recommendation][:checklist_id], params[:checklist_recommendation][:checklist_type]).first
+	# 	 unless @checklist_recommendation.is_published
+	# 	 	@path = true
+	# 	 else
+	# 	 	@path = false
+	# 		end
+	#  	return @path
+ #  end
 
   def remove_attachment
     attachment = Attachment.find(params[:id])

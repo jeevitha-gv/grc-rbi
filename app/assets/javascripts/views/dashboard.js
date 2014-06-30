@@ -1,7 +1,7 @@
 $(document).on('ready page:load', function(){
 
  $('#calendar').fullCalendar({
-    editable: true,        
+    editable: true,
     header: {
             left: 'prev,next today',
             center: 'title',
@@ -18,48 +18,48 @@ $(document).on('ready page:load', function(){
         loading: function(bool){
 					//~ $('.fc-event-title').show();
 					//~ $(".fc-event-time").append("<img src='/assets/event_icon.png'/>");
-				
-            if (bool) 
+
+            if (bool)
                 $('#loading').show();
-            else 
+            else
                 $('#loading').hide();
         },
 
         selectable: true,
         selectHelper: true,
 				droppable: false,
-				
-		  
-        // a future calendar might have many sources.        
+
+
+        // a future calendar might have many sources.
         eventSources: [{
             url: '/dashboard/calender',
             color: 'grey',
             textColor: 'black',
-            //~ ignoreTimezone: false, 
+            //~ ignoreTimezone: false,
 						//~ allDayDefault: false,
         }],
         timeFormat: '',
         dragOpacity: "0.5",
 
-				eventMouseover: function(event, jsEvent, view) {	
+				eventMouseover: function(event, jsEvent, view) {
 						title = ("Auditor: "+event.title + "<br />" + "Start date: "+event.start_date +"</br>"+ "End date: "+event.end_date)
             $('.fc-event-inner').attr('data-original-title', title);
             $('.fc-event-inner').attr('data-html', "true");
-				  	$('.fc-event-inner').tooltip({placement: 'bottom'});	
+				  	$('.fc-event-inner').tooltip({placement: 'bottom'});
 				},
-					 eventMouseout: function(event, jsEvent, view) { 
+					 eventMouseout: function(event, jsEvent, view) {
 							$('#tooltip').css({display: 'none'});
 					},
-					
+
 				//~ //http://arshaw.com/fullcalendar/docs/event_ui/eventDrop/
         eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
             updateEvent(event);
         },
-	
+
         eventResize: function(event, dayDelta, minuteDelta, revertFunc){
             updateEvent(event);
         },
-				
+
 				eventAfterRender: function (event, element, view) {
         var dataHoje =  convertDate();
 				if(event.publised == "4")
@@ -79,17 +79,17 @@ $(document).on('ready page:load', function(){
 						element.css('color','#fff');
 						element.css('border-color','#FFA200');
 				}
-				},   
-				
+				},
+
         // http://arshaw.com/fullcalendar/docs/mouse/eventClick/
         eventClick: function(event, jsEvent, view){
-            window.location.replace("/audits/audit_dashboard");
+            window.location.replace("/audits/"+event.id+'-'+event.title+"/audit_dashboard");
         },
   });
-	
+
   });
-	
-	
+
+
 	function convertDate() {
 	  function pad(s) { return (s < 10) ? '0' + s : s; }
   var d = new Date();

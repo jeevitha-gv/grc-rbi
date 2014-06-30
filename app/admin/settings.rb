@@ -1,5 +1,12 @@
 ActiveAdmin.register Company, { :as => 'Settings'} do
   menu :if => proc{ !current_admin_user.present? }
+
+  breadcrumb do
+    [
+      link_to('Settings', '/admin/settings')
+    ]
+  end
+
   actions :all, :except => [:new, :create, :show, :destroy]
   config.filters = false
   config.batch_actions = false
@@ -38,7 +45,7 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
     f.object.build_attachment unless f.object.attachment.present?
     f.inputs "Company Details" do
       f.input :name
-      f.input :primary_email 
+      f.input :primary_email
       f.input :secondary_email
       f.input :domain , :input_html => { :disabled => true }
       f.input :address1

@@ -14,7 +14,7 @@ ActiveAdmin.register Compliance do
    	actions
    end
 
-   show do 
+   show do
  	 attributes_table :name
    end
 

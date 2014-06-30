@@ -12,6 +12,7 @@ class ArtifactAnswer < ActiveRecord::Base
 
   delegate :name, to: :priority, prefix: true, allow_nil: true
   delegate :full_name, to: :responsibility, prefix: true, allow_nil: true
+  delegate :email, to: :responsibility, prefix: true, allow_nil: true
   delegate :name, to: :artifact, prefix: true, allow_nil: true
   delegate :comment, to: :comment, prefix: true, allow_nil: true
 
@@ -23,10 +24,27 @@ class ArtifactAnswer < ActiveRecord::Base
   end
 
   after_create :notify_auditee_about_checklist
+  after_update :notify_auditee_about_checklist_update
 
   def notify_auditee_about_checklist
-    UniversalMailer.delay.notify_auditee_about_checklist(self)
+    ReminderMailer.delay.notify_auditee_about_checklist(self)
   end
 
+  def notify_auditee_about_checklist_update
+    ReminderMailer.delay.notify_auditee_about_checklist_update(self)
+  end
+
+  def build_checklist(compliance)
+    json = {}
+    json["id"] = self.id
+    json["name"] = compliance.compliance_library_name
+    json["artifact_id"] = self.artifact_id
+    json["artifact_name"] = self.artifact_name
+    json["audit_compliance"] = compliance.id
+    json["priority"] = self.priority_name
+    json["auditee"] = self.responsibility_full_name
+    json["target_date"] = (self.target_date.present? ? self.target_date.to_date.strftime("%d/%m/%Y") : "")
+    json
+  end
 
 end

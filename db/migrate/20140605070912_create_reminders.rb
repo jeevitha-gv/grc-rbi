@@ -13,5 +13,8 @@ class CreateReminders < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :reminders, :priority_id
+    add_index :reminders, :company_id
   end
 end

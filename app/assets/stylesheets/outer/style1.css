@@ -203,6 +203,11 @@ div.k-grid-header .k-header, .k-grid td {
 }
 
 
+
+
+
+
+
 .k-grid-attach, .k-grid-attach:hover {
 	width: 20px;
 	margin:0;
@@ -351,3 +356,46 @@ div.k-grid-header .k-header, .k-grid td {
 	background: #0A7F99;
 }
 
+.k-grid-graph{
+	width: 20px;
+	margin:0;
+	height: 20px;
+	background: url('/assets/outer/graph-icon.png') no-repeat;
+	text-indent: -9999px;
+	min-width:0 !important;
+	margin:0 2px !important;
+	border: medium none;
+    float: left;
+	padding: 0;
+}
+.k-grid-graph:hover,.k-grid-graph.active{
+	background-position: 0 -20px;border: medium none; background-color: transparent;
+}
+.addissue{
+	padding: 10px 0 0 157px;
+}
+a.plus-background {
+    background-color: rgba(0, 0, 0, 0) !important;
+    float: left;
+    margin: 0 0 6px 16px;
+}
+.ajax-loader-question {
+		left: 46%;
+    margin: 0 auto;
+    position: absolute;
+    text-align: center;
+    top: 35%;
+    z-index: 999999999;
+
+}
+.overlay-loader{
+	background: #000;
+	opacity: 0.2;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 9999999;
+	left: 0;
+	top:0;
+	display: none;
+}

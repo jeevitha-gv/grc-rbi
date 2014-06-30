@@ -25,5 +25,17 @@ class CreateChecklistRecommendations < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :checklist_recommendations, :checklist_id
+    add_index :checklist_recommendations, :auditee_id
+    add_index :checklist_recommendations, :recommendation_priority_id
+    add_index :checklist_recommendations, :recommendation_severity_id
+    add_index :checklist_recommendations, :response_priority_id
+    add_index :checklist_recommendations, :response_severity_id
+    add_index :checklist_recommendations, :recommendation_status_id
+    add_index :checklist_recommendations, :response_status_id
+    add_index :checklist_recommendations, :dependent_recommendation
+    add_index :checklist_recommendations, :blocking_recommendation
+    add_index :checklist_recommendations, :checklist_type
   end
 end

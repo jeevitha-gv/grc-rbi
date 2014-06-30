@@ -45,7 +45,7 @@ en:
                 other: "Full name should contain minimum of 8 char"
             user_name:
               blank: "User Name can't be blank"
-              invalid: "User Name should be AlphaNumeric"
+              invalid: "User Name should contain only alphabets"
               too_short:
                 other: "User Name should contain minimum of 8 char"
               too_long:
@@ -104,6 +104,7 @@ en:
               invalid: "Secondary Email is invalid"
               too_long:
                 other: "Email should not contains maximum of 50 char"
+              exclusion: "Primary email and Secondary email should not be same"
             primary_email:
               invalid: "Primary Email is invalid"
               too_long:
@@ -132,7 +133,7 @@ en:
               blank: "Client name can't be blank"
               invalid: "Client name should contain alphanumeric"
               too_short:
-                other: "client name should contain minimum of 4 char"
+                other: "client name should contain minimum of 2 char"
               too_long:
                 other: "client name should not contains maximum of 52 char"
             contact_no:
@@ -178,7 +179,7 @@ en:
           attributes:
             name:
               blank: "Location name can't be blank"
-              invalid: "Location name should contain alphanumeric"
+              invalid: "Location name should contain alphabets."
               taken: "Location name has been already used"
               too_short:
                 other: "Location should contain minimum of 7 char"
@@ -347,6 +348,7 @@ en:
     city: "City"
     state: "State"
     country: "Country"
+    role: "Role"
 
 
   priorities:
