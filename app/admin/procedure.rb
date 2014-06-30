@@ -1,7 +1,13 @@
 ActiveAdmin.register CppMeasure, { :as => 'Procedures'} do
 
   
-    menu :if => proc{ !current_admin_user.present? }
+  menu :if => proc{ !current_admin_user.present? }
+  
+  breadcrumb do
+    [
+      link_to('Procedures', '/admin/procedures')
+    ]
+  end
   
   permit_params :compliance_id, :name, :description, :duration, :measure_type, :company_id
   
