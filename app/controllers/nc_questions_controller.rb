@@ -1,26 +1,28 @@
 class NcQuestionsController < ApplicationController
-
-  before_filter :check_for_current_audit
+  before_filter :current_audit
+  #authorize_resource
   before_filter :check_for_auditee_response, :only => [:new]
 
-	def index
-		@nc_questions = NcQuestion.all
-	end
-
-	def new
-		@audit = current_audit
+  # Intialize Nc Questions for audit
+  def new
 		@nc_question = NcQuestion.new
 		@audit.nc_questions.build unless @audit.nc_questions.present?
     @audit.nc_questions.first.question_options.build unless @audit.nc_questions.first.question_options.present?
-    # rescue
-    #   @errors = "Invalid file format"
-    #   redirect_to audits_path
-    # end
+
+    # nc_questions from library
+    nc_questions = current_company.nc_questions.where(:nc_library => "true")
+    audit_nc_questions = @audit.nc_questions.map(&:id)
+    @library_questions = audit_nc_questions.compact.blank? ? nc_questions : nc_questions.where("id NOT IN (?)", audit_nc_questions)
 	end
 
+  # Create Nc Questions for audit
 	def create
-		@audit = current_audit
 		if @audit.update_attributes(question_params)
+      @audit.nc_questions.update_all(company_id: current_company.id)
+      flash[:notice] = "Your requests were added successfully"
+      redirect_to new_audit_nc_question_path
+    else
+      flash[:error] = "Something went wrong and requests were not added"
 			render "new"
 		end
 	end
@@ -29,69 +31,44 @@ class NcQuestionsController < ApplicationController
 		@nc_questions = NcQuestion.where(:id=>params[:nc_question])
 		@priorities = Priority.all
 		@response_types = QuestionType.all
-    # @response_type_selected = @nc_question.map(&:question_type_id)
 		@auditees = @audit.auditees.all
   end
 
+  # Import NcQuestions from CSV file
 	def import_files
 		if(params[:file].present?)
       begin
-				spreadsheet = NcQuestion.open_spreadsheet(params[:file])
-        start = 2
-        (start..spreadsheet.last_row).each do |i|
-          row_data = spreadsheet.row(i)[0].split(";")
-					question_type = QuestionType.where("lower(name) = ?", "#{row_data[1].to_s.downcase}").first
-
-					nc_question = NcQuestion.new
-          nc_question.attributes ={:question => row_data[0], :question_type_id => question_type.present? ? question_type.id : nil}
-          nc_question.save(:validate => false)
-
-          set = 1
-          options = []
-          while set < 200
-            options_data = spreadsheet.row(i)[set]
-            options << options_data if options_data.present?
-            break if options_data.blank?
-            set += 1
-          end
-
-          options << row_data[2]
-          if options.compact.present?
-            options_array = options.collect{|x| x.strip if x.present?}
-            options_array.collect{|x| nc_question.question_options.create(:value =>x) }
-          end
-        end
-        redirect_to new_nc_question_path
+				NcQuestion.build_from_import(params[:file], current_company)
+        redirect_to new_audit_nc_question_path, :flash => { :notice => MESSAGES["nc_question"]["csv_upload"]["success"]}
       rescue
-        @errors = "Invalid file format"
-        redirect_to new_nc_question_path
+        redirect_to new_audit_nc_question_path, :flash => { :notice => MESSAGES["csv_upload"]["error"]}
       end
     else
-      @errors = "Please select a file."
-      redirect_to new_nc_question_path
-    # end
+      redirect_to new_audit_nc_question_path , :flash => { :notice => MESSAGES["csv_upload"]["presence"]}
     end
   end
 
+  # Download NcQuestion sample file
   def export_files
-    nc_question_csv = CSV.generate do |csv|
-      csv << ["Question Name;Question Type;Mutilpe Type Options;"]
-      csv_options = [["Example Question;Yes or no;"], ["Second Question;Multiple choice;question option1", " question option2", " question option3", " question option4"], ["Third Question;Descriptive type"]]
-      csv_options.each do |nc_question|
-        csv << nc_question
-      end
+    begin
+      file_to_download = "sample_non_compliance_question.csv"
+      send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
+    rescue
+      flash[:error] = MESSAGES["csv_export"]["error"]
+      redirect_to new_audit_path
     end
-    send_data(nc_question_csv, :type => 'text/csv', :filename => 'sample_non_compliance_question.csv')
   end
 
   private
+    # Strong Parameters for NcQuestions of particular Audit
 		def question_params
 			params.require(:audit).permit(nc_questions_attributes: [:question, :question_type_id, :priority_id, :target_date, :does_require_document, :nc_library, :auditee_id, :id, :_destroy, question_options_attributes: [:value, :id, :_destroy]])
 		end
 
+    # Filter for Authenticate auditee response based on the Audit
     def check_for_auditee_response
-      if(current_audit.auditees.map(&:id).include?(current_user.id))
-        redirect_to new_answers_path
+      if(@audit.auditees.map(&:id).include?(current_user.id))
+        redirect_to new_audit_answers_path(@audit)
       end
     end
 end

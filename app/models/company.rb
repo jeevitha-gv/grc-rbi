@@ -18,6 +18,7 @@ class Company < ActiveRecord::Base
   has_many :technologies
 
   # Associations with Risk table
+  has_many :risks
   has_many :projects
   has_many :cpp_measures
   has_one :risk_review_level
@@ -39,18 +40,20 @@ class Company < ActiveRecord::Base
   validates :contact_no, length: { is: 10},:if => Proc.new{|f| !f.contact_no.blank? }
   validates :address1, length: { in: 7..40 }, :if => Proc.new{|f| !f.address1.blank? }
   validates :address2, length: { in: 7..40 }, :if => Proc.new{|f| !f.address2.blank? }
-  validates :secondary_email, uniqueness: { scope: :primary_email }
+  validates_exclusion_of :secondary_email, :in => :primary_email , :if => Proc.new{|f| !f.secondary_email.blank? }
+
+  delegate :email, to: :company_admin, prefix: true, allow_nil: true
 
   after_save :company_role_create
   attr_accessor :subscription
   scope :active, -> { where(is_disabled: false) }
 
-  def active_audits
-    self.audits.where("end_date <= ?", Date.today)
-  end
+  # def active_audits
+  #   self.audits.where("end_date <= ?", Date.today)
+  # end
 
   def active_audits_with_skipped
-    self.audits.where("end_date <= ?", Date.today) - SkippedAuditReminder.audits
+    self.audits.where("end_date >= ?", Date.today) - SkippedAuditReminder.audits
   end
 
   private

@@ -1,6 +1,12 @@
 ActiveAdmin.register Role  do
  menu :if => proc{ !current_admin_user.present? }
 
+  breadcrumb do
+    [
+      link_to('Roles', '/admin/roles')
+    ]
+  end
+
   permit_params :title, :company_id
  #authentication
   controller do
@@ -18,7 +24,7 @@ ActiveAdmin.register Role  do
         @role = Role.new(role_params)
         @role.company_id = current_user.company_id
         if @role.save
-          @role.create_activity :create, owner: current_user 
+          @role.create_activity :create, owner: current_user
           flash[:now]=  MESSAGES["Role"]["create"]["success"]
           redirect_to admin_roles_path
         else

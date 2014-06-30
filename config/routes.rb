@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   post 'admin/privileges/modal_previlege'
@@ -14,44 +15,57 @@ Rails.application.routes.draw do
 
   resources :home
 
-  resources :checklist_recommendations do
-    collection do
-      get 'auditee_response'
-      post 'audit_observation_create'
-      post 'auditee_response_create'
-      get 'audit_observation'
-      post 'update_individual_score'
-      get 'list_artifacts_and_comments'
-      get 'download_artifacts'
-      delete 'remove_attachment'
-    end
-  end
-
- resources :dashboard do
-   collection do
-    get 'calender'
+   resources :dashboard do
+     collection do
+      get 'calender'
+     end
    end
- end
 
-  resources :nc_questions do
-    get 'library_questions', on: :collection
-    post 'import_files', on: :collection
-    get 'export_files', on: :collection
-  end
+  resources :risks
+
 
   resources :audits do
-    get 'department_teams_users', on: :collection
-    post 'audit_with_status', on: :collection
-    post 'audit_all', on: :collection
-    post 'import_files', on: :collection
-    get 'export_files', on: :collection
-    post 'asc_calculation', on: :collection
-    get 'maximum_actual_score' , on: :collection
-    get 'audit_dashboard' , on: :collection
-    get 'artifacts_download' , on: :collection
-  end
+    collection do
+      get 'department_teams_users'
+      post 'audit_with_status'
+      post 'audit_all'
+      post 'audit_imports'
+      get 'audit_export'
+      post 'asc_calculation'
+      get 'maximum_actual_score'
+      get ':id/audit_dashboard', to: 'audits#audit_dashboard', as: 'audit_dashboard'
+      get ':id/artifacts_download', to: 'audits#artifacts_download', as: 'artifacts_download'
+    end
+    resources :checklist_recommendations do
+      collection do
+        get 'auditee_response'
+        post 'audit_observation_create'
+        post 'auditee_response_create'
+        get 'audit_observation'
+        post 'update_individual_score'
+        get 'list_artifacts_and_comments'
+        get 'download_artifacts'
+        delete 'remove_attachment'
+      end
+    end
+    resources :audit_compliances, only: [:index, :create, :update] do
+      collection do
+        get 'edit'
+        get 'compliance_checklist'
+        get 'response'
+        get 'response_checklist'
+      end
+    end
+    resources :nc_questions do
+      collection do
+        get 'library_questions'
+        post 'import_files'
+        get 'export_files'
+      end
+    end
+    resource :answers, only: [:index, :create, :new]
+ end
 
-  resource :answers
 
   resource :user do
     collection do
@@ -76,46 +90,17 @@ Rails.application.routes.draw do
     end
    end
 
-
-  resources :audit_compliances, only: [:index, :create, :update] do
-    get 'edit', on: :collection
-    get 'compliance_checklist', on: :collection
-    get 'response', on: :collection
-    get 'response_checklist', on: :collection
-  end
-
-   # resources :privileges
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
   # delete '/activities/clear_audit' => 'activities#clear_audit', :as => :clear_audit
   resources :activities, :except => [:show]
-  
+
   resources :artifact_answers do
-    get 'list_attachments', on: :collection
-    get 'list_comment', on: :collection
-    post 'create_attachment', on: :collection
-    patch 'update_comment', on: :collection
-    delete 'remove_attachment', on: :collection
+    collection do
+      get 'list_attachments'
+      get 'list_comment'
+      post 'create_attachment'
+      patch 'update_comment'
+      delete 'remove_attachment'
+    end
   end
 
   resources :compliance_libraries

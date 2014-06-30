@@ -21,8 +21,22 @@ function add_fields(link, association, content) {
     var regexp = new RegExp("new_" + association, "g");
     $(link).parent().before(content.replace(regexp, new_id));
     $($(link).parent().prev().find(".datepicker")).kendoDatePicker({
+        min: new Date(),
         format: "dd/MM/yyyy"
         });
+     $(".datepicker").bind("focus", function() {
+      $(this).data("kendoDatePicker").open();
+    });
+    $('.datepicker').attr('readonly', true);
+    return false;
+}
+
+function add_auditees(link, association) {
+    var content = $(".team-auditee").html()
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("[0]", "g");
+    var regexp_new = new RegExp('selected="selected"', "g");
+    $(link).parent().parent().find("#auditee-list").append("<div class='team-auditee'>"+content.replace(regexp, new_id).replace(regexp_new , "")+"</div>");
     return false;
 }
 
@@ -34,11 +48,6 @@ function remove_fields(link) {
 function remove_options(link) {
     jQuery(link).parent().find("input[type=hidden]").val(1);
     jQuery(link).parents(".choices").hide();
-}
-
-function deleteCookie()
-{
-	document.cookie = 'audit_id="";-1; path=/';
 }
 
 function setCookie(name, value) {
@@ -144,12 +153,12 @@ $(document).ready(function(){
 		}
 	});
 	/* placeholder */
-  
+
     $(".next-phase").click(function(){
       // new Messi('Planned for further phases.', {autoclose: '5000'});
       new Messi('Planned for further phases.', {title: 'Warning', titleClass: 'warning', autoclose: 2000});
     });
-    
+
 });
 
 // More contacts show

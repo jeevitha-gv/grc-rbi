@@ -35,39 +35,27 @@ ActiveAdmin.register ComplianceLibrary do
     def import_files
       if(params[:file].present?)
         begin
-          spreadsheet = ComplianceLibrary.open_spreadsheet(params[:file])
-          start = 2
-          (start..spreadsheet.last_row).each do |i|
-            row_data = spreadsheet.row(i)[0].split(";")
-
-            compliance = Compliance.where("lower(name) = ?", "#{row_data[1].to_s.downcase}").first.id
-            parent = ComplianceLibrary.where("lower(name) = ?", "#{row_data[2].to_s.downcase}").first
-
-            compliance_library = ComplianceLibrary.new
-
-            compliance_library.attributes ={:name => row_data[0], :compliance_id => compliance.present? ? compliance : nil, :parent_id => parent.present? ? parent.id : nil, :is_leaf => row_data[3].present? ? true : false}
-            compliance_library.save(:validate => false)
-          end
-          redirect_to new_admin_compliance_library_path, notice: "Compliance Library imported."
+          ComplianceLibrary.build_from_file(params[:file])
+          flash[:notice] = MESSAGES["compliance_libraries"]["csv_upload"]["success"]
+          redirect_to admin_compliance_libraries_path
         rescue
-          flash[:error] = "Invalid file format"
+          flash[:notice]=  MESSAGES["csv_upload"]["error"]
           redirect_to new_admin_compliance_library_path
         end
       else
-        flash[:error] = "Please select a file."
+        flash[:notice]=  MESSAGES["csv_upload"]["presence"]
         redirect_to new_admin_compliance_library_path
       end
     end
 
     def export_files
-      compliance_library_csv = CSV.generate do |csv|
-        csv << ["name;compliance;parent;is_leaf;"]
-        csv_options = [["Example for domain;COBIT;"], ["Sample Control Objective;HIPAA;Example for domain;"], ["Sample Controls;ISO 28000;Example for domain;TRUE"]]
-        csv_options.each do |nc_question|
-          csv << nc_question
-        end
+      begin
+        file_to_download = "sample_compliance_library.csv"
+        send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
+      rescue
+        flash[:error] = MESSAGES["csv_export"]["error"]
+        redirect_to new_audit_path
       end
-      send_data(compliance_library_csv, :type => 'text/csv', :filename => 'sample_compliance_library.csv')
     end
   end
 

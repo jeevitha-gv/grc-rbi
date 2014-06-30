@@ -1,5 +1,4 @@
-class CompaniesController < ApplicationController
-  
+class CompaniesController < ApplicationController  
   skip_before_filter :authenticate_user!, only: [ :new, :create,:welcome]
   before_filter :authenticate_admin_user, :only => [:settings]
   prepend_before_filter :skip_if_authenticated, only: [ :new, :create ]
@@ -12,12 +11,14 @@ class CompaniesController < ApplicationController
     @companies = Company.all
   end
 
+  # Initialize the new company
   def new
     @company = Company.new
     @company.build_attachment
     @company.users.build
   end
 
+  # Create new company along with company admin
   def create
     params[:company][:users_attributes]["0"][:role_id] = Role.first.id
     subscription_name = params[:company][:subscription]
@@ -38,15 +39,11 @@ class CompaniesController < ApplicationController
       end
     else
       render 'new'
-  end
-  end
-
-
-
-  def settings
+    end
   end
 
   private
+  # Strong parameters
   def company_params
     params.require(:company).permit(:name, :primary_email, :secondary_email, :domain, :address1, :address2, :country_id, :contact_no, :timezone,:subscription, attachment_attributes: [:id, :attachment_file], users_attributes: [:user_name, :email, :role_id])
   end

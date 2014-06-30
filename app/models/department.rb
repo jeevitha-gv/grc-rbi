@@ -11,4 +11,8 @@ class Department < ActiveRecord::Base
   validates_uniqueness_of :name, scope: [:location_id]
   validates :location_id, presence:true
 
+  #scope
+  scope :for_location, lambda {|location_id| where(location_id: location_id)}
+  scope :for_name_by_location, lambda  {|department_name, location_id| where("lower(name) = ? and location_id=?", department_name, location_id)}
+
 end
