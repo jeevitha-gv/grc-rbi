@@ -1,0 +1,4 @@
+<%= form_for(@risk) do |f| %>
+  <%= render 'form', :f => f, risk: @risk %>
+  <%= f.submit "File Risk" %>
+<% end %>

@@ -6,5 +6,7 @@ class CreateTechnologies < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :technologies, :company_id
   end
 end

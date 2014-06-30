@@ -1,0 +1,378 @@
+<div class="clearfix"></div>
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div id="example" class="k-content">
+        <div class="risk-title">File a New Risk</div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="risk-wrap">
+            <div class="sub-wrap">
+              <div class="sub-titile">Use this form in order to file a new risk for consideration in the Risk Management Process.</div>
+              <div class="container">
+              <form class="form-horizontal" role="form">
+
+                <!-- First Row Starts -->
+                <div class="row">
+                  <div class="container">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                      <div class="form-group clearfix">
+                        <label class="col-sm-3 control-label">
+                          <%= f.label :subject, t('risk.subject') %>
+                        </label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control risk-normal-input" id="inputEmail3" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                      <div class="form-group clearfix">
+                        <label class="col-sm-3 control-label">
+                          <%= f.label :reference, t('risk.reference') %>
+                        </label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control risk-normal-input" id="inputPassword3" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                      <div class="form-group clearfix">
+                        <label class="col-sm-3 control-label">
+                          <%= f.label :compliance_id, t('risk.compliance') %>
+                        </label>
+                        <div class="col-sm-8">
+                          <div class="risk-select">
+                            <%= f.collection_select(:compliance_id, Compliance.all, :id, :name, {}, {:class => "form-control"}) %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- First Row Ends -->
+
+                <!-- Second Row Starts-->
+                <div class="row">
+                  <div class="container">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                      <div class="form-group clearfix">
+                        <label class="col-sm-3 control-label">
+                          <%= f.label :location_id, t('risk.control_number') %>
+                        </label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control risk-normal-input" id="inputPassword3" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                      <div class="form-group clearfix">
+                        <label class="col-sm-3 control-label">
+                          <%= f.label :location_id, t('risk.location') %>
+                        </label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control risk-normal-input" id="inputPassword3" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                      <div class="form-group clearfix">
+                        <label for="inputPassword3" class="col-sm-3 control-label">
+                          <%= f.label :team_id, t('risk.team') %>
+                        </label>
+                        <div class="col-sm-8">
+                           <div class="risk-select">
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Second Row Ends -->
+
+                <!-- Third Row Starts -->
+                <div class="row">
+                  <div class="container">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                      <div class="form-group clearfix">
+                        <label class="col-sm-3 control-label">
+                          <%= f.label :category_id, t('risk.category') %>
+                        </label>
+                        <div class="col-sm-8">
+                          <div class="risk-select">
+                             <select class="form-control">
+                              <option>Admin</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                      <div class="form-group clearfix">
+                        <label for="inputPassword3" class="col-sm-3 control-label">
+                          <%= f.label :technology_id, t('risk.technology') %>
+                        </label>
+                        <div class="col-sm-8">
+                          <div class="risk-select">
+                              <select class="form-control">
+                              <option>Sri Harsha</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                      <div class="form-group clearfix">
+                        <label for="inputPassword3" class="col-sm-3 control-label">
+                          <%= f.label :owner, t('risk.owner') %>
+                        </label>
+                        <div class="col-sm-8">
+                          <div class="risk-select">
+                            <select class="form-control">
+                              <option>Branch Management</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Third Row Ends -->
+
+                <div class="clearfix border-divider"> </div>
+
+                <!-- Fourth Row Starts -->
+                <div class="row">
+                  <div class="container">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-group clearfix">
+                        <div class="col-sm-11">
+                          <%= f.label :assessment, t('risk.assessment') %>
+                          <textarea class="form-control risk-big-input" rows="2"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-group clearfix">
+                        <div class="col-sm-11 ">
+                          <%= f.label :notes, t('risk.notes') %>
+                          <textarea class="form-control risk-big-input" rows="2"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Fourth Row Ends -->
+
+                <div class="clearfix border-divider"> </div>
+
+                <!-- Fifth Row Starts -->
+                <div class="row">
+                  <div class="container">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                      <div class="form-group clearfix">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Control Regulation</label>
+                        <div class="col-sm-8 ">
+                          <div class="risk-select">
+                            <select class="form-control">
+                              <option>ISO 27001</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                    </div>
+                  </div>
+                </div>
+                <!-- Fifth Row Ends -->
+
+             <!------End------>
+             <!----likelihood -------------->
+             <div class="row">
+                <div class="container">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="likelihood clearfix">
+                        <div class="">
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group">
+                                     <div class="col-sm-10">
+                                     <label for="exampleInputPassword1">Currently Likelihood</label>
+                                         <div class="risk-select">
+                                         <select class="form-control">
+                                          <option>ISO 27001</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                        </div>
+                            </div>
+                                  </div>
+                                  </div>
+                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group">
+                                     <div class="col-sm-10 ">
+                                     <label for="exampleInputPassword1">Current Impact</label>
+                                         <div class="risk-select">
+                                         <select class="form-control">
+                                          <option>ISO 27001</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                        </div>
+                              </div>
+                                  </div>
+                                  </div>
+
+                                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group">
+                                     <div class="col-sm-10 ">
+                                     <label for="exampleInputPassword1"> Scoring Method</label>
+                                         <div class="risk-select">
+                                         <select class="form-control">
+                                          <option>CLASSIC</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                        </div>
+                              </div>
+                                  </div>
+                                  </div>
+                                  </div>
+
+                            </div>
+                        </div>
+                     </div>
+                </div>
+             <!----Risk Assesment -------------->
+
+                        <div class="row">
+                          <div class="container">
+                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                              <a href="" class="attach-icon fleft blue_link">Attach Document</a>
+                                </div>
+                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                 <div class="btn-wrap">
+                              <a href="" class="risk-save-btn fright">save</a>
+                                <a href="" class="risk-save-btn fright">File</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+             </form>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%= f.label :subject, t('risk.subject') %>
+<%= f.text_field :subject %>
+
+<%= f.label :reference, t('risk.reference') %>
+<%= f.text_field :reference %>
+
+<%= f.label :compliance_id, t('risk.compliance') %>
+<%= f.collection_select(:compliance_id, Compliance.all, :id, :name) %>
+
+<%= f.label :control_number, t('risk.control_number') %>
+<%= f.text_field :control_number %>
+
+<%= f.label :location_id, t('risk.location') %>
+<%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}) %>
+
+<%= f.label :team_id, t('risk.team') %>
+<%= f.select :location_id, options_for_select(current_company.teams.collect{|x| [x.name, x.id.to_i]}) %>
+
+<%= f.label :technology_id, t('risk.technology') %>
+<%= f.select :location_id, options_for_select(current_company.technologies.collect{|x| [x.name, x.id.to_i]}) %>
+
+<%= f.label :location_id, t('risk.owner') %>
+<%= f.select :location_id, options_for_select(current_company.users.collect{|x| [x.user_name, x.id.to_i]}) %>
+
+<%= f.label :assessment, t('risk.assessment') %>
+<%= f.text_area :assessment %>
+
+<%= f.label :notes, t('risk.notes') %>
+<%= f.text_area :notes %>

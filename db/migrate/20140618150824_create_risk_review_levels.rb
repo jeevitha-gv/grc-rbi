@@ -8,5 +8,6 @@ class CreateRiskReviewLevels < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :risk_review_levels, :company_id
   end
 end

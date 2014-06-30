@@ -11,5 +11,10 @@ class CreateMitigations < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :mitigations, :risk_id
+    add_index :mitigations, :planning_strategy_id
+    add_index :mitigations, :mitigation_effort_id
+    add_index :mitigations, :submitted_by
   end
 end

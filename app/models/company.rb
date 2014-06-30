@@ -18,6 +18,7 @@ class Company < ActiveRecord::Base
   has_many :technologies
 
   # Associations with Risk table
+  has_many :risks
   has_many :projects
   has_many :cpp_measures
   has_one :risk_review_level

@@ -439,6 +439,7 @@ Artifact.delete_all
     Artifact.create(name: 'Collection of Evidence', compliance_library_id: '158', company_id: '1')
 
 Modular.delete_all
+<<<<<<< HEAD
         Modular.create([{model_name: 'Ability', action_name: 'index', section_id: '1'}])
     Modular.create([{model_name: 'Ability', action_name: 'update', section_id: '1'}])
     Modular.create([{model_name: 'Ability', action_name: 'delete', section_id: '1'}])
@@ -526,6 +527,129 @@ Modular.delete_all
     Modular.create([{model_name: 'User', action_name: 'index', section_id: '1'}])
     Modular.create([{model_name: 'User', action_name: 'update', section_id: '1'}])
     Modular.create([{model_name: 'User', action_name: 'delete', section_id: '1'}])
+=======
+
+    Modular.create(model_name: 'Ability', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'Ability', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'Ability', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'AdminUser', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'AdminUser', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'AdminUser', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'Answer', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'Answer', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'Answer', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'Artifact', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'Artifact', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'Artifact', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'ArtifactAnswer', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'ArtifactAnswer', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'ArtifactAnswer', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'Attachment', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'Attachment', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'Attachment', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'Audit', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'Audit', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'Audit', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'AuditCompliance', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'AuditCompliance', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'AuditCompliance', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'AuditOperationalWeightage', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'AuditOperationalWeightage', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'AuditOperationalWeightage', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'AuditStatus', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'AuditStatus', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'AuditStatus', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'AuditType', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'AuditType', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'AuditType', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'ChecklistRecommendation', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'ChecklistRecommendation', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'ChecklistRecommendation', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'Client', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'Client', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'Client', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'Comment', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'Comment', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'Comment', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'Department', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'Department', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'Department', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'Location', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'Location', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'Location', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'NcQuestion', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'NcQuestion', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'NcQuestion', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'OperationalArea', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'OperationalArea', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'OperationalArea', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'Privilege', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'Privilege', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'Privilege', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'Profile', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'Profile', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'Profile', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'QuestionOption', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'QuestionOption', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'QuestionOption', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'Reminder', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'Reminder', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'Reminder', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'ReminderAssignment', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'ReminderAssignment', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'ReminderAssignment', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'ReminderMail', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'ReminderMail', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'ReminderMail', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'Role', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'Role', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'Role', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'SkippedAuditReminder', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'SkippedAuditReminder', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'SkippedAuditReminder', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'Team', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'Team', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'Team', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'Topic', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'Topic', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'Topic', action_name: 'delete', section_id: '1')
+    Modular.create(model_name: 'User', action_name: 'index', section_id: '1')
+    Modular.create(model_name: 'User', action_name: 'update', section_id: '1')
+    Modular.create(model_name: 'User', action_name: 'delete', section_id: '1')
+
+
+CloseReason.delete_all
+    CloseReason.create(:name => "Fully Mitigated")
+    CloseReason.create(:name => "System Retired")
+    CloseReason.create(:name => "Cancelled")
+    CloseReason.create(:name => "Too Insignificant")
+
+PlanningStrategy.delete_all
+    PlanningStrategy.create(:name => "Research")
+    PlanningStrategy.create(:name => "Accept")
+    PlanningStrategy.create(:name => "Mitigate")
+    PlanningStrategy.create(:name => "Watch")
+
+RiskApprovalStatus.delete_all
+    RiskApprovalStatus.create(:name => "Not Approved")
+    RiskApprovalStatus.create(:name => "Approved")
+    RiskApprovalStatus.create(:name => "Request for Rephrase")
+
+Review.delete_all
+    Review.create(:name => "Approve Risk")
+    Review.create(:name => "Reject Risk")
+
+NextStep.delete_all
+    NextStep.create(:name => "Accept Until Next Review")
+    NextStep.create(:name => "Consider for Project")
+    NextStep.create(:name => "Submit as a Production Issue")
+
+ImplementationStatus.delete_all
+    ImplementationStatus.create(:name => "Not Implemented")
+    ImplementationStatus.create(:name => "Partially Implemented")
+    ImplementationStatus.create(:name => "Fully Implemented")
+    ImplementationStatus.create(:name => "Not Applicable")
+>>>>>>> 3e0a8523a49e3e588273133fbd6d6d50b16e6866
 
 Language.delete_all
 
@@ -779,6 +903,7 @@ Country.delete_all
         Country.create( :name => 'Yemen', :iso_two_letter_code => 'YE' )
         Country.create( :name => 'Zambia', :iso_two_letter_code => 'ZM' )
         Country.create( :name => 'Zimbabwe', :iso_two_letter_code => 'ZW')
+<<<<<<< HEAD
 CloseReason.delete_all
     CloseReason.create(:name => "Fully Mitigated")
     CloseReason.create(:name => "System Retired")
@@ -810,3 +935,6 @@ ImplementationStatus.delete_all
     ImplementationStatus.create(:name => "Partially Implemented")
     ImplementationStatus.create(:name => "Fully Implemented")
     ImplementationStatus.create(:name => "Not Applicable")
+=======
+
+>>>>>>> 3e0a8523a49e3e588273133fbd6d6d50b16e6866

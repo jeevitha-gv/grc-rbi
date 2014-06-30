@@ -1185,8 +1185,384 @@ a.plus-background{
 .ask-auditee-btn {
   margin: 0 45px 0 0;
 }
+<<<<<<< HEAD
 .auditees-users select{
   width: 88%;
   float: left;
 
 }
+=======
+
+/*Risk Style Starts here*/
+/*---------------------------Risk Pages ------------------------------*/
+.file-icon {
+  text-align: center;
+  width: 30px;
+  height: 26px;
+  background-image: url(../images/risk-menu-icons.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  margin: 0 auto;
+}
+.listing-icon {
+  text-align: center;
+  width: 30px;
+  height: 26px;
+  background-image: url(../images/risk-menu-icons.png);
+  background-repeat: no-repeat;
+  background-position: -39px 0;
+  margin: 0 auto;
+}
+.lmitigate-icon {
+  text-align: center;
+  width: 30px;
+  height: 26px;
+  background-image: url(../images/risk-menu-icons.png);
+  background-repeat: no-repeat;
+  background-position: -78px 0;
+  margin: 0 auto;
+}
+.review-icon {
+  text-align: center;
+  width: 30px;
+  height: 26px;
+  background-image: url(../images/risk-menu-icons.png);
+  background-repeat: no-repeat;
+  background-position: -120px 0;
+  margin: 0 auto;
+}
+.risk-title{
+  font-size:24px;
+  color:#434242;
+  float:left;
+  padding:20px 10px;
+}
+
+.k-filter-help-text, .k-filter-menu .k-widget {
+  margin: 0.3em 0;
+}
+/*--------------Submit Risk --------------*/
+.sub-wrap{
+  width:100%;
+  background:#FFFFFF;
+  min-height:100px;
+  box-shadow:0 0 5px #C0BFBF;
+  margin:0 0 30px 0;
+}
+.sub-titile{
+  background-color:#0085c8;
+  padding:10px 20px;
+  color:#ffffff;
+  font-size:14px;
+  margin:0 0 20px 0;
+}
+.sub-wrap .form-horizontal .control-label{
+  text-align:left;
+}
+.risk-wrap{
+  margin:0px;
+}
+.risk-select {
+  border: 1px solid #dad9d9 !important;  /*Removes border*/
+  -webkit-appearance: none;  /*Removes default chrome and safari style*/
+  -moz-appearance: none; /* Removes Default Firefox style*/
+  background: #fff url("/assets/outer/select_bg.jpg") no-repeat 100% 0px;
+  width: 100%; /*Width of select dropdown to give space for arrow image*/
+  text-indent: 0.01px; /* Removes default arrow from firefox*/
+  text-overflow: "";  /*Removes default arrow from firefox*/ /*My custom style for fonts*/
+  color: #434348;
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px #dad9d9;
+  overflow:hidden;
+}
+.risk-wrap label {
+  color: #4A4848;
+  font-size: 13px;
+  font-weight: normal;
+  margin-top: 5px;
+  font-family: 'Open Sans', sans-serif;
+}
+.risk-select select{
+  width:115%;
+  padding: 5px;
+  background: none repeat scroll 0 0 transparent;
+  border:none;
+  height:32px;
+}
+.risk-wrap .risk-normal-input {
+  border-radius: 5px;
+  border: 1px solid #dad9d9;
+  -moz-box-shadow: inset 0 0 5px #dad9d9;
+  -webkit-box-shadow: inset 0 0 5px #dad9d9;
+  box-shadow: inset 0 0 5px #dad9d9;
+  padding: 5px 5px;
+  width: 100%;
+  height: 35px;
+}
+.likelihood{
+  border:1px solid #dddfe1;
+  border-radius:2px;
+  background:#f3f5f7;
+  max-width:1100px;
+  margin:0 0 20px 0;
+  padding:5px 0;
+}
+.risk-big-input {
+  border-radius: 5px;
+  border: 1px solid #dad9d9;
+  -moz-box-shadow: inset 0 0 5px #dad9d9;
+  -webkit-box-shadow: inset 0 0 5px #dad9d9;
+  box-shadow: inset 0 0 5px #dad9d9;
+  padding: 5px 5px;
+  width: 100%;
+  height: 80px;
+}
+.risk-save-btn {
+  background:#fe9537;
+  text-shadow: 1px 1px 1px #fc4e02;
+  padding:5px 10px;
+  color:#ffffff;
+  text-decoration:none;
+  margin:20px 0 20px 10px;
+  border-radius:4px;
+  min-width:50px;
+  text-align:center;
+}
+.btn-wrap{
+  margin-right:50px;
+}
+/*--------mitigation box-----------------*/
+.mitigation-box-wrap{
+  margin:20px 0;
+}
+.mitigate-box{
+  background:#ffffff;
+  height:60px;
+  box-shadow:1px 0 5px #949494;
+  vertical-align:middle;
+  display:table-cell;
+  min-width:170px;
+}
+.mitigation-sub{
+  background:#ffffff;
+  height:60px;
+  box-shadow:1px 0 5px #949494;
+  vertical-align:middle;
+  display:table-cell;
+  width:100%;
+  min-width:563px;
+}
+.mitigation-status{
+  background:#ffffff;
+  height:60px;
+  box-shadow:1px 0 5px #949494;
+  vertical-align:middle;
+  display:table-cell;
+  width:100%;
+  min-width:272px;
+}
+.mitigation-recomm{
+  background:#ffffff;
+  box-shadow:1px 0 5px #949494;
+  vertical-align:middle;
+  display:table-cell;
+  width:100%;
+  margin:10px 0 10px 0;
+}
+.risk-assetes{
+  margin:0px 0 10px 0;
+}
+.mitigation-percive{
+  background:#FFF!important;
+  box-shadow:1px 0 5px #949494;
+  width:100%;
+  margin:10px 0;
+  display:block;
+}
+.mit-plan-effort{
+  margin:20px 0 0 0;
+}
+.mit-reccom-title{
+  background:#0085c8;
+  padding:10px 10px 10px 10px;
+  color:#FFF;
+  font-weight:700;
+}
+.mitigation-recomm p {
+  padding:10px;
+  font-size:13px;
+}
+.red-box{
+  background:#f71919;
+  min-height:60px;
+  box-shadow:1px 0 5px #949494;
+  float:left;
+  width:82px;
+  vertical-align:middle;
+  display:table-cell;
+  text-align:center;
+  margin-right:20px;
+}
+.box-id{
+  margin-left:100px;
+}
+.risk-box-text{
+  font-size:16px;
+  padding:0 10px 0 5px;
+  display:inline-block;
+}
+.risk-box-lable{
+  font-size:16px;
+  font-weight:bold;
+  padding:0 0 0 20px;
+  float:left;
+  color:#545454;
+  display:inline-block;
+}
+.red-box .number{
+  font-size:28px;
+  color:#FFF;
+  font-weight:bold;
+  line-height:36px;
+}
+.red-box .text{
+  font-size:14px;
+  color:#FFF;
+}
+.table-bg{
+  background:#FFF;
+  border:1px solid #ddd;
+  box-shadow:1px 0 5px #949494;
+}
+.risk-able-th{
+background:#0085c8 !important;
+color:#FFF;
+}
+.risk-wrap .form-horizontal .control-label{
+  text-align:left;
+}
+.mit-reccom-title-sp{
+  background:#0085c8;
+  padding:10px 10px 10px 10px;
+  color:#FFF;
+  font-weight:700;
+  margin:0 0 20px 0px;
+}
+.btn-group{
+  margin: 0 0 30px 0;
+  float:right;
+}
+.btn-group a{
+  margin:0 10px 0 0;
+}
+.mgt-text{
+  font-size:13px;
+  padding:7px 0 0 0;
+}
+.mgt-label{
+  font-weight:600!important;
+  color:#4a4848;
+  padding:0px;
+}
+.text-area{
+
+margin-bottom:20px !important;
+
+}
+.table-bg label{
+  font-weight:600;
+}
+.table-bg label, span{
+  font-size:13px;
+  color:#4a4848;
+}
+.search-box{
+  margin:0 0px 0 0;
+  padding:10px;
+  background:#ededed;
+  border:1px solid #dadbdc;
+  border-bottom:none;
+  min-height:50px;
+}
+.search-box input{
+  font-size:14px;
+  color:#7A7878;
+  font-weight:normal;
+  margin:0 20px 0 0;
+  padding:5px;
+  border-radius:4px;
+  border:1px solid #ddd;
+  position:relative;
+  min-width:250px;
+}
+#frmSearch{
+  position:relative;
+  width:250px;
+  float:right;
+}
+.search-box button{
+  position:absolute;
+   background: none repeat scroll 0 0 #fff;
+    border: medium none;
+    min-height: 17px;
+    padding: 5px;
+    position: absolute;
+    right: 11px;
+    top: 1px;
+}
+.search-box .btn-search{
+  background:url(../images/search-icons.png) no-repeat;
+  width:20px;
+  height:20px;
+  display:block;
+  background-color:transparent;
+}
+.page-wrap{
+  min-height:100%;
+  position:relative;
+}
+html,body{
+  height:100%;
+}
+.footer{
+  left:0;
+  bottom:0;
+  width:100%;
+}
+.box-wrapper{
+  margin:0 0 150px 0;
+}
+
+.download-icons{
+  background:url("/assets/outer/download-icons.png") no-repeat;
+  width:25px;
+  height:22px;
+  display:block;
+  background-color:transparent;
+  display:inline-block;
+  float:left;
+  margin:0 10px 0 0;
+
+}
+.import-btn{
+  background:#fe9537;
+  border:1px solid #dc771d;
+  padding:8px 8px;
+  border-radius:6px;
+  width:150px;
+  float:right;
+  margin:15px 17px 10px 0;
+  color:#ffffff;
+  text-shadow: 1px 0px 0px #ac5405;
+  font-size:14px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.import-btn:hover{
+  color:#FFF;
+}
+.gr-btn{
+  padding:0 -10px 0 0;
+}
+
+>>>>>>> 3e0a8523a49e3e588273133fbd6d6d50b16e6866

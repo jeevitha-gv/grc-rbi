@@ -9,5 +9,9 @@ class CreateClosures < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :closures, :risk_id
+    add_index :closures, :user_id
+    add_index :closures, :close_reason_id
   end
 end
