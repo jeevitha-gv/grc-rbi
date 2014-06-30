@@ -39,7 +39,6 @@ class User < ActiveRecord::Base
    validates :full_name, length: { maximum: 50 }, :if => Proc.new{|f| !f.full_name.blank? }
    validates :user_name, presence: true, :if => Proc.new{|f| f.user_name.blank? }
    validates :user_name, uniqueness: true, :if => Proc.new{|f| !f.user_name.blank? }
-   validates_format_of :user_name, :with =>/\A(?=.*[a-z])[a-z\d]+\Z/, :if => Proc.new{|f| !f.user_name.blank? }
    validates :user_name, length: { maximum: 52 }, :if => Proc.new{|f| !f.user_name.blank? }
    validates :email, presence: true
    validates :email, uniqueness: true, :if => Proc.new{|f| !f.email.blank? }
@@ -49,7 +48,7 @@ class User < ActiveRecord::Base
    # validates :password, presence: true, :if => Proc.new{ |f| (f.password.blank?) }
    validates :password, confirmation: true
    validates :password, length: {in: 6..20}, :unless => lambda{ |a| a.password.blank? }
-  # validates :user_name, :full_name , presence: true, uniqueness: true
+  validate :user_name_without_spaces
 
   delegate :title, to: :dealer, prefix: true
   delegate :title, to: :role, prefix: true, allow_nil: true
@@ -91,7 +90,7 @@ class User < ActiveRecord::Base
     audits = []
     case params[:stage]
     when 'do'
-      self.accessible_audits.select{ |x| audits << x if(x.checklist_recommendations.blank?) }
+      self.accessible_audits.select{ |x| audits << x if(x.checklist_recommendations.blank? && ( x.audit_status_id == 2 || x.audit_status_id == 3 )) }
       audits
     when 'check'
       self.accessible_audits.select{ |x| audits << x if(x.checklist_recommendations.present? && !x.recommendation_status) }
@@ -129,5 +128,11 @@ class User < ActiveRecord::Base
       else
         where(conditions).first
       end
+    end
+
+  private
+    def user_name_without_spaces
+      username_match = self.user_name.match(/[\s+\d+]/) ? true : false
+      errors.add(:user_name) if username_match == true
     end
 end

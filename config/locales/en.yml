@@ -45,7 +45,7 @@ en:
                 other: "Full name should contain minimum of 8 char"
             user_name:
               blank: "User Name can't be blank"
-              invalid: "User Name should be AlphaNumeric"
+              invalid: "User Name should contain only alphabets"
               too_short:
                 other: "User Name should contain minimum of 8 char"
               too_long:
@@ -179,7 +179,7 @@ en:
           attributes:
             name:
               blank: "Location name can't be blank"
-              invalid: "Location name should contain alphanumeric"
+              invalid: "Location name should contain alphabets."
               taken: "Location name has been already used"
               too_short:
                 other: "Location should contain minimum of 7 char"
@@ -348,6 +348,7 @@ en:
     city: "City"
     state: "State"
     country: "Country"
+    role: "Role"
 
 
   priorities:

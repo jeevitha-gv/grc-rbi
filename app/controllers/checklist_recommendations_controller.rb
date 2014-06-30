@@ -85,7 +85,7 @@ class ChecklistRecommendationsController < ApplicationController
 				@checklist_recommendation.remark.update(comment: params[:checklist_recommendation][:remarks])
 			end
 		end
-		ReminderMailer.delay.notify_auditee_about_observations(@checklist_recommendation)
+		@pending_observation = @audit.checklist_recommendations.collect {|x| x.is_published}.include?(nil)
 		respond_to :js
 	end
 
@@ -99,7 +99,6 @@ class ChecklistRecommendationsController < ApplicationController
 		@checklist_recommendation.response_completed = true
 		@checklist_recommendation.is_checklist_new = true
 		@checklist_recommendation.update(checklist_params)
-		ReminderMailer.delay.notify_auditor_about_responses(@checklist_recommendation)
 		respond_to :js
 	end
 

@@ -166,6 +166,75 @@
 		}
 
 
+	function status_update_all()
+	{
+		var grid = $("#gridforall").data("kendoGrid");
+		addGridAtiveClass(grid)
+    gridTitle()
+  }
+
+  function status_update_plan()
+	{
+		var grid = $("#gridforplan").data("kendoGrid");
+		addGridAtiveClass(grid)
+    gridTitle()
+  }
+
+  function status_update_progress()
+	{
+		var grid = $("#gridforprogress").data("kendoGrid");
+		addGridAtiveClass(grid)
+    gridTitle()
+  }
+
+  function status_update_publish()
+	{
+		var grid = $("#gridforpublish").data("kendoGrid");
+		addGridAtiveClass(grid)
+    gridTitle()
+  }
+
+  function addGridAtiveClass(grid)
+  {
+	  var gridData = grid.dataSource.view();
+	  for (var i = 0; i < gridData.length; i++) {
+	    var currentUid = gridData[i].uid;
+	    var currenRow = grid.table.find("tr[data-uid='" + currentUid + "']");
+	    currenStatus = gridData[i].audit_status
+	    if (currenStatus == "Initiated")
+	    {
+	    	var test_row = $(currenRow).find(".k-grid-Set")
+	    	$(test_row).addClass('active')
+	    }
+	    if (currenStatus == "In Progress")
+	    {
+	    	var test_row = $(currenRow).find(".k-grid-Set, .k-grid-tick, .k-grid-tick1")
+	    	$(test_row).addClass('active')
+	  	}
+	  	else if (currenStatus == "Published")
+	  	{
+	  		var test_row = $(currenRow).find(".k-grid-Set, .k-grid-tick, .k-grid-tick1, .k-grid-book")
+	  		$(test_row).addClass('active')
+	  	}
+	  	if (currenStatus == "Planning")
+	    {
+	    	var test_row = $(currenRow).find(".k-grid-Set, .k-grid-tick, .k-grid-tick1, .k-grid-book, .k-grid-graph")
+	    	$(test_row).hide()
+	    }
+	  }
+	}
+
+  function gridTitle()
+  {
+  	$('.k-grid-Set').attr('title','Do');
+    $('.k-grid-tick').attr('title','Check');
+    $('.k-grid-tick1').attr('title','Act');
+    $('.k-grid-book').attr('title','Publish');
+    $('.k-grid-pdf').attr('title','PDF');
+    $('.k-grid-edit').attr('title','Edit');
+    $('.k-grid-graph').attr('title','Dashboard');
+  }
+
 	$(document).ready(function(){
 
 	Top_postion = $(window).scrollTop();
@@ -209,7 +278,8 @@
 						client: { type: "string" },
 						audit_type: { type: "string" },
 						compliance_type: { type: "string" },
-						auditor: {type: "string"}
+						auditor: {type: "string"},
+						audit_status: {type: "string"}
 					}
 				}
 			}
@@ -221,6 +291,7 @@
 				dataBound: function(){
 					var selected_stage = select_stage_class(stage)
 					$('.'+selected_stage).addClass('active');
+					gridTitle()
 			},
 			height: 'auto',
 			scrollable: true,
@@ -245,6 +316,9 @@
 		// Kendo Grid for all
 		$("#gridforall").kendoGrid({
 			dataSource: dataSource,
+				dataBound: function(){
+					status_update_all()
+				},
 			height: 'auto',
 			scrollable: true,
 			sortable: true,
@@ -295,6 +369,9 @@
 		//grid for planned
 		$("#gridforplan").kendoGrid({
 			dataSource: dataSourceplan,
+			dataBound: function(){
+				status_update_plan()
+			},
 			height: 'auto',
 			scrollable: true,
 			sortable: true,
@@ -346,6 +423,9 @@
 		//grid for InProgress
 		$("#gridforprogress").kendoGrid({
 			dataSource: dataSourceprogress,
+			dataBound: function(){
+				status_update_progress()
+			},
 			height: 'auto',
 			scrollable: true,
 			sortable: true,
@@ -396,6 +476,9 @@
 		//grid for published
 		$("#gridforpublish").kendoGrid({
 			dataSource: dataSourcepublish,
+			dataBound: function(){
+				status_update_publish()
+			},
 			height: 'auto',
 			scrollable: true,
 			sortable: true,

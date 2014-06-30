@@ -9,6 +9,7 @@ class AuditCompliance < ActiveRecord::Base
 
 	has_one :checklist_recommendation, as: :checklist , :dependent => :destroy
 
+  delegate :level, to: :score, prefix: true, allow_nil: true
   delegate :name, to: :compliance_library, prefix: true, allow_nil: true
 
 end

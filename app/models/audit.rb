@@ -8,6 +8,7 @@ class Audit < ActiveRecord::Base
   belongs_to :audit_status
   belongs_to :audit_type
   belongs_to :compliance, foreign_key: 'standard_id'
+  belongs_to :company
   has_many :nc_questions, :dependent => :destroy
   has_many :answers, through: :nc_questions
   has_many :default_compliance_libraries, -> { where(is_leaf: true) }, through: :compliance, source: :compliance_library
@@ -164,7 +165,7 @@ class Audit < ActiveRecord::Base
       end
 
       #  Sum of scores of each control
-      total_score = v.sum{|x| x.score.level}
+      total_score = v.sum{|x| x.score_level.to_i}
       over_all_total_score += total_score
 
       # Weightage
@@ -288,7 +289,7 @@ class Audit < ActiveRecord::Base
   end
 
   def set_audit_status(audit, commit_name)
-    audit.audit_status_id = (commit_name == "Save as Plan" ?  AuditStatus.for_name("Planning").id : AuditStatus.for_name("In Progress").id)
+    audit.audit_status_id = ((commit_name == "Save as Plan") ?  AuditStatus.for_name("Planning").id : AuditStatus.for_name("In Progress").id)
     return audit
   end
 

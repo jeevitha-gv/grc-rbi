@@ -100,6 +100,8 @@ $(document).ready(function(){
 //~ $("#submit_questions").click(function(){
 function question_submit()
 {
+  $('.ajax-loader-question').show()
+  $('.overlay-loader').show()
   selected = []
   $('#test-check input:checked').each(function() {
     selected.push($(this).attr('value'));

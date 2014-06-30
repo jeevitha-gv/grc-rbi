@@ -7,17 +7,23 @@
   <%= f.fields_for :nc_questions do |builder| %>
     <%#= f.hidden_field :audit_id, value: audit.id %>
     <%#= f.hidden_field :company_id, value: current_company.id %>
+      <div class="overlay-loader">
+    <div class="ajax-loader-question" style="display:none;">
+      <%= image_tag("/assets/outer/loader-icon.gif", :alt => "ajax-loader") %>
+    </div>
+  </div>
   	<%= render 'nc_question_fields', audit: audit, f: builder %>
+
   <% end %>
   <div id="questions_libraries"></div>
 	<div class="form-group clearfix addissue">
-    	<%= link_to_add_nc_question_fields "Add New Request", f, :nc_questions, audit %>
-    </div>
+  	<%= link_to_add_nc_question_fields "Add New Request", f, :nc_questions, audit %>
+  </div>
 
-    <div class="fright clearfix ask-auditee-btn">
-    	<a class="black_btn" href="javascript:goBack()">Back</a>
-      <%= f.submit "Ask Auditee", :class => "orange_btn" %><br /><br />
-    </div>
+  <div class="fright clearfix ask-auditee-btn">
+  	<a class="black_btn" href="javascript:goBack()">Back</a>
+    <%= f.submit "Ask Auditee", :class => "orange_btn" %><br /><br />
+  </div>
 <% end %>
 <div class="clearfix"></div>
   <div class="form-group clearfix addissue"><a class="plus-icon" data-toggle="modal" href="#add_url">Add Request from Library</a><br><br>
