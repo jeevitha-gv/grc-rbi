@@ -3,6 +3,7 @@ class Department < ActiveRecord::Base
   has_many :audits
   has_many :teams, :dependent => :destroy
   belongs_to :location
+  has_many :risks
 
   # validations
   validates :name, presence:true
