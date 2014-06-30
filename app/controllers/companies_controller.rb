@@ -38,7 +38,8 @@ class CompaniesController < ApplicationController
           redirect_to payment.redirect_uri
       end
     else
-      render 'new'
+      @subscription=params
+      render 'new' 
     end
   end
 
