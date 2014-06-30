@@ -903,7 +903,6 @@ Country.delete_all
         Country.create( :name => 'Yemen', :iso_two_letter_code => 'YE' )
         Country.create( :name => 'Zambia', :iso_two_letter_code => 'ZM' )
         Country.create( :name => 'Zimbabwe', :iso_two_letter_code => 'ZW')
-<<<<<<< HEAD
 CloseReason.delete_all
     CloseReason.create(:name => "Fully Mitigated")
     CloseReason.create(:name => "System Retired")
@@ -935,6 +934,4 @@ ImplementationStatus.delete_all
     ImplementationStatus.create(:name => "Partially Implemented")
     ImplementationStatus.create(:name => "Fully Implemented")
     ImplementationStatus.create(:name => "Not Applicable")
-=======
 
->>>>>>> 3e0a8523a49e3e588273133fbd6d6d50b16e6866
