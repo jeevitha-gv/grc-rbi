@@ -11,14 +11,28 @@ module ActiveAdmin::ViewsHelper #camelized file name
       return ''
     end
   end
-  
+
   def add_sub_menu(action_path)
     if ["clients","locations", "departments", "teams","roles","users","settings"].include?(action_path)
       'overview'
     elsif ["operational_areas","artifacts", "reminders"].include?(action_path)
       'audit'
     elsif ["controls","procedures", "processes"].include?(action_path)
-     'risk' 
+     'risk'
+    else
+      ''
+    end
+  end
+
+  def super_admin_sub_menu(action)
+    if ["dashboard","companies","languages"].include?(action)
+      'overview'
+    elsif ["compliances","modulars", "priorities","question_types","sections","topics","scores","compliance_libraries"].include?(action)
+      'audit'
+    elsif ["planning_strategies","reviews", "next_steps","risk_approval_statuses","implementation_statuses","close_reasons"].include?(action)
+     'risk'
+    elsif action == ""
+      'overview'
     else
       ''
     end
