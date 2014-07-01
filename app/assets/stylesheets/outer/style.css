@@ -45,7 +45,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0!important;
-  position:inherit;
+  	position:inherit;
 
 }
 .user_login {
@@ -1363,7 +1363,7 @@ a.plus-background{
   background:#ffffff;
   box-shadow:1px 0 5px #949494;
   vertical-align:middle;
-  display:table-cell;
+  /*display:table-cell;*/
   width:100%;
   margin:10px 0 10px 0;
 }
@@ -1561,4 +1561,8 @@ html,body{
 }
 .gr-btn{
   padding:0 -10px 0 0;
+}
+.orange-method{
+	color:#d47d01;
+	font-style:italic;
 }
