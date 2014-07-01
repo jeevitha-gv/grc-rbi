@@ -11,6 +11,8 @@ class Risk < ActiveRecord::Base
 	belongs_to :location
 	belongs_to :company
 	belongs_to :risk_owner, class_name: 'User', foreign_key: 'owner'
+	belongs_to :risk_mitigator, class_name: 'User', foreign_key: 'mitigator'
+	belongs_to :risk_reviewer, class_name: 'User', foreign_key: 'reviewer'
 	belongs_to :risk_category, class_name: 'RiskCategory', foreign_key: 'category_id'
 	belongs_to :team
 	belongs_to :department
@@ -26,10 +28,10 @@ class Risk < ActiveRecord::Base
 	delegate :scoring_type, :to => :risk_scoring, prefix: true, allow_nil: true
 	delegate :calculated_risk, :to => :risk_scoring, prefix: true, allow_nil: true
 	delegate :custom_value, :to => :risk_scoring, prefix: true, allow_nil: true
-	
+
 	accepts_nested_attributes_for :mitigation
   accepts_nested_attributes_for :control_measures
-	
+
 	def self.risk_rating(company_id)
 		high_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'HIGH',company_id).first
 		medium_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'MEDIUM',company_id).first
