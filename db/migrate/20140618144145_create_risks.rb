@@ -14,6 +14,8 @@ class CreateRisks < ActiveRecord::Migration
       t.integer :team_id
       t.integer :technology_id
       t.integer :owner
+      t.integer :mitigator
+      t.integer :reviewer
       t.date :review_date
       t.integer :project_id
       t.integer :submitted_by
@@ -33,6 +35,8 @@ class CreateRisks < ActiveRecord::Migration
     add_index :risks, :team_id
     add_index :risks, :technology_id
     add_index :risks, :owner
+    add_index :risks, :mitigator
+    add_index :risks, :reviewer
     add_index :risks, :project_id
     add_index :risks, :submitted_by
     add_index :risks, :risk_approval_status_id

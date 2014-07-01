@@ -59,8 +59,32 @@
 <div class="sub_menu">
   <!-- Fixed navbar -->
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
-    <div class="container" id="header_links">
-      
+    <div class="container">
+      <ul class="subbar-nav nav navbar-nav">
+        <li><a href="/admin/clients" class="<%= request.fullpath.include?("admin/clients") == true ? 'active' : '' %>">
+          Clients</a></li>
+	  <li><a href="/admin/locations" class="<%= request.fullpath.include?("admin/locations") == true ? 'active' : '' %>">
+          Locations</a></li>
+        <li><a href="/admin/departments" class="<%= request.fullpath.include?("admin/departments") == true ? 'active' : '' %>">
+          Departments</a></li>
+        <li><a href="/admin/roles" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
+          Roles</a></li>
+        <li><a href="/admin/settings" class="<%= request.fullpath.include?("admin/settings") == true ? 'active' : '' %>">
+          Settings</a></li>
+        <li><a href="/admin/teams" class="<%= request.fullpath.include?("admin/teams") == true ? 'active' : '' %>">
+          Teams</a></li>
+        <li><a href="/admin/users" class="<%= request.fullpath.include?("admin/users") == true ? 'active' : '' %>">
+          Users</a></li>
+        <li><a href="/admin/operational_areas" class="<%= request.fullpath.include?("/admin/operational_areas") == true ? 'active' : '' %>">
+          Weightage</a></li>
+        <li><a href="/admin/artifacts" class="<%= request.fullpath.include?("/admin/artifacts") == true ? 'active' : '' %>">
+          Artifacts</a></li>
+        <li><a href="/admin/reminders" class="<%= request.fullpath.include?("/admin/reminders") == true ? 'active' : '' %>">
+          Reminder</a></li>
+          <li><a href="/admin/plans" class="<%= request.fullpath.include?("/admin/plans") == true ? 'active' : '' %>">
+          Plan</a></li>
+      </ul>
+    <div class="container" id="header_links">      
     </div>
   </div>
 </div>

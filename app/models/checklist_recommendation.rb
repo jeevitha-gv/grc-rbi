@@ -62,11 +62,24 @@ class ChecklistRecommendation < ActiveRecord::Base
 		return checklist_params
 	end
 
- after_create :notify_auditee_about_recommendation
-
+  after_create :notify_auditee_about_recommendation
+  after_update :notify_if_recommendation_changed
 
   def notify_auditee_about_recommendation
-    ReminderMailer.delay.notify_auditee_about_recommendations(self)
+    ReminderMailer.delay.notify_auditee_about_recommendations(self, action="created")
+  end
+
+  def notify_if_recommendation_changed
+    recommendation = (self.recommendation_changed? || self.reason_changed? || self.closure_date_changed? || self.recommendation_priority_id_changed? || self.recommendation_severity_id_changed? || self.recommendation_status_id_changed?)
+    ReminderMailer.delay.notify_auditee_about_recommendations(self, action="updated") if recommendation
+
+    response = (self.corrective_changed? || self.response_status_id_changed? || self.preventive_changed? || self.response_priority_id_changed? || self.dependent_recommendation_changed? || self.blocking_recommendation_changed? || self.response_severity_id_changed?)
+    checklist_created = self.response_completed_changed? ? "created" : "updated"
+    ReminderMailer.delay.notify_auditor_about_responses(self, checklist_created) if response
+
+    publish = (self.observation_changed? || self.is_implemented_changed?)
+    published = self.is_published_changed? ? "created" : "updated"
+    ReminderMailer.delay.notify_auditee_about_observations(self, published) if publish
   end
 
   def response_attachments
