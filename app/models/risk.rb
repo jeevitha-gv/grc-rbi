@@ -21,11 +21,17 @@ class Risk < ActiveRecord::Base
 	belongs_to :project
 	belongs_to :risk_approval_status, foreign_key: 'risk_approval_status_id'
 
-	delegate :name, :to => :risk_status, prefix: true, allow_nil: true
-	delegate :user_name, :to => :risk_owner, prefix: true, allow_nil: true
-	delegate :scoring_type, :to => :risk_scoring, prefix: true, allow_nil: true
-	delegate :calculated_risk, :to => :risk_scoring, prefix: true, allow_nil: true
-	delegate :custom_value, :to => :risk_scoring, prefix: true, allow_nil: true
+	delegate :name, to: :risk_status, prefix: true, allow_nil: true
+	delegate :user_name, to: :risk_owner, prefix: true, allow_nil: true
+	delegate :scoring_type, to: :risk_scoring, prefix: true, allow_nil: true
+	delegate :calculated_risk, to: :risk_scoring, prefix: true, allow_nil: true
+	delegate :custom_value, to: :risk_scoring, prefix: true, allow_nil: true
+	delegate :name, to: :location, prefix: true, allow_nil: true
+	delegate :name, to: :team, prefix: true, allow_nil: true
+	delegate :name, to: :compliance, prefix: true, allow_nil: true
+	delegate :name, to: :risk_category, prefix: true, allow_nil: true
+	delegate :name, to: :technology, prefix: true, allow_nil: true
+
 	
 	accepts_nested_attributes_for :mitigation
   accepts_nested_attributes_for :control_measures
