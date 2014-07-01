@@ -124,6 +124,8 @@ Rails.application.routes.draw do
   end
 
 
+  resources :mitigations
+
   get 'welcome', to: 'companies#welcome', :as => :welcome
 
   # You can have the root of your site routed with "root"

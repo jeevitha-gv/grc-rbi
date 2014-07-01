@@ -819,6 +819,33 @@ RiskStatus.delete_all
     RiskStatus.create(:name => "Mitigated")
     RiskStatus.create(:name => "Measured")
     RiskStatus.create(:name => "Reviewed")
+    
+ClassicScoringMetric.delete_all
+
+    ClassicScoringMetric.create(:name => "Remote", :value => "1", :metric_type => "Likelihood" )
+    ClassicScoringMetric.create(:name => "Unlikely", :value => "2", :metric_type => "Likelihood" )
+    ClassicScoringMetric.create(:name => "Credible", :value => "3", :metric_type => "Likelihood" )
+    ClassicScoringMetric.create(:name => "Likely", :value => "4", :metric_type => "Likelihood" )
+    ClassicScoringMetric.create(:name => "AlmostCertain", :value => "5", :metric_type => "Likelihood" )
+
+    ClassicScoringMetric.create(:name => "Insignificant", :value => "1", :metric_type => "Impact" )
+    ClassicScoringMetric.create(:name => "Minor", :value => "2", :metric_type => "Impact" )
+    ClassicScoringMetric.create(:name => "Moderate", :value => "3", :metric_type => "Impact" )
+    ClassicScoringMetric.create(:name => "Major", :value => "4", :metric_type => "Impact" )
+    ClassicScoringMetric.create(:name => "Extreme/Catastrophic", :value => "5", :metric_type => "Impact" )
+
+    ClassicScoringMetric.create(:name => "VeryLow", :value => "1", :metric_type => "Vulnerability" )
+    ClassicScoringMetric.create(:name => "Low", :value => "2", :metric_type => "Vulnerability" )
+    ClassicScoringMetric.create(:name => "Medium", :value => "3", :metric_type => "Vulnerability" )
+    ClassicScoringMetric.create(:name => "High", :value => "4", :metric_type => "Vulnerability" )
+    ClassicScoringMetric.create(:name => "VeryHigh", :value => "5", :metric_type => "Vulnerability" )
+
+    ClassicScoringMetric.create(:name => "VeryLow", :value => "1", :metric_type => "Velocity" )
+    ClassicScoringMetric.create(:name => "Low", :value => "2", :metric_type => "Velocity" )
+    ClassicScoringMetric.create(:name => "Medium", :value => "3", :metric_type => "Velocity" )
+    ClassicScoringMetric.create(:name => "High", :value => "4", :metric_type => "Velocity" )
+    ClassicScoringMetric.create(:name => "VeryHigh", :value => "5", :metric_type => "Velocity" )
+
 
 CvssMetricScoring.delete_all
 

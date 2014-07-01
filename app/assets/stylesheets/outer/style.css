@@ -1625,6 +1625,12 @@ html,body{
   color:#066666;
   text-shadow: 1px 0px 0px #ffffff;
 }
+.likelihood .form-group label{
+  font-weight: 400!important;
+  font-size: 14px;
+  color:#333333!important;
+}
+
 
 .form-group {
     margin-bottom: 15px;
