@@ -408,7 +408,7 @@ en:
     subject: "Subject"
     reference: "Ref. ID"
     compliance: "Compliance"
-    control_number: "Control No"
+    control_number: "Control"
     location: "Location"
     department: "Department"
     team: "Team"
@@ -417,5 +417,12 @@ en:
     assessment: "Risk Description"
     notes: "Additional Notes"
     category: "Category"
+
+  dread:
+    damage_potential: "Damage Potential"
+    reproductibility: "Reproductibility"
+    exploitability: "Exploitability"
+    affected_users: "Affected Users"
+    discoverability: "Discoverability"
 
 
