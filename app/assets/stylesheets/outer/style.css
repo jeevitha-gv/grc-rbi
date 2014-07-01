@@ -45,12 +45,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0!important;
-<<<<<<< HEAD
-  	position:inherit;
-=======
   position:inherit!important;
->>>>>>> ce7a6ab005952571b2554b18e4bcd226fbc7cfa4
-
 }
 .user_login {
 	color: #717171;
@@ -1630,10 +1625,7 @@ html,body{
   color:#066666;
   text-shadow: 1px 0px 0px #ffffff;
 }
-<<<<<<< HEAD
 .orange-method{
 	color:#d47d01;
 	font-style:italic;
 }
-=======
->>>>>>> ce7a6ab005952571b2554b18e4bcd226fbc7cfa4

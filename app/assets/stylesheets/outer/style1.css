@@ -395,7 +395,6 @@ div.k-grid-header .k-header, .k-grid td {
 }
 .k-grid-graph:hover,.k-grid-graph.active{
 	background-position: 0 -20px;border: medium none; background-color: transparent;
-<<<<<<< HEAD
 }
 .addissue{
 	padding: 10px 0 0 157px;
@@ -424,7 +423,6 @@ a.plus-background {
 	left: 0;
 	top:0;
 	display: none;
-=======
 }
 #GridID .k-grid-header-wrap > table, status{
 	background:#FC060A;
@@ -449,5 +447,4 @@ a.plus-background {
 }
 .k-grid td #Status{
 	background:#E80307;
->>>>>>> ce7a6ab005952571b2554b18e4bcd226fbc7cfa4
 }

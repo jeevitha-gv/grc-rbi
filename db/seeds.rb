@@ -811,9 +811,6 @@ Country.delete_all
         Country.create( :name => 'Western Sahara', :iso_two_letter_code => 'EH' )
         Country.create( :name => 'Yemen', :iso_two_letter_code => 'YE' )
         Country.create( :name => 'Zambia', :iso_two_letter_code => 'ZM' )
-<<<<<<< HEAD
-        Country.create( :name => 'Zimbabwe', :iso_two_letter_code => 'ZW')
-=======
         Country.create( :name => 'Zimbabwe', :iso_two_letter_code => 'ZW')
 
 RiskStatus.delete_all
@@ -830,4 +827,3 @@ ScoringType.delete_all
     ScoringType.create(:name => "DREAD")
     ScoringType.create(:name => "OWASP")
     ScoringType.create(:name => "Custom")
->>>>>>> ce7a6ab005952571b2554b18e4bcd226fbc7cfa4
