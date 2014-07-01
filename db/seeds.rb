@@ -814,3 +814,9 @@ Country.delete_all
         Country.create( :name => 'Zambia', :iso_two_letter_code => 'ZM' )
         Country.create( :name => 'Zimbabwe', :iso_two_letter_code => 'ZW')
 
+RiskStatus.delete_all
+
+    RiskStatus.create(:name => "Initiated")
+    RiskStatus.create(:name => "Mitigated")
+    RiskStatus.create(:name => "Measured")
+    RiskStatus.create(:name => "Reviewed")
