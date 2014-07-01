@@ -684,6 +684,8 @@ html, body {
 }
 .user_login > img {
     float: left;
+    height: 24px;
+    width: 24px;
 }
 #login_drop {
     padding: 35px 0 0;

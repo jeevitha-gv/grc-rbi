@@ -11,6 +11,9 @@ ActiveAdmin.register Department do
 
  #authentication
   controller do
+    #publicactivity gem
+    include PublicActivity::StoreController
+
     before_filter :check_company_admin, :check_role
     before_filter :check_subdomain
      def scoped_collection
@@ -38,6 +41,10 @@ ActiveAdmin.register Department do
     selectable_column
     column :name
     actions
+  end
+
+  show do
+    attributes_table :name, :location
   end
 
   form do |f|

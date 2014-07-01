@@ -115,7 +115,7 @@ $(function () {
                     type: 'pie'
                 },
                 title: {
-                    text: 'Aduit Status'
+                    text: 'Audit Status'
                 },
                 subtitle: {
                     text: ''
