@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :risks do
     collection do
       get 'compliance_libraries'
+      get 'department_teams_users'
     end
     resources :mgmt_reviews
   end
@@ -112,9 +113,9 @@ Rails.application.routes.draw do
   resources :audit_compliances do
     post 'submit', on: :collection
   end
-  
+
   resources :plans
-  
+
     resources :payments, only: [:show, :create, :destroy] do
     collection do
       get :success

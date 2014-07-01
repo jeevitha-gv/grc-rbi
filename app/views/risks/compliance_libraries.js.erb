@@ -1,5 +1,5 @@
 <% if params[:compliance_id].present? %>
-  <% select = select_tag(:compliance_library_id, options_for_select(@compliance_libraries.collect{|x| [x.name, x.id]}), {:include_blank => 'Please Select',:id => "department_id", :onChange => "get_teams(this);"}) -%>
+  <% select = select_tag(:compliance_library_id, options_for_select(@compliance_libraries.collect{|x| [x.name, x.id]}), {:include_blank => 'Please Select', :id=>"risk_compliance_library_id"}) -%>
   $('#risk_compliance_library_id').replaceWith('<%= escape_javascript(select) %>');
   $('.ajax-loader').hide();
 <% end %>

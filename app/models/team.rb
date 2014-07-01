@@ -6,6 +6,7 @@ class Team < ActiveRecord::Base
   has_many :audits
   belongs_to :company
   belongs_to :department
+  belongs_to :section
   has_many :risks
 
   # validations
@@ -14,7 +15,7 @@ class Team < ActiveRecord::Base
   validates :name, :uniqueness => {:scope => :company_id}, :if => Proc.new{ |f| !f.name.blank? }
 
   #scope
-  scope :for_department_and_company, lambda {|department_id, company_id| where(department_id: department_id, company_id: company_id)}
+  scope :for_department_and_company, lambda {|department_id, company_id, section_id| where(department_id: department_id, company_id: company_id, section_id: section_id)}
   scope :for_id, lambda {|team_id| where(id: team_id)}
   scope :for_name_by_department, lambda { |team_name, department_id| where("lower(name) = ? and department_id = ?", team_name, department_id) }
 
