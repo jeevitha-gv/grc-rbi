@@ -1,3 +1,5 @@
+                <%= javascript_include_tag "/assets/views/risk_new.js" %>
+
                 <!-- First Row Starts -->
                 <div class="row">
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
@@ -68,7 +70,7 @@
                       </label>
                       <div class="col-sm-8">
                         <div class="risk-select">
-                          <%= f.collection_select(:department_id, current_company.departments, :id, :name, {:include_blank => "--Select Department--"}) %>
+                          <%= f.collection_select(:department_id, current_company.departments, :id, :name, {:include_blank => "--Select Department--"}, { :id => "department_id", :class => "form-control", :onChange => "get_teams(this);"}) %>
                         </div>
                       </div>
                     </div>
@@ -85,7 +87,7 @@
                       </label>
                       <div class="col-sm-8">
                         <div class="risk-select">
-                          <%= f.select :team_id, options_for_select(current_company.teams.collect{|x| [x.name, x.id.to_i]}, :selected => risk.team_id), {include_blank: '--Select Team--' }, { :id => "teams-list", :class => "form-control", :onChange => "get_departments(this);"} %>
+                          <%= f.select :team_id, options_for_select(current_company.teams.collect{|x| [x.name, x.id.to_i]}, :selected => risk.team_id), {include_blank: '--Select Team--' }, { :id => "team_id", :class => "form-control", :onChange => "get_auditee_users(this);"} %>
                         </div>
                       </div>
                     </div>
@@ -126,14 +128,34 @@
                       </label>
                       <div class="col-sm-8">
                         <div class="risk-select">
-                          <%= f.select :team_id, options_for_select(current_company.teams.collect{|x| [x.name, x.id.to_i]}, :selected => risk.team_id), {include_blank: '--Select Team--' }, { :id => "teams-list", :class => "form-control", :onChange => "get_departments(this);"} %>
+                          <%= f.select :owner, options_for_select(["Some text here", ""]), {include_blank: '--Select Team--' }, { :id => "teams-list", :class => "form-control", :onChange => "get_departments(this);"} %>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                    <div class="form-group clearfix">
+                      <label class="col-sm-4 control-label">
+                        <%= f.label :mitigator, t('risk.mitigator') %>
+                      </label>
+                      <div class="col-sm-8">
+                        <div class="risk-select">
+                          <%= f.select :owner, options_for_select(["Some text here", ""]), {include_blank: '--Select Team--' }, { :id => "teams-list", :class => "form-control", :onChange => "get_departments(this);"} %>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                    <div class="form-group clearfix">
+                      <label class="col-sm-4 control-label">
+                        <%= f.label :reviewer, t('risk.reviewer') %>
+                      </label>
+                      <div class="col-sm-8">
+                        <div class="risk-select">
+                          <%= f.select :owner, options_for_select(["Some text here", ""]), {include_blank: '--Select Team--' }, { :id => "teams-list", :class => "form-control", :onChange => "get_departments(this);"} %>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <!-- Fourth Row Ends -->
@@ -169,10 +191,13 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                       <div class="form-group">
                         <div class="col-sm-12">
+                          <%= f.fields_for :risk_scorings do |scoring| %>
                           <label>Scoring Type</label>
                             <div class="risk-select">
                               <%#= f.collection_select(:compliance_id, Compliance.all, :id, :name, {:include_blank => "--Select Compliance--"}, {:class => "form-control", :id => "compliance-list", :onChange => "get_compliance_libraries(this)"}) %>
+                              <%= select_tag(:option, options_for_select([['All', 1], ['Co', 2], ['Bought', 3], ['View', 4], ['Top API', 5]], selected: :option )) %>
                             </div>
+                          <% end %>
                         </div>
                       </div>
                     </div>
@@ -184,7 +209,7 @@
                 </div>
               </div>
 
-              <%= render 'dread_scoring', :f => f %>
+              <%= render 'owasp_scoring', :f => f %>
 
 
 

@@ -1,0 +1,13 @@
+<% if params[:location_id].present? %>
+  <% select = select_tag(:department_id, options_for_select(@departments.collect{|x| [x.name, x.id]}), {:include_blank => 'Please Select',:id => "department_id", :onChange => "get_teams(this);"}) -%>
+  $('#department_id').replaceWith('<%= escape_javascript(select) %>');
+  $('.ajax-loader').hide();
+<% elsif params[:department_id].present? %>
+  <% select = select_tag(:team_id, options_for_select(@teams.collect{|x| [x.name, x.id]}), {:include_blank => 'Please Select', :id => "team_id", :onChange => "get_auditee_users(this);"}) -%>
+  $('#team_id').replaceWith('<%= escape_javascript(select) %>');
+  $('.ajax-loader-department').hide();
+<% elsif params[:team_id].present? %>
+  <% select = select_tag(:owner, options_for_select(@team.users.collect{|x| [x.user_name, x.id]}), prompt: 'Select Owner') %>
+  $('#teams-list').replaceWith('<%= escape_javascript(select) %>');
+  $('.ajax-loader-team').hide();
+<% end %>
