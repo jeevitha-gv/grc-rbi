@@ -819,7 +819,7 @@ RiskStatus.delete_all
     RiskStatus.create(:name => "Mitigated")
     RiskStatus.create(:name => "Measured")
     RiskStatus.create(:name => "Reviewed")
-<<<<<<< HEAD
+    
 ClassicScoringMetric.delete_all
 
     ClassicScoringMetric.create(:name => "Remote", :value => "1", :metric_type => "Likelihood" )
@@ -846,20 +846,6 @@ ClassicScoringMetric.delete_all
     ClassicScoringMetric.create(:name => "High", :value => "4", :metric_type => "Velocity" )
     ClassicScoringMetric.create(:name => "VeryHigh", :value => "5", :metric_type => "Velocity" )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
 
 CvssMetringScoring.delete_all
 
@@ -918,4 +904,3 @@ CvssMetringScoring.delete_all
         CvssMetringScoring.create(metric_name: 'TargetDistribution', abrv_metric_name: 'TD', metric_value: 'Low (0-25%)', abvr_metric_value: 'L', numeric_value: '0.25')
         CvssMetringScoring.create(metric_name: 'TargetDistribution', abrv_metric_name: 'TD', metric_value: 'Medium (26-75%)', abvr_metric_value: 'M', numeric_value: '0.75')
         CvssMetringScoring.create(metric_name: 'TargetDistribution', abrv_metric_name: 'TD', metric_value: 'High (76-100%)', abvr_metric_value: 'H', numeric_value: '1')
->>>>>>> 86edc67bc8b3f27bc360aa657a4580629b919841
