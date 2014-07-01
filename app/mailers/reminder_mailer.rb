@@ -32,11 +32,6 @@ class ReminderMailer < ActionMailer::Base
     mail(to: artifact_answer.responsibility_email, subject: "Checklist has been updated")
   end
 
-  def notify_auditor_that_auditee_has_answered(audit)
-    @audit = audit
-    mail(:to => audit.auditory_email, :subject => "All auditees has answered your Checklist", content_type: "text/html")
-  end
-
   def notify_auditee_about_recommendations(checklist_recommendation, action)
     @checklist_recommendation = checklist_recommendation
     if checklist_recommendation.checklist_type == "AuditCompliance"
@@ -68,12 +63,14 @@ class ReminderMailer < ActionMailer::Base
   # Mailer for Artifact Priority
   def artifacts_reminder(answered_artifact, user)
     @answered_artifact = answered_artifact
+    @user = user
     mail(:to => user.email, :subject => "Alert mail for submitting your artifacts",content_type: "text/html")
   end
 
   # Mailer for NC Questions Priority
   def ncquestion_reminder(nc_question, user)
     @nc_question = nc_question
+    @user = user
     mail(:to => user.email, :subject => "Alert mail for Answering",content_type: "text/html")
 
   end
@@ -81,22 +78,26 @@ class ReminderMailer < ActionMailer::Base
   # Mailer for Recommendation Priority
   def recommendation_reminder(recommendation, user)
     @recommendation = recommendation
+    @user = user
     mail(:to => user.email, :subject => "Alert mail for giving response", content_type: "text/html")
   end
 
   # Mailer for Escalation Matrix
-  def escalation_mail_arifact_answer(reminder_mail_to, reminder_mail_cc,answered_artifacts)
+  def escalation_mail_arifact_answer(reminder_mail_to, reminder_mail_cc,answered_artifacts,user)
     @answered_artifact = answered_artifacts
+    @user = user
     mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Escalation for giving response",content_type: "text/html")
   end
 
-  def escalation_mail_recommendation(reminder_mail_to, reminder_mail_cc,recommendation)
+  def escalation_mail_recommendation(reminder_mail_to, reminder_mail_cc,recommendation,user)
     @recommendation = recommendation
+    @user = user
     mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Escalation for giving response", content_type: "text/html")
   end
 
-  def escalation_mail_nc_questions(reminder_mail_to, reminder_mail_cc,nc_question)
+  def escalation_mail_nc_questions(reminder_mail_to, reminder_mail_cc,nc_question,user)
     @nc_question = nc_question
+    @user = user
     mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Escalation for giving response", content_type: "text/html")
   end
 
