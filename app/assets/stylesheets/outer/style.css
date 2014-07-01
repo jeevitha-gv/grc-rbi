@@ -46,7 +46,6 @@
 	right: 0;
 	bottom: 0!important;
   position:inherit!important;
-
 }
 .user_login {
 	color: #717171;
@@ -1185,6 +1184,11 @@ a.plus-background{
 .ask-auditee-btn {
   margin: 0 45px 0 0;
 }
+.auditees-users select{
+  width: 88%;
+  float: left;
+
+}
 
 
 
@@ -1371,7 +1375,7 @@ a.plus-background{
   background:#ffffff;
   box-shadow:0px 0 5px #9d9d9d;
   vertical-align:middle;
-  display:table-cell;
+  /*display:table-cell;*/
   width:100%;
   margin:10px 0 10px 0;
 }
@@ -1621,6 +1625,12 @@ html,body{
   color:#066666;
   text-shadow: 1px 0px 0px #ffffff;
 }
+
 .form-group {
     margin-bottom: 15px;
+}
+
+.orange-method{
+	color:#d47d01;
+	font-style:italic;
 }

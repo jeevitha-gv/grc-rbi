@@ -319,6 +319,28 @@ en:
               blank: "Request cannot be blank"
             target_date:
               blank: "Date cannot be blank"
+        subscription:
+          attributes:
+            section_ids:
+              blank: "Please select atleast one Section"
+            name:
+              blank: "Name can't be blank"
+              invalid: "Name should contain alphanumeric"
+              taken: "Name has been already used"
+              too_short:
+                other: "Name should contain minimum of 4 char"
+              too_long:
+                other: "Name should not exceed 50 characters"
+            amount:
+              blank: "Amount can't be blank"
+              greater_than_or_equal_to: "Amount should be greater than or equal to 0"
+            valid_log:
+              blank: "Valid log can't be blank"
+              greater_than_or_equal_to: "Should be greater than or equal to 1"
+              less_than_or_equal_to: "should be less than or equal to 500"
+              only_integer: "Should be an Integer"
+            valid_period:
+              blank: "Please select a valid period"
 
   companies:
     company:  "Company Name"

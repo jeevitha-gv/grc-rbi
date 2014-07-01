@@ -60,7 +60,7 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-			<% if request.fullpath.include?("user/edit") == true ||  request.fullpath.include?("") == true%>
+			<% if request.fullpath.include?("user/edit") == true ||  request.fullpath == "/"%>
 				<li><a href="/user/edit" class="<%= request.fullpath.include?("user/edit") == true ? 'active' : '' %>">
           <div class="setting-icon"></div>
           Setting</a></li>

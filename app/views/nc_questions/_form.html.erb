@@ -7,10 +7,13 @@
   <%= f.fields_for :nc_questions do |builder| %>
     <%#= f.hidden_field :audit_id, value: audit.id %>
     <%#= f.hidden_field :company_id, value: current_company.id %>
-  	<%= render 'nc_question_fields', audit: audit, f: builder %>
-    <div class="ajax-loader" style="display:none;">
+      <div class="overlay-loader">
+    <div class="ajax-loader-question" style="display:none;">
       <%= image_tag("/assets/outer/loader-icon.gif", :alt => "ajax-loader") %>
     </div>
+  </div>
+  	<%= render 'nc_question_fields', audit: audit, f: builder %>
+
   <% end %>
   <div id="questions_libraries"></div>
 	<div class="form-group clearfix addissue">
