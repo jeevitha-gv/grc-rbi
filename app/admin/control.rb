@@ -2,6 +2,12 @@ ActiveAdmin.register CppMeasure, { :as => 'Controls'} do
 
   menu :if => proc{ !current_admin_user.present? }
   
+  breadcrumb do
+    [
+      link_to('Controls', '/admin/controls')
+    ]
+  end
+  
   permit_params :compliance_id, :name, :description, :duration, :measure_type, :company_id
   
  controller do

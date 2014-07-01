@@ -21,7 +21,11 @@ Rails.application.routes.draw do
      end
    end
 
-  resources :risks
+  resources :risks do
+    collection do
+      get 'compliance_libraries'
+    end
+  end
 
 
   resources :audits do

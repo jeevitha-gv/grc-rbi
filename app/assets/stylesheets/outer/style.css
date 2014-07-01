@@ -1259,7 +1259,7 @@ a.plus-background{
   border: 1px solid #dad9d9 !important;  /*Removes border*/
   -webkit-appearance: none;  /*Removes default chrome and safari style*/
   -moz-appearance: none; /* Removes Default Firefox style*/
-  background: #fff url(../images/select_bg.jpg) no-repeat 100% 0px;
+  background: #fff url("/assets/outer/select_bg.jpg") no-repeat 100% 0px;
   width: 100%; /*Width of select dropdown to give space for arrow image*/
   text-indent: 0.01px; /* Removes default arrow from firefox*/
   text-overflow: "";  /*Removes default arrow from firefox*/ /*My custom style for fonts*/
@@ -1504,7 +1504,7 @@ margin-bottom:20px !important;
     top: 1px;
 }
 .search-box .btn-search{
-  background:url(../images/search-icons.png) no-repeat;
+  background:url(/assets/outer/search-icons.png) no-repeat;
   width:20px;
   height:20px;
   display:block;
@@ -1526,4 +1526,87 @@ html,body{
   margin:0 0 150px 0;
 }
 
+.row-sp{
+	margin:0 0 20px 0;
+}
+.table-bg td{
+	border-right:1px solid #c9c9c9;
+	padding:10px 20px!important;
+}
+.orange-method{
+	color:#d47d01;
+	font-style:italic;
+}
+.base-score-matrix{
+	background:#98999b;
+	padding:10px 15px;
+	color:#fefefe;
+	text-shadow: 1px 0px 0 #464646;
+	font-size:14px;
+	position:relative;
+}
+.matrix-padding{
+	padding:0px;
+}
+.exploitability{
+	color:#0275af;
+	padding:15px 0 0px 0px;
+	margin:0 15px;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 1px #FFF;
+	font-size:14px;
+}
+.emp-hr{
+	border-bottom:1px solid #cbcccd;
+	padding:0px;
+	margin:10px 20px;
+	display:block;
+}
+.up-triangle {
+   width: 0; 
+   height: 0; 
+   border-bottom: 20px solid #98999b; 
+   border-left: 20px solid transparent; 
+   border-right: 20px solid transparent; 
+   position:absolute;
+   right:20px;
+   top:-14px;
+}
+.gr-btn{
+	padding:0 -10px 0 0;
+}
+.download-icons{
+	background:url(/assets/outer/download-icons.png) no-repeat;
+	width:25px;
+	height:22px;
+	display:block;
+	background-color:transparent;
+	display:inline-block;
+	float:left;
+	margin:0 10px 0 0;
+	
+}
+.import-btn{
+	background:#fe9537;
+	border:1px solid #dc771d;
+	padding:8px 8px;
+	border-radius:6px;
+	width:150px;
+	float:right;
+	margin:15px 17px 10px 0;
+	color:#ffffff;
+	text-shadow: 1px 0px 0px #ac5405;
+	font-size:14px;
+	font-weight:bold;
+	cursor:pointer;
+}
+.import-btn:hover{
+	color:#FFF;
+}
+.show-text{
+	padding:10px 15px;
+	float:left;
+	color:#066666;
+	text-shadow: 1px 0px 0px #ffffff;
+}
 

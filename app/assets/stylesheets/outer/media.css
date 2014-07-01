@@ -218,3 +218,194 @@ and (max-width : 480px) {
 .dash-icon,.calender-icon,.plan-icon,.list-icon,.do-icon,.check-icon,.act-icon,.published-icon,.setting-icon{ float:left;}
 	
 }
+/*--------------------Risk Media quiry -----------------------------*/
+@media all and (max-width:1170px) {
+	
+	.mitigate-box{
+		min-height:60px;
+		min-width:100% !important;
+	}
+	.mitigation-sub{
+		min-width:100%;
+	}
+	.mitigation-status{
+		min-width:100%;
+	}
+	.mitigation-status{
+	height:auto;
+}
+.risk-box-text {
+    padding: 0 10px 0 20px;
+}
+.risk-select select{
+	padding:0 42px 0 5px;
+}
+}
+@media all and (max-width:1024px) {
+ .risk-select select {
+	    padding: 0px 41px 0 5px;
+		font-size:12px;
+	}
+	.likelihood{
+		max-width:1000px;
+	}
+	.risk-wrap label {
+    	font-size: 11px;
+	}
+	.mitigation-sub{
+		min-width:100%;
+	}
+	.mitigate-box{
+		height:60px;
+		min-width:100% !important;
+	}
+	.risk-box-lable{
+	 font-size: 13px;
+   	 padding: 0 0 0 5px;
+	}
+	.risk-box-text {
+    display: inline-block;
+    font-size: 13px;
+    padding: 0 10px 0 5px;
+}
+	
+}
+
+@media all and (max-width:768px)  {
+
+	.risk-select select {
+	    padding: 0px 41px 0 5px;
+		font-size:12px;
+	}
+	.likelihood{
+		max-width:900px;
+	}
+	.risk-wrap label {
+    	font-size: 11px!important;
+	}
+	.sub-wrap .form-horizontal .control-label {
+		font-size: 11px!important;
+		text-align: left;
+	}
+}
+@media all and (max-width:768px){
+	
+	.red-box{
+	margin:0 0 20px 0;
+}
+.risk-select select{
+	width:107%;
+}
+.mitigation-box-wrap {
+    margin: 10px 0;
+}
+.btn-wrap{
+    margin: 0 auto;
+    text-align: center;
+}
+.gr-btn{
+	margin: 10px auto;
+    text-align: center;
+    width: 100%;
+}
+.btn-group {
+    float:none;
+    margin: 19px auto;
+    text-align: center;
+    width: 100%;
+}
+}
+@media all and (max-width:600px)  {
+	.risk-wrap label {
+    	font-size: 13px!important;
+	}
+	.subbar-nav li a{
+		color:#ffffff;
+		display:block;
+		float:left;
+		width:100%;
+	}
+.file-icon {
+	float:left;
+	padding: 0 20px;
+}
+.listing-icon {
+	float:left;
+	padding: 0 20px;
+}
+.lmitigate-icon {
+	float:left;
+	padding: 0 20px;
+}
+.review-icon {
+	float:left;
+	padding: 0 20px;
+}
+.setting-icon{
+	padding: 0 20px;
+}
+.navbar-inverse .navbar-toggle{ background:#0085c8 !important;}
+.subbar-nav li{ width:100%;}
+.subbar-nav li a {
+  background-color: #434343;
+  height: 35px;
+  line-height: 30px;
+  margin-bottom: 1px;
+  padding: 3px 15px;
+  text-align: left;
+}
+.subbar-nav li a.active, .subbar-nav li a:hover{ border-bottom:none !important; background-color:#F19A01 !important;}
+
+.dash-icon,.calender-icon,.plan-icon,.list-icon,.do-icon,.check-icon,.act-icon,.published-icon,.setting-icon{ float:left;}
+	.btn-group a {
+    margin: 0 7px 0 0;
+}
+.mitigation-box-wrap {
+    margin: 10px 0;
+}
+.red-box{
+	margin:0 0 20px 0;
+}
+.risk-select select{
+	width:109%;
+}
+.btn-wrap{
+    margin: 0 auto;
+    text-align: center;
+}
+.import-btn{
+	
+}
+}
+@media all and (max-width:480px)  {
+	
+	.download-icons{
+		float:none;
+	}
+	.import-btn{
+	display: block;
+    float: right;
+    margin: 20px auto;
+    text-align: center;
+	}
+	.risk-title{
+		float:none;
+		display:block;
+	}
+}
+@media all and (max-width:320px)  {
+	
+	.mitigation-sub{
+		min-width:100%;
+	}
+	.mitigate-box{
+		height:auto;
+		min-width:100%;
+		
+	}
+	.subbar-nav li a{
+		color:#ffffff;
+	}
+	
+	
+}
