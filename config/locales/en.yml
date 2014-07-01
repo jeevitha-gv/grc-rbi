@@ -439,6 +439,8 @@ en:
     assessment: "Risk Description"
     notes: "Additional Notes"
     category: "Category"
+    mitigator: "Mitigator"
+    reviewer: "Reviewer"
 
   dread:
     damage_potential: "Damage Potential"
@@ -446,5 +448,23 @@ en:
     exploitability: "Exploitability"
     affected_users: "Affected Users"
     discoverability: "Discoverability"
+
+  owasp:
+    skill_level: "Skill Level"
+    motive: "Motive"
+    opportunity: "Opportunity"
+    size: "Size"
+    ease_of_dis: "Ease of Discovery"
+    ease_of_exp: "Ease of Exploit"
+    awareness: "Awareness"
+    intr_detect: "Intrusion Detection"
+    loss_of_conf: "Loss of Confidentiality"
+    loss_of_inte: "Loss of Integrity"
+    loss_of_avail: "Loss of Availability"
+    loss_of_acc: "Loss of Accountability"
+    fin_damage: "Financial Damage"
+    rep_damage: "Reputation Damage"
+    non_comp: "Non-Compliance"
+    pri_violation: "Privacy Violation"
 
 
