@@ -42,8 +42,8 @@ ActiveAdmin.register RiskReviewLevel do
   form do |f|
      review = RiskReviewLevel.find_by_id(params[:id])
       f.inputs "New Risk Review Level" do
-      f.input :days, :label => "I want to review #{review.name} risk in days"
-      f.input :value, :label => "I consider #{review.name} risk to be anything greater than: "
+      f.input :days, :label => "I want to review #{review.name} risk in days", :input_html => { :style => "width: 10%; margin:0px 0 0 50px; display:block;"}
+      f.input :value, :label => "I consider #{review.name} risk to be anything greater than: ", :input_html => { :style => "width: 10%; margin:0px 0 0 50px; display:block;"}
       f.input :company_id, :as => :hidden, :input_html => { :value => current_company.id}
     end
     f.actions

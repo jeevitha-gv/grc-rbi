@@ -1621,3 +1621,16 @@ html,body{
   color:#066666;
   text-shadow: 1px 0px 0px #ffffff;
 }
+.inputs .form fieldset ol > li {
+    display: block!important;
+    min-height: 50px!important;
+    padding: 10px;
+}
+#risk_review_level_value_input label{
+	margin: 0 0 0 0px!important;
+	width:30%;
+}
+#risk_review_level_days_input label{
+	margin: 0 0 0 0px!important;
+	width:30%;
+}

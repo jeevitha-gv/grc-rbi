@@ -2,6 +2,7 @@ class RisksController < ApplicationController
   layout 'risk_layout'
   def index
     @risks = current_company.risks
+    @high_risk, @medium_risk, @low_risk = Risk.risk_rating(current_company.id)
   end
 
   def new

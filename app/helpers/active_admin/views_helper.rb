@@ -5,7 +5,7 @@ module ActiveAdmin::ViewsHelper #camelized file name
       'Settings'
     when 'admin/operational_areas','admin/artifacts','admin/reminders'
       'Audit'
-    when 'admin/controls','admin/procedures','admin/processes'
+    when 'admin/controls','admin/procedures','admin/processes','admin/risk_review_levels','admin/projects'
       'Risk'
     else
       return ''
@@ -17,7 +17,7 @@ module ActiveAdmin::ViewsHelper #camelized file name
       'overview'
     elsif ["operational_areas","artifacts", "reminders"].include?(action_path)
       'audit'
-    elsif ["controls","procedures", "processes","risk_review_levels"].include?(action_path)
+    elsif ["controls","procedures", "processes","risk_review_levels","projects"].include?(action_path)
      'risk'
     else
       ''

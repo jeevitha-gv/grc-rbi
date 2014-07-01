@@ -26,4 +26,12 @@ class Risk < ActiveRecord::Base
 	delegate :scoring_type, :to => :risk_scoring, prefix: true, allow_nil: true
 	delegate :calculated_risk, :to => :risk_scoring, prefix: true, allow_nil: true
 	delegate :custom_value, :to => :risk_scoring, prefix: true, allow_nil: true
+	
+	
+	def self.risk_rating(company_id)
+		high_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'HIGH',company_id).first
+		medium_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'MEDIUM',company_id).first
+		low_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'LOW',company_id).first
+		return high_risk, medium_risk, low_risk
+	end
 end

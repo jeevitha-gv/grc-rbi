@@ -292,10 +292,10 @@ div.k-grid-header .k-header, .k-grid td {
 	background-position: -80px -20px;
 }
 .k-grid-edit{
-	background-position: -100px 0;
+	background-position: -131px -7px;
 }
 .k-grid-edit.active, .k-grid-edit:hover {
-	background-position: -100px -20px;
+	background-position: -131px -36px;
 }
 
 .k-filter-help-text, .k-filter-menu .k-widget {
@@ -315,7 +315,9 @@ div.k-grid-header .k-header, .k-grid td {
 	vertical-align: middle;
 	width: 100%;
 }
-
+.form-control:focus{
+	box-shadow:none !important;
+}
 .k-widget .k-dropdown-wrap:hover {
 	background: #fff;
 }
@@ -419,4 +421,7 @@ div.k-grid-header .k-header, .k-grid td {
 }
 .k-grid td #Status{
 	background:#E80307;
+}
+.medium-len{
+	width:50%!important;
 }
