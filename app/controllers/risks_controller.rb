@@ -1,6 +1,7 @@
 class RisksController < ApplicationController
 
   def index
+    @risks = current_company.risks
   end
 
   def new
