@@ -109,6 +109,8 @@ Rails.application.routes.draw do
 
   resources :compliance_libraries
 
+  resources :mitigations
+
   get 'welcome', to: 'companies#welcome', :as => :welcome
 
   # You can have the root of your site routed with "root"
