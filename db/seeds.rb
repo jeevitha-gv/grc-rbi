@@ -820,3 +820,11 @@ RiskStatus.delete_all
     RiskStatus.create(:name => "Mitigated")
     RiskStatus.create(:name => "Measured")
     RiskStatus.create(:name => "Reviewed")
+
+ScoringType.delete_all
+
+    ScoringType.create(:name => "Classic")
+    ScoringType.create(:name => "CVSS")
+    ScoringType.create(:name => "DREAD")
+    ScoringType.create(:name => "OWASP")
+    ScoringType.create(:name => "Custom")
