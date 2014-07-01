@@ -22,7 +22,6 @@ menu :if => proc{ current_admin_user.present? }
     end
 
   end
-  #permit_params :name,:description,{:section_id =>[]},:amount, :valid_log,:valid_period
 
   index do
     column :name
