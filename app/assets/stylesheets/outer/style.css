@@ -1625,7 +1625,6 @@ html,body{
   color:#066666;
   text-shadow: 1px 0px 0px #ffffff;
 }
-<<<<<<< HEAD
 .inputs .form fieldset ol > li {
     display: block!important;
     min-height: 50px!important;
@@ -1639,7 +1638,6 @@ html,body{
 	margin: 0 0 0 0px!important;
 	width:30%;
 }
-=======
 .likelihood .form-group label{
   font-weight: 400!important;
   font-size: 14px;
@@ -1655,4 +1653,3 @@ html,body{
 	color:#d47d01;
 	font-style:italic;
 }
->>>>>>> 2fbfe1295b2dc62f08bf419d484996ed8c45b5c9

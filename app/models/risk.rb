@@ -26,8 +26,9 @@ class Risk < ActiveRecord::Base
 	delegate :scoring_type, :to => :risk_scoring, prefix: true, allow_nil: true
 	delegate :calculated_risk, :to => :risk_scoring, prefix: true, allow_nil: true
 	delegate :custom_value, :to => :risk_scoring, prefix: true, allow_nil: true
-<<<<<<< HEAD
 	
+	accepts_nested_attributes_for :mitigation
+  accepts_nested_attributes_for :control_measures
 	
 	def self.risk_rating(company_id)
 		high_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'HIGH',company_id).first
@@ -35,9 +36,6 @@ class Risk < ActiveRecord::Base
 		low_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'LOW',company_id).first
 		return high_risk, medium_risk, low_risk
 	end
-=======
 
-	accepts_nested_attributes_for :mitigation
-  accepts_nested_attributes_for :control_measures
->>>>>>> 2fbfe1295b2dc62f08bf419d484996ed8c45b5c9
+
 end

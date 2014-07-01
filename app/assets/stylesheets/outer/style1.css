@@ -397,35 +397,9 @@ div.k-grid-header .k-header, .k-grid td {
 }
 .k-grid-graph:hover,.k-grid-graph.active{
 	background-position: 0 -20px;border: medium none; background-color: transparent;
-<<<<<<< HEAD
-}
-#GridID .k-grid-header-wrap > table, status{
-	background:#FC060A;
-}
-.k-pager-wrap > .k-link{
-	background:#FFF;
-}
-.k-pager-wrap .k-textbox {
-    border-radius: 50px;
-    height: 25px;
-    text-align: center;
-    width: 25px;
-}
-.k-grid-filter span{
-	display:none;
-}
-.k-grid-header-wrap .k-header .k-link{
-	border-right:1px solid #dbdbdc;
-}
-.k-grid-header .k-filterable .k-link{
-	padding:10px 0;
-}
-.k-grid td #Status{
-	background:#E80307;
 }
 .medium-len{
 	width:50%!important;
-=======
 }
 .addissue{
 	padding: 10px 0 0 157px;
@@ -478,5 +452,4 @@ a.plus-background {
 }
 .k-grid td #Status{
 	background:#E80307;
->>>>>>> 2fbfe1295b2dc62f08bf419d484996ed8c45b5c9
 }
