@@ -194,8 +194,7 @@
                           <%= f.fields_for :risk_scorings do |scoring| %>
                           <label>Scoring Type</label>
                             <div class="risk-select">
-                              <%#= f.collection_select(:compliance_id, Compliance.all, :id, :name, {:include_blank => "--Select Compliance--"}, {:class => "form-control", :id => "compliance-list", :onChange => "get_compliance_libraries(this)"}) %>
-                              <%= select_tag(:option, options_for_select([['All', 1], ['Co', 2], ['Bought', 3], ['View', 4], ['Top API', 5]], selected: :option )) %>
+                              <%= scoring.select(:scoring_type, RiskScoring::SCORING_TYPES, :include_blank => "--Select Scoring Type--", :id=>"scoring_type") %>
                             </div>
                           <% end %>
                         </div>
