@@ -552,7 +552,6 @@ Review.delete_all
 
 NextStep.delete_all
     NextStep.create(:name => "Accept Until Next Review")
-    NextStep.create(:name => "Consider for Project")
     NextStep.create(:name => "Submit as a Production Issue")
 
 ImplementationStatus.delete_all
@@ -820,3 +819,11 @@ RiskStatus.delete_all
     RiskStatus.create(:name => "Mitigated")
     RiskStatus.create(:name => "Measured")
     RiskStatus.create(:name => "Reviewed")
+
+ScoringType.delete_all
+
+    ScoringType.create(:name => "Classic")
+    ScoringType.create(:name => "CVSS")
+    ScoringType.create(:name => "DREAD")
+    ScoringType.create(:name => "OWASP")
+    ScoringType.create(:name => "Custom")

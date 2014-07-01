@@ -289,7 +289,7 @@ class Audit < ActiveRecord::Base
   end
 
   def set_audit_status(audit, commit_name)
-    audit.audit_status_id = (commit_name == "Save as Plan" ?  AuditStatus.for_name("Planning").id : AuditStatus.for_name("In Progress").id)
+    audit.audit_status_id = ((commit_name == "Save as Plan") ?  AuditStatus.for_name("Planning").id : AuditStatus.for_name("In Progress").id)
     return audit
   end
 

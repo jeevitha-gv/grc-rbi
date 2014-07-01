@@ -21,12 +21,13 @@ Rails.application.routes.draw do
      end
    end
 
+
   resources :risks do
     collection do
       get 'compliance_libraries'
     end
+    resources :mgmt_reviews
   end
-
 
   resources :audits do
     collection do
@@ -121,6 +122,7 @@ Rails.application.routes.draw do
       post :notify
     end
   end
+
 
   get 'welcome', to: 'companies#welcome', :as => :welcome
 

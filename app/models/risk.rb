@@ -1,7 +1,7 @@
 class Risk < ActiveRecord::Base
 
 	# Associations
-	has_many :mgmt_reviews
+	has_one :mgmt_review
 	has_many :closures
 	has_many :control_measures
 	has_one :risk_scoring
