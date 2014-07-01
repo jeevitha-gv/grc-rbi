@@ -27,6 +27,7 @@
           </ul>
         </div>
         <div class="user_login">
+          <div class="roll-audit">Role: <%= current_user.role_title %></div>
           <% unless current_user.attachment.blank? || current_user.attachment.attachment_file.blank? %>
             <%= image_tag(current_user.attachment.attachment_file.small) %>
           <% else %>

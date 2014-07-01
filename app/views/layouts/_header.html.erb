@@ -27,11 +27,13 @@
           </ul>
         </div>
         <div class="user_login">
+          <div class="roll-audit">Role: <%= current_user.role_title %></div>
           <% if current_user.attachment.present? %>
             <%= image_tag(current_user.attachment.attachment_file.small) if current_user.attachment.attachment_file.present? %>
           <% else %>
             <img src="/assets/outer/user-icon.jpg">
           <% end %>
+
           <div class="user-name"><%= current_user.user_name unless current_user.user_name.blank? %></div>
           <span id="login_drop"><img src="/assets/outer/user-down-arrow.png"></span>
 
@@ -85,7 +87,7 @@
           <div class="setting-icon"></div>
           Profile Settings</a></li>
         <% if current_user.role.title == "company_admin" %>
-          <li><a href="/admin/settings" class="<%= request.fullpath.include?("user/edit") == true ? 'active' : '' %>">
+          <li><a href="/admin/settings">
             <div class="setting-icon"></div>
             Admin Settings</a></li>
         <% end %>
