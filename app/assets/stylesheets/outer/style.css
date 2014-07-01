@@ -1192,7 +1192,7 @@ a.plus-background{
   text-align: center;
   width: 30px;
   height: 26px;
-  background-image: url(../images/risk-menu-icons.png);
+  background-image: url(/assets/outer/risk-menu-icons.png);
   background-repeat: no-repeat;
   background-position: 0 0;
   margin: 0 auto;
@@ -1201,7 +1201,7 @@ a.plus-background{
   text-align: center;
   width: 30px;
   height: 26px;
-  background-image: url(../images/risk-menu-icons.png);
+  background-image: url(/assets/outer/risk-menu-icons.png);
   background-repeat: no-repeat;
   background-position: -39px 0;
   margin: 0 auto;
@@ -1210,7 +1210,7 @@ a.plus-background{
   text-align: center;
   width: 30px;
   height: 26px;
-  background-image: url(../images/risk-menu-icons.png);
+  background-image: url(/assets/outer/risk-menu-icons.png);
   background-repeat: no-repeat;
   background-position: -78px 0;
   margin: 0 auto;
@@ -1219,7 +1219,7 @@ a.plus-background{
   text-align: center;
   width: 30px;
   height: 26px;
-  background-image: url(../images/risk-menu-icons.png);
+  background-image: url(/assets/outer/risk-menu-icons.png);
   background-repeat: no-repeat;
   background-position: -120px 0;
   margin: 0 auto;
@@ -1609,4 +1609,55 @@ html,body{
 	color:#066666;
 	text-shadow: 1px 0px 0px #ffffff;
 }
-
+.likelihood{
+  border:1px solid #dddfe1;
+  border-radius:2px;
+  background:#f3f5f7;
+  margin:0 0 20px 0;
+  padding:5px 0;
+}
+.matrix-padding{
+  padding:0px;
+}
+.base-score-matrix{
+  background:#98999b;
+  padding:10px 15px;
+  color:#fefefe;
+  text-shadow: 1px 0px 0 #464646;
+  font-size:14px;
+  position:relative;
+}
+.up-triangle {
+   width: 0;
+   height: 0;
+   border-bottom: 20px solid #98999b;
+   border-left: 20px solid transparent;
+   border-right: 20px solid transparent;
+   position:absolute;
+   right:20px;
+   top:-14px;
+}
+.exploitability{
+  color:#0275af;
+  padding:15px 0 0px 0px;
+  margin:0 15px;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 1px #FFF;
+  font-size:14px;
+}
+.emp-hr{
+  border-bottom:1px solid #cbcccd;
+  padding:0px;
+  margin:10px 20px;
+  display:block;
+}
+.show-text{
+  padding:10px 15px;
+  float:left;
+  color:#066666;
+  text-shadow: 1px 0px 0px #ffffff;
+}
+.orange-method{
+  color:#d47d01;
+  font-style:italic;
+}
