@@ -23,7 +23,6 @@ class Risk < ActiveRecord::Base
 	belongs_to :project
 	belongs_to :risk_approval_status, foreign_key: 'risk_approval_status_id'
 
-<<<<<<< HEAD
 	delegate :name, to: :risk_status, prefix: true, allow_nil: true
 	delegate :user_name, to: :risk_owner, prefix: true, allow_nil: true
 	delegate :scoring_type, to: :risk_scoring, prefix: true, allow_nil: true
@@ -35,17 +34,9 @@ class Risk < ActiveRecord::Base
 	delegate :name, to: :risk_category, prefix: true, allow_nil: true
 	delegate :name, to: :technology, prefix: true, allow_nil: true
 
-	
-=======
-	delegate :name, :to => :risk_status, prefix: true, allow_nil: true
-	delegate :user_name, :to => :risk_owner, prefix: true, allow_nil: true
-	delegate :scoring_type, :to => :risk_scoring, prefix: true, allow_nil: true
-	delegate :calculated_risk, :to => :risk_scoring, prefix: true, allow_nil: true
-	delegate :custom_value, :to => :risk_scoring, prefix: true, allow_nil: true
 
->>>>>>> f3d3fda408b503e80a46014ce1faebb963de1475
 	accepts_nested_attributes_for :mitigation
-  accepts_nested_attributes_for :control_measures
+  	accepts_nested_attributes_for :control_measures
 
 	def self.risk_rating(company_id)
 		high_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'HIGH',company_id).first
