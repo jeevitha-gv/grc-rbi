@@ -1,5 +1,5 @@
 class RisksController < ApplicationController
-
+  layout 'risk_layout'
   def index
     @risks = current_company.risks
   end
