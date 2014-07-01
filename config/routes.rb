@@ -21,7 +21,14 @@ Rails.application.routes.draw do
      end
    end
 
-  
+
+  resources :risks do
+    collection do
+      get 'compliance_libraries'
+    end
+    resources :mgmt_reviews
+  end
+
   resources :audits do
     collection do
       get 'department_teams_users'
@@ -103,10 +110,6 @@ Rails.application.routes.draw do
 
   resources :compliance_libraries
 
-
-  resources :risks do 
-    resources :mgmt_reviews
-  end
 
   get 'welcome', to: 'companies#welcome', :as => :welcome
 

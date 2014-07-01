@@ -45,7 +45,11 @@
 	left: 0;
 	right: 0;
 	bottom: 0!important;
+<<<<<<< HEAD
   	position:inherit;
+=======
+  position:inherit!important;
+>>>>>>> ce7a6ab005952571b2554b18e4bcd226fbc7cfa4
 
 }
 .user_login {
@@ -1191,13 +1195,16 @@ a.plus-background{
 
 }
 
-/*Risk Style Starts here*/
-/*---------------------------Risk Pages ------------------------------*/
+
+
+
+/*for test*/
+
 .file-icon {
   text-align: center;
   width: 30px;
   height: 26px;
-  background-image: url(../images/risk-menu-icons.png);
+  background-image: url("/assets/outer/sub-nav-icon.png");
   background-repeat: no-repeat;
   background-position: 0 0;
   margin: 0 auto;
@@ -1206,27 +1213,28 @@ a.plus-background{
   text-align: center;
   width: 30px;
   height: 26px;
-  background-image: url(../images/risk-menu-icons.png);
+  background-image: url("/assets/outer/risk-menu-icons.png");
   background-repeat: no-repeat;
-  background-position: -39px 0;
+  background-position:-39px -1px;
   margin: 0 auto;
 }
 .lmitigate-icon {
   text-align: center;
   width: 30px;
   height: 26px;
-  background-image: url(../images/risk-menu-icons.png);
+  background-image: url("/assets/outer/risk-menu-icons.png");
   background-repeat: no-repeat;
   background-position: -78px 0;
   margin: 0 auto;
+   padding: 0 20px;
 }
 .review-icon {
   text-align: center;
   width: 30px;
   height: 26px;
-  background-image: url(../images/risk-menu-icons.png);
+  background-image: url("/assets/outer/risk-menu-icons.png");
   background-repeat: no-repeat;
-  background-position: -120px 0;
+  background-position:-123px -2px;
   margin: 0 auto;
 }
 .risk-title{
@@ -1252,7 +1260,10 @@ a.plus-background{
   padding:10px 20px;
   color:#ffffff;
   font-size:14px;
-  margin:0 0 20px 0;
+  margin:0 0 0px 0;
+}
+.sub-wrap-bg{
+  padding:20px 30px;
 }
 .sub-wrap .form-horizontal .control-label{
   text-align:left;
@@ -1301,7 +1312,6 @@ a.plus-background{
   border:1px solid #dddfe1;
   border-radius:2px;
   background:#f3f5f7;
-  max-width:1100px;
   margin:0 0 20px 0;
   padding:5px 0;
 }
@@ -1327,7 +1337,8 @@ a.plus-background{
   text-align:center;
 }
 .btn-wrap{
-  margin-right:50px;
+  margin-right:0px;
+  float:right;
 }
 /*--------mitigation box-----------------*/
 .mitigation-box-wrap{
@@ -1335,33 +1346,39 @@ a.plus-background{
 }
 .mitigate-box{
   background:#ffffff;
-  height:60px;
-  box-shadow:1px 0 5px #949494;
+  box-shadow:0px 0 5px #9d9d9d;
+
+
+}
+.mitigate-inner{
   vertical-align:middle;
-  display:table-cell;
-  min-width:170px;
+  padding:17px 0;
+  height:60px;
+  width:100%;
 }
 .mitigation-sub{
   background:#ffffff;
-  height:60px;
-  box-shadow:1px 0 5px #949494;
+  box-shadow:0px 0 5px #9d9d9d;
+  height: 60px;
+    padding: 17px 0;
+}
+.mitigation-sub-inner{
   vertical-align:middle;
-  display:table-cell;
   width:100%;
-  min-width:563px;
+  height:60px;
+  padding:17px 0;
 }
 .mitigation-status{
   background:#ffffff;
   height:60px;
-  box-shadow:1px 0 5px #949494;
+  box-shadow:0px 0 5px #9d9d9d;
   vertical-align:middle;
-  display:table-cell;
   width:100%;
-  min-width:272px;
+  padding:17px 0;
 }
 .mitigation-recomm{
   background:#ffffff;
-  box-shadow:1px 0 5px #949494;
+  box-shadow:0px 0 5px #9d9d9d;
   vertical-align:middle;
   /*display:table-cell;*/
   width:100%;
@@ -1372,7 +1389,7 @@ a.plus-background{
 }
 .mitigation-percive{
   background:#FFF!important;
-  box-shadow:1px 0 5px #949494;
+  box-shadow:0px 0 5px #949494;
   width:100%;
   margin:10px 0;
   display:block;
@@ -1382,20 +1399,20 @@ a.plus-background{
 }
 .mit-reccom-title{
   background:#0085c8;
-  padding:10px 10px 10px 10px;
+  padding:10px 10px 10px 20px;
   color:#FFF;
   font-weight:700;
 }
 .mitigation-recomm p {
-  padding:10px;
+  padding:20px;
   font-size:13px;
 }
 .red-box{
   background:#f71919;
   min-height:60px;
-  box-shadow:1px 0 5px #949494;
+  box-shadow:0px 0 5px #949494;
   float:left;
-  width:82px;
+  width:100%;
   vertical-align:middle;
   display:table-cell;
   text-align:center;
@@ -1405,7 +1422,7 @@ a.plus-background{
   margin-left:100px;
 }
 .risk-box-text{
-  font-size:16px;
+  font-size:15px;
   padding:0 10px 0 5px;
   display:inline-block;
 }
@@ -1430,7 +1447,6 @@ a.plus-background{
 .table-bg{
   background:#FFF;
   border:1px solid #ddd;
-  box-shadow:1px 0 5px #949494;
 }
 .risk-able-th{
 background:#0085c8 !important;
@@ -1441,13 +1457,13 @@ color:#FFF;
 }
 .mit-reccom-title-sp{
   background:#0085c8;
-  padding:10px 10px 10px 10px;
+  padding:10px 10px 10px 20px;
   color:#FFF;
   font-weight:700;
-  margin:0 0 20px 0px;
+  margin:0 0 0px 0px;
 }
 .btn-group{
-  margin: 0 0 30px 0;
+  margin: 0 5px 30px 0px;
   float:right;
 }
 .btn-group a{
@@ -1497,6 +1513,7 @@ margin-bottom:20px !important;
   position:relative;
   width:250px;
   float:right;
+   padding: 5px 0 0;
 }
 .search-box button{
   position:absolute;
@@ -1506,10 +1523,10 @@ margin-bottom:20px !important;
     padding: 5px;
     position: absolute;
     right: 11px;
-    top: 1px;
+    top: 6px;
 }
 .search-box .btn-search{
-  background:url(../images/search-icons.png) no-repeat;
+  background:url("/assets/outer/search-icons.png") no-repeat;
   width:20px;
   height:20px;
   display:block;
@@ -1530,7 +1547,55 @@ html,body{
 .box-wrapper{
   margin:0 0 150px 0;
 }
-
+.row-sp{
+  margin:0 0 20px 0;
+}
+.table-bg td{
+  border-right:1px solid #c9c9c9;
+  padding:10px 20px!important;
+}
+.orange-method{
+  color:#d47d01;
+  font-style:italic;
+}
+.base-score-matrix{
+  background:#98999b;
+  padding:10px 15px;
+  color:#fefefe;
+  text-shadow: 1px 0px 0 #464646;
+  font-size:14px;
+  position:relative;
+}
+.matrix-padding{
+  padding:0px;
+}
+.exploitability{
+  color:#0275af;
+  padding:15px 0 0px 0px;
+  margin:0 15px;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 1px #FFF;
+  font-size:14px;
+}
+.emp-hr{
+  border-bottom:1px solid #cbcccd;
+  padding:0px;
+  margin:10px 20px;
+  display:block;
+}
+.up-triangle {
+   width: 0;
+   height: 0;
+   border-bottom: 20px solid #98999b;
+   border-left: 20px solid transparent;
+   border-right: 20px solid transparent;
+   position:absolute;
+   right:20px;
+   top:-14px;
+}
+.gr-btn{
+  padding:0 -10px 0 0;
+}
 .download-icons{
   background:url("/assets/outer/download-icons.png") no-repeat;
   width:25px;
@@ -1559,10 +1624,16 @@ html,body{
 .import-btn:hover{
   color:#FFF;
 }
-.gr-btn{
-  padding:0 -10px 0 0;
+.show-text{
+  padding:10px 15px;
+  float:left;
+  color:#066666;
+  text-shadow: 1px 0px 0px #ffffff;
 }
+<<<<<<< HEAD
 .orange-method{
 	color:#d47d01;
 	font-style:italic;
 }
+=======
+>>>>>>> ce7a6ab005952571b2554b18e4bcd226fbc7cfa4

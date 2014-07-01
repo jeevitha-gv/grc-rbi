@@ -8,6 +8,8 @@ class Company < ActiveRecord::Base
   has_many :audits
   has_many :users
   has_many :teams
+  has_many :departments, through: :locations
+  has_many :risk_categories
   has_many :nc_questions
   has_one :attachment, :as => :attachable
   has_many :operational_areas
@@ -16,6 +18,7 @@ class Company < ActiveRecord::Base
   has_many :clients
   has_one :company_admin, -> { where role_id: Role.where(title: 'company_admin').first.id }, class_name: 'User'
   has_many :technologies
+  has_many :risk_review_levels
 
   # Associations with Risk table
   has_many :risks
@@ -44,10 +47,9 @@ class Company < ActiveRecord::Base
 
   delegate :email, to: :company_admin, prefix: true, allow_nil: true
 
-  after_save :company_role_create
+  after_create :company_role_create, :review_rating_levels_create
 
   scope :active, -> { where(is_disabled: false) }
-
   # def active_audits
   #   self.audits.where("end_date <= ?", Date.today)
   # end
@@ -62,5 +64,12 @@ class Company < ActiveRecord::Base
     Role.create(title: "auditor", company_id: company.id)
     Role.create(title: "auditee", company_id: company.id)
     Role.create(title: "CRO", company_id: company.id)
+  end
+  
+  def review_rating_levels_create
+    company = Company.last
+    RiskReviewLevel.create(name: "HIGH", days: 90,value: 7 ,company_id: company.id)
+    RiskReviewLevel.create(name: "MEDIUM", days: 180,value: 4 ,company_id: company.id)
+    RiskReviewLevel.create(name: "LOW", days: 360,value: 0 ,company_id: company.id)
   end
 end

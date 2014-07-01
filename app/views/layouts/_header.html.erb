@@ -15,13 +15,13 @@
           </div>
         <div class="navbar-collapse collapse fleft">
           <ul class="nav navbar-nav main_nav">
-            <li><a href="/user/edit" class="<%= add_active_class(params) == 'User' ? 'active' : '' %>">
+            <li><a href="/user/edit" class="<%= (add_active_class(params) == 'User' ||  add_active_class(params) == '') ? 'active' : '' %>">
               <div class="overview-icon"></div>
               Over view</a></li>
             <li><a href="/audits" class="<%= add_active_class(params) == 'Audit' ? 'active' : '' %>">
               <div class="audit-icon"></div>
               Audit</a></li>
-            <li class="next-phase"><a href="#" class="<%= add_active_class(params) == 'Risk' ? 'active' : '' %>">
+            <li><a href="/risks" class="<%= add_active_class(params) == 'Risk' ? 'active' : '' %>">
               <div class="risk-icon"></div>
               Risk</a></li>
           </ul>
@@ -60,6 +60,11 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
+			<% if request.fullpath.include?("user/edit") == true ||  request.fullpath == "/"%>
+				<li><a href="/user/edit" class="<%= request.fullpath.include?("user/edit") == true ? 'active' : '' %>">
+          <div class="setting-icon"></div>
+          Setting</a></li>
+			<% else %>
         <li><a href="#" class="<%#= request.fullpath.include?("audit_dashboard") == true ? 'active' : '' %>">
           <div class="dash-icon"></div>
           Dashboard</a></li>
@@ -84,9 +89,7 @@
         <li><a href="/audits?stage=published" class="<%= (request.fullpath.include?('stage=published') || request.fullpath.include?("checklist_recommendations/audit_observation")) == true ? 'active' : '' %>">
           <div class="published-icon"></div>
           Published</a></li>
-        <li><a href="/user/edit" class="<%= request.fullpath.include?("user/edit") == true ? 'active' : '' %>">
-          <div class="setting-icon"></div>
-          Setting</a></li>
+					<% end %>
       </ul>
     </div>
   </div>

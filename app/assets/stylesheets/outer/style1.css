@@ -150,6 +150,7 @@ div.k-grid-header .k-header, .k-grid td {
 	padding: 0.56em 1.3em;
 	text-overflow: inherit;
 	word-wrap: break-word;
+	border-right:1px solid #dbdbdc;
 }
 
 .k-grid table {
@@ -202,11 +203,35 @@ div.k-grid-header .k-header, .k-grid td {
 	padding: 0;
 }
 
+.k-grid-file, .k-grid-file:hover,.k-grid-list, .k-grid-list:hover,.k-grid-miti, .k-grid-miti:hover,.k-grid-edit, .k-grid-edit:hover{
+	width: 29px;
+	margin:0;
+	height: 20px;
+	background: url('/assets/outer/risk-table-icons.png') no-repeat;
+	text-indent: -9999px;
+	min-width:0 !important;
+	margin:0 2px !important;
+	border: medium none;
+    float: left;
+	padding: 0;
+}
 
+.k-grid-file,  .k-grid-file:hover {
+	background-position: -15px -8px;
+}
+.k-grid-file {
+	background-position: -15px -8px;
+}
 
-
-
-
+.k-grid-list, .k-grid-list:hover {
+	background-position: -55px -7px;
+}
+.k-grid-miti, .k-grid-miti:hover {
+	background-position: -94px -7px;
+}
+.k-grid-edit, .k-grid-edit:hover {
+	background-position: -132px -8px;
+}
 
 .k-grid-attach, .k-grid-attach:hover {
 	width: 20px;
@@ -370,6 +395,7 @@ div.k-grid-header .k-header, .k-grid td {
 }
 .k-grid-graph:hover,.k-grid-graph.active{
 	background-position: 0 -20px;border: medium none; background-color: transparent;
+<<<<<<< HEAD
 }
 .addissue{
 	padding: 10px 0 0 157px;
@@ -398,4 +424,30 @@ a.plus-background {
 	left: 0;
 	top:0;
 	display: none;
+=======
+}
+#GridID .k-grid-header-wrap > table, status{
+	background:#FC060A;
+}
+.k-pager-wrap > .k-link{
+	background:#FFF;
+}
+.k-pager-wrap .k-textbox {
+    border-radius: 50px;
+    height: 25px;
+    text-align: center;
+    width: 25px;
+}
+.k-grid-filter span{
+	display:none;
+}
+.k-grid-header-wrap .k-header .k-link{
+	border-right:1px solid #dbdbdc;
+}
+.k-grid-header .k-filterable .k-link{
+	padding:10px 0;
+}
+.k-grid td #Status{
+	background:#E80307;
+>>>>>>> ce7a6ab005952571b2554b18e4bcd226fbc7cfa4
 }
