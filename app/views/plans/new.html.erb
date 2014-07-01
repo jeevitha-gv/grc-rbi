@@ -1,0 +1,21 @@
+<%= form_for @plan do |f|%>
+
+<ul>
+<%@subscriptions.each do |subscription|%>
+<li> 
+Subscription Name:	
+<a href="<%= new_company_path(subscription: subscription.name)%>"><%= subscription.name%></a>
+Description:
+<%= subscription.description%>
+Amount:
+<%= subscription.amount%>
+Log:
+<%= subscription.valid_log%>
+Period:
+<%= subscription.valid_period == 1 ? "Days" : subscription.valid_period == 2 ? "Months" : "Year"%>
+</li>
+<%end%>
+</ul>
+
+
+<%end%>

@@ -16,6 +16,7 @@
               <br>
               <br>
               <a class="black_btn" href="javascript:goBack()">Back</a>
+              <%= f.submit "Initiate Audit", :class => "grey_btn" if @audit.audit_status_name == "Planning" %>
               <%= f.submit "Update Audit", :class => "orange_btn" %>
               <br>
               <br>

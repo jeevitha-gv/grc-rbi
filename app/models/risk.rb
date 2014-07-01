@@ -1,7 +1,7 @@
 class Risk < ActiveRecord::Base
 
 	# Associations
-	has_many :mgmt_reviews
+	has_one :mgmt_review
 	has_many :closures
 	has_many :control_measures
 	has_one :risk_scoring
@@ -20,12 +20,13 @@ class Risk < ActiveRecord::Base
 	belongs_to :submitor, class_name: 'User', foreign_key: 'submitted_by'
 	belongs_to :project
 	belongs_to :risk_approval_status, foreign_key: 'risk_approval_status_id'
-	
+
 	delegate :name, :to => :risk_status, prefix: true, allow_nil: true
 	delegate :user_name, :to => :risk_owner, prefix: true, allow_nil: true
 	delegate :scoring_type, :to => :risk_scoring, prefix: true, allow_nil: true
 	delegate :calculated_risk, :to => :risk_scoring, prefix: true, allow_nil: true
 	delegate :custom_value, :to => :risk_scoring, prefix: true, allow_nil: true
+<<<<<<< HEAD
 	
 	
 	def self.risk_rating(company_id)
@@ -34,4 +35,9 @@ class Risk < ActiveRecord::Base
 		low_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'LOW',company_id).first
 		return high_risk, medium_risk, low_risk
 	end
+=======
+
+	accepts_nested_attributes_for :mitigation
+  accepts_nested_attributes_for :control_measures
+>>>>>>> 2fbfe1295b2dc62f08bf419d484996ed8c45b5c9
 end

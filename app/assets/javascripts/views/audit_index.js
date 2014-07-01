@@ -216,6 +216,11 @@
 	  		var test_row = $(currenRow).find(".k-grid-Set, .k-grid-tick, .k-grid-tick1, .k-grid-book")
 	  		$(test_row).addClass('active')
 	  	}
+	  	if (currenStatus == "Planning")
+	    {
+	    	var test_row = $(currenRow).find(".k-grid-Set, .k-grid-tick, .k-grid-tick1, .k-grid-book, .k-grid-graph")
+	    	$(test_row).hide()
+	    }
 	  }
 	}
 
@@ -224,7 +229,7 @@
   	$('.k-grid-Set').attr('title','Do');
     $('.k-grid-tick').attr('title','Check');
     $('.k-grid-tick1').attr('title','Act');
-    $('.k-grid-book').attr('title','Published');
+    $('.k-grid-book').attr('title','Publish');
     $('.k-grid-pdf').attr('title','PDF');
     $('.k-grid-edit').attr('title','Edit');
     $('.k-grid-graph').attr('title','Dashboard');

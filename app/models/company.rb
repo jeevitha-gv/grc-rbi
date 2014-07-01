@@ -25,6 +25,9 @@ class Company < ActiveRecord::Base
   has_many :projects
   has_many :cpp_measures
   has_one :risk_review_level
+  has_one :plan
+  has_many :subscriptions,through: :plan
+  has_many :transactions
 
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users
@@ -47,6 +50,7 @@ class Company < ActiveRecord::Base
 
   delegate :email, to: :company_admin, prefix: true, allow_nil: true
 
+  attr_accessor :subscription
   after_create :company_role_create, :review_rating_levels_create
 
   scope :active, -> { where(is_disabled: false) }

@@ -87,6 +87,25 @@ class ApplicationController < BaseController
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
+  
+  def authenticate_subscription
+    if !Subscription.where("name = ?",params[:subscription]).present? && controller_name.eql?("companies") && action_name.eql?("new")
+        redirect_to new_plan_path
+    end
+  end
+
+  def calculate_plan_expiration(period,log,created_at)
+  #period = period == 1 ? "Days" : period == 2 ? "Months" : "Year"
+  start = created_at.to_date
+  case period    
+  when 1
+    start + log.days
+  when 2
+    start + log.months
+  when 3
+    start + log.year
+  end
+end
 
   private
 
