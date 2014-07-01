@@ -1,0 +1,743 @@
+ <link href="/assets/bootstrap-multiselect.js" rel="stylesheet" media="screen">
+ <link rel="stylesheet" type="text/css" href="/assets/bootstrap-multiselect.css">
+  <div class="clearfix"></div>
+  <div class="sub_menu">
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse subnavbar-fixed-top" role="navigation">
+      <div class="container">
+        <ul class="subbar-nav nav navbar-nav">
+        <li><a href="#">
+          <div class="file-icon"></div>
+          File</a></li>
+        <li><a href="">
+          <div class="listing-icon "></div>
+          Listings</a></li>
+        <li><a class="active" href="">
+          <div class="lmitigate-icon"></div>
+          Mitigate</a></li>
+        <li><a  href="">
+          <div class="review-icon"></div>
+          Review</a></li>
+        <li><a href="">
+          <div class="setting-icon"></div>
+          Setting</a></li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="content">
+    <div class="container">
+      <div>
+        <!-- Nav tabs -->
+         <div class="risk-title">Risk Mitigation</div>
+         </div>
+         </div>
+         <!------------Risk box ---------->
+         <div class="container">
+         <div>
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="mitigation-box-wrap">
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="red-box">
+                  <div class="number">10</div>
+                    <div class="text">High</div>
+                </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+                    <div class="mitigate-inner mitigate-box">
+                        <div class="risk-box-lable">Risk Id :</div>
+                        <div class="risk-box-text"><%= risk.id %></div>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+             <div class="mitigation-box-wrap">
+              <div class="mitigation-sub">
+                  <div class="risk-box-lable">Subject:</div>
+                    <div class="risk-box-text"><%= risk.subject %></div>
+                </div>
+                </div>
+            </div>
+             <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+            <div class="mitigation-box-wrap">
+              <div class="mitigation-status">
+                  <div class="risk-box-lable">Status:</div>
+                    <div class="risk-box-text">Management Reviewed</div>
+                </div>
+                </div>
+            </div>
+         </div>
+
+         <div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+               <div class="tab-pane active" id="all">
+            <div class="table-responsive">
+              <table class="table table-striped table-bg">
+                <tr>
+                  <th colspan="6" class="risk-able-th">Security process for conveyance operators</th>
+                </tr>
+                <tr>
+                  <td><label>Control Number : </label>
+                   <%= risk.subject %></td>
+                  <td><label> Reference Id : </label>
+                    <%= risk.reference %></td>
+                  <td><label>Site / Location : </label>
+                    <%= risk.location.name %></td>
+                </tr>
+                <tr>
+                  <td><label>Category : </label>
+                    <span> Access Management</span></td>
+                  <td><label>Technology : </label>
+                    <%= risk.technology.name %></td>
+                  <td><label>Owner :</label>
+                    <%= risk.owner %></td>
+                </tr>
+                <tr>
+                  <td><label>Ownerâs Manager: </label>
+                    <span>Access Management</span></td>
+                  <td><label>Team : </label>
+                    <span>Branch Management</span></td>
+                  <td><label> Scoring Method :</label>
+                    <span> CLASSIC</span></td>
+                </tr>
+                <tr>
+                  <td><label>Currently Likelihood : </label>
+                    <span>Remote</span></td>
+                  <td><label>Current Impact : </label>
+                    <span> Moderate</span></td>
+                  <td></td>
+                </tr>
+
+              </table>
+            </div>
+          </div>
+            </div>
+         </div>
+         <!---------------Table 2 -------->
+         <div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="risk-assetes">
+              <div class="mitigation-recomm">
+                <div class="mit-reccom-title">Risk Assesment</div>
+                <%= risk.assessment %>
+                </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="mitigation-recomm">
+                <div class="mit-reccom-title">Additional Note</div>
+                <%= risk.notes %>
+                </div>
+            </div>
+         </div>
+          <!---------------form 1 -------->
+         <div>
+           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="mit-plan-effort">
+              <div class="mitigation-percive">
+                <div class="mit-reccom-title-sp">Plan Effort</div>
+                <div class="risk-wrap clearfix">
+                <div class="sub-wrap-bg">
+                <form class="form-horizontal" role="form">
+                  <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <!--Row first ------------>
+                <div>
+                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
+                  <%= form_for (risk) do |f| %>
+                  <%#= form_for(audit, url: {controller: "nc_questions", action: "create"},:method => "post") do |f| %>
+
+                       <%= f.fields_for :control_measures do |control| %>
+                     <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-4 control-label">Control</label>
+                       <div class="col-sm-8">
+                            <div class="risk-select">
+                             <%#= control.collection_select(:control_ids, @controls,  :id, :name),{}, {:id => "multiselect"} %>
+														 			<%#= control.select :modular_id,options_for_select(@controls, :id, :name), {},{:id => "privilege_modular_id", :selected =>"", :class=> "test"}%>		
+														     <%= select("control", "control_ids", options_from_collection_for_select(@controls, :id, :name), {}, {:id=> "multiselect", :multipart =>"multiple" }) %>
+                            </div>
+                    </div>
+                   </div>
+                  </div>
+                  </div>
+
+                 <!--Row first ------------>
+                <div>
+                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
+                     <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-4 control-label">Process</label>
+                       <div class="col-sm-8">
+                            <div class="risk-select">
+                             <%= control.collection_select(:process_ids, @process,  :id, :name, :prompt => true) %>
+                            </div>
+                    </div>
+                   </div>
+                  </div>
+                  </div>
+                 <!--Row first ------------>
+                <div>
+                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
+                     <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-4 control-label">Procedure</label>
+                       <div class="col-sm-8">
+                            <div class="risk-select">
+                            <%= control.collection_select(:procedure_ids, @procedure,  :id, :name, :prompt => true) %>
+                            </div>
+                    </div>
+                   </div>
+                  </div>
+                      <%end%>
+                  </div>
+
+                 <!--Row first ------------>
+                <%= f.fields_for :mitigation do |mitigation| %>
+
+                <div>
+                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
+                     <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-4 control-label">Planning Strategy </label>
+                       <div class="col-sm-8">
+                            <div class="risk-select">
+                               <%= mitigation.collection_select(:planning_strategy_id, PlanningStrategy.all,  :id, :name, :prompt => true) %>
+                            </div>
+                    </div>
+                   </div>
+                  </div>
+                  </div>
+
+                  <!--Row first ------------>
+                <div>
+                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
+                     <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-4 control-label">Mitigation Effort  </label>
+                       <div class="col-sm-8">
+                            <div class="risk-select">
+                             <%= mitigation.collection_select(:mitigation_effort_id, MitigationEffort.all, :id, :name, :prompt => true) %>
+                            </div>
+                    </div>
+                   </div>
+                  </div>
+                  </div>
+                   </div>
+                    <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div>
+                           <div class="text-area clearfix">
+                              <label for="inputEmail3" class="col-sm-3 control-label"> <%= f.label :current_solution, t('risk.') %></label>
+                                     <div class="col-sm-9">
+                                     <%= mitigation.text_area :current_solution, :class=>"form-control risk-big-input" %>
+                                     </div>
+                                  </div>
+                              </div>
+
+
+                             <div>
+                           <div class="text-area clearfix">
+                              <label for="inputEmail3" class="col-sm-3 control-label">
+                                <%= f.label :requirements, t('risk.security_requirements') %></label>
+                                     <div class="col-sm-9">
+                                      <%= mitigation.text_area :security_requirements, :class=>"form-control risk-big-input" %>
+                                     </div>
+                                  </div>
+                                  </div>
+
+                             <div>
+                           <div class="text-area clearfix">
+                              <label for="inputEmail3" class="col-sm-3 control-label">
+                                <%= f.label :recommendations, t('risk.security_recommendations') %> </label>
+                                     <div class="col-sm-9">
+                                      <%= mitigation.text_area :security_recommendations, :class=>"form-control risk-big-input" %>
+                                     </div>
+                              </div>
+                           </div>
+                           <%end%>
+                      </div>
+                  </div>
+
+                </form>
+                </div>
+            </div>
+            </div>
+         </div>
+           </div>
+
+
+                <!---------------form 1 -------->
+         <div>
+           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="mit-plan-effort">
+              <div class="mitigation-percive">
+                <div class="mit-reccom-title-sp">Perceived Score</div>
+                <div class="risk-wrap clearfix">
+                <div class="sub-wrap-bg">
+                <form class="form-horizontal" role="form">
+                  <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <!--Row first ------------>
+                <div>
+                 <!--<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
+                     <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-4 control-label">Likelihood</label>
+                       <div class="col-sm-8">
+                            <div class="risk-select">
+                             <select class="form-control">
+                              <option></option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                            </div>
+                    </div>
+                   </div>
+                  </div>-->
+                  </div>
+                 <!--Row first ------------>
+                <div>
+                 <!--<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
+                     <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-4 control-label">Impact</label>
+                       <div class="col-sm-8">
+                            <div class="risk-select">
+                             <select class="form-control">
+                              <option></option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                            </div>
+                    </div>
+                   </div>
+                  </div>-->
+                  </div>
+                 <!--Row first ------------>
+                <div>
+
+                  <div class="text-area clearfix">
+                              <label for="inputEmail3" class="col-sm-3 control-label">Threat</label>
+                                     <div class="col-sm-9">
+                                     <textarea class="form-control risk-big-input" rows="2"></textarea>
+                            </div>
+                                  </div>
+ <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
+                     <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-4 control-label">Effectiveness</label>
+                       <div class="col-sm-8">
+                            <div class="risk-select">
+                             <select class="form-control">
+                              <option></option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                            </div>
+                    </div>
+                   </div>
+                  </div>
+
+                              </div>
+
+
+
+
+                  </div>
+
+
+
+                    <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+
+
+                             <div>
+                           <div class="text-area clearfix">
+                              <label for="inputEmail3" class="col-sm-3 control-label">Consequence</label>
+                                     <div class="col-sm-9">
+                                     <textarea class="form-control risk-big-input" rows="2"></textarea>
+                            </div>
+                                  </div>
+                                  </div>
+                        </div>
+                        </div>
+
+
+
+
+                </form>
+                </div>
+
+            </div>
+            </div>
+         </div>
+           </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="likelihood matrix-padding clearfix">
+                    <div class="base-score-matrix">Base Score Metrics
+                     <!-- <div class="up-triangle"></div>-->
+                    </div>
+                        <div class="">
+                         <div class="exploitability">Exploitability Metrics</div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group clearfix">
+                                     <div class="col-sm-12">
+                                     <label for="exampleInputPassword1">Attack Vector</label>
+                                         <div class="risk-select">
+                                         <select class="form-control">
+                                          <option></option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                        </div>
+                            </div>
+                                  </div>
+                                  </div>
+                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group">
+                                     <div class="col-sm-12 ">
+                                     <label for="exampleInputPassword1">Attack Complexity</label>
+                                         <div class="risk-select">
+                                         <select class="form-control clearfix">
+                                          <option></option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                        </div>
+                              </div>
+                                  </div>
+                                  </div>
+
+                                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group">
+                                     <div class="col-sm-12 ">
+                                     <label for="exampleInputPassword1"> Authentication</label>
+                                         <div class="risk-select">
+                                         <select class="form-control clearfix">
+                                          <option></option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                        </div>
+                              </div>
+                                  </div>
+                                  </div>
+                                   <div class="emp-hr clearfix"></div>
+                                  </div>
+
+
+                                 <div class="">
+                         <div class="exploitability">Exploitability Metrics</div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group clearfix">
+                                     <div class="col-sm-12">
+                                     <label for="exampleInputPassword1">Confidentiality Impact</label>
+                                         <div class="risk-select">
+                                         <select class="form-control clearfix">
+                                          <option></option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                        </div>
+                            </div>
+                                  </div>
+                                  </div>
+                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group" >
+                                     <div class="col-sm-12 ">
+                                     <label for="exampleInputPassword1">Integrity Impact</label>
+                                         <div class="risk-select">
+                                         <select class="form-control">
+                                          <option></option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                        </div>
+                              </div>
+                                  </div>
+                                  </div>
+
+                                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group">
+                                     <div class="col-sm-12 ">
+                                     <label for="exampleInputPassword1">Availability Impact</label>
+                                         <div class="risk-select">
+                                         <select class="form-control">
+                                          <option></option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                        </div>
+                              </div>
+                                  </div>
+                                  </div>
+                                   <div class="emp-hr clearfix"></div>
+                                  </div>
+
+
+                                             <div class="">
+                         <div class="exploitability">Temporal Score Metrics</div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group clearfix">
+                                     <div class="col-sm-12">
+                                     <label for="exampleInputPassword1">Exploitability</label>
+                                         <div class="risk-select">
+                                         <select class="form-control">
+                                          <option></option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                        </div>
+                            </div>
+                                  </div>
+                                  </div>
+                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group">
+                                     <div class="col-sm-12 ">
+                                     <label for="exampleInputPassword1">Remediation Level</label>
+                                         <div class="risk-select">
+                                         <select class="form-control">
+                                          <option></option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                        </div>
+                              </div>
+                                  </div>
+                                  </div>
+
+                                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group">
+                                     <div class="col-sm-12 ">
+                                     <label for="exampleInputPassword1">Report Confidence</label>
+                                         <div class="risk-select">
+                                         <select class="form-control">
+                                          <option></option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                        </div>
+                              </div>
+                                  </div>
+
+                                  </div>
+                                   <div class="emp-hr clearfix"></div>
+                                  </div>
+
+                                   <div class="">
+                         <div class="exploitability">Environmental Score Metrics</div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group clearfix">
+                                     <div class="col-sm-12">
+                                     <label for="exampleInputPassword1">Collateral Damage Potential</label>
+                                         <div class="risk-select">
+                                         <select class="form-control">
+                                          <option></option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                        </div>
+                            </div>
+                                  </div>
+                                  </div>
+                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group">
+                                     <div class="col-sm-12 ">
+                                     <label for="exampleInputPassword1">Target Distribution</label>
+                                         <div class="risk-select">
+                                         <select class="form-control">
+                                          <option></option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                        </div>
+                              </div>
+                                  </div>
+                                  </div>
+
+                                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group">
+                                     <div class="col-sm-12 ">
+                                     <label for="exampleInputPassword1">Integrity Requirement</label>
+                                         <div class="risk-select">
+                                         <select class="form-control">
+                                          <option></option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                        </div>
+                              </div>
+                                  </div>
+                                  </div>
+                                  </div>
+
+
+                            </div>
+
+
+              </div>
+
+                <div class="btn-group">
+                  <a class="black_btn" href="">Back</a> <a class="grey_btn" href=""> Save </a>
+                 <!--  <a class="orange_btn" href="">Submit</a> -->
+                 <%= f.submit "Submit" ,:class => "orange_btn" %>
+                </div>
+      </div>
+    </div>
+  <% end %>
+
+  </div>
+<!--  <div class="clearfix"></div> -->
+  <!-- <div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer_left col-lg-6">2014 Â© FixNix Audit Management</div>
+      <div class="footer_right col-lg-6">Powered By<img src="img/footer_logo.png" alt=""/></div>
+    </div>
+  </div>
+</div>
+</div> -->
+<script type="text/javascript">
+$(window).load(function(){
+  var $container = $('#grid_items');
+  // initialize
+  $container.masonry({
+    columnWidth: 292,
+    itemSelector: '.item',
+    isFitWidth: true
+  });
+
+
+  $(".block_banner img").each(function(index, element) {
+        var screenImage = $(this);
+
+    // Create new offscreen image to test
+    var theImage = new Image();
+    theImage.src = screenImage.attr("src");
+
+    var imageHeight = theImage.height;
+
+    $(this).css("max-height",imageHeight);
+    $(this).css("min-height",imageHeight);
+    });
+});
+
+$(".click_icon").click(function() {
+      $(".share_pop").show();
+});
+
+$(".click_icon").click(function(){
+    $(".share_pop").show();
+});
+
+$(document).ready(function(){
+
+  Top_postion = $(window).scrollTop();
+
+  $( ".user_login" ).mouseenter(function() {
+    $(this).addClass("active");
+    $(".account_header_dropdown").slideDown(100);
+  })
+  .mouseleave(function() {
+    $(this).removeClass("active");
+    $(".account_header_dropdown").hide();
+  });
+
+  //for notification drop hide in outside click
+  onclick_icon = 0;
+  $(".click_icon").mouseenter(function() {
+    onclick_icon = 0;
+  })
+  .mouseleave(function() {
+    onclick_icon = 1;
+  });
+
+
+  $("body").click(function(){
+    if(onclick_icon){
+      $(".share_pop").hide();
+    }
+  });
+
+
+  /* placeholder */
+  $(".place_holder").each(function(index, element) {
+    placeholder = $(this).attr("data-original");
+    $(this).val(placeholder);
+    $(this).removeClass("active");
+    });
+
+  $(".place_holder").focus(function(){
+    placeholder = $(this).attr("data-original");
+    current_value = $(this).val();
+    if(current_value==placeholder){
+      $(this).val("");
+      $(this).addClass("active");
+    }
+  });
+  $(".place_holder").blur(function(){
+    placeholder = $(this).attr("data-original");
+    current_value = $(this).val();
+    if(current_value==""){
+      $(this).val(placeholder);
+      $(this).removeClass("active");
+    }else{
+      $(this).addClass("active");
+    }
+  });
+  $(".place_holder").click(function(){
+    placeholder = $(this).attr("data-original");
+    current_value = $(this).val();
+    if(current_value==placeholder){
+      $(this).val("");
+      $(this).addClass("active");
+    }
+  });
+  /* placeholder */
+
+
+});
+/*$(window).scroll(function(){
+  Top_postion = $(window).scrollTop();
+
+  if(Top_postion>10){
+    $(".go_to_top").show();
+  }else{
+    $(".go_to_top").hide();
+  }
+});
+$(".go_to_top").click(function(){
+  top = 0;
+  $("html, body").animate({scrollTop: "0"}, 800);
+});
+*/
+  $(document).ready(function() {
+	alert(1111111)
+        $("#multiselect").multiselect();
+    });
+</script>
+
