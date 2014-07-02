@@ -341,6 +341,32 @@ en:
               only_integer: "Should be an Integer"
             valid_period:
               blank: "Please select a valid period"
+        risk:
+          attributes:
+            subject:
+              blank: "Subject cannot be blank"
+            reference:
+              blank: "Reference cannot be blank"
+            assessment:
+              blank: "Risk Description cannot be blank"
+            compliance_id:
+              blank: "Select a compliance"
+            compliance_library_id:
+              blank: "Select a Control"
+            location_id:
+              blank: "Select a location"
+            category_id:
+              blank: "Select a category"
+            department_id:
+              blank: "Select a department"
+            team_id:
+              blank: "Select a team"
+            owner:
+              blank: "Risk Owner cannot be blank"
+            mitigator:
+              blank: "Mitigator cannot be blank"
+
+
 
   companies:
     company:  "Company Name"
