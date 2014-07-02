@@ -11,7 +11,7 @@
             <div class="col-sm-12">
                 <%= classic.label :likelihood, t('classic.likelihood') %>
               <div class="risk-select">
-                <%= classic.select :likelihood, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= classic.collection_select(:likelihood, ClassicScoringMetric.for_name("Likelihood"), :value, :name, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -21,7 +21,7 @@
             <div class="col-sm-12">
               <%= classic.label :impact, t('classic.impact') %>
               <div class="risk-select">
-                <%= classic.select :classic_reproducibility, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= classic.collection_select(:impact, ClassicScoringMetric.for_name("Impact"), :value, :name, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -31,7 +31,7 @@
             <div class="col-sm-12">
               <%= classic.label :vulnerability, t('classic.vuln') %>
               <div class="risk-select">
-                <%= classic.select :vulnerability, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= classic.collection_select(:vulnerability, ClassicScoringMetric.for_name("Vulnerability"), :value, :name, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -44,7 +44,7 @@
             <div class="col-sm-12">
                 <%= classic.label :velocity, t('classic.velocity') %>
               <div class="risk-select">
-                <%= classic.select :likelihood, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= classic.collection_select(:velocity, ClassicScoringMetric.for_name("Velocity"), :value, :name, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
