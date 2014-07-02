@@ -4,7 +4,21 @@
     <div class="row">
       <div id="example" class="k-content">
         <div class="risk-title">Document a New Risk</div>
-        <a class="import-btn"><i class="download-icons"></i>Import  Risk</a>
+
+        <div class="clearfix"> <a class="import-btn" data-toggle="modal" href="#add_url"><i class="download-icons"></i>Import Risk</a>
+          <div id="add_url" class="modal fade">
+            <div class="modal-dialog modal-dialog_large">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
+                  <h4 class="modal-title" id="myModalLabel">Import Risks from CSV/XLSX</h4>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="risk-wrap">
             <div class="sub-wrap">
@@ -37,4 +51,3 @@
   </div>
 </div>
 </div>
-
