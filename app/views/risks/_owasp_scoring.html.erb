@@ -1,18 +1,21 @@
-<%= f.fields_for :dread_scorings do |dread| %>
+<%= f.fields_for :owasp_scorings do |owasp| %>
 
 <div class="row">
   <div class="likelihood matrix-padding clearfix">
-    <div class="base-score-matrix">DREAD Score Metrics
+    <div class="base-score-matrix">OWASP Score Metrics
       <div class="up-triangle"></div>
     </div>
+
+    <!-- Threat Agent Factors -->
     <div class="">
-      <div class="exploitability">Categories</div>
+      <div class="exploitability"><u>Likelihood</u></div>
+      <div class="exploitability">Threat Agent Factors</div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="form-group">
             <div class="col-sm-12">
-                <%= dread.label :dread_damage_potential, t('dread.damage_potential') %>
+                <%= owasp.label :owasp_skill_level, t('owasp.skill_level') %>
               <div class="risk-select">
-                <%= dread.select :dread_damage_potential, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= owasp.select :owasp_skill_level, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
               </div>
             </div>
           </div>
@@ -20,9 +23,9 @@
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="form-group">
             <div class="col-sm-12">
-              <%= dread.label :dread_reproducibility, t('dread.reproductibility') %>
+              <%= owasp.label :owasp_motive, t('owasp.motive') %>
               <div class="risk-select">
-                <%= dread.select :dread_reproducibility, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= owasp.select :owasp_motive, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
               </div>
             </div>
           </div>
@@ -30,42 +33,206 @@
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="form-group">
             <div class="col-sm-12">
-              <%= dread.label :dread_exploitability, t('dread.exploitability') %>
+              <%= owasp.label :owasp_opportunity, t('owasp.opportunity') %>
               <div class="risk-select">
-                <%= dread.select :dread_exploitability, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= owasp.select :owasp_opportunity, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
               </div>
             </div>
           </div>
         </div>
-        <div class="emp-hr clearfix"></div>
       </div>
 
       <div class="">
-      <div class="exploitability">Categories</div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="form-group">
             <div class="col-sm-12">
-                <%= dread.label :dread_affected_users, t('dread.affected_users') %>
+                <%= owasp.label :owasp_size, t('owasp.size') %>
               <div class="risk-select">
-                <%= dread.select :dread_affected_users, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= owasp.select :owasp_size, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
               </div>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          <div class="form-group">
-            <div class="col-sm-12">
-              <%= dread.label :dread_discoverability, t('dread.discoverability') %>
-              <div class="risk-select">
-                <%= dread.select :dread_discoverability, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         </div>
         <div class="emp-hr clearfix"></div>
       </div>
+      <!-- Threat Agent Factors -->
+
+      <!-- Vulnerability Factors -->
+      <div class="">
+        <div class="exploitability">Vulnerability Factors</div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+              <div class="col-sm-12">
+                  <%= owasp.label :owasp_ease_of_discovery, t('owasp.ease_of_dis') %>
+                <div class="risk-select">
+                  <%= owasp.select :owasp_ease_of_discovery, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <%= owasp.label :owasp_ease_of_exploit, t('owasp.ease_of_exp') %>
+                <div class="risk-select">
+                  <%= owasp.select :owasp_ease_of_exploit, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <%= owasp.label :owasp_awareness, t('owasp.awareness') %>
+                <div class="risk-select">
+                  <%= owasp.select :owasp_awareness, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+              <div class="col-sm-12">
+                  <%= owasp.label :owasp_intrusion_detection, t('owasp.intr_detect') %>
+                <div class="risk-select">
+                  <%= owasp.select :owasp_intrusion_detection, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          </div>
+          <div class="emp-hr clearfix"></div>
+        </div>
+      <!-- Threat Agent Factors -->
+
+
+      <!-- Technical Impact -->
+      <div class="">
+        <div class="exploitability"><u>Impact</u></div>
+        <div class="exploitability">Technical Impact</div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+              <div class="col-sm-12">
+                  <%= owasp.label :owasp_loss_of_confidentiality, t('owasp.loss_of_conf') %>
+                <div class="risk-select">
+                  <%= owasp.select :owasp_loss_of_confidentiality, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <%= owasp.label :owasp_loss_of_integrity, t('owasp.loss_of_inte') %>
+                <div class="risk-select">
+                  <%= owasp.select :owasp_loss_of_integrity, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <%= owasp.label :owasp_loss_of_availability, t('owasp.loss_of_avail') %>
+                <div class="risk-select">
+                  <%= owasp.select :owasp_loss_of_availability, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+              <div class="col-sm-12">
+                  <%= owasp.label :owasp_loss_of_accountability, t('owasp.loss_of_acc') %>
+                <div class="risk-select">
+                  <%= owasp.select :owasp_loss_of_accountability, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          </div>
+          <div class="emp-hr clearfix"></div>
+        </div>
+        <!-- Technical Impact -->
+
+        <!-- Business Impact -->
+        <div class="">
+          <div class="exploitability">Vulnerability Factors</div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="form-group">
+                <div class="col-sm-12">
+                    <%= owasp.label :owasp_financial_damage, t('owasp.fin_damage') %>
+                  <div class="risk-select">
+                    <%= owasp.select :owasp_financial_damage, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <%= owasp.label :owasp_reputation_damage, t('owasp.rep_damage') %>
+                  <div class="risk-select">
+                    <%= owasp.select :owasp_reputation_damage, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <%= owasp.label :owasp_non_compliance, t('owasp.non_comp') %>
+                  <div class="risk-select">
+                    <%= owasp.select :owasp_non_compliance, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="form-group">
+                <div class="col-sm-12">
+                    <%= owasp.label :owasp_privacy_violation, t('owasp.pri_violation') %>
+                  <div class="risk-select">
+                    <%= owasp.select :owasp_privacy_violation, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            </div>
+            <div class="emp-hr clearfix"></div>
+          </div>
+        <!-- Business Impact -->
+
+
+
+
+
+
+
+
+
 
   </div>
 </div>

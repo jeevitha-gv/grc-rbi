@@ -4,6 +4,7 @@ class Department < ActiveRecord::Base
   has_many :teams, :dependent => :destroy
   belongs_to :location
   has_many :risks
+  belongs_to :company
 
   # validations
   validates :name, presence:true

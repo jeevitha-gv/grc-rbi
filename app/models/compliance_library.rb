@@ -14,6 +14,8 @@ class ComplianceLibrary < ActiveRecord::Base
 
  scope :by_name, lambda { |name| where("lower(name) = ?", name)}
 
+ scope :for_id_and_leaf, lambda { |id| where("compliance_id = ? AND is_leaf is true", id) }
+
  before_destroy :child_compliance
  before_update :child_compliance_update
 

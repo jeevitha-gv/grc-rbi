@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :risks do
     collection do
       get 'compliance_libraries'
+      get 'department_teams_users'
     end
     resources :mgmt_reviews
     resources :mitigations
