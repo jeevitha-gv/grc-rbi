@@ -3,7 +3,7 @@ function get_compliance_libraries(element) {
   var compliance_id = $(element).val();
   if(compliance_id.length > 0) {
     $.ajax({
-      url: "/risks/compliance_libraries",
+      url: "/risks/department_teams_users",
       type: "GET",
       data: {"compliance_id" : compliance_id}
     });
