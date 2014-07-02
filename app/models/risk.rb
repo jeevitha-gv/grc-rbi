@@ -3,7 +3,7 @@ class Risk < ActiveRecord::Base
 	# Associations
 	has_one :mgmt_review
 	has_many :closures
-	has_many :control_measures
+	has_one :control_measure
 	has_one :risk_scoring
 	has_one :mitigation
 	belongs_to :risk_status
@@ -35,7 +35,9 @@ class Risk < ActiveRecord::Base
 
 
 	accepts_nested_attributes_for :mitigation
-  	accepts_nested_attributes_for :control_measures
+  accepts_nested_attributes_for :control_measure
+
+
 
 	def self.risk_rating(company_id)
 		high_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'HIGH',company_id).first
@@ -43,6 +45,4 @@ class Risk < ActiveRecord::Base
 		low_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'LOW',company_id).first
 		return high_risk, medium_risk, low_risk
 	end
-
-
 end
