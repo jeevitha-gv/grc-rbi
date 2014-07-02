@@ -1,19 +1,17 @@
 <div class="page-wrap">
-<div class="content">
-  <div class="container">
-    <div class="row">
-      <div id="example" class="k-content">
-        <div class="risk-title">Document a New Risk</div>
-        <a class="import-btn"><i class="download-icons"></i>Import  Risk</a>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="risk-wrap">
-            <div class="sub-wrap">
-              <div class="sub-titile">Use this form in order to document a new risk for consideration in the Risk Management Process.</div>
-              <div class="sub-wrap-bg">
-                <form class="form-horizontal" role="form">
-
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div id="example" class="k-content">
+          <div class="risk-title">Document a New Risk</div>
+          <a class="import-btn"><i class="download-icons"></i>Import  Risk</a>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="risk-wrap">
+              <div class="sub-wrap">
+                <div class="sub-titile">Use this form in order to document a new risk for consideration in the Risk Management Process.</div>
+                <div class="sub-wrap-bg">
                   <%= form_for(@risk) do |f| %>
-                    <%= render 'form', :f => f, :risk => @risk %>
+                    <%= render 'form', :f => f, :risk => @risk, :departments => @departments, :teams => @teams, :team_users => @team_users, :compliance_libraries => @compliance_libraries %>
                     <div class="row">
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <a href="" class="attach-icon fleft blue_link">Attach Document</a>
@@ -26,8 +24,7 @@
                       </div>
                     </div>
                   <% end %>
-
-                </form>
+                </div>
               </div>
             </div>
           </div>
@@ -35,6 +32,5 @@
       </div>
     </div>
   </div>
-</div>
 </div>
 
