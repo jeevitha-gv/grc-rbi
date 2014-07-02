@@ -904,3 +904,7 @@ CvssMetricScoring.delete_all
         CvssMetricScoring.create(metric_name: 'TargetDistribution', abrv_metric_name: 'TD', metric_value: 'Low (0-25%)', abrv_metric_value: 'L', numeric_value: '0.25')
         CvssMetricScoring.create(metric_name: 'TargetDistribution', abrv_metric_name: 'TD', metric_value: 'Medium (26-75%)', abrv_metric_value: 'M', numeric_value: '0.75')
         CvssMetricScoring.create(metric_name: 'TargetDistribution', abrv_metric_name: 'TD', metric_value: 'High (76-100%)', abrv_metric_value: 'H', numeric_value: '1')
+
+Subscription.delete_all
+
+    Subscription.create(:name => "Free", :description => "free",:section_ids=> [1,2], :amount => 0.00, :valid_log =>23,:valid_period => 1)
