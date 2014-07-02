@@ -3,7 +3,7 @@ class Risk < ActiveRecord::Base
 	# Associations
 	has_one :mgmt_review
 	has_many :closures
-	has_many :control_measures
+	has_one :control_measure
 	has_one :risk_scoring
 	has_one :mitigation
 	belongs_to :risk_status
@@ -18,19 +18,24 @@ class Risk < ActiveRecord::Base
 	belongs_to :department
 	belongs_to :compliance_library
 	belongs_to :technology
-	belongs_to :risk_owner, class_name: 'User', foreign_key: 'owner'
 	belongs_to :submitor, class_name: 'User', foreign_key: 'submitted_by'
 	belongs_to :project
 	belongs_to :risk_approval_status, foreign_key: 'risk_approval_status_id'
 
-	delegate :name, :to => :risk_status, prefix: true, allow_nil: true
-	delegate :user_name, :to => :risk_owner, prefix: true, allow_nil: true
-	delegate :scoring_type, :to => :risk_scoring, prefix: true, allow_nil: true
-	delegate :calculated_risk, :to => :risk_scoring, prefix: true, allow_nil: true
-	delegate :custom_value, :to => :risk_scoring, prefix: true, allow_nil: true
+	delegate :name, to: :risk_status, prefix: true, allow_nil: true
+	delegate :user_name, to: :risk_owner, prefix: true, allow_nil: true
+	delegate :scoring_type, to: :risk_scoring, prefix: true, allow_nil: true
+	delegate :calculated_risk, to: :risk_scoring, prefix: true, allow_nil: true
+	delegate :custom_value, to: :risk_scoring, prefix: true, allow_nil: true
+	delegate :name, to: :location, prefix: true, allow_nil: true
+	delegate :name, to: :team, prefix: true, allow_nil: true
+	delegate :name, to: :compliance, prefix: true, allow_nil: true
+	delegate :name, to: :risk_category, prefix: true, allow_nil: true
+	delegate :name, to: :technology, prefix: true, allow_nil: true
+
 
 	accepts_nested_attributes_for :mitigation
-  accepts_nested_attributes_for :control_measures
+  accepts_nested_attributes_for :control_measure
 
   # callbacks
   after_create :notify_risk_users
@@ -50,5 +55,4 @@ class Risk < ActiveRecord::Base
     	RiskMailer.delay.notify_users_about_risk(self, email, subject_array[index])
     end
   end
-
 end

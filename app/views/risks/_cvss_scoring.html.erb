@@ -1,53 +1,21 @@
-<%= f.fields_for :dread_scorings do |dread| %>
+<%= f.fields_for :cvss_scorings do |cvss| %>
 
 <div class="row">
   <div class="likelihood matrix-padding clearfix">
-    <div class="base-score-matrix">DREAD Score Metrics
+    <div class="base-score-matrix">CVSS Score Metrics
       <div class="up-triangle"></div>
     </div>
-    <div class="">
-      <div class="exploitability">Categories</div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          <div class="form-group">
-            <div class="col-sm-12">
-                <%= dread.label :dread_damage_potential, t('dread.damage_potential') %>
-              <div class="risk-select">
-                <%= dread.select :dread_damage_potential, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          <div class="form-group">
-            <div class="col-sm-12">
-              <%= dread.label :dread_reproducibility, t('dread.reproductibility') %>
-              <div class="risk-select">
-                <%= dread.select :dread_reproducibility, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          <div class="form-group">
-            <div class="col-sm-12">
-              <%= dread.label :dread_exploitability, t('dread.exploitability') %>
-              <div class="risk-select">
-                <%= dread.select :dread_exploitability, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="emp-hr clearfix"></div>
-      </div>
 
-      <div class="">
-      <div class="exploitability">Categories</div>
+    <!-- Exploitability Metrics -->
+    <div class="">
+      <div class="exploitability"><u>Base Score Metrics</u></div>
+      <div class="exploitability">Exploitability Metrics</div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="form-group">
             <div class="col-sm-12">
-                <%= dread.label :dread_affected_users, t('dread.affected_users') %>
+                <%= cvss.label :cvss_access_vector, t('cvss.att_vec') %>
               <div class="risk-select">
-                <%= dread.select :dread_affected_users, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= cvss.collection_select(:cvss_access_vector, CvssMetricScoring.for_name("AccessVector"), :abrv_metric_value, :metric_value, { include_blank: '--Select Score--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -55,17 +23,163 @@
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="form-group">
             <div class="col-sm-12">
-              <%= dread.label :dread_discoverability, t('dread.discoverability') %>
+              <%= cvss.label :cvss_access_complexity, t('cvss.att_compl') %>
               <div class="risk-select">
-                <%= dread.select :dread_discoverability, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= cvss.collection_select(:cvss_access_complexity, CvssMetricScoring.for_name("AccessComplexity"), :abrv_metric_value, :metric_value, { include_blank: '--Select Score--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <%= cvss.label :cvss_authentication, t('cvss.auth') %>
+              <div class="risk-select">
+                <%= cvss.collection_select(:cvss_authentication, CvssMetricScoring.for_name("Authentication"), :abrv_metric_value, :metric_value, { include_blank: '--Select Score--' }, {:class =>"form-control"})  %>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="emp-hr clearfix"></div>
       </div>
+      <!-- Exploitability Metrics -->
+
+      <!-- Impact Metrics -->
+      <div class="">
+      <div class="exploitability">Impact Metrics</div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="col-sm-12">
+                <%= cvss.label :cvss_conf_impact, t('cvss.conf_imp') %>
+              <div class="risk-select">
+                <%= cvss.select :cvss_conf_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <%= cvss.label :cvss_integ_impact, t('cvss.int_imp') %>
+              <div class="risk-select">
+                <%= cvss.select :cvss_integ_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <%= cvss.label :cvss_avail_impact, t('cvss.avail_imp') %>
+              <div class="risk-select">
+                <%= cvss.select :cvss_avail_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Impact Metrics -->
+
+      <!-- Temporal Scoring Metrics -->
+      <div class="">
+      <div class="exploitability"><u>Temporal Score Metrics</u></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="col-sm-12">
+                <%= cvss.label :cvss_exploitability, t('cvss.exploi') %>
+              <div class="risk-select">
+                <%= cvss.select :cvss_conf_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <%= cvss.label :cvss_remediation_level, t('cvss.remed_level') %>
+              <div class="risk-select">
+                <%= cvss.select :cvss_integ_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <%= cvss.label :cvss_report_confidence, t('cvss.report_conf') %>
+              <div class="risk-select">
+                <%= cvss.select :cvss_avail_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Temporal Scoring Metrics -->
+
+      <!-- Environmental Score Metrics -->
+      <div class="">
+      <div class="exploitability"><u>Environmental Score Metrics</u></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="col-sm-12">
+                <%= cvss.label :cvss_collateral_damage_potential, t('cvss.coll_damage_pot') %>
+              <div class="risk-select">
+                <%= cvss.select :cvss_conf_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <%= cvss.label :cvss_target_distribution, t('cvss.tar_dist') %>
+              <div class="risk-select">
+                <%= cvss.select :cvss_integ_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        </div>
+      </div>
+      <!-- Environmental Score Metrics -->
+
+      <!-- Impact Subscore Modifiers -->
+      <div class="">
+      <div class="exploitability">Impact Subscore Modifiers</div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="col-sm-12">
+                <%= cvss.label :cvss_confidentiality_requirement, t('cvss.conf_req') %>
+              <div class="risk-select">
+                <%= cvss.select :cvss_conf_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <%= cvss.label :cvss_integrity_requirement, t('cvss.int_req') %>
+              <div class="risk-select">
+                <%= cvss.select :cvss_integ_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <%= cvss.label :cvss_availability_requirement, t('cvss.avail_req') %>
+              <div class="risk-select">
+                <%= cvss.select :cvss_avail_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Impact Subscore Modifiers -->
+
+
 
   </div>
 </div>
