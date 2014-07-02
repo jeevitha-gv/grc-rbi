@@ -4,17 +4,19 @@ class PaymentsController < ApplicationController
     @payment = Transaction.where('identifier=?', params[:id]).first
     if @payment.company
        @company=@payment.company
+       user = @company.users
+       user_email = user.map(&:email) if user.map(&:role_title).join(",").eql?("company_admin")
        if @payment.pay_complete.eql?(true)
          subscribe = Subscription.where("id = ?",@payment.subscription_id).first         
          plan = Plan.new(subscription_id: subscribe.id ,company_id: @company.id,starts: @company.created_at ,expires: calculate_plan_expiration(subscribe.valid_period,subscribe.valid_log,@company.created_at))
          plan.save!
-         @payment.update_attributes(plan_start: plan.starts,plan_expire: plan.expires)
-         #UserMailer.deliver if @payment.pay_complete
-        
-      respond_to do |format|
-        format.html {redirect_to "/welcome", :notice=>"Payment is successfully completed"}
-      end
-    elsif @payment.pay_complete.eql?()
+         @payment.update_attributes(plan_start: plan.starts,plan_expire: plan.expires)         
+         SubscriptionNotifier.payment_complete(user_email).deliver if @payment.pay_complete        
+        respond_to do |format|
+          format.html {redirect_to "/welcome", :notice=>"Payment is successfully completed"}
+         end
+      elsif @payment.pay_complete.eql?(false) && !@payment.payment_cancel.eql?(true)
+         SubscriptionNotifier.payment_failed(user_email).deliver
       end
     end
   end
