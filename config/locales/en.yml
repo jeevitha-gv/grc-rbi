@@ -486,4 +486,10 @@ en:
   risk_scoring:
     custom: "Custom Value"
 
+  classic:
+    likelihood: "Likelihood"
+    impact: "Impact"
+    vuln: "Vulnerability"
+    velocity: "Velocity"
+
 

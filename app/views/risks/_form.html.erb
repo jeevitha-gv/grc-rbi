@@ -128,7 +128,7 @@
                       </label>
                       <div class="col-sm-8">
                         <div class="risk-select">
-                          <%= f.select :owner, options_for_select(["Some text here", ""]), {include_blank: '--Select Team--' }, { :id => "teams-list", :class => "form-control", :onChange => "get_departments(this);"} %>
+                          <%= f.select :owner, options_for_select(["Some text here", ""]), {include_blank: '--Select Risk Owner--' }, { :id => "teams-list", :class => "form-control", :onChange => "get_departments(this);"} %>
                         </div>
                       </div>
                     </div>
@@ -140,7 +140,7 @@
                       </label>
                       <div class="col-sm-8">
                         <div class="risk-select">
-                          <%= f.select :owner, options_for_select(["Some text here", ""]), {include_blank: '--Select Team--' }, { :id => "teams-list", :class => "form-control", :onChange => "get_departments(this);"} %>
+                          <%= f.select :owner, options_for_select(["Some text here", ""]), {include_blank: '--Select Mitigator--' }, { :id => "teams-list", :class => "form-control", :onChange => "get_departments(this);"} %>
                         </div>
                       </div>
                     </div>
@@ -152,7 +152,7 @@
                       </label>
                       <div class="col-sm-8">
                         <div class="risk-select">
-                          <%= f.select :owner, options_for_select(["Some text here", ""]), {include_blank: '--Select Team--' }, { :id => "teams-list", :class => "form-control", :onChange => "get_departments(this);"} %>
+                          <%= f.select :owner, options_for_select(["Some text here", ""]), {include_blank: '--Select Reviewer--' }, { :id => "teams-list", :class => "form-control", :onChange => "get_departments(this);"} %>
                         </div>
                       </div>
                     </div>
@@ -201,6 +201,14 @@
                       </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                      <div class="form-group">
+                        <div class="col-sm-12">
+                          <label>Scoring Model</label>
+                            <div class="risk-select">
+                              <%= f.collection_select(:risk_model_id, RiskModel.all, :id, :name, { include_blank: '--Select Risk Model--' }, {:class =>"form-control"})  %>
+                            </div>
+                        </div>
+                      </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     </div>
@@ -208,7 +216,7 @@
                 </div>
               </div>
 
-              <%= render 'cvss_scoring', :f => f %>
+              <%= render 'classic_scoring', :f => f %>
 
 
 
@@ -217,5 +225,3 @@
 
 
               <div class="clearfix border-divider"> </div>
-
-

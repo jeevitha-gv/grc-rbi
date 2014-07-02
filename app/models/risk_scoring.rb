@@ -8,7 +8,11 @@ class RiskScoring < ActiveRecord::Base
     after_create :update_scoring
     after_update :update_scoring
 
+<<<<<<< HEAD
   	SCORING_TYPES = [["Classic", "Classic"], ["OWASP", "OWASP"], ["DREAD", "DREAD"], ["CVSS", "CVSS"], ["Custom", "Custom"]]
+=======
+  SCORING_TYPES = [["Classic", "ClassicScoring"], ["OWASP", "OwaspScoring"], ["DREAD", "DreadScoring"], ["CVSS", "CvssScoring"], ["Custom", "Custom"]]
+>>>>>>> 2638a64d75f73db05f4b8b20d3c734823242d5d1
 
   def update_scoring
   	if((self.scoring_type_has_changed || self.scoring_id_has_changed?) && self.scoring_type != "Custom")
