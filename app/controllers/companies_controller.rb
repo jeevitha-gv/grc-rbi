@@ -32,8 +32,8 @@ class CompaniesController < ApplicationController
         else
           payment = @company.transactions.create(:company_id => @company.id,:subscription_id=> subscribe.id)
           payment.setup!(
-          "http://audit.loc/payments/success",
-          "http://audit.loc/payments/cancel"
+          "#{HOST_URL}/payments/success",
+          "#{HOST_URL}/payments/cancel"
           )
           redirect_to payment.redirect_uri
       end
