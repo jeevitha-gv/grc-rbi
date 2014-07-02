@@ -32,6 +32,9 @@ class Risk < ActiveRecord::Base
 	accepts_nested_attributes_for :mitigation
   accepts_nested_attributes_for :control_measures
 
+  # callbacks
+  after_create :notify_risk_users
+
 	def self.risk_rating(company_id)
 		high_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'HIGH',company_id).first
 		medium_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'MEDIUM',company_id).first
@@ -39,5 +42,13 @@ class Risk < ActiveRecord::Base
 		return high_risk, medium_risk, low_risk
 	end
 
+	def notify_risk_users
+		users_email = []
+		subject_array = ["Your risk has been successfully created and assigned", "A new risk has been assigned to you for mitigation", "A new risk has been assigned to you for managment review"]
+		users_email << self.risk_owner.email << self.risk_mitigator.email <<  self.risk_reviewer.email
+    users_email.each_with_index do |email, index|
+    	RiskMailer.delay.notify_users_about_risk(self, email, subject_array[index])
+    end
+  end
 
 end
