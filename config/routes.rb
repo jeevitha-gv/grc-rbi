@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get 'compliance_libraries'
     end
     resources :mgmt_reviews
+    resources :mitigations
   end
 
   resources :audits do
@@ -112,9 +113,9 @@ Rails.application.routes.draw do
   resources :audit_compliances do
     post 'submit', on: :collection
   end
-  
+
   resources :plans
-  
+
     resources :payments, only: [:show, :create, :destroy] do
     collection do
       get :success
@@ -124,7 +125,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :mitigations
+
 
   get 'welcome', to: 'companies#welcome', :as => :welcome
 

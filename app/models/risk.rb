@@ -3,7 +3,7 @@ class Risk < ActiveRecord::Base
 	# Associations
 	has_one :mgmt_review
 	has_many :closures
-	has_many :control_measures
+	has_one :control_measure
 	has_one :risk_scoring
 	has_one :mitigation
 	belongs_to :risk_status
@@ -28,5 +28,5 @@ class Risk < ActiveRecord::Base
 	delegate :custom_value, :to => :risk_scoring, prefix: true, allow_nil: true
 
 	accepts_nested_attributes_for :mitigation
-  accepts_nested_attributes_for :control_measures
+  accepts_nested_attributes_for :control_measure
 end
