@@ -9,6 +9,9 @@
       </label>
       <div class="col-sm-8">
         <%= f.text_field :subject, :class => "form-control risk-normal-input" %>
+        <% if risk.errors[:subject].present? %>
+          <div class="error_message"><%= risk.errors[:subject][0]%></div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -19,6 +22,9 @@
       </label>
       <div class="col-sm-8">
         <%= f.text_field :reference, :class => "form-control risk-normal-input" %>
+        <% if risk.errors[:reference].present? %>
+          <div class="error_message"><%= risk.errors[:reference][0]%></div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -30,6 +36,9 @@
       <div class="col-sm-8">
         <div class="risk-select">
           <%= f.select :compliance_id, options_for_select(Compliance.all.collect{|x| [x.name, x.id.to_i]}, :selected => risk.compliance_id), {:include_blank => "--Select Compliance--"}, {:id => "compliance_id", :class => "form-control", :onChange => "get_compliance_libraries(this)"} %>
+          <% if risk.errors[:compliance_id].present? %>
+            <div class="error_message"><%= risk.errors[:compliance_id][0]%></div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -51,6 +60,9 @@
           <% else %>
             <%= f.select :compliance_library_id, options_for_select(["Some text here", ""]), {include_blank: '--Select Control--' }, { :class => "form-control"} %>
           <% end %>
+          <% if risk.errors[:compliance_library_id].present? %>
+            <div class="error_message"><%= risk.errors[:compliance_library_id][0]%></div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -63,6 +75,9 @@
       <div class="col-sm-8">
         <div class="risk-select">
           <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => risk.location_id), {include_blank: '--Select Location--' }, { :id => "locations-list", :class => "form-control", :onChange => "get_departments(this);"} %>
+          <% if risk.errors[:location_id].present? %>
+            <div class="error_message"><%= risk.errors[:location_id][0]%></div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -78,6 +93,9 @@
             <%= f.select :department_id, options_for_select(departments.all.collect{|x| [x.name, x.id.to_i]}, :selected => risk.department_id), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
           <% else %>
             <%= f.select :department_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
+          <% end %>
+          <% if risk.errors[:department_id].present? %>
+            <div class="error_message"><%= risk.errors[:department_id][0]%></div>
           <% end %>
         </div>
       </div>
@@ -100,6 +118,9 @@
           <% else %>
             <%= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "team_id", :onChange => "get_risk_owners(this);"} %>
           <% end %>
+          <% if risk.errors[:team_id].present? %>
+            <div class="error_message"><%= risk.errors[:team_id][0]%></div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -112,6 +133,9 @@
       <div class="col-sm-8">
         <div class="risk-select">
           <%= f.collection_select(:category_id, current_company.risk_categories, :id, :name, { include_blank: '--Select Category--' }, {:class => "form-control"}) %>
+          <% if risk.errors[:category_id].present? %>
+            <div class="error_message"><%= risk.errors[:category_id][0]%></div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -124,6 +148,9 @@
       <div class="col-sm-8">
         <div class="risk-select">
           <%= f.collection_select(:technology_id, current_company.technologies, :id, :name, { include_blank: '--Select Technology--' }, {:class => "form-control"}) %>
+          <% if risk.errors[:technology_id].present? %>
+            <div class="error_message"><%= risk.errors[:technology_id][0]%></div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -145,6 +172,9 @@
           <% else %>
             <%= f.select :owner, options_for_select(["Some text here", ""]), {include_blank: 'Select Owner' }, { :id => "risk-owner", :class => "form-control"} %>
           <% end %>
+          <% if risk.errors[:owner].present? %>
+            <div class="error_message"><%= risk.errors[:owner][0]%></div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -157,6 +187,9 @@
       <div class="col-sm-8">
         <div class="risk-select">
           <%= f.select :mitigator, options_for_select(@mitigator_users.collect{|x| [x.user_name, x.id]}, :selected => risk.mitigator), {include_blank: '--Select Mitigator--' }, { :id => "risk-mitigator", :class => "form-control"} %>
+          <% if risk.errors[:mitigator].present? %>
+            <div class="error_message"><%= risk.errors[:mitigator][0]%></div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -185,6 +218,9 @@
       <div class="col-sm-12">
         <%= f.label :assessment, t('risk.assessment') %>
         <%= f.text_area :assessment, :class=>"form-control risk-big-input" %>
+        <% if risk.errors[:assessment].present? %>
+          <div class="error_message"><%= risk.errors[:assessment][0]%></div>
+        <% end %>
       </div>
     </div>
   </div>

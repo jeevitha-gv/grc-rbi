@@ -6,6 +6,7 @@ class Risk < ActiveRecord::Base
 	has_one :control_measure
 	has_one :risk_scoring
 	has_one :mitigation
+  has_one :attachment, as: :attachable
 	belongs_to :risk_status
 	belongs_to :compliance
 	belongs_to :location
@@ -49,10 +50,11 @@ class Risk < ActiveRecord::Base
 	delegate :name, to: :compliance, prefix: true, allow_nil: true
 	delegate :name, to: :risk_category, prefix: true, allow_nil: true
 	delegate :name, to: :technology, prefix: true, allow_nil: true
+	delegate :name, to: :risk_model, prefix: true, allow_nil:true
 
 
 	accepts_nested_attributes_for :mitigation
-  accepts_nested_attributes_for :control_measure
+  	accepts_nested_attributes_for :control_measure
 
   # callbacks
   after_create :notify_risk_users
