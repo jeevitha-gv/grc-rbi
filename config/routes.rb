@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get 'department_teams_users'
     end
     resources :mgmt_reviews
+    resources :mitigations
   end
 
   resources :audits do
@@ -125,7 +126,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :mitigations
+
 
   get 'welcome', to: 'companies#welcome', :as => :welcome
 

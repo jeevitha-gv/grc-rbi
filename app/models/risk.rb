@@ -3,7 +3,7 @@ class Risk < ActiveRecord::Base
 	# Associations
 	has_one :mgmt_review
 	has_many :closures
-	has_many :control_measures
+	has_one :control_measure
 	has_one :risk_scoring
 	has_one :mitigation
 	belongs_to :risk_status
@@ -18,7 +18,6 @@ class Risk < ActiveRecord::Base
 	belongs_to :department
 	belongs_to :compliance_library
 	belongs_to :technology
-	belongs_to :risk_owner, class_name: 'User', foreign_key: 'owner'
 	belongs_to :submitor, class_name: 'User', foreign_key: 'submitted_by'
 	belongs_to :project
 	belongs_to :risk_approval_status, foreign_key: 'risk_approval_status_id'
@@ -36,7 +35,10 @@ class Risk < ActiveRecord::Base
 
 
 	accepts_nested_attributes_for :mitigation
-  	accepts_nested_attributes_for :control_measures
+  accepts_nested_attributes_for :control_measure
+
+  # callbacks
+  after_create :notify_risk_users
 
 	def self.risk_rating(company_id)
 		high_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'HIGH',company_id).first
@@ -45,5 +47,12 @@ class Risk < ActiveRecord::Base
 		return high_risk, medium_risk, low_risk
 	end
 
-
+	def notify_risk_users
+		users_email = []
+		subject_array = ["Your risk has been successfully created and assigned", "A new risk has been assigned to you for mitigation", "A new risk has been assigned to you for managment review"]
+		users_email << self.risk_owner.email << self.risk_mitigator.email <<  self.risk_reviewer.email
+    users_email.each_with_index do |email, index|
+    	RiskMailer.delay.notify_users_about_risk(self, email, subject_array[index])
+    end
+  end
 end

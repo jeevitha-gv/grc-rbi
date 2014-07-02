@@ -849,7 +849,7 @@ ClassicScoringMetric.delete_all
 
 CvssMetricScoring.delete_all
 
-        CvssMetricScoring.create(metric_name: 'AccessComplexity', abrv_metric_name: 'AC', metric_value: 'High', abrv_metric_value: 'High', numeric_value: '0.35')
+        CvssMetricScoring.create(metric_name: 'AccessComplexity', abrv_metric_name: 'AC', metric_value: 'High', abrv_metric_value: 'H', numeric_value: '0.35')
         CvssMetricScoring.create(metric_name: 'AccessComplexity', abrv_metric_name: 'AC', metric_value: 'Medium', abrv_metric_value: 'M', numeric_value: '0.61')
         CvssMetricScoring.create(metric_name: 'AccessComplexity', abrv_metric_name: 'AC', metric_value: 'Low', abrv_metric_value: 'L', numeric_value: '0.71')
         CvssMetricScoring.create(metric_name: 'AccessVector', abrv_metric_name: 'AV', metric_value: 'Local', abrv_metric_value: 'L', numeric_value: '0.395')
