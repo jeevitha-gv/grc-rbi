@@ -26,12 +26,12 @@ class Risk < ActiveRecord::Base
 
 	# Validations
   validates :subject, presence:true, length: { in: 0..250 }, :if => Proc.new{ |f| !f.subject.blank? }
-  validates :compliance_library_id, presence:true
+  # validates :compliance_library_id, presence:true
   validates :assessment, presence:true
   validates :notes, length: { in: 0..250 }
   validates :reference, presence:true, length: { in: 0..250 }, :if => Proc.new{ |f| !f.subject.blank? }
   validates :compliance_id, presence:true
-  validates :category_id, presence:true
+  # validates :category_id, presence:true
   validates :technology_id, presence:true
   validates :owner, presence:true
   validates :mitigator, presence:true

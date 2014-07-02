@@ -68,8 +68,8 @@ class Company < ActiveRecord::Base
     Role.create(title: "auditor", company_id: company.id)
     Role.create(title: "auditee", company_id: company.id)
     Role.create(title: "CRO", company_id: company.id)
-    Role.create(title: "Mitigator", company_id: company.id)
-    Role.create(title: "Reviewer", company_id: company.id)
+    Role.create(title: "mitigator", company_id: company.id)
+    Role.create(title: "reviewer", company_id: company.id)
   end
 
   def review_rating_levels_create
