@@ -483,4 +483,7 @@ en:
     int_req: "Integrity Requirement"
     avail_req: "Availability Requirement"
 
+  risk_scoring:
+    custom: "Custom Value"
+
 
