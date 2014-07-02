@@ -6,6 +6,7 @@ class Risk < ActiveRecord::Base
 	has_one :control_measure
 	has_one :risk_scoring
 	has_one :mitigation
+  has_one :attachment, as: :attachable
 	belongs_to :risk_status
 	belongs_to :compliance
 	belongs_to :location
