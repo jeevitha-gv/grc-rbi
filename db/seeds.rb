@@ -905,6 +905,16 @@ CvssMetricScoring.delete_all
         CvssMetricScoring.create(metric_name: 'TargetDistribution', abrv_metric_name: 'TD', metric_value: 'Medium (26-75%)', abrv_metric_value: 'M', numeric_value: '0.75')
         CvssMetricScoring.create(metric_name: 'TargetDistribution', abrv_metric_name: 'TD', metric_value: 'High (76-100%)', abrv_metric_value: 'H', numeric_value: '1')
 
+<<<<<<< HEAD
 Subscription.delete_all
 
     Subscription.create(:name => "Free", :description => "free",:section_ids=> [1,2], :amount => 0.00, :valid_log =>23,:valid_period => 1)
+=======
+RiskModel.delete_all
+
+    RiskModel.create(:name => "Likelihood * Impact + 2(Impact)")
+    RiskModel.create(:name => "Likelihood * Impact + Impact")
+    RiskModel.create(:name => "Likelihood * Impact")
+    RiskModel.create(:name => "Likelihood * Impact + Likelihood")
+    RiskModel.create(:name => "Likelihood * Impact + 2(Likelihood)")
+>>>>>>> b5943c099ef4a603b912df12a524fd0e92998cbd

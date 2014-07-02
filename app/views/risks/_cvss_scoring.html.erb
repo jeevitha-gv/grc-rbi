@@ -15,7 +15,7 @@
             <div class="col-sm-12">
                 <%= cvss.label :cvss_access_vector, t('cvss.att_vec') %>
               <div class="risk-select">
-                <%= cvss.collection_select(:cvss_access_vector, CvssMetricScoring.for_name("AccessVector"), :abrv_metric_value, :metric_value, { include_blank: '--Select Score--' }, {:class =>"form-control"})  %>
+                <%= cvss.collection_select(:cvss_access_vector, CvssMetricScoring.for_name("AccessVector"), :abrv_metric_value, :metric_value, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -25,7 +25,7 @@
             <div class="col-sm-12">
               <%= cvss.label :cvss_access_complexity, t('cvss.att_compl') %>
               <div class="risk-select">
-                <%= cvss.collection_select(:cvss_access_complexity, CvssMetricScoring.for_name("AccessComplexity"), :abrv_metric_value, :metric_value, { include_blank: '--Select Score--' }, {:class =>"form-control"})  %>
+                <%= cvss.collection_select(:cvss_access_complexity, CvssMetricScoring.for_name("AccessComplexity"), :abrv_metric_value, :metric_value, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@
             <div class="col-sm-12">
               <%= cvss.label :cvss_authentication, t('cvss.auth') %>
               <div class="risk-select">
-                <%= cvss.collection_select(:cvss_authentication, CvssMetricScoring.for_name("Authentication"), :abrv_metric_value, :metric_value, { include_blank: '--Select Score--' }, {:class =>"form-control"})  %>
+                <%= cvss.collection_select(:cvss_authentication, CvssMetricScoring.for_name("Authentication"), :abrv_metric_value, :metric_value, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -51,7 +51,7 @@
             <div class="col-sm-12">
                 <%= cvss.label :cvss_conf_impact, t('cvss.conf_imp') %>
               <div class="risk-select">
-                <%= cvss.select :cvss_conf_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= cvss.collection_select(:cvss_conf_impact, CvssMetricScoring.for_name("ConfImpact"), :abrv_metric_value, :metric_value, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -61,7 +61,7 @@
             <div class="col-sm-12">
               <%= cvss.label :cvss_integ_impact, t('cvss.int_imp') %>
               <div class="risk-select">
-                <%= cvss.select :cvss_integ_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= cvss.collection_select(:cvss_integ_impact, CvssMetricScoring.for_name("IntegImpact"), :abrv_metric_value, :metric_value, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -71,7 +71,7 @@
             <div class="col-sm-12">
               <%= cvss.label :cvss_avail_impact, t('cvss.avail_imp') %>
               <div class="risk-select">
-                <%= cvss.select :cvss_avail_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= cvss.collection_select(:cvss_avail_impact, CvssMetricScoring.for_name("AvailImpact"), :abrv_metric_value, :metric_value, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@
             <div class="col-sm-12">
                 <%= cvss.label :cvss_exploitability, t('cvss.exploi') %>
               <div class="risk-select">
-                <%= cvss.select :cvss_conf_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= cvss.collection_select(:cvss_exploitability, CvssMetricScoring.for_name("Exploitability"), :abrv_metric_value, :metric_value, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@
             <div class="col-sm-12">
               <%= cvss.label :cvss_remediation_level, t('cvss.remed_level') %>
               <div class="risk-select">
-                <%= cvss.select :cvss_integ_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= cvss.collection_select(:cvss_remediation_level, CvssMetricScoring.for_name("RemediationLevel"), :abrv_metric_value, :metric_value, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -107,7 +107,7 @@
             <div class="col-sm-12">
               <%= cvss.label :cvss_report_confidence, t('cvss.report_conf') %>
               <div class="risk-select">
-                <%= cvss.select :cvss_avail_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= cvss.collection_select(:cvss_report_confidence, CvssMetricScoring.for_name("ReportConfidence"), :abrv_metric_value, :metric_value, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -123,7 +123,7 @@
             <div class="col-sm-12">
                 <%= cvss.label :cvss_collateral_damage_potential, t('cvss.coll_damage_pot') %>
               <div class="risk-select">
-                <%= cvss.select :cvss_conf_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= cvss.collection_select(:cvss_collateral_damage_potential, CvssMetricScoring.for_name("CollateralDamagePotential"), :abrv_metric_value, :metric_value, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -133,13 +133,14 @@
             <div class="col-sm-12">
               <%= cvss.label :cvss_target_distribution, t('cvss.tar_dist') %>
               <div class="risk-select">
-                <%= cvss.select :cvss_integ_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= cvss.collection_select(:cvss_target_distribution, CvssMetricScoring.for_name("TargetDistribution"), :abrv_metric_value, :metric_value, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         </div>
+        <div class="emp-hr clearfix"></div>
       </div>
       <!-- Environmental Score Metrics -->
 
@@ -151,7 +152,7 @@
             <div class="col-sm-12">
                 <%= cvss.label :cvss_confidentiality_requirement, t('cvss.conf_req') %>
               <div class="risk-select">
-                <%= cvss.select :cvss_conf_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= cvss.collection_select(:cvss_confidentiality_requirement, CvssMetricScoring.for_name("ConfidentialityRequirement"), :abrv_metric_value, :metric_value, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -161,7 +162,7 @@
             <div class="col-sm-12">
               <%= cvss.label :cvss_integrity_requirement, t('cvss.int_req') %>
               <div class="risk-select">
-                <%= cvss.select :cvss_integ_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= cvss.collection_select(:cvss_integrity_requirement, CvssMetricScoring.for_name("IntegrityRequirement"), :abrv_metric_value, :metric_value, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>
@@ -171,7 +172,7 @@
             <div class="col-sm-12">
               <%= cvss.label :cvss_availability_requirement, t('cvss.avail_req') %>
               <div class="risk-select">
-                <%= cvss.select :cvss_avail_impact, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                <%= cvss.collection_select(:cvss_availability_requirement, CvssMetricScoring.for_name("AvailabilityRequirement"), :abrv_metric_value, :metric_value, { include_blank: '--Select--' }, {:class =>"form-control"})  %>
               </div>
             </div>
           </div>

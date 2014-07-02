@@ -5,6 +5,6 @@ class RiskScoring < ActiveRecord::Base
   belongs_to :risk
 	belongs_to :scoring, :polymorphic => true
 
-  SCORING_TYPES = [["Classic", "Classic"], ["OWASP", "OWASP"], ["DREAD", "DREAD"], ["CVSS", "CVSS"], ["Custom", "Custom"]]
+  SCORING_TYPES = [["Classic", "ClassicScoring"], ["OWASP", "OwaspScoring"], ["DREAD", "DreadScoring"], ["CVSS", "CvssScoring"], ["Custom", "Custom"]]
 
 end
