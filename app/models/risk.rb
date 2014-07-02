@@ -23,6 +23,22 @@ class Risk < ActiveRecord::Base
 	belongs_to :project
 	belongs_to :risk_approval_status, foreign_key: 'risk_approval_status_id'
 
+	# Validations
+  validates :subject, presence:true, length: { in: 0..250 }, :if => Proc.new{ |f| !f.subject.blank? }
+  validates :compliance_library_id, presence:true
+  validates :assessment, presence:true
+  validates :notes, length: { in: 0..250 }
+  validates :reference, presence:true, length: { in: 0..250 }, :if => Proc.new{ |f| !f.subject.blank? }
+  validates :compliance_id, presence:true
+  validates :category_id, presence:true
+  validates :technology_id, presence:true
+  validates :owner, presence:true
+  validates :mitigator, presence:true
+  validates :reviewer, presence:true
+  validates :submitted_by, presence:true
+  validate :check_risk_scoring
+
+
 	delegate :name, to: :risk_status, prefix: true, allow_nil: true
 	delegate :user_name, to: :risk_owner, prefix: true, allow_nil: true
 	delegate :scoring_type, to: :risk_scoring, prefix: true, allow_nil: true
@@ -50,10 +66,15 @@ class Risk < ActiveRecord::Base
 
 	def notify_risk_users
 		users_email = []
-		subject_array = ["Your risk has been successfully created and assigned", "A new risk has been assigned to you for mitigation", "A new risk has been assigned to you for managment review"]
-		users_email << self.risk_owner.email << self.risk_mitigator.email <<  self.risk_reviewer.email
+		subject_array = ["Your risk has been successfully created and assigned", "A new risk has been assigned to you for mitigation"]
+		users_email << self.risk_owner.email << self.risk_mitigator.email
     users_email.each_with_index do |email, index|
-    	RiskMailer.delay.notify_users_about_risk(self, email, subject_array[index])
+    	RiskMailer.delay.notify_users_about_risk(self, email, subject_array[index], name="risk")
     end
   end
+
+  private
+  	def check_risk_scoring
+  		self.errors[:risk_scoring] = "Please select scoring" if self.risk_scoring.blank?
+  	end
 end
