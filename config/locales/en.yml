@@ -467,4 +467,20 @@ en:
     non_comp: "Non-Compliance"
     pri_violation: "Privacy Violation"
 
+  cvss:
+    att_vec: "Attack Vector"
+    att_compl: "Attack Complexity"
+    auth: "Authentication"
+    conf_imp: "Confidentiality Impact"
+    int_imp: "Integrity Impact"
+    avail_imp: "Availability Impact"
+    exploi: "Exploitability"
+    remed_level: "Remediation Level"
+    report_conf: "Report Condidence"
+    coll_damage_pot: "Collateral Damage Potential"
+    tar_dist: "Target Distribution"
+    conf_req: "Confidentiality Requirement"
+    int_req: "Integrity Requirement"
+    avail_req: "Availability Requirement"
+
 
