@@ -149,7 +149,7 @@
                       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                         <div class="form-group">
                           <label for="inputEmail3" class="col-sm-5 control-label mgt-label">Planning Strategy: </label>
-                          <div class="col-sm-6 mgt-text"><%= @risk.mitigation.planning_strategy_id if @risk.present? %></div>
+                          <div class="col-sm-6 mgt-text"><%= @risk.mitigation.planning_strategy_id if@risk.mitigation.present? %></div>
                         </div>
                       </div>
                     </div>
@@ -159,7 +159,7 @@
                       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                         <div class="form-group">
                           <label for="inputEmail3" class="col-sm-5 control-label mgt-label">Mitigation Effort : </label>
-                          <div class="col-sm-6 mgt-text"><%= @risk.mitigation.mitigation_effort_id if @risk.present? %></div>
+                          <div class="col-sm-6 mgt-text"><%= @risk.mitigation.mitigation_effort_id if @risk.mitigation.present? %></div>
                         </div>
                       </div>
                     </div>
@@ -168,15 +168,15 @@
                 <div class="row-sp">
                   <div >
                         <label for="inputEmail3" class="col-sm-4 control-label mgt-label">Current Solution :</label>
-                        <div class="col-sm-8 mgt-text"><%= @risk.mitigation.current_solution if @risk.present? %></div>
+                        <div class="col-sm-8 mgt-text"><%= @risk.mitigation.current_solution if @risk.mitigation.present? %></div>
                   </div>
                   <div >
                         <label for="inputEmail3" class="col-sm-4 control-label mgt-label">Requirements :</label>
-                        <div class="col-sm-8 mgt-text"><%= @risk.mitigation.security_requirements if @risk.present?  %></div>
+                        <div class="col-sm-8 mgt-text"><%= @risk.mitigation.security_requirements if @risk.mitigation.present?  %></div>
                   </div>
                   <div >
                         <label for="inputEmail3" class="col-sm-4 control-label mgt-label">Recommendations:</label>
-                        <div class="col-sm-8 mgt-text"><%= @risk.mitigation.security_recommendations if @risk.present? %></div>
+                        <div class="col-sm-8 mgt-text"><%= @risk.mitigation.security_recommendations if @risk.mitigation.present? %></div>
                   </div>
                   </div>
                 </div>

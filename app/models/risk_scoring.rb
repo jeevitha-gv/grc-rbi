@@ -12,6 +12,7 @@ class RiskScoring < ActiveRecord::Base
 
   SCORING_TYPES = [["Classic", "ClassicScoring"], ["OWASP", "OwaspScoring"], ["DREAD", "DreadScoring"], ["CVSS", "CvssScoring"], ["Custom", "Custom"]]
 
+  	delegate :risk_model , to: :risk , prefix: true, allow_nil: true
 
   def update_scoring
   	if((self.scoring_type_changed? || self.scoring_id_changed?) && self.scoring_type != "Custom")
@@ -21,7 +22,7 @@ class RiskScoring < ActiveRecord::Base
   			when "OwaspScoring"
   				self.owasp_scoring_method
   			else
-  			 	self.classic_scoring_method
+  			 	self.classic_scoring_method(self.risk_risk_model.name)
   		end
   	end
   end
@@ -51,29 +52,25 @@ class RiskScoring < ActiveRecord::Base
 
 
 	# CLASSIC Risk Scoring
-	def classic_scoring_method(risk_modal_name)
+	def classic_scoring_method(risk_model)
 		scoring = self.scoring
-		 # risk_scoring_modal_1 = ((likelihood * impact) + 2(impact))  * (10/35)
-		 # risk_scoring_modal_2 = ((likelihood * impact) + impact) * (10/30)
-		 # risk_scoring_modal_3 = ((likelihood * impact) + likelihood) * (10/30)
-		 # risk_scoring_modal_4 = ((likelihood * impact) + 2(likelihood))  * (10/35)
-		 # risk_scoring_modal_5 = (likelihood * impact) * (10/25)
 
-		case risk_modal_name
-			when 	"Likelihood * Impact + 2(Impact)"
-				return risk_score = ((likelihood * impact) + (2 * impact)) * (10/35)
-			when 	"Likelihood * Impact + Impact"
-				return  risk_score = ((likelihood * impact) + impact) * (10/30)
-			when 	"Likelihood * Impact + Likelihood"
-				return  risk_score = ((likelihood * impact) + likelihood) * (10/30)
-			when 	"Likelihood * Impact + 2(Likelihood)"
-				return  risk_score = ((likelihood * impact) + (2 * likelihood) )  * (10/35)
+		case risk_model
+			when "Likelihood * Impact + 2(Impact)"
+				risk_score = ((scoring.likelihood * scoring.impact) + (2 * scoring.impact)).to_f * (10.0/35.0)
+			when "Likelihood * Impact + Impact"
+				risk_score = ((scoring.likelihood * scoring.impact) + scoring.impact).to_f * (10.0/30.0)
+			when "Likelihood * Impact + Likelihood"
+				risk_score = ((scoring.likelihood * scoring.impact) + scoring.likelihood) * (10.0/30.0)
+			when "Likelihood * Impact + 2(Likelihood)"
+				risk_score = ((scoring.likelihood * scoring.impact) + (2 * scoring.likelihood) )  * (10.0/35.0)
+			when "Likelihood * Impact"
+				risk_score = (scoring.likelihood * scoring.impact) * (10.0/25.0)
 			else
-				return  risk_score = (likelihood * impact) * (10/25)
+				risk_score = 10
 		end
 
-		self.calculated_risk = risk_score
-		self.save
+		self.update_columns(:calculated_risk => risk_score.round(1))
 	end
 
 end
