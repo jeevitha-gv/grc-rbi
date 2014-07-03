@@ -1,4 +1,4 @@
-<%= f.fields_for :risk_scorings do |custom| %>
+<%= f.fields_for :risk_scoring do |custom| %>
 
 <div class="row">
   <div class="likelihood matrix-padding clearfix">
@@ -11,7 +11,7 @@
           <div class="form-group">
             <div class="col-sm-12">
                 <%= custom.label :custom_value, t('risk_scoring.custom') %>
-                <%= f.text_field :subject, :class => "form-control risk-normal-input" %>
+                <%= custom.text_field :custom_value, :class => "form-control risk-normal-input" %>
             </div>
           </div>
         </div>

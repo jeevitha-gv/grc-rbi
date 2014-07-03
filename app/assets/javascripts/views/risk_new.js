@@ -34,7 +34,7 @@ function get_teams(element){
   }
 }
 
-function get_auditee_users(element){
+function get_risk_owners(element){
   $('.ajax-loader-team').show();
   var team_id = $(element).val();
   if(team_id.length>0){
