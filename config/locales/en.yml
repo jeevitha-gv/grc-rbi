@@ -367,6 +367,12 @@ en:
               blank: "Mitigator cannot be blank"
             technology_id:
               blank: "Technology cannot be blank"
+        risk_scoring:
+          attributes:
+            custom_value:
+              greater_than_or_equal_to: "Custom Value must be in the range of 0 to 10"
+              less_than_or_equal_to: "Custom Value must be in the range of 0 to 10"
+
 
 
 
