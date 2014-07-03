@@ -132,7 +132,7 @@
       </label>
       <div class="col-sm-8">
         <div class="risk-select">
-          <%= f.collection_select(:category_id, current_company.risk_categories, :id, :name, { include_blank: '--Select Category--' }, {:class => "form-control"}) %>
+          <%= f.collection_select(:category_id, RiskCategory.for_company(current_company.id), :id, :name, { include_blank: '--Select Category--' }, {:class => "form-control"}) %>
           <% if risk.errors[:category_id].present? %>
             <div class="error_message"><%= risk.errors[:category_id][0]%></div>
           <% end %>
@@ -147,7 +147,7 @@
       </label>
       <div class="col-sm-8">
         <div class="risk-select">
-          <%= f.collection_select(:technology_id, current_company.technologies, :id, :name, { include_blank: '--Select Technology--' }, {:class => "form-control"}) %>
+          <%= f.collection_select(:technology_id, Technology.for_company(current_company.id), :id, :name, { include_blank: '--Select Technology--' }, {:class => "form-control"}) %>
           <% if risk.errors[:technology_id].present? %>
             <div class="error_message"><%= risk.errors[:technology_id][0]%></div>
           <% end %>

@@ -1,5 +1,6 @@
 <%= f.fields_for :risk_scoring do |scoring| %>
-  <%= scoring.fields_for :scoring do |cvss_scoring| %>
+  <%#= scoring.fields_for :scoring do |cvss_scoring| %>
+  <%= scoring.fields_for :scoring,(scoring.object.scoring.present? ? scoring.object.scoring : CvssScoring.new) do |cvss_scoring| %>
     <div class="row cvss_scoring" style='display:none;'>
       <div class="likelihood matrix-padding clearfix">
         <div class="base-score-matrix">CVSS Score Metrics
