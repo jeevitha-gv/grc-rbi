@@ -14,4 +14,22 @@ class CvssScoring < ActiveRecord::Base
 	belongs_to :confidentiality_requirement, :class_name => "CvssMetricScoring", foreign_key: "cvss_confidentiality_requirement"
 	belongs_to :integrity_requirement, :class_name => "CvssMetricScoring", foreign_key: "cvss_integrity_requirement"
 	belongs_to :availability_requirement, :class_name => "CvssMetricScoring", foreign_key: "cvss_availability_requirement"
+	belongs_to :remediation_level, :class_name => "CvssMetricScoring", foreign_key: "cvss_remediation_level"
+
+
+	delegate :numeric_value, to: :access_vector, prefix: true, allow_nil: true
+	delegate :numeric_value, to: :access_complexity, prefix: true, allow_nil: true
+	delegate :numeric_value, to: :authentication, prefix: true, allow_nil: true
+	delegate :numeric_value, to: :conf_impact, prefix: true, allow_nil: true
+	delegate :numeric_value, to: :integ_impact, prefix: true, allow_nil: true
+	delegate :numeric_value, to: :exploitability, prefix: true, allow_nil: true
+	delegate :numeric_value, to: :report_confidence, prefix: true, allow_nil: true
+	delegate :numeric_value, to: :collateral_damage_potential, prefix: true, allow_nil: true
+	delegate :numeric_value, to: :target_distribution, prefix: true, allow_nil: true
+	delegate :numeric_value, to: :confidentiality_requirement, prefix: true, allow_nil: true
+	delegate :numeric_value, to: :integrity_requirement, prefix: true, allow_nil: true
+	delegate :numeric_value, to: :availability_requirement, prefix: true, allow_nil: true
+	delegate :numeric_value, to: :avail_impact, prefix: true, allow_nil: true
+	delegate :numeric_value, to: :remediation_level, prefix: true, allow_nil: true
+
 end

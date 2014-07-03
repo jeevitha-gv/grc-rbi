@@ -23,6 +23,32 @@ class RisksController < ApplicationController
     end
   end
 
+  def risk_imports
+    if(params[:file].present?)
+      begin
+        Risk.import_from_file(params[:file], current_company)
+        flash[:notice] = MESSAGES["risk"]["csv_upload"]["success"]
+        redirect_to risks_path
+      rescue
+        flash[:notice]=  MESSAGES["csv_upload"]["error"]
+        redirect_to new_risk_path
+      end
+    else
+      flash[:notice]=  MESSAGES["csv_upload"]["presence"]
+      redirect_to new_risk_path
+    end
+  end
+
+  def risk_export
+    begin
+      file_to_download = "sample_risk.csv"
+      send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
+    rescue
+      flash[:error] = MESSAGES["csv_export"]["error"]
+      redirect_to new_risk_path
+    end
+  end
+
   def department_teams_users
     risk_initializers(params[:location_id], params[:department_id], params[:team_id], params[:compliance_id])
   end

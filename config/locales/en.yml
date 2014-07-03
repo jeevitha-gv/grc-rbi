@@ -365,7 +365,7 @@ en:
               blank: "Risk Owner cannot be blank"
             mitigator:
               blank: "Mitigator cannot be blank"
-            technology:
+            technology_id:
               blank: "Technology cannot be blank"
 
 

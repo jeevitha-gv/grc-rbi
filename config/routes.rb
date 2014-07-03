@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   resources :risks do
     collection do
       get 'department_teams_users'
+      post 'risk_imports'
+      get 'risk_export'
     end
     resources :mgmt_reviews
     resources :mitigations

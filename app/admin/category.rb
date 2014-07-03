@@ -16,7 +16,7 @@ ActiveAdmin.register RiskCategory, { :as => 'Category'} do
    action :all, except: [:new, :show]
 
     def scoped_collection
-      current_company.categories
+      current_company.risk_categories
     end
     
   end
@@ -35,5 +35,13 @@ ActiveAdmin.register RiskCategory, { :as => 'Category'} do
       row :created_at
       row :updated_at
     end
+  end
+  
+  form do |f|
+      f.inputs "New Category" do
+        f.input :name
+      f.input :company_id, :as => :hidden, :input_html => { :value => current_company.id}
+    end
+    f.actions
   end
 end

@@ -908,7 +908,7 @@ CvssMetricScoring.delete_all
 Subscription.delete_all
 
     Subscription.create(:name => "Free", :description => "free",:section_ids=> [1,2], :amount => 0.00, :valid_log =>23,:valid_period => 1)
-    
+
 RiskModel.delete_all
 
     RiskModel.create(:name => "Likelihood * Impact + 2(Impact)")
@@ -917,3 +917,35 @@ RiskModel.delete_all
     RiskModel.create(:name => "Likelihood * Impact + Likelihood")
     RiskModel.create(:name => "Likelihood * Impact + 2(Likelihood)")
 
+RiskCategory.delete_all
+
+    RiskCategory.create(:name => "Access Management")
+    RiskCategory.create(:name => "Environmental Resilience")
+    RiskCategory.create(:name => "Monitoring")
+    RiskCategory.create(:name => "Physical Security")
+    RiskCategory.create(:name => "Policy and Procedure")
+    RiskCategory.create(:name => "Sensitive Data Management")
+    RiskCategory.create(:name => "Technical Vulnerability Management")
+    RiskCategory.create(:name => "Third-Party Management")
+
+Technology.delete_all
+
+    Technology.create(:name => "All")
+    Technology.create(:name => "Anti-Virus")
+    Technology.create(:name => "Backups")
+    Technology.create(:name => "Blackberry")
+    Technology.create(:name => "Citrix")
+    Technology.create(:name => "Datacenter")
+    Technology.create(:name => "Mail Routing")
+    Technology.create(:name => "Live Collaboration")
+    Technology.create(:name => "Messaging")
+    Technology.create(:name => "Mobile")
+    Technology.create(:name => "Network")
+    Technology.create(:name => "Power")
+    Technology.create(:name => "Remote Access")
+    Technology.create(:name => "SAN")
+    Technology.create(:name => "Telecom")
+    Technology.create(:name => "Unix")
+    Technology.create(:name => "VMWare")
+    Technology.create(:name => "Web")
+    Technology.create(:name => "Windows")
