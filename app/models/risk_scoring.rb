@@ -20,8 +20,10 @@ class RiskScoring < ActiveRecord::Base
   				self.dread_scoring_method
   			when "OwaspScoring"
   				self.owasp_scoring_method
-  			else
-  			 	self.classic_scoring_method(self.risk_risk_model.name)
+  			when "CvssScoring"
+  				self.cvss_scoring_method
+  			else 
+  				self.classic_scoring_method(self.risk_risk_model.name)  			 	
   		end
   	end
   end
@@ -76,5 +78,28 @@ class RiskScoring < ActiveRecord::Base
 
 		self.update_columns(:calculated_risk => risk_score.round(1))
 	end
+
+	# CVSS Risk Scoring
+	 def cvss_scoring_method
+
+ 		scoring = self.scoring
+		impact_score = 10.41 * (1 - ((1- scoring.conf_impact_numeric_value) * (1- scoring.integ_impact_numeric_value) * (1 - scoring.avail_impact_numeric_value)))
+		exploitability_score = 20 * scoring.access_complexity_numeric_value * scoring.authentication_numeric_value * scoring.access_vector_numeric_value
+		impact_function = impact_score == 0 ? 0 : 1.176
+		base_score = (0.6 * impact_score + (0.4 * exploitability_score) * 1.5) * impact_function 
+		temporal_score = base_score * scoring.exploitability_numeric_value * scoring.remediation_level_numeric_value * scoring.report_confidence_numeric_value
+		env_score = ((temporal_score + (10 - temporal_score) * scoring.collateral_damage_potential_numeric_value ))* scoring.target_distribution_numeric_value
+
+		if scoring.collateral_damage_potential_numeric_value == -1 && scoring.target_distribution_numeric_value == -1
+			if scoring.exploitability_numeric_value == -1 && scoring.remediation_level_numeric_value == -1 && scoring.report_confidence_numeric_value == 0
+				risk_score = base_score
+			else 
+				risk_score = temporal_score
+			end	
+		else
+			risk_score = env_score
+		end
+		self.update_columns(:calculated_risk => risk_score)
+	 end
 
 end
