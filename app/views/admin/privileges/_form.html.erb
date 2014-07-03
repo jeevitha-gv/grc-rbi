@@ -16,9 +16,10 @@ var privilege_error = "<%= MESSAGES["previlages"]["create"]["action"] %>";
 			<%= f.label :Privilege%>
 			<div id="role">
 			<div id="previlege" class="previleges roles_0">
+			<%= f.submit "ADD", :onclick => "return privilege_params_check();" %>
 			<%= f.select :modular,options_for_select(Section.all.collect{|x| [	x.name, x.id.to_i]}),{include_blank: '-Select Model-' }, {:id => "privilege_modular",  :onChange => "previlege_add(this);"}%>
 			<%= f.select :modular_id,options_for_select(Modular.all.collect{}), {:id => "privilege_modular_id", :selected =>"", :class=> "test"}, :multiple => "multiple", disabled: true%>		
-    <%= f.submit "ADD", :onclick => "return privilege_params_check();" %>	</div>
+    	</div>
 			</div>
 <% end %>
 <div id="grid"></div>
