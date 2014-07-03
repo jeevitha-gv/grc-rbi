@@ -1654,3 +1654,22 @@ html,body{
 	color:#d47d01;
 	font-style:italic;
 }
+.previleges .btn-group{
+	margin: 0px;
+	float: none;
+}
+.multiselect-container{
+	max-width: 300px;
+	height: 200px;
+	overflow: scroll;
+	overflow-x:hidden;
+}
+.previleges{
+	width: 27%;
+}
+.previleges input{
+	float: right;
+}
+.previleges select{
+	padding: 7px;
+}
