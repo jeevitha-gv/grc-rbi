@@ -23,6 +23,12 @@ class RisksController < ApplicationController
     end
   end
 
+  def risk_imports
+  end
+
+  def risk_export
+  end
+
   def department_teams_users
     risk_initializers(params[:location_id], params[:department_id], params[:team_id], params[:compliance_id])
   end
