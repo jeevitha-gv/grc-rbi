@@ -156,7 +156,7 @@
                        <div class="col-sm-8">
                             <div class="risk-select">
                              <%#= control.collection_select(:control_ids, @controls,  :id, :name),{}, {:id => "multiselect"} %>
-														 			<%#= control.select :modular_id,options_for_select(@controls, :id, :name), {},{:id => "privilege_modular_id", :selected =>"", :class=> "test"}%>		
+														 			<%#= control.select :modular_id,options_for_select(@controls, :id, :name), {},{:id => "privilege_modular_id", :selected =>"", :class=> "test"}%>
 														     <%= select("control", "control_ids", options_from_collection_for_select(@controls, :id, :name), {}, {:id=> "multiselect", :multipart =>"multiple" }) %>
                             </div>
                     </div>

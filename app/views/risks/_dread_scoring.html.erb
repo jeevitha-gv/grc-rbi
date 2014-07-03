@@ -1,73 +1,71 @@
-<%= f.fields_for :dread_scoring do |dread| %>
+<%= f.fields_for :risk_scoring do |scoring| %>
+  <%= scoring.fields_for :scoring do |dread| %>
+    <div class="row dread_scoring" style='display:none;'>
+      <div class="likelihood matrix-padding clearfix">
+        <div class="base-score-matrix">DREAD Score Metrics
+          <div class="up-triangle"></div>
+        </div>
+        <div class="">
+          <div class="exploitability">Categories</div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="form-group">
+                <div class="col-sm-12">
+                    <%= dread.label :dread_damage_potential, t('dread.damage_potential') %>
+                  <div class="risk-select">
+                    <%= dread.select :dread_damage_potential, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <%= dread.label :dread_reproducibility, t('dread.reproductibility') %>
+                  <div class="risk-select">
+                    <%= dread.select :dread_reproducibility, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <%= dread.label :dread_exploitability, t('dread.exploitability') %>
+                  <div class="risk-select">
+                    <%= dread.select :dread_exploitability, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-<div class="row">
-  <div class="likelihood matrix-padding clearfix">
-    <div class="base-score-matrix">DREAD Score Metrics
-      <div class="up-triangle"></div>
+          <div class="">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="form-group">
+                <div class="col-sm-12">
+                    <%= dread.label :dread_affected_users, t('dread.affected_users') %>
+                  <div class="risk-select">
+                    <%= dread.select :dread_affected_users, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <%= dread.label :dread_discoverability, t('dread.discoverability') %>
+                  <div class="risk-select">
+                    <%= dread.select :dread_discoverability, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            </div>
+          </div>
+
+      </div>
     </div>
-    <div class="">
-      <div class="exploitability">Categories</div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          <div class="form-group">
-            <div class="col-sm-12">
-                <%= dread.label :dread_damage_potential, t('dread.damage_potential') %>
-              <div class="risk-select">
-                <%= dread.select :dread_damage_potential, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          <div class="form-group">
-            <div class="col-sm-12">
-              <%= dread.label :dread_reproducibility, t('dread.reproductibility') %>
-              <div class="risk-select">
-                <%= dread.select :dread_reproducibility, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          <div class="form-group">
-            <div class="col-sm-12">
-              <%= dread.label :dread_exploitability, t('dread.exploitability') %>
-              <div class="risk-select">
-                <%= dread.select :dread_exploitability, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          <div class="form-group">
-            <div class="col-sm-12">
-                <%= dread.label :dread_affected_users, t('dread.affected_users') %>
-              <div class="risk-select">
-                <%= dread.select :dread_affected_users, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          <div class="form-group">
-            <div class="col-sm-12">
-              <%= dread.label :dread_discoverability, t('dread.discoverability') %>
-              <div class="risk-select">
-                <%= dread.select :dread_discoverability, (0..10), { include_blank: '--Select Score--' }, { :class => "form-control" } %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-        </div>
-      </div>
-
-  </div>
-</div>
-
-
-
+  <% end %>
 <% end %>
 

@@ -2,7 +2,7 @@
   <div class="clearfix"></div>
   <div class="content">
     <div class="container">
-      <div class="row"> 
+      <div class="row">
         <!-- Nav tabs -->
         <div class="risk-title">Review Management</div>
       </div>
@@ -116,7 +116,7 @@
               <div class="risk-wrap clearfix">
                <div class="sub-wrap-bg">
               <form class="form-horizontal" role="form">
-                  <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12"> 
+                  <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <!--Row first -->
                     <div >
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
@@ -153,7 +153,7 @@
                         </div>
                       </div>
                     </div>
-                  
+
                   <!--Row first-->
                   <div>
                       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
@@ -188,7 +188,7 @@
       </div>
     </div>
 
-  
+
   <!--form 1 -->
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -198,7 +198,7 @@
             <div class="risk-wrap clearfix">
               <div class="sub-wrap-bg">
               <form class="form-horizontal" role="form">
-                  <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12"> 
+                  <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <!--Row first -->
                     <div >
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
@@ -217,7 +217,7 @@
                             </div>
                             </div>
                       </div>
-                   
+
                     <!--Row first-->
                     <div>
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
@@ -248,10 +248,10 @@
       </div>
     </div>
 
-  
+
   <!--form 1 -->
   <%= form_for([@risk, @mgmt_review], html: { class: "form-horizontal"}) do |f| %>
-  
+
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="mit-plan-effort">
@@ -259,7 +259,7 @@
             <div class="mit-reccom-title-sp">Reviews</div>
             <div class="risk-wrap clearfix">
              <div class="sub-wrap-bg">
-                  <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12"> 
+                  <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <!--Row first -->
                       <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
                         <div class="form-group">
@@ -292,7 +292,7 @@
                         <label for="inputEmail3" class="col-sm-4 control-label  ">Comments</label>
                         <div class="col-sm-8">
                          <%= f.fields_for :comment, (f.object.comment.present? ? f.object.comment : Comment.new) do |builder|%>
-                          <%= builder.text_area(:comment, row: "3", class: "form-control risk-big-input")%>                  
+                          <%= builder.text_area(:comment, row: "3", class: "form-control risk-big-input")%>
                          <%end%>
                         </div>
                       </div>

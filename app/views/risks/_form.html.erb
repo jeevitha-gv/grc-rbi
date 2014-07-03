@@ -246,18 +246,18 @@
             <%= f.fields_for :risk_scoring do |scoring| %>
             <label>Scoring Type</label>
               <div class="risk-select">
-                <%= scoring.select(:scoring_type, RiskScoring::SCORING_TYPES, :include_blank => "--Select Scoring Type--", :id=>"scoring_type") %>
+                <%= scoring.select(:scoring_type, RiskScoring::SCORING_TYPES, {:include_blank => "--Select Scoring Type--"}, {:id => "risk_scoring", :onChange => "change_scoring_method(this);"})%>
               </div>
             <% end %>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="display:none;">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 scoring_model" style="display:none;">
         <div class="form-group">
           <div class="col-sm-12">
             <label>Scoring Model</label>
               <div class="risk-select">
-                <%= f.collection_select(:risk_model_id, RiskModel.all, :id, :name, { include_blank: '--Select Risk Model--' }, {:class =>"form-control", :id => "risk_scoring_nodel"})  %>
+                <%= f.collection_select(:risk_model_id, RiskModel.all, :id, :name, { include_blank: '--Select Risk Model--' }, {:class =>"form-control", :id => "risk_scoring_model"})  %>
               </div>
           </div>
         </div>
@@ -270,13 +270,11 @@
 
 <%= render 'classic_scoring', :f => f %>
 <%= render 'owasp_scoring', :f => f %>
-
 <%= render 'dread_scoring', :f => f %>
 <%= render 'cvss_scoring', :f => f %>
 <%= render 'custom_scoring', :f => f %>
-
-
-
-
-
 <div class="clearfix border-divider"> </div>
+<!-- ClassicScoring
+CvssScoring
+DreadScoring
+OwaspScoring -->

@@ -45,3 +45,56 @@ function get_risk_owners(element){
     });
   }
 }
+
+function change_scoring_method(element){
+  var scoringType = $(element).val();
+  if (scoringType == 'ClassicScoring')
+  {
+    $('.scoring_model').show();
+    $('.classic_scoring').show();
+    $('.owasp_scoring').hide();
+    $('.dread_scoring').hide();
+    $('.cvss_scoring').hide();
+    $('.custom_scoring').hide();
+  }
+  if (scoringType == 'OwaspScoring')
+  {
+    $('.owasp_scoring').show();
+    $('.scoring_model').hide();
+    $('.dread_scoring').hide();
+    $('.cvss_scoring').hide();
+    $('.custom_scoring').hide();
+    $('.scoring_model').hide();
+    $('.classic_scoring').hide();
+  }
+  if (scoringType == 'DreadScoring')
+  {
+    $('.dread_scoring').show();
+    $('.scoring_model').hide();
+    $('.owasp_scoring').hide();
+    $('.cvss_scoring').hide();
+    $('.custom_scoring').hide();
+    $('.scoring_model').hide();
+    $('.classic_scoring').hide();
+  }
+  if (scoringType == 'CvssScoring')
+  {
+    $('.cvss_scoring').show();
+    $('.scoring_model').hide();
+    $('.owasp_scoring').hide();
+    $('.dread_scoring').hide();
+    $('.custom_scoring').hide();
+    $('.scoring_model').hide();
+    $('.classic_scoring').hide();
+  }
+  if (scoringType == 'Custom')
+  {
+    $('.custom_scoring').show();
+    $('.scoring_model').hide();
+    $('.owasp_scoring').hide();
+    $('.dread_scoring').hide();
+    $('.cvss_scoring').hide();
+    $('.scoring_model').hide();
+    $('.classic_scoring').hide();
+  }
+}

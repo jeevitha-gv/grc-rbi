@@ -28,16 +28,16 @@ class Risk < ActiveRecord::Base
   validates :subject, presence:true, length: { in: 0..250 }, :if => Proc.new{ |f| !f.subject.blank? }
   # validates :compliance_library_id, presence:true
   validates :assessment, presence:true
-  validates :notes, length: { in: 0..250 }
-  validates :reference, presence:true, length: { in: 0..250 }, :if => Proc.new{ |f| !f.subject.blank? }
-  validates :compliance_id, presence:true
-  # validates :category_id, presence:true
-  validates :technology_id, presence:true
-  validates :owner, presence:true
-  validates :mitigator, presence:true
-  validates :reviewer, presence:true
-  validates :submitted_by, presence:true
-  validate :check_risk_scoring
+  # validates :notes, length: { in: 0..250 }
+  # validates :reference, presence:true, length: { in: 0..250 }, :if => Proc.new{ |f| !f.subject.blank? }
+  # validates :compliance_id, presence:true
+  # # validates :category_id, presence:true
+  # validates :technology_id, presence:true
+  # validates :owner, presence:true
+  # validates :mitigator, presence:true
+  # validates :reviewer, presence:true
+  # validates :submitted_by, presence:true
+  # validate :check_risk_scoring
 
 
 	delegate :name, to: :risk_status, prefix: true, allow_nil: true
@@ -54,10 +54,11 @@ class Risk < ActiveRecord::Base
 
 
 	accepts_nested_attributes_for :mitigation
-  	accepts_nested_attributes_for :control_measure
+  accepts_nested_attributes_for :control_measure
+  accepts_nested_attributes_for :risk_scoring
 
   # callbacks
-  after_create :notify_risk_users
+  # after_create :notify_risk_users
 
 	def self.risk_rating(company_id)
 		high_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'HIGH',company_id).first
