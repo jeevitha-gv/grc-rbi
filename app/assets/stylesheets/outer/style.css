@@ -1603,7 +1603,7 @@ html,body{
   margin:0 10px 0 0;
 
 }
-.import-btn{
+a.import-btn{
   background:#fe9537;
   border:1px solid #dc771d;
   padding:8px 8px;
