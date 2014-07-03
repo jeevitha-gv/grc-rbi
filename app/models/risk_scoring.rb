@@ -12,7 +12,16 @@ class RiskScoring < ActiveRecord::Base
 
   SCORING_TYPES = [["Classic", "ClassicScoring"], ["OWASP", "OwaspScoring"], ["DREAD", "DreadScoring"], ["CVSS", "CvssScoring"], ["Custom", "Custom"]]
 
-  	delegate :risk_model , to: :risk , prefix: true, allow_nil: true
+  delegate :risk_model , to: :risk , prefix: true, allow_nil: true
+
+  def attributes=(attributes = {})
+    self.scoring_type = attributes[:scoring_type]
+    super
+  end
+
+  def scoring_attributes=(attributes)
+    self.scoring = attributes.include?("id") ? eval(scoring_type).find_or_initialize_by(id: attributes.delete(:id)) :  eval(scoring_type).new(attributes)
+  end
 
   def update_scoring
   	if((self.scoring_type_changed? || self.scoring_id_changed?) && self.scoring_type != "Custom")

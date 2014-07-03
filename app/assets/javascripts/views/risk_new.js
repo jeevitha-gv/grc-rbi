@@ -56,6 +56,10 @@ function change_scoring_method(element){
     $('.dread_scoring').hide();
     $('.cvss_scoring').hide();
     $('.custom_scoring').hide();
+    $('.classic_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("temp[", "risk["));});
+    $('.owasp_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+    $('.dread_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+    $('.cvss_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
   }
   if (scoringType == 'OwaspScoring')
   {
@@ -66,6 +70,10 @@ function change_scoring_method(element){
     $('.custom_scoring').hide();
     $('.scoring_model').hide();
     $('.classic_scoring').hide();
+    $('.owasp_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("temp[", "risk["));});
+    $('.dread_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+    $('.cvss_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+    $('.classic_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
   }
   if (scoringType == 'DreadScoring')
   {
@@ -76,6 +84,10 @@ function change_scoring_method(element){
     $('.custom_scoring').hide();
     $('.scoring_model').hide();
     $('.classic_scoring').hide();
+    $('.dread_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("temp[", "risk["));});
+    $('.owasp_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+    $('.cvss_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+    $('.classic_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
   }
   if (scoringType == 'CvssScoring')
   {
@@ -86,6 +98,10 @@ function change_scoring_method(element){
     $('.custom_scoring').hide();
     $('.scoring_model').hide();
     $('.classic_scoring').hide();
+    $('.cvss_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("temp[", "risk["));});
+    $('.owasp_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+    $('.dread_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+    $('.classic_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
   }
   if (scoringType == 'Custom')
   {
@@ -96,5 +112,24 @@ function change_scoring_method(element){
     $('.cvss_scoring').hide();
     $('.scoring_model').hide();
     $('.classic_scoring').hide();
+    $('.cvss_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+    $('.owasp_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+    $('.dread_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+    $('.classic_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+  }
+}
+
+function check_risk_scoring()
+{
+  var riskScoring = $('#risk_scoring option:selected').val();
+  if(riskScoring == '')
+  {
+    $('.risk_scoring_type').show();
+    return false;
+  }
+  else
+  {
+    $('.risk_scoring_type').hide();
+    return true
   }
 }
