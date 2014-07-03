@@ -1,6 +1,7 @@
 class MgmtReviewsController < ApplicationController
 	layout "risk_layout"
 	before_filter :current_risk
+	before_filter :authorize_mgmt_review, :only => [:new, :create, :edit, :update]
 
 	def new
 		@mgmt_review = @risk.mgmt_review.present? ? @risk.mgmt_review : @risk.build_mgmt_review
@@ -12,7 +13,7 @@ class MgmtReviewsController < ApplicationController
 		risk_status = params[:mgmt_review][:review_id] == 1 ? RiskStatus.where("name= ?", "Reviewed").first.id : RiskStatus.where("name= ?", "Rejected Risk").first.id
 		if @mgmt_review.save
 			@risk.update(risk_status_id: risk_status )
-			flash[:notice] = "Risk is reviewed successfully" 
+			flash[:notice] = "Risk is reviewed successfully"
 			redirect_to edit_risk_mgmt_review_path(id: @mgmt_review)
 		else
 			render "new"
@@ -24,12 +25,12 @@ class MgmtReviewsController < ApplicationController
 	end
 
 
-	def update	
+	def update
 		@mgmt_review = @risk.mgmt_review
 		risk_status = params[:mgmt_review][:review_id] == 1 ? RiskStatus.where("name= ?", "Reviewed").first.id : RiskStatus.where("name= ?", "Rejected Risk").first.id
 		if @mgmt_review.update(mgmt_review_params)
 			@risk.update(risk_status_id: risk_status )
-			flash[:notice] = "Risk is reviewed Updated" 
+			flash[:notice] = "Risk is reviewed Updated"
 			redirect_to edit_risk_mgmt_review_path(id: @mgmt_review)
 		else
 			render "edit"
@@ -39,8 +40,14 @@ class MgmtReviewsController < ApplicationController
 
 
 	private
+		def mgmt_review_params
+			params.require(:mgmt_review).permit(:review_id, :reviewer, :next_step_id, comment_attributes: [:id, :comment])
+		end
 
-	def mgmt_review_params
-		params.require(:mgmt_review).permit(:review_id, :reviewer, :next_step_id, comment_attributes: [:id, :comment])
-	end
+		def authorize_mgmt_review
+	    if (current_risk.reviewer != current_user.id)
+	      flash[:alert] = "Access restricted"
+	      redirect_to risks_path
+	    end
+	  end
 end
