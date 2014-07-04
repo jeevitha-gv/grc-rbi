@@ -80,8 +80,6 @@ $(document).ready(function() {
 
 	function edit_file(e)
 	{
-		this.dataItem($(e.currentTarget).closest("tr"));
-		console.log(this.dataItem(jQuery(e.currentTarget).closest("tr")).id)
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		window.location.href = "/risks/"+ dataItem.id + "/edit"
 	}
