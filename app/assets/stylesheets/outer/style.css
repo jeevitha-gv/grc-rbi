@@ -574,17 +574,15 @@ a.edit-icon {
 }
 html, body {
 	height: 100%;
+	margin: 0px;
+	padding: 0;
+	position: relative;
 }
 #wrapper {
 	min-height: 100%;
 	position: relative;
 }
-.footer {
-	width: 100%;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-}
+
 .error_logo{ padding-top:15px; font-size:25px;}
 
 .attach-icon{ background-image:url(/assets/outer/attach-icon.png); background-repeat:no-repeat;padding: 0 0 0 18px;}
@@ -1530,6 +1528,7 @@ margin-bottom:20px !important;
 .page-wrap{
   min-height:100%;
   position:relative;
+  margin-bottom:50px;
 }
 html,body{
   height:100%;
@@ -1538,7 +1537,7 @@ html,body{
   left:0;
   bottom:0;
   width:100%;
-  position: absolute!important;
+  position:absolute;
 }
 .box-wrapper{
   margin:0 0 150px 0;

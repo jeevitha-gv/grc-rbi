@@ -1,7 +1,7 @@
 namespace :plan do
   desc "plan notification"
   	task notify: :environment do
-  		company = Company.active
+  		company = Company.find(65)
     	company.each do |company|
     	 	plan = company.plan
          	user = company.users
