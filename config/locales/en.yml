@@ -131,7 +131,7 @@ en:
           attributes:
             name:
               blank: "Client name can't be blank"
-              invalid: "Client name should contain alphanumeric"
+              invalid: "Client name should be alphanumeric"
               too_short:
                 other: "client name should contain minimum of 2 char"
               too_long:
@@ -341,6 +341,10 @@ en:
               only_integer: "Should be an Integer"
             valid_period:
               blank: "Please select a valid period"
+            user_count:
+              blank: "User Count can't be blank"
+            file_size:
+              blank: "File Size can't be blank"
         risk:
           attributes:
             subject:
@@ -367,6 +371,12 @@ en:
               blank: "Mitigator cannot be blank"
             technology_id:
               blank: "Technology cannot be blank"
+        risk_scoring:
+          attributes:
+            custom_value:
+              greater_than_or_equal_to: "Custom Value must be in the range of 0 to 10"
+              less_than_or_equal_to: "Custom Value must be in the range of 0 to 10"
+
 
 
 

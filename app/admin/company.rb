@@ -17,7 +17,28 @@ ActiveAdmin.register Company do
     column :country
     column :contact_no
     column :is_disabled
+    column  "Subscription" do |c|
+      c.subscriptions.first.try(&:name)
+    end
     actions
+  end
+
+  show do
+    attributes_table do
+      row :name
+      row :primary_email
+      row :secondary_email    
+      row :domain
+      row :address1
+      row :address2
+      row :timezone
+      row :country
+      row :contact_no
+      row "Subscription" do |c|
+        c.subscriptions.first.try(&:name)
+      end
+      row :is_disabled
+   end
   end
 
   form do |f|
@@ -31,7 +52,8 @@ ActiveAdmin.register Company do
       f.input :timezone
       f.input :country
       f.input :contact_no
-      f.input :is_disabled
+      f.input :subscriptions,:input_html => { :disabled => true }
+      f.input :is_disabled      
     end
     f.actions
   end

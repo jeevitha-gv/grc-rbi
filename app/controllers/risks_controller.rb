@@ -54,6 +54,16 @@ class RisksController < ApplicationController
     risk_initializers(params[:location_id], params[:department_id], params[:team_id], params[:compliance_id])
   end
 
+  def download_risk_document
+    attachment = Attachment.find(params[:id])
+    send_file(Rails.public_path.to_s + attachment.attachment_file_url)
+  end
+
+  def remove_attachment
+    attachment = Attachment.find(params[:id])
+    attachment.delete
+  end
+
   protected
     def risk_initializers(location_id = nil, department_id = nil, team_id = nil, compliance_id = nil)
       @compliance_libraries = ComplianceLibrary.for_id_and_leaf(compliance_id) if compliance_id

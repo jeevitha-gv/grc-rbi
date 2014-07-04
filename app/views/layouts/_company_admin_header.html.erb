@@ -28,6 +28,7 @@
         </div>
 				<input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">
         <div class="user_login">
+          <div class="roll-audit">Role: <%= current_user.role_title %></div>
           <% unless current_user.attachment.blank? || current_user.attachment.attachment_file.blank? %>
             <%= image_tag(current_user.attachment.attachment_file.small) %>
           <% else %>
@@ -39,9 +40,6 @@
           <div class="account_header_dropdown" style="display: none;">
             <ul>
               <li><%= link_to "User Profile", edit_user_path %></li>
-              <%# if current_user.role.title == "company_admin" %>
-                <li><%= link_to "Admin Settings", admin_settings_path %></li>
-              <%# end %>
               <li><%= link_to "Audit Trail", activities_path %></li>
               <li><%= link_to "Reset Password", password_user_path %></li>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>

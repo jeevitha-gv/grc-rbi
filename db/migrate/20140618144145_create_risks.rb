@@ -6,7 +6,7 @@ class CreateRisks < ActiveRecord::Migration
       t.text :assessment
       t.text :notes
       t.integer :risk_status_id
-      t.integer :reference
+      t.string :reference
       t.integer :compliance_id
       t.integer :location_id
       t.integer :category_id

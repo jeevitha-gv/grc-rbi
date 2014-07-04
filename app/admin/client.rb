@@ -15,9 +15,12 @@ ActiveAdmin.register Client do
     before_filter :check_subdomain
     action :all, except: [:new, :show]
 
-      def scoped_collection
-        current_company.clients
-      end
+    #publicactivity gem
+    include PublicActivity::StoreController
+
+    def scoped_collection
+      current_company.clients
+    end
 
     def create
       @client = Client.new(client_params)
@@ -41,8 +44,8 @@ ActiveAdmin.register Client do
 
 
   index do
+    selectable_column
     column :name
-
     column :address1
     column :address2
     column :contact_no
@@ -51,8 +54,8 @@ ActiveAdmin.register Client do
   end
 
   form do |f|
-      # f.semantic_errors *f.object.errors.keys
-      f.inputs "Clients Details" do
+    # f.semantic_errors *f.object.errors.keys
+    f.inputs "Clients Details" do
       f.input :name
       f.input :address1
       f.input :address2

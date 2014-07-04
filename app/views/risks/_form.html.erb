@@ -270,7 +270,7 @@
           <div class="col-sm-12">
             <label>Scoring Model</label>
             <div class="risk-select">
-              <%= f.collection_select(:risk_model_id, RiskModel.all, :id, :name, { include_blank: '--Select Risk Model--' }, {:class =>"form-control", :id => "risk_scoring_model"})  %>
+              <%= f.collection_select(:risk_model_id, RiskModel.all, :id, :name, { }, {:class =>"form-control", :id => "risk_scoring_model"})  %>
             </div>
           </div>
         </div>

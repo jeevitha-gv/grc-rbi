@@ -50,6 +50,10 @@ ActiveAdmin.register Location do
     actions
   end
 
+  show do
+    attributes_table :name, :company
+  end
+
   form do |f|
 
        f.inputs "New Location" do

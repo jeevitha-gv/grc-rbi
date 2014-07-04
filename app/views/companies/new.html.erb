@@ -35,7 +35,8 @@
             </div>
             <div class="form-group">
               <%= user.label :email, t('users.email') %><br>
-              <%= user.text_field :email ,:class =>"form-control" %>
+              <%= user.text_field :email, :class =>"form-control", :id=>"user_email" %>
+              <div id="result" style="display:none;"></div>
             </div>
           <% end %>
           <div class="form-group">
@@ -68,3 +69,31 @@
   </div>
 </div>
 <% end %>
+
+<script>
+  function validateEmail(email) {
+  // http://stackoverflow.com/a/46181/11236
+
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
+  function validate(){
+    $("#result").text("");
+    var email = $("#user_email").val();
+    if (validateEmail(email)) {
+      $("#result").text("You will recieve a confirmation email");
+      $("#result").css("color", "green").css("font-style", "italic");
+      $("#result").show();
+    } else {
+      $("#result").text("Email is invalid");
+      $("#result").css("color", "red");
+      $("#result").show();
+    }
+    return false;
+  }
+
+  $("#user_email").focusout(function(){
+    validate()
+  });
+</script>

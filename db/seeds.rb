@@ -827,7 +827,7 @@ ClassicScoringMetric.delete_all
     ClassicScoringMetric.create(:name => "Unlikely", :value => "2", :metric_type => "Likelihood" )
     ClassicScoringMetric.create(:name => "Credible", :value => "3", :metric_type => "Likelihood" )
     ClassicScoringMetric.create(:name => "Likely", :value => "4", :metric_type => "Likelihood" )
-    ClassicScoringMetric.create(:name => "AlmostCertain", :value => "5", :metric_type => "Likelihood" )
+    ClassicScoringMetric.create(:name => "Almost Certain", :value => "5", :metric_type => "Likelihood" )
 
     ClassicScoringMetric.create(:name => "Insignificant", :value => "1", :metric_type => "Impact" )
     ClassicScoringMetric.create(:name => "Minor", :value => "2", :metric_type => "Impact" )
@@ -835,17 +835,17 @@ ClassicScoringMetric.delete_all
     ClassicScoringMetric.create(:name => "Major", :value => "4", :metric_type => "Impact" )
     ClassicScoringMetric.create(:name => "Extreme/Catastrophic", :value => "5", :metric_type => "Impact" )
 
-    ClassicScoringMetric.create(:name => "VeryLow", :value => "1", :metric_type => "Vulnerability" )
+    ClassicScoringMetric.create(:name => "Very Low", :value => "1", :metric_type => "Vulnerability" )
     ClassicScoringMetric.create(:name => "Low", :value => "2", :metric_type => "Vulnerability" )
     ClassicScoringMetric.create(:name => "Medium", :value => "3", :metric_type => "Vulnerability" )
     ClassicScoringMetric.create(:name => "High", :value => "4", :metric_type => "Vulnerability" )
-    ClassicScoringMetric.create(:name => "VeryHigh", :value => "5", :metric_type => "Vulnerability" )
+    ClassicScoringMetric.create(:name => "Very High", :value => "5", :metric_type => "Vulnerability" )
 
-    ClassicScoringMetric.create(:name => "VeryLow", :value => "1", :metric_type => "Velocity" )
+    ClassicScoringMetric.create(:name => "Very Low", :value => "1", :metric_type => "Velocity" )
     ClassicScoringMetric.create(:name => "Low", :value => "2", :metric_type => "Velocity" )
     ClassicScoringMetric.create(:name => "Medium", :value => "3", :metric_type => "Velocity" )
     ClassicScoringMetric.create(:name => "High", :value => "4", :metric_type => "Velocity" )
-    ClassicScoringMetric.create(:name => "VeryHigh", :value => "5", :metric_type => "Velocity" )
+    ClassicScoringMetric.create(:name => "Very High", :value => "5", :metric_type => "Velocity" )
 
 
 CvssMetricScoring.delete_all
@@ -912,9 +912,9 @@ Subscription.delete_all
 
 RiskModel.delete_all
 
+    RiskModel.create(:name => "Likelihood * Impact")
     RiskModel.create(:name => "Likelihood * Impact + 2(Impact)")
     RiskModel.create(:name => "Likelihood * Impact + Impact")
-    RiskModel.create(:name => "Likelihood * Impact")
     RiskModel.create(:name => "Likelihood * Impact + Likelihood")
     RiskModel.create(:name => "Likelihood * Impact + 2(Likelihood)")
 
