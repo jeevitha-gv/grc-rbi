@@ -1684,7 +1684,7 @@ a.import-btn{
 }
 
 .login-wrap{
-	 
+
     float: right;
     font-family: 'Open Sans',Arial,Helvetica,sans-serif;
     font-size: 13px;
@@ -1713,18 +1713,18 @@ a.import-btn{
 	border-radius:6px;
 	background:#FFF;
 	margin-bottom:125px;
-	
+
 }
 .login-box-con{
 	margin:0 0 30px  auto;
 	text-align:center;
 	padding:50px 50px 1px;
-	
+
 }
 .login-box .form-horizontal .control-label{
 	text-align:left;
 	font-weight:600;
-	
+
 }
 .login-box .form-horizontal input{
 	font-style:italic;
@@ -1743,7 +1743,7 @@ a.import-btn{
 	margin-bottom:20px;
 }
 .login-box .form-horizontal input[type="file"]{
-	
+
 	paddin:10px 0;
 }
 .forgot-pwd{
@@ -1762,7 +1762,7 @@ a.import-btn{
 
 #audit_charts li {
     list-style: none outside none;
-}	
+}
 li.db_setting_main{height:425px;}
 
 .roll-audit{
@@ -1783,4 +1783,12 @@ li.db_setting_main{height:425px;}
   height: 200px;
   overflow: scroll;
   overflow-x:hidden;
+}
+.risk-select  option{
+  max-width:100%;
+  padding: 0 3px;
+  display: block;
+}
+.control-select{
+   padding: 0 10px 0 4px;
 }
