@@ -56,6 +56,7 @@ class Risk < ActiveRecord::Base
 	accepts_nested_attributes_for :mitigation
   accepts_nested_attributes_for :control_measure
   accepts_nested_attributes_for :risk_scoring
+  accepts_nested_attributes_for :attachment
 
   # callbacks
   # after_create :notify_risk_users
