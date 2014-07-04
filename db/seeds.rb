@@ -911,9 +911,9 @@ Subscription.delete_all
 
 RiskModel.delete_all
 
+    RiskModel.create(:name => "Likelihood * Impact")
     RiskModel.create(:name => "Likelihood * Impact + 2(Impact)")
     RiskModel.create(:name => "Likelihood * Impact + Impact")
-    RiskModel.create(:name => "Likelihood * Impact")
     RiskModel.create(:name => "Likelihood * Impact + Likelihood")
     RiskModel.create(:name => "Likelihood * Impact + 2(Likelihood)")
 
