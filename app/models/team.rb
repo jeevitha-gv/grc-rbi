@@ -1,4 +1,8 @@
 class Team < ActiveRecord::Base
+  #publicactivity gem
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { controller && controller.current_user }
+  tracked ip: ->(controller,model) {controller && controller.current_user.current_sign_in_ip}
 
   #associations
   has_many :users, :through => :user_teams
@@ -7,7 +11,10 @@ class Team < ActiveRecord::Base
   belongs_to :company
   belongs_to :department
   belongs_to :section
+<<<<<<< HEAD
   has_many :risks
+=======
+>>>>>>> b3e0b146a3fae7e86a2ab8cc07a54fe21f92b330
 
   # validations
   validates :name, presence:true
@@ -18,5 +25,4 @@ class Team < ActiveRecord::Base
   scope :for_department_and_company, lambda {|department_id, company_id, section_id| where(department_id: department_id, company_id: company_id, section_id: section_id)}
   scope :for_id, lambda {|team_id| where(id: team_id)}
   scope :for_name_by_department, lambda { |team_name, department_id| where("lower(name) = ? and department_id = ?", team_name, department_id) }
-
 end

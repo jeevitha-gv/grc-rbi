@@ -25,7 +25,7 @@
 }
 .subbar-nav li a {
 	color: #fff !important;
-	padding: 3px 32px;
+	padding: 3px 30px;
 	border: none !important;
 	border-bottom:5px solid #181818;
 	 height:57px;
@@ -52,7 +52,7 @@
 	float: right;
 	font-family: 'Open Sans';
 	font-size: 13px;
-	padding: 20px 15px 11px;
+	padding: 1px 15px 11px;
 	background-color: #dddee0;
 	position: relative;
 	z-index: 999999;
@@ -114,7 +114,8 @@ ul.list-tab {
 	width: 96%;
 	border: 1px solid #E8E9EB;
 }
-.list-table tr th, .list-table tr td {
+.list-table tr th, .list-table tr td { 13px;
+  padding:
 	padding: 10px 20px;
 }
 
@@ -683,6 +684,8 @@ html, body {
 }
 .user_login > img {
     float: left;
+    height: 24px;
+    width: 24px;
 }
 #login_drop {
     padding: 35px 0 0;
@@ -1189,6 +1192,7 @@ a.plus-background{
   float: left;
 
 }
+<<<<<<< HEAD
 
 
 
@@ -1653,3 +1657,24 @@ html,body{
 	color:#d47d01;
 	font-style:italic;
 }
+=======
+.roll-audit{
+  padding: 0px 0 0 13px;
+  margin: 0px;
+  vertical-align: top;
+  font-weight: bold;
+
+}
+.upload-btn{
+  background: transparent;
+  margin: 20px 0 0 0;
+}
+.upload-btn a{
+  float: right;
+}
+.multiselect-container{
+  height: 200px;
+  overflow: scroll;
+  overflow-x:hidden;
+}
+>>>>>>> b3e0b146a3fae7e86a2ab8cc07a54fe21f92b330

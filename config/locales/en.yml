@@ -131,7 +131,7 @@ en:
           attributes:
             name:
               blank: "Client name can't be blank"
-              invalid: "Client name should contain alphanumeric"
+              invalid: "Client name should be alphanumeric"
               too_short:
                 other: "client name should contain minimum of 2 char"
               too_long:

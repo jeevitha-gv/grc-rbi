@@ -1,6 +1,6 @@
 ActiveAdmin.register Team do
 
-      menu :if => proc{ !current_admin_user.present? }
+  menu :if => proc{ !current_admin_user.present? }
 
   breadcrumb do
     [
@@ -12,7 +12,10 @@ ActiveAdmin.register Team do
  controller do
     before_filter :check_company_admin, :check_role
     before_filter :check_subdomain
-   action :all, except: [:new, :show]
+    action :all, except: [:new, :show]
+
+    #publicactivity gem
+    include PublicActivity::StoreController
 
     def scoped_collection
       current_company.teams
@@ -46,12 +49,16 @@ ActiveAdmin.register Team do
   end
 
   show do
-    attributes_table :name, :section, :company, :department
+    attributes_table :name, :company, :department, :section
   end
 
   form do |f|
     f.inputs "New Team" do
+<<<<<<< HEAD
       f.input :department_id, :label => 'Department', :as => :select, :collection => Department.where(:location_id=>current_company.locations.map(&:id)), :prompt => "-Select Department-"
+=======
+      f.input :department_id, :label => 'Department', :as => :select, :collection => Department.where(:location_id=>current_company.locations.map(&:id)).map{ |u| ["#{u.location.try(:name)} / #{u.name}", u.id]}, :prompt => "-Select Department-"
+>>>>>>> b3e0b146a3fae7e86a2ab8cc07a54fe21f92b330
       f.input :section_id, :label => 'Section', :as => :select, :collection => Section.all.map{ |u| [u.name, u.id]}, :prompt => "-Select Section-"
       f.input :name
     end
