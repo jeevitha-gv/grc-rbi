@@ -1193,13 +1193,6 @@ a.plus-background{
   float: left;
 
 }
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 90defa9b6c1c6d2d7ff998273f49d5d137613745
-
 /*for test*/
 
 .file-icon {
@@ -1837,7 +1830,7 @@ li.db_setting_main{height:425px;}
   overflow: scroll;
   overflow-x:hidden;
 }
-<<<<<<< HEAD
+
 .login-box .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
     float: left;
     margin-left: 22px;
@@ -1850,7 +1843,7 @@ li.db_setting_main{height:425px;}
     ;
 }
 .input-width{width: 248px; display: inline-block;}
-=======
+
 .risk-select  option{
   max-width:100%;
   padding: 0 3px;
@@ -1859,4 +1852,3 @@ li.db_setting_main{height:425px;}
 .control-select{
    padding: 0 10px 0 4px;
 }
->>>>>>> b274d1cc9231a7d8891546dd3a2c36593a571249
