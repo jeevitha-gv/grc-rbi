@@ -10,7 +10,28 @@ ActiveAdmin.register Plan do
     before_filter :check_subdomain
 
     def scoped_collection
-      Plan.where("company_id = ?",current_user.company_id )
+      Plan.where("company_id = ?",current_company.id )
+    end
+
+    def update
+      plan = Plan.where("id = ?", params[:id]).first
+     if !current_company.subscriptions.first.id.eql?(params[:plan][:subscription_id]) && plan.expires.to_date <= Date.today
+      subscribe = Subscription.where("id = ?",params[:plan][:subscription_id]).first
+      if subscribe.amount.eql?(0.0)         
+         plan.update_attributes(subscription_id: subscribe.id ,company_id: current_company.id)
+         plan.update_attributes(starts: plan.updated_at ,expires: calculate_plan_expiration(subscribe.valid_log,plan.updated_at))
+         redirect_to admin_plans_path
+        else
+          payment = current_company.transactions.create(:company_id => current_company.id,:subscription_id=> subscribe.id)
+          payment.setup!(
+          "#{HOST_URL}/payments/success",
+          "#{HOST_URL}/payments/cancel"
+          )
+          redirect_to payment.redirect_uri
+      end
+    else
+      redirect_to admin_plans_path
+    end
     end
 
   end
@@ -47,5 +68,7 @@ ActiveAdmin.register Plan do
 
     end
   end
+
+  form :partial => "form"
 
 end

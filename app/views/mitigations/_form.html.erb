@@ -1,35 +1,18 @@
+
+
  <link href="/assets/bootstrap-multiselect.js" rel="stylesheet" media="screen">
+ <link href="/assets/prettify.js" rel="stylesheet" media="screen">
+ <link href="/assets/typehead.js" rel="stylesheet" media="screen">
  <link rel="stylesheet" type="text/css" href="/assets/bootstrap-multiselect.css">
+ <link rel="stylesheet" type="text/css" href="/assets/prettify.css">
   <div class="clearfix"></div>
-  <div class="sub_menu">
-    <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse subnavbar-fixed-top" role="navigation">
-      <div class="container">
-        <ul class="subbar-nav nav navbar-nav">
-        <li><a href="#">
-          <div class="file-icon"></div>
-          File</a></li>
-        <li><a href="">
-          <div class="listing-icon "></div>
-          Listings</a></li>
-        <li><a class="active" href="">
-          <div class="lmitigate-icon"></div>
-          Mitigate</a></li>
-        <li><a  href="">
-          <div class="review-icon"></div>
-          Review</a></li>
-        <li><a href="">
-          <div class="setting-icon"></div>
-          Setting</a></li>
-      </ul>
-      </div>
-    </div>
-  </div>
+
+
   <div class="clearfix"></div>
   <div class="content">
     <div class="container">
       <div>
-        <!-- Nav tabs -->
+        <!-- Nav tabs
          <div class="risk-title">Risk Mitigation</div>
          </div>
          </div>
@@ -66,7 +49,7 @@
             <div class="mitigation-box-wrap">
               <div class="mitigation-status">
                   <div class="risk-box-lable">Status:</div>
-                    <div class="risk-box-text">Management Reviewed</div>
+                    <div class="risk-box-text"><%= risk.risk_status.name %></div>
                 </div>
                 </div>
             </div>
@@ -98,20 +81,12 @@
                 </tr>
                 <tr>
                   <td><label>Ownerâs Manager: </label>
-                    <span>Access Management</span></td>
+                    <%= risk.risk_owner_user_name %></td>
                   <td><label>Team : </label>
-                    <span>Branch Management</span></td>
+                    <%= risk.team.name %></td>
                   <td><label> Scoring Method :</label>
-                    <span> CLASSIC</span></td>
+                    <%= risk.risk_scoring_scoring_type %></td>
                 </tr>
-                <tr>
-                  <td><label>Currently Likelihood : </label>
-                    <span>Remote</span></td>
-                  <td><label>Current Impact : </label>
-                    <span> Moderate</span></td>
-                  <td></td>
-                </tr>
-
               </table>
             </div>
           </div>
@@ -142,22 +117,23 @@
                 <div class="mit-reccom-title-sp">Plan Effort</div>
                 <div class="risk-wrap clearfix">
                 <div class="sub-wrap-bg">
-                <form class="form-horizontal" role="form">
                   <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <!--Row first ------------>
+               <!-- <div>
+                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
+                  <%#= form_for (risk) do |f| %>
+                  <%= form_for(risk, url: {controller: "mitigations", action: "create"},:method => "post" ,html: {:class =>"form-horizontal", :id => "role"}) do |f| %>
+
+                       <%= f.fields_for :control_measure do |control| %>
+                   <!--Row first ------------>
                 <div>
                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
-                  <%= form_for (risk) do |f| %>
-                  <%#= form_for(audit, url: {controller: "nc_questions", action: "create"},:method => "post") do |f| %>
-
-                       <%= f.fields_for :control_measures do |control| %>
-                     <div class="form-group">
+                     <div class="form-group clearfix">
                         <label for="inputEmail3" class="col-sm-4 control-label">Control</label>
                        <div class="col-sm-8">
                             <div class="risk-select">
-                             <%#= control.collection_select(:control_ids, @controls,  :id, :name),{}, {:id => "multiselect"} %>
-														 			<%#= control.select :modular_id,options_for_select(@controls, :id, :name), {},{:id => "privilege_modular_id", :selected =>"", :class=> "test"}%>
-														     <%= select("control", "control_ids", options_from_collection_for_select(@controls, :id, :name), {}, {:id=> "multiselect", :multipart =>"multiple" }) %>
+                             <%= control.collection_select  :control_ids, CppMeasure.for_name("Control"), :id, :name,{}, {:id => "multiselect1s"} %>
+														 <%#= select("control", "control_ids", options_from_collection_for_select(@controls, :id, :name), {}, {:id=> "multiselect", :multipart =>"multiple" }) %>
                             </div>
                     </div>
                    </div>
@@ -167,11 +143,11 @@
                  <!--Row first ------------>
                 <div>
                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
-                     <div class="form-group">
+                     <div class="form-group clearfix">
                         <label for="inputEmail3" class="col-sm-4 control-label">Process</label>
                        <div class="col-sm-8">
                             <div class="risk-select">
-                             <%= control.collection_select(:process_ids, @process,  :id, :name, :prompt => true) %>
+                             <%= control.collection_select(:process_ids, CppMeasure.for_name("Process"),  :id, :name, :prompt => true) %>
                             </div>
                     </div>
                    </div>
@@ -180,11 +156,11 @@
                  <!--Row first ------------>
                 <div>
                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
-                     <div class="form-group">
+                     <div class="form-group clearfix">
                         <label for="inputEmail3" class="col-sm-4 control-label">Procedure</label>
                        <div class="col-sm-8">
                             <div class="risk-select">
-                            <%= control.collection_select(:procedure_ids, @procedure,  :id, :name, :prompt => true) %>
+                            <%= control.collection_select(:procedure_ids, CppMeasure.for_name("Procedure"),  :id, :name, :prompt => true) %>
                             </div>
                     </div>
                    </div>
@@ -197,12 +173,12 @@
 
                 <div>
                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
-                     <div class="form-group">
+                     <div class="form-group clearfix">
                         <label for="inputEmail3" class="col-sm-4 control-label">Planning Strategy </label>
                        <div class="col-sm-8">
-                            <div class="risk-select">
-                               <%= mitigation.collection_select(:planning_strategy_id, PlanningStrategy.all,  :id, :name, :prompt => true) %>
-                            </div>
+                           <%#= mitigation.collection_select(:planning_strategy_id, PlanningStrategy.all,  :id, :name, {:class => "multiselect"}, :multiple => "multiple") %>
+                               <%= mitigation.select :planning_strategy_id,options_for_select(PlanningStrategy.all.collect{|x| [  x.name, x.id.to_i]}),{},{:class => 'multiselect' , :multiple => "multiple"}%>
+
                     </div>
                    </div>
                   </div>
@@ -211,7 +187,7 @@
                   <!--Row first ------------>
                 <div>
                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
-                     <div class="form-group">
+                     <div class="form-group clearfix">
                         <label for="inputEmail3" class="col-sm-4 control-label">Mitigation Effort  </label>
                        <div class="col-sm-8">
                             <div class="risk-select">
@@ -227,7 +203,7 @@
                            <div class="text-area clearfix">
                               <label for="inputEmail3" class="col-sm-3 control-label"> <%= f.label :current_solution, t('risk.') %></label>
                                      <div class="col-sm-9">
-                                     <%= mitigation.text_area :current_solution, :class=>"form-control risk-big-input" %>
+                                     <%= mitigation.text_area :current_solution, :class=>"form-control risk-big-input", :value => "#{risk.mitigation.current_solution}" %>
                                      </div>
                                   </div>
                               </div>
@@ -256,7 +232,6 @@
                       </div>
                   </div>
 
-                </form>
                 </div>
             </div>
             </div>
@@ -266,362 +241,83 @@
 
                 <!---------------form 1 -------->
          <div>
-           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="mit-plan-effort">
               <div class="mitigation-percive">
                 <div class="mit-reccom-title-sp">Perceived Score</div>
-                <div class="risk-wrap clearfix">
-                <div class="sub-wrap-bg">
-                <form class="form-horizontal" role="form">
-                  <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-              <!--Row first ------------>
-                <div>
-                 <!--<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
-                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-4 control-label">Likelihood</label>
-                       <div class="col-sm-8">
-                            <div class="risk-select">
-                             <select class="form-control">
-                              <option></option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
+                  <div class="risk-wrap clearfix">
+                    <div class="sub-wrap-bg">
+                      <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div>
+
+                          <div class="text-area clearfix">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Threat</label>
+                            <div class="col-sm-9">
+                              <%= f.fields_for :control_measure do |control| %>
+                              <%= control.text_area :threat, row: 2, class: "form-control risk-big-input"%>
                             </div>
-                    </div>
-                   </div>
-                  </div>-->
-                  </div>
-                 <!--Row first ------------>
-                <div>
-                 <!--<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
-                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-4 control-label">Impact</label>
-                       <div class="col-sm-8">
-                            <div class="risk-select">
-                             <select class="form-control">
-                              <option></option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
+                          </div>
+
+                            <div class="text-area clearfix">
+                              <label for="inputEmail3" class="col-sm-3 control-label">Effectiveness</label>
+                              <div class="col-sm-9">
+                                  <%= control.text_area :effectiveness, row: 2, class: "form-control risk-big-input"%>
+                                </div>
                             </div>
-                    </div>
-                   </div>
-                  </div>-->
-                  </div>
-                 <!--Row first ------------>
-                <div>
 
-                  <div class="text-area clearfix">
-                              <label for="inputEmail3" class="col-sm-3 control-label">Threat</label>
-                                     <div class="col-sm-9">
-                                     <textarea class="form-control risk-big-input" rows="2"></textarea>
-                            </div>
-                                  </div>
- <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
-                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-4 control-label">Effectiveness</label>
-                       <div class="col-sm-8">
-                            <div class="risk-select">
-                             <select class="form-control">
-                              <option></option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                            </div>
-                    </div>
-                   </div>
-                  </div>
-
-                              </div>
-
-
-
-
-                  </div>
-
-
-
-                    <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-
-
-
-                             <div>
-                           <div class="text-area clearfix">
-                              <label for="inputEmail3" class="col-sm-3 control-label">Consequence</label>
-                                     <div class="col-sm-9">
-                                     <textarea class="form-control risk-big-input" rows="2"></textarea>
-                            </div>
-                                  </div>
-                                  </div>
                         </div>
+                      </div>
+                      <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div>
+                          <div class="text-area clearfix">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Consequence</label>
+                            <div class="col-sm-9">
+                              <%= control.text_area :consequence, row: 2, class: "form-control risk-big-input"%>
+                            </div>
+                          </div>
                         </div>
-
-
-
-
-                </form>
+                      </div>
+                    <%end%>
+                  </div>
                 </div>
-
-            </div>
-            </div>
-         </div>
-           </div>
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="likelihood matrix-padding clearfix">
-                    <div class="base-score-matrix">Base Score Metrics
-                     <!-- <div class="up-triangle"></div>-->
-                    </div>
-                        <div class="">
-                         <div class="exploitability">Exploitability Metrics</div>
-                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <div class="form-group clearfix">
-                                     <div class="col-sm-12">
-                                     <label for="exampleInputPassword1">Attack Vector</label>
-                                         <div class="risk-select">
-                                         <select class="form-control">
-                                          <option></option>
-                                          <option>2</option>
-                                          <option>3</option>
-                                          <option>4</option>
-                                          <option>5</option>
-                                        </select>
-                                        </div>
-                            </div>
-                                  </div>
-                                  </div>
-                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <div class="form-group">
-                                     <div class="col-sm-12 ">
-                                     <label for="exampleInputPassword1">Attack Complexity</label>
-                                         <div class="risk-select">
-                                         <select class="form-control clearfix">
-                                          <option></option>
-                                          <option>2</option>
-                                          <option>3</option>
-                                          <option>4</option>
-                                          <option>5</option>
-                                        </select>
-                                        </div>
-                              </div>
-                                  </div>
-                                  </div>
-
-                                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <div class="form-group">
-                                     <div class="col-sm-12 ">
-                                     <label for="exampleInputPassword1"> Authentication</label>
-                                         <div class="risk-select">
-                                         <select class="form-control clearfix">
-                                          <option></option>
-                                          <option>2</option>
-                                          <option>3</option>
-                                          <option>4</option>
-                                          <option>5</option>
-                                        </select>
-                                        </div>
-                              </div>
-                                  </div>
-                                  </div>
-                                   <div class="emp-hr clearfix"></div>
-                                  </div>
-
-
-                                 <div class="">
-                         <div class="exploitability">Exploitability Metrics</div>
-                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <div class="form-group clearfix">
-                                     <div class="col-sm-12">
-                                     <label for="exampleInputPassword1">Confidentiality Impact</label>
-                                         <div class="risk-select">
-                                         <select class="form-control clearfix">
-                                          <option></option>
-                                          <option>2</option>
-                                          <option>3</option>
-                                          <option>4</option>
-                                          <option>5</option>
-                                        </select>
-                                        </div>
-                            </div>
-                                  </div>
-                                  </div>
-                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <div class="form-group" >
-                                     <div class="col-sm-12 ">
-                                     <label for="exampleInputPassword1">Integrity Impact</label>
-                                         <div class="risk-select">
-                                         <select class="form-control">
-                                          <option></option>
-                                          <option>2</option>
-                                          <option>3</option>
-                                          <option>4</option>
-                                          <option>5</option>
-                                        </select>
-                                        </div>
-                              </div>
-                                  </div>
-                                  </div>
-
-                                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <div class="form-group">
-                                     <div class="col-sm-12 ">
-                                     <label for="exampleInputPassword1">Availability Impact</label>
-                                         <div class="risk-select">
-                                         <select class="form-control">
-                                          <option></option>
-                                          <option>2</option>
-                                          <option>3</option>
-                                          <option>4</option>
-                                          <option>5</option>
-                                        </select>
-                                        </div>
-                              </div>
-                                  </div>
-                                  </div>
-                                   <div class="emp-hr clearfix"></div>
-                                  </div>
-
-
-                                             <div class="">
-                         <div class="exploitability">Temporal Score Metrics</div>
-                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <div class="form-group clearfix">
-                                     <div class="col-sm-12">
-                                     <label for="exampleInputPassword1">Exploitability</label>
-                                         <div class="risk-select">
-                                         <select class="form-control">
-                                          <option></option>
-                                          <option>2</option>
-                                          <option>3</option>
-                                          <option>4</option>
-                                          <option>5</option>
-                                        </select>
-                                        </div>
-                            </div>
-                                  </div>
-                                  </div>
-                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <div class="form-group">
-                                     <div class="col-sm-12 ">
-                                     <label for="exampleInputPassword1">Remediation Level</label>
-                                         <div class="risk-select">
-                                         <select class="form-control">
-                                          <option></option>
-                                          <option>2</option>
-                                          <option>3</option>
-                                          <option>4</option>
-                                          <option>5</option>
-                                        </select>
-                                        </div>
-                              </div>
-                                  </div>
-                                  </div>
-
-                                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <div class="form-group">
-                                     <div class="col-sm-12 ">
-                                     <label for="exampleInputPassword1">Report Confidence</label>
-                                         <div class="risk-select">
-                                         <select class="form-control">
-                                          <option></option>
-                                          <option>2</option>
-                                          <option>3</option>
-                                          <option>4</option>
-                                          <option>5</option>
-                                        </select>
-                                        </div>
-                              </div>
-                                  </div>
-
-                                  </div>
-                                   <div class="emp-hr clearfix"></div>
-                                  </div>
-
-                                   <div class="">
-                         <div class="exploitability">Environmental Score Metrics</div>
-                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <div class="form-group clearfix">
-                                     <div class="col-sm-12">
-                                     <label for="exampleInputPassword1">Collateral Damage Potential</label>
-                                         <div class="risk-select">
-                                         <select class="form-control">
-                                          <option></option>
-                                          <option>2</option>
-                                          <option>3</option>
-                                          <option>4</option>
-                                          <option>5</option>
-                                        </select>
-                                        </div>
-                            </div>
-                                  </div>
-                                  </div>
-                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <div class="form-group">
-                                     <div class="col-sm-12 ">
-                                     <label for="exampleInputPassword1">Target Distribution</label>
-                                         <div class="risk-select">
-                                         <select class="form-control">
-                                          <option></option>
-                                          <option>2</option>
-                                          <option>3</option>
-                                          <option>4</option>
-                                          <option>5</option>
-                                        </select>
-                                        </div>
-                              </div>
-                                  </div>
-                                  </div>
-
-                                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <div class="form-group">
-                                     <div class="col-sm-12 ">
-                                     <label for="exampleInputPassword1">Integrity Requirement</label>
-                                         <div class="risk-select">
-                                         <select class="form-control">
-                                          <option></option>
-                                          <option>2</option>
-                                          <option>3</option>
-                                          <option>4</option>
-                                          <option>5</option>
-                                        </select>
-                                        </div>
-                              </div>
-                                  </div>
-                                  </div>
-                                  </div>
-
-
-                            </div>
-
-
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-                <div class="btn-group">
-                  <a class="black_btn" href="">Back</a> <a class="grey_btn" href=""> Save </a>
-                 <!--  <a class="orange_btn" href="">Submit</a> -->
-                 <%= f.submit "Submit" ,:class => "orange_btn" %>
-                </div>
+        <div class="container">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="method-padding">
+				<% if risk.risk_scoring_scoring_type == 'ClassicScoring'%>
+					 <%= render "/risks/classic_scoring",f: f, risk: risk %>
+				<% elsif risk.risk_scoring_scoring_type == 'DreadScoring' %>
+            <%=render "/risks/dread_scoring",f: f, risk: risk%>
+        <% elsif risk.risk_scoring_scoring_type == 'CvssScoring' %>
+            <%=render "/risks/cvss_scoring",f: f, risk: risk %>
+        <% elsif risk.risk_scoring_scoring_type == 'OwaspScoring' %>
+            <%=render "/risks/owasp_scoring",f: f, risk: risk %>
+        <% elsif risk.risk_scoring_scoring_type == 'CustomScoring' %>
+            <%=render "/risks/custom_scoring",f: f, risk: risk %>
+				<% end %>
+      </div>
+    </div>
+        <div class="btn-group">
+          <a class="black_btn" href="">Back</a> <a class="grey_btn" href=""> Save </a>
+           <!--<a class="orange_btn" href="">Submit</a>-->
+         <%= f.submit "Submit" , :class => "orange_btn" %>
+        </div>
+      </div>
+      </div>
+
       </div>
     </div>
   <% end %>
-
-  </div>
-<!--  <div class="clearfix"></div> -->
-  <!-- <div class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="footer_left col-lg-6">2014 Â© FixNix Audit Management</div>
-      <div class="footer_right col-lg-6">Powered By<img src="img/footer_logo.png" alt=""/></div>
-    </div>
-  </div>
 </div>
-</div> -->
+
 <script type="text/javascript">
+
+
 $(window).load(function(){
   var $container = $('#grid_items');
   // initialize
@@ -631,6 +327,8 @@ $(window).load(function(){
     isFitWidth: true
   });
 
+ $(".multiselect").multiselect({
+    });
 
   $(".block_banner img").each(function(index, element) {
         var screenImage = $(this);
@@ -654,7 +352,11 @@ $(".click_icon").click(function(){
     $(".share_pop").show();
 });
 
+
+
 $(document).ready(function(){
+
+
 
   Top_postion = $(window).scrollTop();
 
@@ -735,9 +437,8 @@ $(".go_to_top").click(function(){
   $("html, body").animate({scrollTop: "0"}, 800);
 });
 */
-  $(document).ready(function() {
-	alert(1111111)
-        $("#multiselect").multiselect();
-    });
+  (document).ready(function() {
+        ('.multiselect').multiselect();
+     });
 </script>
 

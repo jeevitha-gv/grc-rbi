@@ -27,6 +27,8 @@ Rails.application.routes.draw do
       get 'department_teams_users'
       post 'risk_imports'
       get 'risk_export'
+      get 'download_risk_document'
+      delete 'remove_attachment'
     end
     resources :mgmt_reviews
     resources :mitigations

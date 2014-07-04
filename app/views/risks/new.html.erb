@@ -40,13 +40,18 @@
                   <%= form_for(@risk) do |f| %>
                     <%= render 'form', :f => f, :risk => @risk, :departments => @departments, :teams => @teams, :team_users => @team_users, :compliance_libraries => @compliance_libraries %>
                     <div class="row">
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <a href="" class="attach-icon fleft blue_link">Attach Document</a>
-                      </div>
+                      <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <%#= f.fields_for :attachment do |attach| %>
+                          <%#= attach.label :attachment, t('risk.attachment'), :class => "attach-icon fleft blue_link" %>
+                          <br />
+                          <%#= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
+                        <%# end %>
+                        <div class="clearfix" id="selected_files"></div>
+                      </div> -->
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="btn-group gr-btn">
-                          <%= f.submit "Save as Draft", :class => "grey_btn" %>
-                          <%= f.submit "File Risk", :class => "orange_btn" %>
+                          <%= f.submit "Save as Draft", :class => "grey_btn", :onclick=>"return check_risk_scoring();" %>
+                          <%= f.submit "File Risk", :class => "orange_btn", :onclick=>"return check_risk_scoring();" %>
                         </div>
                       </div>
                     </div>

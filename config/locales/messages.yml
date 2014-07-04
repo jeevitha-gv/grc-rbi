@@ -104,6 +104,16 @@ en:
     csv_upload:
       success: "Audit have been imported successfully"
 
+  risk:
+    failure:
+      owner_not_in_mitigator: "User is already selected as owner"
+    create:
+      success: "Risk has been created successfully"
+    update:
+      success: "Risk has been updated successfully"
+    csv_upload:
+      success: "Risks have been imported successfully"
+
   checklist_recommendations:
     recommendation: "Please enter recommendation"
     priority: "Please select priority"

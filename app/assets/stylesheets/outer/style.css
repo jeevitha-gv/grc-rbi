@@ -1,4 +1,4 @@
-	/* CSS Document */
+		/* CSS Document */
 .fleft {
 	float: left;
 }
@@ -575,17 +575,15 @@ a.edit-icon {
 }
 html, body {
 	height: 100%;
+	margin: 0px;
+	padding: 0;
+	position: relative;
 }
 #wrapper {
 	min-height: 100%;
 	position: relative;
 }
-.footer {
-	width: 100%;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-}
+
 .error_logo{ padding-top:15px; font-size:25px;}
 
 .attach-icon{ background-image:url(/assets/outer/attach-icon.png); background-repeat:no-repeat;padding: 0 0 0 18px;}
@@ -1192,9 +1190,12 @@ a.plus-background{
   float: left;
 
 }
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 90defa9b6c1c6d2d7ff998273f49d5d137613745
 
 /*for test*/
 
@@ -1533,6 +1534,7 @@ margin-bottom:20px !important;
 .page-wrap{
   min-height:100%;
   position:relative;
+  margin-bottom:50px;
 }
 html,body{
   height:100%;
@@ -1541,6 +1543,7 @@ html,body{
   left:0;
   bottom:0;
   width:100%;
+  position:absolute;
 }
 .box-wrapper{
   margin:0 0 150px 0;
@@ -1605,7 +1608,7 @@ html,body{
   margin:0 10px 0 0;
 
 }
-.import-btn{
+a.import-btn{
   background:#fe9537;
   border:1px solid #dc771d;
   padding:8px 8px;
@@ -1641,6 +1644,16 @@ html,body{
 	margin: 0 0 0 0px!important;
 	width:30%;
 }
+.method-padding{
+	margin:0 15px 20px;
+}
+.method-padding .risk-select{
+	margin:0 0 20px 0;
+}
+.method-padding  .likelihood .form-group label{
+	margin:20px 0 5px 0;
+}
+
 .likelihood .form-group label{
   font-weight: 400!important;
   font-size: 14px;
@@ -1656,6 +1669,111 @@ html,body{
 	color:#d47d01;
 	font-style:italic;
 }
+<<<<<<< HEAD
+=======
+.previleges .btn-group{
+	margin: 0px;
+	float: none;
+}
+.multiselect-container{
+	max-width: 300px;
+	height: 200px;
+	overflow: scroll;
+	overflow-x:hidden;
+}
+.previleges{
+	width: 27%;
+}
+.previleges input{
+	float: right;
+}
+.previleges select{
+	padding: 7px;
+}
+
+.login-wrap{
+
+    float: right;
+    font-family: 'Open Sans',Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    padding: 20px 15px 11px;
+    position: absolute;
+    right: 0;
+    z-index: 100;
+	 transition: all 270ms ease-out 0s;
+}
+.login-wrap a{
+	padding:0 0 0 40px;
+	 color: #434342;
+	 font-size:14px;
+	 transition: all 270ms ease-out 0s;
+}
+.login-wrap a:hover{
+	color:#0085c8 ;
+	text-decoration:underline;
+	transition: all 270ms ease-out 0s;
+}
+.login-box{
+	margin:50px auto;
+	text-align:center;
+	border:1px solid #ddd;
+	max-width:50%;
+	border-radius:6px;
+	background:#FFF;
+	margin-bottom:125px;
+
+}
+.login-box-con{
+	margin:0 0 30px  auto;
+	text-align:center;
+	padding:50px 50px 1px;
+
+}
+.login-box .form-horizontal .control-label{
+	text-align:left;
+	font-weight:600;
+
+}
+.login-box .form-horizontal input{
+	font-style:italic;
+	font-size:13px;
+}
+.login-title{
+	background: none repeat scroll 0 0 #0085c8;
+    color: #fff;
+    font-size: 20px;
+    padding: 13px;
+    text-align: left;
+	border-radius:6px 6px 0px 0px;
+}
+.logn-btn{
+	float:right;
+	margin-bottom:20px;
+}
+.login-box .form-horizontal input[type="file"]{
+
+	paddin:10px 0;
+}
+.forgot-pwd{
+	margin:50px 0 0 0;
+	border-top:1px solid #ddd;
+}
+.forgot-pwd a{
+	text-align:left;
+	font-size:13px;
+	padding: 20px 0 0 0px;
+	display:block;
+}
+.login-box .radio label, .checkbox label{
+	text-align:left;
+}
+
+#audit_charts li {
+    list-style: none outside none;
+}
+li.db_setting_main{height:425px;}
+
+>>>>>>> 90defa9b6c1c6d2d7ff998273f49d5d137613745
 .roll-audit{
   padding: 0px 0 0 13px;
   margin: 0px;
@@ -1674,4 +1792,16 @@ html,body{
   height: 200px;
   overflow: scroll;
   overflow-x:hidden;
+<<<<<<< HEAD
 }
+=======
+}
+.risk-select  option{
+  max-width:100%;
+  padding: 0 3px;
+  display: block;
+}
+.control-select{
+   padding: 0 10px 0 4px;
+}
+>>>>>>> 90defa9b6c1c6d2d7ff998273f49d5d137613745

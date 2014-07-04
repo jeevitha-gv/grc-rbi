@@ -12,9 +12,13 @@ class Team < ActiveRecord::Base
   belongs_to :department
   belongs_to :section
 <<<<<<< HEAD
+<<<<<<< HEAD
   has_many :risks
 =======
 >>>>>>> b3e0b146a3fae7e86a2ab8cc07a54fe21f92b330
+=======
+  has_many :risks
+>>>>>>> 90defa9b6c1c6d2d7ff998273f49d5d137613745
 
   # validations
   validates :name, presence:true
@@ -24,5 +28,5 @@ class Team < ActiveRecord::Base
   #scope
   scope :for_department_and_company, lambda {|department_id, company_id, section_id| where(department_id: department_id, company_id: company_id, section_id: section_id)}
   scope :for_id, lambda {|team_id| where(id: team_id)}
-  scope :for_name_by_department, lambda { |team_name, department_id| where("lower(name) = ? and department_id = ?", team_name, department_id) }
+  scope :for_name_by_department, lambda { |team_name, department_id, section| where("lower(name) = ? and department_id = ? and section_id = ?", team_name, department_id, section) }
 end

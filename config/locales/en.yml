@@ -341,12 +341,17 @@ en:
               only_integer: "Should be an Integer"
             valid_period:
               blank: "Please select a valid period"
+            user_count:
+              blank: "User Count can't be blank"
+            file_size:
+              blank: "File Size can't be blank"
         risk:
           attributes:
             subject:
               blank: "Subject cannot be blank"
             reference:
-              blank: "Reference cannot be blank"
+              blank: "Reference ID cannot be blank"
+              taken: "Reference ID must be unique"
             assessment:
               blank: "Risk Description cannot be blank"
             compliance_id:
@@ -365,8 +370,24 @@ en:
               blank: "Risk Owner cannot be blank"
             mitigator:
               blank: "Mitigator cannot be blank"
-            technology:
+            technology_id:
               blank: "Technology cannot be blank"
+        risk_scoring:
+          attributes:
+            custom_value:
+              greater_than_or_equal_to: "Custom Value must be in the range of 0 to 10"
+              less_than_or_equal_to: "Custom Value must be in the range of 0 to 10"
+        risk_category:
+          attributes:
+            name:
+              taken: "This category has already been added"
+              blank: "Category cannot be blank"
+        technology:
+          attributes:
+            name:
+              taken: "This technology has already been added"
+              blank: "Technology cannot be blank"
+
 
 
 
@@ -469,6 +490,7 @@ en:
     category: "Category"
     mitigator: "Mitigator"
     reviewer: "Reviewer"
+    attachment: "Attach Document"
 
   dread:
     damage_potential: "Damage Potential"
