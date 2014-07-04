@@ -24,6 +24,22 @@ class RisksController < ApplicationController
     end
   end
 
+  def edit
+    @risk = Risk.find(params[:id])
+    risk_initializers(@risk.location_id, @risk.department_id, @risk.team_id, @risk.compliance_id)
+  end
+
+  def update
+    @risk = Risk.find(params[:id])
+    @risk.set_risk_status(@risk, params[:commit]) if params[:commit] == "File Risk"
+    if @risk.update_attributes(risk_params)
+      redirect_to edit_risk_path, :flash => { :notice => MESSAGES["risk"]["update"]["success"]}
+    else
+      risk_initializers(@risk.location_id, @risk.department_id, @risk.team_id, @risk.compliance_id)
+      render 'edit'
+    end
+  end
+
   def risk_imports
     if(params[:file].present?)
       begin
