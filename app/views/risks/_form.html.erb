@@ -1,227 +1,289 @@
-                <%= javascript_include_tag "/assets/views/risk_new.js" %>
+<style>
+.scoring_model, .classic_scoring, .owasp_scoring, .dread_scoring, .cvss_scoring, .custom_scoring, .risk_scoring_type {
+  display: none;
+}
+</style>
 
-                <!-- First Row Starts -->
-                <div class="row">
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-                    <div class="form-group clearfix">
-                      <label class="col-sm-4 control-label">
-                        <%= f.label :subject, t('risk.subject') %>
-                      </label>
-                      <div class="col-sm-8">
-                        <%= f.text_field :subject, :class => "form-control risk-normal-input" %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-                    <div class="form-group clearfix">
-                      <label class="col-sm-4 control-label">
-                        <%= f.label :reference, t('risk.reference') %>
-                      </label>
-                      <div class="col-sm-8">
-                        <%= f.text_field :reference, :class => "form-control risk-normal-input" %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-                    <div class="form-group clearfix">
-                      <label class="col-sm-4 control-label">
-                        <%= f.label :compliance_id, t('risk.compliance') %>
-                      </label>
-                      <div class="col-sm-8">
-                        <div class="risk-select">
-                          <%= f.collection_select(:compliance_id, Compliance.all, :id, :name, {:include_blank => "--Select Compliance--"}, {:class => "form-control", :id => "compliance-list", :onChange => "get_compliance_libraries(this)"}) %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- First Row Ends -->
+<%= javascript_include_tag "/assets/views/risk_new.js" %>
 
-                <!-- Second Row Test -->
-                <div class="row">
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-                    <div class="form-group clearfix">
-                      <label class="col-sm-4 control-label">
-                        <%= f.label :compliance_library_id, t('risk.control_number') %>
-                      </label>
-                      <div class="col-sm-8">
-                        <div class="risk-select">
-                          <%= f.collection_select(:compliance_library_id, ComplianceLibrary.where(:is_leaf => true), :id, :name, {include_blank: '--Select Control--' }, {:class => "form-control"}) %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-                    <div class="form-group clearfix">
-                      <label class="col-sm-4 control-label">
-                        <%= f.label :location_id, t('risk.location') %>
-                      </label>
-                      <div class="col-sm-8">
-                        <div class="risk-select">
-                          <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => risk.location_id), {include_blank: '--Select Location--' }, { :id => "locations-list", :class => "form-control", :onChange => "get_departments(this);"} %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-                    <div class="form-group clearfix">
-                      <label class="col-sm-4 control-label">
-                        <%= f.label :department_id, t('risk.department') %>
-                      </label>
-                      <div class="col-sm-8">
-                        <div class="risk-select">
-                          <%= f.collection_select(:department_id, current_company.departments, :id, :name, {:include_blank => "--Select Department--"}, { :id => "department_id", :class => "form-control", :onChange => "get_teams(this);"}) %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Second Row Ends Test -->
+<!-- First Row Starts -->
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :subject, t('risk.subject') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :subject, :class => "form-control risk-normal-input" %>
+      </div>
+      <% if risk.errors[:subject].present? %>
+        <div class="error_message"><%= risk.errors[:subject][0]%></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :reference, t('risk.reference') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :reference, :class => "form-control risk-normal-input" %>
+      </div>
+      <% if risk.errors[:reference].present? %>
+        <div class="error_message"><%= risk.errors[:reference][0]%></div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!-- First Row Ends -->
 
-                <!-- Third Row Starts -->
-                <div class="row">
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-                    <div class="form-group clearfix">
-                      <label class="col-sm-4 control-label">
-                        <%= f.label :team_id, t('risk.team') %>
-                      </label>
-                      <div class="col-sm-8">
-                        <div class="risk-select">
-                          <%= f.select :team_id, options_for_select(current_company.teams.collect{|x| [x.name, x.id.to_i]}, :selected => risk.team_id), {include_blank: '--Select Team--' }, { :id => "team_id", :class => "form-control", :onChange => "get_auditee_users(this);"} %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-                    <div class="form-group clearfix">
-                      <label class="col-sm-4 control-label">
-                        <%= f.label :category_id, t('risk.category') %>
-                      </label>
-                      <div class="col-sm-8">
-                        <div class="risk-select">
-                          <%= f.collection_select(:category_id, current_company.risk_categories, :id, :name, { include_blank: '--Select Category--' }, {:class => "form-control"}) %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-                    <div class="form-group clearfix">
-                      <label class="col-sm-4 control-label">
-                        <%= f.label :technology_id, t('risk.technology') %>
-                      </label>
-                      <div class="col-sm-8">
-                        <div class="risk-select">
-                          <%= f.collection_select(:technology_id, current_company.technologies, :id, :name, { include_blank: '--Select Technology--' }, {:class => "form-control"}) %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Third Row Ends -->
+<!-- Second Row Test -->
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :compliance_id, t('risk.compliance') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.select :compliance_id, options_for_select(Compliance.all.collect{|x| [x.name, x.id.to_i]}, :selected => risk.compliance_id), {:include_blank => "--Select Compliance--"}, {:id => "compliance_id", :class => "form-control", :onChange => "get_compliance_libraries(this)"} %>
+        </div>
+        <% if risk.errors[:compliance_id].present? %>
+          <div class="error_message"><%= risk.errors[:compliance_id][0]%></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :compliance_library_id, t('risk.control_number') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <% if compliance_libraries.present? %>
+            <%= f.select :compliance_library_id, options_for_select(compliance_libraries.all.collect{|x| [x.name, x.id.to_i]}, :selected => risk.compliance_library_id), {include_blank: '--Select Control--' }, {  :class => "form-control"} %>
+          <% else %>
+            <%= f.select :compliance_library_id, options_for_select([]), {include_blank: '--Select Control--' }, { :class => "form-control"} %>
+          <% end %>
+        </div>
+        <% if risk.errors[:compliance_library_id].present? %>
+          <div class="error_message"><%= risk.errors[:compliance_library_id][0]%></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-                <!-- Fourth Row Starts -->
-                <div class="row">
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-                    <div class="form-group clearfix">
-                      <label class="col-sm-4 control-label">
-                        <%= f.label :owner, t('risk.owner') %>
-                      </label>
-                      <div class="col-sm-8">
-                        <div class="risk-select">
-                          <%= f.select :owner, options_for_select(["Some text here", ""]), {include_blank: '--Select Risk Owner--' }, { :id => "teams-list", :class => "form-control", :onChange => "get_departments(this);"} %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-                    <div class="form-group clearfix">
-                      <label class="col-sm-4 control-label">
-                        <%= f.label :mitigator, t('risk.mitigator') %>
-                      </label>
-                      <div class="col-sm-8">
-                        <div class="risk-select">
-                          <%= f.select :owner, options_for_select(["Some text here", ""]), {include_blank: '--Select Mitigator--' }, { :id => "teams-list", :class => "form-control", :onChange => "get_departments(this);"} %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-                    <div class="form-group clearfix">
-                      <label class="col-sm-4 control-label">
-                        <%= f.label :reviewer, t('risk.reviewer') %>
-                      </label>
-                      <div class="col-sm-8">
-                        <div class="risk-select">
-                          <%= f.select :owner, options_for_select(["Some text here", ""]), {include_blank: '--Select Reviewer--' }, { :id => "teams-list", :class => "form-control", :onChange => "get_departments(this);"} %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Fourth Row Ends -->
+</div>
+<!-- Second Row Ends Test -->
 
-                <div class="clearfix border-divider"> </div>
+<!-- Third Row Starts -->
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :location_id, t('risk.location') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => risk.location_id), {include_blank: '--Select Location--' }, { :id => "locations-list", :class => "form-control", :onChange => "get_departments(this);"} %>
+        </div>
+        <% if risk.errors[:location_id].present? %>
+          <div class="error_message"><%= risk.errors[:location_id][0]%></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :department_id, t('risk.department') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <% if departments.present? %>
+            <%= f.select :department_id, options_for_select(departments.all.collect{|x| [x.name, x.id.to_i]}, :selected => risk.department_id), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
+          <% else %>
+            <%= f.select :department_id, options_for_select([]), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
+          <% end %>
+        </div>
+        <% if risk.errors[:department_id].present? %>
+          <div class="error_message"><%= risk.errors[:department_id][0]%></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :team_id, t('risk.team') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <% if teams.present? %>
+            <%= f.select :team_id, options_for_select(teams.all.collect{|x| [x.name, x.id.to_i]}, :selected => risk.team_id), {include_blank: 'Select Team' }, { :id => "team_id", :onChange => "get_risk_owners(this);"} %>
+          <% else %>
+            <%= f.select :team_id, options_for_select([]), {include_blank: 'Select Department' }, { :id => "team_id", :onChange => "get_risk_owners(this);"} %>
+          <% end %>
+        </div>
+        <% if risk.errors[:team_id].present? %>
+          <div class="error_message"><%= risk.errors[:team_id][0]%></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Third Row Ends -->
 
-                <!-- Fifth Row Starts -->
-                <div class="row">
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="form-group clearfix">
-                      <div class="col-sm-12">
-                        <%= f.label :assessment, t('risk.assessment') %>
-                        <%= f.text_area :assessment, :class=>"form-control risk-big-input" %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="form-group clearfix">
-                      <div class="col-sm-12">
-                        <%= f.label :notes, t('risk.notes') %>
-                        <%= f.text_area :notes, :class=>"form-control risk-big-input" %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              <!-- Fifth Row Ends -->
+<!-- Fourth Row Starts -->
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :owner, t('risk.owner') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <% if team_users.present? %>
+            <%= f.select :owner, options_for_select(team_users.all.collect{|x| [x.user_name, x.id.to_i]}, :selected => risk.owner), {include_blank: 'Select Owner' }, { :id => "risk-owner", :class => "form-control"} %>
+          <% else %>
+            <%= f.select :owner, options_for_select([]), {include_blank: 'Select Owner' }, { :id => "risk-owner", :class => "form-control"} %>
+          <% end %>
+        </div>
+        <% if risk.errors[:owner].present? %>
+          <div class="error_message"><%= risk.errors[:owner][0]%></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :mitigator, t('risk.mitigator') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.select :mitigator, options_for_select(@mitigator_users.collect{|x| [x.user_name, x.id]}, :selected => risk.mitigator), {include_blank: '--Select Mitigator--' }, { :id => "risk-mitigator", :class => "form-control"} %>
+        </div>
+        <% if risk.errors[:mitigator].present? %>
+          <div class="error_message"><%= risk.errors[:mitigator][0]%></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :reviewer, t('risk.reviewer') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.select :reviewer, options_for_select(@reviewer_users.collect{|x| [x.user_name, x.id]}, :selected => risk.reviewer), {include_blank: '--Select Reviewer--' }, { :id => "risk-reviewer", :class => "form-control"} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fourth Row Ends -->
 
-              <div class="clearfix border-divider"> </div>
 
-              <div class="row">
-                <div class="likelihood clearfix">
-                  <div class="">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                      <div class="form-group">
-                        <div class="col-sm-12">
-                          <%= f.fields_for :risk_scorings do |scoring| %>
-                          <label>Scoring Type</label>
-                            <div class="risk-select">
-                              <%= scoring.select(:scoring_type, RiskScoring::SCORING_TYPES, :include_blank => "--Select Scoring Type--", :id=>"scoring_type") %>
-                            </div>
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                      <div class="form-group">
-                        <div class="col-sm-12">
-                          <label>Scoring Model</label>
-                            <div class="risk-select">
-                              <%= f.collection_select(:risk_model_id, RiskModel.all, :id, :name, { include_blank: '--Select Risk Model--' }, {:class =>"form-control"})  %>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    </div>
-                  </div>
-                </div>
+<!-- Fifth Row Starts -->
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :category_id, t('risk.category') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:category_id, RiskCategory.for_company(current_company.id), :id, :name, { include_blank: '--Select Category--' }, {:class => "form-control"}) %>
+        </div>
+        <% if risk.errors[:category_id].present? %>
+          <div class="error_message"><%= risk.errors[:category_id][0]%></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :technology_id, t('risk.technology') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:technology_id, Technology.for_company(current_company.id), :id, :name, { include_blank: '--Select Technology--' }, {:class => "form-control"}) %>
+        </div>
+        <% if risk.errors[:technology_id].present? %>
+          <div class="error_message"><%= risk.errors[:technology_id][0]%></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fifth Row Starts -->
+<div class="clearfix border-divider"> </div>
+
+<!-- Sixth Row Starts -->
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :assessment, t('risk.assessment') %>
+        <%= f.text_area :assessment, :class=>"form-control risk-big-input" %>
+      </div>
+      <% if risk.errors[:assessment].present? %>
+          <div class="error_message"><%= risk.errors[:assessment][0]%></div>
+        <% end %>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :notes, t('risk.notes') %>
+        <%= f.text_area :notes, :class=>"form-control risk-big-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Sixth Row Ends -->
+
+<div class="clearfix border-divider"> </div>
+
+<div class="row">
+  <div class="likelihood clearfix">
+    <div class="">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="form-group">
+          <div class="col-sm-12">
+            <%= f.fields_for :risk_scoring, (f.object.risk_scoring.present? ? f.object.risk_scoring : RiskScoring.new) do |scoring| %>
+            <label>Scoring Type</label>
+              <div class="risk-select">
+                <%= scoring.select(:scoring_type, RiskScoring::SCORING_TYPES, {:include_blank => "--Select Scoring Type--"}, {:id => "risk_scoring", :onChange => "change_scoring_method(this);"})%>
               </div>
+              <div class="risk_scoring_type error_message">Please select scoring type</div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 scoring_model" style="<%= 'display:block;' if risk_scoring_type_classic(risk) %>">
+        <div class="form-group">
+          <div class="col-sm-12">
+            <label>Scoring Model</label>
+            <div class="risk-select">
+              <%= f.collection_select(:risk_model_id, RiskModel.all, :id, :name, { include_blank: '--Select Risk Model--' }, {:class =>"form-control", :id => "risk_scoring_model"})  %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      </div>
+    </div>
+  </div>
+</div>
 
-              <%= render 'classic_scoring', :f => f %>
-
-
-
-
-
-
-
-              <div class="clearfix border-divider"> </div>
+<%= render 'classic_scoring', :f => f, :risk => risk %>
+<%= render 'owasp_scoring', :f => f, :risk => risk %>
+<%= render 'dread_scoring', :f => f, :risk => risk %>
+<%= render 'cvss_scoring', :f => f, :risk => risk %>
+<%= render 'custom_scoring', :f => f, :risk => risk %>
+<div class="clearfix border-divider"> </div>

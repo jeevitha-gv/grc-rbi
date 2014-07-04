@@ -1538,6 +1538,7 @@ html,body{
   left:0;
   bottom:0;
   width:100%;
+  position: absolute!important;
 }
 .box-wrapper{
   margin:0 0 150px 0;
@@ -1554,7 +1555,7 @@ html,body{
   font-style:italic;
 }
 .base-score-matrix{
-  background:#98999b;
+  background:#0085c8;
   padding:10px 15px;
   color:#fefefe;
   text-shadow: 1px 0px 0 #464646;
@@ -1581,7 +1582,7 @@ html,body{
 .up-triangle {
    width: 0;
    height: 0;
-   border-bottom: 20px solid #98999b;
+   border-bottom: 20px solid #0085c8;
    border-left: 20px solid transparent;
    border-right: 20px solid transparent;
    position:absolute;
@@ -1602,7 +1603,7 @@ html,body{
   margin:0 10px 0 0;
 
 }
-.import-btn{
+a.import-btn{
   background:#fe9537;
   border:1px solid #dc771d;
   padding:8px 8px;
@@ -1625,6 +1626,7 @@ html,body{
   color:#066666;
   text-shadow: 1px 0px 0px #ffffff;
 }
+<<<<<<< HEAD
 .inputs .form fieldset ol > li {
     display: block!important;
     min-height: 50px!important;
@@ -1655,6 +1657,21 @@ html,body{
 
 
 
+=======
+.inputs .form fieldset ol > li {
+    display: block!important;
+    min-height: 50px!important;
+    padding: 10px;
+}
+#risk_review_level_value_input label{
+	margin: 0 0 0 0px!important;
+	width:30%;
+}
+#risk_review_level_days_input label{
+	margin: 0 0 0 0px!important;
+	width:30%;
+}
+>>>>>>> 397db47d898e59a1af670f53d1144d7d1247c94d
 .likelihood .form-group label{
   font-weight: 400!important;
   font-size: 14px;
@@ -1669,4 +1686,23 @@ html,body{
 .orange-method{
 	color:#d47d01;
 	font-style:italic;
+}
+.previleges .btn-group{
+	margin: 0px;
+	float: none;
+}
+.multiselect-container{
+	max-width: 300px;
+	height: 200px;
+	overflow: scroll;
+	overflow-x:hidden;
+}
+.previleges{
+	width: 27%;
+}
+.previleges input{
+	float: right;
+}
+.previleges select{
+	padding: 7px;
 }

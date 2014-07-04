@@ -826,7 +826,7 @@ ClassicScoringMetric.delete_all
     ClassicScoringMetric.create(:name => "Unlikely", :value => "2", :metric_type => "Likelihood" )
     ClassicScoringMetric.create(:name => "Credible", :value => "3", :metric_type => "Likelihood" )
     ClassicScoringMetric.create(:name => "Likely", :value => "4", :metric_type => "Likelihood" )
-    ClassicScoringMetric.create(:name => "AlmostCertain", :value => "5", :metric_type => "Likelihood" )
+    ClassicScoringMetric.create(:name => "Almost Certain", :value => "5", :metric_type => "Likelihood" )
 
     ClassicScoringMetric.create(:name => "Insignificant", :value => "1", :metric_type => "Impact" )
     ClassicScoringMetric.create(:name => "Minor", :value => "2", :metric_type => "Impact" )
@@ -834,17 +834,17 @@ ClassicScoringMetric.delete_all
     ClassicScoringMetric.create(:name => "Major", :value => "4", :metric_type => "Impact" )
     ClassicScoringMetric.create(:name => "Extreme/Catastrophic", :value => "5", :metric_type => "Impact" )
 
-    ClassicScoringMetric.create(:name => "VeryLow", :value => "1", :metric_type => "Vulnerability" )
+    ClassicScoringMetric.create(:name => "Very Low", :value => "1", :metric_type => "Vulnerability" )
     ClassicScoringMetric.create(:name => "Low", :value => "2", :metric_type => "Vulnerability" )
     ClassicScoringMetric.create(:name => "Medium", :value => "3", :metric_type => "Vulnerability" )
     ClassicScoringMetric.create(:name => "High", :value => "4", :metric_type => "Vulnerability" )
-    ClassicScoringMetric.create(:name => "VeryHigh", :value => "5", :metric_type => "Vulnerability" )
+    ClassicScoringMetric.create(:name => "Very High", :value => "5", :metric_type => "Vulnerability" )
 
-    ClassicScoringMetric.create(:name => "VeryLow", :value => "1", :metric_type => "Velocity" )
+    ClassicScoringMetric.create(:name => "Very Low", :value => "1", :metric_type => "Velocity" )
     ClassicScoringMetric.create(:name => "Low", :value => "2", :metric_type => "Velocity" )
     ClassicScoringMetric.create(:name => "Medium", :value => "3", :metric_type => "Velocity" )
     ClassicScoringMetric.create(:name => "High", :value => "4", :metric_type => "Velocity" )
-    ClassicScoringMetric.create(:name => "VeryHigh", :value => "5", :metric_type => "Velocity" )
+    ClassicScoringMetric.create(:name => "Very High", :value => "5", :metric_type => "Velocity" )
 
 
 CvssMetricScoring.delete_all
@@ -905,6 +905,10 @@ CvssMetricScoring.delete_all
         CvssMetricScoring.create(metric_name: 'TargetDistribution', abrv_metric_name: 'TD', metric_value: 'Medium (26-75%)', abrv_metric_value: 'M', numeric_value: '0.75')
         CvssMetricScoring.create(metric_name: 'TargetDistribution', abrv_metric_name: 'TD', metric_value: 'High (76-100%)', abrv_metric_value: 'H', numeric_value: '1')
 
+Subscription.delete_all
+
+    Subscription.create(:name => "Free", :description => "free",:section_ids=> [1,2], :amount => 0.00, :valid_log =>23,:valid_period => 1)
+
 RiskModel.delete_all
 
     RiskModel.create(:name => "Likelihood * Impact + 2(Impact)")
@@ -912,3 +916,36 @@ RiskModel.delete_all
     RiskModel.create(:name => "Likelihood * Impact")
     RiskModel.create(:name => "Likelihood * Impact + Likelihood")
     RiskModel.create(:name => "Likelihood * Impact + 2(Likelihood)")
+
+RiskCategory.delete_all
+
+    RiskCategory.create(:name => "Access Management")
+    RiskCategory.create(:name => "Environmental Resilience")
+    RiskCategory.create(:name => "Monitoring")
+    RiskCategory.create(:name => "Physical Security")
+    RiskCategory.create(:name => "Policy and Procedure")
+    RiskCategory.create(:name => "Sensitive Data Management")
+    RiskCategory.create(:name => "Technical Vulnerability Management")
+    RiskCategory.create(:name => "Third-Party Management")
+
+Technology.delete_all
+
+    Technology.create(:name => "All")
+    Technology.create(:name => "Anti-Virus")
+    Technology.create(:name => "Backups")
+    Technology.create(:name => "Blackberry")
+    Technology.create(:name => "Citrix")
+    Technology.create(:name => "Datacenter")
+    Technology.create(:name => "Mail Routing")
+    Technology.create(:name => "Live Collaboration")
+    Technology.create(:name => "Messaging")
+    Technology.create(:name => "Mobile")
+    Technology.create(:name => "Network")
+    Technology.create(:name => "Power")
+    Technology.create(:name => "Remote Access")
+    Technology.create(:name => "SAN")
+    Technology.create(:name => "Telecom")
+    Technology.create(:name => "Unix")
+    Technology.create(:name => "VMWare")
+    Technology.create(:name => "Web")
+    Technology.create(:name => "Windows")
