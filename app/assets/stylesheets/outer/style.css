@@ -1683,3 +1683,7 @@ a.import-btn{
 .previleges select{
 	padding: 7px;
 }
+#audit_charts li {
+    list-style: none outside none;
+}	
+li.db_setting_main{height:425px;}
