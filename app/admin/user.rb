@@ -1,5 +1,7 @@
 ActiveAdmin.register User do
+  config.batch_actions = false
   menu :if => proc{ !current_admin_user.present? }
+
 
   breadcrumb do
     [
