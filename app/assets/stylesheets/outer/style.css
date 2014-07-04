@@ -1,4 +1,4 @@
-	/* CSS Document */
+		/* CSS Document */
 .fleft {
 	float: left;
 }
@@ -25,7 +25,7 @@
 }
 .subbar-nav li a {
 	color: #fff !important;
-	padding: 3px 32px;
+	padding: 3px 30px;
 	border: none !important;
 	border-bottom:5px solid #181818;
 	 height:57px;
@@ -52,7 +52,7 @@
 	float: right;
 	font-family: 'Open Sans';
 	font-size: 13px;
-	padding: 20px 15px 11px;
+	padding: 1px 15px 11px;
 	background-color: #dddee0;
 	position: relative;
 	z-index: 999999;
@@ -114,7 +114,8 @@ ul.list-tab {
 	width: 96%;
 	border: 1px solid #E8E9EB;
 }
-.list-table tr th, .list-table tr td {
+.list-table tr th, .list-table tr td { 13px;
+  padding:
 	padding: 10px 20px;
 }
 
@@ -574,17 +575,15 @@ a.edit-icon {
 }
 html, body {
 	height: 100%;
+	margin: 0px;
+	padding: 0;
+	position: relative;
 }
 #wrapper {
 	min-height: 100%;
 	position: relative;
 }
-.footer {
-	width: 100%;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-}
+
 .error_logo{ padding-top:15px; font-size:25px;}
 
 .attach-icon{ background-image:url(/assets/outer/attach-icon.png); background-repeat:no-repeat;padding: 0 0 0 18px;}
@@ -683,6 +682,8 @@ html, body {
 }
 .user_login > img {
     float: left;
+    height: 24px;
+    width: 24px;
 }
 #login_drop {
     padding: 35px 0 0;
@@ -1190,9 +1191,6 @@ a.plus-background{
 
 }
 
-
-
-
 /*for test*/
 
 .file-icon {
@@ -1530,6 +1528,7 @@ margin-bottom:20px !important;
 .page-wrap{
   min-height:100%;
   position:relative;
+  margin-bottom:50px;
 }
 html,body{
   height:100%;
@@ -1538,7 +1537,7 @@ html,body{
   left:0;
   bottom:0;
   width:100%;
-  position: absolute!important;
+  position:absolute;
 }
 .box-wrapper{
   margin:0 0 150px 0;
@@ -1639,6 +1638,16 @@ a.import-btn{
 	margin: 0 0 0 0px!important;
 	width:30%;
 }
+.method-padding{
+	margin:0 15px 20px;
+}
+.method-padding .risk-select{
+	margin:0 0 20px 0;
+}
+.method-padding  .likelihood .form-group label{
+	margin:20px 0 5px 0;
+}
+
 .likelihood .form-group label{
   font-weight: 400!important;
   font-size: 14px;
@@ -1672,4 +1681,28 @@ a.import-btn{
 }
 .previleges select{
 	padding: 7px;
+}
+#audit_charts li {
+    list-style: none outside none;
+}	
+li.db_setting_main{height:425px;}
+
+.roll-audit{
+  padding: 0px 0 0 13px;
+  margin: 0px;
+  vertical-align: top;
+  font-weight: bold;
+
+}
+.upload-btn{
+  background: transparent;
+  margin: 20px 0 0 0;
+}
+.upload-btn a{
+  float: right;
+}
+.multiselect-container{
+  height: 200px;
+  overflow: scroll;
+  overflow-x:hidden;
 }
