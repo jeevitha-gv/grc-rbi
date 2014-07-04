@@ -298,7 +298,8 @@ class Audit < ActiveRecord::Base
     def self.audit_initializers(location_name, department_name, team_name, company)
       @location = Location.for_name_by_company(location_name, company.id).first
       @department = Department.for_name_by_location(department_name, @location.id).first if @location.present?
-      @team = Team.for_name_by_department(team_name, @department.id).first if @department.present?
+      section = Section.by_name('Audit').first
+      @team = Team.for_name_by_department(team_name, @department.id, section.id).first if @department.present?
     end
 
   private

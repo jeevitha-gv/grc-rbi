@@ -51,16 +51,16 @@ class RiskScoring < ActiveRecord::Base
 	# OWASP Risk Scoring
 	def owasp_scoring_method
 		scoring = self.scoring
-		threat_agent_factor = (scoring.owasp_skill_level + scoring.owasp_motive + scoring.owasp_opportunity + scoring.owasp_size) / 4
-		vunlnerability_factor = (scoring.owasp_awareness + scoring.owasp_intrusion_detection + scoring.owasp_ease_of_discovery + scoring.owasp_ease_of_exploit) / 4
-		technical_impact = (scoring.owasp_loss_of_confidentiality + scoring.owasp_loss_of_integrity +  scoring.owasp_loss_of_availability + scoring.owasp_loss_of_accountability) / 4
-		business_impact = (scoring.owasp_financial_damage + scoring.owasp_reputation_damage + scoring.owasp_non_compliance + scoring.owasp_privacy_violation) / 4
+		threat_agent_factor = (scoring.owasp_skill_level + scoring.owasp_motive + scoring.owasp_opportunity + scoring.owasp_size).to_f / 4.0
+		vunlnerability_factor = (scoring.owasp_awareness + scoring.owasp_intrusion_detection + scoring.owasp_ease_of_discovery + scoring.owasp_ease_of_exploit).to_f / 4.0
+		technical_impact = (scoring.owasp_loss_of_confidentiality + scoring.owasp_loss_of_integrity +  scoring.owasp_loss_of_availability + scoring.owasp_loss_of_accountability).to_f / 4.0
+		business_impact = (scoring.owasp_financial_damage + scoring.owasp_reputation_damage + scoring.owasp_non_compliance + scoring.owasp_privacy_violation).to_f / 4.0
 
-		risk_likelihood = ((threat_agent_factor + vunlnerability_factor) / 2).to_f
-		risk_impact = ((technical_impact + business_impact) / 2).to_f
-		risk_score = (risk_likelihood * risk_impact) / 10
+		risk_likelihood = ((threat_agent_factor.to_f + vunlnerability_factor.to_f) / 2.0)
+		risk_impact = ((technical_impact.to_f + business_impact.to_f) / 2.0)
+		risk_score = (risk_likelihood.to_f * risk_impact.to_f) / 10.0
 
-		self.update_columns(:calculated_risk => risk_score)
+		self.update_columns(:calculated_risk => (risk_score).round(1))
 	end
 
 
@@ -70,15 +70,15 @@ class RiskScoring < ActiveRecord::Base
 
 		case risk_model
 			when "Likelihood * Impact + 2(Impact)"
-				risk_score = ((scoring.likelihood * scoring.impact) + (2 * scoring.impact)).to_f * (10.0/35.0)
+				risk_score = ((scoring.likelihood.to_f  * scoring.impact.to_f ) + (2 * scoring.impact.to_f )) * (10.0/35.0)
 			when "Likelihood * Impact + Impact"
-				risk_score = ((scoring.likelihood * scoring.impact) + scoring.impact).to_f * (10.0/30.0)
+				risk_score = ((scoring.likelihood.to_f  * scoring.impact.to_f ) + scoring.impact.to_f )* (10.0/30.0)
 			when "Likelihood * Impact + Likelihood"
-				risk_score = ((scoring.likelihood * scoring.impact) + scoring.likelihood) * (10.0/30.0)
+				risk_score = ((scoring.likelihood.to_f  * scoring.impact.to_f ) + scoring.likelihood.to_f ) * (10.0/30.0)
 			when "Likelihood * Impact + 2(Likelihood)"
-				risk_score = ((scoring.likelihood * scoring.impact) + (2 * scoring.likelihood) )  * (10.0/35.0)
+				risk_score = ((scoring.likelihood.to_f  * scoring.impact.to_f ) + (2 * scoring.likelihood.to_f ) )  * (10.0/35.0)
 			when "Likelihood * Impact"
-				risk_score = (scoring.likelihood * scoring.impact) * (10.0/25.0)
+				risk_score = (scoring.likelihood.to_f  * scoring.impact.to_f ) * (10.0/25.0)
 			else
 				risk_score = 10
 		end
@@ -89,7 +89,7 @@ class RiskScoring < ActiveRecord::Base
 	# CVSS Risk Scoring
 	 def cvss_scoring_method
 
- 		scoring = self.scoring
+		scoring = self.scoring
 		impact_score = 10.41 * (1 - ((1- scoring.conf_impact_numeric_value) * (1- scoring.integ_impact_numeric_value) * (1 - scoring.avail_impact_numeric_value)))
 		exploitability_score = 20 * scoring.access_complexity_numeric_value * scoring.authentication_numeric_value * scoring.access_vector_numeric_value
 		impact_function = impact_score == 0 ? 0 : 1.176
@@ -106,7 +106,7 @@ class RiskScoring < ActiveRecord::Base
 		else
 			risk_score = env_score
 		end
-		self.update_columns(:calculated_risk => risk_score)
+		self.update_columns(:calculated_risk => (risk_score).round(2))
 	 end
 
 end

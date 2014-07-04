@@ -56,6 +56,6 @@ class AttachmentUploader < CarrierWave::Uploader::Base
 protected
 def icon_only? picture
   p model.attachable_type
-  (model.attachable_type == "User" || model.attachable_type == "Company")
+  (model.attachable_type == "User" || model.attachable_type == "Company" || model.attachable_type == "Risk")
  end
 end

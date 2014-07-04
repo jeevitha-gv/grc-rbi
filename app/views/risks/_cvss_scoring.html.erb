@@ -16,7 +16,7 @@
                 <div class="col-sm-12">
                     <%= cvss_scoring.label :cvss_access_vector, t('cvss.att_vec') %>
                   <div class="risk-select">
-                    <%= cvss_scoring.collection_select(:cvss_access_vector, CvssMetricScoring.for_name("AccessVector"), :abrv_metric_value, :metric_value, { :selected => (cvss_scoring.object.cvss_access_vector if cvss_scoring.object.cvss_access_vector.present?), :class =>"form-control"}) %>
+                    <%= cvss_scoring.collection_select(:cvss_access_vector, CvssMetricScoring.for_name("AccessVector"), :id, :metric_value, { :selected => (cvss_scoring.object.cvss_access_vector if cvss_scoring.object.cvss_access_vector.present?), :class =>"form-control"}) %>
                   </div>
                 </div>
               </div>

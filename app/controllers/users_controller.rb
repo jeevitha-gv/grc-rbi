@@ -18,6 +18,7 @@ class UsersController < ApplicationController
       flash[:notice] = "User updated successfully."
       redirect_to edit_user_path
     else
+      flash[:error] = @user.errors[:"attachment.file_size_exceeds"][0]
       render "edit"
     end
   end
@@ -40,7 +41,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:id, :user_name, :full_name, :timezone, :language_id, profile_attributes: [:id, :personal_email, :user_id, :phone_no, :address1, :address2, :city, :state, :country_id, :_destroy], attachment_attributes: [:id, :attachment_file])
+    params.require(:user).permit(:id, :user_name, :full_name, :timezone, :language_id, profile_attributes: [:id, :personal_email, :user_id, :phone_no, :address1, :address2, :city, :state, :country_id, :_destroy], attachment_attributes: [:id, :attachment_file, :file_size,:company_id])
   end
 
   def password_params

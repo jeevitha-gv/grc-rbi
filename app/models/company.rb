@@ -12,6 +12,7 @@ class Company < ActiveRecord::Base
   has_many :risk_categories
   has_many :nc_questions
   has_one :attachment, :as => :attachable
+  has_many :uploads, :class_name => "Attachment", foreign_key: "company_id"
   has_many :operational_areas
   has_many :artifacts
   has_many :reminders
@@ -28,6 +29,7 @@ class Company < ActiveRecord::Base
   has_one :plan
   has_many :subscriptions,through: :plan
   has_many :transactions
+  has_many :company_payments
 
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users

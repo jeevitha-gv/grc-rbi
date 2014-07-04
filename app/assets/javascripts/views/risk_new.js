@@ -153,8 +153,19 @@ function check_risk_scoring()
   }
 }
 
+function display_selected_files(e)
+{
+  $(e).parent().find("#selected_files").html("<h5>Selected: " + $(e).val() + "</h5>");
+}
+
 $(document).ready(function(){
   var scoringTypeVal = $('#risk_scoring').val();
   risk_scoring_attirbute(scoringTypeVal);
-});
 
+  $('.risk_attachment').hide();
+  $('.blue_link').css('cursor', 'pointer')
+  $('.blue_link').click(function(){
+    $('.risk_attachment').click();
+  })
+
+});
