@@ -1,12 +1,7 @@
 
-
- <link href="/assets/bootstrap-multiselect.js" rel="stylesheet" media="screen">
- <link href="/assets/prettify.js" rel="stylesheet" media="screen">
- <link href="/assets/typehead.js" rel="stylesheet" media="screen">
- <link rel="stylesheet" type="text/css" href="/assets/bootstrap-multiselect.css">
- <link rel="stylesheet" type="text/css" href="/assets/prettify.css">
+ <%= javascript_include_tag '/assets/bootstrap-multiselect'%>
+ <%= stylesheet_link_tag  '/assets/bootstrap-multiselect', media: 'all' %>
   <div class="clearfix"></div>
-
 
   <div class="clearfix"></div>
   <div class="content">
@@ -31,7 +26,7 @@
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                     <div class="mitigate-inner mitigate-box">
                         <div class="risk-box-lable">Risk Id :</div>
-                        <div class="risk-box-text"><%= risk.id %></div>
+                        <div class="risk-box-text"><%= risk.id if risk.present? %></div>
                     </div>
                 </div>
                 </div>
@@ -41,7 +36,7 @@
              <div class="mitigation-box-wrap">
               <div class="mitigation-sub">
                   <div class="risk-box-lable">Subject:</div>
-                    <div class="risk-box-text"><%= risk.subject %></div>
+                    <div class="risk-box-text"><%= risk.subject if risk.present? %></div>
                 </div>
                 </div>
             </div>
@@ -49,7 +44,7 @@
             <div class="mitigation-box-wrap">
               <div class="mitigation-status">
                   <div class="risk-box-lable">Status:</div>
-                    <div class="risk-box-text"><%= risk.risk_status.name %></div>
+                    <div class="risk-box-text"><%= risk.risk_status.name if risk.present? %></div>
                 </div>
                 </div>
             </div>
@@ -65,27 +60,27 @@
                 </tr>
                 <tr>
                   <td><label>Control Number : </label>
-                   <%= risk.subject %></td>
+                   <%= risk.subject if risk.present?%></td>
                   <td><label> Reference Id : </label>
-                    <%= risk.reference %></td>
+                    <%= risk.reference if risk.present? %></td>
                   <td><label>Site / Location : </label>
-                    <%= risk.location.name %></td>
+                    <%= risk.location.name if risk.present? %></td>
                 </tr>
                 <tr>
                   <td><label>Category : </label>
                     <span> Access Management</span></td>
                   <td><label>Technology : </label>
-                    <%= risk.technology.name %></td>
+                    <%= risk.technology.name if risk.present? %></td>
                   <td><label>Owner :</label>
-                    <%= risk.owner %></td>
+                    <%= risk.owner if risk.present?%></td>
                 </tr>
                 <tr>
                   <td><label>Ownerâs Manager: </label>
-                    <%= risk.risk_owner_user_name %></td>
+                    <%= risk.risk_owner_user_name if risk.present? %></td>
                   <td><label>Team : </label>
-                    <%= risk.team.name %></td>
+                    <%= risk.team.name if risk.present? %></td>
                   <td><label> Scoring Method :</label>
-                    <%= risk.risk_scoring_scoring_type %></td>
+                    <%= risk.risk_scoring_scoring_type if risk.present? %></td>
                 </tr>
               </table>
             </div>
@@ -119,20 +114,16 @@
                 <div class="sub-wrap-bg">
                   <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <!--Row first ------------>
-               <!-- <div>
-                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
-                  <%#= form_for (risk) do |f| %>
-                  <%= form_for(risk, url: {controller: "mitigations", action: "create"},:method => "post" ,html: {:class =>"form-horizontal", :id => "role"}) do |f| %>
-
                        <%= f.fields_for :control_measure do |control| %>
                    <!--Row first ------------>
-                <div>
+               <div>
                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
                      <div class="form-group clearfix">
                         <label for="inputEmail3" class="col-sm-4 control-label">Control</label>
                        <div class="col-sm-8">
-                            <div class="risk-select">
-                             <%= control.collection_select  :control_ids, CppMeasure.for_name("Control"), :id, :name,{}, {:id => "multiselect1s"} %>
+                            <!--div class="risk-select"-->
+                            <div>
+                             <%= control.collection_select  :control_ids, CppMeasure.for_name("Control"), :id, :name,{}, {class: 'multiselect',:multiple => "multiple"} %>
 														 <%#= select("control", "control_ids", options_from_collection_for_select(@controls, :id, :name), {}, {:id=> "multiselect", :multipart =>"multiple" }) %>
                             </div>
                     </div>
@@ -146,8 +137,9 @@
                      <div class="form-group clearfix">
                         <label for="inputEmail3" class="col-sm-4 control-label">Process</label>
                        <div class="col-sm-8">
-                            <div class="risk-select">
-                             <%= control.collection_select(:process_ids, CppMeasure.for_name("Process"),  :id, :name, :prompt => true) %>
+                            <!--div class="risk-select"-->
+                            <div>
+                             <%= control.collection_select(:process_ids, CppMeasure.for_name("Process"),  :id, :name,{}, {class: 'multiselect',:multiple => "multiple"}) %>
                             </div>
                     </div>
                    </div>
@@ -159,8 +151,9 @@
                      <div class="form-group clearfix">
                         <label for="inputEmail3" class="col-sm-4 control-label">Procedure</label>
                        <div class="col-sm-8">
-                            <div class="risk-select">
-                            <%= control.collection_select(:procedure_ids, CppMeasure.for_name("Procedure"),  :id, :name, :prompt => true) %>
+                            <!--div class="risk-select"-->
+                            <div>
+                            <%= control.collection_select(:procedure_ids, CppMeasure.for_name("Procedure"),  :id, :name,{},{class: 'multiselect',:multiple => "multiple"}) %>
                             </div>
                     </div>
                    </div>
@@ -176,9 +169,10 @@
                      <div class="form-group clearfix">
                         <label for="inputEmail3" class="col-sm-4 control-label">Planning Strategy </label>
                        <div class="col-sm-8">
-                           <%#= mitigation.collection_select(:planning_strategy_id, PlanningStrategy.all,  :id, :name, {:class => "multiselect"}, :multiple => "multiple") %>
-                               <%= mitigation.select :planning_strategy_id,options_for_select(PlanningStrategy.all.collect{|x| [  x.name, x.id.to_i]}),{},{:class => 'multiselect' , :multiple => "multiple"}%>
-
+                        <div class="risk-select">
+                           <%= mitigation.collection_select(:planning_strategy_id, PlanningStrategy.all,  :id, :name) %>
+                               <%#= mitigation.select :planning_strategy_id,options_for_select(PlanningStrategy.all.collect{|x| [  x.name, x.id.to_i]}),{},{:class => 'multiselect' , :multiple => "multiple"}%>
+                      </div>
                     </div>
                    </div>
                   </div>
@@ -312,133 +306,12 @@
 
       </div>
     </div>
-  <% end %>
 </div>
 
 <script type="text/javascript">
 
-
-$(window).load(function(){
-  var $container = $('#grid_items');
-  // initialize
-  $container.masonry({
-    columnWidth: 292,
-    itemSelector: '.item',
-    isFitWidth: true
-  });
-
- $(".multiselect").multiselect({
-    });
-
-  $(".block_banner img").each(function(index, element) {
-        var screenImage = $(this);
-
-    // Create new offscreen image to test
-    var theImage = new Image();
-    theImage.src = screenImage.attr("src");
-
-    var imageHeight = theImage.height;
-
-    $(this).css("max-height",imageHeight);
-    $(this).css("min-height",imageHeight);
-    });
-});
-
-$(".click_icon").click(function() {
-      $(".share_pop").show();
-});
-
-$(".click_icon").click(function(){
-    $(".share_pop").show();
-});
-
-
-
-$(document).ready(function(){
-
-
-
-  Top_postion = $(window).scrollTop();
-
-  $( ".user_login" ).mouseenter(function() {
-    $(this).addClass("active");
-    $(".account_header_dropdown").slideDown(100);
-  })
-  .mouseleave(function() {
-    $(this).removeClass("active");
-    $(".account_header_dropdown").hide();
-  });
-
-  //for notification drop hide in outside click
-  onclick_icon = 0;
-  $(".click_icon").mouseenter(function() {
-    onclick_icon = 0;
-  })
-  .mouseleave(function() {
-    onclick_icon = 1;
-  });
-
-
-  $("body").click(function(){
-    if(onclick_icon){
-      $(".share_pop").hide();
-    }
-  });
-
-
-  /* placeholder */
-  $(".place_holder").each(function(index, element) {
-    placeholder = $(this).attr("data-original");
-    $(this).val(placeholder);
-    $(this).removeClass("active");
-    });
-
-  $(".place_holder").focus(function(){
-    placeholder = $(this).attr("data-original");
-    current_value = $(this).val();
-    if(current_value==placeholder){
-      $(this).val("");
-      $(this).addClass("active");
-    }
-  });
-  $(".place_holder").blur(function(){
-    placeholder = $(this).attr("data-original");
-    current_value = $(this).val();
-    if(current_value==""){
-      $(this).val(placeholder);
-      $(this).removeClass("active");
-    }else{
-      $(this).addClass("active");
-    }
-  });
-  $(".place_holder").click(function(){
-    placeholder = $(this).attr("data-original");
-    current_value = $(this).val();
-    if(current_value==placeholder){
-      $(this).val("");
-      $(this).addClass("active");
-    }
-  });
-  /* placeholder */
-
-
-});
-/*$(window).scroll(function(){
-  Top_postion = $(window).scrollTop();
-
-  if(Top_postion>10){
-    $(".go_to_top").show();
-  }else{
-    $(".go_to_top").hide();
-  }
-});
-$(".go_to_top").click(function(){
-  top = 0;
-  $("html, body").animate({scrollTop: "0"}, 800);
-});
-*/
-  (document).ready(function() {
-        ('.multiselect').multiselect();
-     });
+  $(document).ready(function() {
+        $('.multiselect').multiselect();
+   });
 </script>
 
