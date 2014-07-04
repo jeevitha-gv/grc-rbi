@@ -1,61 +1,48 @@
 class Transaction < ActiveRecord::Base
   belongs_to :company
   belongs_to :subscription
+  validate :validate_card,on: :create
+  attr_accessor :company_domain, :subscription
+
+  def purchase
+    amount = Subscription.where("id = ?",self.subscription_id).first.try(:amount)
+    response = GATEWAY.purchase(amount, credit_card, purchase_options)    
+    response.success?
+  end
  
-  def details
-    client.details(self.token)
+  private
+  
+  def purchase_options
+    {
+      :ip => ip_address,
+      :billing_address => {
+        :name     => "Ryan Bates",
+        :address1 => "123 Main St.",
+        :city     => "Chennai",
+        :state    => "TN",
+        :country  => "India",
+        :zip      => "600083"
+      }
+    }
   end
   
-  attr_reader :redirect_uri, :popup_uri
-  def setup!(return_url, cancel_url)
-    response = client.setup(
-      payment_request,
-      return_url,
-      cancel_url,
-      pay_on_paypal: true
+  def validate_card
+    unless credit_card.valid?
+      credit_card.errors.full_messages.each do |message|
+       errors.add(:base, message)
+      end
+    end
+  end
+  
+  def credit_card
+    @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
+      :brand               => card_type,
+      :number             => card_number,
+      :verification_value => card_verification,
+      :month              => card_expires_on.month,
+      :year               => card_expires_on.year,
+      :first_name         => first_name,
+      :last_name          => last_name
     )
-    self.token = response.token
-    self.save!
-    @redirect_uri = response.redirect_uri
-    @popup_uri = response.popup_uri
-    self
   end
-  
-  def cancel!
-    self.pay_cancel = true
-    self.save!
-    self
-  end
-
-  def complete!(payer_id = nil)
-      response = client.checkout!(self.token, payer_id, payment_request)
-      self.payer_id = payer_id
-      self.identifier = response.payment_info.first.transaction_id
-      self.pay_complete = true
-      self.save!
-    self
-  end
-
-  def unsubscribe!
-    client.renew!(self.identifier, :Cancel)
-    self.cancel!
-  end
-  
-    private
-
-      def client
-        Paypal::Express::Request.new PAYPAL_CONFIG
-      end
-
-      def payment_request
-          pay_amount = self.try(:subscription).try(:amount)
-          pay_desc = 'Audit Risk Subscription'
-          request_attributes =
-          item = {
-            name: pay_desc,
-            description: pay_desc,
-            amount: pay_amount           
-          }
-        Paypal::Payment::Request.new request_attributes
-      end
 end

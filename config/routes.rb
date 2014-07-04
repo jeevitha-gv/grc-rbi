@@ -114,20 +114,11 @@ Rails.application.routes.draw do
   resources :compliance_libraries
   resources :audit_compliances do
     post 'submit', on: :collection
-  end
+  end 
 
   resources :plans
 
-    resources :payments, only: [:show, :create, :destroy] do
-    collection do
-      get :success
-      get :cancel
-      post :notify
-    end
-  end
-
-
-
+  resources :transactions, only: [:new, :create]
 
   get 'welcome', to: 'companies#welcome', :as => :welcome
 
