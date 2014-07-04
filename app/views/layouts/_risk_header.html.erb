@@ -61,10 +61,10 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <li><a  href="#" >
+        <li><a  href="/risks/new" class="<%= request.fullpath.include?("risks/new") == true ? 'active' : '' %>">
           <div class="file-icon"></div>
           File</a></li>
-        <li><a  href="#" class="<%= request.fullpath.include?("risks") == true ? 'active' : '' %>">
+        <li><a  href="/risks" class="<%= request.fullpath.include?("risks") == true ? 'active' : '' %>">
           <div class="listing-icon "></div>
           Listings</a></li>
         <li><a href="">

@@ -11,7 +11,7 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
   config.filters = false
   config.batch_actions = false
 
-  permit_params :name, :secondary_email, :address1, :address2, :country_id, :contact_no, :timezone, :is_disabled, :primary_email, attachment_attributes: [:id,:attachment_file]
+  permit_params :name, :secondary_email, :address1, :address2, :country_id, :contact_no, :timezone, :is_disabled, :primary_email, attachment_attributes: [:id,:attachment_file, :company_id, :file_size]
 
   controller do
     before_filter :check_company_admin, :check_role
@@ -43,6 +43,7 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
 
   form do |f|
     f.object.build_attachment unless f.object.attachment.present?
+    f.semantic_errors *[:"attachment.file_size_exceeds"]
     f.inputs "Company Details" do
       f.input :name
       f.input :primary_email
@@ -57,6 +58,7 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
     f.inputs "Attachments", for: [:attachment, f.object.attachment] do |s|
       s.input :attachment_file, :as => :file, :hint => s.template.image_tag(s.object.attachment_file.thumb) if s.object.attachment_file.present?
       s.input :attachment_file if s.object.attachment_file.blank?
+      s.input :company_id, :as => :hidden, :input_html => { :value => current_company.id}
     end
     f.actions
   end

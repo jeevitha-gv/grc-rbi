@@ -74,6 +74,7 @@ class ChecklistRecommendationsController < ApplicationController
 		@checklist_recommendation = ChecklistRecommendation.where('id= ?', params[:checklist_recommendation][:id]).first
 		if params[:checklist_recommendation][:attachment].present?
 			@checklist_recommendation.attachments.build(attachment_file: params[:checklist_recommendation][:attachment])
+			@checklist_recommendation.attachments.last.company_id = current_company.id
 			@checklist_recommendation.attachments.last.classified = "Audit Observation"
 		end
 		@checklist_recommendation.last_step = true
@@ -85,6 +86,7 @@ class ChecklistRecommendationsController < ApplicationController
 				@checklist_recommendation.remark.update(comment: params[:checklist_recommendation][:remarks])
 			end
 		end
+		@attachment_error = @checklist_recommendation.errors[:attachments][0] if @checklist_recommendation.errors.present? && @checklist_recommendation.errors[:attachments].present?
 		@pending_observation = @audit.checklist_recommendations.collect {|x| x.is_published}.include?(nil)
 		respond_to :js
 	end
@@ -93,12 +95,14 @@ class ChecklistRecommendationsController < ApplicationController
 		@checklist_recommendation = ChecklistRecommendation.where('id= ?', params[:checklist_recommendation][:id]).first
 		if params[:checklist_recommendation][:attachment].present?
 			@checklist_recommendation.attachments.build(attachment_file: params[:checklist_recommendation][:attachment])
+			@checklist_recommendation.attachments.last.company_id = current_company.id
 			@checklist_recommendation.attachments.last.classified = "Auditee Response"
 		end
 		@checklist_recommendation.auditee_id = current_user.id
 		@checklist_recommendation.response_completed = true
 		@checklist_recommendation.is_checklist_new = true
 		@checklist_recommendation.update(checklist_params)
+		@attachment_error = @checklist_recommendation.errors[:attachments][0] if @checklist_recommendation.errors.present? && @checklist_recommendation.errors[:attachments].present?
 		respond_to :js
 	end
 
