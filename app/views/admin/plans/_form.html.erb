@@ -29,7 +29,6 @@
       </fieldset>
       <fieldset class="actions">
         <ol>
-          <%= @plan.expires.to_date < Date.today%>
           <%submit_val = (@plan.expires.to_date < Date.today) ? "Renewal" : "Upgrade"%>
           <li id="plan_submit_action" class="action input_action ">
             <input type="submit" value= <%= submit_val%> name="commit">

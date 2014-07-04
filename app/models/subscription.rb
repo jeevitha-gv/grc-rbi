@@ -11,5 +11,6 @@ class Subscription < ActiveRecord::Base
 	validates :amount,:numericality => { :greater_than_or_equal_to => 0 }, :if => Proc.new{ |f| !f.amount.blank? }
 	validates :valid_log,presence: true, :if => Proc.new {|f| f.valid_log.blank? }
 	validates :valid_log,:numericality => { :greater_than_or_equal_to => 1,:less_than_or_equal_to => 500, :only_integer => true  },:if => Proc.new{ |f| !f.valid_log.blank? }
-	validates :valid_period,presence: true
+	validates :user_count,presence: true
+	validates :file_size,presence: true
 end

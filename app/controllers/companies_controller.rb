@@ -26,7 +26,7 @@ class CompaniesController < ApplicationController
     if @company.save
       subscribe = Subscription.where("name = ?",subscription_name).first
       if subscribe.amount.eql?(0.0)         
-         plan = Plan.new(subscription_id: subscribe.id ,company_id: @company.id,starts: @company.created_at ,expires: calculate_plan_expiration(subscribe.valid_period,subscribe.valid_log,@company.created_at))
+         plan = Plan.new(subscription_id: subscribe.id ,company_id: @company.id,starts: @company.created_at ,expires: calculate_plan_expiration(subscribe.valid_log,@company.created_at))
          plan.save!
          redirect_to welcome_path
         else

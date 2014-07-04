@@ -94,18 +94,11 @@ class ApplicationController < BaseController
     end
   end
 
-  def calculate_plan_expiration(period,log,created_at)
-  #period = period == 1 ? "Days" : period == 2 ? "Months" : "Year"
-  start = created_at.to_date
-  case period    
-  when 1
-    start + log.days
-  when 2
-    start + log.months
-  when 3
-    start + log.year
+  def calculate_plan_expiration(log,created_at)
+    start = created_at.to_date
+    expire = start + log.months
+    return expire 
   end
-end
 
   private
 
