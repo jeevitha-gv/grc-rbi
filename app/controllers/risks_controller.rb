@@ -1,5 +1,5 @@
 class RisksController < ApplicationController
-  before_filter :risk_users
+  before_filter :risk_users, only: [:new, :create, :edit, :update]
 
   layout 'risk_layout'
 
@@ -10,11 +10,10 @@ class RisksController < ApplicationController
 
   def new
     @risk = Risk.new
-    @risk.build_risk_scoring
   end
 
   def create
-    @risk = current_company.risks.build(risk_params)
+    @risk = current_company.risks.new(risk_params)
     @risk.submitted_by = current_user.id
     if @risk.save
       redirect_to risks_path#, :flash => { :notice => MESSAGES["risk"]["create"]["success"]}
@@ -25,9 +24,29 @@ class RisksController < ApplicationController
   end
 
   def risk_imports
+    if(params[:file].present?)
+      begin
+        Risk.import_from_file(params[:file], current_company)
+        flash[:notice] = MESSAGES["risk"]["csv_upload"]["success"]
+        redirect_to risks_path
+      rescue
+        flash[:notice]=  MESSAGES["csv_upload"]["error"]
+        redirect_to new_risk_path
+      end
+    else
+      flash[:notice]=  MESSAGES["csv_upload"]["presence"]
+      redirect_to new_risk_path
+    end
   end
 
   def risk_export
+    begin
+      file_to_download = "sample_risk.csv"
+      send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
+    rescue
+      flash[:error] = MESSAGES["csv_export"]["error"]
+      redirect_to new_risk_path
+    end
   end
 
   def department_teams_users
@@ -44,15 +63,14 @@ class RisksController < ApplicationController
 
   private
     def risk_params
-      params.require(:risk).permit(:subject, :control_number, :reference, :compliance_id, :location_id, :category_id, :team_id, :technology_id, :owner, :assessment, :notes, :compliance_library_id, :department_id, :mitigator, :reviewer, :risk_model_id,risk_scoring_attributes:[scoring_attributes: [:likelihood, :impact, :vulnerability, :velocity, :owasp_skill_level, :owasp_motive, :owasp_opportunity, :owasp_size, :owasp_ease_of_discovery, :owasp_ease_of_exploit, :owasp_awareness, :owasp_intrusion_detection, :owasp_loss_of_confidentiality, :owasp_loss_of_integrity, :owasp_loss_of_availability, :owasp_loss_of_accountability, :owasp_financial_damage, :owasp_reputation_damage, :owasp_non_compliance, :owasp_privacy_violation, :dread_damage_potential,  :dread_reproducibility,  :dread_exploitability,  :dread_affected_users,  :dread_discoverability, :cvss_access_vector,  :cvss_access_complexity,  :cvss_authentication,  :cvss_conf_impact,  :cvss_integ_impact,  :cvss_avail_impact,  :cvss_exploitability,  :cvss_remediation_level,  :cvss_report_confidence,  :cvss_collateral_damage_potential,  :cvss_target_distribution,  :cvss_confidentiality_requirement,  :cvss_integrity_requirement,  :cvss_availability_requirement]])
+      params.require(:risk).permit(:subject, :control_number, :reference, :compliance_id, :location_id, :category_id, :team_id, :technology_id, :owner, :assessment, :notes, :compliance_library_id, :department_id, :mitigator, :reviewer, :risk_model_id,risk_scoring_attributes:[:scoring_type, scoring_attributes: [:likelihood, :impact, :vulnerability, :velocity, :owasp_skill_level, :owasp_motive, :owasp_opportunity, :owasp_size, :owasp_ease_of_discovery, :owasp_ease_of_exploit, :owasp_awareness, :owasp_intrusion_detection, :owasp_loss_of_confidentiality, :owasp_loss_of_integrity, :owasp_loss_of_availability, :owasp_loss_of_accountability, :owasp_financial_damage, :owasp_reputation_damage, :owasp_non_compliance, :owasp_privacy_violation, :dread_damage_potential,  :dread_reproducibility,  :dread_exploitability,  :dread_affected_users,  :dread_discoverability, :cvss_access_vector,  :cvss_access_complexity,  :cvss_authentication,  :cvss_conf_impact,  :cvss_integ_impact,  :cvss_avail_impact,  :cvss_exploitability,  :cvss_remediation_level,  :cvss_report_confidence,  :cvss_collateral_damage_potential,  :cvss_target_distribution,  :cvss_confidentiality_requirement,  :cvss_integrity_requirement,  :cvss_availability_requirement]])
     end
 
     def risk_users
       @mitigator_role = Role.for_title("mitigator").first
-      @mitigator_users = current_company.users.where(role_id: @mitigator_role.id)
+      @mitigator_users = current_company.users.where(role_id: @mitigator_role.id) if @mitigator_role
 
       @reviewer_role = Role.for_title("reviewer").first
-      @reviewer_users = current_company.users.where(role_id: @reviewer_role.id)
+      @reviewer_users = current_company.users.where(role_id: @reviewer_role.id) if @reviewer_role
     end
 end
-
