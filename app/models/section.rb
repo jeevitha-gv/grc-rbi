@@ -9,4 +9,6 @@ class Section < ActiveRecord::Base
   validates_format_of :name, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.name.blank? }
   validates :name, uniqueness:true, :if => Proc.new{ |f| !f.name.blank? }
   validates :name, length: { in: 4..52 }, :if => Proc.new{ |f| !f.name.blank? }
+
+  scope :by_name, lambda { |name| where("name = ?", name) }
 end

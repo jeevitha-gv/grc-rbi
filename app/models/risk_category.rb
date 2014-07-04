@@ -5,7 +5,7 @@ class RiskCategory < ActiveRecord::Base
 
   # Scopes
   scope :for_company, lambda {|id| where(:company_id => [id, nil] ) }
-  scope :for_name_by_company, lambda { |category_name, company_id| where("lower(name)=? and company_id=?", category_name, company_id) }
+  scope :for_name, lambda { |category_name| where("lower(name)=?", category_name) }
 
   # Validations
   validates :name, presence:true

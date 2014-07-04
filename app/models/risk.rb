@@ -83,18 +83,25 @@ class Risk < ActiveRecord::Base
     start = 2
     (start..spreadsheet.last_row).each do |i|
       row_data = spreadsheet.row(i)
-
       risk_initializers(row_data[4].to_s.strip.downcase, row_data[5].to_s.strip.downcase, row_data[6].to_s.strip.downcase, company)
 
-      category = RiskCategory.for_name_by_company(row_data[7].to_s.strip.downcase, company.id).last
-      technology = Technology.for_name_by_company(row_data[8].to_s.strip.downcase, company.id).last
+      category = RiskCategory.for_name(row_data[7].to_s.strip.downcase).last
+      technology = Technology.for_name(row_data[8].to_s.strip.downcase).last
 
       owner = User.for_users_by_company(row_data[9].to_s.strip.downcase, company.id).last
       mitigator = User.for_users_by_company(row_data[10].to_s.strip.downcase, company.id).last
       reviewer = User.for_users_by_company(row_data[11].to_s.strip.downcase, company.id).last
 
-      risk = Risk.new(:subject => row_data[0], :reference => row_data[1], :location_id =>  @location.present? ? @location.id : nil, :department_id =>  @department.present? ? @department.id : nil, :team_id =>  @team.present? ? @team.id : nil, :category_id => category.present? ? category.id : nil, :technology_id =>  technology.present? ? technology.id : nil, :owner => owner.present? ? owner.id : nil, :mitigator => mitigator.present? ? mitigator.id : nil, :reviewer => reviewer.present? ? reviewer.id : nil, :assessment => row_data[12], :notes => row_data[13], :company_id => company.id, :risk_status_id => RiskStatus.where(:name=>"Initiated").first.id)
+      risk = Risk.new(:subject => row_data[0], :reference => row_data[1], :location_id =>  @location.present? ? @location.id : nil, :department_id =>  @department.present? ? @department.id : nil, :team_id =>  @team.present? ? @team.id : nil, :category_id => (category.present? && (category.company_id == company.id || category.company_id.nil?)) ? category.id : nil, :technology_id =>  (technology.present? && (technology.company_id == company.id || technology.company_id.nil?) ? technology.id : nil, :owner => owner.present? ? owner.id : nil, :mitigator => mitigator.present? ? mitigator.id : nil, :reviewer => reviewer.present? ? reviewer.id : nil, :assessment => row_data[12], :notes => row_data[13], :company_id => company.id, :risk_status_id => RiskStatus.where(:name=>"Draft").first.id)
       risk.save(:validate => false)
+    end
+  end
+
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when '.csv' then Roo::CSV.new(file.path)
+    when '.xlsx' then Roo::Excelx.new(file.path)
+    else raise "Unknown file type: #{file.original_filename}"
     end
   end
 
@@ -104,10 +111,11 @@ class Risk < ActiveRecord::Base
   end
 
   protected
-    def risk_initializers
+    def self.risk_initializers(location_name, department_name, team_name, company)
       @location = Location.for_name_by_company(location_name, company.id).first
       @department = Department.for_name_by_location(department_name, @location.id).first if @location.present?
-      @team = Team.for_name_by_department(team_name, @department.id).first if @department.present?
+      section = Section.by_name('Risk').first
+      @team = Team.for_name_by_department(team_name, @department.id, section.id).first if @department.present?
     end
 
   private

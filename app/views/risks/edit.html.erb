@@ -3,39 +3,12 @@
     <div class="container">
       <div class="row">
         <div id="example" class="k-content">
-          <div class="risk-title">Document a New Risk</div>
-
-          <div class="clearfix"> <a class="import-btn" data-toggle="modal" href="#add_url"><i class="download-icons"></i>Import Risk</a>
-            <div id="add_url" class="modal fade">
-              <div class="modal-dialog modal-dialog_large">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
-                    <h4 class="modal-title" id="myModalLabel">Import Risks from CSV/XLSX</h4>
-                       <div class="modal-content-inner">
-                      <%= form_tag risk_imports_risks_path, multipart: true do %>
-                        <%= file_field_tag :file %>
-                        <br>
-                        <div class="model-footer">
-                          <%= submit_tag "Import" ,:class => "black_btn" %>
-                          <%= submit_tag "Cancel" ,:class => "orange_btn" %>
-                        </div>
-                      <% end %>
-                    </div>
-                    <p></p>
-                    <p>
-                      <%= link_to "Download Sample Risk CSV Template", risk_export_risks_path(format: "csv") %>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="risk-title">Edit Risk</div>
 
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="risk-wrap">
               <div class="sub-wrap">
-                <div class="sub-titile">Use this form in order to document a new risk for consideration in the Risk Management Process.</div>
+                <div class="sub-titile">Risk</div>
                 <div class="sub-wrap-bg">
                   <%= form_for(@risk) do |f| %>
                     <%= render 'form', :f => f, :risk => @risk, :departments => @departments, :teams => @teams, :team_users => @team_users, :compliance_libraries => @compliance_libraries %>
