@@ -9,7 +9,7 @@ end
 def create
   @company =Company.where("domain =?",params[:transaction][:company_domain]).first
   subscribe = Subscription.where("name = ?",params[:transaction][:subscription]).first
-  @payment = CompanyPayment.create(:company_id => @company.id)
+  #@payment = CompanyPayment.create(:company_id => @company.id)
   @transaction = Transaction.create(transaction_params)
   @transaction.update_attributes(:company_id => @company.id,:subscription_id=>subscribe.id)
   @transaction.ip_address=request.remote_ip
