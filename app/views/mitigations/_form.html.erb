@@ -125,18 +125,6 @@
                   <%= form_for(risk, url: {controller: "mitigations", action: "create"},:method => "post" ,html: {:class =>"form-horizontal", :id => "role"}) do |f| %>
 
                        <%= f.fields_for :control_measure do |control| %>
-                     <div class="form-group clearfix">
-                        <label for="inputEmail3" class="col-sm-4 control-label">Control</label>
-                       <div class="col-sm-8">
-                            <div class="risk-select">
-                             <%= control.collection_select  :control_ids, CppMeasure.for_name("Control"),  :id, :name,{}, {:id => "multiselect1"} %>
-														 			<%#= control.select :modular_id,options_for_select(@controls, :id, :name), {},{:id => "privilege_modular_id", :selected =>"", :class=> "test"}%>
-														     <%#= select("control", "control_ids", options_from_collection_for_select(@controls, :id, :name), {}, {:id=> "multiselect", :multipart =>"multiple" }) %>
-                            </div>
-                    </div>
-                   </div>
-                  </div>
-                  </div>
                    <!--Row first ------------>
                 <div>
                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
@@ -144,15 +132,8 @@
                         <label for="inputEmail3" class="col-sm-4 control-label">Control</label>
                        <div class="col-sm-8">
                             <div class="risk-select">
-<<<<<<< HEAD
                              <%= control.collection_select  :control_ids, CppMeasure.for_name("Control"), :id, :name,{}, {:id => "multiselect1s"} %>
-                                  <%#= control.select :modular_id,options_for_select(@controls, :id, :name), {},{:id => "privilege_modular_id", :selected =>"", :class=> "test"}%>
-                                 <%#= select("control", "control_ids", options_from_collection_for_select(@controls, :id, :name), {}, {:id=> "multiselect", :multipart =>"multiple" }) %>
-=======
-                             <%#= control.collection_select(:control_ids, @controls,  :id, :name),{}, {:id => "multiselect"} %>
-														 			<%#= control.select :modular_id,options_for_select(@controls, :id, :name), {},{:id => "privilege_modular_id", :selected =>"", :class=> "test"}%>
-														     <%= select("control", "control_ids", options_from_collection_for_select(@controls, :id, :name), {}, {:id=> "multiselect", :multipart =>"multiple" }) %>
->>>>>>> 397db47d898e59a1af670f53d1144d7d1247c94d
+														 <%#= select("control", "control_ids", options_from_collection_for_select(@controls, :id, :name), {}, {:id=> "multiselect", :multipart =>"multiple" }) %>
                             </div>
                     </div>
                    </div>
@@ -311,13 +292,13 @@
 				<% if risk.risk_scoring_scoring_type == 'ClassicScoring'%>
 					 <%= render "/risks/classic_scoring",f: f, risk: risk %>
 				<% elsif risk.risk_scoring_scoring_type == 'DreadScoring' %>
-            <%=render "/risks/dread_scoring",f: f %>
+            <%=render "/risks/dread_scoring",f: f, risk: risk%>
         <% elsif risk.risk_scoring_scoring_type == 'CvssScoring' %>
-            <%=render "/risks/cvss_scoring",f: f %>
+            <%=render "/risks/cvss_scoring",f: f, risk: risk %>
         <% elsif risk.risk_scoring_scoring_type == 'OwaspScoring' %>
-            <%=render "/risks/owasp_scoring",f: f %>
+            <%=render "/risks/owasp_scoring",f: f, risk: risk %>
         <% elsif risk.risk_scoring_scoring_type == 'CustomScoring' %>
-            <%=render "/risks/custom_scoring",f: f %>
+            <%=render "/risks/custom_scoring",f: f, risk: risk %>
 				<% end %>
       </div>
     </div>

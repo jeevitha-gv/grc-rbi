@@ -40,9 +40,27 @@
                   <%= form_for(@risk) do |f| %>
                     <%= render 'form', :f => f, :risk => @risk, :departments => @departments, :teams => @teams, :team_users => @team_users, :compliance_libraries => @compliance_libraries %>
                     <div class="row">
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <a href="" class="attach-icon fleft blue_link">Attach Document</a>
+                      </div> -->
+
+                      <!-- <div class="form-group"> -->
+                        <%#= f.fields_for :attachment do |attach| %>
+                          <%#= attach.label :attachment, t('risk.attachment') %><br />
+                          <%#= attach.file_field :attachment_file %>
+                        <%# end %>
+                      <!-- </div> -->
+
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <!-- <a href="" class="attach-icon fleft blue_link">Attach Document</a> -->
+                        <%= f.fields_for :attachment do |attach| %>
+                          <%= attach.label :attachment, t('risk.attachment'), :class => "attach-icon fleft blue_link" %><br />
+                          <%= attach.file_field :attachment_file %>
+                        <% end %>
                       </div>
+
+
+
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="btn-group gr-btn">
                           <%= f.submit "Save as Draft", :class => "grey_btn", :onclick=>"return check_risk_scoring();" %>
@@ -58,5 +76,22 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+
+
+<div class="form-group clearfix">
+  <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="#" onclick="$('#risk_attachment').click();" >Attach Document</a></div>
+  <div class="form-group clearfix ">
+    <div class="col-sm-12">
+      <%= "<h4>Attachments</h4>".html_safe if @risk.attachment.present?%>
+      <% attachment = @risk.attachment %>
+      <div id="attachment"><%#= link_to (File.basename(attachment.attachment_file_url)).truncate(20), download_risk_document_risks_path(id: attachment.id), class: "blue_link" %>
+        <div class="addissue" style="float: right;"> <%#= link_to "Remove Attachment", remove_attachment_risks_path(id: attachment.id ), data: { confirm: "Do you really want to delete?" }, method: :delete, remote: true, class: "minus-icon"%></div>
+      </div>
+    </div>
+    <%= file_field_tag "risk[attachment]", :style => "visibility:hidden; display:none;",  :id => "risk_attachment", onchange: "display_selected_files(this)"%>
+      <div class="clearfix" id="selected_files"></div>
   </div>
 </div>
