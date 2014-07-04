@@ -76,10 +76,37 @@ class Risk < ActiveRecord::Base
     end
   end
 
+  def self.import_from_file(file, company)
+    spreadsheet = Risk.open_spreadsheet(file)
+    start = 2
+    (start..spreadsheet.last_row).each do |i|
+      row_data = spreadsheet.row(i)
+
+      risk_initializers(row_data[4].to_s.strip.downcase, row_data[5].to_s.strip.downcase, row_data[6].to_s.strip.downcase, company)
+
+      category = RiskCategory.for_name_by_company(row_data[7].to_s.strip.downcase, company.id).last
+      technology = Technology.for_name_by_company(row_data[8].to_s.strip.downcase, company.id).last
+
+      owner = User.for_users_by_company(row_data[9].to_s.strip.downcase, company.id).last
+      mitigator = User.for_users_by_company(row_data[10].to_s.strip.downcase, company.id).last
+      reviewer = User.for_users_by_company(row_data[11].to_s.strip.downcase, company.id).last
+
+      risk = Risk.new(:subject => row_data[0], :reference => row_data[1], :location_id =>  @location.present? ? @location.id : nil, :department_id =>  @department.present? ? @department.id : nil, :team_id =>  @team.present? ? @team.id : nil, :category_id => category.present? ? category.id : nil, :technology_id =>  technology.present? ? technology.id : nil, :owner => owner.present? ? owner.id : nil, :mitigator => mitigator.present? ? mitigator.id : nil, :reviewer => reviewer.present? ? reviewer.id : nil, :assessment => row_data[12], :notes => row_data[13], :company_id => company.id, :risk_status_id => RiskStatus.where(:name=>"Initiated").first.id)
+      risk.save(:validate => false)
+    end
+  end
+
   def set_risk_status(risk, commit_name)
     risk.risk_status_id = ((commit_name == "Save as Draft") ?  RiskStatus.for_name("Draft").first.id : RiskStatus.for_name("Initiated").first.id)
     return risk
   end
+
+  protected
+    def risk_initializers
+      @location = Location.for_name_by_company(location_name, company.id).first
+      @department = Department.for_name_by_location(department_name, @location.id).first if @location.present?
+      @team = Team.for_name_by_department(team_name, @department.id).first if @department.present?
+    end
 
   private
     def check_for_owner_and_mitigator
