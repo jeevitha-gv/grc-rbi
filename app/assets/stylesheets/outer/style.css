@@ -1798,3 +1798,14 @@ li.db_setting_main{height:425px;}
 .control-select{
    padding: 0 10px 0 4px;
 }
+.risk-rem{
+   display: inline-block;
+    float: left;
+    margin: 0 0 20px;
+    padding: 0 0 0 20px!important;
+}
+.risl-blue-link{
+  float: left;
+  display: inline-block;;
+
+}
