@@ -105,6 +105,8 @@ en:
       success: "Audit have been imported successfully"
 
   risk:
+    failure:
+      owner_not_in_mitigator: "User is already selected as owner"
     create:
       success: "Risk has been created successfully"
     update:
