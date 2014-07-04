@@ -1682,6 +1682,84 @@ a.import-btn{
 .previleges select{
 	padding: 7px;
 }
+
+.login-wrap{
+	 
+    float: right;
+    font-family: 'Open Sans',Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    padding: 20px 15px 11px;
+    position: absolute;
+    right: 0;
+    z-index: 100;
+	 transition: all 270ms ease-out 0s;
+}
+.login-wrap a{
+	padding:0 0 0 40px;
+	 color: #434342;
+	 font-size:14px;
+	 transition: all 270ms ease-out 0s;
+}
+.login-wrap a:hover{
+	color:#0085c8 ;
+	text-decoration:underline;
+	transition: all 270ms ease-out 0s;
+}
+.login-box{
+	margin:50px auto;
+	text-align:center;
+	border:1px solid #ddd;
+	max-width:50%;
+	border-radius:6px;
+	background:#FFF;
+	margin-bottom:125px;
+	
+}
+.login-box-con{
+	margin:0 0 30px  auto;
+	text-align:center;
+	padding:50px 50px 1px;
+	
+}
+.login-box .form-horizontal .control-label{
+	text-align:left;
+	font-weight:600;
+	
+}
+.login-box .form-horizontal input{
+	font-style:italic;
+	font-size:13px;
+}
+.login-title{
+	background: none repeat scroll 0 0 #0085c8;
+    color: #fff;
+    font-size: 20px;
+    padding: 13px;
+    text-align: left;
+	border-radius:6px 6px 0px 0px;
+}
+.logn-btn{
+	float:right;
+	margin-bottom:20px;
+}
+.login-box .form-horizontal input[type="file"]{
+	
+	paddin:10px 0;
+}
+.forgot-pwd{
+	margin:50px 0 0 0;
+	border-top:1px solid #ddd;
+}
+.forgot-pwd a{
+	text-align:left;
+	font-size:13px;
+	padding: 20px 0 0 0px;
+	display:block;
+}
+.login-box .radio label, .checkbox label{
+	text-align:left;
+}
+
 #audit_charts li {
     list-style: none outside none;
 }	

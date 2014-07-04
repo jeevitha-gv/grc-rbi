@@ -1,10 +1,12 @@
 class MgmtReviewsController < ApplicationController
 	layout "risk_layout"
 	before_filter :current_risk
-	before_filter :authorize_mgmt_review, :only => [:new, :create, :edit, :update]
+	# before_filter :authorize_mgmt_review, :only => [:new, :create, :edit, :update]
 
 	def new
 		@mgmt_review = @risk.mgmt_review.present? ? @risk.mgmt_review : @risk.build_mgmt_review
+		@review = Review.all
+		@next_step = NextStep.all
 	end
 
 	def create
