@@ -64,7 +64,7 @@ $(document).ready(function() {
 			{ field: "risk", title: "Risk", width: "8%" },
 			{ field: "owner", title: "Owner", width: "20%" },
 			{ field: "days_open", title: "Days Open", width: "15%" },
-			{ command: [{text: "file"},{text: "list"},{text: "miti"},{text: "edit", click: edit_file}], title: "Action", width: "170px" }
+			{ command: [{text: "list", click: mitigate_file},{text: "miti", click: review_file},{text: "edit", click: edit_file}], title: "Action", width: "170px" }
 		],
 	//~ editable: "popup"
 	});
@@ -82,6 +82,18 @@ $(document).ready(function() {
 	{
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		window.location.href = "/risks/"+ dataItem.id + "/edit"
+	}
+
+	function mitigate_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/risks/"+ dataItem.id + "/mitigations/new"
+	}
+
+	function review_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/risks/"+ dataItem.id + "/mgmt_reviews/new"
 	}
 
 	$('.editable-input').on('click', function(){
