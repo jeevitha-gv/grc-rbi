@@ -1682,9 +1682,6 @@ a.import-btn{
 .previleges select{
 	padding: 7px;
 }
-<<<<<<< HEAD
-
-
 
 .login-wrap{
 	 
@@ -1762,7 +1759,7 @@ a.import-btn{
 .login-box .radio label, .checkbox label{
 	text-align:left;
 }
-=======
+
 #audit_charts li {
     list-style: none outside none;
 }	
@@ -1787,4 +1784,3 @@ li.db_setting_main{height:425px;}
   overflow: scroll;
   overflow-x:hidden;
 }
->>>>>>> b66937d1bb41f0c2766dbe833653a7b898d908c0
