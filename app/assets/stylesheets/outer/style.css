@@ -1190,10 +1190,6 @@ a.plus-background{
   float: left;
 
 }
-<<<<<<< HEAD
-
-
-
 
 /*for test*/
 
@@ -1690,7 +1686,7 @@ a.import-btn{
     list-style: none outside none;
 }	
 li.db_setting_main{height:425px;}
-=======
+
 .roll-audit{
   padding: 0px 0 0 13px;
   margin: 0px;
@@ -1710,4 +1706,3 @@ li.db_setting_main{height:425px;}
   overflow: scroll;
   overflow-x:hidden;
 }
->>>>>>> phase-2

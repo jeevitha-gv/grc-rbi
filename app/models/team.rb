@@ -11,10 +11,7 @@ class Team < ActiveRecord::Base
   belongs_to :company
   belongs_to :department
   belongs_to :section
-<<<<<<< HEAD
   has_many :risks
-=======
->>>>>>> phase-2
 
   # validations
   validates :name, presence:true
