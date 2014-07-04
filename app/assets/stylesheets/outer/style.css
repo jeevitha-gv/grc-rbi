@@ -1,4 +1,4 @@
-	/* CSS Document */
+		/* CSS Document */
 .fleft {
 	float: left;
 }
@@ -1626,7 +1626,6 @@ a.import-btn{
   color:#066666;
   text-shadow: 1px 0px 0px #ffffff;
 }
-<<<<<<< HEAD
 .inputs .form fieldset ol > li {
     display: block!important;
     min-height: 50px!important;
@@ -1650,28 +1649,6 @@ a.import-btn{
 	margin:20px 0 5px 0;
 }
 
-
-
-
-
-
-
-
-=======
-.inputs .form fieldset ol > li {
-    display: block!important;
-    min-height: 50px!important;
-    padding: 10px;
-}
-#risk_review_level_value_input label{
-	margin: 0 0 0 0px!important;
-	width:30%;
-}
-#risk_review_level_days_input label{
-	margin: 0 0 0 0px!important;
-	width:30%;
-}
->>>>>>> 397db47d898e59a1af670f53d1144d7d1247c94d
 .likelihood .form-group label{
   font-weight: 400!important;
   font-size: 14px;
