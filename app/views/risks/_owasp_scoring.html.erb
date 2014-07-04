@@ -15,7 +15,7 @@
                 <div class="col-sm-12">
                     <%= owasp.label :owasp_skill_level, t('owasp.skill_level') %>
                   <div class="risk-select">
-                    <%= owasp.select :owasp_skill_level, (0..10), {:selected => '10', :class => "form-control" } %>
+                    <%= owasp.select :owasp_skill_level, (0..10), owasp.object.owasp_skill_level.present? ? {selected: owasp.object.owasp_skill_level} : {selected: 10 }, { :class => "form-control" } %>
                   </div>
                 </div>
               </div>
@@ -25,7 +25,7 @@
                 <div class="col-sm-12">
                   <%= owasp.label :owasp_motive, t('owasp.motive') %>
                   <div class="risk-select">
-                    <%= owasp.select :owasp_motive, (0..10), {:selected => '10', :class => "form-control" } %>
+                    <%= owasp.select :owasp_motive, (0..10), owasp.object.owasp_motive.present? ? {selected: owasp.object.owasp_motive} : {selected: 10 }, { :class => "form-control" } %>
                   </div>
                 </div>
               </div>
@@ -35,7 +35,7 @@
                 <div class="col-sm-12">
                   <%= owasp.label :owasp_opportunity, t('owasp.opportunity') %>
                   <div class="risk-select">
-                    <%= owasp.select :owasp_opportunity, (0..10), {:selected => '10', :class => "form-control" } %>
+                    <%= owasp.select :owasp_opportunity, (0..10), owasp.object.owasp_opportunity.present? ? {selected: owasp.object.owasp_opportunity} : {selected: 10 }, { :class => "form-control" } %>
                   </div>
                 </div>
               </div>
@@ -48,7 +48,7 @@
                 <div class="col-sm-12">
                     <%= owasp.label :owasp_size, t('owasp.size') %>
                   <div class="risk-select">
-                    <%= owasp.select :owasp_size, (0..10), {:selected => '10', :class => "form-control" } %>
+                    <%= owasp.select :owasp_size, (0..10), owasp.object.owasp_size.present? ? {selected: owasp.object.owasp_size} : {selected: 10 }, { :class => "form-control" } %>
                   </div>
                 </div>
               </div>
@@ -69,7 +69,7 @@
                   <div class="col-sm-12">
                       <%= owasp.label :owasp_ease_of_discovery, t('owasp.ease_of_dis') %>
                     <div class="risk-select">
-                      <%= owasp.select :owasp_ease_of_discovery, (0..10), {:selected => '10', :class => "form-control" } %>
+                      <%= owasp.select :owasp_ease_of_discovery, (0..10), owasp.object.owasp_ease_of_discovery.present? ? {selected: owasp.object.owasp_ease_of_discovery} : {selected: 10 }, { :class => "form-control" } %>
                     </div>
                   </div>
                 </div>
@@ -79,7 +79,7 @@
                   <div class="col-sm-12">
                     <%= owasp.label :owasp_ease_of_exploit, t('owasp.ease_of_exp') %>
                     <div class="risk-select">
-                      <%= owasp.select :owasp_ease_of_exploit, (0..10), {:selected => '10', :class => "form-control" } %>
+                      <%= owasp.select :owasp_ease_of_exploit, (0..10), owasp.object.owasp_ease_of_exploit.present? ? {selected: owasp.object.owasp_ease_of_exploit} : {selected: 10 }, { :class => "form-control" } %>
                     </div>
                   </div>
                 </div>
@@ -89,7 +89,7 @@
                   <div class="col-sm-12">
                     <%= owasp.label :owasp_awareness, t('owasp.awareness') %>
                     <div class="risk-select">
-                      <%= owasp.select :owasp_awareness, (0..10), {:selected => '10', :class => "form-control" } %>
+                      <%= owasp.select :owasp_awareness, (0..10), owasp.object.owasp_awareness.present? ? {selected: owasp.object.owasp_awareness} : {selected: 10 }, { :class => "form-control" } %>
                     </div>
                   </div>
                 </div>
@@ -102,7 +102,7 @@
                   <div class="col-sm-12">
                       <%= owasp.label :owasp_intrusion_detection, t('owasp.intr_detect') %>
                     <div class="risk-select">
-                      <%= owasp.select :owasp_intrusion_detection, (0..10), {:selected => '10', :class => "form-control" } %>
+                      <%= owasp.select :owasp_intrusion_detection, (0..10), owasp.object.owasp_intrusion_detection.present? ? {selected: owasp.object.owasp_intrusion_detection} : {selected: 10 }, { :class => "form-control" } %>
                     </div>
                   </div>
                 </div>
@@ -125,7 +125,7 @@
                   <div class="col-sm-12">
                       <%= owasp.label :owasp_loss_of_confidentiality, t('owasp.loss_of_conf') %>
                     <div class="risk-select">
-                      <%= owasp.select :owasp_loss_of_confidentiality, (0..10), {:selected => '10', :class => "form-control" } %>
+                      <%= owasp.select :owasp_loss_of_confidentiality, (0..10), owasp.object.owasp_loss_of_confidentiality.present? ? {selected: owasp.object.owasp_loss_of_confidentiality} : {selected: 10 }, { :class => "form-control" } %>
                     </div>
                   </div>
                 </div>
@@ -135,7 +135,7 @@
                   <div class="col-sm-12">
                     <%= owasp.label :owasp_loss_of_integrity, t('owasp.loss_of_inte') %>
                     <div class="risk-select">
-                      <%= owasp.select :owasp_loss_of_integrity, (0..10), {:selected => '10', :class => "form-control" } %>
+                      <%= owasp.select :owasp_loss_of_integrity, (0..10), owasp.object.owasp_loss_of_integrity.present? ? {selected: owasp.object.owasp_loss_of_integrity} : {selected: 10 }, { :class => "form-control" } %>
                     </div>
                   </div>
                 </div>
@@ -145,7 +145,7 @@
                   <div class="col-sm-12">
                     <%= owasp.label :owasp_loss_of_availability, t('owasp.loss_of_avail') %>
                     <div class="risk-select">
-                      <%= owasp.select :owasp_loss_of_availability, (0..10), {:selected => '10', :class => "form-control" } %>
+                      <%= owasp.select :owasp_loss_of_availability, (0..10), owasp.object.owasp_loss_of_availability.present? ? {selected: owasp.object.owasp_loss_of_availability} : {selected: 10 }, { :class => "form-control" } %>
                     </div>
                   </div>
                 </div>
@@ -158,7 +158,7 @@
                   <div class="col-sm-12">
                       <%= owasp.label :owasp_loss_of_accountability, t('owasp.loss_of_acc') %>
                     <div class="risk-select">
-                      <%= owasp.select :owasp_loss_of_accountability, (0..10), {:selected => '10', :class => "form-control" } %>
+                      <%= owasp.select :owasp_loss_of_accountability, (0..10), owasp.object.owasp_loss_of_accountability.present? ? {selected: owasp.object.owasp_loss_of_accountability} : {selected: 10 }, { :class => "form-control" } %>
                     </div>
                   </div>
                 </div>
@@ -179,7 +179,7 @@
                     <div class="col-sm-12">
                         <%= owasp.label :owasp_financial_damage, t('owasp.fin_damage') %>
                       <div class="risk-select">
-                        <%= owasp.select :owasp_financial_damage, (0..10), {:selected => '10', :class => "form-control" } %>
+                        <%= owasp.select :owasp_financial_damage, (0..10), owasp.object.owasp_financial_damage.present? ? {selected: owasp.object.owasp_financial_damage} : {selected: 10 }, { :class => "form-control" } %>
                       </div>
                     </div>
                   </div>
@@ -189,7 +189,7 @@
                     <div class="col-sm-12">
                       <%= owasp.label :owasp_reputation_damage, t('owasp.rep_damage') %>
                       <div class="risk-select">
-                        <%= owasp.select :owasp_reputation_damage, (0..10), {:selected => '10', :class => "form-control" } %>
+                        <%= owasp.select :owasp_reputation_damage, (0..10), owasp.object.owasp_reputation_damage.present? ? {selected: owasp.object.owasp_reputation_damage} : {selected: 10 }, { :class => "form-control" } %>
                       </div>
                     </div>
                   </div>
@@ -199,7 +199,7 @@
                     <div class="col-sm-12">
                       <%= owasp.label :owasp_non_compliance, t('owasp.non_comp') %>
                       <div class="risk-select">
-                        <%= owasp.select :owasp_non_compliance, (0..10), {:selected => '10', :class => "form-control" } %>
+                        <%= owasp.select :owasp_non_compliance, (0..10), owasp.object.owasp_non_compliance.present? ? {selected: owasp.object.owasp_non_compliance} : {selected: 10 }, { :class => "form-control" } %>
                       </div>
                     </div>
                   </div>
@@ -212,7 +212,7 @@
                     <div class="col-sm-12">
                         <%= owasp.label :owasp_privacy_violation, t('owasp.pri_violation') %>
                       <div class="risk-select">
-                        <%= owasp.select :owasp_privacy_violation, (0..10), {:selected => '10', :class => "form-control" } %>
+                        <%= owasp.select :owasp_privacy_violation, (0..10), owasp.object.owasp_privacy_violation.present? ? {selected: owasp.object.owasp_privacy_violation} : {selected: 10 }, { :class => "form-control" } %>
                       </div>
                     </div>
                   </div>

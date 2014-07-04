@@ -5,6 +5,8 @@ class RiskScoring < ActiveRecord::Base
   belongs_to :risk
 	belongs_to :scoring, :polymorphic => true
 
+  validates :custom_value, :presence => true, :inclusion => {:in => 1..10}, :if => Proc.new{ |f| f.scoring_type == 'Custom' }
+
   accepts_nested_attributes_for :scoring
 
   after_create :update_scoring
@@ -20,7 +22,7 @@ class RiskScoring < ActiveRecord::Base
   end
 
   def scoring_attributes=(attributes)
-    self.scoring = attributes.include?("id") ? eval(scoring_type).find_or_initialize_by(id: attributes.delete(:id)) :  eval(scoring_type).new(attributes)
+    (self.scoring = attributes.include?("id") ? eval(scoring_type).find_or_initialize_by(id: attributes.delete(:id)) :  eval(scoring_type).new(attributes)) unless scoring_type == 'Custom'
   end
 
   def update_scoring
@@ -32,8 +34,8 @@ class RiskScoring < ActiveRecord::Base
   				self.owasp_scoring_method
   			when "CvssScoring"
   				self.cvss_scoring_method
-  			else 
-  				self.classic_scoring_method(self.risk_risk_model.name)  			 	
+  			else
+  				self.classic_scoring_method(self.risk_risk_model.name)
   		end
   	end
   end
@@ -91,16 +93,16 @@ class RiskScoring < ActiveRecord::Base
 		impact_score = 10.41 * (1 - ((1- scoring.conf_impact_numeric_value) * (1- scoring.integ_impact_numeric_value) * (1 - scoring.avail_impact_numeric_value)))
 		exploitability_score = 20 * scoring.access_complexity_numeric_value * scoring.authentication_numeric_value * scoring.access_vector_numeric_value
 		impact_function = impact_score == 0 ? 0 : 1.176
-		base_score = (0.6 * impact_score + (0.4 * exploitability_score) * 1.5) * impact_function 
+		base_score = (0.6 * impact_score + (0.4 * exploitability_score) * 1.5) * impact_function
 		temporal_score = base_score * scoring.exploitability_numeric_value * scoring.remediation_level_numeric_value * scoring.report_confidence_numeric_value
 		env_score = ((temporal_score + (10 - temporal_score) * scoring.collateral_damage_potential_numeric_value ))* scoring.target_distribution_numeric_value
 
 		if scoring.collateral_damage_potential_numeric_value == -1 && scoring.target_distribution_numeric_value == -1
 			if scoring.exploitability_numeric_value == -1 && scoring.remediation_level_numeric_value == -1 && scoring.report_confidence_numeric_value == 0
 				risk_score = base_score
-			else 
+			else
 				risk_score = temporal_score
-			end	
+			end
 		else
 			risk_score = env_score
 		end
