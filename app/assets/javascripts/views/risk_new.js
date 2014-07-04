@@ -133,3 +133,8 @@ function check_risk_scoring()
     return true
   }
 }
+
+function display_selected_files(e)
+{
+  $(e).parent().find("#selected_files").html("<h5>Selected: " + $(e).val() + "</h5>");
+}
