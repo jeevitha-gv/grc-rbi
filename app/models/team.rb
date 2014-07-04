@@ -11,14 +11,8 @@ class Team < ActiveRecord::Base
   belongs_to :company
   belongs_to :department
   belongs_to :section
-<<<<<<< HEAD
-<<<<<<< HEAD
   has_many :risks
-=======
->>>>>>> b3e0b146a3fae7e86a2ab8cc07a54fe21f92b330
-=======
-  has_many :risks
->>>>>>> 90defa9b6c1c6d2d7ff998273f49d5d137613745
+
 
   # validations
   validates :name, presence:true

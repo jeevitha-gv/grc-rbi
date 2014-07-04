@@ -1669,8 +1669,6 @@ a.import-btn{
 	color:#d47d01;
 	font-style:italic;
 }
-<<<<<<< HEAD
-=======
 .previleges .btn-group{
 	margin: 0px;
 	float: none;
@@ -1773,7 +1771,6 @@ a.import-btn{
 }
 li.db_setting_main{height:425px;}
 
->>>>>>> 90defa9b6c1c6d2d7ff998273f49d5d137613745
 .roll-audit{
   padding: 0px 0 0 13px;
   margin: 0px;
@@ -1792,9 +1789,6 @@ li.db_setting_main{height:425px;}
   height: 200px;
   overflow: scroll;
   overflow-x:hidden;
-<<<<<<< HEAD
-}
-=======
 }
 .risk-select  option{
   max-width:100%;
@@ -1804,4 +1798,3 @@ li.db_setting_main{height:425px;}
 .control-select{
    padding: 0 10px 0 4px;
 }
->>>>>>> 90defa9b6c1c6d2d7ff998273f49d5d137613745
