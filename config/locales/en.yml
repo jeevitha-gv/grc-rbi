@@ -479,6 +479,7 @@ en:
     category: "Category"
     mitigator: "Mitigator"
     reviewer: "Reviewer"
+    attachment: "Attach Document"
 
   dread:
     damage_potential: "Damage Potential"
