@@ -96,17 +96,17 @@ class Risk < ActiveRecord::Base
     end
   end
 
+  def set_risk_status(risk, commit_name)
+    risk.risk_status_id = ((commit_name == "Save as Draft") ?  RiskStatus.for_name("Draft").first.id : RiskStatus.for_name("Initiated").first.id)
+    return risk
+  end
+
   protected
     def risk_initializers
       @location = Location.for_name_by_company(location_name, company.id).first
       @department = Department.for_name_by_location(department_name, @location.id).first if @location.present?
       @team = Team.for_name_by_department(team_name, @department.id).first if @department.present?
     end
-
-  def set_risk_status(risk, commit_name)
-    risk.risk_status_id = ((commit_name == "Save as Draft") ?  RiskStatus.for_name("Draft").first.id : RiskStatus.for_name("Initiated").first.id)
-    return risk
-  end
 
   private
     def check_for_owner_and_mitigator
