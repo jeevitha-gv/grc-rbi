@@ -13,6 +13,7 @@ class Team < ActiveRecord::Base
   belongs_to :section
   has_many :risks
 
+
   # validations
   validates :name, presence:true
   validates_format_of :name, :with =>/\A(?=.*[a-z])[a-z\d\s -]+\Z/i, :if => Proc.new{ |f| !f.name.blank? }
