@@ -10,8 +10,12 @@ class AnswersController < ApplicationController
 
   # Create answer for nc_question belongs to audit
   def create
-    Answer.build_answer(params)
-    redirect_to new_audit_answers_path(@audit)
+    @answer_errors = Answer.build_answer(params, current_company)
+    unless @answer_errors.nil? 
+      redirect_to new_audit_answers_path(@audit) , :flash => { :error => @answer_errors[:"file_size_exceeds"][0]}
+    else
+      redirect_to new_audit_answers_path(@audit) #, :flash => { :error => @answer_errors[:"file_size_exceeds"][0]}
+    end
   end
 
 end
