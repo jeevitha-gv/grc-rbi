@@ -815,6 +815,7 @@ Country.delete_all
 
 RiskStatus.delete_all
 
+    RiskStatus.create(:name => "Draft")
     RiskStatus.create(:name => "Initiated")
     RiskStatus.create(:name => "Mitigated")
     RiskStatus.create(:name => "Measured")

@@ -16,6 +16,7 @@ class RisksController < ApplicationController
   def create
     @risk = current_company.risks.new(risk_params)
     @risk.submitted_by = current_user.id
+    @risk.set_risk_status(@risk, params[:commit])
     if @risk.save
       redirect_to risks_path#, :flash => { :notice => MESSAGES["risk"]["create"]["success"]}
     else

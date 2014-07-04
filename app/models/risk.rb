@@ -29,7 +29,8 @@ class Risk < ActiveRecord::Base
   # validates :compliance_library_id, presence:true
   validates :assessment, presence:true
   validates :notes, length: { in: 0..250 }
-  validates :reference, presence:true, length: { in: 0..250 }, :if => Proc.new{ |f| !f.subject.blank? }
+  validates :reference, presence:true, length: { in: 0..250 }
+  # validates :reference, uniqueness:true, :if => Proc.new{ |f| !f.reference.blank? }
   validates :compliance_id, presence:true
   validates :category_id, presence:true
   validates :technology_id, presence:true
@@ -37,7 +38,7 @@ class Risk < ActiveRecord::Base
   validates :mitigator, presence:true
   # validates :reviewer, presence:true
   validates :submitted_by, presence:true
-
+  validate :check_for_owner_and_mitigator
 
 	delegate :name, to: :risk_status, prefix: true, allow_nil: true
 	delegate :user_name, to: :risk_owner, prefix: true, allow_nil: true
@@ -102,4 +103,13 @@ class Risk < ActiveRecord::Base
       @team = Team.for_name_by_department(team_name, @department.id).first if @department.present?
     end
 
+  def set_risk_status(risk, commit_name)
+    risk.risk_status_id = ((commit_name == "Save as Draft") ?  RiskStatus.for_name("Draft").first.id : RiskStatus.for_name("Initiated").first.id)
+    return risk
+  end
+
+  private
+    def check_for_owner_and_mitigator
+      self.errors[:mitigator] = MESSAGES['risk']['failure']['owner_not_in_mitigator'] if self.owner == self.mitigator
+    end
 end
