@@ -15,9 +15,9 @@ ActiveAdmin.register RiskCategory, { :as => 'Category'} do
     before_filter :check_subdomain
    action :all, except: [:new, :show]
 
-    def scoped_collection
-      current_company.risk_categories
-    end
+    #~ def scoped_collection
+      #~ current_company.risk_categories
+    #~ end
     
   end
   
