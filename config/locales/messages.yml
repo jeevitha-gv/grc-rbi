@@ -134,6 +134,9 @@ en:
 
   csv_export:
     error: "File not found."
+  
+  attachment:
+    file_size_exceeds: "File size exceeds, you can't attach this file"
 
 
 fr:
