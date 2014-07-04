@@ -12,6 +12,9 @@
                 <%= custom.label :custom_value, t('risk_scoring.custom') %>
                 <%= custom.text_field :custom_value, :class => "form-control risk-normal-input" %>
               </div>
+              <% if custom.object.errors[:custom_value].present? %>
+                <div class="error_message"><%= custom.object.errors[:custom_value][0]%></div>
+              <% end %>
             </div>
           </div>
         </div>

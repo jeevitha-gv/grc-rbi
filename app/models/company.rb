@@ -12,6 +12,7 @@ class Company < ActiveRecord::Base
   has_many :risk_categories
   has_many :nc_questions
   has_one :attachment, :as => :attachable
+  has_many :uploads, :class_name => "Attachment", foreign_key: "company_id"
   has_many :operational_areas
   has_many :artifacts
   has_many :reminders

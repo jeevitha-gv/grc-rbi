@@ -270,6 +270,9 @@
 				return response.errors;
 			},
 			data: "data",
+				total: function(response) {
+			    return response.data.length;
+			  },
 				model: {
 					id: "id",
 					fields:{
@@ -352,6 +355,9 @@
 				return response.errors;
 			},
 			data: "data",
+			total: function(response) {
+		    return response.data.length;
+		  },
 			model: {
 				id: "id",
 				fields: {
@@ -405,6 +411,9 @@
 				return response.errors;
 			},
 			data: "data",
+			total: function(response) {
+		    return response.data.length;
+		  },
 			model: {
 				id: "id",
 				fields: {
@@ -459,6 +468,9 @@
 				return response.errors;
 			},
 			data: "data",
+				total: function(response) {
+			    return response.data.length;
+			  },
 				model: {
 				id: "id",
 				fields: {

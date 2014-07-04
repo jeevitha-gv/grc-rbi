@@ -47,7 +47,12 @@ function get_risk_owners(element){
 }
 
 function change_scoring_method(element){
-  var scoringType = $(element).val();
+  var scoringTypeVal = $(element).val();
+  risk_scoring_attirbute(scoringTypeVal)
+}
+
+function risk_scoring_attirbute(scoringType)
+{
   if (scoringType == 'ClassicScoring')
   {
     $('.scoring_model').show();
@@ -117,6 +122,20 @@ function change_scoring_method(element){
     $('.dread_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
     $('.classic_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
   }
+  if (scoringType == '')
+  {
+    $('.custom_scoring').hide();
+    $('.scoring_model').hide();
+    $('.owasp_scoring').hide();
+    $('.dread_scoring').hide();
+    $('.cvss_scoring').hide();
+    $('.scoring_model').hide();
+    $('.classic_scoring').hide();
+    $('.cvss_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+    $('.owasp_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+    $('.dread_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+    $('.classic_scoring').find('select').each(function(){$(this).attr('name',$(this).attr("name").replace("risk[", "temp["));});
+  }
 }
 
 function check_risk_scoring()
@@ -133,3 +152,20 @@ function check_risk_scoring()
     return true
   }
 }
+
+function display_selected_files(e)
+{
+  $(e).parent().find("#selected_files").html("<h5>Selected: " + $(e).val() + "</h5>");
+}
+
+$(document).ready(function(){
+  var scoringTypeVal = $('#risk_scoring').val();
+  risk_scoring_attirbute(scoringTypeVal);
+
+  $('.risk_attachment').hide();
+  $('.blue_link').css('cursor', 'pointer')
+  $('.blue_link').click(function(){
+    $('.risk_attachment').click();
+  })
+
+});

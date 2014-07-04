@@ -31,8 +31,8 @@ ActiveAdmin.register OperationalArea do
   show do
   	attributes_table do
   		row "ComplianceLibrary" do |c|
-  			c.compliance_library.name	
-  		end	
+  			c.compliance_library.name
+  		end
   		row :weightage
   	end
   end
@@ -45,6 +45,8 @@ ActiveAdmin.register OperationalArea do
     before_filter :check_company_admin, :check_role
     before_filter :check_subdomain
 
+    #publicactivity gem
+    include PublicActivity::StoreController
 
     def create
       @operational_area = OperationalArea.new(operational_area_params)

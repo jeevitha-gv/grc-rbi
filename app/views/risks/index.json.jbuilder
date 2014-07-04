@@ -1,5 +1,6 @@
 json.data do |json|
   json.array!(@risks) do |risk|
+      json.id risk.id
       json.subject risk.subject
       json.status risk.risk_status_name
       if risk.risk_scoring_scoring_type == 'Custom'
@@ -7,7 +8,7 @@ json.data do |json|
 				json.days_open risk.risk_scoring_custom_value.nil? ? '' : days_open(risk.risk_scoring_custom_value, risk)
       else
         json.risk risk.risk_scoring_calculated_risk
-				json.days_open risk.risk_scoring_custom_value.nil? ? '' : days_open(risk.risk_scoring_calculated_risk, risk)
+				json.days_open risk.risk_scoring_calculated_risk.nil? ? '' : days_open(risk.risk_scoring_calculated_risk, risk)
       end
       json.owner risk.risk_owner_user_name
     end
