@@ -1,5 +1,5 @@
 class MitigationsController < ApplicationController
-
+  layout "risk_layout"
   before_filter :current_risk
 
   def index
@@ -9,15 +9,37 @@ class MitigationsController < ApplicationController
    @mitigation = MitigationsController.new
    @risk.build_mitigation
    @risk.build_control_measure
-   @controls =  CppMeasure.where("company_id= ? AND measure_type = ?",current_company.id,'Control')
-   @process =   CppMeasure.where("company_id= ? AND measure_type = ?",current_company.id,'Process')
-   @procedure = CppMeasure.where("company_id= ? AND measure_type = ?",current_company.id,'Procedure')
+   @likelihood =  ClassicScoringMetric.where('metric_type= ?','Likelihood')
+   @impact = ClassicScoringMetric.where('metric_type= ?','Impact')
+   @velocity = ClassicScoringMetric.where('metric_type= ?','Velocity')
+   @vulnerability = ClassicScoringMetric.where('metric_type= ?','Vulnerability')
   end
 
   def create
-    if @risk.update(mitigation_params)
-      flash[:notice] = "mitigation saved"
+     if @risk.update(mitigation_params.reject{|x| x == 'scoring'})
 
+      p @risk.risk_scoring.scoring.update(mitigation_params["scoring"])
+      flash[:notice] = "mitigation saved"
+      redirect_to edit_risk_mitigation_path(id: @risk)
+    else
+      render "new"
+    end
+  end
+
+  def edit
+   @mitigation = @risk.mitigation
+
+   @likelihood =  ClassicScoringMetric.where('metric_type= ?','Likelihood')
+   @impact = ClassicScoringMetric.where('metric_type= ?','Impact')
+   @velocity = ClassicScoringMetric.where('metric_type= ?','Velocity')
+   @vulnerability = ClassicScoringMetric.where('metric_type= ?','Vulnerability')
+  end
+
+  def update
+    if @risk.update(mitigation_params.reject{|x| x == 'scoring'})
+      @risk.risk_scoring.scoring.update(mitigation_params["scoring"])
+      flash[:notice] = "mitigation saved"
+      redirect_to edit_risk_mitigation_path(id: @risk)
     else
       render "new"
     end
@@ -26,7 +48,7 @@ class MitigationsController < ApplicationController
 private
 
  def mitigation_params
-   params.require(:risk).permit(mitigation_attributes:[ :planning_strategy_id, :mitigation_effort_id, :current_solution, :security_requirements, :security_recommendations, :submitted_by], control_measure_attributes: [ :id, :risk_id, :control_ids, :threat, :consequences, :effectiveness, :risk_scoring_id, :process_ids, :procedure_ids])
+   params.require(:risk).permit(mitigation_attributes:[ :id, :risk_id, :planning_strategy_id, :mitigation_effort_id, :current_solution, :security_requirements, :security_recommendations, :submitted_by], control_measure_attributes: [:risk_id, :control_ids, :threat, :consequence, :effectiveness, :risk_scoring_id, :process_ids, :procedure_ids] ,scoring: [:likelihood, :impact, :velocity, :vulnerability, :owasp_skill_level, :owasp_motive, :owasp_opportunity, :owasp_size, :owasp_awareness, :owasp_intrusion_detection, :owasp_ease_of_discovery, :owasp_ease_of_exploit, :owasp_loss_of_accountability, :owasp_loss_of_availability, :owasp_loss_of_confidentiality, :owasp_loss_of_integrity, :owasp_privacy_violation, :owasp_non_compliance, :owasp_financial_damage, :owasp_reputation_damage, :cvss_access_vector, :cvss_access_complexity, :cvss_authentication, :cvss_conf_impact, :cvss_integ_impact, :cvss_avail_impact, :cvss_exploitability, :cvss_remediation_level, :cvss_report_confidence, :cvss_collateral_damage_potential, :cvss_target_distribution, :cvss_confidentiality_requirement, :cvss_integrity_requirement, :cvss_availability_requirement, :dread_damage_potential, :dread_reproducibility, :dread_exploitability, :dread_affected_users, :dread_discoverability])
  end
 
 end
