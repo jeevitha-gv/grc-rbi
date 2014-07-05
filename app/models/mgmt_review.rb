@@ -18,7 +18,7 @@ class MgmtReview < ActiveRecord::Base
   def notify_risk_users_about_mgmt_reviews
     risk = self.risk
     users_email = []
-    subject_array = ["mgmt_review_owner", "mgmt_review_mitigator", "mgmt_review_reviewer", "mgmt_review_submitor"]
+    subject_array = ["Management review has been done for your risk", "Management review has been done for your risk", "Your Review has been successfully added", "Management review has been done for your risk"]
     users_email << risk.risk_owner.email << risk.risk_mitigator.email << risk.risk_reviewer.email << risk.submitor.email
     users_email.each_with_index do |email, index|
       RiskMailer.delay.notify_users_about_risk(risk, email, subject_array[index], name="mgmt_review")

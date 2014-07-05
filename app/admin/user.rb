@@ -104,6 +104,7 @@ end
 
 
   form do |f|
+    f.semantic_errors *[:"user_count_exceeds"]
     f.object.profile ? f.object.profile : f.object.build_profile
     f.inputs "User Details" do
       f.input :full_name

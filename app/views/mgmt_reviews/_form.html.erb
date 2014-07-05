@@ -130,7 +130,7 @@
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                             <div class="form-group">
                               <label for="inputEmail3" class="col-sm-5 control-label mgt-label">Control :</label>
-                              <div class="col-sm-6 mgt-text ">General Requirements</div>
+                              <div class="col-sm-6 mgt-text "><%= risk.control_measure.control_ids if risk.control_measure.present? %></div>
                             </div>
                         </div>
 
@@ -138,7 +138,7 @@
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                           <div class="form-group">
                             <label for="inputEmail3" class="col-sm-5 control-label mgt-label">Process:</label>
-                            <div class="col-sm-6 mgt-text ">Communicateand consult</div>
+                            <div class="col-sm-6 mgt-text "><%= risk.control_measure.process_ids if risk.control_measure.present? %></div>
                           </div>
                         </div>
 
@@ -146,7 +146,7 @@
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                           <div class="form-group">
                             <label for="inputEmail3" class="col-sm-5 control-label mgt-label">Procedure:</label>
-                            <div class="col-sm-6 mgt-text">Harsha</div>
+                            <div class="col-sm-6 mgt-text"><%= risk.control_measure.procedure_ids if risk.control_measure.present?  %></div>
                           </div>
                         </div>
 
@@ -201,48 +201,17 @@
                 <div class="risk-wrap clearfix">
                   <div class="sub-wrap-bg">
                   <form class="form-horizontal" role="form">
-                      <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <!--Row first -->
-                        <div >
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
-                         <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-4 control-label mgt-label">Likelihood :</label>
-                                <div class="col-sm-6 mgt-text">Significant-Extreme</div>
-                          </div>
-                            </div>
-                        </div>
-                        <!--Row first-->
-                        <div>
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
-                         <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-5 control-label mgt-label">Impact :</label>
-                                <div class="col-sm-6 mgt-text">Major</div>
-                                </div>
-                                </div>
-                          </div>
-
-                        <!--Row first-->
-                        <div>
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
-                         <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-5 control-label mgt-label">Effectiveness :</label>
-                                 <div class="col-sm-6 mgt-text">Hello Worlds</div>
-                                 </div>
-                                 </div>
-                            </div>
-                      </div>
-                      <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                      <div class="row-sp">
-                        <div >
-                              <label for="inputEmail3" class="col-sm-4 control-label mgt-label ">Threat :</label>
-                               <div class="col-sm-8 mgt-text">Hello World</div>
-                        </div>
-                        <div >
-                              <label for="inputEmail3" class="col-sm-4 control-label mgt-label">Consequence :</label>
-                               <div class="col-sm-8 mgt-text">Hello world</div>
-                        </div>
-                        </div>
-                      </div>
+                    <% if risk.risk_scoring_scoring_type == "CvssScoring" %>
+                      <%= render 'cvss', r: risk if risk.present? %>
+                    <% elsif risk.risk_scoring_scoring_type == "DreadScoring" %>
+                      <%= render 'dread', r: risk if risk.present? %>
+                    <% elsif risk.risk_scoring_scoring_type == "OwaspScoring" %>
+                      <%= render 'owasp', r: risk if risk.present?  %>
+                    <% elsif risk.risk_scoring_scoring_type == "ClassicScoring" %>
+                      <%= render 'classic', r: risk  if risk.present?  %>
+                    <% else %>
+                      <%= render 'custom', r: risk if risk.present?  %>
+                    <% end %>
                   </form>
                   </div>
                 </div>
@@ -253,7 +222,7 @@
 
 
   <!--form 1 -->
-    <%= form_for([risk, @mgmt_review], html: { class: "form-horizontal"}) do |f| %>
+    <%= form_for([@risk, @mgmt_review], html: { class: "form-horizontal"}) do |f| %>
 
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

@@ -9,11 +9,11 @@ class Attachment < ActiveRecord::Base
   before_save :set_size
 
   private
-  
+
   def set_size
     self.file_size = attachment_file.file.size
   end
-  
+
   def check_file_size
     size = 0
     company = Company.find_by_id(self.company_id)

@@ -370,6 +370,8 @@ en:
               blank: "Risk Owner cannot be blank"
             mitigator:
               blank: "Mitigator cannot be blank"
+            reviewer:
+              blank: "Reviewer cannot be blank"
             technology_id:
               blank: "Technology cannot be blank"
         risk_scoring:

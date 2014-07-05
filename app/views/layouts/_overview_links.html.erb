@@ -12,5 +12,7 @@
         <li><a href="/admin/users" class="<%= request.fullpath.include?("admin/users") == true ? 'active' : '' %>">
           Users</a></li>
         <li><a href="/admin/settings" class="<%= request.fullpath.include?("admin/settings") == true ? 'active' : '' %>">
-          Settings</a></li>
+					Settings</a></li>
+				<li><a href="/admin/plans" class="<%= request.fullpath.include?("/admin/plans") == true ? 'active' : '' %>">
+          Plan</a></li>
 	</ul>

@@ -72,4 +72,8 @@ def check_stage(stage, compliance_url, non_compliance_url)
  return true if ((request.fullpath.include?('stage=do') || request.fullpath.include?(non_compliance_url) || request.fullpath.include?(compliance_url)) == true)
 end
 
+  def company_modules_check(module_name)
+    module_id = Section.find_by_name(module_name).id
+    current_company.plan.subscription_section_ids.include?("#{module_id}")
+  end
 end

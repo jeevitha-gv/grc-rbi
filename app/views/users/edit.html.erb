@@ -40,7 +40,7 @@
         <div class="form-group clearfix">
             <label class="col-sm-4"> <%= f.label :email, t('profile.role') %></label>
             <div class="col-sm-7">
-             <%= @user.role.title %>
+             <%= @user.role.title.humanize.capitalize %>
             </div>
         </div>
 				<div class="form-group clearfix">
