@@ -1941,7 +1941,6 @@ b, strong {
 .plan > .price {
     margin: 0 auto 30px;
     width: 80%;
-=======
 }
 .risk-rem{
    display: inline-block;
@@ -1952,6 +1951,4 @@ b, strong {
 .risl-blue-link{
   float: left;
   display: inline-block;;
-
->>>>>>> 6dc4c289f686c70c378fc32849e090987973a198
 }

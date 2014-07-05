@@ -1,10 +1,10 @@
-<<<<<<< HEAD
 <div class="container">    
       <!-- Nav tabs -->
      <div class="risk-title">Subscription </div>
      <div class="clearfix"></div>
     	<div class="">
         	<div class="row">
+			<%= form_for @plan do |f|%>
 			<% @subscriptions.each do |subscription| %>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <div class="plan">
@@ -27,29 +27,8 @@
             </div>
         </div>
         <%end%>
+        <%end%>
     </div>
 		</div>
   </div>
-=======
-<%= form_for @plan do |f|%>
 
-<ul>
-<%@subscriptions.each do |subscription|%>
-<li> 
-Subscription Name:	
-<a href="<%= new_company_path(subscription: subscription.name)%>"><%= subscription.name%></a>
-Description:
-<%= subscription.description%>
-Amount:
-<%= subscription.amount%>
-Log:
-<%= subscription.valid_log%>
-Period:
-<%= "Month(s)"%>
-</li>
-<%end%>
-</ul>
-
-
-<%end%>
->>>>>>> 6dc4c289f686c70c378fc32849e090987973a198
