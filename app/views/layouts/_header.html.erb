@@ -31,12 +31,12 @@
           </ul>
         </div>
         <div class="user_login">
-          <div class="roll-audit">Role: <%= current_user.role_title %></div>
           <% if current_user.attachment.present? %>
             <%= image_tag(current_user.attachment.attachment_file.small) if current_user.attachment.attachment_file.present? %>
           <% else %>
             <img src="/assets/outer/user-icon.jpg">
           <% end %>
+          <div class="roll-audit"><%= current_user.role_title.humanize.capitalize %></div>
 
           <div class="user-name"><%= current_user.user_name unless current_user.user_name.blank? %></div>
           <span id="login_drop"><img src="/assets/outer/user-down-arrow.png"></span>

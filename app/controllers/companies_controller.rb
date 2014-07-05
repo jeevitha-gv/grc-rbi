@@ -30,12 +30,7 @@ class CompaniesController < ApplicationController
          plan.save!
          redirect_to welcome_path
         else
-          payment = @company.transactions.create(:company_id => @company.id,:subscription_id=> subscribe.id)
-          payment.setup!(
-          "#{HOST_URL}/payments/success",
-          "#{HOST_URL}/payments/cancel"
-          )
-          redirect_to payment.redirect_uri
+          redirect_to new_transaction_path(company: @company.domain,subscription: subscription_name)
       end
     else
       @subscription=params

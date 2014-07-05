@@ -7,6 +7,11 @@ class Mitigation < ActiveRecord::Base
   # callbacks
   after_create :notify_risk_users_about_mitigation
 
+  #validation
+  validates :current_solution, presence:true, length: { in: 0..250 }, :if => Proc.new{ |f| !f.current_solution.blank? }
+  validates :security_requirements, presence:true, length: { in: 0..250 }, :if => Proc.new{ |f| !f.security_requirements.blank? }
+  validates :security_recommendations, presence:true, length: { in: 0..250 }, :if => Proc.new{ |f| !f.security_recommendations.blank? }
+
   def notify_risk_users_about_mitigation
     risk = self.risk
     users_email = []

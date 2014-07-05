@@ -820,6 +820,7 @@ RiskStatus.delete_all
     RiskStatus.create(:name => "Mitigated")
     RiskStatus.create(:name => "Measured")
     RiskStatus.create(:name => "Reviewed")
+    RiskStatus.create(:name => "Rejected")
 
 ClassicScoringMetric.delete_all
 
@@ -950,3 +951,11 @@ Technology.delete_all
     Technology.create(:name => "VMWare")
     Technology.create(:name => "Web")
     Technology.create(:name => "Windows")
+
+MitigationEffort.delete_all
+
+    MitigationEffort.create(:name => "Trivial")
+    MitigationEffort.create(:name => "Minor")
+    MitigationEffort.create(:name => "Considerable")
+    MitigationEffort.create(:name => "Significant")
+    MitigationEffort.create(:name => "Exceptional")

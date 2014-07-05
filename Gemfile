@@ -73,7 +73,8 @@ gem 'zip-zip'
 gem 'delayed_job_active_record'
 
 #for payment using paypal
-gem 'paypal-express'
+#gem 'paypal-express'
+gem 'activemerchant'
 
 # for rails best practices
 gem "rails_best_practices"

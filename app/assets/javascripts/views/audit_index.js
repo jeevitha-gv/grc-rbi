@@ -206,7 +206,7 @@
 	    	var test_row = $(currenRow).find(".k-grid-Set")
 	    	$(test_row).addClass('active')
 	    }
-	    if (currenStatus == "In Progress")
+	    else if (currenStatus == "In Progress")
 	    {
 	    	var test_row = $(currenRow).find(".k-grid-Set, .k-grid-tick, .k-grid-tick1")
 	    	$(test_row).addClass('active')
@@ -216,7 +216,7 @@
 	  		var test_row = $(currenRow).find(".k-grid-Set, .k-grid-tick, .k-grid-tick1, .k-grid-book")
 	  		$(test_row).addClass('active')
 	  	}
-	  	if (currenStatus == "Planning")
+	  	else if (currenStatus == "Planning")
 	    {
 	    	var test_row = $(currenRow).find(".k-grid-Set, .k-grid-tick, .k-grid-tick1, .k-grid-book, .k-grid-graph")
 	    	$(test_row).hide()

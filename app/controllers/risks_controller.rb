@@ -5,6 +5,11 @@ class RisksController < ApplicationController
 
   def index
     @risks = current_company.risks
+    if params[:stage].present?
+      @risks = current_user.risks_stage(params)
+    else
+      @risks = current_user.accessible_risks
+    end
     @high_risk, @medium_risk, @low_risk = Risk.risk_rating(current_company.id)
   end
 
@@ -17,7 +22,7 @@ class RisksController < ApplicationController
     @risk.submitted_by = current_user.id
     @risk.set_risk_status(@risk, params[:commit])
     if @risk.save
-      redirect_to risks_path#, :flash => { :notice => MESSAGES["risk"]["create"]["success"]}
+      redirect_to risks_path, :flash => { :notice => MESSAGES["risk"]["create"]["success"]}
     else
       risk_initializers(@risk.location_id, @risk.department_id, @risk.team_id, @risk.compliance_id)
       render 'new'
