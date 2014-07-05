@@ -18,10 +18,22 @@
             <div class="mitigation-box-wrap">
               <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-              <div class="red-box">
-                  <div class="number">10</div>
-                    <div class="text">High</div>
-                </div>
+                <% if risk.risk_scoring.calculated_risk <= 4 %>
+                    <div class="grey-box">
+                      <div class="number"><%= risk.risk_scoring.calculated_risk %></div>
+                      <div class="text">Low</div>
+                    </div>
+                  <% elsif risk.risk_scoring.calculated_risk <= 7 %>
+                    <div class="yellow-box">
+                      <div class="number"><%= risk.risk_scoring.calculated_risk %></div>
+                      <div class="text">Medium</div>
+                    </div>
+                  <% else %>
+                    <div class="red-box">
+                      <div class="number"><%= risk.risk_scoring.calculated_risk %></div>
+                      <div class="text">High</div>
+                    </div>
+                  <% end %>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                     <div class="mitigate-inner mitigate-box">
@@ -68,7 +80,7 @@
                 </tr>
                 <tr>
                   <td><label>Category : </label>
-                    <span> Access Management</span></td>
+                    <%= risk.risk_category_name if risk.present? %></td>
                   <td><label>Technology : </label>
                     <%= risk.technology.name if risk.present? %></td>
                   <td><label>Owner :</label>
@@ -93,14 +105,14 @@
             <div class="risk-assetes">
               <div class="mitigation-recomm">
                 <div class="mit-reccom-title">Risk Assesment</div>
-                <%= risk.assessment %>
+                <p><%= risk.assessment %></p>
                 </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <div class="mitigation-recomm">
                 <div class="mit-reccom-title">Additional Note</div>
-                <%= risk.notes %>
+                <p><%= risk.notes %></p>
                 </div>
             </div>
          </div>
@@ -124,7 +136,7 @@
                             <!--div class="risk-select"-->
                             <div>
                              <%= control.collection_select  :control_ids, CppMeasure.for_name("Control"), :id, :name,{}, {class: 'multiselect',:multiple => "multiple"} %>
-														 <%#= select("control", "control_ids", options_from_collection_for_select(@controls, :id, :name), {}, {:id=> "multiselect", :multipart =>"multiple" }) %>
+                             <%#= select("control", "control_ids", options_from_collection_for_select(@controls, :id, :name), {}, {:id=> "multiselect", :multipart =>"multiple" }) %>
                             </div>
                     </div>
                    </div>
@@ -199,6 +211,9 @@
                                      <div class="col-sm-9">
                                      <%= mitigation.text_area :current_solution, :class=>"form-control risk-big-input", :value => "#{risk.mitigation.current_solution}" %>
                                      </div>
+                                      <% if mitigation.object.errors[:current_solution].present? %>
+                                    <div class="error_message"><%= mitigation.object.errors[:current_solution][0]%></div>
+                                    <% end %>
                                   </div>
                               </div>
 
@@ -210,6 +225,9 @@
                                      <div class="col-sm-9">
                                       <%= mitigation.text_area :security_requirements, :class=>"form-control risk-big-input" %>
                                      </div>
+                                      <% if mitigation.object.errors[:security_requirements].present? %>
+                                    <div class="error_message"><%= mitigation.object.errors[:security_requirements][0]%></div>
+                                    <%end%>
                                   </div>
                                   </div>
 
@@ -220,6 +238,9 @@
                                      <div class="col-sm-9">
                                       <%= mitigation.text_area :security_recommendations, :class=>"form-control risk-big-input" %>
                                      </div>
+                                      <% if mitigation.object.errors[:security_recommendations].present? %>
+                                    <div class="error_message"><%= mitigation.object.errors[:security_recommendations][0]%></div>
+                                    <%end%>
                               </div>
                            </div>
                            <%end%>
@@ -250,6 +271,9 @@
                               <%= f.fields_for :control_measure do |control| %>
                               <%= control.text_area :threat, row: 2, class: "form-control risk-big-input"%>
                             </div>
+                            <% if control.object.errors[:threat].present? %>
+                                    <div class="error_message"><%= control.object.errors[:threat][0]%></div>
+                                    <% end %>
                           </div>
 
                             <div class="text-area clearfix">
@@ -257,6 +281,9 @@
                               <div class="col-sm-9">
                                   <%= control.text_area :effectiveness, row: 2, class: "form-control risk-big-input"%>
                                 </div>
+                                <% if control.object.errors[:effectiveness].present? %>
+                                    <div class="error_message"><%= control.object.errors[:effectiveness][0]%></div>
+                                    <% end %>
                             </div>
 
                         </div>
@@ -268,6 +295,9 @@
                             <div class="col-sm-9">
                               <%= control.text_area :consequence, row: 2, class: "form-control risk-big-input"%>
                             </div>
+                            <% if control.object.errors[:consequence].present? %>
+                                    <div class="error_message"><%= control.object.errors[:consequence][0]%></div>
+                                    <% end %>
                           </div>
                         </div>
                       </div>
@@ -283,21 +313,22 @@
         <div class="container">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="method-padding">
-				<% if risk.risk_scoring_scoring_type == 'ClassicScoring'%>
-					 <%= render "/risks/classic_scoring",f: f, risk: risk %>
-				<% elsif risk.risk_scoring_scoring_type == 'DreadScoring' %>
-            <%=render "/risks/dread_scoring",f: f, risk: risk%>
+        <%@mitigation_page=true%>
+        <% if risk.risk_scoring_scoring_type == 'ClassicScoring'%>
+           <%= render "/risks/classic_scoring",f: f, risk: risk, mitigation_page: @mitigation_page %>
+        <% elsif risk.risk_scoring_scoring_type == 'DreadScoring' %>
+            <%=render "/risks/dread_scoring",f: f, risk: risk, mitigation_page: @mitigation_page%>
         <% elsif risk.risk_scoring_scoring_type == 'CvssScoring' %>
-            <%=render "/risks/cvss_scoring",f: f, risk: risk %>
+            <%=render "/risks/cvss_scoring",f: f, risk: risk, mitigation_page: @mitigation_page %>
         <% elsif risk.risk_scoring_scoring_type == 'OwaspScoring' %>
-            <%=render "/risks/owasp_scoring",f: f, risk: risk %>
+            <%=render "/risks/owasp_scoring",f: f, risk: risk, mitigation_page: @mitigation_page %>
         <% elsif risk.risk_scoring_scoring_type == 'CustomScoring' %>
-            <%=render "/risks/custom_scoring",f: f, risk: risk %>
-				<% end %>
+            <%=render "/risks/custom_scoring",f: f, risk: risk, mitigation_page: @mitigation_page %>
+        <% end %>
       </div>
     </div>
         <div class="btn-group">
-          <a class="black_btn" href="">Back</a> <a class="grey_btn" href=""> Save </a>
+          <a class="black_btn" href="">Back</a> <a class="grey_btn" href="javascript:goBack()"> Save </a>
            <!--<a class="orange_btn" href="">Submit</a>-->
          <%= f.submit "Submit" , :class => "orange_btn" %>
         </div>

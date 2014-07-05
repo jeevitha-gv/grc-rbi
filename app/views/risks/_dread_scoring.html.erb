@@ -1,5 +1,7 @@
 <%= f.fields_for :risk_scoring, ((f.object.risk_scoring.present? && f.object.risk_scoring.scoring_type == "DreadScoring") ? f.object.risk_scoring : RiskScoring.new) do |scoring| %>
-  <%= scoring.hidden_field :scoring_type%>
+   <%if mitigation_page%>
+    <%= scoring.hidden_field :scoring_type%>
+   <%end%>
   <%= scoring.fields_for :scoring, (scoring.object.scoring.present? ? scoring.object.scoring : DreadScoring.new) do |dread| %>
     <div class="row dread_scoring" style='<%= "display:block" if risk_scoring_type_dread(risk) %>'>
       <div class="likelihood matrix-padding clearfix">

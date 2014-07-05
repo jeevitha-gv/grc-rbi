@@ -389,6 +389,22 @@ en:
             name:
               taken: "This technology has already been added"
               blank: "Technology cannot be blank"
+        mitigation:
+          attributes:
+            current_solution:
+              blank: "current Solution can't be blank"
+            security_requirements:
+              blank: "Security Requirements can't be blank"
+            security_recommendations:
+              blank: "Security Recommendations can't be blank"
+        control_measure:
+          attributes:
+            threat:
+              blank: "Threat can't be blank"
+            effectiveness:
+              blank: "Effectiveness can't be blank"
+            consequence:
+              blank: "Consequence can't be blank"
 
 
 

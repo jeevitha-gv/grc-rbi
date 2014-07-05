@@ -1,14 +1,16 @@
 class MitigationsController < ApplicationController
   layout "risk_layout"
-  before_filter :current_risk
-  before_filter :authorize_mitigation, :only => [:new, :create, :edit, :update]
+  before_filter :current_risk, :company_module_access_check
+
+  # before_filter :authorize_mitigation, :only => [:new, :create, :edit, :update]
 
   def index
   end
 
   def new
-   redirect_to edit_risk_mitigation_path(risk_id: @risk.id, id: @risk.mitigation.id) if @risk.mitigation.present?
-   @mitigation = MitigationsController.new
+  if(@risk.mitigation.present?)
+   redirect_to edit_risk_mitigation_path(risk_id: @risk.id, id: @risk.mitigation.id)
+  else
    @risk.build_mitigation
    @risk.build_control_measure
    @likelihood =  ClassicScoringMetric.where('metric_type= ?','Likelihood')
@@ -16,10 +18,12 @@ class MitigationsController < ApplicationController
    @velocity = ClassicScoringMetric.where('metric_type= ?','Velocity')
    @vulnerability = ClassicScoringMetric.where('metric_type= ?','Vulnerability')
   end
+  end
 
   def create
      if @risk.update(mitigation_params)
       flash[:notice] = "mitigation saved"
+      @risk.update(risk_status_id: '2' )
       redirect_to edit_risk_mitigation_path(risk_id: @risk.id, id: @risk.mitigation.id)
     else
       render "new"
@@ -36,7 +40,7 @@ class MitigationsController < ApplicationController
 
   def update
     if @risk.update(mitigation_params)
-      # @risk.risk_scoring.scoring.update(mitigation_params["scoring"])
+       #@risk.risk_scoring.scoring.update(mitigation_params["scoring"])
       flash[:notice] = "mitigation saved"
       redirect_to edit_risk_mitigation_path(risk_id: @risk.id, id: @risk.mitigation.id)
     else
