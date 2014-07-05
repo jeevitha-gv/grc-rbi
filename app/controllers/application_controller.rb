@@ -100,6 +100,36 @@ class ApplicationController < BaseController
     return expire 
   end
 
+  def company_module_access_check
+    name = request.fullpath.split('/')[0]
+    if name == 'risks'
+      module_id = Section.find_by_name('Risk').id
+    elsif name == 'audits'
+      module_id = Section.find_by_name('Audit').id
+    else
+      module_id = nil
+    end
+    unless module_id.nil? && current_company.plan.subscription_section_ids.include?("#{module_id}")
+      redirect_to "/"
+    end
+  end
+  
+  def company_admin_module_check
+    name = request.fullpath.split('/')[2]
+    risk_actions = ["controls","procedures","processes","risk_review_levels","projects"]
+    audit_actions = ["operational_areas","artifacts","reminders"]
+    if risk_actions.include?("#{request.fullpath.split('/')[2]}")
+      module_id = Section.find_by_name('Risk').id
+    elsif audit_actions.include?("#{request.fullpath.split('/')[2]}")
+      module_id = Section.find_by_name('Audit').id
+    else
+      module_id = nil
+    end
+    if !module_id.nil? && !current_company.plan.subscription_section_ids.include?("#{module_id}") 
+      redirect_to "/"
+    end
+  end
+  
   private
 
   # Render error from rescue

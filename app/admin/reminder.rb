@@ -11,8 +11,7 @@ ActiveAdmin.register Reminder do
   actions :all, :except => [:destroy]
 
   controller do
-    before_filter :check_company_admin, :check_role
-    before_filter :check_subdomain
+    before_filter :check_company_admin, :check_role, :check_subdomain, :company_admin_module_check
 
 
     def scoped_collection
