@@ -57,6 +57,7 @@ $(document).ready(function() {
 	$("#grid").kendoGrid({
 		dataSource: dataSource,
 		dataBound: function(){
+			status_update_all()
 			riskGridTitle()
 		},
 		height: 'auto',
@@ -81,6 +82,8 @@ $(document).ready(function() {
 	$("#gridforstage").kendoGrid({
 		dataSource: dataSource,
 		dataBound: function(){
+			var selected_stage = select_stage_class(stage)
+			$('.'+selected_stage).addClass('active');
 			riskGridTitle()
 		},
 		height: 'auto',
@@ -127,6 +130,44 @@ $(document).ready(function() {
 	{
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		window.location.href = "/risks/"+ dataItem.id + "/mgmt_reviews/new"
+	}
+
+	function select_stage_class(stage_class)
+	{
+		if(stage_class == 'mitigate')
+	  {
+	    return "k-grid-list";
+	  }
+	  else if(stage_class == 'review')
+	  {
+	   	return "k-grid-miti";
+	  }
+	}
+
+	function status_update_all()
+	{
+		var grid = $("#grid").data("kendoGrid");
+		addGridAtiveClass(grid)
+  }
+
+  function addGridAtiveClass(grid)
+  {
+	  var gridData = grid.dataSource.view();
+	  for (var i = 0; i < gridData.length; i++) {
+	    var currentUid = gridData[i].uid;
+	    var currenRow = grid.table.find("tr[data-uid='" + currentUid + "']");
+	    currenStatus = gridData[i].risk_status
+	    if (currenStatus == "Mitigated")
+	    {
+	    	var test_row = $(currenRow).find(".k-grid-list")
+	    	$(test_row).addClass('active')
+	    }
+	    else if (currenStatus == "Reviewed")
+	    {
+	    	var test_row = $(currenRow).find(".k-grid-miti")
+	    	$(test_row).addClass('active')
+	  	}
+	  }
 	}
 
 	$('.editable-input').on('click', function(){

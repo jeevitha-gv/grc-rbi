@@ -180,6 +180,9 @@
         <div class="risk-select">
           <%= f.select :reviewer, options_for_select(@reviewer_users.collect{|x| [x.user_name, x.id]}, :selected => risk.reviewer), {include_blank: '--Select Reviewer--' }, { :id => "risk-reviewer", :class => "form-control"} %>
         </div>
+        <% if risk.errors[:reviewer].present? %>
+          <div class="error_message"><%= risk.errors[:reviewer][0]%></div>
+        <% end %>
       </div>
     </div>
   </div>
