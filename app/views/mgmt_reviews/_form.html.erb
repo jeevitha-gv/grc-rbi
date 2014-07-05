@@ -130,7 +130,7 @@
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                             <div class="form-group">
                               <label for="inputEmail3" class="col-sm-5 control-label mgt-label">Control :</label>
-                              <div class="col-sm-6 mgt-text ">General Requirements</div>
+                              <div class="col-sm-6 mgt-text "><%= risk.control_measure.control_ids if risk.control_measure.present? %></div>
                             </div>
                         </div>
 
@@ -138,7 +138,7 @@
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                           <div class="form-group">
                             <label for="inputEmail3" class="col-sm-5 control-label mgt-label">Process:</label>
-                            <div class="col-sm-6 mgt-text ">Communicateand consult</div>
+                            <div class="col-sm-6 mgt-text "><%= risk.control_measure.process_ids if risk.control_measure.present? %></div>
                           </div>
                         </div>
 
@@ -146,7 +146,7 @@
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                           <div class="form-group">
                             <label for="inputEmail3" class="col-sm-5 control-label mgt-label">Procedure:</label>
-                            <div class="col-sm-6 mgt-text">Harsha</div>
+                            <div class="col-sm-6 mgt-text"><%= risk.control_measure.procedure_ids if risk.control_measure.present?  %></div>
                           </div>
                         </div>
 
@@ -202,15 +202,15 @@
                   <div class="sub-wrap-bg">
                   <form class="form-horizontal" role="form">
                     <% if risk.risk_scoring_scoring_type == "CvssScoring" %>
-                      <%= render 'cvss', r: risk.risk_scoring.scoring if risk.present? %>
+                      <%= render 'cvss', r: risk if risk.present? %>
                     <% elsif risk.risk_scoring_scoring_type == "DreadScoring" %>
-                      <%= render 'dread', r: risk.risk_scoring.scoring if risk.present? %>
+                      <%= render 'dread', r: risk if risk.present? %>
                     <% elsif risk.risk_scoring_scoring_type == "OwaspScoring" %>
-                      <%= render 'owasp', r: risk.risk_scoring.scoring if risk.present?  %>
+                      <%= render 'owasp', r: risk if risk.present?  %>
                     <% elsif risk.risk_scoring_scoring_type == "ClassicScoring" %>
-                      <%= render 'classic', r: risk.risk_scoring.scoring  if risk.present?  %>
+                      <%= render 'classic', r: risk  if risk.present?  %>
                     <% else %>
-                      <%= render 'custom', r: risk.risk_scoring  if risk.present?  %>
+                      <%= render 'custom', r: risk if risk.present?  %>
                     <% end %>
                   </form>
                   </div>
