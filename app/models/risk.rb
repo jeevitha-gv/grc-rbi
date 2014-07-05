@@ -37,7 +37,7 @@ class Risk < ActiveRecord::Base
   validates :technology_id, presence:true
   validates :owner, presence:true
   validates :mitigator, presence:true
-  # validates :reviewer, presence:true
+  validates :reviewer, presence:true
   validates :submitted_by, presence:true
   validate :check_for_owner_and_mitigator
 
