@@ -22,7 +22,15 @@ class RiskScoring < ActiveRecord::Base
   end
 
   def scoring_attributes=(attributes)
-    (self.scoring = attributes.include?("id") ? eval(scoring_type).find_or_initialize_by(id: attributes.delete(:id)) :  eval(scoring_type).new(attributes)) unless scoring_type == 'Custom'
+    unless scoring_type == 'Custom'
+      if(attributes.include?("id"))
+        scoring = eval(scoring_type).find(attributes.delete(:id))
+        scoring.try(:assign_attributes, attributes)
+        self.scoring = scoring
+      else
+        self.scoring =  eval(scoring_type).new(attributes)
+      end
+    end
   end
 
   def update_scoring
