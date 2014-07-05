@@ -33,15 +33,13 @@
           <% else %>
             <img src="/assets/outer/user-icon.jpg">
           <% end %>
+          <div class="roll-audit"><%= current_user.role_title.humanize.capitalize %></div>
           <div class="user-name"><%= current_user.user_name unless current_user.user_name.blank? %></div>
           <span id="login_drop"><img src="/assets/outer/user-down-arrow.png"></span>
 
           <div class="account_header_dropdown" style="display: none;">
             <ul>
               <li><%= link_to "User Profile", edit_user_path %></li>
-              <%# if current_user.role.title == "company_admin" %>
-                <li><%= link_to "Admin Settings", admin_settings_path %></li>
-              <%# end %>
               <li><%= link_to "Audit Trail", activities_path %></li>
               <li><%= link_to "Reset Password", password_user_path %></li>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
