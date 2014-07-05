@@ -124,7 +124,7 @@ class User < ActiveRecord::Base
     risks = []
     case params[:stage]
     when 'mitigate'
-      self.accessible_risks.select{ |x| risks << x if(x.mitigation.blank? && ( x.risk_status_id == 2)) }
+      self.accessible_risks.select{ |x| risks << x if(x.mitigation.blank? && ( x.risk_status_name == "Initiated")) }
       risks
     when 'review'
       self.accessible_risks.select{ |x| risks << x if(x.mitigation.present? ) }

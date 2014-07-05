@@ -31,7 +31,7 @@ class Risk < ActiveRecord::Base
   validates :notes, length: { in: 0..250 }
   validates :reference, presence:true, length: { in: 0..250 }
   # validates :reference, uniqueness:true, :if => Proc.new{ |f| !f.reference.blank? }
-  validates :reference, :uniqueness => {:scope => :company_id}, :if => Proc.new{ |f| !f.reference.blank? }
+  # validates :reference, :uniqueness => {:scope => :company_id}, :if => Proc.new{ |f| !f.reference.blank? }
   validates :compliance_id, presence:true
   validates :category_id, presence:true
   validates :technology_id, presence:true
@@ -60,7 +60,7 @@ class Risk < ActiveRecord::Base
   accepts_nested_attributes_for :attachment
 
   # callbacks
-  # after_create :notify_risk_users
+  after_create :notify_risk_users
 
 	def self.risk_rating(company_id)
 		high_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'HIGH',company_id).first
