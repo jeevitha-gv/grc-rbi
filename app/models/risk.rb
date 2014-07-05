@@ -31,12 +31,12 @@ class Risk < ActiveRecord::Base
   validates :notes, length: { in: 0..250 }
   validates :reference, presence:true, length: { in: 0..250 }
   # validates :reference, uniqueness:true, :if => Proc.new{ |f| !f.reference.blank? }
-  validates :reference, :uniqueness => {:scope => :company_id}, :if => Proc.new{ |f| !f.reference.blank? }
-  validates :compliance_id, presence:true
-  validates :category_id, presence:true
-  validates :technology_id, presence:true
-  validates :owner, presence:true
-  validates :mitigator, presence:true
+  # validates :reference, :uniqueness => {:scope => :company_id}, :if => Proc.new{ |f| !f.reference.blank? }
+  # validates :compliance_id, presence:true
+  # validates :category_id, presence:true
+  # validates :technology_id, presence:true
+  # validates :owner, presence:true
+  # validates :mitigator, presence:true
   # validates :reviewer, presence:true
   validates :submitted_by, presence:true
   validate :check_for_owner_and_mitigator

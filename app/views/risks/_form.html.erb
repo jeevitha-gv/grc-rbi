@@ -280,12 +280,12 @@
     </div>
   </div>
 </div>
-
-<%= render 'classic_scoring', :f => f, :risk => risk %>
-<%= render 'owasp_scoring', :f => f, :risk => risk %>
-<%= render 'dread_scoring', :f => f, :risk => risk %>
-<%= render 'cvss_scoring', :f => f, :risk => risk %>
-<%= render 'custom_scoring', :f => f, :risk => risk %>
+<%@mitigation_page=false%>
+<%= render 'classic_scoring', :f => f, :risk => risk, mitigation_page: @mitigation_page %>
+<%= render 'owasp_scoring', :f => f, :risk => risk, mitigation_page: @mitigation_page %>
+<%= render 'dread_scoring', :f => f, :risk => risk, mitigation_page: @mitigation_page %>
+<%= render 'cvss_scoring', :f => f, :risk => risk, mitigation_page: @mitigation_page %>
+<%= render 'custom_scoring', :f => f, :risk => risk, mitigation_page: @mitigation_page %>
 <div class="clearfix border-divider"> </div>
 <div class="row">
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
