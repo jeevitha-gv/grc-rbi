@@ -680,7 +680,7 @@ html, body {
     max-width: 150px;
     min-width: 75px;
     overflow: hidden;
-    padding: 0 0 0 5px;
+    padding: 0 0 0 0;
 }
 .user_login > img {
     float: left;
@@ -1191,8 +1191,8 @@ a.plus-background{
 .auditees-users select{
   width: 88%;
   float: left;
-
 }
+
 /*for test*/
 
 .file-icon {
@@ -1831,6 +1831,27 @@ li.db_setting_main{height:425px;}
   overflow-x:hidden;
 }
 
+.sub-wrap-bg .form-horizontal .control-label{
+	text-align:left;
+}
+.form-horizontal .control-label{
+	text-align: left;
+}
+.sub-wrap-bg .btn-group{
+	float:left!important;
+	margin: 0 5px 15px 0;
+}
+.multiselect{
+	width:240px!important;
+	text-align:right;
+}
+.open > .dropdown-menu {
+    display: block;
+    width: 240px;
+}
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{
+	background:#FFF;
+
 .login-box .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
     float: left;
     margin-left: 22px;
@@ -1851,4 +1872,15 @@ li.db_setting_main{height:425px;}
 }
 .control-select{
    padding: 0 10px 0 4px;
+}
+.risk-rem{
+   display: inline-block;
+    float: left;
+    margin: 0 0 20px;
+    padding: 0 0 0 20px!important;
+}
+.risl-blue-link{
+  float: left;
+  display: inline-block;;
+
 }

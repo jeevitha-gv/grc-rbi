@@ -17,10 +17,19 @@ $(document).ready(function() {
 	// Kendo Panel
 	$("#panelbar").kendoPanelBar();
 
+	if ( stage.length > 0 )
+	{
+		var	risks_url = "/risks?stage="+stage;
+	}
+	else
+	{
+		var risks_url = "/risks"
+	}
+
 	dataSource = new kendo.data.DataSource({
 		transport: {
 			read: {
-				url: '/risks',
+				url: risks_url,
 				dataType: 'json',
 				type: 'get'
 			},
@@ -48,7 +57,7 @@ $(document).ready(function() {
 	$("#grid").kendoGrid({
 		dataSource: dataSource,
 		dataBound: function(){
-			risk_gridTitle()
+			riskGridTitle()
 		},
 		height: 'auto',
 		scrollable: true,
@@ -64,7 +73,31 @@ $(document).ready(function() {
 			{ field: "risk", title: "Risk", width: "8%" },
 			{ field: "owner", title: "Owner", width: "20%" },
 			{ field: "days_open", title: "Days Open", width: "15%" },
-			{ command: [{text: "file"},{text: "list"},{text: "miti"},{text: "edit", click: edit_file}], title: "Action", width: "170px" }
+			{ command: [{text: "list", click: mitigate_file},{text: "miti", click: review_file},{text: "edit", click: edit_file}], title: "Action", width: "170px" }
+		],
+	//~ editable: "popup"
+	});
+
+	$("#gridforstage").kendoGrid({
+		dataSource: dataSource,
+		dataBound: function(){
+			riskGridTitle()
+		},
+		height: 'auto',
+		scrollable: true,
+		sortable: true,
+		filterable: true,
+		pageable: {
+		input: true,
+		numeric: false
+		},
+		columns: [
+			{ field: "subject", title: "Subject", width: "40%" },
+			{ field: "status", title: "Status", width: "30%" },
+			{ field: "risk", title: "Risk", width: "8%" },
+			{ field: "owner", title: "Owner", width: "20%" },
+			{ field: "days_open", title: "Days Open", width: "15%" },
+			{ command: [{text: "list", click: mitigate_file},{text: "miti", click: review_file},{text: "edit", click: edit_file}], title: "Action", width: "170px" }
 		],
 	//~ editable: "popup"
 	});
@@ -84,6 +117,18 @@ $(document).ready(function() {
 		window.location.href = "/risks/"+ dataItem.id + "/edit"
 	}
 
+	function mitigate_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/risks/"+ dataItem.id + "/mitigations/new"
+	}
+
+	function review_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/risks/"+ dataItem.id + "/mgmt_reviews/new"
+	}
+
 	$('.editable-input').on('click', function(){
 		$(this).select()
 			}).on('blur', function(){
@@ -100,7 +145,7 @@ $(document).ready(function() {
 			$(this).html("More").parent().siblings(".more-info").hide();
 	});
 
-	function risk_gridTitle()
+	function riskGridTitle()
 	{
 		$('.k-grid-file').attr('title','File');
 		$('.k-grid-list').attr('title','Mitigate');

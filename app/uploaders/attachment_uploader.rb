@@ -37,7 +37,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   end
 
   version :small do
-    process :resize_to_fill => [24, 24], :if => :icon_only?
+    process :resize_to_fill => [38, 38], :if => :icon_only?
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

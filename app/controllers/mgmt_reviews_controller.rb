@@ -1,18 +1,18 @@
 class MgmtReviewsController < ApplicationController
 	layout "risk_layout"
 	before_filter :current_risk
-	# before_filter :authorize_mgmt_review, :only => [:new, :create, :edit, :update]
+	before_filter :authorize_mgmt_review, :only => [:new, :create, :edit, :update]
+	before_filter :reviews_and_next_steps, only: [:new, :create, :edit, :update]
 
 	def new
 		@mgmt_review = @risk.mgmt_review.present? ? @risk.mgmt_review : @risk.build_mgmt_review
-		@review = Review.all
-		@next_step = NextStep.all
+
 	end
 
 	def create
 		@mgmt_review = @risk.build_mgmt_review(mgmt_review_params)
 		@mgmt_review.reviewer = current_user
-		risk_status = params[:mgmt_review][:review_id] == 1 ? RiskStatus.where("name= ?", "Reviewed").first.id : RiskStatus.where("name= ?", "Rejected Risk").first.id
+		risk_status = params[:mgmt_review][:review_id] == 1 ? RiskStatus.where("name= ?", "Reviewed").first.id : RiskStatus.where("name= ?", "Rejected").first.id
 		if @mgmt_review.save
 			@risk.update(risk_status_id: risk_status )
 			flash[:notice] = "Risk is reviewed successfully"
@@ -29,7 +29,7 @@ class MgmtReviewsController < ApplicationController
 
 	def update
 		@mgmt_review = @risk.mgmt_review
-		risk_status = params[:mgmt_review][:review_id] == 1 ? RiskStatus.where("name= ?", "Reviewed").first.id : RiskStatus.where("name= ?", "Rejected Risk").first.id
+		risk_status = params[:mgmt_review][:review_id] == 1 ? RiskStatus.where("name= ?", "Reviewed").first.id : RiskStatus.where("name= ?", "Rejected").first.id
 		if @mgmt_review.update(mgmt_review_params)
 			@risk.update(risk_status_id: risk_status )
 			flash[:notice] = "Risk is reviewed Updated"
@@ -52,4 +52,9 @@ class MgmtReviewsController < ApplicationController
 	      redirect_to risks_path
 	    end
 	  end
+
+	  def reviews_and_next_steps
+	  	@review = Review.all
+			@next_step = NextStep.all
+		end
 end

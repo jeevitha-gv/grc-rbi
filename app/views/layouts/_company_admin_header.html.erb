@@ -28,12 +28,12 @@
         </div>
 				<input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">
         <div class="user_login">
-          <div class="roll-audit">Role: <%= current_user.role_title %></div>
           <% unless current_user.attachment.blank? || current_user.attachment.attachment_file.blank? %>
             <%= image_tag(current_user.attachment.attachment_file.small) %>
           <% else %>
             <img src="/assets/outer/user-icon.jpg">
           <% end %>
+          <div class="roll-audit"><%= current_user.role_title.humanize.capitalize %></div>
           <div class="user-name"><%= current_user.user_name unless current_user.user_name.blank? %></div>
           <span id="login_drop"><img src="/assets/outer/user-down-arrow.png"></span>
 
@@ -82,7 +82,7 @@
           <li><a href="/admin/plans" class="<%= request.fullpath.include?("/admin/plans") == true ? 'active' : '' %>">
           Plan</a></li>
       </ul>
-    <div class="container" id="header_links">      
+    <div class="container" id="header_links">
     </div>
   </div>
 </div>
@@ -109,15 +109,15 @@
     });
 	if (module == 'overview')
 		{
-			$("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/overview_links'))%>");	
+			$("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/overview_links'))%>");
 		}
 		else if(module == 'risk')
 		{
-			$("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/risk_links'))%>");	
+			$("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/risk_links'))%>");
 		}
 		else if(module == 'audit')
 		{
-			$("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/audit_links'))%>");	
+			$("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/audit_links'))%>");
 		}
   });
 </script>

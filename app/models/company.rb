@@ -64,12 +64,25 @@ class Company < ActiveRecord::Base
     self.audits.where("end_date >= ?", Date.today) - SkippedAuditReminder.audits
   end
 
+  def risks_stage(params)
+    risks = []
+    case params[:stage]
+    when 'mitigate'
+      self.risks.select{ |x| risks << x if(x.mitigation.blank? && ( x.risk_status_id == 2)) }
+      risks
+    when 'review'
+      self.risks.select{ |x| risks << x if(x.mitigation.present? ) }
+      risks
+    end
+  end
+
   private
   def company_role_create
     company = Company.last
     Role.create(title: "auditor", company_id: company.id)
     Role.create(title: "auditee", company_id: company.id)
     Role.create(title: "CRO", company_id: company.id)
+    Role.create(title: "risk-owner", company_id: company.id)
     Role.create(title: "mitigator", company_id: company.id)
     Role.create(title: "reviewer", company_id: company.id)
   end

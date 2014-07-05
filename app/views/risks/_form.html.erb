@@ -292,9 +292,10 @@
     <%= f.fields_for :attachment, (@risk.attachment.present? ? @risk.attachment : @risk.build_attachment) do |attach| %>
       <%= attach.label :attachment, t('risk.attachment'), :class => "attach-icon fleft blue_link" %><br />
       <%= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
+      <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
       <br />
-      <div id="attach_<%= @risk.attachment.id%>"><%= link_to (File.basename(@risk.attachment.attachment_file_url)).truncate(20), download_risk_document_risks_path(id: @risk.attachment.id), class: "blue_link" if @risk.attachment.attachment_file_url %>
-        <div class="addissue"> <%= link_to "remove", remove_attachment_risks_path(id: @risk.attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon" if @risk.attachment.attachment_file.present? %>
+      <div id="attach_<%= @risk.attachment.id%>"><%= link_to (File.basename(@risk.attachment.attachment_file_url)).truncate(20), download_risk_document_risks_path(id: @risk.attachment.id), class: "blue_link risl-blue-link" if @risk.attachment.attachment_file_url %>
+        <div class="addissue risk-rem"> <%= link_to "Remove", remove_attachment_risks_path(id: @risk.attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon" if @risk.attachment.attachment_file.present? %>
           </div>
     <% end %>
     <div class="clearfix" id="selected_files"></div>
