@@ -20,8 +20,11 @@
   							</div>
 						  </div>
 						</div>
-            <div id="grid">
-            </div>
+            <% if params[:stage].nil? %>
+              <div id="grid"></div>
+            <% else %>
+              <div id="gridforstage"></div>
+            <% end %>
           </div>
         </div>
       </div>

@@ -820,6 +820,7 @@ RiskStatus.delete_all
     RiskStatus.create(:name => "Mitigated")
     RiskStatus.create(:name => "Measured")
     RiskStatus.create(:name => "Reviewed")
+    RiskStatus.create(:name => "Rejected")
 
 ClassicScoringMetric.delete_all
 
