@@ -1582,7 +1582,7 @@ html,body{
   left:0;
   bottom:0;
   width:100%;
-  position:absolute;
+  position:absolute!important;
 }
 .box-wrapper{
   margin:0 0 150px 0;

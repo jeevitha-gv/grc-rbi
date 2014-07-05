@@ -59,16 +59,16 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <li><a  href="/risks/new" class="<%= request.fullpath.include?("risks/new") == true ? 'active' : '' %>">
+        <li><a  href="/risks/new" class="<%= (request.fullpath.include?("risks/new") && action_name == "new") == true ? 'active' : '' %>">
           <div class="file-icon"></div>
           File</a></li>
         <li><a  href="/risks" class="<%= request.fullpath.include?("risks") == true ? 'active' : '' %>">
-          <div class="listing-icon "></div>
+          <div class="listing-icon"></div>
           Listings</a></li>
-        <li><a href="/risks?stage=mitigate">
+        <li><a href="/risks?stage=mitigate" class="<%= request.fullpath.include?("mitigate") == true ? 'active' : '' %>">
           <div class="lmitigate-icon"></div>
           Mitigate</a></li>
-        <li><a  href="/risks?stage=review" >
+        <li><a  href="/risks?stage=review" class="<%= request.fullpath.include?("review") == true ? 'active' : '' %>">
           <div class="review-icon"></div>
           Review</a></li>
         <li><a href="/user/edit" >
