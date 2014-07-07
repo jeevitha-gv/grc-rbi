@@ -49,11 +49,11 @@
 	float: right;
 	font-family: 'Open Sans';
 	font-size: 12px;
-	padding: 6px 10px 0px;
+	padding: 9px 10px 0px;
 	background-color: #dddee0;
 	position: relative;
 	z-index: 999999;
-	min-height: 49px;
+	min-height: 54px;
 	min-width: 200px;
 }
 .account_header_dropdown {

@@ -138,21 +138,6 @@ function risk_scoring_attirbute(scoringType)
   }
 }
 
-function check_risk_scoring()
-{
-  var riskScoring = $('#risk_scoring option:selected').val();
-  if(riskScoring == '')
-  {
-    $('.risk_scoring_type').show();
-    return false;
-  }
-  else
-  {
-    $('.risk_scoring_type').hide();
-    return true
-  }
-}
-
 function display_selected_files(e)
 {
   $(e).parent().find("#selected_files").html("<h5>Selected: " + $(e).val() + "</h5>");
