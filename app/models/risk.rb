@@ -63,9 +63,9 @@ class Risk < ActiveRecord::Base
   after_create :notify_risk_users
 
 	def self.risk_rating(company_id)
-		high_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'HIGH',company_id).first
-		medium_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'MEDIUM',company_id).first
-		low_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'LOW',company_id).first
+		high_risk = RiskReviewLevel.review_level('HIGH',company_id).first
+		medium_risk = RiskReviewLevel.review_level('MEDIUM',company_id).first
+		low_risk = RiskReviewLevel.review_level('LOW',company_id).first
 		return high_risk, medium_risk, low_risk
 	end
 
