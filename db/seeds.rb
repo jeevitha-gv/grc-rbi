@@ -909,7 +909,10 @@ CvssMetricScoring.delete_all
 
 Subscription.delete_all
 
-    Subscription.create(:name => "Free", :description => "free",:section_ids=> [1,2], :amount => 0.00, :valid_log =>23,:valid_period => 1)
+    # Subscription.create(:name => "Free", :description => "free",:section_ids=> [1,2], :amount => 0.00, :valid_log =>23,:valid_period => 1)
+    Subscription.create(name: "AuditRisk", description: "Cancel", section_ids: [1,2], amount: 0.00, valid_log: 23, valid_period: 1, user_count: 10, file_size: 40)
+    Subscription.create(name: "Audit", description: "Audit", section_ids: [1], amount: 5.00, valid_log: 23, valid_period: 1, user_count: 25, file_size: 60)
+    Subscription.create(name: "Risk", description: "Risk", section_ids: [2], amount: 10.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 100)
 
 RiskModel.delete_all
 

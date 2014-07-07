@@ -18,12 +18,16 @@
             <li><a href="/user/edit" class="<%= add_admin_active_class(params) == 'Settings' ? 'active' : '' %>">
               <div class="overview-icon"></div>
               Over view</a></li>
-            <li><a href="/audits" class="<%= add_admin_active_class(params) == 'Audit' ? 'active' : '' %>">
-              <div class="audit-icon"></div>
-              Audit</a></li>
-            <li><a href="/risks" class="active">
-              <div class="risk-icon"></div>
-              Risk</a></li>
+						<% if company_modules_check('Audit') %>
+							<li><a href="/audits" class="<%= add_admin_active_class(params) == 'Audit' ? 'active' : '' %>">
+								<div class="audit-icon"></div>
+								Audit</a></li>
+						<% end %>
+						<% if company_modules_check('Risk') %>
+							<li><a href="/risks" class="<%= add_active_class(params) == 'Risk' ? 'active' : '' %>">
+								<div class="risk-icon"></div>
+								Risk</a></li>
+						<% end %>
           </ul>
         </div>
 				<input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">
