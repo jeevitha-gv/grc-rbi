@@ -389,6 +389,13 @@ en:
             name:
               taken: "This technology has already been added"
               blank: "Technology cannot be blank"
+        cpp_measures:
+          attributes:
+            name:
+              taken: "This Measure has been already used"
+              blank: "Measure cannot be blank"
+              invalid: "Should contain alphabets"
+              too_long: "Measure should be minimum of 250 characters"
 
 
 
