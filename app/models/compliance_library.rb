@@ -6,12 +6,15 @@ class ComplianceLibrary < ActiveRecord::Base
  has_many :artifacts
  has_many :audit_compliances
  belongs_to :parent , :class_name => "ComplianceLibrary", foreign_key: "parent_id"
+ has_many :risks
 
  #Validations
  validates :compliance_id, presence: true
  validates :name, presence: true
 
  scope :by_name, lambda { |name| where("lower(name) = ?", name)}
+
+ scope :for_id_and_leaf, lambda { |id| where("compliance_id = ? AND is_leaf is true", id) }
 
  before_destroy :child_compliance
  before_update :child_compliance_update

@@ -47,6 +47,10 @@ class BaseController < ActionController::Base
     authorize!(:read,  @audit)
   end
 
+  def current_risk
+    @risk = Risk.find(params[:risk_id])
+  end
+
   def current_audit_with_id
     @audit = Audit.find(params[:id])
     authorize!(:read,  @audit)

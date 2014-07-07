@@ -1,13 +1,13 @@
 <%= javascript_include_tag "/assets/views/users.js" %>
-<%if @user.errors[:"attachment.attachment_file"].present?%>
-		<div class="error_message">Error: <%=  @user.errors[:"attachment.attachment_file"][0]%></div>
-<% end %>
 <div class="clearfix"></div>
 <div class="content">
   <div class="container">
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="page_heading">User Profile</div>
+				<%if @user.errors[:"attachment.attachment_file"].present?%>
+		<div class="error_message">Error: <%=  @user.errors[:"attachment.attachment_file"][0]%></div>
+<% end %>
       </div>
     </div>
     <div class="row user_main">
@@ -23,6 +23,7 @@
                 </div>
               </div>
               <%= attach.file_field :attachment_file, :accept=>"image/*", :onChange=>"addFiles(this)", :class=>"image-select", :style=>"display:none;"%>
+							<%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
             </div>
           <% end %>
          </div>
@@ -39,7 +40,7 @@
         <div class="form-group clearfix">
             <label class="col-sm-4"> <%= f.label :email, t('profile.role') %></label>
             <div class="col-sm-7">
-             <%= @user.role.title %>
+             <%= @user.role.title.humanize.capitalize %>
             </div>
         </div>
 				<div class="form-group clearfix">

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   post 'admin/privileges/modal_previlege'
@@ -20,6 +21,18 @@ Rails.application.routes.draw do
      end
    end
 
+
+  resources :risks do
+    collection do
+      get 'department_teams_users'
+      post 'risk_imports'
+      get 'risk_export'
+      get 'download_risk_document'
+      delete 'remove_attachment'
+    end
+    resources :mgmt_reviews
+    resources :mitigations
+  end
 
   resources :audits do
     collection do
@@ -101,6 +114,13 @@ Rails.application.routes.draw do
   end
 
   resources :compliance_libraries
+  resources :audit_compliances do
+    post 'submit', on: :collection
+  end 
+
+  resources :plans
+
+  resources :transactions, only: [:new, :create]
 
   get 'welcome', to: 'companies#welcome', :as => :welcome
 

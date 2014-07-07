@@ -14,4 +14,6 @@ class Compliance < ActiveRecord::Base
     #Association
     has_many :audits
     has_many :compliance_library
+    has_many :risks
+    has_many :cpp_measures
 end

@@ -31,6 +31,15 @@ class User < ActiveRecord::Base
 
   belongs_to :user_manager, class_name: 'User', foreign_key: 'manager'
 
+  # Associations with Risk Tables
+  has_many :risk_owner, class_name: 'Risk', foreign_key: 'owner'
+  has_many :risk_mitigator, class_name: 'Risk', foreign_key: 'mitigator'
+  has_many :risk_reviewer, class_name: 'Risk', foreign_key: 'reviewer'
+  has_many :risk_submitor, class_name: 'Risk', foreign_key: 'submitted_by'
+  has_many :mitigation_submitor, class_name: 'Mitigation', foreign_key: 'submitted_by'
+  has_many :mgmt_reviews
+  has_many :closures
+
 
 # attribute to login with username or email
   attr_accessor :login, :domain
@@ -49,6 +58,9 @@ class User < ActiveRecord::Base
    validates :password, confirmation: true
    validates :password, length: {in: 6..20}, :unless => lambda{ |a| a.password.blank? }
   validate :user_name_without_spaces
+  validate :company_user_count, :if => Proc.new{|f| f.role_title != 'company_admin' }
+
+
 
   delegate :title, to: :dealer, prefix: true
   delegate :title, to: :role, prefix: true, allow_nil: true
@@ -85,6 +97,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  def accessible_risks
+    if(self.role.title == "company_admin")
+      Risk.where(company_id: self.company_id)
+    else
+      (self.risk_owner + self.risk_submitor + self.risk_mitigator + self.risk_reviewer).uniq
+    end
+  end
 
   def audits_stage(params)
     audits = []
@@ -101,6 +120,18 @@ class User < ActiveRecord::Base
     when 'published'
       self.accessible_audits.select{ |x| audits << x if(x.response_status && !x.observation_status) }
       audits
+    end
+  end
+
+  def risks_stage(params)
+    risks = []
+    case params[:stage]
+    when 'mitigate'
+      self.accessible_risks.select{ |x| risks << x if(x.mitigation.blank? && ( x.risk_status_name == "Initiated")) }
+      risks
+    when 'review'
+      self.accessible_risks.select{ |x| risks << x if(x.mitigation.present? ) }
+      risks
     end
   end
 
@@ -134,5 +165,10 @@ class User < ActiveRecord::Base
     def user_name_without_spaces
       username_match = self.user_name.match(/[\s+\d+]/) ? true : false
       errors.add(:user_name) if username_match == true
+    end
+    
+    def company_user_count
+      company = self.company
+      self.errors[:user_count_exceeds] = ",you can't create new user"  if company.users.count >= company.plan.subscription_user_count
     end
 end

@@ -88,6 +88,52 @@ class ApplicationController < BaseController
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
 
+  def authenticate_subscription
+    if !Subscription.where("name = ?",params[:subscription]).present? && controller_name.eql?("companies") && action_name.eql?("new")
+        redirect_to new_plan_path
+    end
+  end
+
+  def calculate_plan_expiration(log,created_at)
+    start = created_at.to_date
+    expire = start + log.months
+    return expire
+  end
+
+  def company_module_access_check
+    name = request.fullpath.split('/')[0]
+    if name == ""
+      module_id = (params[:controller] == 'audits') ?  Section.find_by_name('Audit').id :  ((params[:controller] == 'risks') ?  Section.find_by_name('Risk').id : nil)
+    else
+      if name == 'risks'
+        module_id = Section.find_by_name('Risk').id
+      elsif name == 'audits'
+        module_id = Section.find_by_name('Audit').id
+      else
+        module_id = (params[:controller] == 'dashboard') ?  Section.find_by_name('Audit').id : nil
+      end
+    end
+    if !module_id.nil? && !current_company.plan.subscription_section_ids.include?("#{module_id}")
+      redirect_to "/user/edit"
+    end
+  end
+
+  def company_admin_module_check
+    name = request.fullpath.split('/')[2]
+    risk_actions = ["controls","procedures","processes","risk_review_levels","projects"]
+    audit_actions = ["operational_areas","artifacts","reminders"]
+    if risk_actions.include?("#{request.fullpath.split('/')[2]}")
+      module_id = Section.find_by_name('Risk').id
+    elsif audit_actions.include?("#{request.fullpath.split('/')[2]}")
+      module_id = Section.find_by_name('Audit').id
+    else
+      module_id = nil
+    end
+    if !module_id.nil? && !current_company.plan.subscription_section_ids.include?("#{module_id}")
+      redirect_to "/admin/settings/#{current_company.id}/edit"
+    end
+  end
+
   private
 
   # Render error from rescue

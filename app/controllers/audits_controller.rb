@@ -1,8 +1,8 @@
 class AuditsController < ApplicationController
+  before_filter :check_company_disabled, :company_module_access_check
   before_filter :current_audit_with_id, only: [:show, :asc_calculation, :audit_dashboard, :artifacts_download]
   load_and_authorize_resource :except => [:department_teams_users, :audit_with_status, :audit_all, :index, :asc_calculation]
   before_filter :authorize_audit, :only => [:edit, :update]
-  before_filter :check_company_disabled
   before_filter :audit_auditor_users, :only => [:new, :create, :edit, :update]
 
   # Intialize new audit
@@ -147,7 +147,7 @@ class AuditsController < ApplicationController
   protected
     def audit_initializers(location_id=nil, department_id=nil, team_id=nil)
       @departments = Department.for_location(location_id) if location_id
-      @teams = Team.for_department_and_company(department_id, current_company.id) if department_id
+      @teams = Team.for_department_and_company(department_id, current_company.id, 1) if department_id
       @team = Team.for_id(team_id).last if team_id
     end
 

@@ -1,5 +1,7 @@
 class ArtifactAnswersController < ApplicationController
 
+  before_filter :company_module_access_check
+  
   #List attachements for particular artifacts
   def list_attachments
     @artifact_answer = ArtifactAnswer.find(params[:id])
@@ -12,7 +14,8 @@ class ArtifactAnswersController < ApplicationController
     @artifact_answer = ArtifactAnswer.find(params[:id])
     if params[:file]
       params[:file].each do |attachment|
-        @artifact_answer.attachments.create(attachment_file: attachment)
+        @artifact_answer.attachments.create(attachment_file: attachment, :company_id => current_company.id)
+        @attachment_error = @artifact_answer.attachments.last.errors[:"file_size_exceeds"][0] if @artifact_answer.attachments.last.errors.present?
       end
     end
     @attachments = @artifact_answer.attachments

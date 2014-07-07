@@ -36,6 +36,8 @@ class CreateChecklistRecommendations < ActiveRecord::Migration
     add_index :checklist_recommendations, :response_status_id
     add_index :checklist_recommendations, :dependent_recommendation
     add_index :checklist_recommendations, :blocking_recommendation
+
     add_index :checklist_recommendations, :checklist_type
+
   end
 end
