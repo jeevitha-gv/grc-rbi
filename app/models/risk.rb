@@ -110,6 +110,14 @@ class Risk < ActiveRecord::Base
     return risk
   end
 
+  def update_risk_scoring(risk)
+    scoring_type = risk.risk_scoring.scoring_type
+    risk.risk_scoring.dread_scoring_method if scoring_type == "DreadScoring"
+    risk.risk_scoring.owasp_scoring_method if scoring_type == "OwaspScoring"
+    risk.risk_scoring.classic_scoring_method(risk.risk_model_name) if scoring_type == "ClassicScoring"
+    risk.risk_scoring.cvss_scoring_method if scoring_type == "CvssScoring"
+  end
+
   protected
     def self.risk_initializers(location_name, department_name, team_name, company)
       @location = Location.for_name_by_company(location_name, company.id).first

@@ -1,4 +1,4 @@
-class CompaniesController < ApplicationController  
+class CompaniesController < ApplicationController
   skip_before_filter :authenticate_user!, only: [ :new, :create,:welcome]
   before_filter :authenticate_admin_user, :only => [:settings]
   prepend_before_filter :skip_if_authenticated, only: [ :new, :create ]
@@ -14,7 +14,6 @@ class CompaniesController < ApplicationController
   # Initialize the new company
   def new
     @company = Company.new
-    @company.build_attachment
     @company.users.build
   end
 
@@ -25,7 +24,7 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)
     if @company.save
       subscribe = Subscription.where("name = ?",subscription_name).first
-      if subscribe.amount.eql?(0.0)         
+      if subscribe.amount.eql?(0.0)
          plan = Plan.new(subscription_id: subscribe.id ,company_id: @company.id,starts: @company.created_at ,expires: calculate_plan_expiration(subscribe.valid_log,@company.created_at))
          plan.save!
          redirect_to welcome_path
@@ -34,7 +33,7 @@ class CompaniesController < ApplicationController
       end
     else
       @subscription=params
-      render 'new' 
+      render 'new'
     end
   end
 

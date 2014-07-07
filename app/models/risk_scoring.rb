@@ -5,7 +5,8 @@ class RiskScoring < ActiveRecord::Base
   belongs_to :risk
 	belongs_to :scoring, :polymorphic => true
 
-  validates :custom_value, :presence => true, :inclusion => {:in => 1..10}, :if => Proc.new{ |f| f.scoring_type == 'Custom' }
+  validates :custom_value, :presence => true, :if => Proc.new{ |f| f.scoring_type == 'Custom' }
+  validates :custom_value, :inclusion => {:in => 1..10}, :if => Proc.new{ |f| f.scoring_type == 'Custom' }
 
   accepts_nested_attributes_for :scoring
 
