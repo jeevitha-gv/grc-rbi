@@ -50,7 +50,7 @@ $(document).ready(function() {
 				}
 			}
 		},
-		pageSize: 20
+		// pageSize: 20
 	});
 
 	// Kendo Grid
