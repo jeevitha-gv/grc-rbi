@@ -56,5 +56,10 @@ class MgmtReviewsController < ApplicationController
 	  def reviews_and_next_steps
 	  	@review = Review.all
 			@next_step = NextStep.all
+			if @risk.control_measure.present?
+				@processes = CppMeasure.where(id: @risk.control_measure.process_ids)
+				@controls = CppMeasure.where(id: @risk.control_measure.control_ids)
+				@procedures = CppMeasure.where(id: @risk.control_measure.procedure_ids)
+			end
 		end
 end

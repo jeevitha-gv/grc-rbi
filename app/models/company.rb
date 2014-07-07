@@ -33,6 +33,7 @@ class Company < ActiveRecord::Base
 
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users
+  accepts_nested_attributes_for :plan
 
   #validations
   validates :name, presence: true
