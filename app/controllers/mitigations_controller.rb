@@ -2,7 +2,7 @@ class MitigationsController < ApplicationController
   layout "risk_layout"
   before_filter :current_risk#, :company_module_access_check
 
-  # before_filter :authorize_mitigation, :only => [:new, :create, :edit, :update]
+  before_filter :authorize_mitigation, :only => [:new, :create, :edit, :update]
 
   def index
   end
