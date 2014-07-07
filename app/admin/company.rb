@@ -52,13 +52,16 @@ ActiveAdmin.register Company do
       f.input :timezone
       f.input :country
       f.input :contact_no
-      f.input :subscriptions,:input_html => { :disabled => true }
       f.input :is_disabled      
+      f.inputs "Plan", for: [:plan, f.object.plan] do |s|
+        s.input :expires, :as => :datepicker
+        s.input :subscription_id, as: :select, :collection => Subscription.all, :prompt => "-Select Subscription-"
+      end
     end
     f.actions
   end
 
-  permit_params :name, :primary_email, :secondary_email, :domain, :address1, :address2, :timezone, :country_id, :contact_no, :is_disabled
+  permit_params :name, :primary_email, :secondary_email, :domain, :address1, :address2, :timezone, :country_id, :contact_no, :is_disabled, subscription_ids: [], plan_attributes: [:id,:subscription_id, :company_id, :starts, :expires]
   #
   # or
   #

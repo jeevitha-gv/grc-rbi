@@ -102,15 +102,19 @@ class ApplicationController < BaseController
 
   def company_module_access_check
     name = request.fullpath.split('/')[0]
-    if name == 'risks'
-      module_id = Section.find_by_name('Risk').id
-    elsif name == 'audits'
-      module_id = Section.find_by_name('Audit').id
+    if name == ""
+      module_id = (params[:controller] == 'audits') ?  Section.find_by_name('Audit').id :  ((params[:controller] == 'risks') ?  Section.find_by_name('Risk').id : nil)
     else
-     module_id = (params[:controller] == 'dashboard') ?  Section.find_by_name('Audit').id : nil
+      if name == 'risks'
+        module_id = Section.find_by_name('Risk').id
+      elsif name == 'audits'
+        module_id = Section.find_by_name('Audit').id
+      else
+        module_id = (params[:controller] == 'dashboard') ?  Section.find_by_name('Audit').id : nil
+      end
     end
     if !module_id.nil? && !current_company.plan.subscription_section_ids.include?("#{module_id}")
-      redirect_to "/"
+      redirect_to "/user/edit"
     end
   end
 
@@ -126,7 +130,7 @@ class ApplicationController < BaseController
       module_id = nil
     end
     if !module_id.nil? && !current_company.plan.subscription_section_ids.include?("#{module_id}")
-      redirect_to "/"
+      redirect_to "/admin/settings/#{current_company.id}/edit"
     end
   end
 
