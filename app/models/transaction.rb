@@ -6,7 +6,8 @@ class Transaction < ActiveRecord::Base
 
   def purchase
     amount = Subscription.where("id = ?",self.subscription_id).first.try(:amount)
-    response = GATEWAY.purchase(amount, credit_card, purchase_options)    
+    response = GATEWAY.purchase(amount, credit_card, purchase_options)
+    self.update_attributes(token: response.params["transaction_id"])    
     response.success?
   end
  
