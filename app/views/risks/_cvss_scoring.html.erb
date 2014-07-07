@@ -1,7 +1,7 @@
 <%= f.fields_for :risk_scoring, ((f.object.risk_scoring.present? && f.object.risk_scoring.scoring_type == "CvssScoring") ? f.object.risk_scoring : RiskScoring.new) do |scoring| %>
    <%if mitigation_page%>
     <%= scoring.hidden_field :scoring_type%>
-  <%end%>
+    <% end %>
   <%= scoring.fields_for :scoring, (scoring.object.scoring.present? ? scoring.object.scoring : CvssScoring.new) do |cvss_scoring| %>
     <div class="row cvss_scoring" style='<%= "display:block" if risk_scoring_type_cvss(risk) %>'>
       <div class="likelihood matrix-padding clearfix">

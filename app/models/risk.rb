@@ -26,12 +26,12 @@ class Risk < ActiveRecord::Base
 
   # Validations
   validates :subject, presence:true, length: { in: 0..250 }, :if => Proc.new{ |f| !f.subject.blank? }
-   validates :compliance_library_id, presence:true
+  # validates :compliance_library_id, presence:true
   validates :assessment, presence:true
   validates :notes, length: { in: 0..250 }
   validates :reference, presence:true, length: { in: 0..250 }
-   validates :reference, uniqueness:true, :if => Proc.new{ |f| !f.reference.blank? }
-   validates :reference, :uniqueness => {:scope => :company_id}, :if => Proc.new{ |f| !f.reference.blank? }
+  validates :reference, uniqueness:true, :if => Proc.new{ |f| !f.reference.blank? }
+  validates :reference, :uniqueness => {:scope => :company_id}, :if => Proc.new{ |f| !f.reference.blank? }
   validates :compliance_id, presence:true
   validates :category_id, presence:true
   validates :technology_id, presence:true
@@ -57,15 +57,15 @@ class Risk < ActiveRecord::Base
 	accepts_nested_attributes_for :mitigation
   accepts_nested_attributes_for :control_measure
   accepts_nested_attributes_for :risk_scoring
-  accepts_nested_attributes_for :attachment
+  accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }
 
   # callbacks
   after_create :notify_risk_users
 
 	def self.risk_rating(company_id)
-		high_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'HIGH',company_id).first
-		medium_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'MEDIUM',company_id).first
-		low_risk = RiskReviewLevel.where("name= ? AND company_id= ?",'LOW',company_id).first
+		high_risk = RiskReviewLevel.review_level('HIGH',company_id).first
+		medium_risk = RiskReviewLevel.review_level('MEDIUM',company_id).first
+		low_risk = RiskReviewLevel.review_level('LOW',company_id).first
 		return high_risk, medium_risk, low_risk
 	end
 

@@ -2,13 +2,13 @@
   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
     <div class="form-group">
       <label for="inputEmail3" class="col-sm-4 control-label mgt-label">Likelihood :</label>
-      <div class="col-sm-6 mgt-text"><%= r.risk_scoring.scoring.likelihood %></div>
+      <div class="col-sm-6 mgt-text"><%= r.risk_scoring.scoring.likelihood if r.risk_scoring.present? %></div>
     </div>
   </div>
   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
     <div class="form-group">
       <label for="inputEmail3" class="col-sm-4 control-label mgt-label">Impact :</label>
-      <div class="col-sm-6 mgt-text"><%= r.risk_scoring.scoring.impact %></div>
+      <div class="col-sm-6 mgt-text"><%= r.risk_scoring.scoring.impact  if r.risk_scoring.present?%></div>
     </div>
   </div>
 </div>

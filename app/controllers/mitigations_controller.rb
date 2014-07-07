@@ -1,8 +1,8 @@
 class MitigationsController < ApplicationController
   layout "risk_layout"
-  before_filter :current_risk, :company_module_access_check
+  before_filter :current_risk#, :company_module_access_check
 
-  # before_filter :authorize_mitigation, :only => [:new, :create, :edit, :update]
+  before_filter :authorize_mitigation, :only => [:new, :create, :edit, :update]
 
   def index
   end
@@ -13,10 +13,6 @@ class MitigationsController < ApplicationController
   else
    @risk.build_mitigation
    @risk.build_control_measure
-   @likelihood =  ClassicScoringMetric.where('metric_type= ?','Likelihood')
-   @impact = ClassicScoringMetric.where('metric_type= ?','Impact')
-   @velocity = ClassicScoringMetric.where('metric_type= ?','Velocity')
-   @vulnerability = ClassicScoringMetric.where('metric_type= ?','Vulnerability')
   end
   end
 
@@ -32,10 +28,6 @@ class MitigationsController < ApplicationController
 
   def edit
    redirect_to new_risk_mitigation_path(risk_id: @risk.id) unless @risk.mitigation.present?
-   @likelihood =  ClassicScoringMetric.where('metric_type= ?','Likelihood')
-   @impact = ClassicScoringMetric.where('metric_type= ?','Impact')
-   @velocity = ClassicScoringMetric.where('metric_type= ?','Velocity')
-   @vulnerability = ClassicScoringMetric.where('metric_type= ?','Vulnerability')
   end
 
   def update
@@ -56,7 +48,7 @@ private
 
 
   def authorize_mitigation
-    if (current_risk.mitigator != current_user.id)
+    if ((current_risk.mitigator != current_user.id) && (current_risk.submitted_by != current_user.id))
       flash[:alert] = "Access restricted"
       redirect_to risks_path
     end

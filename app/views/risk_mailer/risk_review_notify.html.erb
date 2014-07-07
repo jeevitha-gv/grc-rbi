@@ -29,11 +29,9 @@ Having trouble viewing this email? <a style="color:#74ac37; text-decoration:none
 <table style="margin:0 auto; width:625px;background-image:url(<%= HOST_URL %>/assets/outer/middle_content.png);background-repeat:repeat-y; "  cellpadding="0" cellspacing="0" border="0" >
 <tr><td style="color:#64972f; padding:10px 0 0 20px; font-size:20px;" >You next review date is on <%= @risk.review_date + @days %>"</td>
 </tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Harsha</td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Calculated Score : <%#= @risk.risk_scoring.calculated_risk %></td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >test</td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Start Date : today</td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >End Date : tomaorrw</td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Reference ID: <%= @risk.reference %></td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Risk Score: <%= @risk.risk_scoring.scoring_type == "Custom"? @risk.risk_scoring.custom_value : @risk.risk_scoring.calculated_risk %></td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Last Review Done on : <%= @risk.review_date %></td></tr>
 </table>
 
 <table style="margin:0 auto; width:625px; padding: 20px 0;background-image:url(<%= HOST_URL %>/assets/outer/middle_content.png);background-repeat:repeat-y;"  cellpadding="0" cellspacing="0" border="0">

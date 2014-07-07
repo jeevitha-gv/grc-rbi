@@ -328,9 +328,8 @@
       </div>
     </div>
         <div class="btn-group">
-          <a class="black_btn" href="">Back</a> <a class="grey_btn" href="javascript:goBack()"> Save </a>
-           <!--<a class="orange_btn" href="">Submit</a>-->
-         <%= f.submit "Submit" , :class => "orange_btn" %>
+          <a class="black_btn" href="javascript:goBack()">Back</a>
+         <%= f.submit "Submit" , :class => "orange_btn" if risk.mitigator == current_user.id %>
         </div>
       </div>
       </div>
