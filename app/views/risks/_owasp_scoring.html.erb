@@ -1,5 +1,11 @@
 <%= f.fields_for :risk_scoring, ((f.object.risk_scoring.present? && f.object.risk_scoring.scoring_type == "OwaspScoring") ? f.object.risk_scoring : RiskScoring.new) do |scoring| %>
+<<<<<<< HEAD
   <%#= scoring.hidden_field :scoring_type%>
+=======
+   <%if mitigation_page%>
+    <%= scoring.hidden_field :scoring_type%>
+   <%end%>
+>>>>>>> 702498775323f0896a386d33677cf4fb57dca017
   <%= scoring.fields_for :scoring,(scoring.object.scoring.present? ? scoring.object.scoring : OwaspScoring.new) do |owasp| %>
     <div class="row owasp_scoring" style='<%= "display:block" if risk_scoring_type_owasp(risk) %>'>
       <div class="likelihood matrix-padding clearfix">

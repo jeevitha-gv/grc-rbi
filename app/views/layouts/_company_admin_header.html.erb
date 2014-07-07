@@ -18,12 +18,16 @@
             <li><a href="/admin/settings" class="<%= add_admin_active_class(params) == 'Settings' ? 'active' : '' %>">
               <div class="overview-icon"></div>
               Over view</a></li>
-            <li><a href="/admin/operational_areas" class="<%= add_admin_active_class(params) == 'Audit' ? 'active' : '' %>">
-              <div class="audit-icon"></div>
-              Audit</a></li>
-            <li><a href="/admin/controls" class="<%= add_admin_active_class(params) == 'Risk' ? 'active' : '' %>">
-              <div class="risk-icon"></div>
-              Risk</a></li>
+						<% if company_modules_check('Audit') %>
+							<li><a href="/admin/operational_areas" class="<%= add_admin_active_class(params) == 'Audit' ? 'active' : '' %>">
+								<div class="audit-icon"></div>
+								Audit</a></li>
+						<% end %>
+						<% if company_modules_check('Risk') %>
+							<li><a href="/admin/controls" class="<%= add_admin_active_class(params) == 'Risk' ? 'active' : '' %>">
+								<div class="risk-icon"></div>
+								Risk</a></li>
+						<% end %>
           </ul>
         </div>
 				<input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">
@@ -58,30 +62,6 @@
   <!-- Fixed navbar -->
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
-      <ul class="subbar-nav nav navbar-nav">
-        <li><a href="/admin/clients" class="<%= request.fullpath.include?("admin/clients") == true ? 'active' : '' %>">
-          Clients</a></li>
-	  <li><a href="/admin/locations" class="<%= request.fullpath.include?("admin/locations") == true ? 'active' : '' %>">
-          Locations</a></li>
-        <li><a href="/admin/departments" class="<%= request.fullpath.include?("admin/departments") == true ? 'active' : '' %>">
-          Departments</a></li>
-        <li><a href="/admin/roles" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
-          Roles</a></li>
-        <li><a href="/admin/settings" class="<%= request.fullpath.include?("admin/settings") == true ? 'active' : '' %>">
-          Settings</a></li>
-        <li><a href="/admin/teams" class="<%= request.fullpath.include?("admin/teams") == true ? 'active' : '' %>">
-          Teams</a></li>
-        <li><a href="/admin/users" class="<%= request.fullpath.include?("admin/users") == true ? 'active' : '' %>">
-          Users</a></li>
-        <li><a href="/admin/operational_areas" class="<%= request.fullpath.include?("/admin/operational_areas") == true ? 'active' : '' %>">
-          Weightage</a></li>
-        <li><a href="/admin/artifacts" class="<%= request.fullpath.include?("/admin/artifacts") == true ? 'active' : '' %>">
-          Artifacts</a></li>
-        <li><a href="/admin/reminders" class="<%= request.fullpath.include?("/admin/reminders") == true ? 'active' : '' %>">
-          Reminder</a></li>
-          <li><a href="/admin/plans" class="<%= request.fullpath.include?("/admin/plans") == true ? 'active' : '' %>">
-          Plan</a></li>
-      </ul>
     <div class="container" id="header_links">
     </div>
   </div>
