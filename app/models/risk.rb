@@ -1,5 +1,11 @@
 class Risk < ActiveRecord::Base
 
+  #publicactivity gem
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { controller && controller.current_user }
+  tracked ip: ->(controller,model) {controller && controller.current_user.current_sign_in_ip}
+
+
 	# Associations
 	has_one :mgmt_review
 	has_many :closures
@@ -79,7 +85,7 @@ class Risk < ActiveRecord::Base
     end
   end
 
-  def self.import_from_file(file, company)
+  def self.import_from_file(file, company, user)
     spreadsheet = Risk.open_spreadsheet(file)
     start = 2
     (start..spreadsheet.last_row).each do |i|
@@ -93,7 +99,7 @@ class Risk < ActiveRecord::Base
       mitigator = User.for_users_by_company(row_data[10].to_s.strip.downcase, company.id).last
       reviewer = User.for_users_by_company(row_data[11].to_s.strip.downcase, company.id).last
 
-      risk = Risk.new(:subject => row_data[0], :reference => row_data[1], :location_id =>  @location.present? ? @location.id : nil, :department_id =>  @department.present? ? @department.id : nil, :team_id =>  @team.present? ? @team.id : nil, :category_id => (category.present? && (category.company_id == company.id || category.company_id.nil?)) ? category.id : nil, :technology_id =>  (technology.present? && (technology.company_id == company.id || technology.company_id.nil?)) ? technology.id : nil, :owner => owner.present? ? owner.id : nil, :mitigator => mitigator.present? ? mitigator.id : nil, :reviewer => reviewer.present? ? reviewer.id : nil, :assessment => row_data[12], :notes => row_data[13], :company_id => company.id, :risk_status_id => RiskStatus.where(:name=>"Draft").first.id)
+      risk = Risk.new(:subject => row_data[0], :reference => row_data[1], :location_id =>  @location.present? ? @location.id : nil, :department_id =>  @department.present? ? @department.id : nil, :team_id =>  @team.present? ? @team.id : nil, :category_id => (category.present? && (category.company_id == company.id || category.company_id.nil?)) ? category.id : nil, :technology_id =>  (technology.present? && (technology.company_id == company.id || technology.company_id.nil?)) ? technology.id : nil, :owner => owner.present? ? owner.id : nil, :mitigator => mitigator.present? ? mitigator.id : nil, :reviewer => reviewer.present? ? reviewer.id : nil, :assessment => row_data[12], :notes => row_data[13], :company_id => company.id, :submitted_by => user.id, :risk_status_id => RiskStatus.where(:name=>"Draft").first.id)
       risk.save(:validate => false)
     end
   end

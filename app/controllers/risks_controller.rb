@@ -47,7 +47,7 @@ class RisksController < ApplicationController
   def risk_imports
     if(params[:file].present?)
       begin
-        Risk.import_from_file(params[:file], current_company)
+        Risk.import_from_file(params[:file], current_company, current_user)
         flash[:notice] = MESSAGES["risk"]["csv_upload"]["success"]
         redirect_to risks_path
       rescue

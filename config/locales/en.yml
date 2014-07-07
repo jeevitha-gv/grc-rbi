@@ -379,6 +379,7 @@ en:
             custom_value:
               greater_than_or_equal_to: "Custom Value must be in the range of 0 to 10"
               less_than_or_equal_to: "Custom Value must be in the range of 0 to 10"
+              inclusion: "Custom Value must be in the range of 0 to 10"
         risk_category:
           attributes:
             name:
