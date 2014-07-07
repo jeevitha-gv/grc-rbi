@@ -47,7 +47,7 @@ class MgmtReviewsController < ApplicationController
 		end
 
 		def authorize_mgmt_review
-	    if (current_risk.reviewer != current_user.id)
+	    if ((current_risk.mitigator != current_user.id) && (current_risk.submitted_by != current_user.id))
 	      flash[:alert] = "Access restricted"
 	      redirect_to risks_path
 	    end
