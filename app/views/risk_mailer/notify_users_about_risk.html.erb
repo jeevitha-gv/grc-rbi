@@ -18,7 +18,7 @@ Having trouble viewing this email? <a style="color:#74ac37; text-decoration:none
 
   <td style="color:#fff; font-size:20px; font-weight:bold; width:20%;"><%= @risk.company.name %></td>
   <td style="width:21%;"></td>
-  <td style="background-image:url(<%= HOST_URL %>/assets/outer/header_right_bg.png)  ;background-repeat:no-repeat;font-size: 14px;padding: 10px 20px;text-align: right; width:13%; color:#64972f"> Note : <span>Notification</span></td></tr>
+  <td style="background-image:url(<%= HOST_URL %>/assets/outer/header_right_bg.png)  ;background-repeat:no-repeat;font-size: 14px;padding: 10px 20px;text-align: right; width:13%; color:#64972f">Notification</td></tr>
 </table>
 
 
@@ -28,23 +28,48 @@ Having trouble viewing this email? <a style="color:#74ac37; text-decoration:none
 
 <table style="margin:0 auto; width:625px;background-image:url(<%= HOST_URL %>/assets/outer/middle_content.png);background-repeat:repeat-y; "  cellpadding="0" cellspacing="0" border="0" >
 <tr><td style="color:#64972f; padding:10px 0 0 20px; font-size:20px;" >
+
   <% if @name == "risk" %>
-    You have been invited to risk "<%#= @risk.subject %>"</td>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" ><b>Below is the summary about your Risk.</b></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Subject: <%= @risk.subject %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Reference ID: <%= @risk.reference %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Risk Score: <%= @risk.risk_scoring.scoring_type == "Custom"? @risk.risk_scoring.custom_value : @risk.risk_scoring.calculated_risk %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Owner: <%= @risk.risk_owner.full_name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Mitigator: <%= @risk.risk_mitigator.full_name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Reviewer: <%= @risk.risk_reviewer.full_name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Submitted by: <%= @risk.submitor.full_name %></td></tr>
   <% elsif @name == "mitigation" %>
-    You have been invited to mitigation
-  <% elsif @name == "mgmt_review" %>DASASDFCSDF
-    You have been invited to mgmt_review
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" ><b>Below is the summary about your mitigation.</b></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Subject: <%= @risk.subject %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Reference ID: <%= @risk.reference %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Updated Risk Score: <%= @risk.risk_scoring.scoring_type == "Custom"? @risk.risk_scoring.custom_value : @risk.risk_scoring.calculated_risk %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Owner: <%= @risk.risk_owner.full_name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Mitigator: <%= @risk.risk_mitigator.full_name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Reviewer: <%= @risk.risk_reviewer.full_name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Risk Submitted by: <%= @risk.submitor.full_name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Planning Strategy: <%= @risk.mitigation.planning_strategy.name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Mitigation Effort: <%= @risk.mitigation.mitigation_effort.name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Current Solution: <%= @risk.mitigation.current_solution %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Security Requirements: <%= @risk.mitigation.security_requirements %></td></tr>
+  <% elsif @name == "mgmt_review" %>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" ><b>Below is the summary about your management review.</b></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Subject: <%= @risk.subject %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Reference ID: <%= @risk.reference %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Risk Score: <%= @risk.risk_scoring.scoring_type == "Custom"? @risk.risk_scoring.custom_value : @risk.risk_scoring.calculated_risk %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Owner: <%= @risk.risk_owner.full_name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Mitigator: <%= @risk.risk_mitigator.full_name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Reviewer: <%= @risk.risk_reviewer.full_name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Risk Submitted by: <%= @risk.submitor.full_name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Review Decision: <%= @risk.mgmt_review.review.name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Next Step: <%= @risk.mgmt_review.next_step.name %></td></tr>
   <% end %>
+
 </tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Below is the summary about your Risk.</td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Calculated Score : <%#= @risk.risk_scoring.calculated_risk %></td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >test</td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Start Date : today</td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >End Date : tomaorrw</td></tr>
+
 </table>
 
 <table style="margin:0 auto; width:625px; padding: 20px 0;background-image:url(<%= HOST_URL %>/assets/outer/middle_content.png);background-repeat:repeat-y;"  cellpadding="0" cellspacing="0" border="0">
-<tr><td><%= link_to 'View Audit', "" , :style => "background:#74ac37; color:#fff; border-radius:5px; padding:10px 30px; border:1px solid #6c9c39; text-decoration:none; margin: 0 0 0 15px; font-size:12px;" %></td></tr>
+<tr><td><%= link_to 'Go to App', "" , :style => "background:#74ac37; color:#fff; border-radius:5px; padding:10px 30px; border:1px solid #6c9c39; text-decoration:none; margin: 0 0 0 15px; font-size:12px;" %></td></tr>
 </table>
 
 
