@@ -99,10 +99,10 @@ class RisksController < ApplicationController
     end
 
     def risk_users
-      @mitigator_role = Role.for_title("mitigator").first
+      @mitigator_role = Role.for_title_by_company("mitigator", current_company.id).first
       @mitigator_users = current_company.users.where(role_id: @mitigator_role.id) if @mitigator_role
 
-      @reviewer_role = Role.for_title("reviewer").first
+      @reviewer_role = Role.for_title_by_company("reviewer", current_company.id).first
       @reviewer_users = current_company.users.where(role_id: @reviewer_role.id) if @reviewer_role
     end
 end
