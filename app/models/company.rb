@@ -29,7 +29,7 @@ class Company < ActiveRecord::Base
   has_one :plan
   has_many :subscriptions,through: :plan
   has_many :transactions
-  has_many :company_payments
+  #has_many :company_payments
 
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users
@@ -70,7 +70,7 @@ class Company < ActiveRecord::Base
     Role.create(title: "auditor", company_id: company.id)
     Role.create(title: "auditee", company_id: company.id)
     Role.create(title: "CRO", company_id: company.id)
-    Role.create(title: "risk-owner", company_id: company.id)
+    Role.create(title: "riskowner", company_id: company.id)
     Role.create(title: "mitigator", company_id: company.id)
     Role.create(title: "reviewer", company_id: company.id)
   end

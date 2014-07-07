@@ -19,7 +19,7 @@ def create
       notify_payment_success     
       redirect_to welcome_path
     else
-      SubscriptionNotifier.payment_failed(user_email,@transaction).deliver
+      SubscriptionNotifier.payment_failed(user_email,@transaction,subscribe).deliver
       render :action => "failure"
     end
   else
@@ -36,7 +36,7 @@ def notify_payment_success
      plan = Plan.new(subscription_id: subscribe.id ,company_id: @company.id,starts: @company.created_at ,expires: calculate_plan_expiration(subscribe.valid_log,@company.created_at))
      plan.save!
      @transaction.update_attributes(plan_start: plan.starts,plan_expire: plan.expires)         
-   SubscriptionNotifier.payment_complete(user_email,@transaction).deliver if @transaction.pay_complete
+   SubscriptionNotifier.payment_complete(user_email,@transaction,subscribe).deliver if @transaction.pay_complete
 end
 
 def transaction_params

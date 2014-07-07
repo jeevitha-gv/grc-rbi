@@ -18,22 +18,25 @@
             <div class="mitigation-box-wrap">
               <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <% if risk.risk_scoring.calculated_risk <= 4 %>
+                <% if risk.risk_scoring.present? %>
+                  <% value = risk.risk_scoring.calculated_risk.present? ? risk.risk_scoring.calculated_risk : risk.risk_scoring.custom_value %>
+                  <% if value <= 4 %>
                     <div class="grey-box">
-                      <div class="number"><%= risk.risk_scoring.calculated_risk %></div>
+                      <div class="number"><%= value %></div>
                       <div class="text">Low</div>
                     </div>
-                  <% elsif risk.risk_scoring.calculated_risk <= 7 %>
+                  <% elsif value <= 7 && value > 4 %>
                     <div class="yellow-box">
-                      <div class="number"><%= risk.risk_scoring.calculated_risk %></div>
+                      <div class="number"><%= value %></div>
                       <div class="text">Medium</div>
                     </div>
                   <% else %>
                     <div class="red-box">
-                      <div class="number"><%= risk.risk_scoring.calculated_risk %></div>
+                      <div class="number"><%= value %></div>
                       <div class="text">High</div>
                     </div>
                   <% end %>
+                <% end %>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                     <div class="mitigate-inner mitigate-box">
@@ -322,14 +325,13 @@
             <%=render "/risks/cvss_scoring",f: f, risk: risk, mitigation_page: @mitigation_page %>
         <% elsif risk.risk_scoring_scoring_type == 'OwaspScoring' %>
             <%=render "/risks/owasp_scoring",f: f, risk: risk, mitigation_page: @mitigation_page %>
-        <% elsif risk.risk_scoring_scoring_type == 'CustomScoring' %>
+        <% elsif risk.risk_scoring_scoring_type == 'Custom' %>
             <%=render "/risks/custom_scoring",f: f, risk: risk, mitigation_page: @mitigation_page %>
         <% end %>
       </div>
     </div>
         <div class="btn-group">
-          <a class="black_btn" href="">Back</a> <a class="grey_btn" href="javascript:goBack()"> Save </a>
-           <!--<a class="orange_btn" href="">Submit</a>-->
+          <a class="black_btn" href="javascript:goBack()">Back</a>
          <%= f.submit "Submit" , :class => "orange_btn" %>
         </div>
       </div>
