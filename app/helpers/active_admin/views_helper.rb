@@ -38,7 +38,7 @@ module ActiveAdmin::ViewsHelper #camelized file name
   end
 
   def super_admin_sub_menu(action)
-    if ["dashboard","companies","languages"].include?(action)
+    if ["dashboard","companies","languages","subscriptions"].include?(action)
       'overview'
     elsif ["compliances","modulars", "priorities","question_types","sections","topics","scores","compliance_libraries"].include?(action)
       'audit'
