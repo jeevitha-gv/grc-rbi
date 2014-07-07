@@ -17,6 +17,6 @@ class Role < ActiveRecord::Base
     belongs_to :company
 
   scope :title, ->(role_id) { where(id: role_id).first.title}
-  scope :for_title, lambda {|title| where(title: title)}
+  scope :for_title_by_company, lambda {|title, company_id| where("title = ? AND company_id = ?", title, company_id)}
 
 end

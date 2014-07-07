@@ -39,7 +39,7 @@ class Risk < ActiveRecord::Base
   validates :mitigator, presence:true
   validates :reviewer, presence:true
   validates :submitted_by, presence:true
-  validate :check_for_owner_and_mitigator
+  # validate :check_for_owner_and_mitigator
 
 	delegate :name, to: :risk_status, prefix: true, allow_nil: true
 	delegate :user_name, to: :risk_owner, prefix: true, allow_nil: true
@@ -108,6 +108,14 @@ class Risk < ActiveRecord::Base
   def set_risk_status(risk, commit_name)
     risk.risk_status_id = ((commit_name == "Save as Draft") ?  RiskStatus.for_name("Draft").first.id : RiskStatus.for_name("Initiated").first.id)
     return risk
+  end
+
+  def update_risk_scoring(risk)
+    scoring_type = risk.risk_scoring.scoring_type
+    risk.risk_scoring.dread_scoring_method if scoring_type == "DreadScoring"
+    risk.risk_scoring.owasp_scoring_method if scoring_type == "OwaspScoring"
+    risk.risk_scoring.classic_scoring_method(risk.risk_model_name) if scoring_type == "ClassicScoring"
+    risk.risk_scoring.cvss_scoring_method if scoring_type == "CvssScoring"
   end
 
   protected

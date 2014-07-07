@@ -95,14 +95,14 @@ class RisksController < ApplicationController
 
   private
     def risk_params
-      params.require(:risk).permit(:subject, :control_number, :reference, :compliance_id, :location_id, :category_id, :team_id, :technology_id, :owner, :assessment, :notes, :compliance_library_id, :department_id, :mitigator, :reviewer, :risk_model_id, attachment_attributes: [:id, :attachment_file, :company_id], risk_scoring_attributes:[:scoring_type, scoring_attributes: [:likelihood, :impact, :vulnerability, :velocity, :owasp_skill_level, :owasp_motive, :owasp_opportunity, :owasp_size, :owasp_ease_of_discovery, :owasp_ease_of_exploit, :owasp_awareness, :owasp_intrusion_detection, :owasp_loss_of_confidentiality, :owasp_loss_of_integrity, :owasp_loss_of_availability, :owasp_loss_of_accountability, :owasp_financial_damage, :owasp_reputation_damage, :owasp_non_compliance, :owasp_privacy_violation, :dread_damage_potential,  :dread_reproducibility,  :dread_exploitability,  :dread_affected_users,  :dread_discoverability, :cvss_access_vector,  :cvss_access_complexity,  :cvss_authentication,  :cvss_conf_impact,  :cvss_integ_impact,  :cvss_avail_impact,  :cvss_exploitability,  :cvss_remediation_level,  :cvss_report_confidence,  :cvss_collateral_damage_potential,  :cvss_target_distribution,  :cvss_confidentiality_requirement,  :cvss_integrity_requirement,  :cvss_availability_requirement]])
+      params.require(:risk).permit(:subject, :control_number, :reference, :compliance_id, :location_id, :category_id, :team_id, :technology_id, :owner, :assessment, :notes, :compliance_library_id, :department_id, :mitigator, :reviewer, :risk_model_id, attachment_attributes: [:id, :attachment_file, :company_id], risk_scoring_attributes:[:scoring_type, :custom_value, scoring_attributes: [:likelihood, :impact, :vulnerability, :velocity, :owasp_skill_level, :owasp_motive, :owasp_opportunity, :owasp_size, :owasp_ease_of_discovery, :owasp_ease_of_exploit, :owasp_awareness, :owasp_intrusion_detection, :owasp_loss_of_confidentiality, :owasp_loss_of_integrity, :owasp_loss_of_availability, :owasp_loss_of_accountability, :owasp_financial_damage, :owasp_reputation_damage, :owasp_non_compliance, :owasp_privacy_violation, :dread_damage_potential,  :dread_reproducibility,  :dread_exploitability,  :dread_affected_users,  :dread_discoverability, :cvss_access_vector,  :cvss_access_complexity,  :cvss_authentication,  :cvss_conf_impact,  :cvss_integ_impact,  :cvss_avail_impact,  :cvss_exploitability,  :cvss_remediation_level,  :cvss_report_confidence,  :cvss_collateral_damage_potential,  :cvss_target_distribution,  :cvss_confidentiality_requirement,  :cvss_integrity_requirement,  :cvss_availability_requirement]])
     end
 
     def risk_users
-      @mitigator_role = Role.for_title("mitigator").first
+      @mitigator_role = Role.for_title_by_company("mitigator", current_company.id).first
       @mitigator_users = current_company.users.where(role_id: @mitigator_role.id) if @mitigator_role
 
-      @reviewer_role = Role.for_title("reviewer").first
+      @reviewer_role = Role.for_title_by_company("reviewer", current_company.id).first
       @reviewer_users = current_company.users.where(role_id: @reviewer_role.id) if @reviewer_role
     end
 end
