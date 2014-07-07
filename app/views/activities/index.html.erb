@@ -4,6 +4,6 @@
 <div class="container">
 <h1> Activities</h1>
 <% @filtered_activities.each do |activity| %>
-  <%= activity.owner.full_name %> has <%= parse_and_convert(activity.key) %> <%= activity.created_at %> from <%= activity.ip %><br>
+  <%= activity.owner.user_name %> has <%= parse_and_convert(activity.key) %> <%= activity.created_at %> from <%= activity.ip %><br>
 <% end %>
 </div>	
