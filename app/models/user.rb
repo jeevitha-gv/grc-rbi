@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
    validates :password, confirmation: true
    validates :password, length: {in: 6..20}, :unless => lambda{ |a| a.password.blank? }
   validate :user_name_without_spaces
-  validate :company_user_count, :if => Proc.new{|f| f.role_title != 'company_admin'}
+  validate :company_user_count, :if => Proc.new{|f| f.role_title != 'company_admin' }
 
 
 
