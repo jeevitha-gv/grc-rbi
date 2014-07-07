@@ -102,9 +102,9 @@
       <div class="col-sm-8">
         <div class="risk-select">
           <% if departments.present? %>
-            <%= f.select :department_id, options_for_select(departments.all.collect{|x| [x.name, x.id.to_i]}, :selected => risk.department_id), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
+            <%= f.select :department_id, options_for_select(departments.all.collect{|x| [x.name, x.id.to_i]}, :selected => risk.department_id), {include_blank: '--Select Department--' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
           <% else %>
-            <%= f.select :department_id, options_for_select([]), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
+            <%= f.select :department_id, options_for_select([]), {include_blank: '--Select Department--' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
           <% end %>
         </div>
         <% if risk.errors[:department_id].present? %>
@@ -121,9 +121,9 @@
       <div class="col-sm-8">
         <div class="risk-select">
           <% if teams.present? %>
-            <%= f.select :team_id, options_for_select(teams.all.collect{|x| [x.name, x.id.to_i]}, :selected => risk.team_id), {include_blank: 'Select Team' }, { :id => "team_id", :onChange => "get_risk_owners(this);"} %>
+            <%= f.select :team_id, options_for_select(teams.all.collect{|x| [x.name, x.id.to_i]}, :selected => risk.team_id), {include_blank: '--Select Team--' }, { :id => "team_id", :onChange => "get_risk_owners(this);"} %>
           <% else %>
-            <%= f.select :team_id, options_for_select([]), {include_blank: 'Select Department' }, { :id => "team_id", :onChange => "get_risk_owners(this);"} %>
+            <%= f.select :team_id, options_for_select([]), {include_blank: '--Select Team--' }, { :id => "team_id", :onChange => "get_risk_owners(this);"} %>
           <% end %>
         </div>
         <% if risk.errors[:team_id].present? %>

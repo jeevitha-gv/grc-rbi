@@ -30,8 +30,8 @@ Having trouble viewing this email? <a style="color:#74ac37; text-decoration:none
 </tr>
 <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >The following are the details of request assigned to you.</td></tr>
 <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Company name : <%= @payment.company.name %></td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Subscription : <%= @payment.subscription.name %></td></tr>
-<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Amount : <%= @payment.subscription.amount %></td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Subscription : <%= @subscription.name %></td></tr>
+<tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Amount : <%= @subscription.amount %></td></tr>
 <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Start Date : <%= @payment.plan_start.strftime('%Y-%m-%d')%></td></tr>
 <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >End Date : <%= @payment.plan_expire.strftime('%Y-%m-%d')%></td></tr>
 </table>

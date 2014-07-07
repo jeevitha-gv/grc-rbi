@@ -1,13 +1,15 @@
 class SubscriptionNotifier < ActionMailer::Base
   default from: "noreply@fixrnix.in"
 
-  def payment_complete(user_email, payment)
+  def payment_complete(user_email, payment,subscription)
     @payment = payment
+    @subscription = subscription
     mail(to: user_email.join(","), subject: 'Subscription Payment Successful',content_type: "text/html")
   end
 
-  def payment_failed(user_email, payment)
+  def payment_failed(user_email, payment,subscription)
     @payment = payment
+    @subscription = subscription
     mail(to: user_email.join(","), subject: 'Subscription Payment Failed.',content_type: "text/html")
   end
 
