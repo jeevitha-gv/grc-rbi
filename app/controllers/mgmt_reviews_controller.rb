@@ -1,6 +1,6 @@
 class MgmtReviewsController < ApplicationController
 	layout "risk_layout"
-	before_filter :current_risk
+	before_filter :current_risk, :company_module_access_check
 	# before_filter :authorize_mgmt_review, :only => [:new, :create, :edit, :update]
 	before_filter :reviews_and_next_steps, only: [:new, :create, :edit, :update]
 

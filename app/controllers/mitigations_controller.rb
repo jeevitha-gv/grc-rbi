@@ -13,10 +13,6 @@ class MitigationsController < ApplicationController
   else
    @risk.build_mitigation
    @risk.build_control_measure
-   @likelihood =  ClassicScoringMetric.where('metric_type= ?','Likelihood')
-   @impact = ClassicScoringMetric.where('metric_type= ?','Impact')
-   @velocity = ClassicScoringMetric.where('metric_type= ?','Velocity')
-   @vulnerability = ClassicScoringMetric.where('metric_type= ?','Vulnerability')
   end
   end
 
@@ -32,10 +28,6 @@ class MitigationsController < ApplicationController
 
   def edit
    redirect_to new_risk_mitigation_path(risk_id: @risk.id) unless @risk.mitigation.present?
-   @likelihood =  ClassicScoringMetric.where('metric_type= ?','Likelihood')
-   @impact = ClassicScoringMetric.where('metric_type= ?','Impact')
-   @velocity = ClassicScoringMetric.where('metric_type= ?','Velocity')
-   @vulnerability = ClassicScoringMetric.where('metric_type= ?','Vulnerability')
   end
 
   def update

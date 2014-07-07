@@ -1,5 +1,7 @@
 class ArtifactAnswersController < ApplicationController
 
+  before_filter :company_module_access_check
+  
   #List attachements for particular artifacts
   def list_attachments
     @artifact_answer = ArtifactAnswer.find(params[:id])
