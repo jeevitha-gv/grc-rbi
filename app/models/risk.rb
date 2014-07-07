@@ -46,6 +46,7 @@ class Risk < ActiveRecord::Base
   validates :reviewer, presence:true
   validates :submitted_by, presence:true
   # validate :check_for_owner_and_mitigator
+  validate :check_scoring_type
 
 	delegate :name, to: :risk_status, prefix: true, allow_nil: true
 	delegate :user_name, to: :risk_owner, prefix: true, allow_nil: true
@@ -135,5 +136,9 @@ class Risk < ActiveRecord::Base
   private
     def check_for_owner_and_mitigator
       self.errors[:mitigator] = MESSAGES['risk']['failure']['owner_not_in_mitigator'] if self.owner == self.mitigator
+    end
+
+    def check_scoring_type
+      errors.add(:scoring_type, ("Please select scoring type")) if self.risk_scoring.scoring_type.blank?
     end
 end

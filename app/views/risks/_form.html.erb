@@ -263,7 +263,9 @@
               <div class="risk-select">
                 <%= scoring.select(:scoring_type, RiskScoring::SCORING_TYPES, {:include_blank => "--Select Scoring Type--"}, {:id => "risk_scoring", :onChange => "change_scoring_method(this);"})%>
               </div>
-              <div class="risk_scoring_type error_message">Please select scoring type</div>
+            <% end %>
+            <% if risk.errors[:scoring_type].present? %>
+              <div class="error_message"><%= risk.errors[:scoring_type][0] %></div>
             <% end %>
           </div>
         </div>
