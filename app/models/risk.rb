@@ -39,7 +39,7 @@ class Risk < ActiveRecord::Base
   validates :mitigator, presence:true
   validates :reviewer, presence:true
   validates :submitted_by, presence:true
-  validate :check_for_owner_and_mitigator
+  # validate :check_for_owner_and_mitigator
 
 	delegate :name, to: :risk_status, prefix: true, allow_nil: true
 	delegate :user_name, to: :risk_owner, prefix: true, allow_nil: true

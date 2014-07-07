@@ -22,12 +22,7 @@ ActiveAdmin.register Plan do
          plan.update_attributes(starts: plan.updated_at ,expires: calculate_plan_expiration(subscribe.valid_log,plan.updated_at))
          redirect_to admin_plans_path
         else
-          payment = current_company.transactions.create(:company_id => current_company.id,:subscription_id=> subscribe.id)
-          payment.setup!(
-          "#{HOST_URL}/payments/success",
-          "#{HOST_URL}/payments/cancel"
-          )
-          redirect_to payment.redirect_uri
+          redirect_to new_transaction_path(company: current_company.name,subscription: subscribe.name)
       end
     else
       redirect_to admin_plans_path
