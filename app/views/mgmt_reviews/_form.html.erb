@@ -15,7 +15,7 @@
             <div class="mitigation-box-wrap">
               <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                  <% if risk.risk_scoring.calculated_risk <= 4 if risk.present? %>
+                  <% if risk.risk_scoring.calculated_risk <= 4  %>
                     <div class="grey-box">
                       <div class="number"><%= risk.risk_scoring.calculated_risk if risk.present? %></div>
                       <div class="text">Low</div>
