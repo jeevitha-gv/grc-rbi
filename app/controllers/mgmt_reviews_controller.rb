@@ -12,7 +12,7 @@ class MgmtReviewsController < ApplicationController
 	def create
 		@mgmt_review = @risk.build_mgmt_review(mgmt_review_params)
 		@mgmt_review.reviewer = current_user
-		risk_status = params[:mgmt_review][:review_id] == 1 ? RiskStatus.where("name= ?", "Reviewed").first.id : RiskStatus.where("name= ?", "Rejected").first.id
+		risk_status = params[:mgmt_review][:review_id].to_i == 1 ? RiskStatus.where("name= ?", "Reviewed").first.id : RiskStatus.where("name= ?", "Rejected").first.id
 		if @mgmt_review.save
 			@risk.update(risk_status_id: risk_status, review_date: Date.today)
 			flash[:notice] = "Risk is reviewed successfully"
@@ -29,10 +29,10 @@ class MgmtReviewsController < ApplicationController
 
 	def update
 		@mgmt_review = @risk.mgmt_review
-		risk_status = params[:mgmt_review][:review_id] == 1 ? RiskStatus.where("name= ?", "Reviewed").first.id : RiskStatus.where("name= ?", "Rejected").first.id
+		risk_status = params[:mgmt_review][:review_id].to_i == 1 ? RiskStatus.where("name= ?", "Reviewed").first.id : RiskStatus.where("name= ?", "Rejected").first.id
 		if @mgmt_review.update(mgmt_review_params)
 			@risk.update(risk_status_id: risk_status, review_date: Date.today)
-			flash[:notice] = "Risk is reviewed Updated"
+			flash[:notice] = "Management Review is Updated"
 			redirect_to edit_risk_mgmt_review_path(id: @mgmt_review)
 		else
 			render "edit"
@@ -56,5 +56,10 @@ class MgmtReviewsController < ApplicationController
 	  def reviews_and_next_steps
 	  	@review = Review.all
 			@next_step = NextStep.all
+			if @risk.control_measure.present?
+				@processes = CppMeasure.where(id: @risk.control_measure.process_ids)
+				@controls = CppMeasure.where(id: @risk.control_measure.control_ids)
+				@procedures = CppMeasure.where(id: @risk.control_measure.procedure_ids)
+			end
 		end
 end

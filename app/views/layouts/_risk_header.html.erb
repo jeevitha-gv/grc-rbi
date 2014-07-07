@@ -62,7 +62,7 @@
         <li><a  href="/risks/new" class="<%= (request.fullpath.include?("risks/new") && action_name == "new") == true ? 'active' : '' %>">
           <div class="file-icon"></div>
           File</a></li>
-        <li><a  href="/risks" class="<%= request.fullpath.include?("risks") == true ? 'active' : '' %>">
+        <li><a  href="/risks" class="<%= request.fullpath.exclude?("mitigate") && request.fullpath.exclude?("new") && request.fullpath.exclude?("review") == true ? 'active' : '' %>">
           <div class="listing-icon"></div>
           Listings</a></li>
         <li><a href="/risks?stage=mitigate" class="<%= request.fullpath.include?("mitigate") == true ? 'active' : '' %>">
