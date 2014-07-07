@@ -36,6 +36,7 @@ class RisksController < ApplicationController
   def update
     @risk = Risk.find(params[:id])
     @risk.set_risk_status(@risk, params[:commit]) if params[:commit] == "File Risk"
+    @risk.submitted_by.present? ? @risk.submitted_by : @risk.submitted_by = current_user.id
     if @risk.update_attributes(risk_params)
       redirect_to edit_risk_path, :flash => { :notice => MESSAGES["risk"]["update"]["success"]}
     else
