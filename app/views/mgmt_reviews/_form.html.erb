@@ -18,17 +18,17 @@
                   <% if risk.risk_scoring.present? %>
                     <% if (risk.risk_scoring.calculated_risk <= 4 || risk.risk_scoring.custom_value <= 4) %>
                       <div class="grey-box">
-                        <div class="number"><%= risk.risk_scoring.calculated_risk.present? ? risk_scoring.calculated_risk : risk.risk_scoring.custom_value  %></div>
+                        <div class="number"><%= risk.risk_scoring.calculated_risk.present? ? risk.risk_scoring.calculated_risk : risk.risk_scoring.custom_value  %></div>
                         <div class="text">Low</div>
                       </div>
                     <% elsif (risk.risk_scoring.calculated_risk <= 7 || risk.risk_scoring.custom_value <= 7) %>
                       <div class="yellow-box">
-                        <div class="number"><%= risk.risk_scoring.calculated_risk.present? ? risk_scoring.calculated_risk : risk.risk_scoring.custom_value %></div>
+                        <div class="number"><%= risk.risk_scoring.calculated_risk.present? ? risk.risk_scoring.calculated_risk : risk.risk_scoring.custom_value %></div>
                         <div class="text">Medium</div>
                       </div>
                     <% else %>
                       <div class="red-box">
-                        <div class="number"><%= risk.risk_scoring.calculated_risk.present? ? risk_scoring.calculated_risk : risk.risk_scoring.custom_value %></div>
+                        <div class="number"><%= risk.risk_scoring.calculated_risk.present? ? risk.risk_scoring.calculated_risk : risk.risk_scoring.custom_value %></div>
                         <div class="text">High</div>
                       </div>
                     <% end %>
