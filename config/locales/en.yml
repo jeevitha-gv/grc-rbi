@@ -389,7 +389,6 @@ en:
             name:
               taken: "This technology has already been added"
               blank: "Technology cannot be blank"
-<<<<<<< HEAD
         cpp_measures:
           attributes:
             name:
@@ -397,7 +396,6 @@ en:
               blank: "Measure cannot be blank"
               invalid: "Should contain alphabets"
               too_long: "Measure should be minimum of 250 characters"
-=======
         mitigation:
           attributes:
             current_solution:
@@ -414,7 +412,6 @@ en:
               blank: "Effectiveness can't be blank"
             consequence:
               blank: "Consequence can't be blank"
->>>>>>> 702498775323f0896a386d33677cf4fb57dca017
 
 
 
