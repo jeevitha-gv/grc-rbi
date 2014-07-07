@@ -1,9 +1,9 @@
-
  <%= javascript_include_tag '/assets/bootstrap-multiselect'%>
  <%= stylesheet_link_tag  '/assets/bootstrap-multiselect', media: 'all' %>
   <div class="clearfix"></div>
 
   <div class="clearfix"></div>
+   <div class="page-wrap">
   <div class="content">
     <div class="container">
       <div>
@@ -200,7 +200,7 @@
                         <label for="inputEmail3" class="col-sm-4 control-label">Mitigation Effort  </label>
                        <div class="col-sm-8">
                             <div class="risk-select">
-                             <%= mitigation.collection_select(:mitigation_effort_id, MitigationEffort.all, :id, :name, :prompt => true) %>
+                             <%= mitigation.collection_select(:mitigation_effort_id, MitigationEffort.all, :id, :name) %>
                             </div>
                     </div>
                    </div>
@@ -341,10 +341,11 @@
     </div>
 </div>
 
+
 <script type="text/javascript">
 
   $(document).ready(function() {
         $('.multiselect').multiselect();
    });
 </script>
-
+</div>

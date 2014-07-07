@@ -2,7 +2,7 @@ class MitigationsController < ApplicationController
   layout "risk_layout"
   before_filter :current_risk#, :company_module_access_check
 
-  # before_filter :authorize_mitigation, :only => [:new, :create, :edit, :update]
+  before_filter :authorize_mitigation, :only => [:new, :create, :edit, :update]
 
   def index
   end
@@ -20,7 +20,7 @@ class MitigationsController < ApplicationController
     if @risk.update(mitigation_params)
       @risk.update_risk_scoring(@risk)
       flash[:notice] = "mitigation saved"
-      @risk.update(risk_status_id: '2' )
+      @risk.update(risk_status_id: RiskStatus.where("name= ?", "Mitigated").first.id )
       redirect_to edit_risk_mitigation_path(risk_id: @risk.id, id: @risk.mitigation.id)
     else
       render "new"
@@ -36,6 +36,7 @@ class MitigationsController < ApplicationController
       @risk.update_risk_scoring(@risk)
        #@risk.risk_scoring.scoring.update(mitigation_params["scoring"])
       flash[:notice] = "mitigation saved"
+      @risk.update(risk_status_id: RiskStatus.where("name= ?", "Mitigated").first.id )
       redirect_to edit_risk_mitigation_path(risk_id: @risk.id, id: @risk.mitigation.id)
     else
       render "edit"
