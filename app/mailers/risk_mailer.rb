@@ -6,4 +6,10 @@ class RiskMailer < ActionMailer::Base
     @name = name
     mail(:to => email, content_type: "text/html", :subject => "#{subject}" )
   end
+
+  def risk_review_notify(risk, review_days)
+    @risk = risk
+    @days = review_days
+    mail(:to => risk.risk_reviewer.email, content_type: "text/html", :subject => "Your next review date for #{risk.subject} is approaching."  )
+  end
 end

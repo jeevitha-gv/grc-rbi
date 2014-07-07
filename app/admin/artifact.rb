@@ -9,8 +9,7 @@ ActiveAdmin.register Artifact do
     menu :if => proc{ !current_admin_user.present? }
 
     controller do
-      before_filter :check_company_admin, :check_role
-      before_filter :check_subdomain
+      before_filter :check_company_admin, :check_role, :check_subdomain, :company_admin_module_check
     end
 
     permit_params :compliance_library_id, :name

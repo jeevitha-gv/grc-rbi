@@ -1,5 +1,6 @@
 class Subscription < ActiveRecord::Base
- has_many :plans
+	belongs_to :section
+	has_many :plans
 	has_many :transactions
 	validates :section_ids,presence: true
 	validates :name, presence:true, :if => Proc.new{|f| f.name.blank? }
@@ -12,9 +13,9 @@ class Subscription < ActiveRecord::Base
 	validates :valid_log,:numericality => { :greater_than_or_equal_to => 1,:less_than_or_equal_to => 500, :only_integer => true  },:if => Proc.new{ |f| !f.valid_log.blank? }
 	validates :user_count,presence: true
 	validates :file_size,presence: true
-	belongs_to :subscription_sections
+	#~ belongs_to :subscription_sections
 	
-	def subscription_sections
-		self.section_ids.collect {|id| Section.find_by_id(id)}
-	end
+	#~ def subscription_sections
+		#~ self.section_ids.collect {|id| Section.find_by_id(id)}
+	#~ end
 end

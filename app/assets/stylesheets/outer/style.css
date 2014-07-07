@@ -116,8 +116,7 @@ ul.list-tab {
 	width: 96%;
 	border: 1px solid #E8E9EB;
 }
-.list-table tr th, .list-table tr td { 13px;
-  padding:
+.list-table tr th, .list-table tr td {
 	padding: 10px 20px;
 }
 
@@ -1872,7 +1871,6 @@ li.db_setting_main{height:425px;}
 }
 .control-select{
    padding: 0 10px 0 4px;
-<<<<<<< HEAD
 }
 
 /*-----------------------Subscription -----------------------*/
