@@ -70,7 +70,7 @@ $(document).ready(function() {
 		},
 		columns: [
 			{ field: "subject", title: "Subject", width: "40%" },
-			{ field: "status", title: "Status", width: "12%" },
+			{ field: "status", title: "Status", width: "30%" },
 			{ field: "risk", title: "Risk", width: "8%" },
 			{ field: "owner", title: "Owner", width: "20%" },
 			{ field: "days_open", title: "Days Open", width: "13%" },
