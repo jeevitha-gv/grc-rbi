@@ -9,7 +9,7 @@
   $('#team_id').attr('name', 'risk[team_id]');
   $('.ajax-loader-department').hide();
 <% elsif params[:team_id].present? %>
-  <% select = select_tag(:owner, options_for_select(@team_users.collect{|x| [x.user_name, x.id]}), {:include_blank => 'Please Select', :class => "form-control", :id => "risk-owner"}) %>
+  <% select = select_tag(:owner, options_for_select(@team_users.uniq.collect{|x| [x.user_name, x.id]}), {:include_blank => 'Please Select', :class => "form-control", :id => "risk-owner"}) %>
   $('#risk-owner').replaceWith('<%= escape_javascript(select) %>');
   $('#risk-owner').attr('name', 'risk[owner]');
   $('.ajax-loader-team').hide();
