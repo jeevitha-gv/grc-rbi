@@ -11,7 +11,7 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
   config.filters = false
   config.batch_actions = false
 
-  permit_params :name, :secondary_email, :address1, :address2, :country_id, :contact_no, :timezone, :is_disabled, :primary_email, attachment_attributes: [:id,:attachment_file, :company_id, :file_size]
+  permit_params :name, :secondary_email, :address1, :address2, :country_id, :contact_no, :timezone, :is_disabled, :primary_email, attachment_attributes: [:id,:attachment_file, :company_id, :file_size, :_destroy]
 
   controller do
     before_filter :check_company_admin, :check_role
@@ -59,6 +59,7 @@ ActiveAdmin.register Company, { :as => 'Settings'} do
       s.input :attachment_file, :as => :file, :hint => s.template.image_tag(s.object.attachment_file.thumb) if s.object.attachment_file.present?
       s.input :attachment_file if s.object.attachment_file.blank?
       s.input :company_id, :as => :hidden, :input_html => { :value => current_company.id}
+      s.input :_destroy, as: :boolean, required: :false, label: 'Remove image' if s.object.attachment_file.present?
     end
     f.actions
   end
