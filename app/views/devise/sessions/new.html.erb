@@ -6,7 +6,6 @@
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-<<<<<<< HEAD
             <% if request.subdomain.present? %>
               <% company = Company.where(domain: request.subdomain).last %>
                 <% unless company.attachment.blank? %>
@@ -19,9 +18,6 @@
             <% else %>
               <%= link_to image_tag("/assets/outer/footer_logo.png", :class => "navbar-brand"), root_path %>
             <% end %>
-=======
-              <%= link_to image_tag("/assets/outer/footer_logo.png", :class => "navbar-brand"), root_path %>
->>>>>>> fc117303c1888337faf6a423d9edcf72a92a5cf1
           </div>
           <div class="login-wrap"> <%= link_to "Sign in", "/users/sign_in" %> <%= link_to "Sign up", "/companies/new" %>
           </div>
