@@ -1950,11 +1950,6 @@ b, strong {
   display: inline-block;;
 }
 
-.risk-select option{
-  width: 200px!important;
-  word-spacing: normal!important;
-  word-wrap:break-word!important;
-}
 #user_teams_input{
   width: 250px!important;
   display: block !important;
@@ -1983,3 +1978,25 @@ button .multiselect{
     text-align: right!important;
 
 }
+<<<<<<< HEAD
+=======
+.save-file{
+  float: right!important;
+}
+.pop-up-gray{
+  max-width:350px;
+  margin: 0 20px;
+  float: right;
+}
+.plus-icon-sp{
+    display: inline-block;
+    font-size: 13px;
+    padding: 5px 30px;
+}
+.src-brn{
+  position: absolute;
+  right: -224px;
+  top: -36px;
+  min-width: 50px!important;
+}
+>>>>>>> phase-3
