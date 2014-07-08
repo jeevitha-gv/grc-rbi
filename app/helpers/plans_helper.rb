@@ -9,4 +9,8 @@ module PlansHelper
 			'Day(s)'
 		end
 	end
+	
+	def company_modules(subscription)
+		Section.where("id IN (?)",subscription.section_ids).map(&:name).join(",")
+	end
 end
