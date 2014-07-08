@@ -36,7 +36,6 @@ class RisksController < ApplicationController
   def update
     @risk = Risk.find(params[:id])
     @risk.set_risk_status(@risk, params[:commit]) if params[:commit] == "File Risk"
-    @risk.submitted_by.present? ? @risk.submitted_by : @risk.submitted_by = current_user.id
     if @risk.update_attributes(risk_params)
       redirect_to edit_risk_path, :flash => { :notice => MESSAGES["risk"]["update"]["success"]}
     else
@@ -48,7 +47,7 @@ class RisksController < ApplicationController
   def risk_imports
     if(params[:file].present?)
       begin
-        Risk.import_from_file(params[:file], current_company)
+        Risk.import_from_file(params[:file], current_company, current_user)
         flash[:notice] = MESSAGES["risk"]["csv_upload"]["success"]
         redirect_to risks_path
       rescue

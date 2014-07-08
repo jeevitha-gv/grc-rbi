@@ -78,3 +78,5 @@ gem 'activemerchant'
 
 # for rails best practices
 gem "rails_best_practices"
+
+gem 'daemons'
