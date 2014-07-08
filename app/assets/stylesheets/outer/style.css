@@ -2024,3 +2024,33 @@ button.close {
 .scr-padding{
   margin: 0 20px;
 }
+.reset-pwd{
+  max-width: 500px;
+  margin: 50px auto;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+.reset-title{
+  background:#0085c8;
+  padding: 15px;
+  font-size: 18px;
+  color:#fff;
+  text-align:left;
+  margin: 0px 0 20px 0;
+
+}
+.pwd-text{
+  display: inline-block;
+  width:75%;
+  margin: 0 0 20px 0;
+}
+.pwd-text label{
+  text-align: left;
+  display: block;
+}
+.pwd-text input{
+  width: 100%;
+}
+.up-pwd{
+  margin: 0 0 20px 0;
+}
