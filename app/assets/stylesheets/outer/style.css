@@ -582,6 +582,12 @@ html, body {
   position:relative;
   margin-bottom:0px
 }
+.footer{
+  left:0;
+  bottom:0;
+  width:100%;
+  position:absolute;
+}
 
 .error_logo{ padding-top:15px; font-size:25px;}
 
@@ -1573,15 +1579,8 @@ margin-bottom:20px !important;
   position:relative;
   margin-bottom:0px;
 }
-html,body{
-  height:100%;
-}
-.footer{
-  left:0;
-  bottom:0;
-  width:100%;
-  position:relative;
-}
+
+
 .box-wrapper{
   margin:0 0 150px 0;
 }
@@ -1951,7 +1950,6 @@ b, strong {
 }
 
 #user_teams_input{
-  width: 250px!important;
   display: block !important;
   clear: both!important;
 }
@@ -1961,10 +1959,8 @@ fieldset.inputs ol li{
   clear:both!important;
 }
 form fieldset ol > li {
-    clear: both;
     display: block;
     padding: 10px;
-    width: 100% !important;
   }
 .btn-group {
     float:left!important;
@@ -1993,7 +1989,32 @@ button .multiselect{
 }
 .src-brn{
   position: absolute;
-  right: -224px;
+  right: -247px;
   top: -36px;
-  min-width: 50px!important;
+  min-width: 35px!important;
+}
+.org-sp{
+ margin:0 38px;
+}
+.domain-width{
+  max-width: 250px;
+  display: inline-block;
+}
+
+button.close {
+    background: url("/assets/outer/close-icon.png") no-repeat scroll 0 8px transparent;
+    border: 0 none;
+    cursor: pointer;
+    height: 32px;
+    padding: 0;
+    position: absolute;
+    right: 4%;
+    width: 22px;
+}
+.src-space{
+  padding:10px 0 0 10px;
+  margin: 0px;
+}
+.scr-padding{
+  margin: 0 20px;
 }
