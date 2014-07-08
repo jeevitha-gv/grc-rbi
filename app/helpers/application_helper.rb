@@ -26,7 +26,9 @@ module ApplicationHelper
     end
   end
 
-
+  def overview_header
+    return true if (request.fullpath.include?("user/edit") == true ||  request.fullpath == "/" || request.fullpath.include?("activities") == true || request.fullpath.include?("user/password") == true)
+  end
 
 # def link_to_add_fields(name, f, association)
 #   new_object = f.object.class.reflect_on_association(association).klass.new
