@@ -6,7 +6,18 @@
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-              <%= link_to image_tag("/assets/outer/footer_logo.png", :class => "navbar-brand"), root_path %> 
+            <% if request.subdomain.present? %>
+              <% company = Company.where(domain: request.subdomain).last %>
+                <% unless company.attachment.blank? %>
+                  <%= link_to image_tag(company.attachment.attachment_file, :class => "navbar-brand"), root_path %> 
+                <% else %>
+                  <div class="company-name">
+                  <%= link_to company.name, root_path, :class=>"navbar-brand" %>
+                  </div>
+                <% end %>
+            <% else %>
+              <%= link_to image_tag("/assets/outer/footer_logo.png", :class => "navbar-brand"), root_path %>
+            <% end %>
           </div>
           <div class="login-wrap"> <%= link_to "Sign in", "/users/sign_in" %> <%= link_to "Sign up", "/companies/new" %> 
           </div>
