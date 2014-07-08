@@ -50,7 +50,6 @@ $(document).ready(function() {
 				}
 			}
 		},
-		// pageSize: 20
 	});
 
 	// Kendo Grid
@@ -64,10 +63,7 @@ $(document).ready(function() {
 		scrollable: true,
 		sortable: true,
 		filterable: true,
-		pageable: {
-		input: true,
-		numeric: false
-		},
+		pageable: false,
 		columns: [
 			{ field: "subject", title: "Subject", width: "40%" },
 			{ field: "status", title: "Status", width: "30%" },
@@ -91,10 +87,7 @@ $(document).ready(function() {
 		scrollable: true,
 		sortable: true,
 		filterable: true,
-		pageable: {
-		input: true,
-		numeric: false
-		},
+		pageable: false,
 		columns: [
 			{ field: "subject", title: "Subject", width: "40%" },
 			{ field: "status", title: "Status", width: "30%" },
