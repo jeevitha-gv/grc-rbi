@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
    validates :password, confirmation: true
    validates :password, length: {in: 6..20}, :unless => lambda{ |a| a.password.blank? }
   validate :user_name_without_spaces
-  validate :company_user_count, :if => Proc.new{|f| f.role_title != 'company_admin' }
+  validate :company_user_count, :if => Proc.new{|f| f.role_title != 'company_admin' && f.id.nil? }
 
 
 
@@ -166,7 +166,7 @@ class User < ActiveRecord::Base
       username_match = self.user_name.match(/[\s+\d+]/) ? true : false
       errors.add(:user_name) if username_match == true
     end
-    
+
     def company_user_count
       company = self.company
       self.errors[:user_count_exceeds] = ",you can't create new user"  if company.users.count >= company.plan.subscription_user_count
