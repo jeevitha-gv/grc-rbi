@@ -27,7 +27,7 @@ ActiveAdmin.register Company do
     attributes_table do
       row :name
       row :primary_email
-      row :secondary_email    
+      row :secondary_email
       row :domain
       row :address1
       row :address2
@@ -52,11 +52,11 @@ ActiveAdmin.register Company do
       f.input :timezone
       f.input :country
       f.input :contact_no
-      f.input :is_disabled      
-      f.inputs "Plan", for: [:plan, f.object.plan] do |s|
-        s.input :expires, :as => :datepicker
-        s.input :subscription_id, as: :select, :collection => Subscription.all, :prompt => "-Select Subscription-"
-      end
+      f.input :is_disabled
+    end
+    f.inputs "Plan", for: [:plan, f.object.plan] do |s|
+      s.input :expires, :as => :datepicker
+      s.input :subscription_id, as: :select, :collection => Subscription.all, :prompt => "-Select Subscription-"
     end
     f.actions
   end
