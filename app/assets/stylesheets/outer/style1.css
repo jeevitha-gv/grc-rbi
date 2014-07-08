@@ -219,15 +219,17 @@ div.k-grid-header .k-header, .k-grid td {
 .k-grid-file,  .k-grid-file:hover {
 	background-position: -15px -8px;
 }
-.k-grid-file {
-	background-position: -15px -8px;
+.k-grid-list{
+	background-position: -55px -10px;
 }
-
-.k-grid-list, .k-grid-list:hover {
-	background-position: -55px -7px;
+.k-grid-list:hover {
+	background-position: -55px -39px;
 }
 .k-grid-miti, .k-grid-miti:hover {
-	background-position: -94px -7px;
+	background-position: -94px -37px;
+}
+.k-grid-miti{
+	background-position: -94px -8px;
 }
 .k-grid-edit, .k-grid-edit:hover {
 	background-position: -132px -8px;
