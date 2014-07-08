@@ -20,8 +20,8 @@ ActiveAdmin.register Role  do
 
     def create
       role = Role.where("title= ? AND company_id= ?", params[:role][:title], current_user.company_id).first
+      @role = Role.new(role_params)
       unless role.present?
-        @role = Role.new(role_params)
         @role.company_id = current_user.company_id
         if @role.save
           @role.create_activity :create, owner: current_user
@@ -31,7 +31,8 @@ ActiveAdmin.register Role  do
           render 'new'
         end
       else
-        redirect_to new_admin_role_path
+        @role.errors.add(:title, MESSAGES["roles"]["company_admin_failure"])
+        render 'new'
       end
 		end
 
