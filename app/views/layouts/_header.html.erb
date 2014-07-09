@@ -17,7 +17,7 @@
           <ul class="nav navbar-nav main_nav">
             <li><a href="/user/edit" class="<%= (add_active_class(params) == 'User' ||  add_active_class(params) == '') ? 'active' : '' %>">
               <div class="overview-icon"></div>
-              Over view</a></li>
+              Overview</a></li>
 							<% if company_modules_check('Audit') %>
 								<li><a href="/audits" class="<%= add_active_class(params) == 'Audit' ? 'active' : '' %>">
 									<div class="audit-icon"></div>
