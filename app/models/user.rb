@@ -54,11 +54,11 @@ class User < ActiveRecord::Base
    validates :email, length: {  maximum: 50  },:if => Proc.new{|f| !f.email.blank? }
    validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, :if => Proc.new{|f| !f.email.blank? }
    validates :role_id, presence: true
-   # validates :password, presence: true, :if => Proc.new{ |f| (f.password.blank?) }
+   validates :password, presence: true, :if => Proc.new{ |f| (f.reset_password_token.present?) }
    validates :password, confirmation: true
    validates :password, length: {in: 6..20}, :unless => lambda{ |a| a.password.blank? }
   validate :user_name_without_spaces
-  validate :company_user_count, :if => Proc.new{|f| f.role_title != 'company_admin' }
+  validate :company_user_count, :if => Proc.new{|f| f.role_title != 'company_admin' && f.id.nil? }
 
 
 
@@ -166,7 +166,7 @@ class User < ActiveRecord::Base
       username_match = self.user_name.match(/[\s+\d+]/) ? true : false
       errors.add(:user_name) if username_match == true
     end
-    
+
     def company_user_count
       company = self.company
       self.errors[:user_count_exceeds] = ",you can't create new user"  if company.users.count >= company.plan.subscription_user_count

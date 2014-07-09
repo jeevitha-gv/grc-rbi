@@ -14,7 +14,7 @@
                     <%= render 'form', :f => f, :risk => @risk, :departments => @departments, :teams => @teams, :team_users => @team_users, :compliance_libraries => @compliance_libraries %>
                     <div class="row">
                       <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
-                        <div class="btn-group gr-btn">
+                        <div class="btn-group gr-btn save-file">
                           <%= f.submit "Initiate Risk", :class => "orange_btn" if @risk.risk_status_name == "Draft"%>
                           <%= f.submit "Update Risk", :class => "grey_btn" %>
                           <a class="black_btn" href="javascript:goBack()">Back</a>

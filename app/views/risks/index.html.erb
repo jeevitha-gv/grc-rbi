@@ -11,20 +11,20 @@
       <div class="risk-title">Risks Listing</div>
        	<div class=" col-xs-12 col-md-12 col-sm-12 col-lg-12">
         	 <div class="box-wrapper">
-             <div class="search-box clearfix">
+             <div class="search-box src-space clearfix">
                <div class="show-text">Risks</div>
-  							<div class="fright">
+  							<div class="fright scr-padding">
   							<div class="form-group audit_search">
   								<%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value" %>
   								<%= submit_tag "Search", name: nil, :class=>"btn btn-default src-brn", :id => "search-button" %>
   							</div>
 						  </div>
 						</div>
-            <% if params[:stage].nil? %>
+            <%# if params[:stage].nil? %>
               <div id="grid"></div>
-            <% else %>
-              <div id="gridforstage"></div>
-            <% end %>
+            <%# else %>
+              <!-- <div id="gridforstage"></div> -->
+            <%# end %>
           </div>
         </div>
       </div>

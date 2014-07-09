@@ -16,7 +16,7 @@
 										<li><strong><%= subscription.description%></strong> Description</li>
                     <li><strong><%= subscription.file_size%>MB</strong> Storage</li>
                     <li><strong><%= subscription.user_count%></strong> Sign ups</li>
-                    <li><strong><%#= subscription.subscription_sections.map(&:name).join(', ')%></strong> Modules </li>
+                    <li><strong><%= company_modules(subscription)%></strong> Modules </li>
                     <li><strong><%= subscription.valid_log%>Month(s)</strong> Valid period</li>
                     <!--<li>24/7 Email & Phone <strong>support</strong></li>-->
                 </ul>

@@ -582,6 +582,18 @@ html, body {
   position:relative;
   margin-bottom:0px
 }
+.footer{
+  left:0;
+  width:100%;
+  position:absolute;
+}
+.footer-login{
+   left:0;
+  width:100%;
+  position:absolute;
+  bottom: 0;
+
+}
 
 .error_logo{ padding-top:15px; font-size:25px;}
 
@@ -653,6 +665,7 @@ html, body {
 .navbar{
 	background:none!important;
 	border:none;
+	margin-bottom: 10px;
 }
 .black_btn:hover{ background-color:#929292; color:#454343;}
 .main_nav li a{
@@ -1099,7 +1112,7 @@ a.plus-background{
 }
 
 .db_setting_down_icon ,.db_setting_down_icon1,.db_setting_down_icon2,.db_setting_down_icon3{
-  background-image: url("../images/db_settingdown-icon.png");
+  background-image: url("/assets/outer/db_settingdown-icon.png");
   background-position: 0 23px;
   background-repeat: no-repeat;
   margin: 0 0 0 30px;
@@ -1130,7 +1143,7 @@ a.plus-background{
 .add_widget_btn:hover{ color:#8D9094;}
 
 .select_outer{
-	background: url("../images/select_bg.jpg") no-repeat scroll right center rgba(0, 0, 0, 0);
+	background: url("/assets/outer/select_bg.jpg") no-repeat scroll right center rgba(0, 0, 0, 0);
     border: 1px solid #dad9d9 !important;
     border-radius: 5px;
     box-shadow: 0 0 5px #dad9d9 inset;
@@ -1573,15 +1586,8 @@ margin-bottom:20px !important;
   position:relative;
   margin-bottom:0px;
 }
-html,body{
-  height:100%;
-}
-.footer{
-  left:0;
-  bottom:0;
-  width:100%;
-  position:relative;
-}
+
+
 .box-wrapper{
   margin:0 0 150px 0;
 }
@@ -1951,7 +1957,6 @@ b, strong {
 }
 
 #user_teams_input{
-  width: 250px!important;
   display: block !important;
   clear: both!important;
 }
@@ -1961,10 +1966,8 @@ fieldset.inputs ol li{
   clear:both!important;
 }
 form fieldset ol > li {
-    clear: both;
     display: block;
     padding: 10px;
-    width: 100% !important;
   }
 .btn-group {
     float:left!important;
@@ -1993,7 +1996,62 @@ button .multiselect{
 }
 .src-brn{
   position: absolute;
-  right: -224px;
+  right: -247px;
   top: -36px;
-  min-width: 50px!important;
+  min-width: 35px!important;
+}
+.org-sp{
+ margin:0 38px;
+}
+.domain-width{
+  max-width: 250px;
+  display: inline-block;
+}
+
+button.close {
+    background: url("/assets/outer/close-icon.png") no-repeat scroll 0 8px transparent;
+    border: 0 none;
+    cursor: pointer;
+    height: 32px;
+    padding: 0;
+    position: absolute;
+    right: 4%;
+    width: 22px;
+}
+.src-space{
+  padding:10px 0 0 10px;
+  margin: 0px;
+}
+.scr-padding{
+  margin: 0 20px;
+}
+.reset-pwd{
+  max-width: 500px;
+  margin: 50px auto;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+.reset-title{
+  background:#0085c8;
+  padding: 15px;
+  font-size: 18px;
+  color:#fff;
+  text-align:left;
+  margin: 0px 0 20px 0;
+
+}
+.pwd-text{
+  display: inline-block;
+  width:75%;
+  margin: 0 0 20px 0;
+}
+.pwd-text label{
+  text-align: left;
+  display: block;
+}
+.pwd-text input{
+  width: 100%;
+}
+.up-pwd{
+  margin: 0 0 20px 0;
 }

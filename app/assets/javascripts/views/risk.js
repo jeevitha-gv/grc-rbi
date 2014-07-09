@@ -50,24 +50,20 @@ $(document).ready(function() {
 				}
 			}
 		},
-		// pageSize: 20
 	});
 
 	// Kendo Grid
 	$("#grid").kendoGrid({
 		dataSource: dataSource,
 		dataBound: function(){
-			status_update_all()
+			updateGridForStage(stage)
 			riskGridTitle()
 		},
 		height: 'auto',
 		scrollable: true,
 		sortable: true,
 		filterable: true,
-		pageable: {
-		input: true,
-		numeric: false
-		},
+		pageable: false,
 		columns: [
 			{ field: "subject", title: "Subject", width: "40%" },
 			{ field: "status", title: "Status", width: "30%" },
@@ -75,32 +71,6 @@ $(document).ready(function() {
 			{ field: "owner", title: "Owner", width: "20%" },
 			{ field: "days_open", title: "Days Open", width: "13%" },
 			{ field: "next_review", title: "Next Review Date", width: "20%" },
-			{ command: [{text: "list", click: mitigate_file},{text: "miti", click: review_file},{text: "edit", click: edit_file}], title: "Action", width: "170px" }
-		],
-	//~ editable: "popup"
-	});
-
-	$("#gridforstage").kendoGrid({
-		dataSource: dataSource,
-		dataBound: function(){
-			var selected_stage = select_stage_class(stage)
-			$('.'+selected_stage).addClass('active');
-			riskGridTitle()
-		},
-		height: 'auto',
-		scrollable: true,
-		sortable: true,
-		filterable: true,
-		pageable: {
-		input: true,
-		numeric: false
-		},
-		columns: [
-			{ field: "subject", title: "Subject", width: "40%" },
-			{ field: "status", title: "Status", width: "30%" },
-			{ field: "risk", title: "Risk", width: "8%" },
-			{ field: "owner", title: "Owner", width: "20%" },
-			{ field: "days_open", title: "Days Open", width: "15%" },
 			{ command: [{text: "list", click: mitigate_file},{text: "miti", click: review_file},{text: "edit", click: edit_file}], title: "Action", width: "170px" }
 		],
 	//~ editable: "popup"
@@ -141,8 +111,21 @@ $(document).ready(function() {
 	  }
 	  else if(stage_class == 'review')
 	  {
-	   	return "k-grid-miti";
+	   	return "k-grid-miti, .k-grid-list";
 	  }
+	}
+
+	function updateGridForStage(stage)
+	{
+		if(stage.length == 0)
+		{
+			status_update_all()
+		}
+		else
+		{
+			var selected_stage = select_stage_class(stage)
+			$('.'+selected_stage).addClass('active');
+		}
 	}
 
 	function status_update_all()
@@ -157,15 +140,15 @@ $(document).ready(function() {
 	  for (var i = 0; i < gridData.length; i++) {
 	    var currentUid = gridData[i].uid;
 	    var currenRow = grid.table.find("tr[data-uid='" + currentUid + "']");
-	    currenStatus = gridData[i].risk_status
+	    currenStatus = gridData[i].status
 	    if (currenStatus == "Mitigated")
 	    {
 	    	var test_row = $(currenRow).find(".k-grid-list")
 	    	$(test_row).addClass('active')
 	    }
-	    else if (currenStatus == "Reviewed")
+	    else if (currenStatus == "Reviewed" || currenStatus == "Rejected")
 	    {
-	    	var test_row = $(currenRow).find(".k-grid-miti")
+	    	var test_row = $(currenRow).find(".k-grid-list, .k-grid-miti")
 	    	$(test_row).addClass('active')
 	  	}
 	  }
