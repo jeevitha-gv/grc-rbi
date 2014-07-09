@@ -9,7 +9,7 @@
             <% if request.subdomain.present? %>
               <% company = Company.where(domain: request.subdomain).last %>
                 <% unless company.attachment.blank? %>
-                  <%= link_to image_tag(company.attachment.attachment_file, :class => "navbar-brand"), root_path %> 
+                  <%= link_to image_tag(company.attachment.attachment_file, :class => "navbar-brand"), root_path %>
                 <% else %>
                   <div class="company-name">
                   <%= link_to company.name, root_path, :class=>"navbar-brand" %>
@@ -100,8 +100,8 @@
   <div class="footer footer-login">
     <div class="container">
       <div class="row">
-        <div class="footer_left col-lg-6">2014 Â© FixNix Audit Management</div>
-        <div class="footer_right col-lg-6">Powered By<img src="img/footer_logo.png" alt=""/></div>
+        <div class="footer_left col-lg-6">2014 © FixNix GRC Platform</div>
+        <div class="footer_right col-lg-6">Powered By <img src="/assets/outer/footer_logo.png" alt=""/></div>
       </div>
     </div>
   </div>

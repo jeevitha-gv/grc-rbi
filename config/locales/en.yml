@@ -445,6 +445,7 @@ en:
     state: "State"
     country: "Country"
     role: "Role"
+    contact: "Contact"
 
 
   priorities:
