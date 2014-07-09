@@ -1,24 +1,25 @@
 class Transaction < ActiveRecord::Base
   belongs_to :company
   belongs_to :subscription
-  validate :validate_card,on: [:create,:make_recurring]
+  
   attr_accessor :company_domain, :subscription
 
-  def purchase
-    amount = Subscription.where("id = ?",self.subscription_id).first.try(:amount)
+  def purchase(amount,credit_card)
     response = GATEWAY.purchase(amount, credit_card, purchase_options)
-    self.update_attributes(token: response.params["transaction_id"])    
+    self.update_attributes(transaction_id: response.params["transaction_id"],card_number: credit_card.display_number)    
     if response.success? 
-       make_recurring
+       make_recurring(credit_card)
     end
    response.success?
+  end
+  
+  def update_profile(profile_id)
+	   response = GATEWAY.update_recurring(profile_id: profile_id,credit_card: credit_card)
   end
  
   private
   
-  def purchase_options
-    user = self.company.users
-    user_name = user.map(&:user_name) if user.map(&:role_title).join(",").eql?("company_admin")
+  def purchase_options 
     {
       :ip => ip_address,
       :billing_address => {
@@ -31,35 +32,15 @@ class Transaction < ActiveRecord::Base
       }
     }
   end
-  
-  def validate_card
-    unless credit_card.valid?
-      credit_card.errors.full_messages.each do |message|
-       errors.add(:base, message)
-      end
-    end
-  end
-  
-  def credit_card
-    @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
-      :brand               => card_type,
-      :number             => card_number,
-      :verification_value => card_verification,
-      :month              => card_expires_on.month,
-      :year               => card_expires_on.year,
-      :first_name         => first_name,
-      :last_name          => last_name
-    )
-  end
 
-  def make_recurring
-   response_recurring=GATEWAY.recurring(1, credit_card,
-    :description => "Payment for plan",
+  def make_recurring(credit_card)
+    subscribe = Subscription.where("id = ?",self.subscription_id).first
+    response_recurring=GATEWAY.recurring(subscribe.try(:amount), credit_card,
+    :description => "Payment for #{subscribe.name}",
     :start_date => Date.tomorrow,
     :period => "Month",
-    :frequency => 1)
-    self.update_attributes(payer_id: response_recurring.params["profile_id"])
+    :frequency => subscribe.valid_log)
+    self.update_attributes(profile_id: response_recurring.params["profile_id"])
     response_recurring.success?
   end
-
 end
