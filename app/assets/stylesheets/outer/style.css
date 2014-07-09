@@ -1105,7 +1105,7 @@ a.plus-background{
 }
 
 .db_setting_down_icon ,.db_setting_down_icon1,.db_setting_down_icon2,.db_setting_down_icon3{
-  background-image: url("../images/db_settingdown-icon.png");
+  background-image: url("/assets/outer/db_settingdown-icon.png");
   background-position: 0 23px;
   background-repeat: no-repeat;
   margin: 0 0 0 30px;
@@ -1136,7 +1136,7 @@ a.plus-background{
 .add_widget_btn:hover{ color:#8D9094;}
 
 .select_outer{
-	background: url("../images/select_bg.jpg") no-repeat scroll right center rgba(0, 0, 0, 0);
+	background: url("/assets/outer/select_bg.jpg") no-repeat scroll right center rgba(0, 0, 0, 0);
     border: 1px solid #dad9d9 !important;
     border-radius: 5px;
     box-shadow: 0 0 5px #dad9d9 inset;
