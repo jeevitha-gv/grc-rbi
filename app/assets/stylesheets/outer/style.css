@@ -665,6 +665,7 @@ html, body {
 .navbar{
 	background:none!important;
 	border:none;
+	margin-bottom: 10px;
 }
 .black_btn:hover{ background-color:#929292; color:#454343;}
 .main_nav li a{

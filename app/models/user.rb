@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
    validates :email, length: {  maximum: 50  },:if => Proc.new{|f| !f.email.blank? }
    validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, :if => Proc.new{|f| !f.email.blank? }
    validates :role_id, presence: true
-   # validates :password, presence: true, :if => Proc.new{ |f| (f.password.blank?) }
+   validates :password, presence: true, :if => Proc.new{ |f| (f.reset_password_token.present?) }
    validates :password, confirmation: true
    validates :password, length: {in: 6..20}, :unless => lambda{ |a| a.password.blank? }
   validate :user_name_without_spaces
