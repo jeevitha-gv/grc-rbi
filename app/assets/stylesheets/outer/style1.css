@@ -216,22 +216,22 @@ div.k-grid-header .k-header, .k-grid td {
 	padding: 0;
 }
 
-.k-grid-file,  .k-grid-file:hover, .k-grid-file .active {
+.k-grid-file,  .k-grid-file:hover, .k-grid-file.active {
 	background-position: -15px -8px;
 }
 .k-grid-list{
 	background-position: -55px -10px;
 }
-.k-grid-list:hover, .k-grid-list .active {
+.k-grid-list:hover, .k-grid-list.active {
 	background-position: -55px -39px;
 }
-.k-grid-miti, .k-grid-miti:hover,  .k-grid-miti .active {
+.k-grid-miti, .k-grid-miti:hover,  .k-grid-miti.active {
 	background-position: -94px -37px;
 }
 .k-grid-miti{
 	background-position: -94px -8px;
 }
-.k-grid-edit, .k-grid-edit:hover,  .k-grid-edit .active {
+.k-grid-edit, .k-grid-edit:hover,  .k-grid-edit.active {
 	background-position: -132px -8px;
 }
 

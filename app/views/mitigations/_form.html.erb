@@ -213,10 +213,10 @@
                               <label for="inputEmail3" class="col-sm-3 control-label"> <%= f.label :current_solution, t('risk.') %></label>
                                      <div class="col-sm-9">
                                      <%= mitigation.text_area :current_solution, :class=>"form-control risk-big-input", :value => "#{risk.mitigation.current_solution}" %>
-                                     </div>
-                                      <% if mitigation.object.errors[:current_solution].present? %>
-                                    <div class="error_message"><%= mitigation.object.errors[:current_solution][0]%></div>
+                                    <% if mitigation.object.errors[:current_solution].present? %>
+                                        <div class="error_message"><%= mitigation.object.errors[:current_solution][0]%></div>
                                     <% end %>
+                                     </div>
                                   </div>
                               </div>
 
@@ -227,10 +227,10 @@
                                 <%= f.label :requirements, t('risk.security_requirements') %></label>
                                      <div class="col-sm-9">
                                       <%= mitigation.text_area :security_requirements, :class=>"form-control risk-big-input" %>
-                                     </div>
-                                      <% if mitigation.object.errors[:security_requirements].present? %>
+                                        <% if mitigation.object.errors[:security_requirements].present? %>
                                     <div class="error_message"><%= mitigation.object.errors[:security_requirements][0]%></div>
                                     <%end%>
+                                     </div>
                                   </div>
                                   </div>
 
@@ -240,10 +240,10 @@
                                 <%= f.label :recommendations, t('risk.security_recommendations') %> </label>
                                      <div class="col-sm-9">
                                       <%= mitigation.text_area :security_recommendations, :class=>"form-control risk-big-input" %>
-                                     </div>
                                       <% if mitigation.object.errors[:security_recommendations].present? %>
-                                    <div class="error_message"><%= mitigation.object.errors[:security_recommendations][0]%></div>
-                                    <%end%>
+                                        <div class="error_message"><%= mitigation.object.errors[:security_recommendations][0]%></div>
+                                      <%end%>
+                                     </div>
                               </div>
                            </div>
                            <%end%>
@@ -273,20 +273,20 @@
                             <div class="col-sm-9">
                               <%= f.fields_for :control_measure do |control| %>
                               <%= control.text_area :threat, row: 2, class: "form-control risk-big-input"%>
+                              <% if control.object.errors[:threat].present? %>
+                                <div class="error_message"><%= control.object.errors[:threat][0]%></div>
+                              <% end %>
                             </div>
-                            <% if control.object.errors[:threat].present? %>
-                                    <div class="error_message"><%= control.object.errors[:threat][0]%></div>
-                                    <% end %>
                           </div>
 
                             <div class="text-area clearfix">
                               <label for="inputEmail3" class="col-sm-3 control-label">Effectiveness</label>
                               <div class="col-sm-9">
                                   <%= control.text_area :effectiveness, row: 2, class: "form-control risk-big-input"%>
-                                </div>
-                                <% if control.object.errors[:effectiveness].present? %>
+                                  <% if control.object.errors[:effectiveness].present? %>
                                     <div class="error_message"><%= control.object.errors[:effectiveness][0]%></div>
                                     <% end %>
+                                </div>
                             </div>
 
                         </div>
@@ -297,10 +297,10 @@
                             <label for="inputEmail3" class="col-sm-3 control-label">Consequence</label>
                             <div class="col-sm-9">
                               <%= control.text_area :consequence, row: 2, class: "form-control risk-big-input"%>
-                            </div>
                             <% if control.object.errors[:consequence].present? %>
-                                    <div class="error_message"><%= control.object.errors[:consequence][0]%></div>
-                                    <% end %>
+                              <div class="error_message"><%= control.object.errors[:consequence][0]%></div>
+                            <% end %>
+                            </div>
                           </div>
                         </div>
                       </div>

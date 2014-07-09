@@ -84,7 +84,7 @@
                 <div class="form-group form-group-lg">
                   <label class="col-sm-4 control-label" for="exampleInputFile">Select Timezone</label>
                   <div class="col-sm-8">
-                    <%= f.select(:timezone, Company::TIMEZONES, {include_blank: 'Select Timezone' },{:class =>"form-control"})%>
+                    <%= f.select(:timezone, Company::TIMEZONES,{:class =>"form-control"})%>
                   </div>
                 </div>
 
@@ -104,14 +104,14 @@
 </div>
 
 <div class="clearfix"></div>
-<div class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="footer_left col-lg-6">2014 Â© FixNix Audit Management</div>
-      <div class="footer_right col-lg-6">Powered By<img src="img/footer_logo.png" alt=""/></div>
+  <div class="footer footer-login">
+    <div class="container">
+      <div class="row">
+        <div class="footer_left col-lg-6">2014 © FixNix GRC Platform</div>
+        <div class="footer_right col-lg-6">Powered By <img src="/assets/outer/footer_logo.png" alt=""/></div>
+      </div>
     </div>
   </div>
-</div>
 
 
 <script>
