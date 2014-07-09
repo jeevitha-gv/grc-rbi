@@ -6,9 +6,7 @@ class UsersController < ApplicationController
   # Edit particular user details
   def edit
     @user = current_user
-    @user.build_attachment unless @user.attachment.present?
     @user.build_profile unless @user.profile.present?
-
   end
 
   #
