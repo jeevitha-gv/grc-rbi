@@ -9,5 +9,34 @@ class DashboardController < ApplicationController
 
   # Main Dashboard page
   def index
+		@dashboard_chart = DashboardChart.new
+		@charts = current_company.dashboard_charts.sort_by{|x| x.order}
+		@compliance_audits = Audit.compliance_audits.count
+		@non_compliance_audits = Audit.non_compliance_audits.count
+		@audit_types = [@compliance_audits , @non_compliance_audits]
   end
+	
+	def create
+		@dashboard_chart = DashboardChart.new(dashboard_chart_params)
+		@dashboar_max_order = current_company.dashboard_charts.empty? ? 1 : current_company.dashboard_charts.map(&:order).max
+		@dashboard_chart.order = @dashboar_max_order+1
+		@dashboard_chart.save
+		@charts = current_company.dashboard_charts
+		respond_to :js
+	end
+	
+	def update
+		DashboardChart.update_chart_order(params[:order])
+	end
+
+	def destroy
+		@chart = DashboardChart.find_by_id(params[:id])
+		@chart.destroy
+		respond_to :js
+	end
+	private
+	
+	def dashboard_chart_params
+		params.require(:dashboard_chart).permit(:id, :name, :company_id, :x_axis, :y_axis, :chart_type, :order)
+	end
 end
