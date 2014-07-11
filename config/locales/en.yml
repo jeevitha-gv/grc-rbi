@@ -412,6 +412,10 @@ en:
               blank: "Effectiveness can't be blank"
             consequence:
               blank: "Consequence can't be blank"
+        artifact:
+          attributes:
+            name:
+              taken: "Artifact is already added to this control"
 
 
 
