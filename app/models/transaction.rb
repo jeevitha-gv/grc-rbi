@@ -5,6 +5,7 @@ class Transaction < ActiveRecord::Base
   attr_accessor :company_domain, :subscription
 
   def purchase(amount,credit_card)
+    amount = (amount*100).round
     response = GATEWAY.purchase(amount, credit_card, purchase_options)
     self.update_attributes(transaction_id: response.params["transaction_id"],card_number: credit_card.display_number)    
     if response.success? 
