@@ -24,10 +24,14 @@ class SubscriptionNotifier < ActionMailer::Base
   end
 
   def recurring_pay_update(company)
+    @company = company
+    @subscription = company.subscriptions.first
     mail(to: company.join(","), subject: 'Your payment card details been updated',content_type: "text/html")
   end
 
   def recurring_pay_cancel(company)
+    @company = company
+    @subscription = company.subscriptions.first
     mail(to: company.join(","), subject: 'Your recurring payment for the subscription cancelled',content_type: "text/html")
   end
 end
