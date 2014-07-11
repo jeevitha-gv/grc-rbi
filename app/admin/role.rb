@@ -7,6 +7,8 @@ ActiveAdmin.register Role  do
     ]
   end
 
+  actions :all, :except => [:destroy]
+
   permit_params :title, :company_id
  #authentication
   controller do
