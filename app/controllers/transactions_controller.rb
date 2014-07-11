@@ -1,5 +1,7 @@
 class TransactionsController < ApplicationController
-	#force_ssl :only => [:new,:create]
+	if Rails.env.production?
+		force_ssl :only => [:new,:create]
+	end
 	skip_before_filter :authenticate_user!
 
 	def new
