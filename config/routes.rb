@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post 'admin/compliance_libraries/import_files'
   post 'admin/compliance_libraries/export_files'
   post 'admin/privileges/role_privileges'
+  post 'admin/transactions/cancel_recurring'
 
   devise_for :users
 
@@ -121,6 +122,8 @@ Rails.application.routes.draw do
   resources :plans
 
   resources :transactions, only: [:new, :create]
+
+  resources :update_payments
 
   get 'welcome', to: 'companies#welcome', :as => :welcome
 
