@@ -2055,3 +2055,45 @@ button.close {
 .up-pwd{
   margin: 0 0 20px 0;
 }
+.card-wrap{
+	max-width:460px;
+	padding:0px 0 ;
+	border:1px solid #d6d5d5;
+	margin:70px auto;
+	border-radius:6px;
+	margin-bottom:150px;
+	background:#FFF;
+	
+}
+.card-wrap h3{
+	padding:0px 0 0 20px;
+	color:#01669a;
+}
+.card-con{
+	margin:20px;
+	max-width:400px;
+}
+.card-con .form-horizontal .control-label {
+    text-align:left;
+	color:#373636;
+	font-weight:600;
+}
+.card-con .form-horizontal input {
+	
+	min-height:35px
+}
+.card-num{
+	max-width:210px;
+	display:inline-block;
+	float:left;
+}
+.card-type{
+	max-width:125px;
+	display:inline-block;
+	float:left;
+	margin:0 0 0 10px;
+}
+.card-cvv{
+	max-width:230px;
+	
+}
