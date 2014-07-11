@@ -22,6 +22,19 @@ ActiveAdmin.register Artifact do
       actions
     end
 
+    show do
+    attributes_table do
+      row "ComplianceLibrary" do |c|
+        c.compliance_library.name
+      end
+      row :name
+      row "Company" do |c|
+        c.company.name
+      end
+    end
+  end
+
+
     form do |f|
       all_compliance = ComplianceLibrary.where(:is_leaf => true)
       f.inputs "Artifacts" do

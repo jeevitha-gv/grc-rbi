@@ -50,6 +50,11 @@ ActiveAdmin.register Role  do
     end
   end
 
+  show do
+    attributes_table :title
+  end
+
+
 
   form do |f|
     f.inputs "Roles" do
