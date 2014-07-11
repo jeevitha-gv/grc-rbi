@@ -4,7 +4,7 @@ class ChecklistRecommendationsController < ApplicationController
 	before_filter :authorize_auditees_skip_company_admin, :only => [:auditee_response]
 	before_filter :authorize_auditor_skip_company_admin, :only => [:new, :audit_observation]
 	before_filter :authorize_auditor, :only => [:create, :update_individual_score, :audit_observation_create]
-
+	before_filter :check_plan_expire
 	require 'date'
 
  	#new for checklist recommendation

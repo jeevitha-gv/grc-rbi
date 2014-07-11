@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
 	
 	before_filter :company_module_access_check
-	
+	before_filter :check_plan_expire
   #Audit Calender Page
 	def calender
 		@audit = current_user.accessible_audits

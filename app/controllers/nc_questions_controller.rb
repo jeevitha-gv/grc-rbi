@@ -1,4 +1,5 @@
 class NcQuestionsController < ApplicationController
+  before_filter :check_plan_expire
   before_filter :current_audit, :company_module_access_check
   #authorize_resource
   before_filter :check_for_auditee_response, :only => [:new]
