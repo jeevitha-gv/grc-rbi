@@ -147,6 +147,12 @@ en:
   
   attachment:
     file_size_exceeds: "File size exceeds, you can't attach this file"
+    
+  dashboard:
+    create:
+      success: "Chart has been created successfully"
+    destroy:
+      success: "Chart has been deleted successfully"
 
 
 fr:
