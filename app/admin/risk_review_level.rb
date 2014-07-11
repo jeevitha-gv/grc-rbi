@@ -1,15 +1,15 @@
 ActiveAdmin.register RiskReviewLevel do
 
   menu :if => proc{ !current_admin_user.present? }
-  actions :all, :except => [:new]
+  actions :all, :except => [:new, :destroy]
   breadcrumb do
     [
       link_to('Review Levels', '/admin/risk_review_levels')
     ]
   end
-  
+
   permit_params :name, :days, :company_id, :value
-  
+
   controller do
     before_filter :check_company_admin, :check_role, :company_admin_module_check, :check_subdomain
    action :all, except: [:new, :show]
@@ -17,9 +17,9 @@ ActiveAdmin.register RiskReviewLevel do
     def scoped_collection
       current_company.risk_review_levels
     end
-    
+
   end
-  
+
   #Index page fields customization
   index do
     column :name
@@ -27,7 +27,7 @@ ActiveAdmin.register RiskReviewLevel do
     column :value
     actions
   end
-  
+
   #show page fields customization
   show do
     attributes_table do
@@ -37,7 +37,7 @@ ActiveAdmin.register RiskReviewLevel do
       row :value
     end
   end
-  
+
   form do |f|
      review = RiskReviewLevel.find_by_id(params[:id])
       f.inputs "New Risk Review Level" do
