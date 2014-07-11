@@ -16,6 +16,17 @@ class Transaction < ActiveRecord::Base
   private
   
   def purchase_options 
+    if self.company.present?
+       {
+      :ip => ip_address,
+      :billing_address => {
+        :name     => self.company.name,
+        :country  => self.company.country.name
+      }
+    }
+
+    else
+
     {
       :ip => ip_address,
       :billing_address => {
@@ -27,6 +38,7 @@ class Transaction < ActiveRecord::Base
         :zip      => "600083"
       }
     }
+   end
   end
 
   def make_recurring(credit_card)
