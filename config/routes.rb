@@ -18,6 +18,7 @@ Rails.application.routes.draw do
    resources :dashboard do
      collection do
       get 'calender'
+      patch 'update'
      end
    end
 
