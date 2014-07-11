@@ -173,16 +173,16 @@
                         <div class="row-sp">
                             <div class="form-group">
                           <label for="inputEmail3" class="col-sm-4 control-label mgt-label">Current Solution :</label>
-                          <div class="col-sm-8 mgt-text"><%= risk.mitigation.current_solution if risk.mitigation.present? %>
+                          <div class="col-sm-8 mgt-text"><%= risk.mitigation.current_solution.truncate(50) if risk.mitigation.present? %>
                           </div>
                             </div>
                             <div class="form-group">
                           <label for="inputEmail3" class="col-sm-4 control-label mgt-label">Requirements :</label>
-                          <div class="col-sm-8 mgt-text"><%= risk.mitigation.security_requirements if risk.mitigation.present?  %></div>
+                          <div class="col-sm-8 mgt-text"><%= risk.mitigation.security_requirements.truncate(50) if risk.mitigation.present?  %></div>
                         </div>
                           <div class="form-group">
                           <label for="inputEmail3" class="col-sm-4 control-label mgt-label">Recommendations:</label>
-                          <div class="col-sm-8 mgt-text"><%= risk.mitigation.security_recommendations if risk.mitigation.present? %></div>
+                          <div class="col-sm-8 mgt-text"><%= risk.mitigation.security_recommendations.truncate(50) if risk.mitigation.present? %></div>
                         </div>
                         </div>
                       </div>

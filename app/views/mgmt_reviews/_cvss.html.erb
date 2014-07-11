@@ -66,15 +66,15 @@
   <div class="row-sp">
     <div class="form-group">
       <label for="inputEmail3" class="col-sm-7 control-label mgt-label">Effectiveness :</label>
-        <div class="col-sm-5 mgt-text"><%= r.control_measure.effectiveness if r.control_measure.present? %></div>
+        <div class="col-sm-5 mgt-text"><%= r.control_measure.effectiveness.truncate(50) if r.control_measure.present? %></div>
     </div>
     <div class="form-group" >
       <label for="inputEmail3" class="col-sm-7 control-label mgt-label ">Threat :</label>
-      <div class="col-sm-5 mgt-text"><%= r.control_measure.threat  if r.control_measure.present?%></div>
+      <div class="col-sm-5 mgt-text"><%= r.control_measure.threat.truncate(50)  if r.control_measure.present?%></div>
     </div>
     <div  class="form-group" >
       <label for="inputEmail3" class="col-sm-7 control-label mgt-label">Consequence :</label>
-      <div class="col-sm-5 mgt-text"><%= r.control_measure.consequence  if r.control_measure.present?%></div>
+      <div class="col-sm-5 mgt-text"><%= r.control_measure.consequence.truncate(50)  if r.control_measure.present?%></div>
     </div>
   </div>
 </div>

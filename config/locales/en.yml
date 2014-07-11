@@ -412,6 +412,20 @@ en:
               blank: "Effectiveness can't be blank"
             consequence:
               blank: "Consequence can't be blank"
+        project:
+          attributes:
+            name:
+              blank: "Project name can't be blank"
+        cpp_measure:
+          attributes:
+            name:
+              blank: "Cpp Measure can't be blank"
+              taken: "Cpp Measure already used"
+            description:
+              blank: "Description can't be blank"
+            compliance_id:
+              blank: "Regulation name can't be blank"
+
 
 
 
