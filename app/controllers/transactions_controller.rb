@@ -8,16 +8,14 @@ class TransactionsController < ApplicationController
 
 	def create
 		company =Company.where("domain =?",params[:transaction][:company_domain]).first
-		user = company.users.map(&:email) if user.map(&:role_title).join(",").eql?("company_admin")
-		user_email = user
+		user = company.users.map(&:email) if company.users.map(&:role_title).join(",").eql?("company_admin")
+		user_email = user 
 		subscribe = Subscription.where("name = ?",params[:transaction][:subscription]).first
 		@credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card]) 
 				if @credit_card.valid?
 						@transaction = Transaction.new(transaction_params)
 						@transaction.update_attributes(:company_id => company.id,:subscription_id=>subscribe.id,:ip_address=>request.remote_ip)						
 					if @transaction.purchase(subscribe.amount,@credit_card)
-						#company.recurring_pay = true
-						#company.save!
 						notify_payment_success(company,subscribe,user_email)     
 						redirect_to welcome_path
 					else
