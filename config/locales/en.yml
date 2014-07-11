@@ -425,6 +425,10 @@ en:
               blank: "Description can't be blank"
             compliance_id:
               blank: "Regulation name can't be blank"
+        artifact:
+          attributes:
+            name:
+              taken: "Artifact is already added to this control"
 
 
 
