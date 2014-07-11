@@ -16,6 +16,8 @@ class TransactionsController < ApplicationController
 						@transaction = Transaction.new(transaction_params)
 						@transaction.update_attributes(:company_id => company.id,:subscription_id=>subscribe.id,:ip_address=>request.remote_ip)						
 					if @transaction.purchase(subscribe.amount,@credit_card)
+						#company.recurring_pay = true
+						#company.save!
 						notify_payment_success(company,subscribe,user_email)     
 						redirect_to welcome_path
 					else

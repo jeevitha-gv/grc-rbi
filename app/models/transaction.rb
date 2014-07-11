@@ -12,10 +12,6 @@ class Transaction < ActiveRecord::Base
     end
    response.success?
   end
-  
-  def update_profile(profile_id)
-	   response = GATEWAY.update_recurring(profile_id: profile_id,credit_card: credit_card)
-  end
  
   private
   
