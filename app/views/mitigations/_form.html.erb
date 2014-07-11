@@ -332,7 +332,7 @@
     </div>
         <div class="btn-group save-file">
           <a class="black_btn" href="javascript:goBack()">Back</a>
-         <%= f.submit "Submit" , :class => "orange_btn" %>
+         <%= f.submit "Submit" , :class => "orange_btn" if risk.mitigator == current_user.id  %>
         </div>
       </div>
       </div>
