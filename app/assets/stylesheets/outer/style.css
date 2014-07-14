@@ -2131,3 +2131,15 @@ button.close {
 	float:lleft;
 	max-width:500px;
 }
+.db_setting ul li{
+	margin: 0px;
+	background: #000;
+}
+.db_setting ul li  a{display:block; background:#e8e8e8; margin:0px; padding: 10px;}	
+.db_setting ul li a:hover{display:block; background:#e8e8e8; color:#000;}
+.db_setting_dropdown{
+	padding: 0px;
+
+}
+
+
