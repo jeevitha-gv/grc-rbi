@@ -138,7 +138,7 @@
                        <div class="col-sm-8">
                             <!--div class="risk-select"-->
                             <div>
-                             <%= control.collection_select  :control_ids, CppMeasure.for_name("Control"), :id, :name,{}, {class: 'multiselect',:multiple => "multiple"} %>
+                             <%= control.collection_select  :control_ids, CppMeasure.for_type_by_company('Control', current_company.id), :id, :name,{}, {class: 'multiselect',:multiple => "multiple"} %>
                              <%#= select("control", "control_ids", options_from_collection_for_select(@controls, :id, :name), {}, {:id=> "multiselect", :multipart =>"multiple" }) %>
                             </div>
                     </div>
@@ -154,7 +154,7 @@
                        <div class="col-sm-8">
                             <!--div class="risk-select"-->
                             <div>
-                             <%= control.collection_select(:process_ids, CppMeasure.for_name("Process"),  :id, :name,{}, {class: 'multiselect',:multiple => "multiple"}) %>
+                             <%= control.collection_select(:process_ids, CppMeasure.for_type_by_company('Process', current_company.id),  :id, :name,{}, {class: 'multiselect',:multiple => "multiple"}) %>
                             </div>
                     </div>
                    </div>
@@ -168,7 +168,7 @@
                        <div class="col-sm-8">
                             <!--div class="risk-select"-->
                             <div>
-                            <%= control.collection_select(:procedure_ids, CppMeasure.for_name("Procedure"),  :id, :name,{},{class: 'multiselect',:multiple => "multiple"}) %>
+                            <%= control.collection_select(:procedure_ids, CppMeasure.for_type_by_company('Procedure', current_company.id),  :id, :name,{},{class: 'multiselect',:multiple => "multiple"}) %>
                             </div>
                     </div>
                    </div>

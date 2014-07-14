@@ -7,7 +7,7 @@
           Departments</a></li>
         <li><a href="/admin/teams" class="<%= request.fullpath.include?("admin/teams") == true ? 'active' : '' %>">
           Teams</a></li>
-        <li><a href="/admin/roles" class="<%= request.fullpath.include?("admin/roles") == true ? 'active' : '' %>">
+        <li><a href="/admin/roles" class="<%= (request.fullpath.include?("admin/roles") || request.fullpath.include?("admin/privileges")) == true ? 'active' : '' %>">
           Roles</a></li>
         <li><a href="/admin/users" class="<%= request.fullpath.include?("admin/users") == true ? 'active' : '' %>">
           Users</a></li>
