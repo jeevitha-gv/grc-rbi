@@ -13,7 +13,9 @@
       <%= f.label :client_id, t('audit.client') %>
     </label>
     <div class="col-sm-7">
-      <%= f.collection_select(:client_id, current_company.clients, :id, :name, :prompt => true) %>
+      <div class="risk-select">
+        <%= f.collection_select(:client_id, current_company.clients, :id, :name, :prompt => true) %>
+      </div>
     </div>
   </div>
   <div class="form-group clearfix">
@@ -121,7 +123,9 @@
       <%= f.label :audit_type, t('audit.audit_type') %>
     </label>
     <div class="col-sm-7 <%='error_inputfield' if audit.errors[:title].present? %>">
-      <%= f.collection_select(:audit_type_id, AuditType.all, :id, :name, :prompt => true) %>
+      <div class="risk-select">
+        <%= f.collection_select(:audit_type_id, AuditType.all, :id, :name, :prompt => true) %>
+      </div>
       <% if audit.errors[:audit_type_id].present? %>
         <div class="error_message"><%=  audit.errors[:audit_type_id][0]%></div>
       <% end %>
@@ -133,7 +137,9 @@
       <%= f.label :location, t('audit.location') %>
     </label>
     <div class="col-sm-7">
-      <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => audit.location_id), {include_blank: 'Select Location' }, { :id => "locations-list", :onChange => "get_departments(this);"} %>
+      <div class="risk-select">
+        <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => audit.location_id), {include_blank: 'Select Location' }, { :id => "locations-list", :onChange => "get_departments(this);"} %>
+      </div>
     </div>
     <div class="ajax-loader" style="display:none;">
       <%= image_tag("/assets/outer/ajax-loader-small.gif", :alt => "ajax-loader") %>
@@ -144,11 +150,13 @@
       <%= f.label :department_id, t('audit.department') %>
     </label>
     <div class="col-sm-7">
+      <div class="risk-select">
       <% if departments.present? %>
         <%= f.select :department_id, options_for_select(departments.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.department_id), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
       <% else %>
         <%= f.select :department_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
       <% end %>
+      </div>
     </div>
     <div class="ajax-loader-department" style="display:none;">
       <%= image_tag("/assets/outer/ajax-loader-small.gif", :alt => "ajax-loader") %>
@@ -159,11 +167,13 @@
       <%= f.label :team_id, t('audit.team') %>
     </label>
     <div class="col-sm-7">
+      <div class="risk-select">
       <% if teams.present? %>
         <%= f.select :team_id, options_for_select(teams.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.team_id), {include_blank: 'Select Team' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
       <% else %>
         <%= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
       <% end %>
+      </div>
     </div>
     <div class="ajax-loader-team" style="display:none;">
       <%= image_tag("/assets/outer/ajax-loader-small.gif", :alt => "ajax-loader") %>
@@ -176,7 +186,9 @@
       <%= f.label :compliance_type, t('audit.compliance_type') %>
     </label>
     <div class="col-sm-7 <%='error_inputfield' if audit.errors[:compliance_type].present? %>">
+      <div class="risk-select">
         <%= f.select(:compliance_type, Audit::COMPLIANCE_TYPES, :selected => (audit.compliance_type if audit.compliance_type?), :include_blank => "Select Type", :id=>"compliance_type") %>
+      </div>
       <% if audit.errors[:compliance_type].present? %>
         <div class="error_message"><%=  audit.errors[:compliance_type][0]%></div>
       <% end %>
@@ -190,7 +202,9 @@
       <%= f.label :standard_id, t('audit.topic') %>
     </label>
     <div class="col-sm-7 <%='error_inputfield' if audit.errors[:standard_id].present? %>">
+      <div class="risk-select">
       <%= f.collection_select(:standard_id, Topic.all, :id, :name, :selected => (audit.standard_id if audit.compliance_type == 'NonCompliance'), :prompt => true, :name => "((audit.compliance_type == 'NonCompliance' && (audit.errors[:standard_id].present? || audit.standard_id.present?)) == true ? audit[:standard_id] : "" )") %>
+      </div>
       <% if audit.errors[:standard_id].present? %>
         <div class="error_message"><%=  audit.errors[:standard_id][0]%></div>
       <% end %>
@@ -202,7 +216,9 @@
       <%= f.label :standard_id, t('audit.standard') %>
     </label>
     <div class="col-sm-7">
-      <%= f.collection_select(:standard_id, Compliance.all, :id, :name, :selected => (audit.standard_id if audit.compliance_type == 'Compliance'), :prompt => true, :name => "((audit.compliance_type == 'Compliance' && (audit.errors[:standard_id].present? || audit.standard_id.present?)) == true ? audit[:standard_id] : "" )") %>
+      <div class="risk-select">
+        <%= f.collection_select(:standard_id, Compliance.all, :id, :name, :selected => (audit.standard_id if audit.compliance_type == 'Compliance'), :prompt => true, :name => "((audit.compliance_type == 'Compliance' && (audit.errors[:standard_id].present? || audit.standard_id.present?)) == true ? audit[:standard_id] : "" )") %>
+      </div>
       <% if audit.errors[:standard_id].present? %>
         <div class="error_message"><%=  audit.errors[:standard_id][0]%></div>
       <% end %>
@@ -266,7 +282,9 @@
       <%= f.label :auditor, t('audit.auditor') %>
     </label>
     <div class="col-sm-7 <%='error_inputfield' if audit.errors[:auditor].present? %>">
+      <div class="risk-select">
       <%= f.select :auditor, options_for_select(auditor_users.collect{|x| [x.user_name, x.id.to_i]}, :selected => audit.auditor), {include_blank: 'Select Auditor' } %>
+      </div>
       <% if audit.errors[:auditor].present? %>
         <div class="error_message"><%=  audit.errors[:auditor][0]%></div>
       <% end %>
