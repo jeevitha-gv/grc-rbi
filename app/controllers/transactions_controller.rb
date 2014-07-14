@@ -18,9 +18,11 @@ class TransactionsController < ApplicationController
 						@transaction = Transaction.new(transaction_params)
 						@transaction.update_attributes(:company_id => company.id,:subscription_id=>subscribe.id,:ip_address=>request.remote_ip)						
 					if @transaction.purchase(subscribe.amount,@credit_card)
+						flash[:notice] = "Payment done successfully"
 						notify_payment_success(company,subscribe,user_email)     
 						redirect_to welcome_path
 					else
+						flash[:notice] = "Payment failed due to internal error.Please try after some time"
 						@transaction.update_attributes(:pay_complete => false)	
 						SubscriptionNotifier.payment_failed(user_email,@transaction,subscribe).deliver
 						redirect_to "/users/sign_in"				
