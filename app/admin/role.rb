@@ -7,6 +7,8 @@ ActiveAdmin.register Role  do
     ]
   end
 
+  actions :all, :except => [:destroy]
+
   permit_params :title, :company_id
  #authentication
   controller do
@@ -49,6 +51,11 @@ ActiveAdmin.register Role  do
       link_to "Add privilege" , "/admin/privileges/new?role_id=#{f.id}"#, :onclick => "test();"
     end
   end
+
+  show do
+    attributes_table :title
+  end
+
 
 
   form do |f|

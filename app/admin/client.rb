@@ -53,6 +53,10 @@ ActiveAdmin.register Client do
     actions
   end
 
+  show do
+    attributes_table :name, :address1, :address2, :contact_no, :email
+  end
+
   form do |f|
     # f.semantic_errors *f.object.errors.keys
     f.inputs "Clients Details" do
