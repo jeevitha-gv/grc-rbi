@@ -15,8 +15,8 @@ class Client < ActiveRecord::Base
   validates_format_of :name, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.name.blank? }
   validates :name, uniqueness:true, :if => Proc.new{ |f| !f.name.blank? }
   validates :name, length: { in: 2..52 }, :if => Proc.new{ |f| !f.name.blank? }
-  validates :address1, length: { in: 7..40 },:if => Proc.new{|f| !f.address1.blank? }
-  validates :address2, length: { in: 7..40 },:if => Proc.new{|f| !f.address2.blank? }
+  validates :address1, length: { in: 2..40 },:if => Proc.new{|f| !f.address1.blank? }
+  validates :address2, length: { in: 2..40 },:if => Proc.new{|f| !f.address2.blank? }
   validates :email, presence: true
   validates :email, uniqueness: true,:if => Proc.new{|f| !f.email.blank? }
   validates :email, length: { maximum: 50 },:if => Proc.new{|f| !f.email.blank? }

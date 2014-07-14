@@ -1,5 +1,5 @@
 ActiveAdmin.register Topic do
-
+  config.filters = false
   menu :if => proc{ current_admin_user.present? }
 
   #authentication

@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  config.batch_actions = false
+   config.filters = false
   menu :if => proc{ !current_admin_user.present? }
 
 
