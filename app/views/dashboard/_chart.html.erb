@@ -4,13 +4,13 @@
 <% charts.each do |chart|%>
 <div class="col-lg-6"> 
 			<li class="db_setting_main" id="<%= chart.id%>">
-					<div class="dash_sub_title"><%= chart.name%><span class="setting-icon db_setting"><span class="db_setting_down_icon"></span>
+					<div class="dash_sub_title"><%= chart.name%><span class="setting-icon db_setting"><% if current_user.role_title == 'company_admin'%> <span class="db_setting_down_icon"></span>
 						<div class="db_setting_dropdown">
 							<ul>
 								<li><a href="#" onclick="chart_destroy(<%= chart.id%>);">Delete</a></li>
 							</ul>
 						</div>
-					</span> </div>
+					</span> <% end %></div>
 				<div id="chart_<%= chart.id%>"></div>
 				<script>
 				<% chart_input = chart_input(chart.x_axis)%>

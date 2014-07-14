@@ -13,7 +13,7 @@
         <!-- Dash Board Title Start -->
         <div class="dashboard-title col-lg-10">Dash Board</div>
         <div class="dashboard-title col-lg-2">
-          <div class="form-group clearfix"> <a class="add_widget_btn fright" data-toggle="modal" href="#db_add_widget">Add Widget</a>
+          <div class="form-group clearfix"><% if current_user.role_title == 'company_admin'%> <a class="add_widget_btn fright" data-toggle="modal" href="#db_add_widget">Add Widget</a><% end %>
             <div id="db_add_widget" class="modal fade">
               <div class="modal-dialog modal-dialog_large modal-dialog_addwidget">
                 <div class="modal-content">
