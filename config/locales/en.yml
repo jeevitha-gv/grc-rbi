@@ -32,7 +32,6 @@ en:
             password_confirmation:
               confirmation: "Password Confirmation doesn't match password"
             email:
-              blank: "Email can't be blank"
               invalid: "Email is invalid"
               taken: "Email has been already used"
               too_long:

@@ -37,13 +37,7 @@
 .content {
 	min-height: 400px;
 }
-.footer {
-	height: 70px;
-	background-color: #363535;
-	color: #9f9d9d;
-	padding: 25px 0;
 
-}
 .user_login {
 	color: #717171;
 	float: right;
@@ -578,21 +572,30 @@ html, body {
 	position: relative;
 }
 #wrapper {
-	 min-height:100%;
-  position:relative;
-  margin-bottom:0px
+	 margin: 0px;
 }
-.footer{
+
+.footer-login{
   left:0;
   width:100%;
-  position:absolute;
-}
-.footer-login{
-   left:0;
-  width:100%;
-  position:absolute;
+  position:relative!important;
   bottom: 0;
+}
+.footer {
+	height: 70px;
+	background-color:#363535;
+	color: #9f9d9d;
+	padding: 25px 0;
 
+}
+.footer_sp{
+	left:0;
+  width:100%;
+  position:relative!important;
+  bottom: 0;
+}
+.activity{
+	margin: 0 0 50px 0;
 }
 
 .error_logo{ padding-top:15px; font-size:25px;}
@@ -2060,4 +2063,17 @@ button.close {
 }
 #company_timezone > option {
     width: 286px;
+}
+.field_with_errors{
+	float: left;
+}
+html,
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+}
+.wrapper {
+	min-height:100%;
+	position:relative;
 }
