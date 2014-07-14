@@ -83,7 +83,7 @@
             Admin Settings</a></li>
         <% end %>
 			<% elsif !overview_header && !company_plan_check %>
-        <li><a href="#" class="<%#= request.fullpath.include?("audit_dashboard") == true ? 'active' : '' %>">
+        <li><a href="/" class="<%#= request.fullpath.include?("audit_dashboard") == true ? 'active' : '' %>">
           <div class="dash-icon"></div>
           Dashboard</a></li>
         <li><a href="/dashboard/calender" class="<%= request.fullpath.include?("dashboard/calender") == true ? 'active' : '' %>">

@@ -41,7 +41,7 @@
                       <div class="form-group fleft">
                          <%= f.label "Y-Axis: ", :class => "control-label" %>
                         <div class="select_outer">
-													<%= f.select :y_axis , ['Count','Percentage','Year'], {:prompt => "-Select Y-Axis-", :id =>"widget_y_axis" } %>
+													<%= f.select :y_axis , ['Count','Percentage'], {:prompt => "-Select Y-Axis-", :id =>"widget_y_axis" } %>
                         </div>
 												<span id="widget_y_axis_error" class="error_message" style="display:none;"><%= MESSAGES["chart"]["presence"]["y_axis"]%></span>
                       </div>
