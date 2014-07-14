@@ -97,14 +97,28 @@
       <% end %>
     </div>
   </div>
-  <div class="form-group clearfix addissue"> <a href="#add_url" data-toggle="modal" class="plus-icon next-phase">Add Issue from Risk Library</a>
+  <div class="form-group clearfix addissue"> <a href="#add_url" data-toggle="modal" class="plus-icon">Add Issue from Risk Library</a>
     <div class="modal fade" id="add_url">
       <div class="modal-dialog modal-dialog_large">
         <div class="modal-content">
           <div class="modal-header">
             <button aria-hidden="true" data-dismiss="modal" class="close" type="button"> &nbsp; </button>
-            <h4 id="myModalLabel" class="modal-title">Planned for further phases.</h4>
-            <p></p>
+            <h4 id="myModalLabel" class="modal-title">Add issue from risks</h4>
+            <% if @risks.present? %>
+              <div class="modal-content-inner">
+                <br>
+                <% @risks.each do |risk| %>
+                  <%= f.radio_button :risk_id, risk.id, id: 'risk_value' %>
+                  <%= f.label :risk_id, risk.subject, id: "risk_subject_#{risk.id}" %>
+                  <br>
+                <% end %>
+                <br>
+                <div class="model-footer">
+                  <%= submit_tag "Add" ,:class => "black_btn add-risk", :type => :button, "data-dismiss" => "modal" %>
+                  <%= button_tag "Cancel", type: 'button', "data-dismiss" => "modal", :class => "orange_btn" %>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

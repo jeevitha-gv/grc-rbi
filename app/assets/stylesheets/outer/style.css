@@ -2061,3 +2061,13 @@ button.close {
 #company_timezone > option {
     width: 286px;
 }
+.cancel-btn1{
+  float: right;
+  margin: 5px 10px 0 0;
+}
+.tab-wrap{
+  margin: 55px 0;
+}
+.set-wrap{
+  margin: 15px 0;
+}
