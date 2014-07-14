@@ -1,15 +1,15 @@
 ActiveAdmin.register Technology do
-
+   config.filters = false
    menu :if => proc{ !current_admin_user.present? }
-  
+
   breadcrumb do
     [
       link_to('Technology', '/admin/technologies')
     ]
   end
-  
+
   permit_params :name, :company_id
-  
+
   controller do
     before_filter :check_company_admin, :check_role
     before_filter :check_subdomain
@@ -18,15 +18,15 @@ ActiveAdmin.register Technology do
     def scoped_collection
       current_company.technologies
     end
-    
+
   end
-  
+
   #Index page fields customization
   index do
     column :name
     actions
   end
-  
+
   #show page fields customization
   show do
     attributes_table do
@@ -36,7 +36,7 @@ ActiveAdmin.register Technology do
       row :updated_at
     end
   end
-  
+
     form do |f|
       f.inputs "New Technology" do
         f.input :name

@@ -1,5 +1,6 @@
 ActiveAdmin.register Subscription do
-menu :if => proc{ current_admin_user.present? }
+  config.filters = false
+  menu :if => proc{ current_admin_user.present? }
   #authentication
   controller do
     before_filter :authenticate_admin_user!
@@ -8,7 +9,7 @@ menu :if => proc{ current_admin_user.present? }
     def create
       params[:subscription][:section_ids] = params[:subscription][:section_ids].reject{|x| !x.present?}
       @subscription = Subscription.new(params[:subscription])
-      if @subscription.save         
+      if @subscription.save
         redirect_to admin_subscriptions_path
       else
         render "new"
@@ -18,7 +19,7 @@ menu :if => proc{ current_admin_user.present? }
     def update
       params[:subscription][:section_ids] = params[:subscription][:section_ids].reject{|x| !x.present?}
        @subscription = Subscription.where("id = ?",params[:id]).first
-      if @subscription.update_attributes(params[:subscription])      
+      if @subscription.update_attributes(params[:subscription])
         redirect_to admin_subscriptions_path
       else
         render "new"
@@ -45,7 +46,7 @@ menu :if => proc{ current_admin_user.present? }
       "Month(s)"
     end
     column :user_count
-    column :file_size 
+    column :file_size
     actions
   end
 
@@ -53,7 +54,7 @@ menu :if => proc{ current_admin_user.present? }
     attributes_table do
       row :name
       row :description
-      row "Section" do |sec|     
+      row "Section" do |sec|
        Section.where("id IN (?)",sec.section_ids).map(&:name).join(",")
       end
       row :amount

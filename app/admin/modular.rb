@@ -1,4 +1,5 @@
 ActiveAdmin.register Modular do
+  config.filters = false
   menu :if => proc{ current_admin_user.present? }
 
   permit_params :model_name, :action_name, :section_id

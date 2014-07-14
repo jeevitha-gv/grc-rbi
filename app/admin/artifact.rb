@@ -1,5 +1,5 @@
 ActiveAdmin.register Artifact do
-
+    config.filters = false
     breadcrumb do
       [
         link_to('Artifact', '/admin/artifacts')

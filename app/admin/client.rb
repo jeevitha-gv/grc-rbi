@@ -1,5 +1,5 @@
 ActiveAdmin.register Client do
-
+  config.filters = false
   breadcrumb do
     [
       link_to('Client', '/admin/clients')

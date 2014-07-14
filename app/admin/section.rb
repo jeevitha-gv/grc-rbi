@@ -1,6 +1,6 @@
 ActiveAdmin.register Section do
-
-    menu :if => proc{ current_admin_user.present? }
+  config.filters = false
+  menu :if => proc{ current_admin_user.present? }
 
   #authentication
   controller do
