@@ -13,7 +13,7 @@
         <!-- Dash Board Title Start -->
         <div class="dashboard-title col-lg-10">Dash Board</div>
         <div class="dashboard-title col-lg-2">
-          <div class="form-group clearfix"> <a class="add_widget_btn fright" data-toggle="modal" href="#db_add_widget">Add Widget</a>
+          <div class="form-group clearfix"><% if current_user.role_title == 'company_admin'%> <a class="add_widget_btn fright" data-toggle="modal" href="#db_add_widget">Add Widget</a><% end %>
             <div id="db_add_widget" class="modal fade">
               <div class="modal-dialog modal-dialog_large modal-dialog_addwidget">
                 <div class="modal-content">
@@ -92,65 +92,6 @@ $(document).ready(function(){
 });
 
 
-$(document).ready(function(){
-  
-  Top_postion = $(window).scrollTop();
-  
-  $( ".db_setting" ).mouseenter(function() {
-    $(this).addClass("active");
-    $(".db_setting_dropdown").slideDown(100);   
-  })
-  .mouseleave(function() {
-    $(this).removeClass("active");
-    $(".db_setting_dropdown").hide();
-  });
-  
-});
 
-
-$(document).ready(function(){
-  
-  Top_postion = $(window).scrollTop();
-  
-  $( ".db_setting1" ).mouseenter(function() {
-    $(this).addClass("active");
-    $(".db_setting_dropdown1").slideDown(100);    
-  })
-  .mouseleave(function() {
-    $(this).removeClass("active");
-    $(".db_setting_dropdown1").hide();
-  });
-  
-});
-
-$(document).ready(function(){
-  
-  Top_postion = $(window).scrollTop();
-  
-  $( ".db_setting2" ).mouseenter(function() {
-    $(this).addClass("active");
-    $(".db_setting_dropdown2").slideDown(100);    
-  })
-  .mouseleave(function() {
-    $(this).removeClass("active");
-    $(".db_setting_dropdown2").hide();
-  });
-  
-});
-
-$(document).ready(function(){
-  
-  Top_postion = $(window).scrollTop();
-  
-  $( ".db_setting3" ).mouseenter(function() {
-    $(this).addClass("active");
-    $(".db_setting_dropdown3").slideDown(100);    
-  })
-  .mouseleave(function() {
-    $(this).removeClass("active");
-    $(".db_setting_dropdown3").hide();
-  });
-  
-});		
 
 </script>
