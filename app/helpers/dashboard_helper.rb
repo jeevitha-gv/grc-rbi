@@ -50,4 +50,16 @@ module DashboardHelper
 		return x_axis_records, y_axis_records
 	end
 	
+	
+	def pie_input(x_axis, y_axis)
+		pie_records = []
+		pie_input = []
+		x_axis.each_with_index do |x, index|
+			pie_input = []
+			pie_input << x
+			pie_input << y_axis[index]
+			pie_records << pie_input
+		end
+	pie_records
+	end
 end

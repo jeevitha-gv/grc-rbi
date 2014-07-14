@@ -1,4 +1,4 @@
-function load_chart(chart_type, x_axis_record, y_axis_record, div_id, y_axis_type, x_axis_type)
+function load_chart(chart_type, x_axis_record, y_axis_record, div_id, y_axis_type, x_axis_type, pie_chart_input)
 {
 if (chart_type == 'Bar')
 {
@@ -94,14 +94,11 @@ $(function () {
                 },
 
                 tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    //~ pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                    pointFormat: '<span style="color:{point.color}">'+x_axis_type+'</span>: <b>{point.y:.2f}%</b> of total<br/>'
                 },
 
 						series: [{
-                    //~ name: 'Brands',
-                    colorByPoint: true,
-                    data: y_axis_record
+                  data: pie_chart_input
                 }],
                 drilldown: {
                     //~ series: drilldownSeries
