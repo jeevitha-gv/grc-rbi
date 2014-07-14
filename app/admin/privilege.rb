@@ -12,7 +12,7 @@ ActiveAdmin.register Privilege do
 
 	controller do
     before_filter :authenticate_user!, :check_company_admin, :check_role
-    before_filter :check_subdomain
+    before_filter :check_subdomain,:check_plan_expire
 	  #~ skip_before_filter :verify_authenticity_token
 	  before_filter :role_company, only: [:new]
 
