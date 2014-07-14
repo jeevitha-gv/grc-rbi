@@ -1,10 +1,3 @@
-<script>
-	var compliance_audits = <%= raw @compliance_audits %>;
-	var non_compliance_audits = <%= raw @non_compliance_audits%>;
-	var audit_types = <%= raw @audit_types%>;
-	var chart_type = 'Bar';
-	var compliance_types = ["Compliance", "NonCompliance"];
-</script>
 <%= javascript_include_tag "/assets/views/main_dashboard.js" %>
 <script src="/assets/outer/highcharts.js"></script>
 <script src="/assets/outer/exporting.js"></script>
@@ -35,29 +28,33 @@
                       <div class="form-group clearfix">
                         <%= f.label "Widget Name: " %>
                         <div class="clearfix"></div>
-													<%= f.text_field :name , :class => "modal-normal-input"%>
+													<%= f.text_field :name , :class => "modal-normal-input" ,:id => "widget_name"%>
+													<span id="widget_name_error" class="error_message" style="display:none;"><%= MESSAGES["chart"]["presence"]["name"]%></span>
                       </div>
                       <div class="form-group fleft modal-padding">
                          <%= f.label "X-Axis: ", :class => "control-label" %>
                         <div class="select_outer">
-													<%= f.select :x_axis , ['Type','Status','Compliance Type','Standard','Topic','Location','Department','Team'], :prompt => "-Select X-Axis-"  %>
+													<%= f.select :x_axis , ['Type','Status','Compliance Type','Standard','Topic','Location','Department','Team'],{:prompt => "-Select X-Axis-", :id =>"widget_x_axis"}  %>
                         </div>
+											<span id="widget_x_axis_error" class="error_message" style="display:none;"><%= MESSAGES["chart"]["presence"]["x_axis"]%></span>
                       </div>
                       <div class="form-group fleft">
                          <%= f.label "Y-Axis: ", :class => "control-label" %>
                         <div class="select_outer">
-													<%= f.select :y_axis , ['Count','Percentage','Year'], :prompt => "-Select Y	-Axis-"  %>
+													<%= f.select :y_axis , ['Count','Percentage','Year'], {:prompt => "-Select Y-Axis-", :id =>"widget_y_axis" } %>
                         </div>
+												<span id="widget_y_axis_error" class="error_message" style="display:none;"><%= MESSAGES["chart"]["presence"]["y_axis"]%></span>
                       </div>
 											<div class="form-group clearfix">
                         <%= f.label "Chart Type: " %>
 													<div class="select_outer">
-													<%= f.select :chart_type , ['Bar','Pie','Line'], :prompt => "-Select Chart Type-" , :class =>"modal-normal-input" %>
+													<%= f.select :chart_type , ['Bar','Pie','Line'],{ :prompt => "-Select Chart Type-" , :class =>"modal-normal-input", :id => "widget_chart_type" }%>
 												</div>
+												<span id="widget_chart_type_error" class="error_message" style="display:none;"><%= MESSAGES["chart"]["presence"]["chart_type"]%></span>
                       </div>
                       <div class="clearfix"></div>
 											<%= f.hidden_field :company_id, :value =>"#{current_company.id}"%>
-                      <div class="modal-footer"><%= f.submit "Submit", :class => "orange_btn" %> <a href="" class="black_btn">Cancel</a> </div>
+                      <div class="modal-footer"><%= f.submit "Submit", :class => "orange_btn" , :onclick => "widget_validation();"%> <a href="#" class="black_btn" onclick="$('#db_add_widget').modal('hide');">Cancel</a> </div>
 										<% end %>
                     </div>
                     <!--popup content End--> 
@@ -154,30 +151,6 @@ $(document).ready(function(){
     $(".db_setting_dropdown3").hide();
   });
   
-});
+});		
 
- // this tells the sort script to do its thing
-    $("#audit_charts ul.col-lg-6").dragsort({ 
-    dragSelector: "li div", 
-    dragBetween: true, 
-    dragEnd: saveOrder, 
-    placeHolderTemplate: "<li ></li>"
-    });
-
-    // this is the function that puts the new sort order into a string
-    function saveOrder() {
-        var serialStr = "";
-        $("#audit_charts li.db_setting_main").each(function(i, elm) { serialStr += (i > 0 ? "|" : "") + $(elm).attr("id"); });
-        // this dynamically updates string to hidden form field
-        document.getElementById('sortOrder').value = serialStr;
-	alert(serialStr);
-	$.ajax({
-					url: "/dashboard/update",
-					type: "put",
-					beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
-					data: {order: serialStr}
-					});
-    };
-		
-		
 </script>

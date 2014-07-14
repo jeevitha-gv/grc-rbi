@@ -167,3 +167,83 @@ if (confirm('Are you sure?')) {
                     });	
 }
 }
+
+function widget_validation()
+{
+var name = $('#widget_name').val()
+var x_axis = $('#dashboard_chart_x_axis').val()
+var y_axis = $('#dashboard_chart_y_axis').val()
+var chart_type = $('#dashboard_chart_chart_type').val()
+var widget_name = name_validation();
+var widget_x_axis = x_axis_validation();
+var widget_y_axis = y_axis_validation();
+var widget_chart_type = chart_type_validation();
+if (widget_name && widget_x_axis && widget_y_axis && widget_chart_type)
+{
+return true
+}
+else
+{
+return false
+}
+function name_validation()
+{
+if (name == '')
+{
+$('#widget_name').addClass("error_input");
+$('#widget_name_error').show()
+return false
+}
+else
+{
+$('#widget_name').removeClass("error_input");
+$('#widget_name_error').hide()
+return true
+}
+}
+function x_axis_validation()
+{
+if (x_axis == '-Select X-Axis-' || x_axis == '')
+{
+$('#dashboard_chart_x_axis').addClass("error_input");
+$('#widget_x_axis_error').show()
+return false
+}
+else
+{
+$('#dashboard_chart_x_axis').removeClass("error_input");
+$('#widget_x_axis_error').hide()
+return true
+}
+}
+function y_axis_validation()
+{
+if (y_axis == '-Select Y-Axis-' || y_axis == '')
+{
+$('#dashboard_chart_y_axis').addClass("error_input");
+$('#widget_y_axis_error').show()
+return false
+}
+else
+{
+$('#dashboard_chart_y_axis').removeClass("error_input");
+$('#widget_y_axis_error').hide()
+return true
+}
+}
+function chart_type_validation()
+{
+if (chart_type == '-Select Chart Type-' || chart_type == '')
+{
+$('#dashboard_chart_chart_type').addClass("error_input");
+$('#widget_chart_type_error').show()
+return false
+}
+else
+{
+$('#dashboard_chart_chart_type').removeClass("error_input");
+$('#widget_chart_type_error').hide()
+return true
+}
+}
+}

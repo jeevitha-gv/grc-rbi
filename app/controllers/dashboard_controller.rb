@@ -20,13 +20,13 @@ class DashboardController < ApplicationController
 		@dashboard_chart = DashboardChart.new(dashboard_chart_params)
 		@dashboar_max_order = current_company.dashboard_charts.empty? ? 1 : current_company.dashboard_charts.map(&:order).max
 		@dashboard_chart.order = @dashboar_max_order+1
-		@dashboard_chart.save
-		@charts = current_company.dashboard_charts
+			@charts = current_company.dashboard_charts 		if @dashboard_chart.save
 		respond_to :js
 	end
 	
 	def update
-		DashboardChart.update_chart_order(params[:order])
+		order_arr = params[:order].split(",")
+		DashboardChart.update_chart_order(order_arr)
 	end
 
 	def destroy
