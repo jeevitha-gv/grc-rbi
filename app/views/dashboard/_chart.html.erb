@@ -1,7 +1,8 @@
  <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
  <div id="chart_wrap">
-<ul class="col-lg-6 col-sm-6" id="audit_chart">
+<ul class="col-lg-12  col-sm-6" id="audit_chart">
 <% charts.each do |chart|%>
+<div class="col-lg-6"> 
 			<li class="db_setting_main" id="<%= chart.id%>">
 					<div class="dash_sub_title"><%= chart.name%><span class="setting-icon db_setting"><span class="db_setting_down_icon"></span>
 						<div class="db_setting_dropdown">
@@ -16,6 +17,7 @@
 				load_chart("<%= chart.chart_type%>", <%= raw chart_input[0]%>, <%= raw chart_input[1]%>,'chart_'+<%= chart.id%>, "<%= raw chart.y_axis%>","<%= raw chart.x_axis%>")
 				</script>
 			</li>
+			</div>
 <% end %>
 		</ul>
 		</div>

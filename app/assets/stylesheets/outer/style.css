@@ -832,7 +832,7 @@ a.plus-background{
 
 /*DashBoard page start*/
 .dashboard_main{ padding-bottom:100px;}
-.dash_sub_title{ background-color:#8d9094; padding: 10px 15px; color:#fff;box-shadow: 0 0 5px #d5d6d6;}
+.dash_sub_title{ background-color:#8d9094; padding: 0px; color:#fff; box-shadow: 0 0 5px #d5d6d6;  min-height:30px;     }
 .dashboard-title{ color:#5b5a5a; font-size:20px;font-family: 'Open Sans'; font-weight:600; padding:15px 20px;}
 .dashboard_menu{ border:1px solid #dfdfdf; padding:20px 0 0; background-color:#fff; margin-bottom:15px; height:135px;}
 .dash_menu_a{margin-top: 35px;}
@@ -1812,7 +1812,14 @@ a.import-btn{
 #audit_charts li {
     list-style: none outside none;
 }
-li.db_setting_main{height:425px;}
+li.db_setting_main{
+	height:425px;
+	width:552px;
+	display:inline-block;
+	float:left;
+	margin-bottom:25px;
+	
+	}
 
 .roll-audit{
   padding: 0px 0 0 0px;
@@ -2084,16 +2091,43 @@ button.close {
 }
 .card-num{
 	max-width:210px;
-	display:inline-block;
-	float:left;
+	display:block;
 }
 .card-type{
-	max-width:125px;
+	max-width:210px;
 	display:inline-block;
 	float:left;
-	margin:0 0 0 10px;
+	margin:0 0 0 0px;
 }
 .card-cvv{
-	max-width:230px;
+	max-width:150px;
+	display:inline-block;
+	float:left;
+	margin:0 0 0 20px;
 	
+}
+.card-cvv label{
+	font-style:italic;
+	font-size:12px;
+}
+.card-exp{
+	max-width:150px;
+	display:inline-block;
+	float:left;
+	margin:0 0 0 0px;
+}
+.card-year{
+	max-width:150px;
+	display:inline-block;
+	float:left;
+	margin:0 0 0 20px;
+}
+.dash-col{
+	width:100%;
+}
+.dash-col li{
+	margin:0 20px 0 0;
+	display:inline-block; 
+	float:lleft;
+	max-width:500px;
 }
