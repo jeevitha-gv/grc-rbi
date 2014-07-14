@@ -7,9 +7,9 @@ class Transaction < ActiveRecord::Base
   def purchase(amount,credit_card)
     amount = (amount*100).round
     binding.pry
-    response = GATEWAY.purchase(amount, credit_card, purchase_options)
-    self.update_attributes(transaction_id: response.params["transaction_id"],card_number: credit_card.display_number)    
-    if response.success? 
+    response = GATEWAY.purchase(amount, credit_card, purchase_options)    
+    if response.success?
+       self.update_attributes(transaction_id: response.params["transaction_id"],card_number: credit_card.display_number)
        make_recurring(credit_card)
     end
    response.success?
@@ -50,7 +50,7 @@ class Transaction < ActiveRecord::Base
     :start_date => Date.tomorrow,
     :period => "Month",
     :frequency => subscribe.valid_log)
-    self.update_attributes(profile_id: response_recurring.params["profile_id"])
+    self.update_attributes(profile_id: response_recurring.params["profile_id"]) if response_recurring.success?
     response_recurring.success?
   end
 end
