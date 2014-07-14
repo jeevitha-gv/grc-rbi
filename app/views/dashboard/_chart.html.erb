@@ -2,9 +2,8 @@
  <div id="chart_wrap">
 <ul class="col-lg-12  col-sm-6" id="audit_chart">
 <% charts.each do |chart|%>
-<<<<<<< HEAD
 			<li class="db_setting_main col-lg-6" id="<%= chart.id%>">
-					<div class="dash_sub_title"><span class="title-dash"><%= chart.name%></span><span class="setting-icon db_setting" id="dropdown_<%= chart.id%>"><span class="db_setting_down_icon" ></span>
+					<div class="dash_sub_title"><span class="title-dash"><%= chart.name%></span><span class="setting-icon db_setting" id="dropdown_<%= chart.id%>"><% if current_user.role_title == 'company_admin'%><span class="db_setting_down_icon" ></span>
 					<div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
     <span class="caret"></span>
@@ -22,23 +21,13 @@
 						</script>
 						</ul>
 					</div>
-					</span> </div>
-=======
-<div class="col-lg-6"> 
-			<li class="db_setting_main" id="<%= chart.id%>">
-					<div class="dash_sub_title"><%= chart.name%><span class="setting-icon db_setting"><% if current_user.role_title == 'company_admin'%> <span class="db_setting_down_icon"></span>
-						<div class="db_setting_dropdown">
-							<ul>
-								<li><a href="#" onclick="chart_destroy(<%= chart.id%>);">Delete</a></li>
-							</ul>
-						</div>
-					</span> <% end %></div>
->>>>>>> 8b530a933a3a6f8cca62402a03d22035af38d4d7
+					</span></div>
 				<div id="chart_<%= chart.id%>"></div>
 				<script>
 				<% chart_input = chart_input(chart.x_axis)%>
 				load_chart("<%= chart.chart_type%>", <%= raw chart_input[0]%>, <%= raw chart_input[1]%>,'chart_'+<%= chart.id%>, "<%= raw chart.y_axis%>","<%= raw chart.x_axis%>")
 				</script>
+				<% end %> 
 			</li>
 <% end %>
 		</ul>
