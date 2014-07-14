@@ -42,7 +42,7 @@ ActiveAdmin.register Transaction do
       company_transaction = Transaction.where("company_id = ? ",current_company.id).last
       response = GATEWAY.cancel_recurring(company_transaction.profile_id)
       if response.success?
-        current_company.recurring_cancel = false
+        current_company.recurring_cancel = true
         current_company.save
         flash[:notice] = "Your cancel request for recurring payment processed."
         SubscriptionNotifier.recurring_pay_cancel(user_email)
