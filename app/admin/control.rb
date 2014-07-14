@@ -46,7 +46,7 @@ ActiveAdmin.register CppMeasure, { :as => 'Controls'} do
   end
 
  form do |f|
-      f.inputs "New Controls" do
+      f.inputs "New Control" do
       f.input :name
       f.input :description
       f.input :compliance_id, :label => 'Regulation', :as => :select, :collection => Compliance.all, :prompt => "-Select Regulation-"
