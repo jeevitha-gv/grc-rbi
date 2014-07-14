@@ -17,7 +17,7 @@ class Team < ActiveRecord::Base
   # validations
   validates :name, presence:true
   validates_format_of :name, :with =>/\A(?=.*[a-z])[a-z\d\s -]+\Z/i, :if => Proc.new{ |f| !f.name.blank? }
-  validates :name, :uniqueness => {:scope => :company_id}, :if => Proc.new{ |f| !f.name.blank? }
+  validates :name, :uniqueness => {:scope => [:company_id, :section_id]}, :if => Proc.new{ |f| !f.name.blank? }, :case_sensitive => false
 
   #scope
   scope :for_department_and_company, lambda {|department_id, company_id, section_id| where(department_id: department_id, company_id: company_id, section_id: section_id)}

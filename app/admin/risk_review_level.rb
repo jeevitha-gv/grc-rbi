@@ -1,5 +1,5 @@
 ActiveAdmin.register RiskReviewLevel do
-
+  config.filters = false
   menu :if => proc{ !current_admin_user.present? }
   actions :all, :except => [:new, :destroy]
   breadcrumb do

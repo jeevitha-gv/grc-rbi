@@ -1,6 +1,6 @@
 ActiveAdmin.register PlanningStrategy do
-
-   menu :if => proc{ current_admin_user.present? }
+   config.filters = false
+    menu :if => proc{ current_admin_user.present? }
 
 
    controller do

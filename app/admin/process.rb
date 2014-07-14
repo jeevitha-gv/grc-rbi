@@ -1,5 +1,5 @@
 ActiveAdmin.register CppMeasure, { :as => 'Process'} do
-
+ config.filters = false
  menu :if => proc{ !current_admin_user.present? }
 
   breadcrumb do

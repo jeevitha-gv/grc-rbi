@@ -74,6 +74,36 @@ and (max-width : 700px) {
   border: medium none;
   width: 120px;
 }
+.navbar-header{
+	width:100%;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: #181818;
+    width: 100%;
+}
+.user_login{
+	 float:left;
+	 margin:1px 0 0 0;
+}
+.company-name {
+    margin: 0 0 0 20px;
+}
+.k-grid-header-wrap .k-header .k-link{ font-size: 11px;}
+div.k-grid-header .k-header, .k-grid td{
+	font-size: 11px;
+}
+div.k-grid-header .k-header {font-size: 11px;}
+.subbar-nav li a {
+
+    padding: 3px 17px;
+}
+.k-tabstrip-items .k-link, .k-panelbar .k-tabstrip-items .k-link{
+	font-size: 11px;
+}
+.k-tabstrip-items .k-item .k-link{font-size: 11px;}
+.k-grid td{font-size:11px!important;}
+
+
 }
 
 @media only screen 

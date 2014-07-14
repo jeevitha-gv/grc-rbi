@@ -1,5 +1,5 @@
 ActiveAdmin.register Language do
-
+  config.filters = false
   menu :if => proc{ current_admin_user.present? }
 
   permit_params :name, :code

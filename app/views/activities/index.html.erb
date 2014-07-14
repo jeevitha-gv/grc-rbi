@@ -2,8 +2,10 @@
             :confirm => 'Do you really want to delete all activity logs?', :method => :delete %>
 
 <div class="container">
+	<div class="activity">
 <h1> Activities</h1>
 <% @filtered_activities.each do |activity| %>
   <%= activity.owner.user_name %> has <%= parse_and_convert(activity.key) %> <%= activity.created_at %> from <%= activity.ip %><br>
 <% end %>
+</div>
 </div>	
