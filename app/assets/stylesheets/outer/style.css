@@ -113,7 +113,7 @@ ul.list-tab {
 	width: 96%;
 	border: 1px solid #E8E9EB;
 }
-.list-table tr th, .list-table tr td { 
+.list-table tr th, .list-table tr td {
 	padding: 10px 20px;
 }
 
@@ -2054,4 +2054,10 @@ button.close {
 }
 .up-pwd{
   margin: 0 0 20px 0;
+}
+#company_timezone {
+    width: 101%;
+}
+#company_timezone > option {
+    width: 286px;
 }

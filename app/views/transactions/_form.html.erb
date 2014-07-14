@@ -28,10 +28,12 @@
   <p>
    <label>First Name</label><br />
     <%= cc.text_field :first_name %>
+    <span id='first_name'></span>
   </p>
   <p>
     <label>Last Name</label><br />
     <%= cc.text_field :last_name %>
+    <span id='last_name'></span>
   </p>
   <p>
    <label>Card Type</label><br />
@@ -44,6 +46,7 @@
   <p>
    <label>Card Verification Value (CVV)</label><br />
     <%= cc.text_field :verification_value %>
+    <span id='result'></span>
   </p>
   <p>
     <label>Card Expires On</label><br />
@@ -54,3 +57,71 @@
   <p><%= f.submit "Submit" %></p>
 <% end %>
 <p><%= button_to "Cancel",new_user_session_path,method: :get %></p>
+
+
+<script>
+  $(document).ready(function(){
+    var currentDate = new Date()
+    var month = currentDate.getMonth() + 1
+
+    var currentYear = $('#credit_card_year').val()
+    monthForTransaction(currentYear)
+
+    $('#credit_card_year').change(function(){
+      var currentYear = $('#credit_card_year').val()
+      monthForTransaction(currentYear)
+    })
+
+    function monthForTransaction(currentYear)
+    {
+      $('#credit_card_month').empty();
+      if(currentYear == "2014")
+      {
+        for (var j = month; j < 13; j++ ){
+          $("#credit_card_month").append("<option value='"+j+"'>"+j+"</option>");
+        }
+      }
+      else
+      {
+        for (var j = 1; j < 13; j++ ){
+          $("#credit_card_month").append("<option value='"+j+"'>"+j+"</option>");
+        }
+      }
+    }
+  })
+
+  function validate(regExp, divID, fieldValue, validationMsg)
+  {
+    $(divID).text("");
+    var regExpressionForInt = regExp;
+    console.log(!regExpressionForInt.test(fieldValue))
+    if(!regExpressionForInt.test(fieldValue)) {
+      $(divID).text(validationMsg);
+      $(divID).css("color", "red");
+      $(divID).show();
+    }
+    else
+    {
+      $(divID).text("");
+      $(divID).hide();
+    }
+    return false;
+  }
+
+
+  $("#credit_card_verification_value").focusout(function(){
+    var cvvValue = $("#credit_card_verification_value").val();
+    validate(/^\d+$/, result, cvvValue, "Cvv is invalid")
+  });
+
+  $("#credit_card_first_name").focusout(function(){
+    var firstName = $("#credit_card_first_name").val();
+    validate(/^[a-zA-Z_]+$/, first_name, firstName, "Name must contain only alphabets")
+  });
+
+  $("#credit_card_last_name").focusout(function(){
+    var lastName = $("#credit_card_last_name").val();
+    validate(/^[a-zA-Z_]+$/, last_name, lastName, "Name must contain only alphabets")
+  });
+
+</script>

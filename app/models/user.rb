@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
    validates_format_of :full_name, :with =>/\A[a-zA-Z ]+\z/, :if => Proc.new{|f| !f.full_name.blank? }
    validates :full_name, length: { maximum: 50 }, :if => Proc.new{|f| !f.full_name.blank? }
    validates :user_name, presence: true, :if => Proc.new{|f| f.user_name.blank? }
-   validates :user_name, uniqueness: true, :if => Proc.new{|f| !f.user_name.blank? }
+   validates :user_name, uniqueness: {:scope => :company_id}, :if => Proc.new{|f| !f.user_name.blank? }
    validates :user_name, length: { maximum: 52 }, :if => Proc.new{|f| !f.user_name.blank? }
    validates :email, presence: true
    validates :email, uniqueness: true, :if => Proc.new{|f| !f.email.blank? }
