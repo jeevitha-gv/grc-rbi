@@ -9,6 +9,10 @@
 
  $(document).ready(function(){
 
+ 	$('.cancel-btn1').click(function(){
+ 		$('#search-value').val('');
+ 	})
+
 	function onActivate(e) {
      if($('#search-value').val() != "")
      {

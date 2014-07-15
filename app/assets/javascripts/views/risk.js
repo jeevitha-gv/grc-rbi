@@ -1,4 +1,8 @@
 $(document).ready(function() {
+	$('.cancel-btn1').click(function(){
+ 		$('#search-value').val('');
+ 	})
+
 	// Fancybox
 	$(".fancybox").fancybox();
 
