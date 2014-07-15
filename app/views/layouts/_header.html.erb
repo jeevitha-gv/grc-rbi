@@ -76,7 +76,7 @@
 			<% if overview_header && !company_plan_check%>
 				<li><a href="/user/edit" class="<%= request.fullpath.include?("user/edit") == true ? 'active' : '' %>">
           <div class="setting-icon"></div>
-          Profile Setting</a></li>
+          Profile Settings</a></li>
         <% if current_user.role.title == "company_admin" %>
           <li><a href="/admin/settings">
             <div class="setting-icon"></div>
@@ -106,11 +106,15 @@
           Act</a></li>
         <li><a href="/audits?stage=published" class="<%= (request.fullpath.include?('stage=published') || request.fullpath.include?("checklist_recommendations/audit_observation")) == true ? 'active' : '' %>">
           <div class="published-icon"></div>
+<<<<<<< HEAD
           Published</a></li>
           <%else%>
           <li><a href="/admin/plans">
             <div class="setting-icon"></div>
             Plan</a></li>
+=======
+          Publish</a></li>
+>>>>>>> 3fcba641e8a221992b4ac714d906964faab55336
 					<% end %>
       </ul>
     </div>

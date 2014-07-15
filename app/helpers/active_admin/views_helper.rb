@@ -1,7 +1,11 @@
 module ActiveAdmin::ViewsHelper #camelized file name
   def add_admin_active_class(params)
     case params[:controller]
+<<<<<<< HEAD
     when 'admin/settings', 'admin/departments', 'admin/locations', 'admin/teams', 'admin/users', 'admin/clients', 'admin/roles', 'admin/dashboard', 'admin/compliances', 'admin/companies', 'admin/modulars', 'admin/priorities', 'admin/question_types', 'admin/languages', 'admin/sections', 'admin/topics', 'admin/scores', 'admin/plans','admin/transactions'
+=======
+    when 'admin/settings', 'admin/departments', 'admin/locations', 'admin/teams', 'admin/users', 'admin/clients', 'admin/roles', 'admin/dashboard', 'admin/compliances', 'admin/companies', 'admin/modulars', 'admin/priorities', 'admin/question_types', 'admin/languages', 'admin/sections', 'admin/topics', 'admin/scores', 'admin/plans', 'admin/privileges'
+>>>>>>> 3fcba641e8a221992b4ac714d906964faab55336
       'Settings'
     when 'admin/operational_areas','admin/artifacts','admin/reminders'
       'Audit'
@@ -14,9 +18,9 @@ module ActiveAdmin::ViewsHelper #camelized file name
   
   def add_super_admin_active_class(params)
     case params[:controller]
-    when 'admin/dashboard','/admin/companies','admin/languages','admin/subscriptions'
+    when 'admin/dashboard','admin/companies','admin/sections','admin/modulars','admin/languages','admin/subscriptions'
       'Settings'
-    when 'admin/compliances','admin/modulars','admin/priorities','admin/question_types','admin/sections','admin/topics','admin/scores','admin/compliance_libraries'
+    when 'admin/compliances','admin/priorities','admin/question_types','admin/topics','admin/scores','admin/compliance_libraries'
       'Audit'
     when 'admin/planning_strategies','admin/reviews','admin/next_steps','admin/risk_approval_statuses','admin/implementation_statuses','admin/close_reasons'
       'Risk'
@@ -26,7 +30,11 @@ module ActiveAdmin::ViewsHelper #camelized file name
   end
 
   def add_sub_menu(action_path)
+<<<<<<< HEAD
     if ["clients","locations", "departments", "teams","roles","users","settings", "plans","transactions"].include?(action_path)
+=======
+    if ["clients","locations", "departments", "teams","roles" ,"privileges","users","settings", "plans"].include?(action_path)
+>>>>>>> 3fcba641e8a221992b4ac714d906964faab55336
       'overview'
     elsif ["operational_areas","artifacts", "reminders"].include?(action_path)
       'audit'
@@ -38,9 +46,9 @@ module ActiveAdmin::ViewsHelper #camelized file name
   end
 
   def super_admin_sub_menu(action)
-    if ["dashboard","companies","languages","subscriptions"].include?(action)
+    if ["dashboard","companies","sections","modulars","languages","subscriptions"].include?(action)
       'overview'
-    elsif ["compliances","modulars", "priorities","question_types","sections","topics","scores","compliance_libraries"].include?(action)
+    elsif ["compliances", "priorities","question_types","topics","scores","compliance_libraries"].include?(action)
       'audit'
     elsif ["planning_strategies","reviews", "next_steps","risk_approval_statuses","implementation_statuses","close_reasons"].include?(action)
      'risk'

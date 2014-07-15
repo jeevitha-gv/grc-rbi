@@ -17,7 +17,7 @@
           <ul class="nav navbar-nav main_nav">
             <li><a href="/user/edit" class="<%= add_admin_active_class(params) == 'Settings' ? 'active' : '' %>">
               <div class="overview-icon"></div>
-              Over view</a></li>
+              Overview</a></li>
 						<% if company_modules_check('Audit') %>
 							<li><a href="/audits" class="<%= add_admin_active_class(params) == 'Audit' ? 'active' : '' %>">
 								<div class="audit-icon"></div>
@@ -77,7 +77,7 @@
           Review</a></li>
         <li><a href="/user/edit" >
           <div class="setting-icon"></div>
-          Setting</a></li>
+          Settings</a></li>
       </ul>
     </div>
   </div>

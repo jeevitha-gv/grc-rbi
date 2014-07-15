@@ -10,7 +10,7 @@ ActiveAdmin.register Transaction do
     def index
       @transaction = Transaction.where("company_id = ? ",current_company.id).last
     end
-    
+
     def new
       @transaction = Transaction.new
     end
@@ -18,10 +18,15 @@ ActiveAdmin.register Transaction do
     def create
       company_transaction = Transaction.where("company_id = ? ",current_company.id).last
       credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
+<<<<<<< HEAD
       user = current_company.users
       user_email = user.map(&:email) if current_company.users.map(&:role_title).join(",").eql?("company_admin")
       if company_transaction.profile_id.present? && credit_card.valid?        
         response = GATEWAY.update_recurring(profile_id: company_transaction.profile_id,credit_card: credit_card)      
+=======
+      if company_transaction.profile_id.present? && credit_card.valid?
+        response = GATEWAY.update_recurring(profile_id: company_transaction.profile_id,credit_card: credit_card)
+>>>>>>> 3fcba641e8a221992b4ac714d906964faab55336
         if response.success?
           flash[:notice] = "Your update request has been processed."
           SubscriptionNotifier.recurring_pay_update(user_email,current_company).deliver
@@ -32,7 +37,7 @@ ActiveAdmin.register Transaction do
         end
         else
         flash[:notice] = "Please provide valid card details"
-        redirect_to "/admin/transactions/new" 
+        redirect_to "/admin/transactions/new"
         end
     end
 
@@ -59,9 +64,9 @@ ActiveAdmin.register Transaction do
     render "index"
   end
 
-  show do 
+  show do
     render "cancel_recurring"
   end
 
-  form partial: "form"  
+  form partial: "form"
 end

@@ -1,4 +1,8 @@
 $(document).ready(function() {
+	$('.cancel-btn1').click(function(){
+ 		$('#search-value').val('');
+ 	})
+
 	// Fancybox
 	$(".fancybox").fancybox();
 
@@ -150,6 +154,11 @@ $(document).ready(function() {
 	    {
 	    	var test_row = $(currenRow).find(".k-grid-list, .k-grid-miti")
 	    	$(test_row).addClass('active')
+	  	}
+	  	else if (currenStatus == "Draft")
+	  	{
+	  		var test_row = $(currenRow).find(".k-grid-list, .k-grid-miti")
+	  		$(test_row).hide()
 	  	}
 	  }
 	}

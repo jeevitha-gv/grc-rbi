@@ -1,15 +1,16 @@
 ActiveAdmin.register CppMeasure, { :as => 'Controls'} do
-
+  config.filters = false
   menu :if => proc{ !current_admin_user.present? }
-  
+   config.filters = false
+
   breadcrumb do
     [
       link_to('Controls', '/admin/controls')
     ]
   end
-  
+
   permit_params :compliance_id, :name, :description, :duration, :measure_type, :company_id
-  
+
  controller do
     before_filter :check_company_admin, :check_role, :company_admin_module_check, :check_subdomain,:check_plan_expire
    action :all, except: [:new, :show]
@@ -17,33 +18,35 @@ ActiveAdmin.register CppMeasure, { :as => 'Controls'} do
     def scoped_collection
       CppMeasure.where('measure_type= ? AND company_id= ?','Control',current_company)
     end
-    
+
   end
 
   #Index page fields customization
   index do
     column :name
     column :description
-    column :compliance
+    column  "Compliance" do |c|
+    c.compliance.name
+    end
     column :duration
     actions
   end
-  
+
   #show page fields customization
   show do
     attributes_table do
-      row :id
+
       row :name
       row :description
-      row :compliance
+      row  "Compliance" do |c|
+        c.compliance.name
+      end
       row :duration
-      row :created_at
-      row :updated_at
     end
   end
 
  form do |f|
-      f.inputs "New Controls" do
+      f.inputs "New Control" do
       f.input :name
       f.input :description
       f.input :compliance_id, :label => 'Regulation', :as => :select, :collection => Compliance.all, :prompt => "-Select Regulation-"
@@ -53,5 +56,5 @@ ActiveAdmin.register CppMeasure, { :as => 'Controls'} do
     end
     f.actions
   end
-  
+
 end

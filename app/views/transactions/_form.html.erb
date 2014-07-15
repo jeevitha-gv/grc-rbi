@@ -34,6 +34,7 @@
     </div>
 </div>
 <%end%>
+<<<<<<< HEAD
 <div class="clearfix"></div>
 	<div class="content">
 	<div class="container"> 
@@ -128,3 +129,114 @@
 		</div>
 	</div>
 </div>
+=======
+<%= form_for @transaction do |f| %>
+<%if @trans_param.present? %>
+<%params[:subscription]= @trans_param[:transaction][:subscription] %>
+<%params[:company]= @trans_param[:transaction][:company_domain] %>
+<%end%>
+<%= f.hidden_field "company_domain",:value=>params[:company]%>
+<%= f.hidden_field "subscription",:value=>params[:subscription]%>
+
+<%= fields_for(:credit_card, @credit_card) do |cc| %>
+  <p>
+   <label>First Name</label><br />
+    <%= cc.text_field :first_name %>
+    <span id='first_name'></span>
+  </p>
+  <p>
+    <label>Last Name</label><br />
+    <%= cc.text_field :last_name %>
+    <span id='last_name'></span>
+  </p>
+  <p>
+   <label>Card Type</label><br />
+    <%= cc.select :brand, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
+  </p>
+  <p>
+   <label>Card Number</label><br />
+    <%= cc.text_field :number %>
+  </p>
+  <p>
+   <label>Card Verification Value (CVV)</label><br />
+    <%= cc.text_field :verification_value %>
+    <span id='result'></span>
+  </p>
+  <p>
+    <label>Card Expires On</label><br />
+  <%= cc.select :month, (1..12) %>
+  <%= cc.select :year, (Time.now.year .. 10.years.from_now.year) %>
+  </p>
+  <% end %>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
+<p><%= button_to "Cancel",new_user_session_path,method: :get %></p>
+
+
+<script>
+  $(document).ready(function(){
+    var currentDate = new Date()
+    var month = currentDate.getMonth() + 1
+
+    var currentYear = $('#credit_card_year').val()
+    monthForTransaction(currentYear)
+
+    $('#credit_card_year').change(function(){
+      var currentYear = $('#credit_card_year').val()
+      monthForTransaction(currentYear)
+    })
+
+    function monthForTransaction(currentYear)
+    {
+      $('#credit_card_month').empty();
+      if(currentYear == "2014")
+      {
+        for (var j = month; j < 13; j++ ){
+          $("#credit_card_month").append("<option value='"+j+"'>"+j+"</option>");
+        }
+      }
+      else
+      {
+        for (var j = 1; j < 13; j++ ){
+          $("#credit_card_month").append("<option value='"+j+"'>"+j+"</option>");
+        }
+      }
+    }
+  })
+
+  function validate(regExp, divID, fieldValue, validationMsg)
+  {
+    $(divID).text("");
+    var regExpressionForInt = regExp;
+    console.log(!regExpressionForInt.test(fieldValue))
+    if(!regExpressionForInt.test(fieldValue)) {
+      $(divID).text(validationMsg);
+      $(divID).css("color", "red");
+      $(divID).show();
+    }
+    else
+    {
+      $(divID).text("");
+      $(divID).hide();
+    }
+    return false;
+  }
+
+
+  $("#credit_card_verification_value").focusout(function(){
+    var cvvValue = $("#credit_card_verification_value").val();
+    validate(/^\d+$/, result, cvvValue, "Cvv is invalid")
+  });
+
+  $("#credit_card_first_name").focusout(function(){
+    var firstName = $("#credit_card_first_name").val();
+    validate(/^[a-zA-Z_]+$/, first_name, firstName, "Name must contain only alphabets")
+  });
+
+  $("#credit_card_last_name").focusout(function(){
+    var lastName = $("#credit_card_last_name").val();
+    validate(/^[a-zA-Z_]+$/, last_name, lastName, "Name must contain only alphabets")
+  });
+
+</script>
+>>>>>>> 3fcba641e8a221992b4ac714d906964faab55336

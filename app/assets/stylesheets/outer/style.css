@@ -37,13 +37,7 @@
 .content {
 	min-height: 400px;
 }
-.footer {
-	height: 70px;
-	background-color: #363535;
-	color: #9f9d9d;
-	padding: 25px 0;
 
-}
 .user_login {
 	color: #717171;
 	float: right;
@@ -578,21 +572,30 @@ html, body {
 	position: relative;
 }
 #wrapper {
-	 min-height:100%;
-  position:relative;
-  margin-bottom:0px
+	 margin: 0px;
 }
-.footer{
+
+.footer-login{
   left:0;
   width:100%;
-  position:absolute;
-}
-.footer-login{
-   left:0;
-  width:100%;
-  position:absolute;
+  position:relative!important;
   bottom: 0;
+}
+.footer {
+	height: 70px;
+	background-color:#363535;
+	color: #9f9d9d;
+	padding: 25px 0;
 
+}
+.footer_sp{
+	left:0;
+  width:100%;
+  position:relative!important;
+  bottom: 0;
+}
+.activity{
+	margin: 0 0 50px 0;
 }
 
 .error_logo{ padding-top:15px; font-size:25px;}
@@ -2000,7 +2003,7 @@ button .multiselect{
 .plus-icon-sp{
     display: inline-block;
     font-size: 13px;
-    padding: 5px 30px;
+    padding: 5px 40px;
 }
 .src-brn{
   position: absolute;
@@ -2063,6 +2066,7 @@ button.close {
 .up-pwd{
   margin: 0 0 20px 0;
 }
+<<<<<<< HEAD
 .card-wrap{
 	max-width:460px;
 	padding:0px 0 ;
@@ -2173,3 +2177,71 @@ button.close {
 	padding:10px;
 	color:#FFF;
 }
+=======
+#company_timezone {
+    width: 101%;
+}
+#company_timezone > option {
+    width: 286px;
+}
+.cancel-btn1{
+  float: right;
+  margin: 5px 10px 0 0;
+}
+.tab-wrap{
+  margin: 55px 0;
+}
+.set-wrap{
+  margin: 15px 0;
+}
+.field_with_errors{
+	float: left;
+}
+html,
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+}
+.wrapper {
+	min-height:100%;
+	position:relative;
+}
+.audit_search .btn:hover, .btn:focus{
+	border-radius: 0 20px 20px 0px;
+}
+.audit_search.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default{
+	border-radius:20px 20px 20px 20px;
+
+}
+#privilege_modular {
+    float: left;
+    margin: 0 10px 20px 0;
+}
+.previleges {
+    width: 45%;
+}
+.grid-padding{margin: 100px 0;}
+
+.previleges .btn-group {
+    float: none!important;
+    margin: 0;
+    
+}
+.previleges .btn-default:hover, .btn:focus{
+	border-radius: 4px;
+
+}
+.risk-select select option{
+	width:100%;
+	max-width: 350px!important;
+	word-wrap:break-word;
+}
+.control-dd {
+    overflow: hidden;
+    max-width:100%; 
+}
+.control-dd select, option{
+	width:103%;
+}
+>>>>>>> 3fcba641e8a221992b4ac714d906964faab55336

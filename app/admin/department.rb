@@ -1,6 +1,5 @@
 ActiveAdmin.register Department do
-
-
+  config.filters = false
   breadcrumb do
     [
       link_to('Department', '/admin/departments')
