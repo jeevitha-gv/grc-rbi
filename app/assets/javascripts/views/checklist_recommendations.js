@@ -22,21 +22,32 @@
 				}
 					function recommendation()
 					{
+						var recommendation = []
 					$(".control_recommendation").each(function() {
 						var recommendation_value = $(this).val()
+						console.log(22222222)
+						console.log(recommendation_value)
 						if (recommendation_value == '')
 						{
 						$('#'+this.id).addClass("error_input");
 						$('#error_'+this.id).show()
-						value = false
+							recommendation.push('true');
 						}
 						else
 						{
 						$('#'+this.id).removeClass("error_input");
 						$('#error_'+this.id).hide()
-						value = true
+							recommendation.push('false');
 						}
 					});
+					if (recommendation.indexOf( 'true' ) == -1)
+					{
+						value = true
+					}
+					else
+					{
+						value = false
+					}
 					return value
 					}
 					function priority()
@@ -60,21 +71,30 @@
 					}
 					function reason()
 					{
+						var reason = []
 					$(".control_reason").each(function() {
 						var status_value = $(this).val()
 						if (status_value == '')
 						{
 						$('#'+this.id).addClass("error_input");
 						$('#error_'+this.id).show()
-						value = false
+						reason.push('true');
 						}
 						else
 						{
 						$('#'+this.id).removeClass("error_input");
 						$('#error_'+this.id).hide()
-						value = true
+						reason.push('false');
 						}
 					});
+					if (reason.indexOf( 'true' ) == -1)
+					{
+						value = true
+					}
+					else
+					{
+						value = false
+					}
 					return value
 					}
 					function severity()
