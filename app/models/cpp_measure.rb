@@ -7,7 +7,7 @@ class CppMeasure < ActiveRecord::Base
   # has_many :control_measures
   #Validations
   validates :name, presence: true
-  validates :name, :uniqueness => {:scope => :company_id}, :if => Proc.new{ |f| !f.name.blank? }
+  validates :name, :uniqueness => {:scope => [:company_id, :measure_type]}, :if => Proc.new{ |f| !f.name.blank? }
   validates_format_of :name, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.name.blank? }
   validates :name, length: { maximum: 250 }, :if => Proc.new{|f| !f.name.blank? }
   validates :description, presence: true

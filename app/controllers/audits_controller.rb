@@ -154,7 +154,7 @@ class AuditsController < ApplicationController
   private
 
     def audit_params
-      params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :audit_status_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor, :start_date, :end_date, audit_auditees_attributes: [:id, :user_id, :_destroy])
+      params.require(:audit).permit(:title, :objective, :deliverables, :context, :issue, :scope, :methodology, :client_id, :audit_type_id, :audit_status_id, :compliance_type, :standard_id, :department_id, :team_id, :location_id, :auditor, :start_date, :end_date, :risk_id, audit_auditees_attributes: [:id, :user_id, :_destroy])
     end
 
     def current_company_disabled
@@ -165,7 +165,8 @@ class AuditsController < ApplicationController
     end
 
     def audit_auditor_users
-      @auditor_users = current_company.users
+      @auditor_users = current_company.users.where(:is_disabled => false)
+      @risks = current_company.risks.collect{|x| x.mgmt_review.next_step_id == 3 if x.mgmt_review.present?}.compact if current_company.plan.subscription.section_ids.include?('2')
     end
 
     def authorize_audit

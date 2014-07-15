@@ -71,7 +71,7 @@
       new Messi('Planned for further phases.');
     });
 
-    if (module_check == 'overview')
+    if (module_check == 'overview' || module_check == '')
     {
       $("#links").append("<%= escape_javascript( render(:partial=>'/layouts/overview'))%>");
     }

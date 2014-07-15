@@ -31,7 +31,6 @@ ActiveAdmin.register RiskReviewLevel do
   #show page fields customization
   show do
     attributes_table do
-      row :id
       row :name
       row :days
       row :value

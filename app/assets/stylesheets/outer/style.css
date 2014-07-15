@@ -1995,7 +1995,7 @@ button .multiselect{
 .plus-icon-sp{
     display: inline-block;
     font-size: 13px;
-    padding: 5px 30px;
+    padding: 5px 40px;
 }
 .src-brn{
   position: absolute;
@@ -2063,6 +2063,16 @@ button.close {
 }
 #company_timezone > option {
     width: 286px;
+}
+.cancel-btn1{
+  float: right;
+  margin: 5px 10px 0 0;
+}
+.tab-wrap{
+  margin: 55px 0;
+}
+.set-wrap{
+  margin: 15px 0;
 }
 .field_with_errors{
 	float: left;

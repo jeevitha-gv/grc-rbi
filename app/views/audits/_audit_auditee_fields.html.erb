@@ -8,7 +8,7 @@
       <% if team_users.nil? %>
         <%= f.select :user_id, options_for_select(''), {include_blank: 'Select Auditee' } %>
       <% else %>
-        <%= f.select :user_id, options_for_select(team_users.collect{|x| [x.user_name, x.id.to_i]}, :selected => f.object.user_id), {include_blank: 'Select Auditee' } %>
+        <%= f.select :user_id, options_for_select(team_users.uniq.collect{|x| [x.user_name, x.id.to_i]}, :selected => f.object.user_id), {include_blank: 'Select Auditee' } %>
       <% end %>
     </div>
     <%#= f.text_field :user_id, :class => "audit-normal-input col-sm-10" %>
