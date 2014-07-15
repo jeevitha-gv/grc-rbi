@@ -5,9 +5,10 @@ class Transaction < ActiveRecord::Base
   attr_accessor :company_domain, :subscription
 
   def purchase(amount,credit_card)
-    response = GATEWAY.purchase(amount, credit_card, purchase_options)
-    self.update_attributes(transaction_id: response.params["transaction_id"],card_number: credit_card.display_number)    
-    if response.success? 
+    amount = (amount*100).round
+    response = GATEWAY.purchase(amount, credit_card, purchase_options)    
+    if response.success?
+       self.update_attributes(transaction_id: response.params["transaction_id"],card_number: credit_card.display_number)
        make_recurring(credit_card)
     end
    response.success?
@@ -16,6 +17,17 @@ class Transaction < ActiveRecord::Base
   private
   
   def purchase_options 
+    if self.company.present?
+       {
+      :ip => ip_address,
+      :billing_address => {
+        :name     => self.company.name,
+        :country  => self.company.country.name
+      }
+    }
+
+    else
+
     {
       :ip => ip_address,
       :billing_address => {
@@ -27,6 +39,7 @@ class Transaction < ActiveRecord::Base
         :zip      => "600083"
       }
     }
+   end
   end
 
   def make_recurring(credit_card)
@@ -36,7 +49,7 @@ class Transaction < ActiveRecord::Base
     :start_date => Date.tomorrow,
     :period => "Month",
     :frequency => subscribe.valid_log)
-    self.update_attributes(profile_id: response_recurring.params["profile_id"])
+    self.update_attributes(profile_id: response_recurring.params["profile_id"]) if response_recurring.success?
     response_recurring.success?
   end
 end
