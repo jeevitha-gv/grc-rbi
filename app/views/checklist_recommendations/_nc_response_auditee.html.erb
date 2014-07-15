@@ -136,7 +136,7 @@
                     <div class="form-group clearfix">
                     <div class="col-sm-12 ">
                      <%unless(audit.audit_status_id == audit_status)%>
-                      <input type="submit" value="Respond" class="black_btn fright" onclick="auditee_response(<%= checklist_recommendation.id%>);">
+                      <input type="submit" value="Respond" class="black_btn fright" onclick="return auditee_response(<%= checklist_recommendation.id%>);">
                     <%end%>
                     </div>
                     </div>
