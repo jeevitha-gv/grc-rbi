@@ -2077,3 +2077,40 @@ body {
 	min-height:100%;
 	position:relative;
 }
+.audit_search .btn:hover, .btn:focus{
+	border-radius: 0 20px 20px 0px;
+}
+.audit_search.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default{
+	border-radius:20px 20px 20px 20px;
+
+}
+#privilege_modular {
+    float: left;
+    margin: 0 10px 20px 0;
+}
+.previleges {
+    width: 45%;
+}
+.grid-padding{margin: 100px 0;}
+
+.previleges .btn-group {
+    float: none!important;
+    margin: 0;
+    
+}
+.previleges .btn-default:hover, .btn:focus{
+	border-radius: 4px;
+
+}
+.risk-select select option{
+	width:100%;
+	max-width: 350px!important;
+	word-wrap:break-word;
+}
+.control-dd {
+    overflow: hidden;
+    max-width:100%; 
+}
+.control-dd select, option{
+	width:103%;
+}
