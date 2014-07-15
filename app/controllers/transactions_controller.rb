@@ -3,6 +3,7 @@ class TransactionsController < ApplicationController
 		force_ssl :only => [:new,:create]
 	end
 	skip_before_filter :authenticate_user!
+	skip_before_filter :check_subdomain
 
 	def new
 		@transaction = Transaction.new
@@ -16,7 +17,7 @@ class TransactionsController < ApplicationController
 		@credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card]) 
 				if @credit_card.valid?
 						@transaction = Transaction.new(transaction_params)
-						@transaction.update_attributes(:company_id => company.id,:subscription_id=>subscribe.id,:ip_address=>request.remote_ip)						
+						@transaction.update_attributes(:company_id => company.id,:subscription_id=>subscribe.id,:ip_address=>request.remote_ip)
 					if @transaction.purchase(subscribe.amount,@credit_card)
 						flash[:notice] = "Payment done successfully"
 						notify_payment_success(company,subscribe,user_email)     
@@ -36,9 +37,9 @@ class TransactionsController < ApplicationController
 	end
 
 	def notify_payment_success(company,subscribe,user_email)
-		@transaction.update_attributes(:pay_complete => true)		   
-		plan = Plan.new(subscription_id: subscribe.id ,company_id: company.id,starts: company.created_at ,expires: calculate_plan_expiration(subscribe.valid_log,company.created_at))
-		plan.save!
+		@transaction.update_attributes(:pay_complete => true)
+		company.plan.update_attributes(subscription_id: subscribe.id, starts: company.created_at, expires: calculate_plan_expiration(subscribe.valid_log,company.created_at))
+		plan = company.plan
 		@transaction.update_attributes(plan_start: plan.starts,plan_expire: plan.expires)         
 		SubscriptionNotifier.payment_complete(user_email,@transaction,subscribe).deliver if @transaction.pay_complete
 	end
