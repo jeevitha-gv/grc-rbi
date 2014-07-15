@@ -34,7 +34,6 @@
     </div>
 </div>
 <%end%>
-<<<<<<< HEAD
 <div class="clearfix"></div>
 	<div class="content">
 	<div class="container"> 
@@ -55,12 +54,14 @@
 							<label class="col-sm-12 control-label" for="formGroupInputLarge">First Name</label>
 							<div class="col-sm-12">
 								<%= cc.text_field :first_name , :class =>"form-control", :id => "formGroupInputLarge", :placeholder =>"Enter your first name"%>
+								<span id='first_name'></span>
 							</div>
 						</div>
 						<div class="form-group form-group-lg">
 							<label class="col-sm-12 control-label" for="formGroupInputLarge">Last Name</label>
 							<div class="col-sm-12">
 								<%= cc.text_field :last_name , :class => "form-control", :id => "formGroupInputLarge", :placeholder => "Enter your last name"%>
+								<span id='last_name'></span>
 							</div>
 						</div>
 						<div class="card-num">
@@ -85,6 +86,7 @@
 								<label class="col-sm-12 control-label" for="exampleInputFile">Card Verification Value</label>
 							<div class="col-sm-8">
 								<%= cc.text_field :verification_value , :class =>"form-control", :id =>"formGroupInputLarge", :placeholder =>"CVV"%>
+								<span id='result'></span>
 							</div>
 							</div>
 						 </div>
@@ -129,49 +131,6 @@
 		</div>
 	</div>
 </div>
-=======
-<%= form_for @transaction do |f| %>
-<%if @trans_param.present? %>
-<%params[:subscription]= @trans_param[:transaction][:subscription] %>
-<%params[:company]= @trans_param[:transaction][:company_domain] %>
-<%end%>
-<%= f.hidden_field "company_domain",:value=>params[:company]%>
-<%= f.hidden_field "subscription",:value=>params[:subscription]%>
-
-<%= fields_for(:credit_card, @credit_card) do |cc| %>
-  <p>
-   <label>First Name</label><br />
-    <%= cc.text_field :first_name %>
-    <span id='first_name'></span>
-  </p>
-  <p>
-    <label>Last Name</label><br />
-    <%= cc.text_field :last_name %>
-    <span id='last_name'></span>
-  </p>
-  <p>
-   <label>Card Type</label><br />
-    <%= cc.select :brand, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
-  </p>
-  <p>
-   <label>Card Number</label><br />
-    <%= cc.text_field :number %>
-  </p>
-  <p>
-   <label>Card Verification Value (CVV)</label><br />
-    <%= cc.text_field :verification_value %>
-    <span id='result'></span>
-  </p>
-  <p>
-    <label>Card Expires On</label><br />
-  <%= cc.select :month, (1..12) %>
-  <%= cc.select :year, (Time.now.year .. 10.years.from_now.year) %>
-  </p>
-  <% end %>
-  <p><%= f.submit "Submit" %></p>
-<% end %>
-<p><%= button_to "Cancel",new_user_session_path,method: :get %></p>
-
 
 <script>
   $(document).ready(function(){
@@ -239,4 +198,3 @@
   });
 
 </script>
->>>>>>> 3fcba641e8a221992b4ac714d906964faab55336

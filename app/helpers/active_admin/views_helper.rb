@@ -1,11 +1,7 @@
 module ActiveAdmin::ViewsHelper #camelized file name
   def add_admin_active_class(params)
     case params[:controller]
-<<<<<<< HEAD
-    when 'admin/settings', 'admin/departments', 'admin/locations', 'admin/teams', 'admin/users', 'admin/clients', 'admin/roles', 'admin/dashboard', 'admin/compliances', 'admin/companies', 'admin/modulars', 'admin/priorities', 'admin/question_types', 'admin/languages', 'admin/sections', 'admin/topics', 'admin/scores', 'admin/plans','admin/transactions'
-=======
-    when 'admin/settings', 'admin/departments', 'admin/locations', 'admin/teams', 'admin/users', 'admin/clients', 'admin/roles', 'admin/dashboard', 'admin/compliances', 'admin/companies', 'admin/modulars', 'admin/priorities', 'admin/question_types', 'admin/languages', 'admin/sections', 'admin/topics', 'admin/scores', 'admin/plans', 'admin/privileges'
->>>>>>> 3fcba641e8a221992b4ac714d906964faab55336
+    when 'admin/settings', 'admin/departments', 'admin/locations', 'admin/teams', 'admin/users', 'admin/clients', 'admin/roles', 'admin/dashboard', 'admin/compliances', 'admin/companies', 'admin/modulars', 'admin/priorities', 'admin/question_types', 'admin/languages', 'admin/sections', 'admin/topics', 'admin/scores', 'admin/plans','admin/transactions','admin/privileges'
       'Settings'
     when 'admin/operational_areas','admin/artifacts','admin/reminders'
       'Audit'
@@ -30,11 +26,7 @@ module ActiveAdmin::ViewsHelper #camelized file name
   end
 
   def add_sub_menu(action_path)
-<<<<<<< HEAD
-    if ["clients","locations", "departments", "teams","roles","users","settings", "plans","transactions"].include?(action_path)
-=======
-    if ["clients","locations", "departments", "teams","roles" ,"privileges","users","settings", "plans"].include?(action_path)
->>>>>>> 3fcba641e8a221992b4ac714d906964faab55336
+    if ["clients","locations", "departments", "teams","roles","privileges","users","settings", "plans","transactions"].include?(action_path)
       'overview'
     elsif ["operational_areas","artifacts", "reminders"].include?(action_path)
       'audit'

@@ -2066,7 +2066,6 @@ button.close {
 .up-pwd{
   margin: 0 0 20px 0;
 }
-<<<<<<< HEAD
 .card-wrap{
 	max-width:460px;
 	padding:0px 0 ;
@@ -2177,7 +2176,7 @@ button.close {
 	padding:10px;
 	color:#FFF;
 }
-=======
+
 #company_timezone {
     width: 101%;
 }
@@ -2244,4 +2243,3 @@ body {
 .control-dd select, option{
 	width:103%;
 }
->>>>>>> 3fcba641e8a221992b4ac714d906964faab55336

@@ -106,15 +106,11 @@
           Act</a></li>
         <li><a href="/audits?stage=published" class="<%= (request.fullpath.include?('stage=published') || request.fullpath.include?("checklist_recommendations/audit_observation")) == true ? 'active' : '' %>">
           <div class="published-icon"></div>
-<<<<<<< HEAD
           Published</a></li>
           <%else%>
           <li><a href="/admin/plans">
             <div class="setting-icon"></div>
             Plan</a></li>
-=======
-          Publish</a></li>
->>>>>>> 3fcba641e8a221992b4ac714d906964faab55336
 					<% end %>
       </ul>
     </div>
