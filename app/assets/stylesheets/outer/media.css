@@ -46,7 +46,14 @@ ul.list-tab {
   margin-top: -13px;
 
 }
-
+.control-dd {
+    overflow: hidden;
+    width: 280px;
+}
+.control-dd select option {
+    overflow: hidden;
+    width: 200px;
+}
 
 }
 
@@ -102,6 +109,35 @@ div.k-grid-header .k-header {font-size: 11px;}
 }
 .k-tabstrip-items .k-item .k-link{font-size: 11px;}
 .k-grid td{font-size:11px!important;}
+.user_login {
+    background-color: #dddee0;
+    color: #717171;
+    float: right;
+    font-family: 'Open Sans';
+    font-size: 12px;
+    min-height: 54px;
+    min-width: 200px;
+    padding: 9px 10px 0;
+    position: relative;
+    z-index: 999;
+}
+.login-box {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin: 50px auto 125px;
+    max-width: 90%;
+    text-align: center;
+}
+.form-group-lg label{
+
+	display: block;
+}
+.rem-sp{
+	 width: 150px;
+	 display: block;
+	 margin: 0 0 0 -56px;
+}
 
 
 }
@@ -304,7 +340,7 @@ and (max-width : 480px) {
 @media all and (max-width:768px)  {
 
 	.risk-select select {
-	    padding: 0px 41px 0 5px;
+	    padding: 6px 46px 0 5px;
 		font-size:12px;
 	}
 	.likelihood{
@@ -344,6 +380,11 @@ and (max-width : 480px) {
     text-align: center;
     width: 100%;
 }
+.mitigation-status{
+	padding: 20px 0;
+}
+
+
 }
 @media all and (max-width:600px)  {
 	.risk-wrap label {
