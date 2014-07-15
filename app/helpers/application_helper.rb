@@ -15,7 +15,7 @@ module ApplicationHelper
 
   def add_active_class(params)
     case params[:controller]
-    when 'audits'
+    when 'audits', 'audit_compliances', 'checklist_recommendations', 'nc_questions'
       'Audit'
     when 'users'
       'User'
