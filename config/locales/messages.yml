@@ -147,6 +147,20 @@ en:
   
   attachment:
     file_size_exceeds: "File size exceeds, you can't attach this file"
+    
+  dashboard:
+    create:
+      success: "Chart has been created successfully"
+    destroy:
+      success: "Chart has been deleted successfully"
+  
+  chart:
+    presence: 
+      name: "Please enter widget name"
+      x_axis: "Please select x_axis"
+      y_axis: "Please select y_axis"
+      chart_type: "Please select chart type"
+  
 
 
 fr:

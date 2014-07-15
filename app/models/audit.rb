@@ -66,6 +66,8 @@ class Audit < ActiveRecord::Base
   delegate :name, :to => :audit_status, prefix: true, allow_nil: true
 
   #scope :with_status, ->(status_id) { where(audit_status_id: status_id)}
+  scope :compliance_audits, -> { where(compliance_type: 'Compliance')}
+  scope :non_compliance_audits, -> { where(compliance_type: 'NonCompliance')}
 
   def to_param
     "#{self.id}-#{self.title}"

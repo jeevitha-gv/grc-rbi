@@ -20,7 +20,7 @@ class Answer < ActiveRecord::Base
         nc_que = NcQuestion.where(id: nc_id).last
         unless nc_que.answer.present?
             answer_val = {}
-            answer_val[:value] = answer[:value].present? ? answer[:value] : answer[:detailed_value]
+            answer[:value].present? ? answer_val[:value] = answer[:value] : answer_val[:detailed_value] = answer[:detailed_value]
             answer_val[:nc_question_id] = nc_que.id
             Answer.new(answer_val).save
             nc_que.reload
@@ -35,7 +35,7 @@ class Answer < ActiveRecord::Base
             end
         else
             answer_val = {}
-            answer_val[:value] = answer[:value].present? ? answer[:value] : answer[:detailed_value]
+            answer[:value].present? ? answer_val[:value] = answer[:value] : answer_val[:detailed_value] = answer[:detailed_value]
             if nc_que.answer.update(answer_val)
               if params[:commit] == "Submit Answers to Auditor"
                 nc_que.is_answered = true

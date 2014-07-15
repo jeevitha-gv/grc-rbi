@@ -29,6 +29,7 @@ class Company < ActiveRecord::Base
   has_one :plan
   has_many :subscriptions,through: :plan
   has_many :transactions
+  has_many :dashboard_charts
   #has_many :company_payments
 
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true

@@ -478,5 +478,9 @@ and (max-width : 480px) {
 		color:#ffffff;
 	}
 	
-	
+	/*---------------login -------------------*/
+.login-wrap a{
+	padding:0 0 0 7px;
+	font-size:12px;
+}
 }
