@@ -50,7 +50,9 @@ ActiveAdmin.register CppMeasure, { :as => 'Process'} do
       f.input :measure_type, :as => :hidden, :input_html => { :value => "Process"}
       f.input :company_id, :as => :hidden, :input_html => { :value => "#{current_company.id}"}
     end
-    f.actions
+    f.actions do
+      f.action :submit, label: 'Create Process'
+    end
   end
 
 end
