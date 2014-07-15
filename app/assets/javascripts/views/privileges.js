@@ -44,7 +44,7 @@
 	    pageSize: 5,
 		 	height: 300,
 	    sortable: true,
-			pageable: true,
+			pageable: false,
 		 	columns: [
 		 		{ field:"role_name", title: "Role"},
 		 		{ field:"model_name", title: "Modal"},
