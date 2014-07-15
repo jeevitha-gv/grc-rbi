@@ -23,11 +23,15 @@ class SubscriptionNotifier < ActionMailer::Base
     mail(to: company.join(","), subject: 'Subscription will expire in 2 days',content_type: "text/html")
   end
 
-  def recurring_pay_update(company)
-    mail(to: company.join(","), subject: 'Your payment card details been updated',content_type: "text/html")
+  def recurring_pay_update(email,company)
+    @company = company
+    @subscription = company.subscriptions.first
+    mail(to: email.join(","), subject: 'Your payment card details been updated',content_type: "text/html")
   end
 
-  def recurring_pay_cancel(company)
-    mail(to: company.join(","), subject: 'Your recurring payment for the subscription cancelled',content_type: "text/html")
+  def recurring_pay_cancel(email,company)
+    @company = company
+    @subscription = company.subscriptions.first
+    mail(to: email.join(","), subject: 'Your recurring payment for the subscription cancelled',content_type: "text/html")
   end
 end

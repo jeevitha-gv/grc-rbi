@@ -4,7 +4,7 @@ class AuditsController < ApplicationController
   load_and_authorize_resource :except => [:department_teams_users, :audit_with_status, :audit_all, :index, :asc_calculation]
   before_filter :authorize_audit, :only => [:edit, :update]
   before_filter :audit_auditor_users, :only => [:new, :create, :edit, :update]
-
+  before_filter :check_plan_expire
   # Intialize new audit
   def new
     @audit = Audit.new
