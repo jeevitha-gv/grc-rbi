@@ -14,6 +14,7 @@ class ApplicationController < BaseController
   before_filter :set_cookie_audit, :if => :current_user
   before_filter :check_subdomain, :if => :admin_function
   before_filter :check_password_authenticated, :if => :current_user
+  
   # Rescue for 400 and 500 errors
   unless Rails.application.config.consider_all_requests_local
     rescue_from Exception, with: lambda { |exception| render_error 500, exception }
@@ -131,6 +132,12 @@ class ApplicationController < BaseController
     end
     if !module_id.nil? && !current_company.plan.subscription_section_ids.include?("#{module_id}")
       redirect_to "/admin/settings/#{current_company.id}/edit"
+    end
+  end
+
+  def check_plan_expire
+    if current_company.plan.expires.to_date < Date.today
+      redirect_to "/admin/plans"
     end
   end
 

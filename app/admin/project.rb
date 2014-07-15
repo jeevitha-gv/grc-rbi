@@ -10,7 +10,7 @@ ActiveAdmin.register Project do
   permit_params :name, :order, :company_id
 
   controller do
-    before_filter :check_company_admin, :check_role, :company_admin_module_check, :check_subdomain
+    before_filter :check_company_admin, :check_role, :company_admin_module_check, :check_subdomain,:check_plan_expire
    action :all, except: [:new, :show]
 
     def scoped_collection

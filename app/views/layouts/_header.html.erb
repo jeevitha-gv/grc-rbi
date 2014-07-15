@@ -13,6 +13,15 @@
             </div>
           <% end %>
           </div>
+         <%if company_plan_check%> 
+          <div class="navbar-collapse collapse fleft">
+          <ul class="nav navbar-nav main_nav">
+             <li><a href="/admin/plans" class="<%= add_admin_active_class(params) == 'plans' ? 'active' : '' %>">
+              <div class="overview-icon"></div>
+              Overview</a></li>
+            </ul>
+          </div>
+         <%else%>
         <div class="navbar-collapse collapse fleft">
           <ul class="nav navbar-nav main_nav">
             <li><a href="/user/edit" class="<%= (add_active_class(params) == 'User' ||  add_active_class(params) == '') ? 'active' : '' %>">
@@ -30,6 +39,7 @@
 						<% end %>
           </ul>
         </div>
+        <% end %>
         <div class="user_login">
           <% if current_user.attachment.present? %>
             <%= image_tag(current_user.attachment.attachment_file.small) if current_user.attachment.attachment_file.present? %>
@@ -63,7 +73,7 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-			<% if overview_header%>
+			<% if overview_header && !company_plan_check%>
 				<li><a href="/user/edit" class="<%= request.fullpath.include?("user/edit") == true ? 'active' : '' %>">
           <div class="setting-icon"></div>
           Profile Settings</a></li>
@@ -72,8 +82,8 @@
             <div class="setting-icon"></div>
             Admin Settings</a></li>
         <% end %>
-			<% else %>
-        <li><a href="#" class="<%#= request.fullpath.include?("audit_dashboard") == true ? 'active' : '' %>">
+			<% elsif !overview_header && !company_plan_check %>
+        <li><a href="/" class="<%#= request.fullpath.include?("audit_dashboard") == true ? 'active' : '' %>">
           <div class="dash-icon"></div>
           Dashboard</a></li>
         <li><a href="/dashboard/calender" class="<%= request.fullpath.include?("dashboard/calender") == true ? 'active' : '' %>">
@@ -96,7 +106,11 @@
           Act</a></li>
         <li><a href="/audits?stage=published" class="<%= (request.fullpath.include?('stage=published') || request.fullpath.include?("checklist_recommendations/audit_observation")) == true ? 'active' : '' %>">
           <div class="published-icon"></div>
-          Publish</a></li>
+          Published</a></li>
+          <%else%>
+          <li><a href="/admin/plans">
+            <div class="setting-icon"></div>
+            Plan</a></li>
 					<% end %>
       </ul>
     </div>

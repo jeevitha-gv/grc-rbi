@@ -39,7 +39,7 @@ var element = $("#grid").kendoGrid({
 		editable: "inline",
     height    : 450,
     sortable  : true,
-    pageable  : true,
+    pageable  : false,
     detailInit: detailInit,
     columns   : [
 	 		{ field:"name", title: "name"},
@@ -80,7 +80,7 @@ function detailInit(e) {
 										 },
 						scrollable: false,
 						sortable  : true,
-						pageable  : true,
+						pageable  : false,
 						detailInit: childInit,
 						columns   : [
 								{ field:"name", title: "name"},
@@ -123,7 +123,7 @@ function childInit(e) {
 										 },
 						scrollable: false,
 						sortable  : true,
-						pageable  : true,
+						pageable  : false,
 						columns   : [
 								{ field:"name", title: "name"},
 								{field: "Edit",template:"<a href='/admin/compliance_libraries/${id}/edit'>Edit</a>"},

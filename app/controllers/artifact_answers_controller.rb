@@ -1,7 +1,7 @@
 class ArtifactAnswersController < ApplicationController
 
   before_filter :company_module_access_check
-  
+  before_filter :check_plan_expire
   #List attachements for particular artifacts
   def list_attachments
     @artifact_answer = ArtifactAnswer.find(params[:id])

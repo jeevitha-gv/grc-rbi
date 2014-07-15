@@ -13,6 +13,15 @@
             </div>
           <% end %>
           </div>
+    <%if company_plan_check%>
+      <div class="navbar-collapse collapse fleft">
+          <ul class="nav navbar-nav main_nav">
+            <li><a href="/admin/plans" class="<%= add_admin_active_class(params) == 'plans' ? 'active' : '' %>">
+              <div class="overview-icon"></div>
+              Over view</a></li>
+              </ul>
+        </div>
+    <%else%>
         <div class="navbar-collapse collapse fleft">
           <ul class="nav navbar-nav main_nav">
             <li><a href="/admin/settings" class="<%= add_admin_active_class(params) == 'Settings' ? 'active' : '' %>">
@@ -30,6 +39,8 @@
 						<% end %>
           </ul>
         </div>
+        <%end%>
+
 				<input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">
         <div class="user_login">
           <% unless current_user.attachment.blank? || current_user.attachment.attachment_file.blank? %>
