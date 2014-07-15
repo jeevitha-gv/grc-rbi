@@ -1,6 +1,7 @@
 class RisksController < ApplicationController
   before_filter :risk_users, only: [:new, :create, :edit, :update]
   before_filter :company_module_access_check
+  before_filter :check_plan_expire
   layout 'risk_layout'
 
   def index

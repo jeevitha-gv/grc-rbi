@@ -79,7 +79,7 @@ class Risk < ActiveRecord::Base
 	def notify_risk_users
 		users_email = []
 		subject_array = ["Your risk has been successfully created and assigned", "A new risk has been assigned to you for mitigation"]
-		users_email << self.risk_owner.email << self.risk_mitigator.email
+		users_email << (self.risk_owner.email if self.owner.present?) << (self.risk_mitigator.email if self.mitigator.present?)
     users_email.each_with_index do |email, index|
     	RiskMailer.delay.notify_users_about_risk(self, email, subject_array[index], name="risk")
     end
@@ -90,6 +90,10 @@ class Risk < ActiveRecord::Base
     start = 2
     (start..spreadsheet.last_row).each do |i|
       row_data = spreadsheet.row(i)
+      compliance = Compliance.by_name(row_data[2].to_s.strip.downcase).first
+      compliance_library = ComplianceLibrary.by_name(row_data[3].to_s.strip.downcase)
+      compliance_libraries = ComplianceLibrary.for_id_and_leaf(compliance.id).map(&:id) if compliance.present?
+      control = compliance_libraries.present? && compliance_library.present? && compliance_libraries.include?(compliance_library.id)
       risk_initializers(row_data[4].to_s.strip.downcase, row_data[5].to_s.strip.downcase, row_data[6].to_s.strip.downcase, company)
 
       category = RiskCategory.for_name(row_data[7].to_s.strip.downcase).last
@@ -99,7 +103,7 @@ class Risk < ActiveRecord::Base
       mitigator = User.for_users_by_company(row_data[10].to_s.strip.downcase, company.id).last
       reviewer = User.for_users_by_company(row_data[11].to_s.strip.downcase, company.id).last
 
-      risk = Risk.new(:subject => row_data[0], :reference => row_data[1], :location_id =>  @location.present? ? @location.id : nil, :department_id =>  @department.present? ? @department.id : nil, :team_id =>  @team.present? ? @team.id : nil, :category_id => (category.present? && (category.company_id == company.id || category.company_id.nil?)) ? category.id : nil, :technology_id =>  (technology.present? && (technology.company_id == company.id || technology.company_id.nil?)) ? technology.id : nil, :owner => owner.present? ? owner.id : nil, :mitigator => mitigator.present? ? mitigator.id : nil, :reviewer => reviewer.present? ? reviewer.id : nil, :assessment => row_data[12], :notes => row_data[13], :company_id => company.id, :submitted_by => user.id, :risk_status_id => RiskStatus.where(:name=>"Draft").first.id)
+      risk = Risk.new(:subject => row_data[0], :reference => row_data[1], :compliance_id =>  compliance.present? ? compliance.id : nil, :compliance_library_id => control == "true" ? compliance_library.id : nil, :location_id =>  @location.present? ? @location.id : nil, :department_id =>  @department.present? ? @department.id : nil, :team_id =>  @team.present? ? @team.id : nil, :category_id => (category.present? && (category.company_id == company.id || category.company_id.nil?)) ? category.id : nil, :technology_id =>  (technology.present? && (technology.company_id == company.id || technology.company_id.nil?)) ? technology.id : nil, :owner => owner.present? ? owner.id : nil, :mitigator => mitigator.present? ? mitigator.id : nil, :reviewer => reviewer.present? ? reviewer.id : nil, :assessment => row_data[12], :notes => row_data[13], :company_id => company.id, :submitted_by => user.id, :risk_status_id => RiskStatus.where(:name=>"Draft").first.id)
       risk.save(:validate => false)
     end
   end

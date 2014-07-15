@@ -14,7 +14,7 @@ ActiveAdmin.register Department do
     include PublicActivity::StoreController
 
     before_filter :check_company_admin, :check_role
-    before_filter :check_subdomain
+    before_filter :check_subdomain,:check_plan_expire
      def scoped_collection
       Department.where(:location_id=>current_company.locations.map(&:id))
     end

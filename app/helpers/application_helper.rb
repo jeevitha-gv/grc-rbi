@@ -15,7 +15,7 @@ module ApplicationHelper
 
   def add_active_class(params)
     case params[:controller]
-    when 'audits'
+    when 'audits', 'audit_compliances', 'checklist_recommendations', 'nc_questions'
       'Audit'
     when 'users'
       'User'
@@ -77,5 +77,9 @@ end
   def company_modules_check(module_name)
     module_id = Section.find_by_name(module_name).id
     current_company.plan.subscription_section_ids.include?("#{module_id}")
+  end
+
+  def company_plan_check
+    current_company.plan.expires.to_date < Date.today
   end
 end
