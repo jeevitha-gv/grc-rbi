@@ -573,6 +573,7 @@ html, body {
 }
 #wrapper {
 	 margin: 0px;
+	 min-height: 100%!important;
 }
 
 .footer-login{
@@ -586,7 +587,9 @@ html, body {
 	background-color:#363535;
 	color: #9f9d9d;
 	padding: 25px 0;
-
+	position: absolute;
+	left: 0;
+	width: 100%;
 }
 .footer_sp{
 	left:0;
@@ -1858,7 +1861,19 @@ li.db_setting_main{
 .multiselect{
 	width:240px!important;
 	text-align:right!important;
+	overflow: hidden;
+	word-wrap:break-word;
 }
+.multiselect-container  label{
+		padding: 5px!important ;
+		float: left;
+		line-height: 20px;
+	}
+	.multiselect-container input{
+		padding: 0 5px 0 20px;
+		margin:0 10px 0 0; 
+	}
+	.multiselect-container > li:hover{background:#ddd; }
 .open > .dropdown-menu {
     display: block;
     width: 240px;
@@ -2178,7 +2193,7 @@ button.close {
 }
 
 #company_timezone {
-    width: 101%;
+    width: 50%;
 }
 #company_timezone > option {
     width: 286px;
@@ -2218,9 +2233,9 @@ body {
     margin: 0 10px 20px 0;
 }
 .previleges {
-    width: 45%;
+    width: 38%;
 }
-.grid-padding{margin: 100px 0;}
+.grid-padding{margin: 40px 0;}
 
 .previleges .btn-group {
     float: none!important;
@@ -2242,4 +2257,15 @@ body {
 }
 .control-dd select, option{
 	width:103%;
+}
+.nav > li > a:hover, .nav > li > a:focus{color:#0085c8!important;}
+.sub-wrap-bg .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default{border-radius: 4px;}
+form input[type="text"], form input[type="password"], form input[type="email"], form input[type="number"], form input[type="url"], form input[type="tel"], form textarea {
+    border: 1px solid #c9d0d6;
+    border-radius: 3px;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 0.95em;
+    outline: medium none;
+    padding: 8px 10px 7px;
+    width: calc(22% - 22px);
 }
