@@ -361,6 +361,7 @@ button.close{
 }
 .subbar-nav li a {
     padding: 3px 23px;
+    
 }
 .k-grid-header-wrap .k-header .k-link{
 	font-size: 11px;
@@ -394,6 +395,37 @@ button.close{
 		height: 30px;
 		padding: 6px 41px 0 5px;
 	}
+	.previleges {
+    width: 59%;
+	}
+	.audit-sp .subbar-nav li a {
+    padding: 3px 23px;
+    
+	}
+	.menu-admin .subbar-nav li a {
+    padding: 3px 9px;
+    
+	}
+	.multiselect-container  label{
+		padding: 5px!important ;
+		float: left;
+		line-height: 20px;
+	}
+	.multiselect-container input{
+		padding: 0 5px 0 20px;
+		margin:0 10px 0 0; 
+	}
+	.multiselect-container > li:hover{background:#ddd; }
+
+	.profile_photo_sec:hover{
+		display: block;	}
+
+	.risk-select select {
+    height: 30px;
+    overflow: hidden;
+    padding: 6px 51px 0 5px;
+	}
+
 }
 
 @media all and (max-width:768px)  {
@@ -415,7 +447,7 @@ button.close{
 }
 @media all and (max-width:768px){
 	
-	.red-box{
+.red-box{
 	margin:0 0 20px 0;
 }
 .risk-select select{
@@ -503,9 +535,7 @@ button.close{
     margin: 0 auto;
     text-align: center;
 }
-.import-btn{
-	
-}
+
 }
 @media all and (max-width:480px)  {
 	
