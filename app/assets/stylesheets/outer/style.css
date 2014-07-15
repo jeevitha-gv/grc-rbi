@@ -2064,11 +2064,7 @@ button.close {
   width: 100%;
 }
 .up-pwd{
-<<<<<<< HEAD
   margin: 0 0 20px 0;
-=======
-  margin: 0 0 20px 0;
->>>>>>> phase-3
 }
 .card-wrap{
 	max-width:460px;
@@ -2180,8 +2176,6 @@ button.close {
 	padding:10px;
 	color:#FFF;
 }
-<<<<<<< HEAD
-=======
 
 #company_timezone {
     width: 101%;
@@ -2249,4 +2243,3 @@ body {
 .control-dd select, option{
 	width:103%;
 }
->>>>>>> phase-3
