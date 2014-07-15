@@ -154,6 +154,12 @@ and (max-width : 1024px) {
 }
 .footer_left{ float:left;}
 .sub_menu{ height:auto;}
+
+.login-box{
+	width: 95%;
+}
+
+
 }
 
 
@@ -316,7 +322,7 @@ and (max-width : 480px) {
 		max-width:1000px;
 	}
 	.risk-wrap label {
-    	font-size: 11px;
+    	font-size: 10px;
 	}
 	.mitigation-sub{
 		min-width:100%;
@@ -334,7 +340,60 @@ and (max-width : 480px) {
     font-size: 13px;
     padding: 0 10px 0 5px;
 }
-	
+
+.login-box{
+	width:95%;
+	max-width: 100%;
+}
+.rem-sp{
+	max-width: 150px;
+
+}
+.sub_menu .navbar{
+	padding: 0px;
+	margin:0px;
+}
+button.close{
+	top:120px;
+}
+.alert{
+	padding: 9px 20px;
+}
+.subbar-nav li a {
+    padding: 3px 23px;
+}
+.k-grid-header-wrap .k-header .k-link{
+	font-size: 11px;
+	}
+	.k-grid td{
+
+		font-size: 11px!important;
+	}
+	div.k-grid-header .k-header, .k-grid td{
+		font-size: 11px;
+	}
+	div.k-grid-header .k-header, .k-grid td{
+		font-size: 11px!important;                            
+	}
+	.k-grid-header .k-header {
+   		 padding-left: 10px!important;
+	 }
+	 .mitigation-status{
+	 	padding: 
+	 	20px 0;
+	 }
+	 .table-bg label, span {
+   		 color: #4a4848;
+    	font-size: 10px;
+	}
+	.multiselect {
+    text-align: right !important;
+    width: 200px !important;
+	}
+	.risk-select select{
+		height: 30px;
+		padding: 6px 41px 0 5px;
+	}
 }
 
 @media all and (max-width:768px)  {
@@ -476,6 +535,10 @@ and (max-width : 480px) {
 	}
 	.subbar-nav li a{
 		color:#ffffff;
+	}
+	.multiselect {
+    text-align: right !important;
+    width: 160px !important;
 	}
 	
 	/*---------------login -------------------*/
