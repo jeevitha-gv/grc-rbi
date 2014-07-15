@@ -71,11 +71,11 @@ $(document).ready(function() {
 		columns: [
 			{ field: "subject", title: "Subject", width: "40%" },
 			{ field: "status", title: "Status", width: "30%" },
-			{ field: "risk", title: "Risk", width: "8%" },
-			{ field: "owner", title: "Owner", width: "20%" },
-			{ field: "days_open", title: "Days Open", width: "13%" },
-			{ field: "next_review", title: "Next Review Date", width: "20%" },
-			{ command: [{text: "list", click: mitigate_file},{text: "miti", click: review_file},{text: "edit", click: edit_file}], title: "Action", width: "170px" }
+			{ field: "risk", title: "Score", width: "10%" },
+			{ field: "owner", title: "Owner", width: "25%" },
+			{ field: "days_open", title: "Days Open", width: "15%" },
+			{ field: "next_review", title: "Next Review Date", width: "25%" },
+			{ command: [{text: "list", click: mitigate_file},{text: "miti", click: review_file},{text: "edit", click: edit_file}], title: "Action", width: "150px" }
 		],
 	//~ editable: "popup"
 	});

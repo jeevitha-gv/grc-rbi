@@ -19,6 +19,6 @@ class Attachment < ActiveRecord::Base
     company = Company.find_by_id(self.company_id)
     company_file_sizes = company.uploads.map(&:file_size)
     company_file_sizes.each { |a| size+=a.to_i }
-    self.errors[:file_size_exceeds] = "File size exceeds, you can't attach this file"  if  (size  > 100.megabytes || (size+attachment_file.file.size) > 100.megabytes)
+    self.errors[:file_size_exceeds] = "File size exceeds, you can't attach this file"  if  (size  > company.plan.subscription_file_size || (size+attachment_file.file.size) > company.plan.subscription_file_size)
   end
 end
