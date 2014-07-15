@@ -1,5 +1,5 @@
 ActiveAdmin.register Artifact do
-
+    config.filters = false
     breadcrumb do
       [
         link_to('Artifact', '/admin/artifacts')
@@ -21,6 +21,19 @@ ActiveAdmin.register Artifact do
       column :name
       actions
     end
+
+    show do
+    attributes_table do
+      row "ComplianceLibrary" do |c|
+        c.compliance_library.name
+      end
+      row :name
+      row "Company" do |c|
+        c.company.name
+      end
+    end
+  end
+
 
     form do |f|
       all_compliance = ComplianceLibrary.where(:is_leaf => true)

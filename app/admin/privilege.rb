@@ -1,5 +1,6 @@
 ActiveAdmin.register Privilege do
 	#To change title bar link
+  config.filters = false
   breadcrumb do
     [
       link_to('Roles', '/admin/roles')

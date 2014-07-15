@@ -8,7 +8,7 @@ class Location < ActiveRecord::Base
   validates :name, presence:true
   validates_format_of :name, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.name.blank? }
   validates :name, length: { in: 4..52 }, :if => Proc.new{ |f| !f.name.blank? }
-  validates_uniqueness_of :name, scope: [:company_id]
+  validates_uniqueness_of :name, scope: [:company_id], :case_sensitive => false
 
  scope :location_name, ->(id) { where(id: id).first.name}
  scope :for_name_by_company, lambda {|location_name, company_id| where("lower(name)=? and company_id=?", location_name, company_id)}

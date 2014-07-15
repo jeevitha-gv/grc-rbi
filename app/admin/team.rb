@@ -1,5 +1,5 @@
 ActiveAdmin.register Team do
-
+  config.filters = false
   menu :if => proc{ !current_admin_user.present? }
 
   breadcrumb do
@@ -49,7 +49,16 @@ ActiveAdmin.register Team do
   end
 
   show do
-    attributes_table :name, :company, :department, :section
+    attributes_table do
+       row :name
+      row "Company" do |c|
+        c.company.name
+      end
+      row :department
+       row "Section" do |c|
+        c.section.name
+      end
+    end
   end
 
   form do |f|

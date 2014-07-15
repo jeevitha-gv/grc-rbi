@@ -1,15 +1,15 @@
 ActiveAdmin.register RiskCategory, { :as => 'Category'} do
-
+  config.filters = false
   menu :if => proc{ !current_admin_user.present? }
-  
+
   breadcrumb do
     [
       link_to('Category', '/admin/categories')
     ]
   end
-  
+
   permit_params :name, :company_id
-  
+
   controller do
     before_filter :check_company_admin, :check_role
     before_filter :check_subdomain
@@ -19,15 +19,15 @@ ActiveAdmin.register RiskCategory, { :as => 'Category'} do
     #~ def scoped_collection
       #~ current_company.risk_categories
     #~ end
-    
+
   end
-  
+
    #Index page fields customization
   index do
     column :name
     actions
   end
-  
+
   #show page fields customization
   show do
     attributes_table do
@@ -37,7 +37,7 @@ ActiveAdmin.register RiskCategory, { :as => 'Category'} do
       row :updated_at
     end
   end
-  
+
   form do |f|
       f.inputs "New Category" do
         f.input :name

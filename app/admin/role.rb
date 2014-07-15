@@ -1,4 +1,5 @@
 ActiveAdmin.register Role  do
+ config.filters = false
  menu :if => proc{ !current_admin_user.present? }
 
   breadcrumb do
@@ -6,6 +7,8 @@ ActiveAdmin.register Role  do
       link_to('Roles', '/admin/roles')
     ]
   end
+
+  actions :all, :except => [:destroy]
 
   permit_params :title, :company_id
  #authentication
@@ -50,6 +53,11 @@ ActiveAdmin.register Role  do
       link_to "Add privilege" , "/admin/privileges/new?role_id=#{f.id}"#, :onclick => "test();"
     end
   end
+
+  show do
+    attributes_table :title
+  end
+
 
 
   form do |f|

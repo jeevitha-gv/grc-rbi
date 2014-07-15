@@ -10,5 +10,8 @@ class Artifact < ActiveRecord::Base
   belongs_to :company
   has_many :artifact_answers
 
+  # validation
+  validates :name, uniqueness: {:scope => :compliance_library_id}, :if => Proc.new{ |f| !f.name.blank? }
+
   delegate :name, to: :compliance_library, prefix: true, allow_nil: true
 end

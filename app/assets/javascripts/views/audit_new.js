@@ -73,24 +73,21 @@
     });
     $('.datepicker1').attr('readonly', true);
 
-
-    // $('#add_auditee').click(function(){
-    //   var size = $('#auditee-list').find('.auditee-rows').size();
-
-    //   // console.log(cd append)
-    //   $("#auditee-list").append(""+"<div class='form-group clearfix auditee-dropdown'>"+$(".auditee-dropdown").html().replace('audit[audit_auditees_attributes][0][user_id]','audit[audit_auditees_attributes]['+size+'][user_id]')+"</div>"+"");
-    // });
-
-    $(".next-phase").click(function(){
-      // new Messi('Planned for further phases.', {autoclose: '5000'});
-      new Messi('Planned for further phases.', {title: 'Warning', titleClass: 'warning', autoclose: 2000});
-    });
+    $('.add-risk').click(function(){
+      var check = $('#risk_value:checked').val();
+      if(check.length > 0)
+      {
+        $('#audit_title').val('');
+        var riskSubject = $('#risk_subject_'+check).text();
+        $('#audit_title').val(riskSubject);
+      }
+    })
   });
 
 	 function get_departments(element){
-    $('.ajax-loader').show();
     var location_id = $(element).val();
     if(location_id.length>0){
+      $('.ajax-loader').show();
       $.ajax({
         url: "/audits/department_teams_users",
         type: "GET",
@@ -104,9 +101,9 @@
   }
 
   function get_teams(element){
-    $('.ajax-loader-department').show();
     var department_id = $(element).val();
     if(department_id.length>0){
+      $('.ajax-loader-department').show();
       $.ajax({
         url: "/audits/department_teams_users",
         type: "GET",
@@ -119,9 +116,9 @@
   }
 
   function get_auditee_users(element){
-    $('.ajax-loader-team').show();
     var team_id = $(element).val();
     if(team_id.length>0){
+      $('.ajax-loader-team').show();
       $.ajax({
         url: "/audits/department_teams_users",
         type: "GET",

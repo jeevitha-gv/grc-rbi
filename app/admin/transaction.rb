@@ -10,7 +10,7 @@ ActiveAdmin.register Transaction do
     def index
       @transaction = Transaction.where("company_id = ? ",current_company.id).last
     end
-    
+
     def new
       @transaction = Transaction.new
     end
@@ -24,7 +24,7 @@ ActiveAdmin.register Transaction do
         response = GATEWAY.update_recurring(profile_id: company_transaction.profile_id,credit_card: credit_card)      
         if response.success?
           flash[:notice] = "Your update request has been processed."
-          SubscriptionNotifier.recurring_pay_update(user_email,current_company)
+          SubscriptionNotifier.recurring_pay_update(user_email,current_company).deliver
           redirect_to "/admin/transactions"
         else  
           flash[:notice] = "Your #{response.message},update is not possible"
@@ -32,7 +32,7 @@ ActiveAdmin.register Transaction do
         end
         else
         flash[:notice] = "Please provide valid card details"
-        redirect_to "/admin/transactions/new" 
+        redirect_to "/admin/transactions/new"
         end
     end
 
@@ -45,7 +45,7 @@ ActiveAdmin.register Transaction do
         current_company.recurring_cancel = true
         current_company.save
         flash[:notice] = "Your cancel request for recurring payment processed."
-        SubscriptionNotifier.recurring_pay_cancel(user_email,current_company)
+        SubscriptionNotifier.recurring_pay_cancel(user_email,current_company).deliver
         redirect_to admin_transactions_path
       else
         flash[:notice] = "Your cancel request has not been processed.Please contact Admin"
@@ -59,9 +59,9 @@ ActiveAdmin.register Transaction do
     render "index"
   end
 
-  show do 
+  show do
     render "cancel_recurring"
   end
 
-  form partial: "form"  
+  form partial: "form"
 end

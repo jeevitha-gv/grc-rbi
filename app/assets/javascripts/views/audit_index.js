@@ -9,6 +9,10 @@
 
  $(document).ready(function(){
 
+ 	$('.cancel-btn1').click(function(){
+ 		$('#search-value').val('');
+ 	})
+
 	function onActivate(e) {
      if($('#search-value').val() != "")
      {
@@ -300,10 +304,7 @@
 			scrollable: true,
 			sortable: true,
 			filterable: true,
-			pageable: {
-				input: true,
-				numeric: false
-			},
+			pageable: false,
 			columns: [
 				{ field: "title", title: "Audit Title" ,width: "35%"},
 				{ field: "client", title: "Client Name", width: "35%" },
@@ -326,10 +327,7 @@
 			scrollable: true,
 			sortable: true,
 			filterable: true,
-			pageable: {
-				input: true,
-				numeric: false
-			},
+			pageable: false,
 			columns: [
 				{ field: "title", title: "Audit Title" ,width: "35%"},
 				{ field: "client", title: "Client Name", width: "35%" },
@@ -382,10 +380,7 @@
 			scrollable: true,
 			sortable: true,
 			filterable: true,
-			pageable: {
-				input: true,
-				numeric: false
-			},
+			pageable: false,
 			columns: [
 				{ field: "title", title: "Audit Title" ,width: "35%"},
 				{ field: "client", title: "Client Name", width: "35%" },
@@ -439,10 +434,7 @@
 			scrollable: true,
 			sortable: true,
 			filterable: true,
-			pageable: {
-				input: true,
-				numeric: false
-			},
+			pageable: false,
 			columns: [
 				{ field: "title", title: "Audit Title" ,width: "35%"},
 				{ field: "client", title: "Client Name", width: "35%" },
@@ -495,10 +487,7 @@
 			scrollable: true,
 			sortable: true,
 			filterable: true,
-			pageable: {
-				input: true,
-				numeric: false
-			},
+			pageable: false,
 			columns: [
 				{ field: "title", title: "Audit Title" ,width: "35%"},
 				{ field: "client", title: "Client Name", width: "35%" },

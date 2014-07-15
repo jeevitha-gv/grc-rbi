@@ -1,5 +1,5 @@
 ActiveAdmin.register Company do
-
+  config.filters = false
   menu :if => proc{ current_admin_user.present? }
   #authentication
   controller do
