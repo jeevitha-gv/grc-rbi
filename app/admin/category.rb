@@ -13,6 +13,7 @@ ActiveAdmin.register RiskCategory, { :as => 'Category'} do
   controller do
     before_filter :check_company_admin, :check_role
     before_filter :check_subdomain
+    before_filter :check_plan_expire
    action :all, except: [:new, :show]
 
     #~ def scoped_collection

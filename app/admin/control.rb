@@ -12,7 +12,7 @@ ActiveAdmin.register CppMeasure, { :as => 'Controls'} do
   permit_params :compliance_id, :name, :description, :duration, :measure_type, :company_id
 
  controller do
-    before_filter :check_company_admin, :check_role, :company_admin_module_check, :check_subdomain
+    before_filter :check_company_admin, :check_role, :company_admin_module_check, :check_subdomain,:check_plan_expire
    action :all, except: [:new, :show]
 
     def scoped_collection

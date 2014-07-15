@@ -15,6 +15,7 @@ ActiveAdmin.register Role  do
   controller do
    before_filter :check_role, :check_company_admin
    before_filter :check_subdomain
+   before_filter :check_plan_expire
 
 
     def scoped_collection

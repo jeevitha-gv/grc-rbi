@@ -10,6 +10,7 @@ class Compliance < ActiveRecord::Base
     validates :name, length: { in: 2..52 }, :if => Proc.new{ |f| !f.name.blank? }
 
     scope :by_name, lambda {|name| where("lower(name) = ?", name)}
+    scope :compliance_name, ->(id) { where(id: id).first.name}
 
     #Association
     has_many :audits

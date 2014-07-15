@@ -78,4 +78,8 @@ end
     module_id = Section.find_by_name(module_name).id
     current_company.plan.subscription_section_ids.include?("#{module_id}")
   end
+
+  def company_plan_check
+    current_company.plan.expires.to_date < Date.today
+  end
 end

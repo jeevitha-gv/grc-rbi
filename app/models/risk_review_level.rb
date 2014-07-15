@@ -5,7 +5,7 @@ class RiskReviewLevel < ActiveRecord::Base
 
   scope :review_level, lambda {|name, company_id| where(name: name, company_id: company_id)}
 
-  validate :risk_review_level_value
+  validate :risk_review_level_value, :on => :update
 
   def risk_review_level_value
     risk_review_levels = self.company.risk_review_levels

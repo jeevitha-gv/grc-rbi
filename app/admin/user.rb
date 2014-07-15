@@ -18,7 +18,7 @@ ActiveAdmin.register User do
     # removing delete option
     actions :all, :except => [:destroy]
     before_filter :check_company_admin, :check_role
-    before_filter :check_subdomain
+    before_filter :check_subdomain,:check_plan_expire
     def create
       @user = User.new(user_params)
       @user.company_id = current_user.company_id

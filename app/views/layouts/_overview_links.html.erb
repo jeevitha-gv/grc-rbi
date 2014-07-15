@@ -1,4 +1,8 @@
  <ul class="subbar-nav nav navbar-nav">
+  <%if company_plan_check%>
+  <li><a href="/admin/plans" class="<%= request.fullpath.include?("/admin/plans") == true ? 'active' : '' %>">
+          Plan</a></li>
+  <%else%>
 	    <li><a href="/admin/clients" class="<%= request.fullpath.include?("admin/clients") == true ? 'active' : '' %>">
           Clients</a></li>
 	      <li><a href="/admin/locations" class="<%= request.fullpath.include?("admin/locations") == true ? 'active' : '' %>">
@@ -17,4 +21,5 @@
           Plan</a></li>
           <li><a href="/admin/transactions" class="<%= request.fullpath.include?("/admin/transactions") == true ? 'active' : '' %>">
           Upgrade Payment</a></li>
+          <%end%>
 	</ul>

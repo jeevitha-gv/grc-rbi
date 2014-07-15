@@ -397,14 +397,16 @@ function dependent_recommendation_select()
 id = $('#cheklist_id').val()
 recommendation_id = $('#dependent_recommendation_id').val()
 $('#dependent_recommendation_'+id).val(recommendation_id)
- $('#myModal').modal('hide');
+$('#myModal').modal('hide');
+$('#dependent_recommendation_id').val('')
 }
 function blocking_recommendation_select()
 {
 id = $('#cheklist_id').val()
 recommendation_id = $('#blocking_recommendation_id').val()
 $('#blocking_recommendation_'+id).val(recommendation_id)
- $('#myModal1').modal('hide');
+$('#myModal1').modal('hide');
+$('#blocking_recommendation_id').val('')
 }
 function recommendation(id)
 {
