@@ -27,6 +27,7 @@ class DashboardController < ApplicationController
 	def update
 		order_arr = params[:order].split(",")
 		DashboardChart.update_chart_order(order_arr)
+		respond_to :js
 	end
 
 	def destroy
