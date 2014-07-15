@@ -1,6 +1,6 @@
 class RiskCategory < ActiveRecord::Base
 
-  has_many :risks
+  has_many :risks, class_name: 'Risk', foreign_key: 'category_id'
   belongs_to :company
 
   # Scopes
