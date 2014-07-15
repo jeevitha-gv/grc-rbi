@@ -25,11 +25,11 @@ namespace :reminder do
         audit.unresponsive_recommendation.each do |recommendation|
           if( reminder = Reminder.check_priority(company.id,recommendation.recommendation_priority_id))
             if recommendation.checklist_type == "AuditCompliance"
-              user = recommendation.checklist.artifact_answers.last.responsibility
+              user = recommendation.checklist.artifact_answers.present? ? recommendation.checklist.artifact_answers.last.responsibility : nil
             else
               user = recommendation.checklist.nc_question.auditee
             end
-            if ReminderMailer.recommendation_reminder(recommendation, user).deliver
+            if(user && ReminderMailer.recommendation_reminder(recommendation, user).deliver)
               if(ReminderMail.escalation_matrix("ChecklistRecommendation", recommendation.id, reminder.mail_count))
                 reminder_mail_to,reminder_mail_cc = reminder.get_escalation_mails(company,user,audit)
                 ReminderMailer.escalation_mail_recommendation(reminder_mail_to, reminder_mail_cc,recommendation,user).deliver
