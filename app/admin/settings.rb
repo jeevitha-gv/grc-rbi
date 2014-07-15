@@ -1,4 +1,5 @@
 ActiveAdmin.register Company, { :as => 'Settings'} do
+  config.filters = false
   menu :if => proc{ !current_admin_user.present? }
 
   breadcrumb do

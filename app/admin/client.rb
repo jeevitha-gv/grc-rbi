@@ -1,5 +1,5 @@
 ActiveAdmin.register Client do
-
+  config.filters = false
   breadcrumb do
     [
       link_to('Client', '/admin/clients')
@@ -52,6 +52,10 @@ ActiveAdmin.register Client do
     column :contact_no
     column :email
     actions
+  end
+
+  show do
+    attributes_table :name, :address1, :address2, :contact_no, :email
   end
 
   form do |f|

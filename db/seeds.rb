@@ -553,6 +553,7 @@ Review.delete_all
 NextStep.delete_all
     NextStep.create(:name => "Accept Until Next Review")
     NextStep.create(:name => "Submit as a Production Issue")
+    NextStep.create(:name => "Consider for Audit")
 
 ImplementationStatus.delete_all
     ImplementationStatus.create(:name => "Not Implemented")

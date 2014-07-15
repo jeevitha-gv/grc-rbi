@@ -1,4 +1,5 @@
 ActiveAdmin.register Location do
+  config.filters = false
   menu :if => proc{ !current_admin_user.present? }
 
     breadcrumb do
@@ -51,7 +52,12 @@ ActiveAdmin.register Location do
   end
 
   show do
-    attributes_table :name, :company
+    attributes_table do
+    row "Company" do |c|
+        c.company.name
+      end
+      row :name
+    end
   end
 
   form do |f|

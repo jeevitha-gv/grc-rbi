@@ -22,7 +22,7 @@
 
   <div class="fright clearfix ask-auditee-btn">
   	<a class="black_btn" href="javascript:goBack()">Back</a>
-    <%= f.submit "Ask Auditee", :class => "orange_btn" %><br /><br />
+    <%= f.submit "Ask Auditee", :class => "orange_btn" if audit.audit_status_id != 4 %><br /><br />
   </div>
 <% end %>
 <div class="clearfix"></div>

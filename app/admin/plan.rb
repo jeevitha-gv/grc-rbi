@@ -1,5 +1,6 @@
 ActiveAdmin.register Plan do
-   menu :if => proc{ !current_admin_user.present? }
+  config.filters = false
+  menu :if => proc{ !current_admin_user.present? }
 
   actions :all, :except => [:new,:destroy]
 
@@ -17,7 +18,7 @@ ActiveAdmin.register Plan do
       plan = Plan.where("id = ?", params[:id]).first
      if !current_company.subscriptions.first.id.eql?(params[:plan][:subscription_id]) && plan.expires.to_date <= Date.today
       subscribe = Subscription.where("id = ?",params[:plan][:subscription_id]).first
-      if subscribe.amount.eql?(0.0)         
+      if subscribe.amount.eql?(0.0)
          plan.update_attributes(subscription_id: subscribe.id ,company_id: current_company.id)
          plan.update_attributes(starts: plan.updated_at ,expires: calculate_plan_expiration(subscribe.valid_log,plan.updated_at))
          redirect_to admin_plans_path
@@ -40,18 +41,18 @@ ActiveAdmin.register Plan do
     end
     column "Company" do |c|
       Company.where("id = ?",c.company_id).map(&:name).join(",")
-    end    
+    end
     column :starts
     column :expires
 
     actions
   end
- 
+
   show do
     attributes_table do
     row "Subscription" do |c|
       Subscription.where("id = ? ",c.subscription_id).map(&:name).join(",")
-    end    
+    end
     row "Amount" do |c|
       Subscription.where("id IN (?)",c.subscription_id).map(&:amount).join(",")
     end

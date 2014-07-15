@@ -1,5 +1,5 @@
 ActiveAdmin.register ComplianceLibrary do
-
+  config.filters = false
   permit_params :compliance_id, :name, :is_leaf, :parent_id
 
   #authentication for superadmin

@@ -8,6 +8,8 @@ class Modular < ActiveRecord::Base
   validates :model_name, length: { in: 0..52 }, :if => Proc.new{ |f| !f.model_name.blank? }
   validates :action_name, length: { in: 0..52 }, :if => Proc.new{ |f| !f.action_name.blank? }
 
+  validates :action_name, uniqueness:true, :uniqueness => {:scope => :model_name}, :if => Proc.new{ |f| !f.action_name.blank? }
+
 
   #associations
   belongs_to :section

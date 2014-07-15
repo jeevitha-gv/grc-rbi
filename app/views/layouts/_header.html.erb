@@ -76,7 +76,7 @@
 			<% if overview_header && !company_plan_check%>
 				<li><a href="/user/edit" class="<%= request.fullpath.include?("user/edit") == true ? 'active' : '' %>">
           <div class="setting-icon"></div>
-          Profile Setting</a></li>
+          Profile Settings</a></li>
         <% if current_user.role.title == "company_admin" %>
           <li><a href="/admin/settings">
             <div class="setting-icon"></div>
