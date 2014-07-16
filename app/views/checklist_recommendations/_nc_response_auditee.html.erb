@@ -24,7 +24,7 @@
                     <div class="form-group clearfix">
                       <label class="col-sm-5">Corrective Action</label>
                       <div class="col-sm-7">
-                        <textarea class="audit-big-input" id="corrective_<%= checklist_recommendation.id%>" name="checklist_recommendation[corrective]" value= "<%= checklist_recommendation.corrective if checklist_recommendation.present? %>" ></textarea>
+                        <textarea class="audit-big-input" id="corrective_<%= checklist_recommendation.id%>" name="checklist_recommendation[corrective]" ><%= checklist_recommendation.corrective if checklist_recommendation.present? %></textarea>
                       <span class="error_message" id="error_corrective_<%= checklist_recommendation.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["corrective"]%><span>
                       </div>
                     </div>
@@ -88,7 +88,7 @@
                     <div class="form-group clearfix">
                       <label class="col-sm-5">Preventive Action</label>
                       <div class="col-sm-7">
-                        <textarea class="audit-big-input" id="preventive_<%= checklist_recommendation.id%>" name="checklist_recommendation[preventive]" value= "<%= checklist_recommendation.preventive if checklist_recommendation.present? %>" ></textarea>
+                        <textarea class="audit-big-input" id="preventive_<%= checklist_recommendation.id%>" name="checklist_recommendation[preventive]" ><%= checklist_recommendation.preventive if checklist_recommendation.present? %></textarea>
                       <span class="error_message" id="error_preventive_<%= checklist_recommendation.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["preventive"]%><span>
                       </div>
                     </div>
