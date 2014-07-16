@@ -1,4 +1,4 @@
-		/* CSS Document */
+/* CSS Document */
 .fleft {
 	float: left;
 }
@@ -2048,7 +2048,7 @@ button .multiselect{
   min-width: 35px!important;
 }
 .org-sp{
- margin:0 38px;
+ margin:0 63px;
 }
 .domain-width{
   max-width: 250px;
@@ -2319,16 +2319,14 @@ body {
 	color:#000;
 }
 button.close {
-    top: 126px;
+    top:0px;
+}
+.alert-success button.close {
+    top:126px;
 }
 .my_footer{
 	color: #9f9d9d;
 	padding: 0px 0;
-	position:relative;
-	left: 0;
-	width: 100%;
-	bottom: 0;
-
 }
 .risk-select select option:hover {
     max-width: 350px !important;
@@ -2339,3 +2337,63 @@ button.close {
 	width:100%;
 	max-width: 550px;
 }
+.chk-padding{
+	padding: 0 0 0 10px;
+	line-height: 25px;
+}
+.chk-box-rl{
+	padding: 0 0 0 140px;
+}
+
+
+@media screen and ( min-height: 600px ) and ( max-height: 767px ){
+    #main_content_wrapper{
+    	min-height: 380px;
+    }
+}
+@media screen and ( min-height: 767px ) and ( max-height: 900px ){
+    #main_content_wrapper{
+    	min-height: 650px;
+    }
+}
+@media screen and ( min-height: 900px ) and ( max-height: 1200px ){
+    #main_content_wrapper{
+    	min-height: 675px;
+    }
+}
+@media screen and ( min-height: 1200px ){
+    #main_content_wrapper{
+    	min-height: 768px;
+    }
+}
+#company_name_input #company_name{width:20%!important;}
+#company_primary_email_input #company_primary_email{width:20%!important;}
+#company_secondary_email_input #company_secondary_email{ width:20%!important;}
+#company_address1_input #company_address1{ width:20%!important;}
+#company_address2_input #company_address2{width:20%!important; }
+#company_timezone{width:20%!important; }
+#company_country_input #company_country_id{width:20%!important; }
+#company_contact_no_input #company_contact_no{width:20%!important;}
+#client_name,#client_address1,#client_address2,#client_contact_no, #client_email,
+#location_name,#department_name, #team_name,#team_section_id, #role_title,
+#user_full_name, #user_email, #user_user_name, #credit_card_first_name,  #credit_card_last_name
+,#credit_card_number, #credit_card_verification_value,#operational_area_weightage,
+#operational_area_compliance_library_id, #reminder_value,#reminder_mail_count,#cpp_measure_name
+,#cpp_measure_description,#project_name,#project_order,#section_name,#modular_model_name,
+#modular_action_name,#language_name,#language_code,#subscription_name,#subscription_description,
+#subscription_amount,#subscription_valid_log,#subscription_user_count,#subscription_file_size,#subscription_section_ids ,
+#compliance_name,#priority_name,#question_type_name,#topic_name,#compliance_library_name,#planning_strategy_name,
+#review_name, #next_step_name,#risk_approval_status_name,#implementation_status_name,#close_reason_name  {width:20%!important;}
+.actions{margin: 20px 0 20px 20px; padding-bottom: 20px;}
+#add_files, #add_url, .button.close {
+top:2px!important;
+}
+.multiselect-container li{background: transparent;}
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus{
+	background: #FFF!important;
+	border-radius: 4px;
+}
+.activity{background: #FFF; padding: 10px  20px;margin: 20px 0; border: 1px solid #DDD;}
+#user_full_name{width: 254px!important;}
+#user_user_name,#user_profile_attributes_phone_no,#user_profile_attributes_address1, #user_profile_attributes_address2
+,#user_profile_attributes_city,#user_profile_attributes_state{width: 254px!important;}
