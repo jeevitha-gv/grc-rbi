@@ -100,8 +100,6 @@ $(document).ready(function(){
 //~ $("#submit_questions").click(function(){
 function question_submit()
 {
-  $('.ajax-loader-question').show()
-  $('.overlay-loader').show()
   selected = []
   $('#test-check input:checked').each(function() {
     selected.push($(this).attr('value'));
@@ -109,12 +107,14 @@ function question_submit()
   var audit_id = $('#select_audit').attr('value');
   $('#add_url').modal('hide');
   if(selected.length>0){
-      $.ajax({
-        url: "/audits/"+audit_id+"/nc_questions/library_questions",
-        type: "GET",
-        data: {"nc_question" : selected}
-      });
-    }
+    $('.ajax-loader-question').show()
+    $('.overlay-loader').show()
+    $.ajax({
+      url: "/audits/"+audit_id+"/nc_questions/library_questions",
+      type: "GET",
+      data: {"nc_question" : selected}
+    });
+  }
 }
 
   $('.orange_btn').click(function(){
