@@ -19,12 +19,16 @@ h4{ font-size:14px; font-weight:bold;}
 .rightside{ width:50%; float:left;}
 .leftside label,.rightside label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12px;}
 .label_content {
+  padding: 5px 0;font-size:12px; width:70%; float: right; word-wrap:break-word; overflow: hidden;
+}
+.label_content_top {
   padding: 5px 0;font-size:12px;
 }
-label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12px;}
+label {float: left;padding: 5px 10px; font-weight:bold; width: 25%; font-size:12px;}
 .line{ border-bottom:1px solid #989898; height:1px; padding:25px 0 0;}
 .paddingbottom{ padding-bottom: 50px;}
 .logo{height: 50px; border-bottom:5px solid #0085C8; font-size: 30px; text-align: center;}
+.content-wrap{width: 100%;}
 </style>
 </head>
 
@@ -44,26 +48,25 @@ label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12p
 <!-- Leftside Content Start-->
 <div class="leftside">
 <label>Audit Title: </label>
-<div class="label_content"><%= @audit.title %></div>
+<div class="label_content_top"><%= @audit.title %></div>
 <label>Start Date: </label>
-<div class="label_content"><%= @audit.start_date %></div>
+<div class="label_content_top"><%= @audit.start_date %></div>
 <div class="cls"></div>
 
 <label>Audit Type :</label>
-<div class="label_content"><%= @audit.audit_type_name %></div>
+<div class="label_content_top"><%= @audit.audit_type_name %></div>
 
 </div>
 <!-- Leftside Content End-->
 <!-- Rightside Content Start-->
 <div class="rightside">
-<br>
 <label>End Date : </label>
-<div class="label_content"><%= @audit.end_date %></div>
+<div class="label_content_top"><%= @audit.end_date %></div>
 <div class="cls"></div>
 
 
 <label> Compliance Type : </label>
-<div class="label_content"><%= @audit.compliance_type %></div>
+<div class="label_content_top"><%= @audit.compliance_type %></div>
 
 </div>
 <!-- Rightside Content End-->
@@ -73,16 +76,24 @@ label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12p
 <div class="cls"></div>
 
 <label>Objective: </label>
+<div class="content-wrap">
 <div class="label_content"><%= @audit.objective %></div>
+</div>
 <div class="cls"></div>
+<div class="content-wrap">
 <label>Context :</label>
 <div class="label_content"><%= @audit.context %></div>
+</div>
 <div class="cls"></div>
+<div class="content-wrap">
 <label> Scope : </label>
 <div class="label_content"><%= @audit.scope %></div>
+</div>
 <div class="cls"></div>
+<div class="content-wrap">
 <label> Deliverables : </label>
 <div class="label_content"><%= @audit.deliverables %></div>
+</div>
 <div class="cls"></div>
 
 

@@ -166,7 +166,7 @@ class AuditsController < ApplicationController
 
     def audit_auditor_users
       @auditor_users = current_company.users.where(:is_disabled => false)
-      @risks = current_company.risks.collect{|x| x.mgmt_review.next_step_id == 3 if x.mgmt_review.present?}.compact if current_company.plan.subscription.section_ids.include?('2')
+      @risks = current_company.risks.collect{|x| x if (x.mgmt_review.present? && x.mgmt_review.next_step_id == 3)}.compact if current_company.plan.subscription.section_ids.include?('2')
     end
 
     def authorize_audit

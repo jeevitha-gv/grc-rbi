@@ -154,6 +154,12 @@ and (max-width : 1024px) {
 }
 .footer_left{ float:left;}
 .sub_menu{ height:auto;}
+
+.login-box{
+	width: 95%;
+}
+
+
 }
 
 
@@ -316,7 +322,7 @@ and (max-width : 480px) {
 		max-width:1000px;
 	}
 	.risk-wrap label {
-    	font-size: 11px;
+    	font-size: 10px;
 	}
 	.mitigation-sub{
 		min-width:100%;
@@ -334,7 +340,121 @@ and (max-width : 480px) {
     font-size: 13px;
     padding: 0 10px 0 5px;
 }
-	
+
+.login-box{
+	width:95%;
+	max-width: 100%;
+}
+.rem-sp{
+	max-width: 150px;
+
+}
+.sub_menu .navbar{
+	padding: 0px;
+	margin:0px;
+}
+button.close{
+	top:120px;
+}
+.alert{
+	padding: 9px 20px;
+}
+.subbar-nav li a {
+    padding: 3px 23px;
+    
+}
+.k-grid-header-wrap .k-header .k-link{
+	font-size: 11px;
+	}
+	.k-grid td{
+
+		font-size: 11px!important;
+	}
+	div.k-grid-header .k-header, .k-grid td{
+		font-size: 11px;
+	}
+	div.k-grid-header .k-header, .k-grid td{
+		font-size: 11px!important;                            
+	}
+	.k-grid-header .k-header {
+   		 padding-left: 10px!important;
+	 }
+	 .mitigation-status{
+	 	padding: 
+	 	20px 0;
+	 }
+	 .table-bg label, span {
+   		 color: #4a4848;
+    	font-size: 10px;
+	}
+	.multiselect {
+    text-align: right !important;
+    width: 200px !important;
+	}
+	.risk-select select{
+		height: 30px;
+		padding: 6px 41px 0 5px;
+	}
+	.previleges {
+    width: 59%;
+	}
+	.audit-sp .subbar-nav li a {
+    padding: 3px 23px;
+    
+	}
+	.menu-admin .subbar-nav li a {
+    padding: 3px 9px;
+    
+	}
+	.multiselect-container  label{
+		padding: 5px!important ;
+		float: left;
+		line-height: 20px;
+	}
+	.multiselect-container input{
+		padding: 0 5px 0 20px;
+		margin:0 10px 0 0; 
+	}
+	.multiselect-container > li:hover{background:#ddd; }
+
+	.profile_photo_sec:hover{
+		display: block;	}
+
+	.risk-select select {
+    height: 30px;
+    overflow: hidden;
+    padding: 6px 51px 0 5px;
+	}
+	.user_login{ z-index: 999;}
+
+	.modal-header button.close {
+    background: url("/assets/outer/close-icon.png") no-repeat scroll 0 8px transparent;
+    border: 0 none;
+    cursor: pointer;
+    height: 32px;
+    padding: 0;
+    position: absolute;
+    right: 1%;
+    top: 0 !important;
+    width: 22px;
+} 
+	.text-align-right {
+	    text-align: right;
+	    float: right;
+	}
+	#plan_amount{
+		width:16%;
+	}
+	.db_inform {
+    float: left;
+    max-width: 85%;
+    padding: 0 25px 0 18px;
+    width: 80%;
+	}
+	.super-admin .subbar-nav li a{
+	padding: 5px  8px;
+	}
+
 }
 
 @media all and (max-width:768px)  {
@@ -353,10 +473,24 @@ and (max-width : 480px) {
 		font-size: 11px!important;
 		text-align: left;
 	}
+	.user_login{ z-index: 999;}
+	.text-align-right {
+    text-align: right;
+    float: right;
+	}
+	.db_inform {
+    float: left;
+    max-width: 85%;
+    padding: 0 25px 0 18px;
+    width: 80%;
+	}
+	.super-admin .subbar-nav li a{
+		padding: 5px 8px;
+	}
 }
 @media all and (max-width:768px){
 	
-	.red-box{
+.red-box{
 	margin:0 0 20px 0;
 }
 .risk-select select{
@@ -444,9 +578,7 @@ and (max-width : 480px) {
     margin: 0 auto;
     text-align: center;
 }
-.import-btn{
-	
-}
+
 }
 @media all and (max-width:480px)  {
 	
@@ -476,6 +608,10 @@ and (max-width : 480px) {
 	}
 	.subbar-nav li a{
 		color:#ffffff;
+	}
+	.multiselect {
+    text-align: right !important;
+    width: 160px !important;
 	}
 	
 	/*---------------login -------------------*/

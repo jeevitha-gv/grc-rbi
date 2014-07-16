@@ -259,7 +259,7 @@
         <div class="form-group">
           <div class="col-sm-12">
             <%= f.fields_for :risk_scoring, (f.object.risk_scoring.present? ? f.object.risk_scoring : RiskScoring.new) do |scoring| %>
-            <label>Scoring Type</label>
+            <label>Scoring Type*</label>
               <div class="risk-select">
                 <%= scoring.select(:scoring_type, RiskScoring::SCORING_TYPES, {:include_blank => "--Select Scoring Type--"}, {:id => "risk_scoring", :onChange => "change_scoring_method(this);"})%>
               </div>

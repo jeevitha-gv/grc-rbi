@@ -1,3 +1,4 @@
+<div class="menu-admin">
  <ul class="subbar-nav nav navbar-nav">
   <%if company_plan_check%>
   <li><a href="/admin/plans" class="<%= request.fullpath.include?("/admin/plans") == true ? 'active' : '' %>">
@@ -23,3 +24,4 @@
           Upgrade Payment</a></li>
           <%end%>
 	</ul>
+</div>

@@ -15,7 +15,7 @@ module ApplicationHelper
 
   def add_active_class(params)
     case params[:controller]
-    when 'audits'
+    when 'audits', 'audit_compliances', 'checklist_recommendations', 'nc_questions'
       'Audit'
     when 'users'
       'User'
@@ -80,6 +80,6 @@ end
   end
 
   def company_plan_check
-    current_company.plan.expires.to_date < Date.today
+    current_company.plan.expires.to_date < Date.today if current_company.plan.expires.present?
   end
 end
