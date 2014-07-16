@@ -1225,7 +1225,7 @@ a.plus-background{
     height: 32px;
     padding: 5px;
     width: 115%;
-   
+
 }
 
 /*for test*/
@@ -2294,11 +2294,11 @@ body {
 }
 .nav > li > a:hover, .nav > li > a:focus{color:#fff!important; background: #0085c8;}
 .inputs #artifact_compliance_library_id_input label{max-width: 100px;}
-.inputs #artifact_name_input label{max-width: 100px;} 
-.inputs #artifact_name_input input{max-width: 300px;} 
+.inputs #artifact_name_input label{max-width: 100px;}
+.inputs #artifact_name_input input{max-width: 300px;}
 
 #artifact_compliance_library_id{width:300px!important;}
-.inputs #artifact_compliance_library_id option{max-width: 300px; overflow: hidden; 
+.inputs #artifact_compliance_library_id option{max-width: 300px; overflow: hidden;
 }
 #plan_amount{
 	width:10%;
@@ -2323,6 +2323,12 @@ button.close {
     top:0px;
 }
 .alert-success button.close {
+    top:126px;
+}
+.alert-info button.close {
+    top:126px;
+}
+.alert-danger button.close {
     top:126px;
 }
 .my_footer{
