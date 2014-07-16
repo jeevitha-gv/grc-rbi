@@ -64,7 +64,7 @@
           <% if compliance_libraries.present? %>
             <%= f.select :compliance_library_id, options_for_select(compliance_libraries.all.collect{|x| [x.name, x.id.to_i]}, :selected => risk.compliance_library_id), {include_blank: '--Select Control--' }, {  :class => "form-control"} %>
           <% else %>
-            <%= f.select :compliance_library_id, options_for_select([]), {include_blank: '--Select Control--' }, { :class => "form-control"} %>
+            <%= f.select :compliance_library_id, options_for_select([], {:style =>"width: 200px!important;"}), {include_blank: '--Select Control--' }, { :class => "form-control"} %>
           <% end %>
         </div>
         <% if risk.errors[:compliance_library_id].present? %>

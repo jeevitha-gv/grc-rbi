@@ -2322,11 +2322,20 @@ button.close {
     top: 126px;
 }
 .my_footer{
-	position: absolute; 
-	bottom:0;
-	height: 70px;
-	background-color:#363535!important;
 	color: #9f9d9d;
-	padding: 0px 0!important; 
+	padding: 0px 0;
+	position:relative;
+	left: 0;
 	width: 100%;
+	bottom: 0;
+
+}
+.risk-select select option:hover {
+    max-width: 350px !important;
+    width: 100%;
+    word-wrap: break-word;
+}
+.control-dd{
+	width:100%;
+	max-width: 550px;
 }
