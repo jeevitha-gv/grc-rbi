@@ -60,7 +60,7 @@ $(function () {
             series: [{
                 name: x_axis_type,
                 data: y_axis_record
-    
+
             }]
         });
     });
@@ -108,7 +108,7 @@ $(function () {
 			//~ });
 	});
 	}
-	else 
+	else
 	{
 		$(function () {
         $('#'+div_id).highcharts({
@@ -159,9 +159,9 @@ function chart_destroy(id)
 {
 if (confirm('Are you sure?')) {
                     $.ajax({
-                    url: "/dashboard/"+id, 
+                    url: "/dashboard/"+id,
                     type: 'delete'
-                    });	
+                    });
 }
 }
 
