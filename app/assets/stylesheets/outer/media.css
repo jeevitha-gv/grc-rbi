@@ -404,6 +404,7 @@ button.close{
 	}
 	.menu-admin .subbar-nav li a {
     padding: 3px 9px;
+    font-size: 12px;
     
 	}
 	.multiselect-container  label{
@@ -467,6 +468,7 @@ button.close{
     padding: 10px 20px;
     position: relative;
 }
+.btn-save-black{margin: 0 20px;}
 
 }
 
@@ -507,6 +509,7 @@ button.close{
 	#company_timezone {
     width: 72%;
 	}
+	.btn-save-black{margin: 0 20px;}
 }
 @media all and (max-width:768px){
 	

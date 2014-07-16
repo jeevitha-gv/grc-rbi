@@ -37,7 +37,7 @@ $(function () {
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
@@ -88,13 +88,13 @@ $(function () {
                     series: {
                         dataLabels: {
                             enabled: true,
-                            format: '{point.name}: {point.y:.1f}%'
+                            format: '{point.name}: {point.y}'
                         }
                     }
                 },
 
                 tooltip: {
-                    pointFormat: '<span style="color:{point.color}">'+x_axis_type+'</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                    pointFormat: '<span style="color:{point.color}">'+x_axis_type+'</span>: <b>{point.y}</b> of total<br/>'
                 },
 
 						series: [{
@@ -134,8 +134,8 @@ $(function () {
             },
             tooltip:{
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0"> </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
