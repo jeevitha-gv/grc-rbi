@@ -17,19 +17,19 @@
           </li>
           <li id="plan_starts_input" class=" input optional">
             <%= f.label "Starts", :class=>"label"%>
-              <%=  "#{@plan.starts.to_date.strftime("%d, %B %Y")}" %>
-      
+              <%=  "#{@plan.starts.to_date.strftime("%d, %B %Y")}" if @plan.starts.present? %>
+
           </li>
           <li id="plan_expires_input" class=" input optional">
               <%= f.label "Expires", :class=>"label"%>
-              <%=  "#{@plan.expires.to_date.strftime("%d, %B %Y")}" %>
-      
+              <%=  "#{@plan.expires.to_date.strftime("%d, %B %Y")}" if @plan.expires.present? %>
+
           </li>
         </ol>
       </fieldset>
       <fieldset class="actions">
         <ol>
-          <%submit_val = (@plan.expires.to_date < Date.today) ? "Renewal" : "Upgrade"%>
+          <%submit_val = (@plan.expires.to_date < Date.today) ? "Renewal" : "Upgrade" if @plan.expires.present? %>
           <li id="plan_submit_action" class="action input_action ">
             <input type="submit" value= <%= submit_val%> name="commit">
           </li>

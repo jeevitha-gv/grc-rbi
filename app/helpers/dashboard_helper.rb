@@ -20,17 +20,21 @@ module DashboardHelper
 					y_axis_records << value.count
 				end
 			when 'Standard'
-				compliance_audits = current_user.accessible_audits.where('compliance_type =?','Compliance')
-				compliance_audits.group_by(&:standard_id).each do |key,value|
+				compliance_audits = current_user.accessible_audits.collect {|x| x if(x.compliance_type == 'Compliance')}
+				unless compliance_audits.nil?
+					compliance_audits.group_by(&:standard_id).each do |key,value|
 					x_axis_records <<  Compliance.compliance_name(key)
 					y_axis_records << value.count
 				end
+				end
 			when 'Topic'
-				non_compliance_audits = current_user.accessible_audits.where('compliance_type =?','NonCompliance')
+				non_compliance_audits = current_user.accessible_audits.collect {|x| x if(x.compliance_type == 'NonCompliance')}
+				unless compliance_audits.nil?
 				non_compliance_audits.group_by(&:standard_id).each do |key,value|
 					x_axis_records <<  Topic.topic_name(key)
 					y_axis_records << value.count
 				end
+			end
 			when 'Location'
 				current_user.accessible_audits.group_by(&:location_id).each do |key,value|
 					x_axis_records <<  Location.location_name(key)
@@ -49,8 +53,8 @@ module DashboardHelper
 		end
 		return x_axis_records, y_axis_records
 	end
-	
-	
+
+
 	def pie_input(x_axis, y_axis)
 		pie_records = []
 		pie_input = []
