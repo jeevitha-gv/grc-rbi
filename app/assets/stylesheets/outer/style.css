@@ -2326,11 +2326,6 @@ button.close {
 }
 .my_footer{
 	color: #9f9d9d;
-<<<<<<< HEAD
-	padding: 0px 0!important; 
-	width: 100%;
-}
-=======
 	padding: 0px 0;
 }
 .risk-select select option:hover {
@@ -2402,4 +2397,3 @@ top:2px!important;
 #user_full_name{width: 254px!important;}
 #user_user_name,#user_profile_attributes_phone_no,#user_profile_attributes_address1, #user_profile_attributes_address2
 ,#user_profile_attributes_city,#user_profile_attributes_state{width: 254px!important;}
->>>>>>> phase-3
