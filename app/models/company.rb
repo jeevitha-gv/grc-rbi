@@ -55,7 +55,7 @@ class Company < ActiveRecord::Base
   delegate :email, to: :company_admin, prefix: true, allow_nil: true
 
   attr_accessor :subscription
-  after_create :company_role_create, :review_rating_levels_create
+  after_create :company_role_create, :review_rating_levels_create, :company_plan_create
 
   scope :active, -> { where(is_disabled: false) }
   # def active_audits
@@ -82,5 +82,12 @@ class Company < ActiveRecord::Base
     RiskReviewLevel.create(name: "HIGH", days: 90,value: 7 ,company_id: company.id)
     RiskReviewLevel.create(name: "MEDIUM", days: 180,value: 4 ,company_id: company.id)
     RiskReviewLevel.create(name: "LOW", days: 360,value: 0 ,company_id: company.id)
+  end
+  
+  def company_plan_create
+    company = Company.last
+    subscribe = Subscription.where("amount = ?",0).first
+    plan = Plan.new(subscription_id: subscribe.id ,company_id: company.id,starts: company.created_at)
+    plan.save!
   end
 end
