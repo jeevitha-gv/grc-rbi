@@ -111,7 +111,7 @@
             <div class="db_todolist_info clearfix">
               <div class="checkbox_wrapper"></div>
               <div class="db_inform">
-                <div class="db_todolist_insec"><%= checklist_recommendation.checklist.compliance_library_name%> - Recommendation</div>
+                <div class="db_todolist_insec"><%= checklist_recommendation.checklist_type == 'Answer' ? checklist_recommendation.checklist.nc_question.question  : checklist_recommendation.checklist.compliance_library_name%> - Recommendation</div>
 							</div>
               <a class="pendinglink" href="javascript:void(0)"><%= 'Pending'%></a>
 							</div>
@@ -120,7 +120,7 @@
             <div class="db_todolist_info clearfix">
               <div class="checkbox_wrapper"></div>
               <div class="db_inform">
-                <div class="db_todolist_insec"><%= checklist_recommendation.checklist.compliance_library_name%> - Response</div>
+                <div class="db_todolist_insec"><%= checklist_recommendation.checklist_type == 'Answer' ? checklist_recommendation.checklist.nc_question.question  : checklist_recommendation.checklist.compliance_library_name%> - Response</div>
                 <span class="time-icon"><%= checklist_recommendation.closure_date%></span> </div>
               <a class="pendinglink" href="javascript:void(0)"><%= 'Pending' %></a>
 							</div>
@@ -129,7 +129,7 @@
             <div class="db_todolist_info clearfix">
               <div class="checkbox_wrapper"></div>
               <div class="db_inform">
-                <div class="db_todolist_insec"><%= checklist_recommendation.checklist.compliance_library_name%> - Observation</div>
+								<div class="db_todolist_insec"><%= checklist_recommendation.checklist_type == 'Answer' ? checklist_recommendation.checklist.nc_question.question  : checklist_recommendation.checklist.compliance_library_name%> - Observation</div>
 								</div>
               <a class="pendinglink" href="javascript:void(0)"><%= 'Pending' %></a>
 							</div>

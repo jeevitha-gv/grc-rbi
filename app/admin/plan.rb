@@ -26,10 +26,11 @@ ActiveAdmin.register Plan do
           else
             redirect_to new_transaction_path(company: current_company.name,subscription: subscribe.name)
           end
-        end
         else
+          plan.update_attributes(subscription_id: params[:plan][:subscription_id])
           redirect_to admin_plans_path
         end
+      end
     end
 
   end
