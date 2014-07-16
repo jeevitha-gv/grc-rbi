@@ -12,7 +12,9 @@
             <div class="form-group clearfix">
               <%= f.label :question_type_id, t('nc_question.resp_type'), :class => "col-sm-4 control-label" %>
               <div class="col-sm-7">
+                <div class="risk-select">
                 <%= f.collection_select(:question_type_id, QuestionType.all, :id, :name, {}, {class: 'question_response'}) %>
+              </div>
               </div>
 
             </div>
@@ -62,15 +64,17 @@
               </div>
               </div>
             </div>
-            <div class="form-group clearfix">
-              <%= f.label :does_require_document, t('nc_question.need_doc'), :class => "col-sm-5" %>
-              <%= f.check_box :does_require_document %>  <br>
+            <div class="form-group clearfix chk-box-rl">
+              <%= f.check_box :does_require_document %>  
+              <%= f.label :does_require_document, t('nc_question.need_doc'), :class => "chk-padding" %>
+              <br>
             </div>
-        <div class="form-group clearfix">
-          <div class="col-sm-12">
-              <%= f.label :nc_library, t('nc_question.save_to_lib') %>
-              <%= f.check_box :nc_library %>
-          </div>
+        <div class="form-group clearfix chk-box-rl">
+         
+             <%= f.check_box :nc_library %>
+              <%= f.label :nc_library, t('nc_question.save_to_lib'),:class => "chk-padding" %>
+             
+          
         </div>
           </div>
             <div class="form-group clearfix addissue">
