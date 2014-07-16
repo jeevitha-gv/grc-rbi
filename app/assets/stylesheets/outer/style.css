@@ -2053,6 +2053,7 @@ button .multiselect{
 .domain-width{
   max-width: 250px;
   display: inline-block;
+  float: left;
 }
 
 button.close {
@@ -2230,7 +2231,7 @@ button.close {
   margin: 15px 0;
 }
 .field_with_errors{
-	float: left;
+	display: block;
 }
 html,
 body {
@@ -2398,3 +2399,4 @@ top:2px!important;
 #user_user_name,#user_profile_attributes_phone_no,#user_profile_attributes_address1, #user_profile_attributes_address2
 ,#user_profile_attributes_city,#user_profile_attributes_state{width: 254px!important;}
 .btn-save-black{margin: 0 20px;}
+#new_company #company_timezone{width:305px!important;}
