@@ -136,8 +136,10 @@ class ApplicationController < BaseController
   end
 
   def check_plan_expire
-    if current_company.plan.expires.to_date < Date.today
-      redirect_to "/admin/plans"
+    if current_company.plan.expires.present?
+      if current_company.plan.expires.to_date < Date.today
+        redirect_to "/admin/plans"
+      end
     end
   end
 

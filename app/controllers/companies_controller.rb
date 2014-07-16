@@ -25,8 +25,7 @@ class CompaniesController < ApplicationController
     if @company.save
       subscribe = Subscription.where("name = ?",subscription_name).first
       if subscribe.amount.eql?(0.0)
-         plan = Plan.new(subscription_id: subscribe.id ,company_id: @company.id,starts: @company.created_at ,expires: calculate_plan_expiration(subscribe.valid_log,@company.created_at))
-         plan.save!
+         @company.plan.update_attributes(expires: calculate_plan_expiration(subscribe.valid_log,@company.created_at))
          redirect_to welcome_path
         else
           redirect_to new_transaction_path(company: @company.domain,subscription: subscription_name)

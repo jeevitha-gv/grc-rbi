@@ -361,6 +361,7 @@ button.close{
 }
 .subbar-nav li a {
     padding: 3px 23px;
+    
 }
 .k-grid-header-wrap .k-header .k-link{
 	font-size: 11px;
@@ -394,6 +395,81 @@ button.close{
 		height: 30px;
 		padding: 6px 41px 0 5px;
 	}
+	.previleges {
+    width: 59%;
+	}
+	.audit-sp .subbar-nav li a {
+    padding: 3px 23px;
+    
+	}
+	.menu-admin .subbar-nav li a {
+    padding: 3px 9px;
+    font-size: 12px;
+    
+	}
+	.multiselect-container  label{
+		padding: 5px!important ;
+		float: left;
+		line-height: 20px;
+	}
+	.multiselect-container input{
+		padding: 0 5px 0 20px;
+		margin:0 10px 0 0; 
+	}
+	.multiselect-container > li:hover{background:#ddd; }
+
+	.profile_photo_sec:hover{
+		display: block;	}
+
+	.risk-select select {
+    height: 30px;
+    overflow: hidden;
+    padding: 6px 51px 0 5px;
+	}
+	.user_login{ z-index: 999;}
+
+	.modal-header button.close {
+    background: url("/assets/outer/close-icon.png") no-repeat scroll 0 8px transparent;
+    border: 0 none;
+    cursor: pointer;
+    height: 32px;
+    padding: 0;
+    position: absolute;
+    right: 1%;
+    top: 0 !important;
+    width: 22px;
+} 
+	.text-align-right {
+	    text-align: right;
+	    float: right;
+	}
+	#plan_amount{
+		width:16%;
+	}
+	.db_inform {
+    float: left;
+    max-width: 85%;
+    padding: 0 25px 0 18px;
+    width: 80%;
+	}
+	.super-admin .subbar-nav li a{
+	padding: 5px  8px;
+	}
+	.domain-width {
+    display: inline-block;
+    max-width: 332px;
+	}
+	#company_timezone {
+    width: 72%;
+	}
+	.audit-sp .nav > li > a {
+    border-left: 1px solid #c9c9c9;
+    display: block;
+    padding: 10px 20px;
+    position: relative;
+}
+.btn-save-black{margin: 0 20px;}
+
 }
 
 @media all and (max-width:768px)  {
@@ -412,10 +488,32 @@ button.close{
 		font-size: 11px!important;
 		text-align: left;
 	}
+	.user_login{ z-index: 999;}
+	.text-align-right {
+    text-align: right;
+    float: right;
+	}
+	.db_inform {
+    float: left;
+    max-width: 85%;
+    padding: 0 25px 0 18px;
+    width: 80%;
+	}
+	.super-admin .subbar-nav li a{
+		padding: 5px 8px;
+	}
+	.domain-width {
+    display: inline-block;
+    max-width: 332px;
+	}
+	#company_timezone {
+    width: 72%;
+	}
+	.btn-save-black{margin: 0 20px;}
 }
 @media all and (max-width:768px){
 	
-	.red-box{
+.red-box{
 	margin:0 0 20px 0;
 }
 .risk-select select{
@@ -503,9 +601,7 @@ button.close{
     margin: 0 auto;
     text-align: center;
 }
-.import-btn{
-	
-}
+
 }
 @media all and (max-width:480px)  {
 	
