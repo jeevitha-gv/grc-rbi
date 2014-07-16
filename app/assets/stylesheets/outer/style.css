@@ -2364,7 +2364,7 @@ button.close {
 }
 @media screen and ( min-height: 1200px ){
     #main_content_wrapper{
-    	min-height: 768px;
+    	min-height: 945px;
     }
 }
 #company_name_input #company_name{width:20%!important;}
