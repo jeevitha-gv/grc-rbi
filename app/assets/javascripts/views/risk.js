@@ -1,8 +1,4 @@
 $(document).ready(function() {
-	$('.cancel-btn1').click(function(){
- 		$('#search-value').val('');
- 	})
-
 	// Fancybox
 	$(".fancybox").fancybox();
 
@@ -209,6 +205,11 @@ $(document).ready(function() {
 			search_result()
 		}
 	});
+
+	$('.cancel-btn1').click(function(){
+ 		$('#search-value').val('');
+ 		$("#grid").data("kendoGrid").dataSource.filter({});
+ 	})
 
 	function search_result()
 	{
