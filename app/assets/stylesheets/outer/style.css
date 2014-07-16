@@ -61,7 +61,7 @@
 	position: absolute;
 	width: 100%;
 	z-index: 60000;
-	top: 47px;
+	top: 39px;
 }
 .account_header_dropdown li a:hover{ color:#0085C8;}
 .account_header_dropdown > ul {
@@ -519,12 +519,13 @@ a.edit-icon {
 	border-radius: 5px;
 	padding: 5px 0 5px 5px;
 	width: 100%;
-	background-image: url("/assets/outer/select_icon.png");
+	/*background-image: url("/assets/outer/select_icon.png");*/
 	background-repeat: no-repeat;
 	background-position: 92% center;
 	text-indent: 0.01px;
 	text-overflow: "";
 }
+
 .high_btn {
 	background-color: #DAD9D9;
 	border: medium none;
@@ -838,7 +839,7 @@ a.plus-background{
 
 /*DashBoard page start*/
 .dashboard_main{ padding-bottom:100px;}
-.dash_sub_title{ background-color:#8d9094; padding: 0px; color:#fff; box-shadow: 0 0 5px #d5d6d6;  min-height:30px;     }
+.dash_sub_title{ background-color:#8d9094; padding: 5px; color:#fff; box-shadow: 0 0 5px #d5d6d6;  min-height:30px;     }
 .dashboard-title{ color:#5b5a5a; font-size:20px;font-family: 'Open Sans'; font-weight:600; padding:15px 20px;}
 .dashboard_menu{ border:1px solid #dfdfdf; padding:20px 0 0; background-color:#fff; margin-bottom:15px; height:135px;}
 .dash_menu_a{margin-top: 35px;}
@@ -899,7 +900,7 @@ a.plus-background{
     width: 20px;
     display:inline-block;float:left;
    }
-.db_inform{ float:left;padding: 0 25px 0 18px;}
+.db_inform{ float:left;padding: 0 25px 0 18px; max-width:240px; }
 .checkbox_wrapper.active{
     background:url("/assets/outer/checked.jpg") no-repeat;
 }
@@ -1204,9 +1205,27 @@ a.plus-background{
 .ask-auditee-btn {
   margin: 0 45px 0 0;
 }
-.auditees-users select{
-  width: 88%;
-  float: left;
+
+.auditees-users{
+  border: 1px solid #dad9d9 !important;  /*Removes border*/
+  -webkit-appearance: none;  /*Removes default chrome and safari style*/
+  -moz-appearance: none; /* Removes Default Firefox style*/
+  background: url("/assets/outer/select_bg.jpg") no-repeat scroll 100% 0 #fff;
+  width: 100%; /*Width of select dropdown to give space for arrow image*/
+  text-indent: 0.01px; /* Removes default arrow from firefox*/
+  text-overflow: "";  /*Removes default arrow from firefox*/ /*My custom style for fonts*/
+  color: #434348;
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px #dad9d9;
+  overflow:hidden;
+}
+.auditees-users select {
+	background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    height: 32px;
+    padding: 5px;
+    width: 115%;
+   
 }
 
 /*for test*/
@@ -2258,14 +2277,54 @@ body {
 .control-dd select, option{
 	width:103%;
 }
-.nav > li > a:hover, .nav > li > a:focus{color:#0085c8!important;}
-.sub-wrap-bg .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default{border-radius: 4px;}
-form input[type="text"], form input[type="password"], form input[type="email"], form input[type="number"], form input[type="url"], form input[type="tel"], form textarea {
-    border: 1px solid #c9d0d6;
-    border-radius: 3px;
-    font-family: Helvetica,Arial,sans-serif;
-    font-size: 0.95em;
-    outline: medium none;
-    padding: 8px 10px 7px;
-    width: calc(22% - 22px);
+.main_nav a:hover {
+    background-color: #0085c8;
+    color: #ffffff !important;
+}
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    background-color:#0085c8!important;
+    color: #fff;
+}
+.sub_menu  .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    background-color:transparent!important;
+    color: #fff;
+}
+.nav > li > a:hover, .nav > li > a:focus{color:#fff!important; background: #0085c8;}
+.inputs #artifact_compliance_library_id_input label{max-width: 100px;}
+.inputs #artifact_name_input label{max-width: 100px;} 
+.inputs #artifact_name_input input{max-width: 300px;} 
+
+#artifact_compliance_library_id{width:300px!important;}
+.inputs #artifact_compliance_library_id option{max-width: 300px; overflow: hidden; 
+}
+#plan_amount{
+	width:10%;
+}
+.actions{padding: 0 0 0 10px;}
+#strip{margin-bottom:30px;}
+.gridcell input[type="radio"], input[type="checkbox"] {
+    line-height: normal;
+    margin: 4px -8px 0;
+}
+.checklist_select_big{
+	padding: 0px;
+	margin: 0px;
+}
+.checklist_select_big .k-widget{width:100%!important;}
+
+.navbar-inverse .navbar-brand{
+	padding: 5px;
+	color:#000;
+}
+button.close {
+    top: 126px;
+}
+.my_footer{
+	position: absolute; 
+	bottom:0;
+	height: 70px;
+	background-color:#363535!important;
+	color: #9f9d9d;
+	padding: 0px 0!important; 
+	width: 100%;
 }
