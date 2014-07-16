@@ -425,6 +425,35 @@ button.close{
     overflow: hidden;
     padding: 6px 51px 0 5px;
 	}
+	.user_login{ z-index: 999;}
+
+	.modal-header button.close {
+    background: url("/assets/outer/close-icon.png") no-repeat scroll 0 8px transparent;
+    border: 0 none;
+    cursor: pointer;
+    height: 32px;
+    padding: 0;
+    position: absolute;
+    right: 1%;
+    top: 0 !important;
+    width: 22px;
+} 
+	.text-align-right {
+	    text-align: right;
+	    float: right;
+	}
+	#plan_amount{
+		width:16%;
+	}
+	.db_inform {
+    float: left;
+    max-width: 85%;
+    padding: 0 25px 0 18px;
+    width: 80%;
+	}
+	.super-admin .subbar-nav li a{
+	padding: 5px  8px;
+	}
 
 }
 
@@ -443,6 +472,20 @@ button.close{
 	.sub-wrap .form-horizontal .control-label {
 		font-size: 11px!important;
 		text-align: left;
+	}
+	.user_login{ z-index: 999;}
+	.text-align-right {
+    text-align: right;
+    float: right;
+	}
+	.db_inform {
+    float: left;
+    max-width: 85%;
+    padding: 0 25px 0 18px;
+    width: 80%;
+	}
+	.super-admin .subbar-nav li a{
+		padding: 5px 8px;
 	}
 }
 @media all and (max-width:768px){
