@@ -22,14 +22,13 @@
 						});
 						</script>
 						</ul>
-					</div>
+					</div>  <% end %>
 					</span></div>
 				<div id="chart_<%= chart.id%>"></div>
 				<script>
 				<% pie_chart_input = chart.chart_type == 'Pie' ? pie_input(chart_input[0], chart_input[1]) : 0%>
 				load_chart("<%= chart.chart_type%>", <%= raw chart_input[0]%>, <%= raw chart_input[1]%>,'chart_'+<%= chart.id%>, "<%= raw chart.y_axis%>","<%= raw chart.x_axis%>", <%= raw pie_chart_input%>)
 				</script>
-				<% end %>
       <% end %>
 			</li>
 <% end %>
