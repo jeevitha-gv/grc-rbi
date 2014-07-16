@@ -454,6 +454,19 @@ button.close{
 	.super-admin .subbar-nav li a{
 	padding: 5px  8px;
 	}
+	.domain-width {
+    display: inline-block;
+    max-width: 332px;
+	}
+	#company_timezone {
+    width: 72%;
+	}
+	.audit-sp .nav > li > a {
+    border-left: 1px solid #c9c9c9;
+    display: block;
+    padding: 10px 20px;
+    position: relative;
+}
 
 }
 
@@ -486,6 +499,13 @@ button.close{
 	}
 	.super-admin .subbar-nav li a{
 		padding: 5px 8px;
+	}
+	.domain-width {
+    display: inline-block;
+    max-width: 332px;
+	}
+	#company_timezone {
+    width: 72%;
 	}
 }
 @media all and (max-width:768px){

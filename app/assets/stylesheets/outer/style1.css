@@ -186,7 +186,7 @@ div.k-grid-header .k-header, .k-grid td {
 
 .k-grid-content {
 	max-height: 270px !important;
-	min-height: 60px !important;
+	min-height: 265px !important;
 	height: auto !important;
 }
 

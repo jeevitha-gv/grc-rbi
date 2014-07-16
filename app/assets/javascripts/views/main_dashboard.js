@@ -60,7 +60,7 @@ $(function () {
             series: [{
                 name: x_axis_type,
                 data: y_axis_record
-    
+
             }]
         });
     });
@@ -108,7 +108,7 @@ $(function () {
 			//~ });
 	});
 	}
-	else 
+	else
 	{
 		$(function () {
         $('#'+div_id).highcharts({
@@ -134,20 +134,14 @@ $(function () {
             },
             tooltip:{
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                pointFormat: '<tr><td style="color:{series.color};padding:0"> </td>' +
                     '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
             },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
-            },
+            legend: false,
             series: [{
-                name: 'Tokyo',
                 data: y_axis_record
             }]
         });
@@ -159,9 +153,9 @@ function chart_destroy(id)
 {
 if (confirm('Are you sure?')) {
                     $.ajax({
-                    url: "/dashboard/"+id, 
+                    url: "/dashboard/"+id,
                     type: 'delete'
-                    });	
+                    });
 }
 }
 
