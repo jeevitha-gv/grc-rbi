@@ -24,9 +24,8 @@
                 </div>
               </div>
 
-              <div class="fright"><br>
-            <br>
-            <a class="black_btn" href="javascript:goBack()">Back</a>
+              <div class="fright btn-save-black">
+                        <a class="black_btn" href="javascript:goBack()">Back</a>
             <% unless @audit.audit_status_id == 4%>
               <a href="javascript:save_request()" class="orange_btn">Ask</a></div>
             <%end%>
@@ -38,7 +37,7 @@
     </div>
   </div>
 </div>
-
+</div>
 <script type="text/javascript">
 
 $(document).ready(function(){
