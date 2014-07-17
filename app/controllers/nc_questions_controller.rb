@@ -1,5 +1,5 @@
 class NcQuestionsController < ApplicationController
-  load_and_authorize_resource :only => [:new]
+  load_and_authorize_resource :only => [:new, :create, :import_files]
   before_filter :current_audit, :company_module_access_check
   before_filter :check_for_auditee_response, :only => [:new]
 

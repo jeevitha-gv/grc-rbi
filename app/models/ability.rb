@@ -14,7 +14,7 @@ class Ability
           end
         end
         can :read, Audit do |audit|
-          audit.try(:auditor) == user || audit.try(:auditees).include?(user)
+          audit.try(:auditor) == user.id || audit.try(:auditees).include?(user)
         end
       end
   end

@@ -141,7 +141,8 @@ function question_submit()
 	$(document).ready(function(){
     $(".datepicker").kendoDatePicker({
         min: new Date(),
-        format: "dd/MM/yyyy"
+        format: "dd/MM/yyyy",
+        max: new Date($("#audit_audit_end_date").val())
         });
     $(".datepicker").bind("focus", function() {
       $(this).data("kendoDatePicker").open();
