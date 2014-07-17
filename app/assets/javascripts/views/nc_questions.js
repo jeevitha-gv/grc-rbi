@@ -157,4 +157,13 @@ function question_submit()
         $(this).parent().parent().parent().find(".hidden-item").fadeOut('fast');
       }
     });
+
+    $(document).on("change", ".question_response", function(){
+      if($(this).val() == "3"){
+        $(this).parent().parent().parent().find("#question_option").fadeIn('fast');
+      }
+      else{
+        $(this).parent().parent().parent().find("#question_option").fadeOut('fast');
+      }
+    });
   });
