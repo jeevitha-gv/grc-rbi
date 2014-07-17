@@ -87,7 +87,7 @@ class Company < ActiveRecord::Base
   def company_plan_create
     company = Company.last
     subscribe = Subscription.where("amount = ?",0).first
-    plan = Plan.new(subscription_id: subscribe.id ,company_id: company.id,starts: company.created_at)
+    plan = Plan.new(subscription_id: subscribe.id ,company_id: company.id,starts: company.created_at,expires: company.created_at.to_date + subscribe.valid_log.months)
     plan.save!
   end
 end

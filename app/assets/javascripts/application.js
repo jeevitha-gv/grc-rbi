@@ -50,6 +50,14 @@ function remove_options(link) {
     jQuery(link).parents(".choices").hide();
 }
 
+function remove_options_audit(link) {
+  if($(".choices:visible").length > 1)
+  {
+    jQuery(link).parent().find("input[type=hidden]").val(1);
+    jQuery(link).parents(".choices").hide();
+  }
+}
+
 function setCookie(name, value) {
     var d = new Date();
     d.setTime(d.getTime() + (1*24*60*60*1000));
