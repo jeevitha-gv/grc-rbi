@@ -2406,9 +2406,12 @@ top:2px!important;
 ,#user_profile_attributes_city,#user_profile_attributes_state{width: 254px!important;}
 .btn-save-black{margin: 0 20px;}
 #new_company #company_timezone{width:305px!important;}
+<<<<<<< HEAD
 .multiselect-container>li>a>label>input[type=checkbox]{
 	margin-bottom: 5px;
 	margin: 4px 12px 0 0;
 	vertical-align: top;
 }
 .open > .dropdown-menu{padding: 10px;}
+=======
+>>>>>>> c8b062b2d47b6c2a4d3576f71d5ef5971a955ad1
