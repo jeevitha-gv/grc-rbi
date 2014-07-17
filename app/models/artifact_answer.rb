@@ -23,6 +23,7 @@ class ArtifactAnswer < ActiveRecord::Base
   	self.artifact_id ? self.artifact_name : "No Attachments"
   end
 
+
   after_create :notify_auditee_about_checklist
   after_update :notify_auditee_about_checklist_update
 

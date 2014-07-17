@@ -112,7 +112,7 @@ class User < ActiveRecord::Base
       self.accessible_audits.select{ |x| audits << x if(x.checklist_recommendations.blank? && ( x.audit_status_id == 2 || x.audit_status_id == 3 )) }
       audits
     when 'check'
-      self.accessible_audits.select{ |x| audits << x if(x.checklist_recommendations.present? && !x.recommendation_status) }
+      self.accessible_audits.select{ |x| audits << x if(x.checklist_recommendations.blank? && ((x.audit_compliances.map(&:is_answered).present? && x.audit_compliances.map(&:is_answered).all?) || (x.nc_questions.map(&:is_answered).present? && x.nc_questions.map(&:is_answered).all?))) }
       audits
     when 'act'
       self.accessible_audits.select{ |x| audits << x if(x.recommendation_status && !x.response_status) }

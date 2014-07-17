@@ -49,6 +49,7 @@ class AuditsController < ApplicationController
   def update
     @audit = Audit.find(params[:id])
     @audit.set_audit_status(@audit, params[:commit]) if params[:commit] == "Initiate Audit"
+    @audit.team_changed = params[:team_changed]
     if @audit.update_attributes(audit_params)
       @audit.update_skipped_audit_reminder(params, current_user)
       redirect_to edit_audit_path, :flash => { :notice => MESSAGES["audit"]["update"]["success"]}
