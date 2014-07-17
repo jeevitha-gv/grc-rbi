@@ -59,5 +59,9 @@ module ActiveAdmin::ViewsHelper #camelized file name
   def company_plan_check
     current_company.plan.expires.to_date < Date.today
   end
+
+  def check_for_free_plan
+    current_company.subscriptions.last.amount  == 0.0
+  end
   
 end

@@ -5,7 +5,7 @@
 </style>
 <%= form_for(audit, url: {controller: "nc_questions", action: "create"},:method => "post") do |f| %>
   <%= f.fields_for :nc_questions do |builder| %>
-    <%#= f.hidden_field :audit_id, value: audit.id %>
+    <%= f.hidden_field :audit_end_date, value: audit.end_date.strftime.gsub('-', ',') %>
     <%#= f.hidden_field :company_id, value: current_company.id %>
       <div class="overlay-loader">
     <div class="ajax-loader-question" style="display:none;">
