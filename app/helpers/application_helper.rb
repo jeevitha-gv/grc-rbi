@@ -67,7 +67,7 @@ def link_to_remove_choices(name, f)
 end
 
 def link_to_remove_auditee(name, f)
-  f.hidden_field(:_destroy, {class: "auditee-remove"}) + link_to("#{name}", 'javascript:void(0)', {onclick: "remove_options(this)", class: "minusround-icon"})
+  f.hidden_field(:_destroy, {class: "auditee-remove"}) + link_to("#{name}", 'javascript:void(0)', {onclick: "remove_options_audit(this)", class: "minusround-icon"})
 end
 
 def check_stage(stage, compliance_url, non_compliance_url)

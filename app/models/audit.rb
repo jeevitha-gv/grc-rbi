@@ -29,7 +29,7 @@ class Audit < ActiveRecord::Base
   has_many :team_users, through: :team, :source => :users
   has_many :audit_operational_weightages
   has_many :compliance_libraries, through: :audit_compliances
-
+  attr_accessor :team_changed
 
   accepts_nested_attributes_for :nc_questions, :allow_destroy => true
   accepts_nested_attributes_for :audit_auditees, reject_if: lambda { |a| a[:user_id].blank? },:allow_destroy => true
@@ -314,7 +314,7 @@ class Audit < ActiveRecord::Base
     def check_auditees_uniq
       if self.audit_auditees.present?
         check_user_id = audit_auditees.size == audit_auditees.collect{|x| x.user_id}.uniq.size
-        errors.add(:auditees, ("Please select unique auditees")) if check_user_id == false
+        errors.add(:auditees, ("Please select unique auditees")) if(check_user_id == false && self.team_changed == "false")
       end
     end
 
