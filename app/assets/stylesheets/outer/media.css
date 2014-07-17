@@ -207,7 +207,7 @@ and (max-width : 1200px) {
 	.subbar-nav li {
   float: left;
   text-align: center;
-  width: 100px;
+  width: none;
 }
 }
 
@@ -306,12 +306,12 @@ and (max-width : 480px) {
 	.mitigation-status{
 	height:auto;
 }
-.risk-box-text {
-    padding: 0 10px 0 20px;
-}
-.risk-select select{
-	padding:0 42px 0 5px;
-}
+	.risk-box-text {
+	    padding: 0 10px 0 20px;
+	}
+	.risk-select select{
+		padding:0 42px 0 5px;
+	}
 }
 @media all and (max-width:1024px) {
  .risk-select select {
@@ -467,11 +467,31 @@ button.close{
     display: block;
     padding: 10px 20px;
     position: relative;
-}
-.btn-save-black{margin: 0 20px;}
+	}
+	.btn-save-black{margin: 0 20px;}
+	.menu-admin .subbar-nav li {
+   
+    	width: none!important;
+	}
+	.menu-admin .subbar-nav li a{
+		 float: left;
+    	padding: 3px 0px;
+    	text-align: center;
+	}
+
+	
 
 }
+@media all and (max-width:950px) {
 
+
+	.subbar-nav li{
+		float: left;
+    	padding: 3px 13px;
+    	text-align: center;
+    	width:none;
+	}
+}
 @media all and (max-width:768px)  {
 
 	.risk-select select {

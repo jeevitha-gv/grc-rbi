@@ -2336,7 +2336,7 @@ button.close {
 	padding: 0px 0;
 }
 .risk-select select option:hover {
-    max-width: 350px !important;
+    max-width:100% !important;
     width: 100%;
     word-wrap: break-word;
 }
@@ -2406,3 +2406,9 @@ top:2px!important;
 ,#user_profile_attributes_city,#user_profile_attributes_state{width: 254px!important;}
 .btn-save-black{margin: 0 20px;}
 #new_company #company_timezone{width:305px!important;}
+.multiselect-container>li>a>label>input[type=checkbox]{
+	margin-bottom: 5px;
+	margin: 4px 12px 0 0;
+	vertical-align: top;
+}
+.open > .dropdown-menu{padding: 10px;}
