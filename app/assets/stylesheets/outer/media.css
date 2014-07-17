@@ -1,9 +1,9 @@
-@media only screen 
-and (min-width : 240px) 
+@media only screen
+and (min-width : 240px)
 and (max-width : 480px) {
 ul.list-tab {
     margin: 20px 0 0 15px;
-}	
+}
 .list-tab li a {
 	padding: 5px;
 }
@@ -24,8 +24,8 @@ ul.list-tab {
 
 .user_login {
   margin-top: 8px;
-  padding: 5px 2px; 
- 
+  padding: 5px 2px;
+
 }
 
 .navbar-collapse {
@@ -58,8 +58,8 @@ ul.list-tab {
 }
 
 
-@media only screen 
-and (min-width : 490px) 
+@media only screen
+and (min-width : 490px)
 and (max-width : 700px) {
 .navbar-header {
     float: left;
@@ -142,8 +142,8 @@ div.k-grid-header .k-header {font-size: 11px;}
 
 }
 
-@media only screen 
-and (min-width : 650px) 
+@media only screen
+and (min-width : 650px)
 and (max-width : 1024px) {
 /* Styles */
 .navbar-header {
@@ -167,20 +167,20 @@ and (max-width : 1024px) {
 	.k-tabstrip .k-tabstrip-items {
 		padding: 3px 10px 0;
 	}
-	
+
 	.k-tabstrip-items .k-link, .k-panelbar .k-tabstrip-items .k-link {
 		font-size: 13px;
 		padding: 0.5em 0.3em;
 	}
-	
+
 	.k-tabstrip-items .k-item, .k-panelbar .k-tabstrip-items .k-item {
 		margin-right: 5px;
 	}
-	
+
 	.editable-select {
 		width: 92%;
 	}
-	
+
 	.editable-input {
 		width: 82%;
 	}
@@ -193,7 +193,7 @@ and (max-width : 1024px) {
 	.editable-input {
 		width: 79%;
 	}
-	
+
 	.k-pager-input, .k-pager-sizes {
 		padding: 0 4px;
 	}
@@ -201,8 +201,8 @@ and (max-width : 1024px) {
 
 
 
-@media only screen 
-and (min-width : 900px) 
+@media only screen
+and (min-width : 900px)
 and (max-width : 1200px) {
 	.subbar-nav li {
   float: left;
@@ -212,38 +212,38 @@ and (max-width : 1200px) {
 }
 
 
-@media only screen 
-and (min-width : 320px) 
+@media only screen
+and (min-width : 320px)
 and (max-width : 400px) {
 	.dashboard_menu li {border-right: 1px solid #fff;}
 	.completedlink,.pendinglink {float: right;margin: 0 15px 0 0;}
-	
+
 		.dashboard_menu li a {
     padding: 16%;
 }
 	#arrow,#arrow1,#arrow2,#arrow3,#arrow4 { width: 100%;}
-	
+
 	#arrow,#arrow1,#arrow2,#arrow3,#arrow4 {  font-size:12px; height:75px;}
 	#arrow:before,#arrow1:before,#arrow2:before,#arrow3:before,#arrow4:before { left:52px;border-color: transparent;}
 	#arrow:after,#arrow1:after,#arrow2:after,#arrow3:after,#arrow4:after { left:53px;border-color: transparent;}
-	
+
 	.dashboard_menu{ height:120px;}
-	
+
 	.dashboard_menu {margin-top: 7px;}
 	.db_download_btn a{ font-size:10px;}
-	
+
 }
 
-@media only screen 
-and (min-width : 460px) 
-and (max-width : 500px) { 
+@media only screen
+and (min-width : 460px)
+and (max-width : 500px) {
 .dashboard_menu li a {
     padding: 20% 26% !important;
 }
 }
 
-@media only screen 
-and (min-width : 401px) 
+@media only screen
+and (min-width : 401px)
 and (max-width : 766px) {
 	.dashboard_menu li {border-right: 1px solid #fff;}
 	.dashboard_menu li a {
@@ -253,12 +253,12 @@ and (max-width : 766px) {
 	#arrow:before,#arrow1:before,#arrow2:before,#arrow3:before,#arrow4:before { left:80px;border-color: transparent;}
 	#arrow:after,#arrow1:after,#arrow2:after,#arrow3:after,#arrow4:after { left:86px;border-color: transparent;}
 	.dashboard_menu{ height:140px;}
-	
+
 	.dashboard_menu {margin-top: 7px;}
 }
 
-@media only screen 
-and (min-width : 768px) 
+@media only screen
+and (min-width : 768px)
 and (max-width : 1024px) {
 	.dashboard_menu li { border-right: 1px solid #fff;}
 	.dashboard_menu li a {padding: 20px 45px;}
@@ -271,8 +271,8 @@ and (max-width : 1024px) {
 
 /*  Menu New Css 13June2014 */
 
-@media only screen 
-and (min-width : 320px) 
+@media only screen
+and (min-width : 320px)
 and (max-width : 480px) {
 	.navbar-nav li a{ width:100%;}
 .navbar-inverse .navbar-toggle{ background:#0085c8 !important;}
@@ -288,11 +288,11 @@ and (max-width : 480px) {
 .subbar-nav li a.active, .subbar-nav li a:hover{ border-bottom:none !important; background-color:#F19A01 !important;}
 
 .dash-icon,.calender-icon,.plan-icon,.list-icon,.do-icon,.check-icon,.act-icon,.published-icon,.setting-icon{ float:left;}
-	
+
 }
 /*--------------------Risk Media quiry -----------------------------*/
 @media all and (max-width:1170px) {
-	
+
 	.mitigate-box{
 		min-height:60px;
 		min-width:100% !important;
@@ -312,6 +312,7 @@ and (max-width : 480px) {
 	.risk-select select{
 		padding:0 42px 0 5px;
 	}
+  .new-input{width:250px!important;}
 }
 @media all and (max-width:1024px) {
  .risk-select select {
@@ -361,7 +362,7 @@ button.close{
 }
 .subbar-nav li a {
     padding: 3px 23px;
-    
+
 }
 .k-grid-header-wrap .k-header .k-link{
 	font-size: 11px;
@@ -374,13 +375,13 @@ button.close{
 		font-size: 11px;
 	}
 	div.k-grid-header .k-header, .k-grid td{
-		font-size: 11px!important;                            
+		font-size: 11px!important;
 	}
 	.k-grid-header .k-header {
    		 padding-left: 10px!important;
 	 }
 	 .mitigation-status{
-	 	padding: 
+	 	padding:
 	 	20px 0;
 	 }
 	 .table-bg label, span {
@@ -400,12 +401,12 @@ button.close{
 	}
 	.audit-sp .subbar-nav li a {
     padding: 3px 23px;
-    
+
 	}
 	.menu-admin .subbar-nav li a {
     padding: 3px 9px;
     font-size: 12px;
-    
+
 	}
 	.multiselect-container  label{
 		padding: 5px!important ;
@@ -414,7 +415,7 @@ button.close{
 	}
 	.multiselect-container input{
 		padding: 0 5px 0 20px;
-		margin:0 10px 0 0; 
+		margin:0 10px 0 0;
 	}
 	.multiselect-container > li:hover{background:#ddd; }
 
@@ -438,7 +439,7 @@ button.close{
     right: 1%;
     top: 0 !important;
     width: 22px;
-} 
+}
 	.text-align-right {
 	    text-align: right;
 	    float: right;
@@ -470,7 +471,7 @@ button.close{
 	}
 	.btn-save-black{margin: 0 20px;}
 	.menu-admin .subbar-nav li {
-   
+
     	width: none!important;
 	}
 	.menu-admin .subbar-nav li a{
@@ -479,7 +480,7 @@ button.close{
     	text-align: center;
 	}
 
-	
+.new-input{width:250px!important;}
 
 }
 @media all and (max-width:950px) {
@@ -532,7 +533,7 @@ button.close{
 	.btn-save-black{margin: 0 20px;}
 }
 @media all and (max-width:768px){
-	
+
 .red-box{
 	margin:0 0 20px 0;
 }
@@ -624,7 +625,7 @@ button.close{
 
 }
 @media all and (max-width:480px)  {
-	
+
 	.download-icons{
 		float:none;
 	}
@@ -640,14 +641,14 @@ button.close{
 	}
 }
 @media all and (max-width:320px)  {
-	
+
 	.mitigation-sub{
 		min-width:100%;
 	}
 	.mitigate-box{
 		height:auto;
 		min-width:100%;
-		
+
 	}
 	.subbar-nav li a{
 		color:#ffffff;
@@ -656,10 +657,19 @@ button.close{
     text-align: right !important;
     width: 160px !important;
 	}
-	
+
 	/*---------------login -------------------*/
 .login-wrap a{
 	padding:0 0 0 7px;
 	font-size:12px;
+}
+}
+@media only screen
+and (min-width : 800px)
+and (max-width : 1023px) {
+  .menu-admin .subbar-nav li a {
+    float: left;
+    padding: 3px 13px;
+    text-align: center;
 }
 }
