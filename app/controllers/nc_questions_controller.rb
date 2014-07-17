@@ -41,7 +41,7 @@ class NcQuestionsController < ApplicationController
 				NcQuestion.build_from_import(params[:file], current_company)
         redirect_to new_audit_nc_question_path, :flash => { :notice => MESSAGES["nc_question"]["csv_upload"]["success"]}
       rescue
-        redirect_to new_audit_nc_question_path, :flash => { :notice => MESSAGES["csv_upload"]["error"]}
+        redirect_to new_audit_nc_question_path, :flash => { :error => MESSAGES["csv_upload"]["error"]}
       end
     else
       redirect_to new_audit_nc_question_path , :flash => { :notice => MESSAGES["csv_upload"]["presence"]}
