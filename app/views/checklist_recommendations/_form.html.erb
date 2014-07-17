@@ -59,6 +59,7 @@
 
                     <div class="container">
                     <%= form_for(checklist_recommendation, url: audit_checklist_recommendations_path(audit_id: audit.id)) do |f| %>
+                    <%= f.hidden_field :audit_end_date, :name => "audit[end_date]", :value => audit.end_date.strftime.gsub('-', ',') %>
                     <% if audit.compliance_type == 'Compliance'%>
                       <%= render "recommendation",f: f, audit: audit, checklist_recommendation: checklist_recommendation, score: score %>
                       <div class="clearfix"></div>
