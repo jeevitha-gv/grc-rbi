@@ -11,6 +11,7 @@
 
  	$('.cancel-btn1').click(function(){
  		$('#search-value').val('');
+ 		search_result()
  	})
 
 	function onActivate(e) {

@@ -48,10 +48,11 @@
           start.max(endDate);
       }
   }
-
+    var temp_start = $(".datepicker").val()
     var start = $(".datepicker").kendoDatePicker({
       change: startChange,
       min: new Date(),
+      value: new Date(2011, 0, 1),
       format: "dd/MM/yyyy"
   }).data("kendoDatePicker");
 
@@ -72,6 +73,8 @@
       $(this).data("kendoDatePicker").open();
     });
     $('.datepicker1').attr('readonly', true);
+
+    $(".datepicker").val(temp_start)
 
     $('.add-risk').click(function(){
       var check = $('#risk_value:checked').val();

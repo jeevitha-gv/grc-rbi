@@ -10,7 +10,9 @@ class TransactionsController < ApplicationController
 	end
 
 	def create
-		company =Company.where("domain =?",params[:transaction][:company_domain]).first
+
+		current_comp = Company.where("domain =?",params[:transaction][:company_domain]).first
+		company = current_comp.present? ? current_comp : Company.where("domain =?",request.subdomain).first
 		user = company.users.map(&:email) if company.users.map(&:role_title).join(",").eql?("company_admin")
 		user_email = user 
 		subscribe = Subscription.where("name = ?",params[:transaction][:subscription]).first
@@ -20,8 +22,12 @@ class TransactionsController < ApplicationController
 						@transaction.update_attributes(:company_id => company.id,:subscription_id=>subscribe.id,:ip_address=>request.remote_ip)
 					if @transaction.purchase(subscribe.amount,@credit_card)
 						flash[:notice] = "Payment done successfully"
-						notify_payment_success(company,subscribe,user_email)     
-						redirect_to welcome_path
+						notify_payment_success(company,subscribe,user_email)
+						if current_user.present?      
+							redirect_to root_subdomain_path
+						else
+							redirect_to welcome_path 
+						end
 					else
 						flash[:notice] = "Payment failed due to internal error.Please try after some time"
 						@transaction.update_attributes(:pay_complete => false)	

@@ -5,7 +5,7 @@ ActiveAdmin.register Compliance do
   controller do
     before_filter :authenticate_admin_user!
     before_filter :check_subdomain
-    before_filter :check_plan_expire
+    # before_filter :check_plan_expire
   end
    permit_params :name
 
