@@ -2406,8 +2406,6 @@ top:2px!important;
 ,#user_profile_attributes_city,#user_profile_attributes_state{width: 254px!important;}
 .btn-save-black{margin: 0 20px;}
 #new_company #company_timezone{width:305px!important;}
-<<<<<<< HEAD
-=======
 .multiselect-container>li>a>label>input[type=checkbox]{
 	margin-bottom: 5px;
 	margin: 4px 12px 0 0;
@@ -2416,4 +2414,3 @@ top:2px!important;
 .open > .dropdown-menu{padding: 10px;}
  #user_email.new-input{width:100%!important;}
  #test-check input{margin: 0 10px 0 0;}
->>>>>>> final-bug-fixing
