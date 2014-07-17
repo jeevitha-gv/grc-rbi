@@ -1,4 +1,5 @@
 <%= javascript_include_tag "/assets/views/transaction.js" %>
+<%unless current_user.present?%>
 <div class="page-wrap">
       <div class="header">
         <div class="container">
@@ -7,15 +8,18 @@
             <div class="container">
               <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <a class="navbar-brand" href="#"><%= params[:company]%></a> </div>
+                <a class="navbar-brand" href="#"><%= params[:company]%></a> 
+             </div>
 
-              <div class="login-wrap"> <a href="/users/sign_in">Sign In</a> <a href="/plans/new">Sign Up</a>
-
-
+              <div class="login-wrap"> 
+              	<a href="/users/sign_in">Sign In</a> <a href="/plans/new">Sign Up</a>
               </div>
             </div>
           </div>
         </div>
+     </div>
+</div>
+<%end%>
         <div class="clearfix"></div>
 <%if @credit_card.present? && @credit_card.errors.present? %>
 <div class="container">
