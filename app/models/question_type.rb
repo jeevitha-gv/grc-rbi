@@ -2,7 +2,7 @@ class QuestionType < ActiveRecord::Base
   #publicactivity gem
     #~ include PublicActivity::Model
     #~ tracked owner: ->(controller, model) { controller && controller.current_user }
-    #~ tracked ip: ->(controller,model) {controller && controller.current_user.current_sign_in_ip}
+    #~ tracked ip: ->(controller,model) {controller && controller.request.ip}
   has_many :nc_questions
   validates :name, presence:true, :if => Proc.new{ |f| f.name.blank? }
   validates_format_of :name, :with =>/\A[a-zA-Z\s]+\z/, :if => Proc.new{ |f| !f.name.blank? }

@@ -16,8 +16,7 @@ ActiveAdmin.register Plan do
 
     def update
       plan = Plan.where("id = ?", params[:id]).first
-      if plan.expires.present?
-        if !current_company.subscriptions.first.id.eql?(params[:plan][:subscription_id]) && plan.expires.to_date <= Date.today
+        if !current_company.subscriptions.first.id.eql?(params[:plan][:subscription_id])
           subscribe = Subscription.where("id = ?",params[:plan][:subscription_id]).first
           if subscribe.amount.eql?(0.0)
             plan.update_attributes(subscription_id: subscribe.id ,company_id: current_company.id)
@@ -30,7 +29,6 @@ ActiveAdmin.register Plan do
           plan.update_attributes(subscription_id: params[:plan][:subscription_id])
           redirect_to admin_plans_path
         end
-      end
     end
 
   end
