@@ -22,7 +22,7 @@ module DashboardHelper
 				end
 			when 'Standard'
 				compliance_audits = current_user.accessible_audits.collect {|x| x if(x.compliance_type == 'Compliance')}
-				if compliance_audits.compact.present?
+				if compliance_audits.compact!.present?
 					compliance_audits.group_by(&:standard_id).each do |key,value|
 					x_axis_records <<  Compliance.compliance_name(key)
 					y_axis_records << value.count
@@ -30,7 +30,7 @@ module DashboardHelper
 				end
 			when 'Topic'
 				non_compliance_audits = current_user.accessible_audits.collect {|x| x if(x.compliance_type == 'NonCompliance')}
-				unless non_compliance_audits.nil?
+				if non_compliance_audits.compact!.present?
 				non_compliance_audits.group_by(&:standard_id).each do |key,value|
 					x_axis_records <<  Topic.topic_name(key)
 					y_axis_records << value.count
