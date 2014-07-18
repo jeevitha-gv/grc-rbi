@@ -11,7 +11,8 @@ class Role < ActiveRecord::Base
     validates :title, length: { in: 2..25 }
     validates_format_of :title, :with =>/\A[a-zA-Z ]+\z/, :if => Proc.new{ |f| !f.title.blank? }
     validates :title, exclusion: { in: %w(company_admin) ,:if => Proc.new{ |f| (f.title.nil?) }}
-    validates :title, :uniqueness => {:scope => :company_id}, :if => Proc.new{ |f| !f.title.blank? }
+    # validates :title, :uniqueness => {:scope => :company_id}, :case_sensitive => false, :if => Proc.new{ |f| !f.title.blank? }
+    validates_uniqueness_of :title, scope: [:company_id], :case_sensitive => false, :if => Proc.new{ |f| !f.title.blank? }
     has_many :privileges
     has_many :roles
     belongs_to :company
