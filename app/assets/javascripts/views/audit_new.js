@@ -52,7 +52,6 @@
     var start = $(".datepicker").kendoDatePicker({
       change: startChange,
       min: new Date(),
-      value: new Date(2011, 0, 1),
       format: "dd/MM/yyyy"
   }).data("kendoDatePicker");
 
