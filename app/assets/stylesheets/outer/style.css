@@ -1896,7 +1896,7 @@ li.db_setting_main{
 	.multiselect-container  .active label{
 		color:#000;
 		margin:10px 0 0 0;
-		
+
 	}
 	.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{
 		color:#000;
@@ -2437,4 +2437,8 @@ top:2px!important;
 .grid-sp  #example{
 	margin: 75px  0;
 	display: block;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 31e8f6380a2faf8f0efea7acb7b7bb31f5c1afc6
