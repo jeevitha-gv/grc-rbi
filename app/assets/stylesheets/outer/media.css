@@ -480,7 +480,10 @@ button.close{
     	text-align: center;
 	}
 
-.new-input{width:250px!important;}
+  .new-input{width:250px!important;}
+   #main_content_wrapper{
+        min-height: 780px;
+    }
 
 }
 @media all and (max-width:950px) {
@@ -492,6 +495,9 @@ button.close{
     	text-align: center;
     	width:none;
 	}
+  #main_content_wrapper{
+        min-height: 780px;
+  }
 }
 @media all and (max-width:768px)  {
 
