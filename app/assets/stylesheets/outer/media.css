@@ -482,7 +482,7 @@ button.close{
 
   .new-input{width:250px!important;}
    #main_content_wrapper{
-        min-height: 780px;
+        min-height: 880px;
     }
 
 }
@@ -496,7 +496,7 @@ button.close{
     	width:none;
 	}
   #main_content_wrapper{
-        min-height: 780px;
+        min-height: 880px;
   }
 }
 @media all and (max-width:768px)  {
