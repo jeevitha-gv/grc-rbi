@@ -20,8 +20,10 @@
 					Settings</a></li>
 				<li><a href="/admin/plans" class="<%= request.fullpath.include?("/admin/plans") == true ? 'active' : '' %>">
           Plan</a></li>
+          <% if check_for_free_plan == false %>
           <li><a href="/admin/transactions" class="<%= request.fullpath.include?("/admin/transactions") == true ? 'active' : '' %>">
           Upgrade Payment</a></li>
+          <%end%>
           <%end%>
 	</ul>
 </div>

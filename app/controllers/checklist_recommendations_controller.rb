@@ -1,4 +1,5 @@
 class ChecklistRecommendationsController < ApplicationController
+	load_and_authorize_resource :only => [:new, :create, :import_files, :auditee_response, :audit_observation, :audit_observation_create, :auditee_response_create]
 	before_filter :current_audit, :company_module_access_check
 	before_filter :authorize_auditees, :only => [:auditee_response_create]
 	before_filter :authorize_auditees_skip_company_admin, :only => [:auditee_response]
