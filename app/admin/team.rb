@@ -35,11 +35,11 @@ ActiveAdmin.register Team do
 
     private
       def team_params
-        params.require(:team).permit(:name, :module_id, :company_id, :department_id, :section_id)
+        params.require(:team).permit(:name, :module_id, :company_id,  :section_id)
       end
   end
 
-  permit_params :name, :department_id, :section_id
+  permit_params :name,  :section_id
 
 
   index do
@@ -63,7 +63,7 @@ ActiveAdmin.register Team do
 
   form do |f|
     f.inputs "New Team" do
-      f.input :department_id, :label => 'Department', :as => :select, :collection => Department.where(:location_id=>current_company.locations.map(&:id)).map{ |u| ["#{u.location.try(:name)} / #{u.name}", u.id]}, :prompt => "-Select Department-"
+      # f.input :department_id, :label => 'Department', :as => :select, :collection => Department.where(:location_id=>current_company.locations.map(&:id)).map{ |u| ["#{u.location.try(:name)} / #{u.name}", u.id]}, :prompt => "-Select Department-"
       f.input :section_id, :label => 'Section', :as => :select, :collection => Section.all.map{ |u| [u.name, u.id]}, :prompt => "-Select Section-"
       f.input :name
     end

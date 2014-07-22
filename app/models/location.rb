@@ -13,7 +13,7 @@ class Location < ActiveRecord::Base
  scope :location_name, ->(id) { where(id: id).first.name}
  scope :for_name_by_company, lambda {|location_name, company_id| where("lower(name)=? and company_id=?", location_name, company_id)}
 
-  has_many :departments, :dependent => :destroy
+#  has_many :departments, :dependent => :destroy
   belongs_to :company
   has_many :audits
   has_many :risks
