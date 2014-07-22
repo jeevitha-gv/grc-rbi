@@ -35,7 +35,7 @@ class Risk < ActiveRecord::Base
   # validates :compliance_library_id, presence:true
   validates :assessment, presence:true
   validates :notes, length: { in: 0..250 }
-  validates :reference, presence:true, length: { in: 0..250 }
+  validates :reference, presence:false, length: { in: 0..250 }
   # validates :reference, uniqueness:true, :if => Proc.new{ |f| !f.reference.blank? }
   validates :reference, :uniqueness => {:scope => :company_id}, :if => Proc.new{ |f| !f.reference.blank? }
   validates :compliance_id, presence:true
