@@ -8,7 +8,7 @@ class Company < ActiveRecord::Base
   has_many :audits
   has_many :users
   has_many :teams
-  has_many :departments, through: :locations
+  has_many :departments
   has_many :risk_categories
   has_many :nc_questions
   has_one :attachment, :as => :attachable
