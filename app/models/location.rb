@@ -7,7 +7,7 @@ class Location < ActiveRecord::Base
   # Validation
   validates :name, presence:true
   validates_format_of :name, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.name.blank? }
-  validates :name, length: { in: 4..52 }, :if => Proc.new{ |f| !f.name.blank? }
+  validates :name, length: { in: 2..52 }, :if => Proc.new{ |f| !f.name.blank? }
   validates_uniqueness_of :name, scope: [:company_id], :case_sensitive => false
 
  scope :location_name, ->(id) { where(id: id).first.name}
