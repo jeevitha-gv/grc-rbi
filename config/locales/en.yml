@@ -520,7 +520,7 @@ en:
 
   risk:
     subject: "Subject*"
-    reference: "Ref. ID*"
+    reference: "Ref. ID"
     compliance: "Compliance*"
     control_number: "Control"
     location: "Location*"
