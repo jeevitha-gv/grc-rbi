@@ -15,9 +15,10 @@ ActiveAdmin.register Department do
 
     before_filter :check_company_admin, :check_role
     before_filter :check_subdomain,:check_plan_expire
-    #  def scoped_collection
-    #   Department.where(:location_id=>current_company.locations.map(&:id))
-    # end
+
+    def scoped_collection
+      current_company.departments
+    end
 
     def create
       @department = Department.new(depart_params)
