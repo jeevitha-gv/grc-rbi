@@ -1,5 +1,5 @@
 class ChecklistRecommendationsController < ApplicationController
-	load_and_authorize_resource :only => [:new, :create, :import_files, :auditee_response, :audit_observation, :audit_observation_create, :auditee_response_create]
+	load_and_authorize_resource :only => [:new, :import_files, :auditee_response, :audit_observation, :audit_observation_create, :auditee_response_create]
 	before_filter :current_audit, :company_module_access_check
 	before_filter :authorize_auditees, :only => [:auditee_response_create]
 	before_filter :authorize_auditees_skip_company_admin, :only => [:auditee_response]
@@ -16,6 +16,7 @@ class ChecklistRecommendationsController < ApplicationController
 
  	#To create checklist recommendation for auditcompliance
 	def create
+		binding.pry
 		@checklist_recommendation = ChecklistRecommendation.new(checklist_params)
 		checklist_params = @checklist_recommendation.audit_checklist(params)
 			checklist_params.each do |check|
@@ -156,7 +157,7 @@ class ChecklistRecommendationsController < ApplicationController
 
 	private
 	  def checklist_params
-	    params.require(:checklist_recommendation).permit(:checklist_id, :checklist_type, :auditee_id, :recommendation, :reason, :corrective, :preventive, :closure_date, :recommendation_priority_id, :recommendation_severity_id, :response_priority_id, :response_severity_id, :recommendation_status_id, :response_status_id, :dependent_recommendation, :blocking_recommendation, :observation, :recommendation_completed, :is_implemented,:is_checklist_new)
+	    params.require(:checklist_recommendation).permit(:checklist_id, :checklist_type, :auditee_id, :recommendation, :reason, :corrective, :preventive, :closure_date, :recommendation_priority_id, :recommendation_severity_id, :response_priority_id, :response_severity_id, :recommendation_status_id, :response_status_id, :dependent_recommendation, :blocking_recommendation, :observation, :recommendation_completed, :is_implemented,:is_checklist_new,:response_completed)
 	  end
 end
 
