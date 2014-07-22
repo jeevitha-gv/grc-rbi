@@ -86,7 +86,7 @@
       </label>
       <div class="col-sm-8">
         <div class="risk-select">
-          <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => risk.location_id), {include_blank: '--Select Location--' }, { :id => "locations-list", :class => "form-control", :onChange => "get_departments(this);"} %>
+          <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => risk.location_id), {include_blank: '--Select Location--' } %>
         </div>
         <% if risk.errors[:location_id].present? %>
           <div class="error_message"><%= risk.errors[:location_id][0]%></div>
@@ -101,11 +101,11 @@
       </label>
       <div class="col-sm-8">
         <div class="risk-select">
-          <% if departments.present? %>
-            <%= f.select :department_id, options_for_select(departments.all.collect{|x| [x.name, x.id.to_i]}, :selected => risk.department_id), {include_blank: '--Select Department--' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
-          <% else %>
-            <%= f.select :department_id, options_for_select([]), {include_blank: '--Select Department--' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
-          <% end %>
+          <%#if departments.present? %>
+            <%= f.select :department_id, options_for_select(current_company.departments.collect{|x| [x.name, x.id.to_i]}, :selected => risk.department_id), {include_blank: '--Select Department--' } %>
+          <%# else %>
+            <%#= f.select :department_id, options_for_select([]), {include_blank: '--Select Department--' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
+          <%# end %>
         </div>
         <% if risk.errors[:department_id].present? %>
           <div class="error_message"><%= risk.errors[:department_id][0]%></div>
@@ -120,11 +120,11 @@
       </label>
       <div class="col-sm-8">
         <div class="risk-select">
-          <% if teams.present? %>
-            <%= f.select :team_id, options_for_select(teams.all.collect{|x| [x.name, x.id.to_i]}, :selected => risk.team_id), {include_blank: '--Select Team--' }, { :id => "team_id", :onChange => "get_risk_owners(this);"} %>
-          <% else %>
-            <%= f.select :team_id, options_for_select([]), {include_blank: '--Select Team--' }, { :id => "team_id", :onChange => "get_risk_owners(this);"} %>
-          <% end %>
+          <%# if teams.present? %>
+            <%= f.select :team_id, options_for_select(current_company.teams.collect{|x| [x.name, x.id.to_i]}, :selected => risk.team_id), {include_blank: '--Select Team--' }, { :id => "team_id", :onChange => "get_risk_owners(this);"} %>
+          <%# else %>
+            <%#= f.select :team_id, options_for_select([]), {include_blank: '--Select Team--' }, { :id => "team_id", :onChange => "get_risk_owners(this);"} %>
+          <%# end %>
         </div>
         <% if risk.errors[:team_id].present? %>
           <div class="error_message"><%= risk.errors[:team_id][0]%></div>

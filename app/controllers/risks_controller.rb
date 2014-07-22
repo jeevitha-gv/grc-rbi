@@ -88,9 +88,9 @@ class RisksController < ApplicationController
   protected
     def risk_initializers(location_id = nil, department_id = nil, team_id = nil, compliance_id = nil)
       @compliance_libraries = ComplianceLibrary.for_id_and_leaf(compliance_id) if compliance_id
-      @departments = Department.for_location(location_id) if location_id
-      section = Section.by_name('Risk').first
-      @teams = Team.for_department_and_company(department_id, current_company.id, section.id) if department_id
+      #@departments = Department.for_location(location_id) if location_id
+      # section = Section.by_name('Risk').first
+      #@teams = Team.for_department_and_company(department_id, current_company.id, section.id) if department_id
       @team_users = Team.for_id(team_id).first.users << current_company.company_admin if team_id
     end
 
