@@ -63,8 +63,11 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
+        <li><a  href="/risk_dashboard" class="<%= request.fullpath.include?("risk_dashboard") == true ? 'active' : '' %>">
+          <div class="dash-icon"></div>
+          Dashboard</a></li>
         <li><a  href="/risks/new" class="<%= (request.fullpath.include?("risks/new") && action_name == "new") == true ? 'active' : '' %>">
-          <div class="file-icon"></div>
+          <div class="plan-icon"></div>
           File</a></li>
         <li><a  href="/risks" class="<%= request.fullpath.exclude?("mitigate") && request.fullpath.exclude?("new") && request.fullpath.exclude?("review") && request.fullpath.exclude?("mitigations") == true ? 'active' : '' %>">
           <div class="listing-icon"></div>

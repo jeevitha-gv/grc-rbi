@@ -23,6 +23,11 @@ Rails.application.routes.draw do
      end
    end
 
+   resources :risk_dashboard do
+     collection do
+      patch 'update'
+     end
+   end
 
   resources :risks do
     collection do
@@ -118,7 +123,7 @@ Rails.application.routes.draw do
   resources :compliance_libraries
   resources :audit_compliances do
     post 'submit', on: :collection
-  end 
+  end
 
   resources :plans
 
