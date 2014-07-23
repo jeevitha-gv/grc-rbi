@@ -1919,7 +1919,7 @@ li.db_setting_main{
 }
 .login-box .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
     float: left;
-    margin-left: 22px;
+    margin-left: -17px;
 }
 .login-box .radio label, .checkbox label {
     cursor: pointer;

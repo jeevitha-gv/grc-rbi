@@ -180,9 +180,9 @@ en:
               invalid: "Location name should contain alphabets."
               taken: "Location name has been already used"
               too_short:
-                other: "Location should contain minimum of 7 char"
+                other: "Location should contain minimum of 2 char"
               too_long:
-                other: "Contact number should contains maximum of 10 digits"
+                other: "location should not contains maximum of 52 char"
         question_type:
           attributes:
             name:
