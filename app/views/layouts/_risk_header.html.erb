@@ -63,9 +63,9 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <li><a  href="/risk_dashboard" class="<%= request.fullpath.include?("risk_dashboard") == true ? 'active' : '' %>">
+        <li><a  href="/risk_dashboard" class="<%= (request.fullpath.include?("risk_dashboard") && action_name == "index") == true ? 'active' : '' %>">
           <div class="dash-icon"></div>
-          Dashboard</a></li>
+          Dashboard</a></li>          
         <li><a  href="/risks/new" class="<%= (request.fullpath.include?("risks/new") && action_name == "new") == true ? 'active' : '' %>">
           <div class="plan-icon"></div>
           File</a></li>

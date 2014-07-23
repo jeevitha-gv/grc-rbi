@@ -10,35 +10,32 @@ module RiskDashboardHelper
           y_axis_records << value.count
         end
       when 'Status'
-        current_user.accessible_audits.group_by(&:audit_status_id).each do |key,value|
-          x_axis_records << AuditStatus.find_by_id(key).name
+        current_user.accessible_risks.group_by(&:risk_status_id).each do |key,value|
+          x_axis_records << RiskStatus.find_by_id(key).name
           y_axis_records << value.count
         end
       when 'Compliance Type'
-        current_user.accessible_audits.group_by(&:compliance_type).each do |key,value|
+        current_user.accessible_risks.group_by(&:compliance_id).each do |key,value|
           x_axis_records << key
           y_axis_records << value.count
         end
       when 'Technology'
-        compliance_audits = current_user.accessible_audits.collect {|x| x if(x.compliance_type == 'Compliance')}
-        if compliance_audits.compact!.present?
-          compliance_audits.group_by(&:standard_id).each do |key,value|
-          x_axis_records <<  Compliance.compliance_name(key)
+         current_user.accessible_risks.group_by(&:technology_id).each do |key,value|
+          x_axis_records << Technology.find_by_id(key).name
           y_axis_records << value.count
         end
-        end
       when 'Location'
-        current_user.accessible_audits.group_by(&:location_id).each do |key,value|
+        current_user.accessible_risks.group_by(&:location_id).each do |key,value|
           x_axis_records <<  Location.location_name(key)
           y_axis_records << value.count
         end
       when 'Department'
-        current_user.accessible_audits.group_by(&:department_id).each do |key,value|
+        current_user.accessible_risks.group_by(&:department_id).each do |key,value|
           x_axis_records <<  Department.department_name(key)
           y_axis_records << value.count
         end
       when 'Team'
-        current_user.accessible_audits.group_by(&:team_id).each do |key,value|
+        current_user.accessible_risks.group_by(&:team_id).each do |key,value|
           x_axis_records <<  Team.team_name(key)
           y_axis_records << value.count
         end
