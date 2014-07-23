@@ -116,8 +116,8 @@
 
                     <div class="col-sm-7">
                     <div class="block_link">
-                    <!--<a class="active" href="">Blocking Recommandation</a>-->
-                    <a type="button" class="active" href="#myModal1" data-toggle="modal" onclick="recommendation(<%= checklist_recommendation.id%>);">Blocking Recommandation</a>
+                    <!--<a class="active" href="">Blocking Recommendation</a>-->
+                    <a type="button" class="active" href="#myModal1" data-toggle="modal" onclick="recommendation(<%= checklist_recommendation.id%>);">Blocking Recommendation</a>
                     <a type="button" href="#myModal" onclick="recommendation(<%= checklist_recommendation.id%>);" data-toggle="modal" >Dependent Recomandation</a>
                     <%= hidden_field_tag "checklist_recommendation[dependent_recommendation]", checklist_recommendation.dependent_recommendation , :id => "dependent_recommendation_#{checklist_recommendation.id}"%>
                     <%= hidden_field_tag "checklist_recommendation[blocking_recommendation]",  checklist_recommendation.blocking_recommendation , :id => "blocking_recommendation_#{checklist_recommendation.id}"%>

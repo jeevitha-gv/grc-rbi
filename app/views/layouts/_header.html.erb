@@ -54,7 +54,7 @@
           <div class="account_header_dropdown" style="display: none;">
             <ul>
               <li><%= link_to "User Profile", edit_user_path %></li>
-              <li><%= link_to "Audit Trail", activities_path %></li>
+              <li><%= link_to "Audit Trial", activities_path %></li>
               <li><%= link_to "Reset Password", password_user_path %></li>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
             </ul>
@@ -88,7 +88,7 @@
           Dashboard</a></li>
         <li><a href="/dashboard/calender" class="<%= request.fullpath.include?("dashboard/calender") == true ? 'active' : '' %>">
           <div class="calender-icon"></div>
-          Calender</a></li>
+          Calendar</a></li>
         <li><a href="/audits/new" class="<%= (request.fullpath.include?("audits/new") && action_name=="new") == true ? 'active' : '' %>">
           <div class="plan-icon"></div>
           Plan</a></li>

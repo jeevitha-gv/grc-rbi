@@ -47,7 +47,7 @@
 			pageable: false,
 		 	columns: [
 		 		{ field:"role_name", title: "Role"},
-		 		{ field:"model_name", title: "Modal"},
+		 		{ field:"model_name", title: "Model"},
 		 		{ field:"action_name", title: "Action"},
 		 		{ command: ["destroy"], title: "", width: "160px" }
 		 	],

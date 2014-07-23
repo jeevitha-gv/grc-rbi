@@ -569,7 +569,7 @@ en:
     avail_imp: "Availability Impact"
     exploi: "Exploitability"
     remed_level: "Remediation Level"
-    report_conf: "Report Condidence"
+    report_conf: "Report Confidence"
     coll_damage_pot: "Collateral Damage Potential"
     tar_dist: "Target Distribution"
     conf_req: "Confidentiality Requirement"
