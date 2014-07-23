@@ -206,7 +206,7 @@ fr:
     audit_observation:
       success: "observation d'audit a été créé avec succès"
     audit_recommendation:
-      success: "recommandation d'audit a été créé avec succès"
+      success: "recommendation d'audit a été créé avec succès"
 
   audit_compliance:
     comment:
@@ -262,7 +262,7 @@ fr:
       auditor_not_in_auditees: "L'utilisateur est déjà sélectionné à titre de vérificateur"
 
   checklist_recommendations:
-    recommendation: "S'il vous plaît entrer recommandation"
+    recommendation: "S'il vous plaît entrer recommendation"
     priority: "S'il vous plaît sélectionner priorité"
     reason: "S'il vous plaît entrer raison"
     severity: "S'il vous plaît sélectionner gravité"
