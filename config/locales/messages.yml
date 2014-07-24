@@ -160,7 +160,6 @@ en:
       x_axis: "Please select x_axis"
       y_axis: "Please select y_axis"
       chart_type: "Please select chart type"
-  
 
 
 fr:
@@ -276,3 +275,10 @@ fr:
 
   answers:
     detailed_value: "S'il vous plaît entrer réponse"
+
+  chart:
+    presence: 
+      name: "S'il vous plaît entrez le nom widget,"
+      x_axis: "S'il vous plaît sélectionner X_AXIS"
+      y_axis: "S'il vous plaît sélectionner Y_AXIS"
+      chart_type: "S'il vous plaît sélectionner le type de graphique"
