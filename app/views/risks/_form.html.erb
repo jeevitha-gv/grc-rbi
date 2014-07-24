@@ -27,7 +27,7 @@
         <%= f.label :reference, t('risk.reference') %>
       </label>
       <div class="col-sm-8">
-        <%= f.text_field :reference, :class => "form-control risk-normal-input" %>
+        <%= f.text_field :reference, :class => "form-control risk-normal-input",:maxlength => 25 %>
       </div>
       <% if risk.errors[:reference].present? %>
         <div class="error_message"><%= risk.errors[:reference][0]%></div>
