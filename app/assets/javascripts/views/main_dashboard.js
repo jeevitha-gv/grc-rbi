@@ -159,6 +159,16 @@ if (confirm('Are you sure to Delete?')) {
 }
 }
 
+function risk_chart_destroy(id)
+{
+if (confirm('Are you sure to Delete?')) {
+                    $.ajax({
+                    url: "/risk_dashboard/"+id,
+                    type: 'delete'
+                    });
+}
+}
+
 function widget_validation()
 {
 var name = $('#widget_name').val()
