@@ -45,6 +45,9 @@ class RisksController < ApplicationController
     end
   end
 
+  def risk_perdashboard
+  end
+
   def risk_imports
     if(params[:file].present?)
       begin

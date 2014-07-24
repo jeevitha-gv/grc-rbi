@@ -71,7 +71,7 @@ $(document).ready(function() {
 			{ field: "owner", title: "Owner", width: "25%" },
 			{ field: "days_open", title: "Days Open", width: "15%" },
 			{ field: "next_review", title: "Next Review Date", width: "25%" },
-			{ command: [{text: "list", click: mitigate_file},{text: "miti", click: review_file},{text: "edit", click: edit_file}], title: "Action", width: "150px" }
+			{ command: [{text: "list", click: mitigate_file},{text: "miti", click: review_file},{text: "edit", click: edit_file},{text: "graph", click: graph_file}], title: "Action", width: "200px" }
 		],
 	//~ editable: "popup"
 	});
@@ -102,6 +102,12 @@ $(document).ready(function() {
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		window.location.href = "/risks/"+ dataItem.id + "/mgmt_reviews/new"
 	}
+	function graph_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/risks/"+ dataItem.id + "/risk_perdashboard"
+	}
+
 
 	function select_stage_class(stage_class)
 	{
@@ -153,7 +159,7 @@ $(document).ready(function() {
 	  	}
 	  	else if (currenStatus == "Draft")
 	  	{
-	  		var test_row = $(currenRow).find(".k-grid-list, .k-grid-miti")
+	  		var test_row = $(currenRow).find(".k-grid-list, .k-grid-miti,.k-grid-graph")
 	  		$(test_row).hide()
 	  	}
 	  }
@@ -181,6 +187,7 @@ $(document).ready(function() {
 		$('.k-grid-list').attr('title','Mitigate');
 		$('.k-grid-miti').attr('title','review');
 		$('.k-grid-edit').attr('title','Edit');
+		$('.k-grid-graph').attr('title','Dashboard');
 	}
 
 	function onActivate(e) {
