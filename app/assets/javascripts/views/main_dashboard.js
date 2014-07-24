@@ -17,6 +17,9 @@ $(function () {
             subtitle: {
                 text: ''
             },
+            credits: {
+      enabled: false
+  },
             xAxis: {
                 categories: x_axis_record
             },
@@ -84,6 +87,9 @@ $(function () {
                 subtitle: {
                     text: ''
                 },
+                credits: {
+      enabled: false
+  },
                 plotOptions: {
                     series: {
                         dataLabels: {
@@ -118,6 +124,9 @@ $(function () {
             subtitle: {
                 text: ''
             },
+            credits: {
+      enabled: false
+  },
             xAxis: {
                 categories: x_axis_record
             },
@@ -154,6 +163,16 @@ function chart_destroy(id)
 if (confirm('Are you sure to Delete?')) {
                     $.ajax({
                     url: "/dashboard/"+id,
+                    type: 'delete'
+                    });
+}
+}
+
+function risk_chart_destroy(id)
+{
+if (confirm('Are you sure to Delete?')) {
+                    $.ajax({
+                    url: "/risk_dashboard/"+id,
                     type: 'delete'
                     });
 }

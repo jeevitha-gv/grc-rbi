@@ -15,7 +15,7 @@ module RiskDashboardHelper
         end
       when 'Compliance Type'
         current_user.accessible_risks.group_by(&:compliance_id).each do |key,value|
-          x_axis_records << key
+          x_axis_records << Compliance.find_by_id(key).name
           y_axis_records << value.count
         end
       when 'Technology'
