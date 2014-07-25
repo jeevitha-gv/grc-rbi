@@ -192,21 +192,7 @@
 
 <!-- Fifth Row Starts -->
 <div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-    <div class="form-group clearfix">
-      <label class="col-sm-4 control-label">
-        <%= f.label :category_id, t('risk.category') %>
-      </label>
-      <div class="col-sm-8">
-        <div class="risk-select">
-          <%= f.collection_select(:category_id, RiskCategory.for_company(current_company.id), :id, :name, { include_blank: '--Select Category--' }, {:class => "form-control"}) %>
-        </div>
-        <% if risk.errors[:category_id].present? %>
-          <div class="error_message"><%= risk.errors[:category_id][0]%></div>
-        <% end %>
-      </div>
-    </div>
-  </div>
+  
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
     <div class="form-group clearfix">
       <label class="col-sm-4 control-label">
@@ -218,6 +204,21 @@
         </div>
         <% if risk.errors[:technology_id].present? %>
           <div class="error_message"><%= risk.errors[:technology_id][0]%></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8 col-md-4 col-sm-8 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-2 control-label">
+        <%= f.label :category_id, t('risk.category') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:category_id, RiskCategory.for_company(current_company.id), :id, :name, { include_blank: '--Select Category--' }, {:class => "form-control"}) %>
+        </div>
+        <% if risk.errors[:category_id].present? %>
+          <div class="error_message"><%= risk.errors[:category_id][0]%></div>
         <% end %>
       </div>
     </div>
