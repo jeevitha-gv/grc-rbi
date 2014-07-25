@@ -74,8 +74,8 @@
                   <th colspan="6" class="risk-able-th"><%= risk.subject if risk.present? %></th>
                 </tr>
                 <tr>
-                  <td><label>Control Number : </label>
-                   <%= risk.compliance_library_id  if risk.present? %></td>
+                  <td><label>Control Name : </label>
+                   <%= risk.compliance_library.name  if risk.present? %></td>
                   <td><label> Reference Id : </label>
                     <%= risk.reference if risk.present? %></td>
                   <td><label>Site / Location : </label>
