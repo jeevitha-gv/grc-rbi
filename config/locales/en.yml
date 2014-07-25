@@ -287,6 +287,8 @@ en:
               taken: "Please select unique auditee"
             compliance_type:
               blank: "Compliance Type can't be blank"
+            location_id:
+              blank: "Select any one location"
             standard_id:
               blank: "Select any one standard"
             start_date:
@@ -418,12 +420,16 @@ en:
         cpp_measure:
           attributes:
             name:
-              blank: "Cpp Measure can't be blank"
-              taken: "Cpp Measure already used"
+              blank: "Name can't be blank"
+              taken: "Name has been already used"
             description:
               blank: "Description can't be blank"
             compliance_id:
               blank: "Regulation name can't be blank"
+            duration:
+              blank: "Duration can't be blank"
+            implementation_status_id:
+              blank: "Implementation Status can't be blank"
         artifact:
           attributes:
             name:

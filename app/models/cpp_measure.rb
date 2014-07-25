@@ -13,6 +13,8 @@ class CppMeasure < ActiveRecord::Base
   validates :description, presence: true
   validates :compliance_id, presence: true
   validates :company_id, presence: true
+  validates :duration, presence: true
+  validates :implementation_status_id, presence: true
 
   scope :for_type_by_company, lambda {|measure_type, company_id| where("measure_type = ? AND company_id = ?", measure_type, company_id)}
 
