@@ -37,8 +37,8 @@
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                   <div class="mitigate-inner mitigate-box">
-                      <div class="risk-box-lable">Risk ID :</div>
-                      <div class="risk-box-text"><%= risk.id if risk.present? %></div>
+                      <div class="risk-box-lable">Scoring:</div>
+                      <div class="risk-box-text"><%= risk.risk_scoring_scoring_type if risk.present? %></div>
                   </div>
                 </div>
               </div>
@@ -115,7 +115,7 @@
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="risk-assetes">
               <div class="mitigation-recomm">
-                <div class="mit-reccom-title">Risk Assesment</div>
+                <div class="mit-reccom-title">Risk Assessment</div>
                 <p><%= risk.assessment if risk.present? %></p>
               </div>
             </div>

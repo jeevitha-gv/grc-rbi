@@ -40,8 +40,8 @@
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                     <div class="mitigate-inner mitigate-box">
-                        <div class="risk-box-lable">Risk Id :</div>
-                        <div class="risk-box-text"><%= risk.id if risk.present? %></div>
+                        <div class="risk-box-lable">Scoring:</div>
+                        <div class="risk-box-text"><%= risk.risk_scoring_scoring_type if risk.present? %></div>
                     </div>
                 </div>
                 </div>
@@ -74,8 +74,8 @@
                   <th colspan="6" class="risk-able-th"><%= risk.subject if risk.present? %></th>
                 </tr>
                 <tr>
-                  <td><label>Control Number : </label>
-                   <%= risk.compliance_library_id  if risk.present? %></td>
+                  <td><label>Control Name : </label>
+                   <%= risk.compliance_library.name  if risk.present? %></td>
                   <td><label> Reference Id : </label>
                     <%= risk.reference if risk.present? %></td>
                   <td><label>Site / Location : </label>
@@ -115,7 +115,7 @@
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="risk-assetes">
               <div class="mitigation-recomm">
-                <div class="mit-reccom-title">Risk Assesment</div>
+                <div class="mit-reccom-title">Risk Assessment</div>
                 <p><%= risk.assessment %></p>
                 </div>
                 </div>
