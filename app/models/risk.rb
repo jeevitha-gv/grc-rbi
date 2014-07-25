@@ -33,7 +33,7 @@ class Risk < ActiveRecord::Base
   # Validations
   validates :subject,length: { in: 0..250 }, :if => Proc.new{ |f| !f.subject.blank? }
   validates_presence_of :subject
-  # validates :compliance_library_id, presence:true
+  validates :compliance_library_id, presence:true
   validates :assessment, presence:true
   validates :notes, length: { in: 0..250 }
   validates :reference, presence:false, length: { in: 0..250 }
@@ -47,7 +47,7 @@ class Risk < ActiveRecord::Base
   validates_presence_of :department_id
   validates_presence_of :team_id
   validates_presence_of :mitigator
-  validates_presence_of :reviewer  
+  validates_presence_of :reviewer
   # validates :mitigator, presence:true
   # validates :reviewer, presence:true
   validates :submitted_by, presence:true
