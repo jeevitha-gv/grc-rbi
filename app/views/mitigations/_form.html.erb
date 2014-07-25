@@ -97,6 +97,14 @@
                   <td><label> Scoring Method :</label>
                     <%= risk.risk_scoring_scoring_type if risk.present? %></td>
                 </tr>
+                <% if risk.attachment.present? %>
+                <tr>
+                  <td><label>Document: </label>
+                    <%= link_to (File.basename(risk.attachment.attachment_file_url)).truncate(20), download_document_risks_path(id: risk.attachment.id), class: "blue_link" %></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <% end %>
               </table>
             </div>
           </div>

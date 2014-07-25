@@ -40,6 +40,9 @@ Rails.application.routes.draw do
     end
     resources :mgmt_reviews
     resources :mitigations
+    collection do
+      get 'download_document'
+    end
   end
 
   resources :audits do
