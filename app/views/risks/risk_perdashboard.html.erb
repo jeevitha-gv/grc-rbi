@@ -1,0 +1,309 @@
+<script src="/assets/outer/highcharts.js"></script>
+<script src="/assets/outer/exporting.js"></script>
+<script src="/assets/outer/drilldown.js"></script>
+<script src="/assets/outer/data.js"></script>
+  <div class="clearfix"></div>
+  <!-- Dash Board Start -->
+  <div class="dashboard_main">
+    <div class="container">
+      <div class="row"> 
+        <!-- Dash Board Title Start -->
+        <div class="dashboard-title col-lg-12">Dash Board</div>
+        <!-- Dash Board Title End -->
+        <div class="col-lg-8 dash_bg"> 
+          <!-- Dash Board Menu Start-->
+          <div class="dashboard_menu">
+            <ul>
+              <li>
+                <a class="lightgreen" href="">
+                  <div class="db-plan-icon"></div>
+                  Plan </a> 
+              </li>
+              <li>
+                <a class="drakgreen" href="">
+                  <div class="db-do-icon"></div>
+                  Do </a>
+              </li>
+              <li>
+                <a class="drakgreen" href="">
+                  <div class="db-check-icon"></div>
+                  Check </a>
+              </li>
+            </ul>
+          </div>
+          <!-- Dash Board Menu End-->
+
+          <!-- ISMS Audit Score Start -->
+          <div class="dash_sub_title">ISMS Audit Score</div>
+          <div id="ISMSAuditScore"></div>
+          <!-- ISMS Audit Score End -->
+        </div>
+        <div class="col-lg-4 dash_bg">
+          <div class="db_audit_com clearfix">
+            <div class="db_audit_com_icon fleft"></div>
+            <div class="db_audit_com_txt">Audit Compliance Rating <b>62%</b> </div>
+          </div>
+
+          <!--Audit Details Start -->
+          <div class="dash_sub_title">Audit Details</div>
+          <div class="db_aduitdetails">
+            <div class="form-group clearfix">
+              <label  class="col-sm-4"><b>Audit Name:</b> </label>
+              <div class="col-sm-8"> Audit of the equal Opportunities</div>
+            </div>
+            <div class="form-group clearfix">
+              <label  class="col-sm-4"><b>Start Date:</b> </label>
+              <div class="col-sm-8">01/04/2014</div>
+            </div>
+            <div class="form-group clearfix">
+              <label  class="col-sm-4"><b>End Date:</b> </label>
+              <div class="col-sm-8">01/06/2014</div>
+            </div>
+            <div class="form-group clearfix">
+              <label  class="col-sm-4"><b>Stakeholder:</b> </label>
+              <div class="col-sm-8">Hersha, Padma, Shan, Balaji, Arun, Vijay, Gayathri</div>
+            </div>
+            <div class="db_download_btn clearfix"> <a class="download-icon" href="">Download Report</a> <a class="download-aff-icon" href="">Download Artifacts</a> </div>
+          </div>
+          <!--Audit Details End --> 
+
+          <!--Audit Status  End--> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Dash Board End -->
+  <script type="text/javascript">
+$(function () {
+        $('#auditcompliancerating').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr'
+                    
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Value'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Organize',
+                data: [49.9, 71.5, 106.4, 129.2]
+    
+            }, {
+                name: 'Assets',
+                data: [83.6, 78.8, 98.5, 93.4]
+    
+            }, {
+                name: 'HRS',
+                data: [48.9, 38.8, 39.3, 41.4]
+    
+            }, {
+                name: 'EPS',
+                data: [42.4, 33.2, 34.5, 39.7]
+    
+            }]
+        });
+    });
+    
+$(function () {
+        $('#ISMSAuditScore').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Maximum Score and Actual Score'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: ['Compliance', 'Business Cotinuty Management', 'Information Security', 'Access Control', 'Human Resource Security'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Value',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: ' millions'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor || '#FFFFFF'),
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Year 2014',
+                data: [107, 31, 635, 203, 2]
+            }, {
+                name: 'Year 2013',
+                data: [133, 156, 947, 408, 6]
+            }]
+        });
+    });
+    
+
+
+$(function () {
+
+    Highcharts.data({
+        csv: document.getElementById('tsv').innerHTML,
+        itemDelimiter: '\t',
+        parsed: function (columns) {
+
+            var brands = {},
+                brandsData = [],
+                versions = {},
+                drilldownSeries = [];
+            
+            // Parse percentage strings
+            columns[1] = $.map(columns[1], function (value) {
+                if (value.indexOf('%') === value.length - 1) {
+                    value = parseFloat(value);
+                }
+                return value;
+            });
+
+            $.each(columns[0], function (i, name) {
+                var brand,
+                    version;
+
+                if (i > 0) {
+
+                    // Remove special edition notes
+                    name = name.split(' -')[0];
+
+                    // Split into brand and version
+                    version = name.match(/([0-9]+[\.0-9x]*)/);
+                    if (version) {
+                        version = version[0];
+                    }
+                    brand = name.replace(version, '');
+
+                    // Create the main data
+                    if (!brands[brand]) {
+                        brands[brand] = columns[1][i];
+                    } else {
+                        brands[brand] += columns[1][i];
+                    }
+
+                    // Create the version data
+                    if (version !== null) {
+                        if (!versions[brand]) {
+                            versions[brand] = [];
+                        }
+                        versions[brand].push(['v' + version, columns[1][i]]);
+                    }
+                }
+                
+            });
+
+            $.each(brands, function (name, y) {
+                brandsData.push({ 
+                    name: name, 
+                    y: y,
+                    drilldown: versions[name] ? name : null
+                });
+            });
+            $.each(versions, function (key, value) {
+                drilldownSeries.push({
+                    name: key,
+                    id: key,
+                    data: value
+                });
+            });
+
+            // Create the chart
+            $('#container').highcharts({
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Aduit Status'
+                },
+                subtitle: {
+                    text: ''
+                },
+                plotOptions: {
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}: {point.y:.1f}%'
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                }, 
+
+                series: [{
+                    name: 'Brands',
+                    colorByPoint: true,
+                    data: brandsData
+                }],
+                drilldown: {
+                    series: drilldownSeries
+                }
+            })
+
+        }
+    });
+});
+    
+
+</script> 

@@ -850,10 +850,10 @@ a.plus-background{
 .dashboard_menu > ul {
   padding: 0 0 0 20px;
 }
-.dash_menu_a a {color: #fff;padding: 40px 55px; /*border-right:1px solid #fff;*/}
-.dashboard_menu .lightgreen{ /*background-color:#60db47;*/}
-.dashboard_menu .drakgreen{ /*background-color:#42bc29;*/ }
-.dashboard_menu .grey{ /*background-color:#d2d2d1;*/}
+.dash_menu_a a {color: #fff;padding: 40px 55px; border-right:1px solid #fff;}
+.dashboard_menu .lightgreen{ background-color:#60db47;}
+.dashboard_menu .drakgreen{ background-color:#42bc29; }
+.dashboard_menu .grey{ background-color:#d2d2d1;}
 .db_aduitdetails {
   background: none repeat scroll 0 0 #fff;
   box-shadow: 0 0 5px #d5d6d6;
