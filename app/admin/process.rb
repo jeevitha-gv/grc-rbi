@@ -8,7 +8,7 @@ ActiveAdmin.register CppMeasure, { :as => 'Process'} do
     ]
   end
 
-  permit_params :compliance_id, :name, :description, :duration, :measure_type, :company_id
+  permit_params :compliance_id, :name, :description, :duration, :measure_type, :company_id, :implementation_status_id
 
  controller do
     before_filter :check_company_admin, :check_role, :company_admin_module_check, :check_subdomain,:check_plan_expire
@@ -27,6 +27,7 @@ ActiveAdmin.register CppMeasure, { :as => 'Process'} do
     column  "Compliance" do |c|
     c.compliance.name
     end
+    column :duration
     actions
   end
 
@@ -47,6 +48,8 @@ ActiveAdmin.register CppMeasure, { :as => 'Process'} do
       f.input :name
       f.input :description
       f.input :compliance_id, :label => 'Regulation', :as => :select, :collection => Compliance.all, :prompt => "-Select Regulation-"
+      f.input :duration, :label => 'Duration', :as => :select, :collection => [['Long Term','Long Term'],['Short Term','Short Term']], :prompt => "-Select Duration-"
+      f.input :implementation_status_id, :label => 'Implementation Status', :as => :select, :collection => ImplementationStatus.all, :prompt => "-Select Status-"
       f.input :measure_type, :as => :hidden, :input_html => { :value => "Process"}
       f.input :company_id, :as => :hidden, :input_html => { :value => "#{current_company.id}"}
     end
