@@ -218,7 +218,7 @@
                     <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                       <div>
                            <div class="text-area clearfix">
-                              <label for="inputEmail3" class="col-sm-4 control-label"> <%= f.label :current_solution, t('risk.') %></label>
+                              <label for="inputEmail3" class="col-sm-4 control-label"> <%= f.label :current_solution, t('risk.current_solution') %></label>
                                      <div class="col-sm-8">
                                      <%= mitigation.text_area :current_solution, :class=>"form-control risk-big-input", :value => "#{risk.mitigation.current_solution}" %>
                                     <% if mitigation.object.errors[:current_solution].present? %>
@@ -277,7 +277,7 @@
                         <div>
 
                           <div class="text-area clearfix">
-                            <label for="inputEmail3" class="col-sm-3 control-label">Threat</label>
+                            <label for="inputEmail3" class="col-sm-3 control-label">Threat*</label>
                             <div class="col-sm-9">
                               <%= f.fields_for :control_measure do |control| %>
                               <%= control.text_area :threat, row: 2, class: "form-control risk-big-input"%>
@@ -288,7 +288,7 @@
                           </div>
 
                             <div class="text-area clearfix">
-                              <label for="inputEmail3" class="col-sm-3 control-label">Effectiveness</label>
+                              <label for="inputEmail3" class="col-sm-3 control-label">Effectiveness*</label>
                               <div class="col-sm-9">
                                   <%= control.text_area :effectiveness, row: 2, class: "form-control risk-big-input"%>
                                   <% if control.object.errors[:effectiveness].present? %>
@@ -302,7 +302,7 @@
                       <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div>
                           <div class="text-area clearfix">
-                            <label for="inputEmail3" class="col-sm-3 control-label">Consequence</label>
+                            <label for="inputEmail3" class="col-sm-3 control-label">Consequence*</label>
                             <div class="col-sm-9">
                               <%= control.text_area :consequence, row: 2, class: "form-control risk-big-input"%>
                             <% if control.object.errors[:consequence].present? %>
