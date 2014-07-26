@@ -47,7 +47,7 @@
                       </div>
 											<div class="form-group clearfix">
                         <%= f.label "Chart Type: " %>
-													<div class="select_outer">
+													<div class="select_inner">
 													<%= f.select :chart_type , ['Bar','Pie','Line'],{ :prompt => "-Select Chart Type-" , :class =>"modal-normal-input", :id => "widget_chart_type" }%>
 												</div>
 												<span id="widget_chart_type_error" class="error_message" style="display:none;"><%= MESSAGES["chart"]["presence"]["chart_type"]%></span>

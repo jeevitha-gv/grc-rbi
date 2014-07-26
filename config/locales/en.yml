@@ -348,7 +348,7 @@ en:
         risk:
           attributes:
             subject:
-              blank: "Subject cannot be blank"
+              blank: "Subject zcannot be blank"
             reference:
               blank: "Reference ID cannot be blank"
               taken: "Reference ID must be unique"
@@ -540,6 +540,10 @@ en:
     mitigator: "Mitigator*"
     reviewer: "Reviewer*"
     attachment: "Attach Document"
+    current_solution: "Current Solution*"
+    security_requirements: "Security Requirements*"
+    security_recommendations: "Security Recommendations*"
+    threat: "Threat*"
 
   dread:
     damage_potential: "Damage Potential"
