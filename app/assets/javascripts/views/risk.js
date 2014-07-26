@@ -105,7 +105,7 @@ $(document).ready(function() {
 	function graph_file(e)
 	{
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-		window.location.href = "/risks/"+ dataItem.id + "/risk_perdashboard"
+		window.location.href = "/risks/"+ dataItem.id + "/risk_per_dashboard"
 	}
 
 
