@@ -56,6 +56,9 @@ class Risk < ActiveRecord::Base
 
 	delegate :name, to: :risk_status, prefix: true, allow_nil: true
 	delegate :user_name, to: :risk_owner, prefix: true, allow_nil: true
+  delegate :user_name, to: :risk_mitigator, prefix: true, allow_nil: true
+  delegate :user_name, to: :risk_reviewer, prefix: true, allow_nil: true
+  delegate :name, to: :risk_category, prefix: true, allow_nil: true
 	delegate :scoring_type, to: :risk_scoring, prefix: true, allow_nil: true
 	delegate :calculated_risk, to: :risk_scoring, prefix: true, allow_nil: true
 	delegate :custom_value, to: :risk_scoring, prefix: true, allow_nil: true
@@ -65,7 +68,7 @@ class Risk < ActiveRecord::Base
 	delegate :name, to: :risk_category, prefix: true, allow_nil: true
 	delegate :name, to: :technology, prefix: true, allow_nil: true
 	delegate :name, to: :risk_model, prefix: true, allow_nil:true
-
+  delegate :name, to: :department, prefix: true, allow_nil: true
 
 	accepts_nested_attributes_for :mitigation
   accepts_nested_attributes_for :control_measure
