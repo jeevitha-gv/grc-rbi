@@ -18,6 +18,8 @@ class Reminder < ActiveRecord::Base
 	validates :priority_id ,:uniqueness => {:scope => :company_id}
 	validates :value, :numericality => { :greater_than_or_equal_to => 1, :less_than_or_equal_to => 30, :only_integer => true}
 	validates :mail_count, :numericality => { :greater_than_or_equal_to => 1, :less_than_or_equal_to => 30 , :only_integer => true}
+	validates :to,presence: true
+	validates :cc,presence: true
 
 
 	# Method to check priority and send mail according to the priority
