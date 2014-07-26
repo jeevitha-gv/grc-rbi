@@ -20,7 +20,7 @@
                   Plan </a> 
               </li>
               <li>
-                <a class="drakgreen" href="">
+                <a class="lightgreen" href="">
                   <div class="db-do-icon"></div>
                   Do </a>
               </li>
@@ -45,15 +45,16 @@
           </div>
 
           <!--Audit Details Start -->
-          <div class="dash_sub_title">Audit Details</div>
+          <div class="dash_sub_title">Risk Details</div>
           <div class="db_aduitdetails">
             <div class="form-group clearfix">
-              <label  class="col-sm-4"><b>Audit Name:</b> </label>
-              <div class="col-sm-8"> Audit of the equal Opportunities</div>
+              <label  class="col-sm-4"><b>Risk Name:</b> </label>
+              <div class="col-sm-8"> <%= @risk.subject unless @risk.nil?%></div>
+              
             </div>
             <div class="form-group clearfix">
               <label  class="col-sm-4"><b>Start Date:</b> </label>
-              <div class="col-sm-8">01/04/2014</div>
+              <div class="col-sm-8"><%= @risk.created_at unless @risk.nil?%></div>
             </div>
             <div class="form-group clearfix">
               <label  class="col-sm-4"><b>End Date:</b> </label>
@@ -66,7 +67,8 @@
             <div class="db_download_btn clearfix"> <a class="download-icon" href="">Download Report</a> <a class="download-aff-icon" href="">Download Artifacts</a> </div>
           </div>
           <!--Audit Details End --> 
-
+                 <div class="dash_sub_title">Audit Status</div>
+                        <div id="container" class="aduit_status"></div>
           <!--Audit Status  End--> 
         </div>
       </div>
