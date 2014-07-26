@@ -104,7 +104,7 @@ ComplianceLibrary.delete_all
     ComplianceLibrary.create(name: 'ORGANIZING INFORMATION SECURITY', compliance_id: '1', is_leaf: 'FALSE', parent_id: 'NULL' )
     ComplianceLibrary.create(name: 'Internal Organization', compliance_id: '1', is_leaf: 'FALSE', parent_id: '1')
     ComplianceLibrary.create(name: 'Management Commitment to information security', compliance_id: '1', is_leaf: 'TRUE', parent_id: '2')
-    ComplianceLibrary.create(name: 'Information Security Co-ordiantion', compliance_id: '1', is_leaf: 'TRUE', parent_id: '2')
+    ComplianceLibrary.create(name: 'Information Security Co-ordination', compliance_id: '1', is_leaf: 'TRUE', parent_id: '2')
     ComplianceLibrary.create(name: 'Allocation of information security Responsibilities',compliance_id: '1', is_leaf: 'TRUE', parent_id: '2')
     ComplianceLibrary.create(name: 'Authorization process for Information Processing facilities', compliance_id: '1',is_leaf: 'TRUE', parent_id: '2')
     ComplianceLibrary.create(name: 'Confidentiality agreements', compliance_id: '1', is_leaf: 'TRUE', parent_id: '2')
