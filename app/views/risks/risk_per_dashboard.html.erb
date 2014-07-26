@@ -1,0 +1,156 @@
+<script src="/assets/outer/highcharts.js"></script>
+<script src="/assets/outer/exporting.js"></script>
+<script src="/assets/outer/drilldown.js"></script>
+<script src="/assets/outer/data.js"></script>
+  <div class="clearfix"></div>
+  <!-- Dash Board Start -->
+  <div class="dashboard_main">
+    <div class="container">
+      <div class="row"> 
+        <!-- Dash Board Title Start -->
+        <div class="dashboard-title col-lg-12">Dash Board</div>
+        <!-- Dash Board Title End -->
+        <div class="col-lg-8 dash_bg"> 
+          <!-- Dash Board Menu Start-->
+          <div class="dashboard_menu">
+            <ul>
+              <li>
+                <a class="lightgreen" href="">
+                  <div class="db-plan-icon"></div>
+                  Plan </a> 
+              </li>
+              <li>
+                <a class="lightgreen" href="">
+                  <div class="db-do-icon"></div>
+                  Do </a>
+              </li>
+              <li>
+                <a class="drakgreen" href="">
+                  <div class="db-check-icon"></div>
+                  Check </a>
+              </li>
+            </ul>
+          </div>
+          <!-- Dash Board Menu End-->
+
+          <!-- ISMS Audit Score Start -->
+          <div class="dash_sub_title">Control Process and Procedure</div>
+          <% if @risk.control_measure.present?%>
+          <div id="container2"></div>
+          <%end%>
+          <!-- ISMS Audit Score End -->
+
+        <div class="dash_sub_title">ISMS Audit Score</div>
+        <div id="auditcompliancerating"></div>
+        </div>
+        <div class="col-lg-4 dash_bg">
+          <div class="db_audit_com clearfix">
+            <div class="db_audit_com_icon fleft"></div>
+            <div class="db_audit_com_txt">Audit Compliance Rating <b>62%</b> </div>
+          </div>
+
+          <!--Audit Details Start -->
+          <div class="dash_sub_title">Risk Details</div>
+          <div class="db_aduitdetails">
+            <div class="form-group clearfix">
+              <label  class="col-sm-4"><b>Risk Name:</b> </label>
+              <div class="col-sm-8"> <%= @risk.subject unless @risk.nil?%></div>
+              
+            </div>
+            <div class="form-group clearfix">
+              <label  class="col-sm-4"><b>Start Date:</b> </label>
+              <div class="col-sm-8"><%= @risk.created_at unless @risk.nil?%></div>
+            </div>
+            <div class="form-group clearfix">
+              <label  class="col-sm-4"><b>End Date:</b> </label>
+              <div class="col-sm-8">01/06/2014</div>
+            </div>
+            <div class="form-group clearfix">
+              <label  class="col-sm-4"><b>Stakeholder:</b> </label>
+              <div class="col-sm-8">Hersha, Padma, Shan, Balaji, Arun, Vijay, Gayathri</div>
+            </div>
+            <div class="db_download_btn clearfix"> <a class="download-icon" href="">Download Report</a> <a class="download-aff-icon" href="">Download Artifacts</a> </div>
+          </div>
+          <!--Audit Details End --> 
+                 <div class="dash_sub_title">Audit Status</div>
+                        <div id="container" class="aduit_status"></div>
+          <!--Audit Status  End--> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Dash Board End -->
+  <script type="text/javascript">
+
+  $(function () {
+    // Create the chart
+    $('#container2').highcharts({
+
+        chart: {
+            type: 'pie'
+        },
+
+        credits: {
+            enabled: false
+        },
+
+        title: {
+            text: 'Controls,Procedure and Process'
+        },
+
+        legend: {
+            enabled: false
+        },
+
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y:.1f}'
+                }
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+        }, 
+
+        series: [{
+            name: 'Control Measure',
+            colorByPoint: true,
+            data: [
+                {   
+                    name:'Control',
+                    y: <%= @control.count %>
+                    // drilldown: 'control'
+                },
+
+                { 
+                    name:'Procedure',
+                    y: <%= @procedure.count %>
+                    // drilldown: 'procedure'
+                },
+
+                { 
+                    name:'Process',
+                    y: <%= @process.count %>
+                    // drilldown: 'process'
+                },
+            ]
+        }],
+        // drilldown: {
+        //     series: [{
+        //         id: 'control',
+        //         data: [
+        //             ['External', 1],
+        //             ['Internal', 1]
+        //         ]
+        //     }]
+        // }
+    })
+
+});
+
+</script> 
