@@ -47,9 +47,9 @@ class RisksController < ApplicationController
 
   def risk_per_dashboard
     @risk = Risk.find(params[:id])
-    @control = CppMeasure.where(id: @risk.control_measure.control_ids)
-    @process = CppMeasure.where(id: @risk.control_measure.process_ids)
-    @procedure = CppMeasure.where(id: @risk.control_measure.procedure_ids)
+    @control = @risk.control_measure.present? ? CppMeasure.where(id: @risk.control_measure.control_ids) : []
+    @process = @risk.control_measure.present? ? CppMeasure.where(id: @risk.control_measure.process_ids) : []
+    @procedure = @risk.control_measure.present? ? CppMeasure.where(id: @risk.control_measure.procedure_ids) : []
   end
 
   def risk_imports
