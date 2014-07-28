@@ -8,7 +8,7 @@ ActiveAdmin.register CppMeasure, { :as => 'Procedures'} do
     ]
   end
 
-  permit_params :compliance_id, :name, :description, :duration, :measure_type, :company_id, :implementation_status_id
+  permit_params :compliance_id, :name, :description, :duration, :measure_type, :company_id, :implementation_status_id,:implementation_status_name
 
  controller do
     before_filter :check_company_admin, :check_role, :company_admin_module_check, :check_subdomain,:check_plan_expire
@@ -24,6 +24,12 @@ ActiveAdmin.register CppMeasure, { :as => 'Procedures'} do
   index do
     column :name
     column :description
+    column "ImplementationStatus" do |c|
+      c.implementation_status_name
+    end
+    # column "Implementation Status" do |i|
+    # i.implementation_status.name
+    # end
     column  "Compliance" do |c|
     c.compliance.name
     end
@@ -37,12 +43,16 @@ ActiveAdmin.register CppMeasure, { :as => 'Procedures'} do
 
       row :name
       row :description
+      row :implementation_status
+      # row "Implementation Status" do |i|
+      # i.implementation_status.name
+      # end
       row  "Compliance" do |c|
         c.compliance.name
       end
     end
   end
-
+# 
   form do |f|
       f.inputs "New Procedures" do
       f.input :name
