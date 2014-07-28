@@ -1,5 +1,5 @@
 module RiskDashboardHelper
-  def chart_input(x_axis)
+  def risk_chart_input(x_axis)
     x_axis_records = []
     y_axis_records = []
     case x_axis
