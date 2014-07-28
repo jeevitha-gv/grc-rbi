@@ -43,7 +43,7 @@ $( "#audit_chart" ).sortable({
 		serialStr=getItems('#chart_wrap');
 		console.log(serialStr);
 	 $.ajax({
-					url: "/dashboard/update",
+					url: "/risk_dashboard/update",
 					type: "put",
 					beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
 					data: {order: serialStr}

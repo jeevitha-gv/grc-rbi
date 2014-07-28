@@ -15,32 +15,40 @@
           <!-- Dash Board Menu Start-->
           <div class="dashboard_menu">
             <ul>
+              <% risk_status_id = @risk.risk_status_id unless @risk.nil?%>
+                            
               <li>
-                <a class="lightgreen" href="">
-                  <div class="db-plan-icon"></div>
-                  Plan </a> 
+                <div id="arrow" class="<%=  dashboard_risk_status(risk_status_id,'Initiated') unless risk_status_id.nil? %>"> <a  href="/risks/<%= @risk.id%>/edit">
+                  <div class="plan-icon"></div>
+                  Filed </a> </div>
               </li>
               <li>
-                <a class="lightgreen" href="">
-                  <div class="db-do-icon"></div>
-                  Do </a>
+               <div id="arrow1" class="<%=  dashboard_risk_status(risk_status_id,'Mitigated') unless risk_status_id.nil? %>"> <a  href="/risks/<%= @risk.id%>/edit">
+                  <div class="lmitigate-icon"></div>
+                  Mitigated </a></div>
               </li>
               <li>
-                <a class="drakgreen" href="">
-                  <div class="db-check-icon"></div>
-                  Check </a>
+                <div id="arrow2" class="<%=  dashboard_risk_status(risk_status_id,'Reviewed') unless risk_status_id.nil? %>"> <a  href="/risks/<%= @risk.id%>/edit">
+                  <div class="review-icon"></div>
+                  Reviewed </a></div>
               </li>
             </ul>
           </div>
           <!-- Dash Board Menu End-->
 
-          <!-- ISMS Audit Score Start -->
+          <!-- Control,Process,procedure  chart Start -->
           <% if @risk.control_measure.present?%>
           <div class="dash_sub_title">Control Process and Procedure</div>          
           <div id="container2"></div>
           <%end%>
-          <!-- ISMS Audit Score End -->
+          <!-- Control,Process,procedure chart End -->
 
+           <!--risk score chart start-->
+           <%# if @risk.control_measure.present?%>
+         <!--  <div class="dash_sub_title">Control Process and Procedure</div>          
+          <div id="container3"></div> -->
+          <%#end%>
+           <!--risk score chart end-->
         <div class="dash_sub_title">ISMS Audit Score</div>
         <div id="auditcompliancerating"></div>
         </div>
@@ -100,15 +108,15 @@
               <label  class="col-sm-4"><b>Scoring:</b> </label>
               <div class="col-sm-8"><%=  @risk.risk_scoring_scoring_type unless @risk.nil?%></div>
             </div>
-            <div class="db_download_btn clearfix"><a class="download-aff-icon" href="<%= %>">Download Reports</a> </div>
-                     <!--Audit Details End --> 
-                 <div class="dash_sub_title">Audit Status</div>
-                        <div id="container" class="aduit_status"></div>
-          <!--Audit Status  End--> 
+            <% unless @risk.nil? %>
+            <div class="db_download_btn clearfix"><a class="download-aff-icon" href="/risks/<%= @risk.id unless @risk.nil?%>.pdf" %>Download Reports</a> </div>
+            <% end %>
+                     
         </div>
       </div>
     </div>
   </div>
+</div>
   <!-- Dash Board End -->
   <script type="text/javascript">
 
@@ -118,6 +126,77 @@
 
         chart: {
             type: 'pie'
+        },
+
+        credits: {
+            enabled: false
+        },
+
+        title: {
+            text: 'Controls,Procedure and Process'
+        },
+
+        legend: {
+            enabled: false
+        },
+
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y:.1f}'
+                }
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+        }, 
+
+        series: [{
+            name: 'Control Measure',
+            colorByPoint: true,
+            data: [
+                {   
+                    name:'Control',
+                    y: <%= @control.count %>
+                    // drilldown: 'control'
+                },
+
+                { 
+                    name:'Procedure',
+                    y: <%= @procedure.count %>
+                    // drilldown: 'procedure'
+                },
+
+                { 
+                    name:'Process',
+                    y: <%= @process.count %>
+                    // drilldown: 'process'
+                },
+            ]
+        }],
+        // drilldown: {
+        //     series: [{
+        //         id: 'control',
+        //         data: [
+        //             ['External', 1],
+        //             ['Internal', 1]
+        //         ]
+        //     }]
+        // }
+    })
+
+});
+
+$(function () {
+    // Create the chart
+    $('#container3').highcharts({
+
+        chart: {
+            type: 'column'
         },
 
         credits: {
