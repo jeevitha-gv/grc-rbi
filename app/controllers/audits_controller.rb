@@ -16,7 +16,8 @@ class AuditsController < ApplicationController
     @audit = Audit.find(params[:id])
     # audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
     audit_initializers(@audit.team_id)
-    @team_users = @team.users
+    @team = @audit.team
+    @team_users = @team.users if @team.present?
   end
 
   # Create Individual audit
