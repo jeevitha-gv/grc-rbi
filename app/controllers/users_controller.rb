@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   #before_filter :check_password , only: [:edit, :update]
+  before_filter :check_company_disabled, :company_module_access_check
   skip_before_filter :check_password_authenticated, :only => [:password, :update_password]
 
   # Edit particular user details

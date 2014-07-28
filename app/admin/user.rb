@@ -115,7 +115,7 @@ end
       end
       f.input :user_name
       f.input :teams, :class => "", :collection => current_company.teams
-      f.input :role_id, :label => 'Role', :as => :select, :collection => current_company.roles, :prompt => "-Select Role-"
+      f.input :role_id, :label => 'Role*', :as => :select, :collection => current_company.roles, :prompt => "-Select Role-"
       f.input :manager , :label => 'Manager', :as => :select , :collection => current_company.users.map{|u| [u.user_name, u.id]}, :prompt => "-Select Manager-"
       f.input :is_disabled
     end
