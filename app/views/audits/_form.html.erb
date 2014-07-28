@@ -1,5 +1,8 @@
 <style>
-#standard-topic, #standard-compliance, #department-dropdown, #teams-dropdown{
+/*#standard-topic, #standard-compliance, #department-dropdown, #teams-dropdown{
+  display: none;
+}*/
+#standard-topic, #standard-compliance{
   display: none;
 }
 </style>
@@ -153,12 +156,13 @@
     </label>
     <div class="col-sm-7">
       <div class="risk-select">
-        <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => audit.location_id), {include_blank: 'Select Location' }, { :id => "locations-list", :onChange => "get_departments(this);"} %>
+         <%#= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => audit.location_id), {include_blank: 'Select Location' }, { :id => "locations-list", :onChange => "get_departments(this);"} %> 
+        <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => audit.location_id), {include_blank: '--Select Location--' }, { :id => "locations-list"} %>
       </div>
     </div>
-    <div class="ajax-loader" style="display:none;">
+    <!-- <div class="ajax-loader" style="display:none;">
       <%= image_tag("/assets/outer/ajax-loader-small.gif", :alt => "ajax-loader") %>
-    </div>
+    </div> -->
   </div>
   <div class="form-group clearfix" id="department-dropdown" style="<%= 'display:block;' if (audit.department_id.present? && (action_name == "create" || action_name == "edit" || action_name == "update")) %>">
     <label class="col-sm-4 control-label">
@@ -166,16 +170,17 @@
     </label>
     <div class="col-sm-7">
       <div class="risk-select">
-      <% if departments.present? %>
-        <%= f.select :department_id, options_for_select(departments.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.department_id), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
-      <% else %>
-        <%= f.select :department_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
-      <% end %>
+     <%# if departments.present? %>
+        <%#= f.select :department_id, options_for_select(departments.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.department_id), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
+      <%# else %>
+        <%#= f.select :department_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
+      <%# end %> 
+      <%= f.select :department_id, options_for_select(current_company.departments.collect{|x| [x.name, x.id.to_i]}, :selected => audit.department_id), {include_blank: '--Select Department--' }, { :id => "department_id"} %>
       </div>
     </div>
-    <div class="ajax-loader-department" style="display:none;">
+    <!-- <div class="ajax-loader-department" style="display:none;">
       <%= image_tag("/assets/outer/ajax-loader-small.gif", :alt => "ajax-loader") %>
-    </div>
+    </div> -->
   </div>
   <div class="form-group clearfix" id="teams-dropdown" style="<%= 'display:block;' if (audit.team_id.present?) %>">
     <label class="col-sm-4 control-label">
@@ -183,16 +188,17 @@
     </label>
     <div class="col-sm-7">
       <div class="risk-select">
-      <% if teams.present? %>
-        <%= f.select :team_id, options_for_select(teams.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.team_id), {include_blank: 'Select Team' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
-      <% else %>
-        <%= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
-      <% end %>
+      <%# if teams.present? %>
+        <%#= f.select :team_id, options_for_select(teams.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.team_id), {include_blank: 'Select Team' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
+      <%# else %>
+        <%#= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: '--Select Team--' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
+      <%# end %> 
+      <%= f.select :team_id, options_for_select(current_company.teams.collect{|x| [x.name, x.id.to_i]}, :selected => audit.team_id), {include_blank: '--Select Team--' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
       </div>
     </div>
-    <div class="ajax-loader-team" style="display:none;">
+    <!-- <div class="ajax-loader-team" style="display:none;">
       <%= image_tag("/assets/outer/ajax-loader-small.gif", :alt => "ajax-loader") %>
-    </div>
+    </div> -->
   </div>
 </div>
 <div class="col-lg-4 col-sm-6 col-xs-12">

@@ -14,8 +14,10 @@ class AuditsController < ApplicationController
   # Edit Individual audit
   def edit
     @audit = Audit.find(params[:id])
-    audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
-    @team_users = @team.users
+    # audit_initializers(@audit.location_id, @audit.department_id, @audit.team_id)
+    audit_initializers(@audit.team_id)
+    @team = @audit.team
+    @team_users = @team.users if @team.present?
   end
 
   # Create Individual audit
@@ -147,8 +149,8 @@ class AuditsController < ApplicationController
 
   protected
     def audit_initializers(location_id=nil, department_id=nil, team_id=nil)
-      @departments = Department.for_location(location_id) if location_id
-      @teams = Team.for_department_and_company(department_id, current_company.id, 1) if department_id
+      # @departments = Department.for_location(location_id) if location_id
+      # @teams = Team.for_department_and_company(department_id, current_company.id, 1) if department_id
       @team = Team.for_id(team_id).last if team_id
     end
 

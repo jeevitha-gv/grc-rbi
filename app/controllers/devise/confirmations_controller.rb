@@ -10,6 +10,7 @@ class Devise::ConfirmationsController < DeviseController
     yield resource if block_given?
     # sign_in resource, :bypass => true
     if successfully_sent?(resource)
+     flash[:forgot_notice]   = "You will receive an Email with Activation Link "
       respond_with({}, location: after_resending_confirmation_instructions_path_for(resource_name))
     else
       respond_with(resource)
