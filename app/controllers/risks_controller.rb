@@ -46,6 +46,13 @@ class RisksController < ApplicationController
     end
   end
 
+  def risk_per_dashboard
+    @risk = Risk.find(params[:id])
+    @control = @risk.control_measure.present? ? CppMeasure.where(id: @risk.control_measure.control_ids) : []
+    @process = @risk.control_measure.present? ? CppMeasure.where(id: @risk.control_measure.process_ids) : []
+    @procedure = @risk.control_measure.present? ? CppMeasure.where(id: @risk.control_measure.procedure_ids) : []
+  end
+
   def risk_imports
     if(params[:file].present?)
       begin
@@ -80,6 +87,12 @@ class RisksController < ApplicationController
     attachment = Attachment.find(params[:id])
     send_file(Rails.public_path.to_s + attachment.attachment_file_url)
   end
+
+
+    def download_document
+      attachment = Attachment.find(params[:id])
+      send_file(Rails.public_path.to_s + attachment.attachment_file_url)
+    end
 
   def remove_attachment
     attachment = Attachment.find(params[:id])

@@ -160,7 +160,6 @@ en:
       x_axis: "Please select x_axis"
       y_axis: "Please select y_axis"
       chart_type: "Please select chart type"
-  
 
 
 fr:
@@ -206,7 +205,7 @@ fr:
     audit_observation:
       success: "observation d'audit a été créé avec succès"
     audit_recommendation:
-      success: "recommandation d'audit a été créé avec succès"
+      success: "recommendation d'audit a été créé avec succès"
 
   audit_compliance:
     comment:
@@ -262,7 +261,7 @@ fr:
       auditor_not_in_auditees: "L'utilisateur est déjà sélectionné à titre de vérificateur"
 
   checklist_recommendations:
-    recommendation: "S'il vous plaît entrer recommandation"
+    recommendation: "S'il vous plaît entrer recommendation"
     priority: "S'il vous plaît sélectionner priorité"
     reason: "S'il vous plaît entrer raison"
     severity: "S'il vous plaît sélectionner gravité"
@@ -276,3 +275,10 @@ fr:
 
   answers:
     detailed_value: "S'il vous plaît entrer réponse"
+
+  chart:
+    presence: 
+      name: "S'il vous plaît entrez le nom widget,"
+      x_axis: "S'il vous plaît sélectionner X_AXIS"
+      y_axis: "S'il vous plaît sélectionner Y_AXIS"
+      chart_type: "S'il vous plaît sélectionner le type de graphique"

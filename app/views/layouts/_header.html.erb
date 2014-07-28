@@ -13,7 +13,7 @@
             </div>
           <% end %>
           </div>
-         <%if company_plan_check%> 
+         <%if company_plan_check%>
           <div class="navbar-collapse collapse fleft">
           <ul class="nav navbar-nav main_nav">
              <li><a href="/admin/plans" class="<%= add_admin_active_class(params) == 'plans' ? 'active' : '' %>">
@@ -88,7 +88,7 @@
           Dashboard</a></li>
         <li><a href="/dashboard/calender" class="<%= request.fullpath.include?("dashboard/calender") == true ? 'active' : '' %>">
           <div class="calender-icon"></div>
-          Calender</a></li>
+          Calendar</a></li>
         <li><a href="/audits/new" class="<%= (request.fullpath.include?("audits/new") && action_name=="new") == true ? 'active' : '' %>">
           <div class="plan-icon"></div>
           Plan</a></li>
@@ -106,7 +106,10 @@
           Act</a></li>
         <li><a href="/audits?stage=published" class="<%= (request.fullpath.include?('stage=published') || request.fullpath.include?("checklist_recommendations/audit_observation")) == true ? 'active' : '' %>">
           <div class="published-icon"></div>
-          Published</a></li>
+          Publish</a></li>
+        <li><a href="/admin/operational_areas" >
+          <div class="setting-icon"></div>
+          Configure</a></li>
           <%else%>
           <li><a href="/admin/plans">
             <div class="setting-icon"></div>

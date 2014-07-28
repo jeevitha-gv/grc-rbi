@@ -44,7 +44,7 @@
           <div class="account_header_dropdown" style="display: none;">
             <ul>
               <li><%= link_to "User Profile", edit_user_path %></li>
-              <li><%= link_to "Audit Trail", activities_path %></li>
+              <li><%= link_to "Audit Trial", activities_path %></li>
               <li><%= link_to "Reset Password", password_user_path %></li>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
             </ul>
@@ -63,8 +63,11 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
+        <li><a  href="/risk_dashboard" class="<%= (request.fullpath.include?("risk_dashboard") && action_name == "index") == true ? 'active' : '' %>">
+          <div class="dash-icon"></div>
+          Dashboard</a></li>
         <li><a  href="/risks/new" class="<%= (request.fullpath.include?("risks/new") && action_name == "new") == true ? 'active' : '' %>">
-          <div class="file-icon"></div>
+          <div class="plan-icon"></div>
           File</a></li>
         <li><a  href="/risks" class="<%= request.fullpath.exclude?("mitigate") && request.fullpath.exclude?("new") && request.fullpath.exclude?("review") && request.fullpath.exclude?("mitigations") == true ? 'active' : '' %>">
           <div class="listing-icon"></div>
@@ -75,9 +78,9 @@
         <li><a  href="/risks?stage=review" class="<%= request.fullpath.include?("review") == true ? 'active' : '' %>">
           <div class="review-icon"></div>
           Review</a></li>
-        <li><a href="/user/edit" >
+        <li><a href="/admin/controls" >
           <div class="setting-icon"></div>
-          Settings</a></li>
+          Configure</a></li>
       </ul>
     </div>
   </div>

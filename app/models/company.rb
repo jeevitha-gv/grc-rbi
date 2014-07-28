@@ -30,6 +30,7 @@ class Company < ActiveRecord::Base
   has_many :subscriptions,through: :plan
   has_many :transactions
   has_many :dashboard_charts
+  has_many :risk_charts
   #has_many :company_payments
 
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
@@ -83,7 +84,7 @@ class Company < ActiveRecord::Base
     RiskReviewLevel.create(name: "MEDIUM", days: 180,value: 4 ,company_id: company.id)
     RiskReviewLevel.create(name: "LOW", days: 360,value: 0 ,company_id: company.id)
   end
-  
+
   def company_plan_create
     company = Company.last
     subscribe = Subscription.where("amount = ?",0).first

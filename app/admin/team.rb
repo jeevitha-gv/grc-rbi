@@ -49,16 +49,17 @@ ActiveAdmin.register Team do
   end
 
   show do
-    attributes_table do
-       row :name
-      row "Company" do |c|
-        c.company.name
-      end
-      row :department
-       row "Section" do |c|
-        c.section.name
-      end
-    end
+    attributes_table :name
+    # attributes_table do
+    #    row :name
+    #   row "Company" do |c|
+    #     c.company.name
+    #   end
+    #   row :department
+    #    row "Section" do |c|
+    #     c.section.name
+    #   end
+    # end
   end
 
   form do |f|

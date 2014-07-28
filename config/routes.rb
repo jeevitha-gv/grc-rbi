@@ -23,6 +23,11 @@ Rails.application.routes.draw do
      end
    end
 
+   resources :risk_dashboard do
+     collection do
+      patch 'update'
+     end
+   end
 
   resources :risks do
     collection do
@@ -31,9 +36,13 @@ Rails.application.routes.draw do
       get 'risk_export'
       get 'download_risk_document'
       delete 'remove_attachment'
+      get ':id/risk_per_dashboard', to: 'risks#risk_per_dashboard', as: 'risk_per_dashboard'
     end
     resources :mgmt_reviews
     resources :mitigations
+    collection do
+      get 'download_document'
+    end
   end
 
   resources :audits do
@@ -118,7 +127,7 @@ Rails.application.routes.draw do
   resources :compliance_libraries
   resources :audit_compliances do
     post 'submit', on: :collection
-  end 
+  end
 
   resources :plans
 
