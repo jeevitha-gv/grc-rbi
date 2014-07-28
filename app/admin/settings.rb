@@ -1,4 +1,5 @@
 ActiveAdmin.register Company, { :as => 'Settings'} do
+  before_filter :check_company_disabled, :company_module_access_check
   config.filters = false
   menu :if => proc{ !current_admin_user.present? }
 
