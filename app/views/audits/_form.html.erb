@@ -156,7 +156,7 @@
     </label>
     <div class="col-sm-7">
       <div class="risk-select">
-        <!-- <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => audit.location_id), {include_blank: 'Select Location' }, { :id => "locations-list", :onChange => "get_departments(this);"} %> -->
+         <%#= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => audit.location_id), {include_blank: 'Select Location' }, { :id => "locations-list", :onChange => "get_departments(this);"} %> 
         <%= f.select :location_id, options_for_select(current_company.locations.collect{|x| [x.name, x.id.to_i]}, :selected => audit.location_id), {include_blank: '--Select Location--' }, { :id => "locations-list"} %>
       </div>
     </div>
@@ -170,11 +170,11 @@
     </label>
     <div class="col-sm-7">
       <div class="risk-select">
-      <!-- <% if departments.present? %>
-        <%= f.select :department_id, options_for_select(departments.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.department_id), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
-      <% else %>
-        <%= f.select :department_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
-      <% end %> -->
+     <%# if departments.present? %>
+        <%#= f.select :department_id, options_for_select(departments.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.department_id), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
+      <%# else %>
+        <%#= f.select :department_id, options_for_select(["Some text here", ""]), {include_blank: 'Select Department' }, { :id => "department_id", :onChange => "get_teams(this);"} %>
+      <%# end %> 
       <%= f.select :department_id, options_for_select(current_company.departments.collect{|x| [x.name, x.id.to_i]}, :selected => audit.department_id), {include_blank: '--Select Department--' }, { :id => "department_id"} %>
       </div>
     </div>
@@ -188,11 +188,11 @@
     </label>
     <div class="col-sm-7">
       <div class="risk-select">
-      <!-- <% if teams.present? %>
-        <%= f.select :team_id, options_for_select(teams.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.team_id), {include_blank: 'Select Team' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
-      <% else %>
-        <%= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: '--Select Team--' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
-      <% end %> -->
+      <%# if teams.present? %>
+        <%#= f.select :team_id, options_for_select(teams.all.collect{|x| [x.name, x.id.to_i]}, :selected => audit.team_id), {include_blank: 'Select Team' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
+      <%# else %>
+        <%#= f.select :team_id, options_for_select(["Some text here", ""]), {include_blank: '--Select Team--' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
+      <%# end %> 
       <%= f.select :team_id, options_for_select(current_company.teams.collect{|x| [x.name, x.id.to_i]}, :selected => audit.team_id), {include_blank: '--Select Team--' }, { :id => "team_id", :onChange => "get_auditee_users(this);"} %>
       </div>
     </div>
