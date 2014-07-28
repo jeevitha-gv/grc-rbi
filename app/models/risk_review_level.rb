@@ -6,7 +6,7 @@ class RiskReviewLevel < ActiveRecord::Base
   scope :review_level, lambda {|name, company_id| where(name: name, company_id: company_id)}
 
   validate :risk_review_level_value, :on => :update
-  validates :value, :numericality => { :greater_than_or_equal_to => 1, :less_than_or_equal_to => 9, :only_integer => true}
+  validates :value, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 9, :only_integer => true}
 
 
   def risk_review_level_value
