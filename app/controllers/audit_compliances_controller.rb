@@ -3,7 +3,7 @@ class AuditCompliancesController < ApplicationController
     before_filter :authorize_auditees_skip_company_admin, :only => [:response, :response_checklist]
     before_filter :authorize_auditees, :only => [:submit]
     before_filter :check_for_auditee_response, only: [:index]
-    before_filter :authorize_auditor_skip_company_admin, :only => [:index, :compliance_checklist]
+    # before_filter :authorize_auditor_skip_company_admin, :only => [:index, :compliance_checklist]
     before_filter :authorize_auditor, :only => [:create]
   # List the compliance for particular audit - JSON grid
 	def compliance_checklist
