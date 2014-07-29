@@ -114,7 +114,7 @@ class BaseController < ActionController::Base
 
   # Authorize the Auditor for current audit
   def authorize_auditor
-	  	unless @audit.auditor == current_user.id
+	  	unless (@audit.auditor == current_user.id || current_user.role_title == "company_admin")
         flash[:alert] = "Access restricted"
 	  		redirect_to audits_path
 	  	end
