@@ -1,19 +1,19 @@
 module RiskDashboardHelper
-  def chart_input(x_axis)
+  def risk_chart_input(x_axis)
     x_axis_records = []
     y_axis_records = []
     case x_axis
-      when 'Category'
+      when 'Risk Categories'
         current_user.accessible_risks.group_by(&:category_id).each do |key,value|
           x_axis_records << RiskCategory.find_by_id(key).name
           y_axis_records << value.count
         end
-      when 'Status'
+      when 'Risk Statuses'
         current_user.accessible_risks.group_by(&:risk_status_id).each do |key,value|
           x_axis_records << RiskStatus.find_by_id(key).name
           y_axis_records << value.count
         end
-      when 'Compliance Type'
+      when 'Risk Compliance Types'
         current_user.accessible_risks.group_by(&:compliance_id).each do |key,value|
           x_axis_records << Compliance.find_by_id(key).name
           y_axis_records << value.count
@@ -23,17 +23,17 @@ module RiskDashboardHelper
           x_axis_records << Technology.find_by_id(key).name
           y_axis_records << value.count
         end
-      when 'Location'
+      when 'Risk Locations'
         current_user.accessible_risks.group_by(&:location_id).each do |key,value|
           x_axis_records <<  Location.location_name(key)
           y_axis_records << value.count
         end
-      when 'Department'
+      when 'Risk Departments'
         current_user.accessible_risks.group_by(&:department_id).each do |key,value|
           x_axis_records <<  Department.department_name(key)
           y_axis_records << value.count
         end
-      when 'Team'
+      when 'Risk Teams'
         current_user.accessible_risks.group_by(&:team_id).each do |key,value|
           x_axis_records <<  Team.team_name(key)
           y_axis_records << value.count

@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
 	
+	before_filter :check_company_disabled, :company_module_access_check
 	before_filter :company_module_access_check
 	before_filter :check_plan_expire
   #Audit Calender Page

@@ -23,7 +23,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
               <div class="form-group">
                 <div class="col-sm-12">
-                  <%= dread.label :dread_reproducibility, t('dread.reproductibility') %>
+                  <%= dread.label :dread_reproducibility, t('dread.reproducibility') %>
                   <div class="risk-select">
                     <%= dread.select :dread_reproducibility, (0..10), dread.object.dread_reproducibility.present? ? {selected: dread.object.dread_reproducibility} : {selected: 10 }, { :class => "form-control" } %>
                   </div>

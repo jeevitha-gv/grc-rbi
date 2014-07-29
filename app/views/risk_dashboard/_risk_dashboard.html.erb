@@ -34,7 +34,7 @@
                       <div class="form-group fleft modal-padding">
                          <%= f.label "X-Axis: ", :class => "control-label" %>
                         <div class="select_outer">
-													<%= f.select :x_axis , ['Category','Status','Compliance Type','Technology','Location','Department','Team'],{:prompt => "-Select X-Axis-", :id =>"widget_x_axis"}  %>
+													<%= f.select :x_axis , ['Risk Categories','Risk Statuses','Risk Compliance Types','Technology','Risk Locations','Risk Departments','Risk Teams'],{:prompt => "-Select X-Axis-", :id =>"widget_x_axis"}  %>
                         </div>
 											<span id="widget_x_axis_error" class="error_message" style="display:none;"><%= MESSAGES["chart"]["presence"]["x_axis"]%></span>
                       </div>
@@ -47,7 +47,7 @@
                       </div>
 											<div class="form-group clearfix">
                         <%= f.label "Chart Type: " %>
-													<div class="select_outer">
+													<div class="select_inner">
 													<%= f.select :chart_type , ['Bar','Pie','Line'],{ :prompt => "-Select Chart Type-" , :class =>"modal-normal-input", :id => "widget_chart_type" }%>
 												</div>
 												<span id="widget_chart_type_error" class="error_message" style="display:none;"><%= MESSAGES["chart"]["presence"]["chart_type"]%></span>

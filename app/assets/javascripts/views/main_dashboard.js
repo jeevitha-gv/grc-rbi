@@ -17,6 +17,9 @@ $(function () {
             subtitle: {
                 text: ''
             },
+            credits: {
+      enabled: false
+  },
             xAxis: {
                 categories: x_axis_record
             },
@@ -84,6 +87,9 @@ $(function () {
                 subtitle: {
                     text: ''
                 },
+                credits: {
+      enabled: false
+  },
                 plotOptions: {
                     series: {
                         dataLabels: {
@@ -118,6 +124,9 @@ $(function () {
             subtitle: {
                 text: ''
             },
+            credits: {
+      enabled: false
+  },
             xAxis: {
                 categories: x_axis_record
             },

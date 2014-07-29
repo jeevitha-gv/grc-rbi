@@ -1,4 +1,5 @@
 class RisksController < ApplicationController
+  before_filter :check_company_disabled, :company_module_access_check
   before_filter :risk_users, only: [:new, :create, :edit, :update]
   before_filter :company_module_access_check
   before_filter :check_plan_expire
@@ -33,7 +34,16 @@ class RisksController < ApplicationController
     @risk = Risk.find(params[:id])
     risk_initializers(@risk.location_id, @risk.department_id, @risk.team_id, @risk.compliance_id)
   end
-
+ def show
+    @risk = Risk.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        @pdf = (render_to_string pdf: "PDF", template: "risks/show.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
+        send_data(@pdf, type: "application/pdf", filename: @risk.subject)
+      end
+    end
+  end
   def update
     @risk = Risk.find(params[:id])
     @risk.set_risk_status(@risk, params[:commit]) if params[:commit] == "Initiate Risk"
@@ -43,6 +53,14 @@ class RisksController < ApplicationController
       risk_initializers(@risk.location_id, @risk.department_id, @risk.team_id, @risk.compliance_id)
       render 'edit'
     end
+  end
+
+  def risk_per_dashboard
+    @risk = Risk.find(params[:id])
+    @control = @risk.control_measure.present? ? CppMeasure.where(id: @risk.control_measure.control_ids) : []
+    @process = @risk.control_measure.present? ? CppMeasure.where(id: @risk.control_measure.process_ids) : []
+    @procedure = @risk.control_measure.present? ? CppMeasure.where(id: @risk.control_measure.procedure_ids) : []
+
   end
 
   def risk_imports
@@ -79,6 +97,12 @@ class RisksController < ApplicationController
     attachment = Attachment.find(params[:id])
     send_file(Rails.public_path.to_s + attachment.attachment_file_url)
   end
+
+
+    def download_document
+      attachment = Attachment.find(params[:id])
+      send_file(Rails.public_path.to_s + attachment.attachment_file_url)
+    end
 
   def remove_attachment
     attachment = Attachment.find(params[:id])

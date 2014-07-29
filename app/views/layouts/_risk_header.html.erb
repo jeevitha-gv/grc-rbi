@@ -65,7 +65,7 @@
       <ul class="subbar-nav nav navbar-nav">
         <li><a  href="/risk_dashboard" class="<%= (request.fullpath.include?("risk_dashboard") && action_name == "index") == true ? 'active' : '' %>">
           <div class="dash-icon"></div>
-          Dashboard</a></li>          
+          Dashboard</a></li>
         <li><a  href="/risks/new" class="<%= (request.fullpath.include?("risks/new") && action_name == "new") == true ? 'active' : '' %>">
           <div class="plan-icon"></div>
           File</a></li>
@@ -78,9 +78,9 @@
         <li><a  href="/risks?stage=review" class="<%= request.fullpath.include?("review") == true ? 'active' : '' %>">
           <div class="review-icon"></div>
           Review</a></li>
-        <li><a href="/user/edit" >
+        <li><a href="/admin/controls" >
           <div class="setting-icon"></div>
-          Settings</a></li>
+          Configure</a></li>
       </ul>
     </div>
   </div>

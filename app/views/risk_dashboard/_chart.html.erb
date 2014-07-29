@@ -3,7 +3,7 @@
 <ul class="col-lg-12  col-sm-6" id="audit_chart">
 <% charts.each do |chart|%>
 			<li class="db_setting_main col-lg-6" id="<%= chart.id%>">
-        <% chart_input = chart_input(chart.x_axis)%>
+        <% chart_input = risk_chart_input(chart.x_axis)%>
         <% unless chart_input[0].empty?%>
 					<div class="dash_sub_title"><span class="title-dash"><%= chart.name%></span><span class="setting-icon db_setting" id="dropdown_<%= chart.id%>"><% if current_user.role_title == 'company_admin'%><span class="db_setting_down_icon" ></span>
 					<div class="btn-group">
@@ -43,7 +43,7 @@ $( "#audit_chart" ).sortable({
 		serialStr=getItems('#chart_wrap');
 		console.log(serialStr);
 	 $.ajax({
-					url: "/dashboard/update",
+					url: "/risk_dashboard/update",
 					type: "put",
 					beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',jQuery('meta[name="csrf-token"]').attr("content")); },
 					data: {order: serialStr}

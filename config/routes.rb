@@ -36,9 +36,13 @@ Rails.application.routes.draw do
       get 'risk_export'
       get 'download_risk_document'
       delete 'remove_attachment'
+      get ':id/risk_per_dashboard', to: 'risks#risk_per_dashboard', as: 'risk_per_dashboard'
     end
     resources :mgmt_reviews
     resources :mitigations
+    collection do
+      get 'download_document'
+    end
   end
 
   resources :audits do

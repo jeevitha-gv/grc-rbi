@@ -10,6 +10,19 @@ module RisksHelper
 		end
 	end
 
+  def  dashboard_risk_status(risk_status_id, status)
+    id = RiskStatus.where('name= ?', status).first.try(&:id)
+    if id.present?
+      if risk_status_id == id
+        'a_drakgreen'
+      elsif risk_status_id > id
+        'a_lightgreen'
+      else
+        'a_grey'
+      end
+    end
+  end
+
   def next_review_date(score, risk)
     if risk.review_date.nil?
       return "UNREVIEWED"

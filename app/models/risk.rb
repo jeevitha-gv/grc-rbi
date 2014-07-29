@@ -33,7 +33,7 @@ class Risk < ActiveRecord::Base
   # Validations
   validates :subject,length: { in: 0..250 }, :if => Proc.new{ |f| !f.subject.blank? }
   validates_presence_of :subject
-  # validates :compliance_library_id, presence:true
+  validates :compliance_library_id, presence:true
   validates :assessment, presence:true
   validates :notes, length: { in: 0..250 }
   validates :reference, presence:false, length: { in: 0..250 }
@@ -47,7 +47,7 @@ class Risk < ActiveRecord::Base
   validates_presence_of :department_id
   validates_presence_of :team_id
   validates_presence_of :mitigator
-  validates_presence_of :reviewer  
+  validates_presence_of :reviewer
   # validates :mitigator, presence:true
   # validates :reviewer, presence:true
   validates :submitted_by, presence:true
@@ -56,6 +56,9 @@ class Risk < ActiveRecord::Base
 
 	delegate :name, to: :risk_status, prefix: true, allow_nil: true
 	delegate :user_name, to: :risk_owner, prefix: true, allow_nil: true
+  delegate :user_name, to: :risk_mitigator, prefix: true, allow_nil: true
+  delegate :user_name, to: :risk_reviewer, prefix: true, allow_nil: true
+  delegate :name, to: :risk_category, prefix: true, allow_nil: true
 	delegate :scoring_type, to: :risk_scoring, prefix: true, allow_nil: true
 	delegate :calculated_risk, to: :risk_scoring, prefix: true, allow_nil: true
 	delegate :custom_value, to: :risk_scoring, prefix: true, allow_nil: true
@@ -65,7 +68,7 @@ class Risk < ActiveRecord::Base
 	delegate :name, to: :risk_category, prefix: true, allow_nil: true
 	delegate :name, to: :technology, prefix: true, allow_nil: true
 	delegate :name, to: :risk_model, prefix: true, allow_nil:true
-
+  delegate :name, to: :department, prefix: true, allow_nil: true
 
 	accepts_nested_attributes_for :mitigation
   accepts_nested_attributes_for :control_measure

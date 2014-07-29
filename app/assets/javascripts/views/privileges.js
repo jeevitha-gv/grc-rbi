@@ -69,7 +69,7 @@
 				var option="";
 				for (var i=0;i<data.actions.length;i++)
 				{
-					option=option+"<option value="+data.actions[i]["id"]+">"+data.actions[i]["model_name"]+"/"+data.actions[i]["action_name"]+"</option>";
+					option=option+"<option value="+data.actions[i]["id"]+">"+data.actions[i]["label"]+"</option>";
 				}
 				$('#privilege_modular_id').append(option);
 				//~ $('#privilege_modular_id').addClass("multiselect");
