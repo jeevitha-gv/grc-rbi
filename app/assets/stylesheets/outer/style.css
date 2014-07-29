@@ -1863,7 +1863,7 @@ li.db_setting_main{
   float: right;
 }
 .multiselect-container{
-  height: 200px;
+  height: 323px;
   overflow: scroll;
   overflow-x:hidden;
 }
@@ -1911,7 +1911,7 @@ li.db_setting_main{
 	.multiselect-container > li:hover{background:#FFF; }
 .open > .dropdown-menu {
     display: block;
-    width: 240px;
+    min-width: 452px;
 }
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{
 	background:#FFF;
