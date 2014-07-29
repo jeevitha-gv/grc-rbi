@@ -16,7 +16,6 @@ class ChecklistRecommendationsController < ApplicationController
 
  	#To create checklist recommendation for auditcompliance
 	def create
-		binding.pry
 		@checklist_recommendation = ChecklistRecommendation.new(checklist_params)
 		checklist_params = @checklist_recommendation.audit_checklist(params)
 			checklist_params.each do |check|
