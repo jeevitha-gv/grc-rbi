@@ -130,7 +130,7 @@
                   <div class="form-group clearfix">
                       <label  class="col-sm-3"><b>Observation :</b></label>
                       <div class="col-sm-9">
-                      <textarea class="audit-big-input" id="observation_<%= checklist_recommendation.id%>" name="checklist_recommendation[observation]" value ="<%= checklist_recommendation.observation if checklist_recommendation.present?%>" ></textarea>
+                      <input class="audit-big-input" type ="text" id="observation_<%= checklist_recommendation.id%>" name="checklist_recommendation[observation]"  value ="<%= checklist_recommendation.observation if checklist_recommendation.present?%>" >
                       <span class="error_message" id="error_observation_<%= checklist_recommendation.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["observation"]%><span>
                       </div>
 
@@ -144,7 +144,7 @@
                   <div class="col-lg-6">
                   <div class="form-group clearfix">
                       <label  class="col-sm-3"><b>Remarks :</b> </label>
-                      <div class="col-sm-9"> <textarea class="audit-big-input"  id="remarks_<%= checklist_recommendation.id%>" name="checklist_recommendation[remarks]" value ="<%= checklist_recommendation.remark_comment if checklist_recommendation.present?%>" ></textarea>
+                      <div class="col-sm-9"> <input class="audit-big-input" type ="text" id="remarks_<%= checklist_recommendation.id%>" name="checklist_recommendation[remarks]" value ="<%= checklist_recommendation.remark_comment if checklist_recommendation.present?%>" >
                   <span class="error_message" id="error_remarks_<%= checklist_recommendation.id%>" style="display:none;"><%= MESSAGES["checklist_recommendations"]["remarks"]%><span>
                     </div> </div>
                   <%= hidden_field_tag "checklist_recommendation[id]",  checklist_recommendation.id , :id => "id_#{checklist_recommendation.id}"%>
