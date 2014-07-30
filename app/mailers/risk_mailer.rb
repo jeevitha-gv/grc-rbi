@@ -12,4 +12,10 @@ class RiskMailer < ActionMailer::Base
     @days = review_days
     mail(:to => risk.risk_reviewer.email, content_type: "text/html", :subject => "Your next review date for #{risk.subject} is approaching."  )
   end
+
+  def send_notification(company)
+    @company = company
+    email = "shan@fixrnix.in"
+    mail(:to => email, content_type: "text/html", :subject => "FixNix GRC got a new subscription")
+  end
 end

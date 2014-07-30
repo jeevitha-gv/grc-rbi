@@ -57,6 +57,7 @@ class Company < ActiveRecord::Base
 
   attr_accessor :subscription
   after_create :company_role_create, :review_rating_levels_create, :company_plan_create
+  after_create :send_notification
 
   scope :active, -> { where(is_disabled: false) }
   # def active_audits
@@ -91,4 +92,9 @@ class Company < ActiveRecord::Base
     plan = Plan.new(subscription_id: subscribe.id ,company_id: company.id,starts: company.created_at,expires: company.created_at.to_date + subscribe.valid_log.months)
     plan.save!
   end
+
+  def send_notification
+    RiskMailer.send_notification(self).deliver
+  end
+
 end
