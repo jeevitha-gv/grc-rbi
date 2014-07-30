@@ -423,7 +423,7 @@ Artifact.delete_all
     Artifact.create(name: 'Segregation of Networks', compliance_library_id: '112', company_id: '1')
     Artifact.create(name: 'Usage of Generic user IDs', compliance_library_id: '117', company_id: '1')
     Artifact.create(name: 'Use of system utilities', compliance_library_id: '119', company_id: '1')
-    Artifact.create(name: 'Software Management (SMS)', compliance_library_id: '119', company_id: '1')
+    Artifact.create(name: 'Software Management System (SMS)', compliance_library_id: '119', company_id: '1')
     Artifact.create(name: 'Session time-out', compliance_library_id: '120', company_id: '1')
     Artifact.create(name: 'User level restriction for accessing of critical devices', compliance_library_id: '123', company_id: '1')
     Artifact.create(name: 'Sensitive system isolation (Firesafe) ', compliance_library_id: '124', company_id: '1')

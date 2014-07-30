@@ -52,7 +52,7 @@
                 <% elsif answered_ncquestion.nc_question.question_type.name == "Descriptive Type" %>
                   <%= answered_ncquestion.detailed_value %>
                 <% elsif answered_ncquestion.nc_question.question_type.name == "Multiple Choice"  %>
-                  <%  answered_ncquestion.question_option.value if answered_ncquestion.value.present? %>
+                  <%=  answered_ncquestion.question_option.value if answered_ncquestion.value.present? %>
                 <% end %>
               <% end %>
             </div>
