@@ -40,6 +40,9 @@ class User < ActiveRecord::Base
   has_many :mgmt_reviews
   has_many :closures
 
+  # Assosciations with Asset Module
+  has_many :otherasset_owner, class_name: 'OtherAsset', foreign_key: 'asset_owner'
+  has_many :otherasset_user, class_name: 'OtherAsset', foreign_key: 'asset_user' 
 
 # attribute to login with username or email
   attr_accessor :login, :domain
