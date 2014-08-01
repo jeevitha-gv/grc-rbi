@@ -348,7 +348,7 @@ en:
         risk:
           attributes:
             subject:
-              blank: "Subject zcannot be blank"
+              blank: "Subject cannot be blank"
             reference:
               blank: "Reference ID cannot be blank"
               taken: "Reference ID must be unique"
