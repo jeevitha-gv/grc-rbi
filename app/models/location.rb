@@ -17,4 +17,7 @@ class Location < ActiveRecord::Base
   belongs_to :company
   has_many :audits
   has_many :risks
+  # Assosciations with Asset Module
+  has_many :other_assets
+  has_many :contracts
 end

@@ -33,6 +33,9 @@ class Company < ActiveRecord::Base
   has_many :risk_charts
   #has_many :company_payments
 
+  # Assosciations with Asset Module
+  has_many :other_assets
+
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users
   accepts_nested_attributes_for :plan

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  other_asset_id: 1
+  order: MyString
+  date: 2014-08-01 16:45:31
+  total_cost: MyString
+  vendor_id: 1
+  notes: MyText
+
+two:
+  other_asset_id: 1
+  order: MyString
+  date: 2014-08-01 16:45:31
+  total_cost: MyString
+  vendor_id: 1
+  notes: MyText
