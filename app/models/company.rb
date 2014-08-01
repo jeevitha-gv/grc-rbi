@@ -35,6 +35,9 @@ class Company < ActiveRecord::Base
 
   # Assosciations with Asset Module
   has_many :other_assets
+  has_many :computers
+  has_many :vendors
+  has_many :mobile_assets
 
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users
