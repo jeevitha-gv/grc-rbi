@@ -11,6 +11,7 @@ class OtherAsset < ActiveRecord::Base
 	belongs_to :department
 	belongs_to :maintenance, class_name: 'Contract', foreign_key: 'maintenance_contract'
 	belongs_to :lease, class_name: 'Contract', foreign_key: 'lease_contract'
+	has_many :lifecycles
 
 
 end
