@@ -6,4 +6,9 @@ class MobileAsset < ActiveRecord::Base
   belongs_to :location
   belongs_to :department
   
+  # Validations
+  validates_presence_of :model
+  validates_presence_of :manufacturer
+  validates_presence_of :serial_number
+
 end

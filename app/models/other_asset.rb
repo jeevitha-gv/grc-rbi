@@ -13,5 +13,11 @@ class OtherAsset < ActiveRecord::Base
 	belongs_to :lease, class_name: 'Contract', foreign_key: 'lease_contract'
 	has_many :lifecycles
 
+	# Validations
+	validates_presence_of :name
+	validates_presence_of :manufacturer
+	validates_presence_of :asset_type_id
+	validates_presence_of :asset_status_id
+
 
 end

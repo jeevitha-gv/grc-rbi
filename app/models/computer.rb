@@ -8,5 +8,11 @@ class Computer < ActiveRecord::Base
   belongs_to :department
   belongs_to :computertechnical_contact, class_name: 'User', foreign_key: 'technical_contact'
   belongs_to :computerasset_owner, class_name: 'User', foreign_key: 'asset_owner'
+
+
+  # Validations
+  validates_presence_of :name
+  validates_presence_of :serial
+  validates_presence_of :manufacturer
   
 end
