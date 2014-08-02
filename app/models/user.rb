@@ -42,7 +42,9 @@ class User < ActiveRecord::Base
 
   # Assosciations with Asset Module
   has_many :otherasset_owner, class_name: 'OtherAsset', foreign_key: 'asset_owner'
-  has_many :otherasset_user, class_name: 'OtherAsset', foreign_key: 'asset_user'
+  has_many :otherasset_user, class_name: 'OtherAsset', foreign_key: 'asset_user' 
+  has_many :computertechnical_contact, class_name: 'Computer', foreign_key: 'technical_contact'
+  has_many :computerasset_owner, class_name: 'Computer', foreign_key: 'asset_owner'
   has_many :lifecycles
 
 # attribute to login with username or email
