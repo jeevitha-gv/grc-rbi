@@ -28,7 +28,7 @@
                             // pageSize: 20
                         },
                         height: 550,
-                        groupable: true,
+                        groupable: false,
                         sortable: true,
                         pageable: false,
                         //{

@@ -25,17 +25,18 @@
                 }
             }
         },
-                            // pageSize: 20
+                            // pageSize: 2
                         },
                         height: 550,
-                        groupable: true,
+                        groupable: false,
+                        scrollable: true,
                         sortable: true,
                         pageable: false,
-                        //{
-                        //     refresh: true,
-                        //     pageSizes: true,
+                        // {
+                        //      refresh: true,
+                        //      pageSizes: true,
                         //     buttonCount: 5
-                        // },
+                        //  },
                        columns: [{
                             field: "name",
                             title: "Name",

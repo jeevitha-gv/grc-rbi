@@ -453,6 +453,7 @@ en:
             asset_status_id: 
               blank: "Asset Status can't be blank"
         mobile_asset:
+          attributes:
             name: 
               blank: "Mobile Name can't be blank"
             manufacturer:
