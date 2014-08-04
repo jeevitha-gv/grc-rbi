@@ -448,13 +448,13 @@ en:
               blank: "Asset Name can't be blank"
             manufacturer:
               blank: "Manufacturer can't be blank"
-            asset_type_id: 
+            asset_type_id:
               blank: "Asset Type can't be blank"
-            asset_status_id: 
+            asset_status_id:
               blank: "Asset Status can't be blank"
         mobile_asset:
           attributes:
-            name: 
+            name:
               blank: "Mobile Name can't be blank"
             manufacturer:
               blank: "Manufacturer can't be blank"
@@ -629,5 +629,15 @@ en:
     device_type: "Device Type"
     location: "Location"
     department: "Department"
-
-
+    
+  computer:
+    name: "Name"
+    serial: "Serial"
+    manufacturer: "Manufacturer"
+    ip: "IP"
+    category: "Category"
+    ass_status: "Asset Status"
+    location: "Location"
+    department: "Department"
+    tech_contact: "Technical Contact"
+    owner: "Owner"    

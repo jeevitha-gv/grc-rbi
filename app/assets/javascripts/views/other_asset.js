@@ -8,6 +8,7 @@
                                     type: 'get'
                                 },
                             },
+                            autoSync: true,
                             schema: {
             errors: function(response) {
             return response.errors;
@@ -16,7 +17,7 @@
         model: {
             id: "id",
                 fields: {
-                    name: { type: "string" },
+                    name: { type: "string", editable:true},
                     status: { type: "string" },
                     user: {type: "string"},
                     owner: {type: "string"},
@@ -28,7 +29,7 @@
                             // pageSize: 2
                         },
                         height: 550,
-                        groupable: false,
+                        groupable: true,
                         scrollable: true,
                         sortable: true,
                         pageable: false,
@@ -53,7 +54,8 @@
                         },{
                             field: "location",
                             title: "Location"
-                        }]
+                        }],
+                        editable: true
                     });
                 });
 
