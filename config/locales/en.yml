@@ -619,4 +619,15 @@ en:
     vuln: "Vulnerability"
     velocity: "Velocity"
 
+  mobile_asset:
+    name: "Name"
+    manufacturer: "Manufacturer"
+    serial_number: "Serial Number"
+    service_provider: "Service Provider"
+    imei: "IMEI"
+    description: "Description"
+    device_type: "Device Type"
+    location: "Location"
+    department: "Department"
+
 
