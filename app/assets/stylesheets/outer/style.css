@@ -2438,3 +2438,16 @@ top:2px!important;
 	margin: 75px  0;
 	display: block;
 }
+
+/* Asset Module Styles Start here */
+.add-icons{
+	background:url("/assets/outer/add-icons.png") no-repeat;
+	width:25px;
+	height:22px;
+	display:block;
+	background-color:transparent;
+	display:inline-block;
+	float:left;
+	margin:0 10px 0 0;
+
+}
