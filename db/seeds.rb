@@ -472,6 +472,45 @@ Modular.delete_all
   Modular.create(model_name: 'Mitigation', action_name: 'edit', section_id: '2', label: "Authorise to edit the Mitigation efforts")
   Modular.create(model_name: 'Mitigation', action_name: 'update', section_id: '2', label:"Authorise to update the Mitigation efforts")
 
+IncidentCategory.delete_all
+    IncidentCategory.create(:name => "Desktop Hardware")
+    IncidentCategory.create(:name => "Internet")
+    IncidentCategory.create(:name => "Network")
+    IncidentCategory.create(:name => "Operating System")
+    IncidentCategory.create(:name => "Printers")
+    IncidentCategory.create(:name => "Routers")
+    IncidentCategory.create(:name => "Switches")
+    IncidentCategory.create(:name => "Telephone")
+
+IncidentPriority.delete_all
+    IncidentPriority.create(:name => "High")
+    IncidentPriority.create(:name => "Medium")
+    IncidentPriority.create(:name => "Low")
+
+IncidentStatus.delete_all
+    IncidentStatus.create(:name => "New")
+    IncidentStatus.create(:name => "In-Progress")
+    IncidentStatus.create(:name => "Waiting")
+    IncidentStatus.create(:name => "Resolved")
+    IncidentStatus.create(:name => "Completed")
+    IncidentStatus.create(:name => "Closed")
+
+IncidentOrigin.delete_all
+    IncidentOrigin.create(:name => "Phone")
+    IncidentOrigin.create(:name => "Web")
+    IncidentOrigin.create(:name => "email")
+
+RequestType.delete_all
+    RequestType.create(:name => "Incident")
+    RequestType.create(:name => "Information Request")
+    RequestType.create(:name => "Service Request")
+
+
+Urgency.delete_all
+    Urgency.create(:name => "High")
+    Urgency.create(:name => "Medium")
+    Urgency.create(:name => "Low")
+    Urgency.create(:name => "Urgent")
 
 CloseReason.delete_all
     CloseReason.create(:name => "Fully Mitigated")
