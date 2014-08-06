@@ -1,0 +1,4 @@
+<%= form_for(@vendor) do |f| %>
+  <%= render 'form', :f => f, :vendor => @vendor %>
+  <%= f.submit "Create new Vendor", :class => "orange_btn" %>
+<% end %>

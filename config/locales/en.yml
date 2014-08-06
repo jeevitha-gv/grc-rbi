@@ -461,8 +461,6 @@ en:
             serial_number:
               blank: "Serial Number can't be blank"
 
-
-
   blank:
     company:  "Company Name"
     primary_email: "Primary Email"
@@ -641,3 +639,17 @@ en:
     department: "Department"
     tech_contact: "Technical Contact"
     owner: "Owner"    
+
+  vendor:
+    name: "Name"
+    reseller_type: "Reseller Type"
+    contact_name: "Contact Name"
+    contact_email: "Contact EMail"
+    contact_phone: "Contact Number"
+    url: "Url"
+    telephone: "Telephone"
+    address: "Address"
+    city: "City"
+    state: "State"
+    zip: "Zip"
+    note: "Note"
