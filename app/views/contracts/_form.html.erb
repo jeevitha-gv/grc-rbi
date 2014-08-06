@@ -1,0 +1,20 @@
+<%= f.label :name, t('contract.name') %>
+<%= f.text_field :name %>
+
+<%= f.label :manufacturer, t('contract.manufacturer')%>
+<%= f.text_field :manufacturer%>
+
+<%= f.label :contract_type_id, t('contract.contract_type_id')%>
+<%= f.collection_select(:contract_type_id, ContractType.all, :id, :name) %>
+
+<%= f.label :contract_status_id, t('contract.contract_status_id')%>
+<%= f.collection_select(:contract_status_id, ContractStatus.all, :id, :name) %>
+
+<%= f.label :notes, t('contract.notes') %>
+<%= f.text_area :notes %>
+
+<%= f.label :location_id, t('contract.location_id') %>
+<%= f.collection_select(:location_id, current_company.locations, :id, :name) %>
+
+<%= f.label :department_id, t('contract.department_id') %>
+<%= f.collection_select(:department_id, current_company.departments, :id, :name) %>
