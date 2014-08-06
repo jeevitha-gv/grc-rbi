@@ -96,6 +96,17 @@ en:
       success: "Mobile Asset created successfully"
     update:
       success: "Mobile Asset updated successfully"
+  Vendor:
+    create: 
+      success: "Vendor has been created successfully"
+    update:
+      success: "Vendor updated successfully"
+
+  Computer:
+    create: 
+      success: "Computer has been created successfully"
+    update: 
+      success: "Computer has been updated successfully"
   
   audit:
     create:
