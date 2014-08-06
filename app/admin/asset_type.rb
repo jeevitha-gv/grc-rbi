@@ -14,7 +14,7 @@ ActiveAdmin.register AssetType do
    controller do
      before_filter :check_company_admin, :check_role, :company_admin_module_check, :check_subdomain,:check_plan_expire
      action :all, except: [:new, :show]
-     def scoped_collection        
+     def scoped_collection
         current_company.asset_types
      end
    end
@@ -36,7 +36,7 @@ ActiveAdmin.register AssetType do
        f.input :company_id, :as => :hidden, :input_html => { :value => "#{current_company.id}"}
      end
      f.actions do
-       f.action :submit, label: 'Create Process'
+       f.action :submit, label: 'Create Asset Type'
      end
    end
 
