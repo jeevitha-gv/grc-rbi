@@ -32,6 +32,32 @@ class MobileAssetsController < ApplicationController
     end
   end
 
+  def mobile_asset_export
+    begin
+      file_to_download = "mobile-assets-sample.csv"
+      send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
+    rescue
+      flash[:error] = MESSAGES["csv_export"]["error"]
+      redirect_to new_audit_path
+    end
+  end
+
+  def mobile_asset_imports
+    if(params[:file].present?)
+      begin
+        MobileAsset.import_from_file(params[:file], current_company)
+        flash[:notice] = MESSAGES["risk"]["csv_upload"]["success"]
+        redirect_to mobile_assets_path
+      rescue
+        flash[:notice]=  MESSAGES["csv_upload"]["error"]
+        redirect_to new_mobile_asset_path
+      end
+    else
+      flash[:notice]=  MESSAGES["csv_upload"]["presence"]
+      redirect_to new_mobile_asset_path
+    end
+  end
+
   private
   	
     def mobile_asset_params

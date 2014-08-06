@@ -2,12 +2,32 @@
                     $("#grid").kendoGrid({
                         dataSource: {
                             transport: {
-                                read: {
-                                    url: "/vendors",
-                                    dataType: 'json',
+                                read:
+                                  {
+                                     url: "/vendors",
+                                     dataType: 'json',
                                     type: 'get'
+                                 },
+                            
+                             // {
+                             //        url: crudServiceBaseUrl + "/vendors",
+                             //        dataType: "json"
+                             //    },
+                                 // update: {
+                                 //     url:  "/vendors/update",
+                                 //     dataType: "json"
+                                 //     type: 'get'
+                                 // },
+                             //    create: {
+                             //        url: crudServiceBaseUrl + "/vendors/new",
+                             //        dataType: "json"
+                             //    },
+                             //    parameterMap: function(options, operation) {
+                             //        if (operation !== "read" && options.models) {
+                             //            return {models: kendo.stringify(options.models)};
+                             //        }
+                             //    }
                                 },
-                            },
                             schema: {
             errors: function(response) {
             return response.errors;
@@ -17,7 +37,7 @@
             id: "id",
                 fields: {
                     name: { type: "string" },
-                    reseller_type: { type: "string" },
+                    reseller_type: { validation: { required: true },type: "string" },
                     contact_name: {type: "string"},
                     contact_email: {type: "string"},
                     city: {type: "string"},
@@ -54,13 +74,21 @@
                             field: "city",
                             title: "City"
                         },
+                        // { command: ["edit", "destroy"], title: "Action", width: "200px" }
                         { command: [{text: "edit", click: edit_file}], title: "Action" }
                         ],
+                       // editable: "popup"
                     });
                 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
         window.location.href = "/vendors/"+ dataItem.id + "/edit"
+    }
+
+     function delete_file(e)
+    {
+        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+        window.location.href = "/vendors/"+ dataItem.id + "/delete"
     }
       });
                
