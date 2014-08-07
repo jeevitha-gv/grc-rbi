@@ -653,3 +653,26 @@ en:
     state: "State"
     zip: "Zip"
     note: "Note"
+
+  other_asset:
+    name: "Name"
+    manufacturer: "Manufacturer"
+    asset_type_id: "Asset Type" 
+    asset_status_id: "Asset Status"
+    model: "Model"
+    serial_number: "Serial_Number"
+    asset_id: "Asset ID"
+    ip: "IP"
+    description: "Description"
+    owner: "Asset Owner"
+    user: "Asset User"
+
+  contract:
+    name: "Name"
+    manufacturer: "Manufacturer"
+    contract_type_id: "Contract Type ID"
+    contract_status_id: "Contract Status ID"
+    notes: "Notes"
+    location_id: "Location ID"
+    department_id: "Department ID"
+

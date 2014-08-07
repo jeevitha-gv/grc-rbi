@@ -1,0 +1,5 @@
+<%= form_for(@other_asset) do |f| %>
+	<%= render 'form', :f => f, :other_asset => @other_asset %>
+	<%= f.submit 'Create New Asset' %>
+	<%= f.submit 'Cancel' %>
+<% end %>
