@@ -86,30 +86,6 @@ Rails.application.routes.draw do
     resource :answers, only: [:index, :create, :new]
  end
 
- resources :other_assets do
- end
-
- resources :computers do
- end
-<<<<<<< HEAD
-  
- resources :mobile_assets do
- end
-
- resources :contracts do
- end
-=======
-
-  resources :mobile_assets do
-    collection do
-      post 'mobile_asset_imports'
-      get 'mobile_asset_export'
-    end    
-  end
-
-resources :vendors do
-  end
->>>>>>> 1896095acfd6012f2bcaac97bd4d2c18caa0d78e
 
   resource :user do
     collection do
