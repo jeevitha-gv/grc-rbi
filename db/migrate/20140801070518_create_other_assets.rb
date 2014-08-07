@@ -15,8 +15,8 @@ class CreateOtherAssets < ActiveRecord::Migration
       t.integer :asset_user
       t.integer :location_id
       t.integer :department_id
-      t.integer :maintenance_contact
-      t.integer :lease_contact
+      t.integer :maintenance_contract
+      t.integer :lease_contract
 
       t.timestamps
     end
@@ -27,7 +27,7 @@ class CreateOtherAssets < ActiveRecord::Migration
     add_index :other_assets, :asset_status_id
     add_index :other_assets, :asset_owner
     add_index :other_assets, :asset_user
-    add_index :other_assets, :maintenance_contact
-    add_index :other_assets, :lease_contact
+    add_index :other_assets, :maintenance_contract
+    add_index :other_assets, :lease_contract
   end
 end
