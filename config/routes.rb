@@ -91,7 +91,7 @@ Rails.application.routes.draw do
 
  resources :computers do
  end
-<<<<<<< HEAD
+
 
   resources :mobile_assets do
     collection do
@@ -100,16 +100,13 @@ Rails.application.routes.draw do
     end    
   end
 
-resources :vendors do
+ resources :vendors do
   end
-=======
-  
- resources :mobile_assets do
- end
 
+  
  resources :contracts do
  end
->>>>>>> 8db86875875d10921458f2169d7fa06cbe812c65
+
 
   resource :user do
     collection do
