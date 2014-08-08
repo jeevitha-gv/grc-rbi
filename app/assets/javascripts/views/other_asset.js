@@ -29,8 +29,8 @@
                             // pageSize: 2
                         },
                         height: 550,
-                        groupable: true,
-                        scrollable: true,
+                        groupable: false,
+                        // scrollable: true,
                         sortable: true,
                         pageable: false,
                         // {
@@ -55,7 +55,7 @@
                             field: "location",
                             title: "Location"
                         }],
-                        editable: true
+                        
                     });
                 });
 

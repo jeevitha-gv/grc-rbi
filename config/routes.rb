@@ -90,6 +90,10 @@ Rails.application.routes.draw do
  end
 
  resources :computers do
+  collection do
+    post 'computer_imports'
+    get 'computer_export'
+  end
  end
 
 

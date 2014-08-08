@@ -112,7 +112,9 @@ en:
       success: "Computer has been created successfully"
     update: 
       success: "Computer has been updated successfully"
-  
+    csv_upload:
+      success: "Computer has been imported successfully"
+
   audit:
     create:
       success: "Audit has been created successfully"

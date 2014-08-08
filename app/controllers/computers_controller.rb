@@ -11,7 +11,7 @@ class ComputersController < ApplicationController
   def create
   	@computer = current_company.computers.new(computer_params)
   	if @computer.save
-  		redirect_to computers_path, :flash => { :notice => MESSAGES["Computer"]["create"]}
+  		redirect_to computers_path, :flash => { :notice => MESSAGES["Computer"]["create"]["success"]}
   	else
   		render 'new'
   	end
@@ -28,6 +28,32 @@ class ComputersController < ApplicationController
   	else
   		render 'new'
   	end
+  end
+
+  def computer_export
+    begin
+      file_to_download = "sample-computerasset.csv"
+      send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
+    rescue
+      flash[:error] = MESSAGES["csv_export"]["error"]
+      redirect_to new_computer_path
+    end
+  end
+
+  def computer_imports
+    if(params[:file].present?)
+      begin
+        Computer.import_from_file(params[:file], current_company)
+        flash[:notice] = MESSAGES["Computer"]["csv_upload"]["success"]
+        redirect_to computers_path
+      rescue
+        flash[:notice]=  MESSAGES["csv_upload"]["error"]
+        redirect_to new_computer_path
+      end
+    else
+      flash[:notice]=  MESSAGES["csv_upload"]["presence"]
+      redirect_to new_computer_path
+    end
   end
 
   private
