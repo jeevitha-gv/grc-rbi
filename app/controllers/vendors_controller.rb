@@ -31,6 +31,32 @@ class VendorsController < ApplicationController
     end
   end
 
+  def vendor_export
+    begin
+      file_to_download = "sample-vendor.csv"
+      send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
+    rescue
+      flash[:error] = MESSAGES["csv_export"]["error"]
+      redirect_to new_audit_path
+    end
+  end
+
+  def vendor_imports
+    if(params[:file].present?)
+      begin
+        Vendor.import_from_file(params[:file], current_company)
+        flash[:notice] = MESSAGES["Vendor"]["csv_upload"]["success"]
+        redirect_to vendors_path
+      rescue
+        flash[:notice]=  MESSAGES["csv_upload"]["error"]
+        redirect_to new_vendor_path
+      end
+    else
+      flash[:notice]=  MESSAGES["csv_upload"]["presence"]
+      redirect_to new_vendor_path
+    end
+  end
+
   def vendor_params
     params.require(:vendor).permit(:name, :reseller_type_id, :contact_name, :contact_email, :contact_phone, :url, :telephone, :address, :city, :state, :zip, :note)
   end

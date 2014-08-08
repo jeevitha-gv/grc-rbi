@@ -105,6 +105,10 @@ Rails.application.routes.draw do
   end
 
  resources :vendors do
+  collection do
+    post 'vendor_imports'
+    get 'vendor_export'
+  end
   end
 
   

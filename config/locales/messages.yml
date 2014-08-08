@@ -101,6 +101,8 @@ en:
       success: "Vendor has been created successfully"
     update:
       success: "Vendor updated successfully"
+    csv_upload:
+      success: "Vendor has been imported successfully"
   Contract:
     create:
       success: "Contract has been created successfully"
