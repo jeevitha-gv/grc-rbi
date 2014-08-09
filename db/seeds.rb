@@ -83,6 +83,7 @@ Section.delete_all
 
     Section.create(name: 'Audit')
     Section.create(name: 'Risk')
+    Section.create(name: 'Incident')
 
 Priority.delete_all
 

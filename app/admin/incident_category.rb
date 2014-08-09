@@ -1,11 +1,15 @@
 ActiveAdmin.register IncidentCategory do
 
+permit_params :name
+
+ index do
+    # selectable_column
+    column :name 
+     actions
+  end
   
  config.filters = false
-   menu :if => proc{ !current_admin_user.present? }
+  
   #authentication
-  controller do
-    before_filter :authenticate_admin_user!
-    before_filter :check_subdomain
-  end
+ 
 end

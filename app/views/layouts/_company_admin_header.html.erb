@@ -37,6 +37,11 @@
 								<div class="risk-icon"></div>
 								Risk</a></li>
 						<% end %>
+            <li><a href="/admin/controls" class="<%= add_admin_active_class(params) == 'Risk' ? 'active' : '' %>">
+                <div class="risk-icon"></div>
+                Incident</a></li>
+            
+            
           </ul>
         </div>
         <%end%>
