@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  
+
 
 
 
@@ -95,9 +95,29 @@ Rails.application.routes.draw do
  end
 
  resources :computers do
+  collection do
+    post 'computer_imports'
+    get 'computer_export'
+  end
  end
-resources :mobile_assets do
-end
+
+  resources :mobile_assets do
+    collection do
+      post 'mobile_asset_imports'
+      get 'mobile_asset_export'
+    end
+  end
+
+ resources :vendors do
+  collection do
+    post 'vendor_imports'
+    get 'vendor_export'
+  end
+  end
+
+
+   resources :contracts do
+   end
 
   resource :user do
     collection do

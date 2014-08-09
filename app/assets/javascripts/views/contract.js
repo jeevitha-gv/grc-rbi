@@ -3,7 +3,7 @@
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/mobile_assets",
+                                    url: "/contracts",
                                     dataType: 'json',
                                     type: 'get'
                                 },
@@ -16,10 +16,10 @@
         model: {
             id: "id",
                 fields: {
-                    model: { type: "string" },
-                    manufacturer: { type: "string" },
-                    service_provider: {type: "string"},
-                    device_type: {type: "string"},
+                    contract_type: { type: "string" },
+                    contract_status: { type: "string" },
+                    name: {type: "string"},
+                    location: {type: "string"},
                     
                     //department: {type: "string"}
                 }
@@ -37,18 +37,18 @@
                         //     buttonCount: 5
                         // },
                        columns: [{
-                            field: "model",
-                            title: "width",
+                            field: "contract_type",
+                            title: "Contract Type",
                             Model: 200
                         }, {
-                            field: "manufacturer",
-                            title: "Manufacturer"
+                            field: "contract_status",
+                            title: "Contract Status"
                         }, {
-                            field: "service_provider",
-                            title: "Provider"
+                            field: "name",
+                            title: "Name"
                         }, {
-                            field: "device_type",
-                            title: "Device Type"
+                            field: "location",
+                            title: "Location"
                         },
                         { command: [{text: "edit", click: edit_file}], title: "Action" }
                         ],
@@ -56,7 +56,7 @@
                 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/mobile_assets/"+ dataItem.id + "/edit"
+        window.location.href = "/contracts/"+ dataItem.id + "/edit"
     }
       });
                

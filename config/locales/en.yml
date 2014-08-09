@@ -448,20 +448,18 @@ en:
               blank: "Asset Name can't be blank"
             manufacturer:
               blank: "Manufacturer can't be blank"
-            asset_type_id: 
+            asset_type_id:
               blank: "Asset Type can't be blank"
-            asset_status_id: 
+            asset_status_id:
               blank: "Asset Status can't be blank"
         mobile_asset:
           attributes:
-            name: 
+            name:
               blank: "Mobile Name can't be blank"
             manufacturer:
               blank: "Manufacturer can't be blank"
             serial_number:
               blank: "Serial Number can't be blank"
-
-
 
   blank:
     company:  "Company Name"
@@ -619,4 +617,67 @@ en:
     vuln: "Vulnerability"
     velocity: "Velocity"
 
+  lifecycle:
+    lifecycle_date: "Date"
+    lifecycle_type: "Lifecycle Type"
+    notes: "Notes"
+    user: "User"
 
+  mobile_asset:
+    name: "Name"
+    manufacturer: "Manufacturer"
+    serial_number: "Serial Number"
+    service_provider: "Service Provider"
+    imei: "IMEI"
+    description: "Description"
+    device_type: "Device Type"
+    location: "Location"
+    department: "Department"
+
+  computer:
+    name: "Name*"
+    serial: "Serial*"
+    manufacturer: "Manufacturer*"
+    ip: "IP"
+    category: "Category"
+    ass_status: "Asset Status"
+    location: "Location"
+    department: "Department"
+    tech_contact: "Technical Contact"
+    owner: "Owner"
+
+  vendor:
+    name: "Name"
+    reseller_type: "Reseller Type"
+    contact_name: "Contact Name"
+    contact_email: "Contact Email"
+    contact_phone: "Contact Number"
+    url: "Url"
+    telephone: "Telephone"
+    address: "Address"
+    city: "City"
+    state: "State"
+    zip: "Zip"
+    note: "Note"
+
+  other_asset:
+    name: "Name"
+    manufacturer: "Manufacturer"
+    asset_type_id: "Asset Type"
+    asset_status_id: "Asset Status"
+    model: "Model"
+    serial_number: "Serial_Number"
+    asset_id: "Asset"
+    ip: "IP"
+    description: "Description"
+    owner: "Asset Owner"
+    user: "Asset User"
+
+  contract:
+    name: "Name"
+    manufacturer: "Manufacturer"
+    contract_type_id: "Contract Type"
+    contract_status_id: "Contract Status"
+    notes: "Notes"
+    location_id: "Location"
+    department_id: "Department"

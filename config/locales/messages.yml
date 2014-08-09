@@ -90,6 +90,32 @@ en:
 
   roles:
     company_admin_failure: "You can't create a role with this title"
+  
+  MobileAsset:
+    create:
+      success: "Mobile Asset created successfully"
+    update:
+      success: "Mobile Asset updated successfully"
+  Vendor:
+    create: 
+      success: "Vendor has been created successfully"
+    update:
+      success: "Vendor updated successfully"
+    csv_upload:
+      success: "Vendor has been imported successfully"
+  Contract:
+    create:
+      success: "Contract has been created successfully"
+    update: 
+      success: "Contract updated successfully"
+
+  Computer:
+    create: 
+      success: "Computer has been created successfully"
+    update: 
+      success: "Computer has been updated successfully"
+    csv_upload:
+      success: "Computer has been imported successfully"
 
   audit:
     create:
@@ -282,3 +308,7 @@ fr:
       x_axis: "S'il vous plaît sélectionner X_AXIS"
       y_axis: "S'il vous plaît sélectionner Y_AXIS"
       chart_type: "S'il vous plaît sélectionner le type de graphique"
+
+
+
+

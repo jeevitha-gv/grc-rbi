@@ -1,0 +1,140 @@
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :name, t('computer.name') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :name, :class => "form-control risk-normal-input" %>
+      </div>
+      <% if computer.errors[:name].present? %>
+        <div class="error_message"><%= computer.errors[:name][0]%></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :serial, t('computer.serial') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :serial, :class => "form-control risk-normal-input",:maxlength => 25 %>
+      </div>
+      <% if computer.errors[:serial].present? %>
+        <div class="error_message"><%= computer.errors[:serial][0]%></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :manufacturer, t('computer.manufacturer') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :manufacturer, :class => "form-control risk-normal-input",:maxlength => 25 %>
+      </div>
+      <% if computer.errors[:manufacturer].present? %>
+        <div class="error_message"><%= computer.errors[:manufacturer][0]%></div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :ip, t('computer.ip') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :ip, :class => "form-control risk-normal-input" %>
+      </div>
+      <% if computer.errors[:ip].present? %>
+        <div class="error_message"><%= computer.errors[:ip][0]%></div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix border-divider"></div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :computer_category_id, t('computer.category') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:computer_category_id, ComputerCategory.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :asset_status_id, t('computer.ass_status') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:asset_status_id, AssetStatus.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :location_id, t('computer.location') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:location_id, current_company.locations, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :department_id, t('computer.department') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:department_id, current_company.departments, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :technical_contact, t('computer.tech_contact') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:technical_contact, current_company.users, :id, :user_name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :asset_owner, t('computer.asset_owner') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:asset_owner, current_company.users, :id, :user_name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
