@@ -28,7 +28,7 @@
                             // pageSize: 20
                         },
                         height: 550,
-                        groupable: true,
+                        groupable: false,
                         sortable: true,
                         pageable: false,
                         //{
@@ -49,16 +49,8 @@
                         }, {
                             field: "technical_contact",
                             title: "Technical Contact"
-                        },
-                      { command: [{text: "edit", click: edit_file}], title: "Action" }
-
-                        ],
+                        },]
                     });
-          
+                });
 
-function edit_file(e)
-    {
-        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/computers/"+ dataItem.id + "/edit"
-    }
-      });
+

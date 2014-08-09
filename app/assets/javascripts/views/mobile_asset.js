@@ -49,16 +49,8 @@
                         }, {
                             field: "device_type",
                             title: "Device Type"
-                        },
-                        { command: [{text: "edit", click: edit_file}], title: "Action" }
-                        ],
+                        },]
                     });
-                function edit_file(e)
-    {
-        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/mobile_assets/"+ dataItem.id + "/edit"
-    }
-      });
-               
+                });
 
 

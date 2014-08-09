@@ -26,7 +26,6 @@ class Department < ActiveRecord::Base
   #scope
  # scope :for_location, lambda {|location_id| where(location_id: location_id)}
   scope :department_name, ->(id) { where(id: id).first.name}
-  scope :for_name_by_company, lambda {|department_name, company_id| where("lower(name)=? and company_id=?", department_name, company_id)}
   #scope :for_name_by_location, lambda  {|department_name, location_id| where("lower(name) = ? and location_id=?", department_name, location_id)}
 
 end

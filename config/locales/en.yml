@@ -448,18 +448,20 @@ en:
               blank: "Asset Name can't be blank"
             manufacturer:
               blank: "Manufacturer can't be blank"
-            asset_type_id:
+            asset_type_id: 
               blank: "Asset Type can't be blank"
-            asset_status_id:
+            asset_status_id: 
               blank: "Asset Status can't be blank"
         mobile_asset:
           attributes:
-            name:
+            name: 
               blank: "Mobile Name can't be blank"
             manufacturer:
               blank: "Manufacturer can't be blank"
             serial_number:
               blank: "Serial Number can't be blank"
+
+
 
   blank:
     company:  "Company Name"
@@ -617,7 +619,6 @@ en:
     vuln: "Vulnerability"
     velocity: "Velocity"
 
-<<<<<<< HEAD
   other_asset:
     name: "Name"
     manufacturer: "Manufacturer"
@@ -639,41 +640,3 @@ en:
     notes: "Notes"
     location_id: "Location ID"
     department_id: "Department ID"
-=======
-  mobile_asset:
-    name: "Name"
-    manufacturer: "Manufacturer"
-    serial_number: "Serial Number"
-    service_provider: "Service Provider"
-    imei: "IMEI"
-    description: "Description"
-    device_type: "Device Type"
-    location: "Location"
-    department: "Department"
-    
-  computer:
-    name: "Name"
-    serial: "Serial"
-    manufacturer: "Manufacturer"
-    ip: "IP"
-    category: "Category"
-    ass_status: "Asset Status"
-    location: "Location"
-    department: "Department"
-    tech_contact: "Technical Contact"
-    owner: "Owner"    
-
-  vendor:
-    name: "Name"
-    reseller_type: "Reseller Type"
-    contact_name: "Contact Name"
-    contact_email: "Contact EMail"
-    contact_phone: "Contact Number"
-    url: "Url"
-    telephone: "Telephone"
-    address: "Address"
-    city: "City"
-    state: "State"
-    zip: "Zip"
-    note: "Note"
->>>>>>> 1896095acfd6012f2bcaac97bd4d2c18caa0d78e
