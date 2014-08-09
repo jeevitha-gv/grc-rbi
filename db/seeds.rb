@@ -473,6 +473,8 @@ Modular.delete_all
   Modular.create(model_name: 'Mitigation', action_name: 'edit', section_id: '2', label: "Authorise to edit the Mitigation efforts")
   Modular.create(model_name: 'Mitigation', action_name: 'update', section_id: '2', label:"Authorise to update the Mitigation efforts")
 
+# INCIDENT MANAGEMENT
+
 IncidentCategory.delete_all
     IncidentCategory.create(:name => "Desktop Hardware")
     IncidentCategory.create(:name => "Internet")
@@ -496,6 +498,16 @@ IncidentStatus.delete_all
     IncidentStatus.create(:name => "Completed")
     IncidentStatus.create(:name => "Closed")
 
+
+ClosureClassification.delete_all
+    ClosureClassification.create(:name => "Advise Given")
+    ClosureClassification.create(:name => "Change Request need to be raised")
+    ClosureClassification.create(:name => "Documentation needs reviewing")
+    ClosureClassification.create(:name => "Incident Completed Successfully")
+    ClosureClassification.create(:name => "Monitoring Required")
+    ClosureClassification.create(:name => "No Fault Found")
+
+
 IncidentOrigin.delete_all
     IncidentOrigin.create(:name => "Phone")
     IncidentOrigin.create(:name => "Web")
@@ -512,6 +524,9 @@ Urgency.delete_all
     Urgency.create(:name => "Medium")
     Urgency.create(:name => "Low")
     Urgency.create(:name => "Urgent")
+
+
+
 
 CloseReason.delete_all
     CloseReason.create(:name => "Fully Mitigated")

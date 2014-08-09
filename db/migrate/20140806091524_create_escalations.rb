@@ -4,7 +4,7 @@ class CreateEscalations < ActiveRecord::Migration
       t.integer :value
       t.integer :user
       t.integer :level
-      t.integer :priority_id
+      t.integer :incident_priority_id
       t.time :time_line
       t.integer :mail_count
       t.string :to

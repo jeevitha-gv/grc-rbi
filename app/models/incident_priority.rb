@@ -1,3 +1,8 @@
 class IncidentPriority < ActiveRecord::Base
-	validates :name, uniqueness: true
+
+	has_many :evaluates
+	has_many :escalations
+
+	validates :name, presence:true, length: { in: 0..50 }
+	validates :name, uniqueness:true
 end
