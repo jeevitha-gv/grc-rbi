@@ -1,96 +1,117 @@
-
 <div class="row">
-<div class="col-lg-4 col-sm-6 col-xs-12">
-  <div class="form-group clearfix">
-    <label class="col-sm-4 control-label">
-      <%= f.label :model, t('mobile_asset.model') %>
-    </label>
-    <div class="col-sm-7">
-      <%= f.text_field :model, :class=>"audit-normal-input" %>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :model, t('mobile_asset.model') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :model, :class=>"audit-normal-input" %>
+      </div>
       <% if mobile_asset.errors[:model].present? %>
-        <div class="error_message"><%=  mobile_asset.errors[:model][0]%></div>
+           <div class="error_message"><%=  mobile_asset.errors[:model][0]%></div>
       <% end %>
     </div>
-   
   </div>
-  <div class="form-group clearfix">
-    <label class="col-sm-4">
-      <%= f.label :manufacturer, t('mobile_asset.manufacturer') %>
-    </label>
-    <div class="col-sm-7">
-      <%= f.text_field :manufacturer, :class=>"audit-normal-input" %>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :manufacturer, t('mobile_asset.manufacturer') %>
+      </label>
+      <div class="col-sm-8">
+         <%= f.text_field :manufacturer, :class=>"audit-normal-input" %>
+      </div>
       <% if mobile_asset.errors[:manufacturer].present? %>
         <div class="error_message"><%=  mobile_asset.errors[:manufacturer][0]%></div>
       <% end %>
     </div>
   </div>
-  <div class="form-group clearfix">
-    <label class="col-sm-4">
-      <%= f.label :serial_number, t('mobile_asset.serial_number') %>
-    </label>
-    <div class="col-sm-7">
-      <%= f.text_field :serial_number, :class=>"audit-normal-input" %>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :serial_number, t('mobile_asset.serial_number') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :serial_number, :class=>"audit-normal-input" %>
+      </div>
       <% if mobile_asset.errors[:serial_number].present? %>
         <div class="error_message"><%=  mobile_asset.errors[:serial_number][0]%></div>
       <% end %>
     </div>
   </div>
-  <div class="form-group clearfix">
-    <label class="col-sm-5">
-      <%= f.label :service_provider, t('mobile_asset.service_provider') %>
-    </label>
-    <div class="col-sm-7">
-      <%= f.text_field :service_provider, :class=>"audit-normal-input" %>
+</div>
+<div class ="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :service_provider, t('mobile_asset.service_provider') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :service_provider, :class=>"audit-normal-input" %>
+      </div>
       <% if mobile_asset.errors[:service_provider].present? %>
         <div class="error_message"><%=  mobile_asset.errors[:service_provider][0]%></div>
       <% end %>
     </div>
   </div>
-  <div class="form-group clearfix">
-    <label class="col-sm-4">
-      <%= f.label :imei, t('mobile_asset.imei') %>
-    </label>
-    <div class="col-sm-7">
-      <%= f.text_field :imei, :class=>"audit-normal-input" %>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :imei, t('mobile_asset.imei') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :imei, :class=>"audit-normal-input" %>
+      </div>
     </div>
-  
-</div>
-  <div class="form-group clearfix">
-    <label class="col-sm-4">
-      <%= f.label :description, t('mobile_asset.description') %>
-    </label>
-    <div class="col-sm-7">
-      <%= f.text_area :description, :class=>"audit-normal-input" %>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :description, t('mobile_asset.description') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_area :description, :class=>"audit-normal-input" %>
+      </div>
     </div>
-  
-</div>
-  <div class="form-group clearfix">
-    <label class="col-sm-4">
-      <%= f.label :device_type, t('mobile_asset.device_type') %>
-    </label>
-    <div class="col-sm-7">
-      <%= f.collection_select(:device_type_id, DeviceType.all, :id, :name, :prompt => true) %>
-    </div>
-  
-</div>
-  <div class="form-group clearfix">
-    <label class="col-sm-4">
-      <%= f.label :location, t('mobile_asset.location') %>
-    </label>
-    <div class="col-sm-7">
-      <%= f.collection_select(:location_id, current_company.locations, :id, :name, :prompt => true) %>
-    </div>
-  
-</div>
-<div class="form-group clearfix">
-    <label class="col-sm-4">
-      <%= f.label :department, t('mobile_asset.department') %>
-    </label>
-    <div class="col-sm-7">
-      <%= f.collection_select(:department_id, current_company.departments, :id, :name, :prompt => true) %>
-    </div>
-  
+  </div>
 </div>
 
-</div>
+<div class="clearfix border-divider"></div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :device_type, t('mobile_asset.device_type') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:device_type_id, DeviceType.all, :id, :name, :prompt => true) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :location, t('mobile_asset.location') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:location_id, current_company.locations, :id, :name, :prompt => true) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :department, t('mobile_asset.department') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:department_id, current_company.departments, :id, :name, :prompt => true) %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
