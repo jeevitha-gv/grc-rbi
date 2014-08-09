@@ -16,6 +16,11 @@ Rails.application.routes.draw do
 
   resources :home
 
+  resources :incidents do
+  end
+  resources :evaluates do
+  end
+
    resources :dashboard do
      collection do
       get 'calender'
@@ -139,4 +144,12 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+
+
+  # INCIDENT MANAGEMENT
+
+  
+  resources :evaluates
+  resources :resolutions
+
 end

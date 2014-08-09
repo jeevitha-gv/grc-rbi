@@ -1,0 +1,7 @@
+<%= form_for(@incident) do |i| %>
+
+<%= render 'form', :i => i, :incident => @incident %>
+
+<%= i.submit 'Create New Incident'%>
+
+<%end%>

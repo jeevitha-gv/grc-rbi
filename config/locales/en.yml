@@ -596,3 +596,31 @@ en:
     velocity: "Velocity"
 
 
+#INCIDENT MANAGEMENT
+
+  incident:
+    Jobtitle: "Job Title"
+    title: "Title"
+    request_type_id: "Request Type"
+    incident_category_id: "Incident Category" 
+    sub_category_id: "Sub Category"
+    date_occured: "Date Occured"
+    summary: "Summary"
+    department_id: "Department"
+    attachment: ""
+    incident_status_id: "Status"
+    comment: "Comment"
+    contact_no: "Contact No"
+    team_id: "Team"
+
+  evaluate:
+    incident_id: "Incident"
+    urgency_id: "Urgency"
+    incident_priority_id: "Priority"
+    incident_impact_id: "Impact"
+    assignee: "Assignee"
+    target_date: "Target Date"
+    sla_id: "SLA"
+    incident_origin_id: "Origin"
+    resolutiontime: "Resolution Time"
+    escalation_id: "Escalation"
