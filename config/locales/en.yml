@@ -635,9 +635,9 @@ en:
     department: "Department"
 
   computer:
-    name: "Name"
-    serial: "Serial"
-    manufacturer: "Manufacturer"
+    name: "Name*"
+    serial: "Serial*"
+    manufacturer: "Manufacturer*"
     ip: "IP"
     category: "Category"
     ass_status: "Asset Status"
