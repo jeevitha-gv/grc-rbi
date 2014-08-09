@@ -617,6 +617,12 @@ en:
     vuln: "Vulnerability"
     velocity: "Velocity"
 
+  lifecycle:
+    lifecycle_date: "Date"
+    lifecycle_type: "Lifecycle Type"
+    notes: "Notes"
+    user: "User"
+
   mobile_asset:
     name: "Name"
     manufacturer: "Manufacturer"
@@ -627,7 +633,7 @@ en:
     device_type: "Device Type"
     location: "Location"
     department: "Department"
-    
+
   computer:
     name: "Name"
     serial: "Serial"
