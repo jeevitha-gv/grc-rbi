@@ -1,34 +1,36 @@
 class ContractsController < ApplicationController
 
-def index
-  @contracts = current_company.contracts
-end
+  layout 'asset_layout'
 
-def new
-  @contract = Contract.new	
-end
-
-def create
-  @contract = current_company.contracts.new(asset_params)
-    if @contract.save
-      redirect_to contracts_path, :flash => {:notice => MESSAGES["Contract"]["create"]["success"]}
-    else
-      render 'new'
-    end
-end
-
-def edit
-  @contract = Contract.find(params[:id])
-end
-
-def update
-  @contract = Contract.find(params[:id])
-  if @contract.update_attributes(asset_params)
-    redirect_to contracts_path, :flash => {:notice => MESSAGES["Contract"]["update"]["success"]}
-  else 
-    render 'edit'
+  def index
+    @contracts = current_company.contracts
   end
-end
+
+  def new
+    @contract = Contract.new
+  end
+
+  def create
+    @contract = current_company.contracts.new(asset_params)
+      if @contract.save
+        redirect_to contracts_path, :flash => {:notice => MESSAGES["Contract"]["create"]["success"]}
+      else
+        render 'new'
+      end
+  end
+
+  def edit
+    @contract = Contract.find(params[:id])
+  end
+
+  def update
+    @contract = Contract.find(params[:id])
+    if @contract.update_attributes(asset_params)
+      redirect_to contracts_path, :flash => {:notice => MESSAGES["Contract"]["update"]["success"]}
+    else
+      render 'edit'
+    end
+  end
 
   private
     def asset_params

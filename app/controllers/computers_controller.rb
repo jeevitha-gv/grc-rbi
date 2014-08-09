@@ -1,5 +1,7 @@
 class ComputersController < ApplicationController
 
+  layout 'asset_layout'
+
   def index
   	@computers = current_company.computers
   end

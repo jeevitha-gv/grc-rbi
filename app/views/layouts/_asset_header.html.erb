@@ -18,24 +18,24 @@
             <li><a href="/user/edit" class="<%= add_admin_active_class(params) == 'Settings' ? 'active' : '' %>">
               <div class="overview-icon"></div>
               Overview</a></li>
-						<% if company_modules_check('Audit') %>
-							<li><a href="/audits" class="<%= add_admin_active_class(params) == 'Audit' ? 'active' : '' %>">
-								<div class="audit-icon"></div>
-								Audit</a></li>
-						<% end %>
-						<% if company_modules_check('Risk') %>
-							<li><a href="/risks" class="<%= add_active_class(params) == 'Risk' ? 'active' : '' %>">
-								<div class="risk-icon"></div>
-								Risk</a></li>
-						<% end %>
-            <% if company_modules_check('Asset') %>
+            <% if company_modules_check('Audit') %>
+              <li><a href="/audits" class="<%= add_admin_active_class(params) == 'Audit' ? 'active' : '' %>">
+                <div class="audit-icon"></div>
+                Audit</a></li>
+            <% end %>
+            <% if company_modules_check('Risk') %>
+              <li><a href="/risks" class="<%= add_active_class(params) == 'Risk' ? 'active' : '' %>">
+                <div class="risk-icon"></div>
+                Risk</a></li>
+            <% end %>
+            <%# if company_modules_check('Asset') %>
               <li><a href="/computers" class="<%= add_active_class(params) == 'Asset' ? 'active' : '' %>">
                 <div class="risk-icon"></div>
                 Asset</a></li>
-            <% end %>
+            <%# end %>
           </ul>
         </div>
-				<input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">
+        <input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">
         <div class="user_login">
           <% unless current_user.attachment.blank? || current_user.attachment.attachment_file.blank? %>
             <%= image_tag(current_user.attachment.attachment_file.small) %>
@@ -68,22 +68,22 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <li><a  href="/risk_dashboard" class="<%= (request.fullpath.include?("risk_dashboard") && action_name == "index") == true ? 'active' : '' %>">
-          <div class="dash-icon"></div>
-          Dashboard</a></li>
-        <li><a  href="/risks/new" class="<%= (request.fullpath.include?("risks/new") && action_name == "new") == true ? 'active' : '' %>">
-          <div class="plan-icon"></div>
-          File</a></li>
-        <li><a  href="/risks" class="<%= request.fullpath.exclude?("mitigate") && request.fullpath.exclude?("new") && request.fullpath.exclude?("review") && request.fullpath.exclude?("mitigations") == true ? 'active' : '' %>">
-          <div class="listing-icon"></div>
-          Listings</a></li>
-        <li><a href="/risks?stage=mitigate" class="<%= request.fullpath.include?("mitigate") || request.fullpath.include?("mitigations") == true ? 'active' : '' %>">
-          <div class="lmitigate-icon"></div>
-          Mitigate</a></li>
-        <li><a  href="/risks?stage=review" class="<%= request.fullpath.include?("review") == true ? 'active' : '' %>">
-          <div class="review-icon"></div>
-          Review</a></li>
-        <li><a href="/admin/controls" >
+        <li><a  href="/computers" class="<%= request.fullpath.include?("computers") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Computers</a></li>
+        <li><a  href="/mobile_assets" class="<%= request.fullpath.include?("mobile_assets") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Mobile Assets</a></li>
+        <li><a  href="/other_assets" class="<%= request.fullpath.include?("other_assets") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Miscellaneous</a></li>
+        <li><a  href="/vendors" class="<%= request.fullpath.include?("vendors") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Vendors</a></li>
+        <li><a  href="/contracts" class="<%= request.fullpath.include?("contracts") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Contracts</a></li>
+        <li><a href="/admin/asset_types" >
           <div class="setting-icon"></div>
           Configure</a></li>
       </ul>
@@ -104,7 +104,7 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-		var module = $('#module').val()
+    var module = $('#module').val()
     $( ".user_login" ).mouseenter(function() {
       $(this).addClass("active");
       $(".account_header_dropdown").slideDown(100);

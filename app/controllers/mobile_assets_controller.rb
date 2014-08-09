@@ -1,5 +1,7 @@
 class MobileAssetsController < ApplicationController
-  
+
+  layout 'asset_layout'
+
   def index
   	@mobile_assets = current_company.mobile_assets
   end
@@ -16,7 +18,7 @@ class MobileAssetsController < ApplicationController
   		render 'new'
   	end
   end
-	
+
   def edit
 		@mobile_asset = MobileAsset.find(params[:id])
 	end
@@ -59,7 +61,7 @@ class MobileAssetsController < ApplicationController
   end
 
   private
-  	
+
     def mobile_asset_params
   		params.require(:mobile_asset).permit(:model, :manufacturer, :serial_number, :service_provider, :imei, :description, :device_type_id, :location_id, :department_id)
   	end

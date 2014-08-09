@@ -37,6 +37,11 @@
 								<div class="risk-icon"></div>
 								Risk</a></li>
 						<% end %>
+            <% if company_modules_check('Asset') %>
+              <li><a href="/computers" class="<%= add_active_class(params) == 'Asset' ? 'active' : '' %>">
+                <div class="risk-icon"></div>
+                Asset</a></li>
+            <% end %>
           </ul>
         </div>
         <% end %>

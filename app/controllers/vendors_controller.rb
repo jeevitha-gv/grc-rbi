@@ -1,4 +1,7 @@
 class VendorsController < ApplicationController
+
+  layout 'asset_layout'
+  
   def index
   	@vendors = current_company.vendors
   end
