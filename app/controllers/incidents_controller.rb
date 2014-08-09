@@ -1,7 +1,9 @@
 class IncidentsController < ApplicationController
-
+layout 'incident_layout'
   def index
-  	@incidents = current_user.incidents
+  	# @incidents = current_user.incidents
+    
+
 
   end
 

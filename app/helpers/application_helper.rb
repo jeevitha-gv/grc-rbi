@@ -21,6 +21,8 @@ module ApplicationHelper
       'User'
     when 'risks'
       'Risk'
+    when 'incidents'
+      'Incident'
     else
       return ''
     end
