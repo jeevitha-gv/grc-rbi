@@ -1,45 +1,134 @@
-<%= f.label :name, t('vendor.name') %>
-<%= f.text_field :name%>
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+       <%= f.label :name, t('vendor.name') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :name, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :contact_name, t('vendor.contact_name') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :contact_name, :class => "form-control risk-normal-input"%>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+       <%= f.label :contact_email, t('vendor.contact_email') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :contact_email, :class => "form-control risk-normal-input"%>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-<%= f.label :reseller_type_id, t('vendor.reseller_type') %>
-<%= f.collection_select(:reseller_type_id, ResellerType.all, :id, :name) %>
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+      <%= f.label :contact_phone, t('vendor.contact_phone') %>
+      </label>
+      <div class="col-sm-8">
+       <%= f.text_field :contact_phone,:class => "form-control risk-normal-input"%>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :url, t('vendor.url') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :url, :class => "form-control risk-normal-input"%>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+       <%= f.label :telephone, t('vendor.telephone') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :telephone, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= f.label :contact_name, t('vendor.contact_name') %>
-<%= f.text_field :contact_name%>
+<div class="clearfix border-divider"> </div>
 
-<%= f.label :contact_email, t('vendor.contact_email') %>
-<%= f.text_field :contact_email%>
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+       <%= f.label :reseller_type_id, t('vendor.reseller_type') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.collection_select(:reseller_type_id, ResellerType.all, :id, :name) %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :city, t('vendor.city') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :city, :class => "form-control risk-normal-input"%>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+       <%= f.label :state, t('vendor.state') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :state, :class => "form-control risk-normal-input"%>
+      </div>
+    </div>
+  </div>
+</div>
 
-
-<%= f.label :contact_phone, t('vendor.contact_phone') %>
-<%= f.text_field :contact_phone%>
-
-
-<%= f.label :url, t('vendor.url') %>
-<%= f.text_field :url%>
-
-
-<%= f.label :telephone, t('vendor.telephone') %>
-<%= f.text_field :telephone%>
-
-
-<%= f.label :address, t('vendor.address') %>
-<%= f.text_field :address%>
-
-
-<%= f.label :city, t('vendor.city') %>
-<%= f.text_field :city%>
-
-
-<%= f.label :state, t('vendor.state') %>
-<%= f.text_field :state%>
-
-
-<%= f.label :zip, t('vendor.zip') %>
-<%= f.text_field :zip%>
-
-
-<%= f.label :note, t('vendor.note') %>
-<%= f.text_area :note%>
-
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+       <%= f.label :state, t('vendor.state') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :state, :class => "form-control risk-normal-input"%>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+     	 <%= f.label :zip, t('vendor.zip') %>
+      </label>
+      <div class="col-sm-8">
+      <%= f.text_field :zip, :class => "form-control risk-normal-input"%>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :note, t('vendor.note') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :note, :class => "form-control risk-normal-input"%>
+      </div>
+    </div>
+  </div>
+</div>
