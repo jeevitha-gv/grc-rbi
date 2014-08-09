@@ -454,12 +454,23 @@ en:
               blank: "Asset Status can't be blank"
         mobile_asset:
           attributes:
-            name:
-              blank: "Mobile Name can't be blank"
+            model:
+              blank: "Mobile model can't be blank"
             manufacturer:
               blank: "Manufacturer can't be blank"
             serial_number:
               blank: "Serial Number can't be blank"
+        contract:
+          attributes: 
+            name: 
+              blank: "Contract name can't be blank"
+            manufacturer:
+              blank: "Manufacturer can't be blank"
+            contract_type_id:
+              blank: "Contract Type can't be blank"
+            contract_status_id: 
+              blank: "Contract Status can't be blank"
+
 
   blank:
     company:  "Company Name"

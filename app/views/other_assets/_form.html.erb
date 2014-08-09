@@ -1,0 +1,190 @@
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+       <%= f.label :name, t('other_asset.name') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :name %>
+      </div>
+      <% if other_asset.errors[:name].present? %>
+        <div class="error_message"><%= other_asset.errors[:name][0]%></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :manufacturer, t('other_asset.manufacturer') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :manufacturer, :class=>"audit-normal-input" %>
+      </div>
+      <% if other_asset.errors[:manufacturer].present? %>
+        <div class="error_message"><%= other_asset.errors[:manufacturer][0]%></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+       <%= f.label :model, t('other_asset.model') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :model,:class=>"audit-normal-input" %>
+      </div>
+      <% if other_asset.errors[:manufacturer].present? %>
+        <div class="error_message"><%= other_asset.errors[:manufacturer][0]%></div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+       <%= f.label :serial_number, t('other_asset.serial_number') %>
+
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :serial_number %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+			<%= f.label :asset_id, t('other_asset.asset_id') %>
+      </label>
+      <div class="col-sm-8">
+			<%= f.text_field :asset_id %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+     	 <%= f.label :ip, t('other_asset.ip') %>
+      </label>
+      <div class="col-sm-8">
+       	<%= f.text_field :ip %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+       <%= f.label :description, t('other_asset.description') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_area :description %>
+      </div>
+    </div>
+  </div>
+ </div>
+
+
+<div class="clearfix border-divider"> </div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :asset_type_id, t('other_asset.asset_type_id')%>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:asset_type_id, current_company.asset_types, :id, :name) %>
+        </div>
+        <% if other_asset.errors[:asset_type_id].present? %>
+        <div class="error_message"><%= other_asset.errors[:asset_type_id][0]%></div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :asset_status_id, t('other_asset.asset_status_id')%>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:asset_status_id, AssetStatus.all, :id, :name) %>
+        </div>
+        <% if other_asset.errors[:asset_status_id].present? %>
+        <div class="error_message"><%= other_asset.errors[:asset_status_id][0]%></div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :asset_owner, t('other_asset.owner') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:asset_owner, current_company.users, :id, :user_name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :asset_user, t('other_asset.user') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:asset_user, current_company.users, :id, :user_name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :location_id, t('other_asset.location_id') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:location_id, current_company.locations, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :department_id, t('other_asset.department_id') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:department_id, current_company.departments, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%#= f.fields_for :lifecycles do |builder| %>
+	<%#= render 'lifecycle_fields', other_asset: other_asset, f: builder %>
+<%# end %>
+
+<%#= link_to_add_lifecycle_fields "Add New Event", f, :lifecycles, other_asset %>
+
+
+
+
+<%#= link_to "Attach Files", other_assets_path%>
