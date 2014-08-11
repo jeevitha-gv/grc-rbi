@@ -121,9 +121,6 @@
       </div>
     </div>
   </div>
-</div>
-
-<div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
     <div class="form-group clearfix">
       <label class="col-sm-4 control-label">
@@ -136,6 +133,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="row">
+  
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
     <div class="form-group clearfix">
       <label class="col-sm-4 control-label">
@@ -148,9 +149,6 @@
       </div>
     </div>
   </div>
-</div>
-
-<div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
     <div class="form-group clearfix">
       <label class="col-sm-4 control-label">
@@ -171,6 +169,36 @@
       <div class="col-sm-8">
         <div class="risk-select">
           <%= f.collection_select(:department_id, current_company.departments, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :maintenance_contract, t('other_asset.maintenance_contract') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:maintenance_contract, Contract.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :lease_contract, t('other_asset.lease_contract') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= f.collection_select(:lease_contract, Contract.all, :id, :name) %>
         </div>
       </div>
     </div>

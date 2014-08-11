@@ -74,7 +74,9 @@
        <%= f.label :reseller_type_id, t('vendor.reseller_type') %>
       </label>
       <div class="col-sm-8">
-        <%= f.collection_select(:reseller_type_id, ResellerType.all, :id, :name) %>
+        <div class ="risk-select">
+          <%= f.collection_select(:reseller_type_id, ResellerType.all, :id, :name) %>
+        </div>
       </div>
     </div>
   </div>
