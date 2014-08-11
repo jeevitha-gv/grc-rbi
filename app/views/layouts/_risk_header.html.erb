@@ -28,6 +28,9 @@
 								<div class="risk-icon"></div>
 								Risk</a></li>
 						<% end %>
+            <li><a href="/incidents" class="<%= add_active_class(params) == 'Incident' ? 'active' : '' %>">
+                <div class="risk-icon"></div>
+                Incident</a></li>
           </ul>
         </div>
 				<input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">

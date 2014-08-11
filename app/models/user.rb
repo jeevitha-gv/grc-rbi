@@ -40,12 +40,12 @@ class User < ActiveRecord::Base
   has_many :mgmt_reviews
   has_many :closures
 
-  # Assosciations with Asset Module
-  has_many :otherasset_owner, class_name: 'OtherAsset', foreign_key: 'asset_owner'
-  has_many :otherasset_user, class_name: 'OtherAsset', foreign_key: 'asset_user' 
-  has_many :computertechnical_contact, class_name: 'Computer', foreign_key: 'technical_contact'
-  has_many :computerasset_owner, class_name: 'Computer', foreign_key: 'asset_owner'
-  has_many :lifecycles
+
+  # Associations with Incident Tables
+  has_many :evaluate_assignee, class_name: 'Evaluate', foreign_key: 'assignee'
+  has_many :incident_user, class_name: 'Escalation', foreign_key: 'user'
+  has_many :incident_user, class_name: 'Resolution', foreign_key: 'reassignee'
+
 
 # attribute to login with username or email
   attr_accessor :login, :domain
@@ -63,8 +63,8 @@ class User < ActiveRecord::Base
    validates :password, presence: true, :if => Proc.new{ |f| (f.reset_password_token.present?) }
    validates :password, confirmation: true
    validates :password, length: {in: 6..20}, :unless => lambda{ |a| a.password.blank? }
-  validate :user_name_without_spaces
-  validate :company_user_count, :if => Proc.new{|f| f.role_title != 'company_admin' && f.id.nil? }
+   validate :user_name_without_spaces
+   validate :company_user_count, :if => Proc.new{|f| f.role_title != 'company_admin' && f.id.nil? }
 
 
 

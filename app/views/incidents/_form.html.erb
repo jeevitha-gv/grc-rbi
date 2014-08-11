@@ -1,0 +1,35 @@
+<%= i.label :Jobtitle, t('incident.Jobtitle') %>
+<%= i.text_field :Jobtitle %>
+<br>
+<%= i.label :title, t('incident.title')%>
+<%= i.text_field :title%>
+<br>
+<%= i.label :request_type_id, t('incident.request_type_id')%>
+<%= i.collection_select(:request_type_id, RequestType.all, :id, :name)%>
+<br>
+<%= i.label :incident_category_id, t('incident.incident_category_id')%>
+<%= i.collection_select(:incident_category_id, IncidentCategory.all, :id, :name)%>
+<br>
+<%= i.label :sub_category_id, t('incident.sub_category_id')%>
+<%= i.collection_select(:sub_category_id, SubCategory.all, :id, :name)%>
+<br>
+<%= i.label :date_occured, t('incident.date_occured')%>
+<%= i.text_field :date_occured%>
+<br>
+<%= i.label :summary, t('incident.summary')%>
+<%= i.text_area :summary%>
+<br>
+<%= i.label :department_id, t('incident.department_id')%>
+<%= i.collection_select(:department_id, current_company.departments, :id, :name)%>
+<br>
+<%= i.label :incident_status_id, t('incident.incident_status_id')%>
+<%= i.collection_select(:incident_status_id, IncidentStatus.all, :id, :name)%>
+<br>
+<%= i.label :comment, t('incident.comment')%>
+<%= i.text_area :comment%>
+<br>
+<%= i.label :contact_no, t('incident.contact_no')%>
+<%= i.text_field :contact_no%>
+<br>
+<%= i.label :team_id, t('incident.team_id')%>
+<%= i.collection_select(:team_id, current_company.teams, :id, :name)%>

@@ -83,7 +83,7 @@ Section.delete_all
 
     Section.create(name: 'Audit')
     Section.create(name: 'Risk')
-    Section.create(name: 'Asset')
+    Section.create(name: 'Incident')
 
 Priority.delete_all
 
@@ -472,6 +472,60 @@ Modular.delete_all
   Modular.create(model_name: 'Mitigation', action_name: 'create', section_id: '2', label: "Authorise to create Mitigation")
   Modular.create(model_name: 'Mitigation', action_name: 'edit', section_id: '2', label: "Authorise to edit the Mitigation efforts")
   Modular.create(model_name: 'Mitigation', action_name: 'update', section_id: '2', label:"Authorise to update the Mitigation efforts")
+
+# INCIDENT MANAGEMENT
+
+IncidentCategory.delete_all
+    IncidentCategory.create(:name => "Desktop Hardware")
+    IncidentCategory.create(:name => "Internet")
+    IncidentCategory.create(:name => "Network")
+    IncidentCategory.create(:name => "Operating System")
+    IncidentCategory.create(:name => "Printers")
+    IncidentCategory.create(:name => "Routers")
+    IncidentCategory.create(:name => "Switches")
+    IncidentCategory.create(:name => "Telephone")
+
+IncidentPriority.delete_all
+    IncidentPriority.create(:name => "High")
+    IncidentPriority.create(:name => "Medium")
+    IncidentPriority.create(:name => "Low")
+
+IncidentStatus.delete_all
+    IncidentStatus.create(:name => "New")
+    IncidentStatus.create(:name => "In-Progress")
+    IncidentStatus.create(:name => "Waiting")
+    IncidentStatus.create(:name => "Resolved")
+    IncidentStatus.create(:name => "Completed")
+    IncidentStatus.create(:name => "Closed")
+
+
+ClosureClassification.delete_all
+    ClosureClassification.create(:name => "Advise Given")
+    ClosureClassification.create(:name => "Change Request need to be raised")
+    ClosureClassification.create(:name => "Documentation needs reviewing")
+    ClosureClassification.create(:name => "Incident Completed Successfully")
+    ClosureClassification.create(:name => "Monitoring Required")
+    ClosureClassification.create(:name => "No Fault Found")
+
+
+IncidentOrigin.delete_all
+    IncidentOrigin.create(:name => "Phone")
+    IncidentOrigin.create(:name => "Web")
+    IncidentOrigin.create(:name => "email")
+
+RequestType.delete_all
+    RequestType.create(:name => "Incident")
+    RequestType.create(:name => "Information Request")
+    RequestType.create(:name => "Service Request")
+
+
+Urgency.delete_all
+    Urgency.create(:name => "High")
+    Urgency.create(:name => "Medium")
+    Urgency.create(:name => "Low")
+    Urgency.create(:name => "Urgent")
+
+
 
 
 CloseReason.delete_all
@@ -909,124 +963,3 @@ MitigationEffort.delete_all
     MitigationEffort.create(:name => "Significant")
     MitigationEffort.create(:name => "Exceptional")
 
-
-ResellerType.delete_all
-
-    ResellerType.create(:name => "Sass Vendor")
-    ResellerType.create(:name => "Manufacturer")
-    ResellerType.create(:name => "Reseller")
-    ResellerType.create(:name => "Value Added Reseller")
-    ResellerType.create(:name => "System Intetgrator")
-    ResellerType.create(:name => "Software Vendor")
-    ResellerType.create(:name => "Internal Infrastructure")
-    ResellerType.create(:name => "Facility Management")
-    ResellerType.create(:name => "Office Supplies")
-    ResellerType.create(:name => "Computer Hardware Vendor")
-    ResellerType.create(:name => "Computer Service/Repair")
-    ResellerType.create(:name => "Computer Supplies Vendor")
-    ResellerType.create(:name => "General Business Vendor")
-    ResellerType.create(:name => "Consultant")
-    ResellerType.create(:name => "Vendor")
-
-
-
-AssetStatus.delete_all
-
-    AssetStatus.create(:name => "Operational")
-    AssetStatus.create(:name => "Lost")
-    AssetStatus.create(:name => "In Repair")
-    AssetStatus.create(:name => "Broken")
-    AssetStatus.create(:name => "Replacement")
-    AssetStatus.create(:name => "Spare")
-    AssetStatus.create(:name => "Disposed")
-    AssetStatus.create(:name => "Duplicate")
-    AssetStatus.create(:name => "Stolen")
-
-ComputerCategory.delete_all
-
-    ComputerCategory.create(:name => "Laptop")
-    ComputerCategory.create(:name => "Workstation")
-    ComputerCategory.create(:name => "Server")
-    ComputerCategory.create(:name => "Thin Client")
-    ComputerCategory.create(:name => "PDA")
-    ComputerCategory.create(:name => "Server - Unix")
-    ComputerCategory.create(:name => "Macintosh")
-    ComputerCategory.create(:name => "Standalone")
-    ComputerCategory.create(:name => "NAS/File Server")
-    ComputerCategory.create(:name => "Server + VMware")
-    ComputerCategory.create(:name => "VM: VMware")
-    ComputerCategory.create(:name => "VM: XenServer")
-    ComputerCategory.create(:name => "VM: Microsoft")
-    ComputerCategory.create(:name => "VM: SWSoft")
-    ComputerCategory.create(:name => "VM: Virtuallron")
-    ComputerCategory.create(:name => "Mac Laptop")
-    ComputerCategory.create(:name => "Mac Desktop")
-    ComputerCategory.create(:name => "Tablet")
-    ComputerCategory.create(:name => "Other")
-
- ContractType.delete_all
-
-    ContractType.create(:name => "Software License")
-    ContractType.create(:name => "Subscription")
-    ContractType.create(:name => "Lease")
-    ContractType.create(:name => "Maintenance")
-
- ContractStatus.delete_all
-
-    ContractStatus.create(:name => "Draft")
-    ContractStatus.create(:name => "Active")
-    ContractStatus.create(:name => "Review")
-    ContractStatus.create(:name => "Expired")
-    ContractStatus.create(:name => "Terminated")
-
- LifecycleType.delete_all
-
-    LifecycleType.create(:name => "Acquisition")
-    LifecycleType.create(:name => "Installed")
-    LifecycleType.create(:name => "Assigned")
-    LifecycleType.create(:name => "Disposed")
-    LifecycleType.create(:name => "Duplicate")
-    LifecycleType.create(:name => "Service-Planned")
-    LifecycleType.create(:name => "Service-Sent")
-    LifecycleType.create(:name => "Service-Returned")
-    LifecycleType.create(:name => "Loan-Sent")
-    LifecycleType.create(:name => "Loan-Returned")
-    LifecycleType.create(:name => "Spare-Deposited")
-    LifecycleType.create(:name => "Spare-Returned")
-    LifecycleType.create(:name => "Inventoried")
-    LifecycleType.create(:name => "Shipped")
-    LifecycleType.create(:name => "Received")
-    LifecycleType.create(:name => "Operational")
-
- LicenseType.delete_all
-
-    LicenseType.create(:name => "CAL")
-    LicenseType.create(:name => "Concurrent")
-    LicenseType.create(:name => "Developer")
-    LicenseType.create(:name => "Enterprise")
-    LicenseType.create(:name => "Evaluation")
-    LicenseType.create(:name => "Floating")
-    LicenseType.create(:name => "Free")
-    LicenseType.create(:name => "Generic")
-    LicenseType.create(:name => "Home Use")
-    LicenseType.create(:name => "Named User")
-    LicenseType.create(:name => "OEM")
-    LicenseType.create(:name => "Open Source(GPU/GPL)")
-    LicenseType.create(:name => "Per CPU")
-    LicenseType.create(:name => "Per Project")
-    LicenseType.create(:name => "Per Server")
-    LicenseType.create(:name => "Per Usage")
-    LicenseType.create(:name => "Perpetual")
-    LicenseType.create(:name => "Secondary")
-    LicenseType.create(:name => "Shareware")
-    LicenseType.create(:name => "Site License")
-    LicenseType.create(:name => "Subscription")
-    LicenseType.create(:name => "Time Based")
-    LicenseType.create(:name => "Volume")
-
- DeviceType.delete_all
-
-    DeviceType.create(:name => "Phone")
-    DeviceType.create(:name => "Tablet")
-    DeviceType.create(:name => "Media Player")
-    DeviceType.create(:name => "Other")

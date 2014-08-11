@@ -1,0 +1,30 @@
+<%= e.label :incident_id, t('incident.incident_id')%>
+<%= e.collection_select(:incident_id, Incident.all, :id, :name)%>
+<br>
+<%= e.label :urgency_id, t('incident.urgency_id')%>
+<%= e.collection_select(:urgency_id, Urgency.all, :id, :name)%>
+<br>
+<%= e.label :incident_priority_id, t('incident.incident_priority_id')%>
+<%= e.collection_select(:incident_priority_id, IncidentPriority.all, :id, :name)%>
+<br>
+<%= e.label :incident_impact_id, t('incident.incident_impact_id')%>
+<%= e.collection_select(:incident_impact_id, IncidentImpact.all, :id, :name)%>
+<br>
+<%= e.label :assignee, t('incident.assignee')%>
+<%= e.collection_select(:assignee, current_company.users, :id, :user_name)%>
+<br>
+<%= e.label :target_date, t('incident.target_date')%>
+<%= e.text_field :target_date%>
+<br>
+<%= e.label :sla_id, t('incident.sla_id')%>
+<%= e.collection_select(:sla_id, Sla.all, :id, :name)%>
+<br>
+<%= e.label :incident_origin_id, t('incident.incident_origin_id')%>
+<%= e.collection_select(:incident_origin_id, IncidentOrigin.all, :id, :name)%>
+<br>
+<%= e.label :resolutiontime, t('incident.resolutiontime')%>
+<%= e.text_field :resolutiontime%>
+<br>
+<%= e.label :escalation_id, t('incident.escalation_id')%>
+<%= e.collection_select(:escalation_id, Escalation.all, :id, :user)%>
+<br>

@@ -9,6 +9,7 @@ class Department < ActiveRecord::Base
   #belongs_to :location
   has_many :risks
   belongs_to :company
+  has_many :incidents
 
   # Assosciations with Asset Module
   has_many :other_assets

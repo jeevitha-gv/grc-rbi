@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  value: 1
+  user: 1
+  level: 1
+  priority_id: 1
+  time_line: 2014-08-06 14:45:24
+  mail_count: 1
+  to: MyString
+  cc: MyString
+  bcc: MyString
+
+two:
+  value: 1
+  user: 1
+  level: 1
+  priority_id: 1
+  time_line: 2014-08-06 14:45:24
+  mail_count: 1
+  to: MyString
+  cc: MyString
+  bcc: MyString

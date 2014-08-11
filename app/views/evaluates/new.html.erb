@@ -1,0 +1,7 @@
+<%= form_for(@evaluate) do |e| %>
+
+<%= render 'form', :e => e, :evaluate => @evaluate %>
+
+<%= e.submit 'evaluate'%>
+
+<%end%>
