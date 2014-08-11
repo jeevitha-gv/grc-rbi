@@ -5,7 +5,7 @@
         <%= f.label :model, t('mobile_asset.model') %>
       </label>
       <div class="col-sm-8">
-        <%= f.text_field :model, :class=>"audit-normal-input" %>
+        <%= f.text_field :model, :class => "form-control risk-normal-input" %>
       </div>
       <% if mobile_asset.errors[:model].present? %>
            <div class="error_message"><%=  mobile_asset.errors[:model][0]%></div>
@@ -18,7 +18,7 @@
         <%= f.label :manufacturer, t('mobile_asset.manufacturer') %>
       </label>
       <div class="col-sm-8">
-         <%= f.text_field :manufacturer, :class=>"audit-normal-input" %>
+         <%= f.text_field :manufacturer, :class => "form-control risk-normal-input" %>
       </div>
       <% if mobile_asset.errors[:manufacturer].present? %>
         <div class="error_message"><%=  mobile_asset.errors[:manufacturer][0]%></div>
@@ -31,7 +31,7 @@
         <%= f.label :serial_number, t('mobile_asset.serial_number') %>
       </label>
       <div class="col-sm-8">
-        <%= f.text_field :serial_number, :class=>"audit-normal-input" %>
+        <%= f.text_field :serial_number, :class => "form-control risk-normal-input" %>
       </div>
       <% if mobile_asset.errors[:serial_number].present? %>
         <div class="error_message"><%=  mobile_asset.errors[:serial_number][0]%></div>
@@ -46,7 +46,7 @@
         <%= f.label :service_provider, t('mobile_asset.service_provider') %>
       </label>
       <div class="col-sm-8">
-        <%= f.text_field :service_provider, :class=>"audit-normal-input" %>
+        <%= f.text_field :service_provider, :class => "form-control risk-normal-input" %>
       </div>
       <% if mobile_asset.errors[:service_provider].present? %>
         <div class="error_message"><%=  mobile_asset.errors[:service_provider][0]%></div>
@@ -59,7 +59,7 @@
         <%= f.label :imei, t('mobile_asset.imei') %>
       </label>
       <div class="col-sm-8">
-        <%= f.text_field :imei, :class=>"audit-normal-input" %>
+        <%= f.text_field :imei, :class => "form-control risk-normal-input" %>
       </div>
     </div>
   </div>
@@ -69,7 +69,7 @@
         <%= f.label :description, t('mobile_asset.description') %>
       </label>
       <div class="col-sm-8">
-        <%= f.text_area :description, :class=>"audit-normal-input" %>
+        <%= f.text_area :description, :class => "form-control risk-normal-input" %>
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@
        <%= f.label :name, t('other_asset.name') %>
       </label>
       <div class="col-sm-8">
-        <%= f.text_field :name %>
+        <%= f.text_field :name, :class => "form-control risk-normal-input" %>
       </div>
       <% if other_asset.errors[:name].present? %>
         <div class="error_message"><%= other_asset.errors[:name][0]%></div>
@@ -18,7 +18,7 @@
         <%= f.label :manufacturer, t('other_asset.manufacturer') %>
       </label>
       <div class="col-sm-8">
-        <%= f.text_field :manufacturer, :class=>"audit-normal-input" %>
+        <%= f.text_field :manufacturer, :class => "form-control risk-normal-input" %>
       </div>
       <% if other_asset.errors[:manufacturer].present? %>
         <div class="error_message"><%= other_asset.errors[:manufacturer][0]%></div>
@@ -31,7 +31,7 @@
        <%= f.label :model, t('other_asset.model') %>
       </label>
       <div class="col-sm-8">
-        <%= f.text_field :model,:class=>"audit-normal-input" %>
+        <%= f.text_field :model,:class => "form-control risk-normal-input" %>
       </div>
       <% if other_asset.errors[:manufacturer].present? %>
         <div class="error_message"><%= other_asset.errors[:manufacturer][0]%></div>
@@ -48,7 +48,7 @@
 
       </label>
       <div class="col-sm-8">
-        <%= f.text_field :serial_number %>
+        <%= f.text_field :serial_number, :class => "form-control risk-normal-input" %>
       </div>
     </div>
   </div>
@@ -58,7 +58,7 @@
 			<%= f.label :asset_id, t('other_asset.asset_id') %>
       </label>
       <div class="col-sm-8">
-			<%= f.text_field :asset_id %>
+			<%= f.text_field :asset_id, :class => "form-control risk-normal-input" %>
       </div>
     </div>
   </div>
@@ -68,7 +68,7 @@
      	 <%= f.label :ip, t('other_asset.ip') %>
       </label>
       <div class="col-sm-8">
-       	<%= f.text_field :ip %>
+       	<%= f.text_field :ip, :class => "form-control risk-normal-input" %>
       </div>
     </div>
   </div>
@@ -81,7 +81,7 @@
        <%= f.label :description, t('other_asset.description') %>
       </label>
       <div class="col-sm-8">
-        <%= f.text_area :description %>
+        <%= f.text_area :description, :class => "form-control risk-big-input" %>
       </div>
     </div>
   </div>
