@@ -624,3 +624,13 @@ en:
     incident_origin_id: "Origin"
     resolutiontime: "Resolution Time"
     escalation_id: "Escalation"
+
+  resolution:
+    evaluate_id: "Evaluate"
+    incident_id: "Incident"
+    reassignee: "Re-Assignee"
+    solution_type_id: "Solution Type"
+    solution: "Solution"
+    rootcause: "Root Cause"
+    closure_classification_id: "Closure Classification"
+    

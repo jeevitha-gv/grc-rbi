@@ -16,11 +16,7 @@ Rails.application.routes.draw do
 
   resources :home
 
-  resources :incidents do
-  end
-  resources :evaluates do
-  end
-
+  
    resources :dashboard do
      collection do
       get 'calender'
@@ -148,8 +144,10 @@ Rails.application.routes.draw do
 
   # INCIDENT MANAGEMENT
 
+  resources :incident do 
+
   
   resources :evaluates
   resources :resolutions
-
+end
 end
