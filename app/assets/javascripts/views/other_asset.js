@@ -57,7 +57,7 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/computers",
+                                    url: "/other_assets",
                                     dataType: 'json',
                                     type: 'get'
                                 },

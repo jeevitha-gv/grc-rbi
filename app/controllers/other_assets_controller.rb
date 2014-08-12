@@ -19,6 +19,19 @@ class OtherAssetsController < ApplicationController
   	end
   end
 
+  def edit
+    @other_asset = OtherAsset.find(params[:id])
+  end
+
+  def update
+    @other_asset = OtherAsset.find(params[:id])
+    if @other_asset.update_attributes(other_asset_params)
+      redirect_to other_assets_path, :flash => { :notice => MESSAGES["OtherAsset"]["update"]["success"] }
+    else
+      render 'new'
+    end
+  end
+
   def other_asset_export
     begin
       file_to_download = "other-assets-sample.csv"
