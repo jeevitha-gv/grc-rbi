@@ -1,2 +1,2 @@
 name,manufacturer,asset_type,asset_status,model,serial_number,asset_id,ip,description,asset_owner,asset_user,location,department,maintenance_contract,lease_contract
-Coffee Machine 1,Godrej Vending,Coffee Machine,Operational,Minifresh 4400,XT213254214,CM1,192.0.1.1,First Floor Coffee Machine,harsha@fixrnix.in,sunil@fixrnix.in,New York,Development,Godrej Contract,
+Coffee Machine 1,Godrej Vending,Coffee Machine,Operational,Minifresh 4400,XT213254214,CM1,192.0.1.1,First Floor Coffee Machine,harsha@fixrnix.in,sunil@fixrnix.in,New York,Development,My Contract, Sunil

@@ -116,6 +116,13 @@ en:
       success: "Computer has been updated successfully"
     csv_upload:
       success: "Computer has been imported successfully"
+  OtherAsset:
+    create: 
+      success: "Other Asset created successfully"
+    update: 
+      success: "Other Asset updated successfully"
+    csv_upload:
+      success: "Other Asset has been imported successfully"
 
   audit:
     create:

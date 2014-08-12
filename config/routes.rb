@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-
-
-
-
-
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   post 'admin/privileges/modal_previlege'
@@ -92,7 +86,11 @@ Rails.application.routes.draw do
  end
 
  resources :other_assets do
- end
+  collection do
+    post 'other_asset_imports'
+    get 'other_asset_export'
+  end
+end
 
  resources :computers do
   collection do
@@ -106,6 +104,7 @@ Rails.application.routes.draw do
       post 'mobile_asset_imports'
       get 'mobile_asset_export'
     end
+    
   end
 
  resources :vendors do

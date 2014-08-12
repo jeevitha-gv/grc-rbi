@@ -33,8 +33,8 @@
       <div class="col-sm-8">
         <%= f.text_field :model,:class => "form-control risk-normal-input" %>
       </div>
-      <% if other_asset.errors[:manufacturer].present? %>
-        <div class="error_message"><%= other_asset.errors[:manufacturer][0]%></div>
+      <% if other_asset.errors[:model].present? %>
+        <div class="error_message"><%= other_asset.errors[:model][0]%></div>
       <% end %>
     </div>
   </div>
@@ -184,7 +184,7 @@
       </label>
       <div class="col-sm-8">
         <div class="risk-select">
-          <%= f.collection_select(:maintenance_contract, Contract.all, :id, :name) %>
+          <%= f.collection_select(:maintenance_contract, current_company.contracts, :id, :name) %>
         </div>
       </div>
     </div>
@@ -198,7 +198,7 @@
       </label>
       <div class="col-sm-8">
         <div class="risk-select">
-          <%= f.collection_select(:lease_contract, Contract.all, :id, :name) %>
+          <%= f.collection_select(:lease_contract, current_company.contracts, :id, :name) %>
         </div>
       </div>
     </div>

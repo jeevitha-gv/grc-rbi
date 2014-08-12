@@ -1,4 +1,62 @@
                 $(document).ready(function () {
+
+                    $('.cancel-btn1').click(function(){
+    $('#search-value').val('');
+    search_result()
+})
+
+function onActivate(e) {
+ if($('#search-value').val() != "")
+ {
+  $('#search-value').val('')
+  var tabActive = e.sender.tabGroup.children("li.k-state-active").attr("aria-controls")
+  var gridForSearch = select_grid(tabActive)
+  $("#"+gridForSearch).data("kendoGrid").dataSource.filter({});
+ }
+}
+
+$("#search-button").click(function(){
+    search_result();
+})
+
+$("#search-value").on('keyup', function(e) {
+    if (e.which == 13) {
+      e.preventDefault();
+      search_result()
+    }
+});
+
+function search_result()
+{
+    var val = $('#search-value').val();
+    $("#grid").data("kendoGrid").dataSource.filter({
+        logic  : "or",
+        filters: [
+            {
+                field: "contract_type",
+                operator: "contains",
+                value   : val
+            },
+            {
+                field: "contract_status",
+                operator: "contains",
+                value   : val
+            },
+            {
+                 field: "name",
+                 operator: "contains",
+                 value   : val
+            },
+            {
+                 field: "location",
+                 operator: "contains",
+                 value   : val
+            },
+            
+            
+        ]
+    });
+}
                     $("#grid").kendoGrid({
                         dataSource: {
                             transport: {

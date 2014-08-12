@@ -1,14 +1,67 @@
                 $(document).ready(function () {
-                    $("#grid").kendoGrid({
+
+$('.cancel-btn1').click(function(){
+    $('#search-value').val('');
+    search_result()
+})
+
+function onActivate(e) {
+ if($('#search-value').val() != "")
+ {
+  $('#search-value').val('')
+  var tabActive = e.sender.tabGroup.children("li.k-state-active").attr("aria-controls")
+  var gridForSearch = select_grid(tabActive)
+  $("#"+gridForSearch).data("kendoGrid").dataSource.filter({});
+ }
+}
+
+$("#search-button").click(function(){
+    search_result();
+})
+
+$("#search-value").on('keyup', function(e) {
+    if (e.which == 13) {
+      e.preventDefault();
+      search_result()
+    }
+});
+
+function search_result()
+{
+    var val = $('#search-value').val();
+    $("#grid").data("kendoGrid").dataSource.filter({
+        logic  : "or",
+        filters: [
+            {
+                field: "name",
+                operator: "contains",
+                value   : val
+            },
+            {
+                field: "status",
+                operator: "contains",
+                value   : val
+            },
+            {
+                 field: "location",
+                 operator: "contains",
+                 value   : val
+            },
+            
+            
+        ]
+    });
+}
+                   
+                     $("#grid").kendoGrid({
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/other_assets",
+                                    url: "/computers",
                                     dataType: 'json',
                                     type: 'get'
                                 },
                             },
-                            autoSync: true,
                             schema: {
             errors: function(response) {
             return response.errors;
@@ -17,27 +70,26 @@
         model: {
             id: "id",
                 fields: {
-                    name: { type: "string", editable:true},
+                    name: { type: "string" },
                     status: { type: "string" },
-                    user: {type: "string"},
-                    owner: {type: "string"},
-                    location: {type: "string"}
+                    location: {type: "string"},
+                    technical_contact: {type: "string"},
+                    
                     //department: {type: "string"}
                 }
             }
         },
-                            // pageSize: 2
+                            // pageSize: 20
                         },
                         height: 550,
                         groupable: false,
-                        // scrollable: true,
                         sortable: true,
                         pageable: false,
-                        // {
-                        //      refresh: true,
-                        //      pageSizes: true,
+                        //{
+                        //     refresh: true,
+                        //     pageSizes: true,
                         //     buttonCount: 5
-                        //  },
+                        // },
                        columns: [{
                             field: "name",
                             title: "Name",
@@ -46,17 +98,18 @@
                             field: "status",
                             title: "Status"
                         }, {
-                            field: "owner",
-                            title: "Company Owner"
-                        }, {
-                            field: "user",
-                            title: "Company User"
-                        },{
                             field: "location",
                             title: "Location"
-                        }],
-                        
+                        },                            
+                      { command: [{text: "edit", click: edit_file}], title: "Action" }
+
+                        ],
                     });
-                });
+          
 
-
+function edit_file(e)
+    {
+        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+        window.location.href = "/other_assets/"+ dataItem.id + "/edit"
+    }
+      });

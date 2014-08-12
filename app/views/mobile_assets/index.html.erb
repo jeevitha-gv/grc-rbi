@@ -6,7 +6,6 @@
     <div class="container">
     	<div class="clearfix"> <a class="import-btn" href="/mobile_assets/new"><i class="download-icons"></i>New Mobile</a>
       </div>
-
       <div class="clearfix"> <a class="import-btn" data-toggle="modal" href="#add_url"><i class="download-icons"></i>Import</a>
             <div id="add_url" class="modal fade">
               <div class="modal-dialog modal-dialog_large">
@@ -37,6 +36,14 @@
           </div>
 
       <div class="row grid">
+        
+        <div class="fright set-wrap">
+          <div class="form-group audit_search">
+            <%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value" %>
+            <%= submit_tag "Search", name: nil, :class=>"btn btn-default", :id => "search-button" %>
+            <a href="javascript:void(0);" class="cancel-btn1">Clear</a>
+          </div>
+        </div>
 
         <div id="example">
 
