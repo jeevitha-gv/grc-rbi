@@ -11,6 +11,11 @@ class Department < ActiveRecord::Base
   belongs_to :company
   has_many :incidents
 
+  # Assosciations with Asset Module
+  has_many :other_assets
+  has_many :contracts
+  has_many :mobile_assets
+
   # validations
   validates :name, presence:true
   validates_format_of :name, :with =>/\A(?=.*[a-z])[a-z.! @ # $ % ^ & * ( ) _ - + =\d\s]+\Z/i,:if => Proc.new{|f| !f.name.blank? }

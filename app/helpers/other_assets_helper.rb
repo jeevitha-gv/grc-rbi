@@ -1,0 +1,2 @@
+module OtherAssetsHelper
+end

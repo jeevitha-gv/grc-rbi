@@ -434,12 +434,36 @@ en:
           attributes:
             name:
               taken: "Artifact is already added to this control"
+        computer:
+          attributes:
+            name:
+              blank: "Computer name can't be blank"
+            serial:
+              blank: "Serial number can't be blank"
+            manufacturer:
+              blank: "Mamufacturer can't be blank"
+        other_asset:
+          attributes:
+            name:
+              blank: "Asset Name can't be blank"
+            manufacturer:
+              blank: "Manufacturer can't be blank"
+            asset_type_id: 
+              blank: "Asset Type can't be blank"
+            asset_status_id: 
+              blank: "Asset Status can't be blank"
+        mobile_asset:
+          attributes:
+            name: 
+              blank: "Mobile Name can't be blank"
+            manufacturer:
+              blank: "Manufacturer can't be blank"
+            serial_number:
+              blank: "Serial Number can't be blank"
 
 
 
-
-
-  companies:
+  blank:
     company:  "Company Name"
     primary_email: "Primary Email"
     secondary_email: "Secondary Email"

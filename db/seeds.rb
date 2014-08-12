@@ -447,7 +447,7 @@ Modular.delete_all
   Modular.create(model_name: 'Audit', action_name: 'new', section_id: '1', label:"Authorize to Plan Audit")
   Modular.create(model_name: 'Audit', action_name: 'edit', section_id: '1', label:"Authorize to edit Audit")
   Modular.create(model_name: 'Audit', action_name: 'create', section_id: '1', label:"Authorize to Create Audit")
-  Modular.create(model_name: 'Audit', action_name: 'update', section_id: '1', label:"Authorize to update Audit") 
+  Modular.create(model_name: 'Audit', action_name: 'update', section_id: '1', label:"Authorize to update Audit")
   Modular.create(model_name: 'ChecklistRecommendation', action_name: 'new', section_id: '1', label:"Authorize to give Recommendation")
   Modular.create(model_name: 'ChecklistRecommendation', action_name: 'create', section_id: '1', label:"Authorize to create Recommendation")
   Modular.create(model_name: 'ChecklistRecommendation', action_name: 'update', section_id: '1', label:"Authorize to update recommendation")
@@ -962,3 +962,4 @@ MitigationEffort.delete_all
     MitigationEffort.create(:name => "Considerable")
     MitigationEffort.create(:name => "Significant")
     MitigationEffort.create(:name => "Exceptional")
+
