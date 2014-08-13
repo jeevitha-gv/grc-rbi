@@ -1,7 +1,7 @@
-<%= form_for(@evaluate) do |e| %>
 
-<%= render 'form', :e => e, :evaluate => @evaluate %>
+<%= form_for(@incident,url: {controller: "evaluates", action: "create"},:method => "post") do |f| %>
 
-<%= e.submit 'evaluate'%>
+
+<%= render 'form', :f => f,  :incident => @incident, :evaluate => @evaluate %>
 
 <%end%>

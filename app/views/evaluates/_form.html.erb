@@ -1,30 +1,200 @@
-<%= e.label :incident_id, t('incident.incident_id')%>
-<%= e.collection_select(:incident_id, Incident.all, :id, :name)%>
-<br>
-<%= e.label :urgency_id, t('incident.urgency_id')%>
-<%= e.collection_select(:urgency_id, Urgency.all, :id, :name)%>
-<br>
-<%= e.label :incident_priority_id, t('incident.incident_priority_id')%>
-<%= e.collection_select(:incident_priority_id, IncidentPriority.all, :id, :name)%>
-<br>
-<%= e.label :incident_impact_id, t('incident.incident_impact_id')%>
-<%= e.collection_select(:incident_impact_id, IncidentImpact.all, :id, :name)%>
-<br>
-<%= e.label :assignee, t('incident.assignee')%>
-<%= e.collection_select(:assignee, current_company.users, :id, :user_name)%>
-<br>
-<%= e.label :target_date, t('incident.target_date')%>
-<%= e.text_field :target_date%>
-<br>
-<%= e.label :sla_id, t('incident.sla_id')%>
-<%= e.collection_select(:sla_id, Sla.all, :id, :name)%>
-<br>
-<%= e.label :incident_origin_id, t('incident.incident_origin_id')%>
-<%= e.collection_select(:incident_origin_id, IncidentOrigin.all, :id, :name)%>
-<br>
-<%= e.label :resolutiontime, t('incident.resolutiontime')%>
-<%= e.text_field :resolutiontime%>
-<br>
-<%= e.label :escalation_id, t('incident.escalation_id')%>
-<%= e.collection_select(:escalation_id, Escalation.all, :id, :user)%>
-<br>
+  <div class="clearfix"></div>
+  <div class="content">
+    <div class="container">
+      <div class="row"> 
+        <!-- Nav tabs --> 
+        <div class="tab_main_title">Incident-Manager Recommendation</div>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="all">
+            <div class="table-responsive">
+              <table class="table table-striped list-table">
+                <tr>
+                  <th colspan="6">Incident Requester Details</th>
+                </tr>
+                <tr>
+                  <td><label>Requester : </label>
+                    <span> Selva</span></td>
+                  <td><label>Type : </label>
+                    <span> Incident Management</span></td>
+                    <td><label>Title : </label>
+                    <%= incident.title if incident.present? %></td></td>
+                  
+                </tr>
+                <tr>
+                <td><label>Category : </label>
+                    <%= f.collection_select(:incident_category_id, IncidentCategory.all, :id, :name, :prompt => true) %></td>
+                  <td><label>Department : </label>
+                    <span> Networking</span></td>
+                  <td><label>IncidentSummary : </label><br>
+                    <span> Incident Management</span></td>
+                   
+                </tr>
+                <tr>
+                <td><label>Evidence : </label>
+                    <span> <a href="" class="attach-icon  blue_link">Download Evidence</a></span></td>
+                  <td><label>Date Occured: </label>
+                    <span> 01/08/2014</span></td>
+                  <td><label>Time Occured: </label>
+                    <span> 01/08/2014</span></td>
+                  
+                </tr>
+                 <td><label>Contact No : </label>
+                    <%= incident.contact_no if incident.present?%></td>
+                  <td><label>Date of Creation: </label>
+                    <span> 01/08/2014</span></td>
+                  <td><label>Status : </label>
+                   <%= f.collection_select(:incident_status_id,IncidentStatus.all, :id, :name, :prompt => true) %>  
+                   </td>> 
+                  <div class="col-lg-4 col-sm-6 col-xs-12">
+  
+  
+                </tr>
+               
+              </table>
+            </div>
+          </div>
+
+  
+          <%= f.fields_for :evaluate do |evaluate| %>
+
+          <div class="container">
+            <div id="Accordion1">
+              <h3><a href="#">Incidet-Manager Evaluation</a> <span class="fright pending_msg">Pending</span></h3>
+              
+              <div>
+                <div class="row audit-title">
+                  
+                  <div class="col-lg-4">
+                  <div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Urgency :</b> </label>
+                      <div class="col-sm-7"> 
+                      <div class="risk-select">
+                      <%= evaluate.collection_select(:urgency_id, Urgency.all, :id, :name)%>
+                    </div>
+                     </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Priority :</b> </label>
+                       <div class="col-sm-7">
+                        <div class="risk-select">
+                      <%= evaluate.collection_select(:incident_priority_id, IncidentPriority.all, :id, :name)%>
+                    </div>
+                      </div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Impact :</b> </label>
+                      <div class="col-sm-7">   
+                      <div class="risk-select">
+                      <%= evaluate.collection_select(:incident_impact_id, IncidentImpact.all, :id, :name)%>
+                        </div>
+                    </div>
+
+                    </div>
+                     
+                    
+                      <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Escalation :</b> </label>
+                       <div class="col-sm-7">
+                        <div class="risk-select">
+                      <%= evaluate.collection_select(:escalation_id, Escalation.all, :id, :user)%>
+                    </div>
+                      </div>
+                    </div>
+
+                    
+
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Assignee :</b> </label>
+                      <div class="col-sm-7">
+                       <div class="risk-select">
+                      <%= evaluate.collection_select(:assignee, current_company.users, :id, :user_name)%>
+                    </div>
+                      </div>
+                       
+                    </div>
+                   <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Target Date :</b> </label>
+                       <div class="col-sm-7">
+                        <div class="risk-select">
+                      <%= evaluate.text_field :target_date%>
+                    </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>SLA :</b> </label>
+                      <div class="col-sm-7"> 
+                      <div class="risk-select">
+                      <%= evaluate.collection_select(:sla_id, Sla.all, :id, :name)%>
+                        </div>
+                    </div>
+                    
+                    </div>
+                     
+
+                     <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Summary :</b> </label>
+                       <div class="col-sm-7">
+                        <div class="risk-select">
+                     <%= f.text_area :summary, :class=>"audit-big-input" %>
+                    </div>
+                      </div>
+                    </div>
+
+                    </div>    
+                    
+                   
+                 
+
+                  <div class="col-lg-4"><div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Target Date :</b> </label>
+                      <div class="col-sm-7"> <input id="datepicker2" value="10/10/2011" style="width:150px;" /></div>
+                        
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Origin:</b> </label>
+                      <div class="col-sm-7">
+                      <div class="risk-select">
+                      <%= evaluate.collection_select(:incident_origin_id, IncidentOrigin.all, :id, :name)%> 
+                        </div>
+                        </div>
+                        
+                    </div>
+                 
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Resolution Time </b> </label>
+                      <div class="col-sm-7">
+                      <div class="risk-select">
+                      <%= evaluate.text_field :resolutiontime%>
+                        </div>
+                        </div>
+                    </div>
+                   
+                             
+                   
+                   </div>
+                                   
+              </div>
+            </div>
+          </div>
+          <% end %>
+         <div class="clearfix"></div>
+                    <div class="fright paddingtop"> <%= f.submit "Submit", :class => "black_btn" %> <a class="grey_btn" href=""> Cancel</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer_left col-lg-6">2014 © FixNix Audit Management</div>
+        <div class="footer_right col-lg-6">Powered By<img src="img/footer_logo.png" alt=""/></div>
+      </div>
+    </div>
+  </div>
+</div>
