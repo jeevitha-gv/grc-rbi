@@ -12,12 +12,16 @@ class OtherAsset < ActiveRecord::Base
 	belongs_to :maintenance, class_name: 'Contract', foreign_key: 'maintenance_contract'
 	belongs_to :lease, class_name: 'Contract', foreign_key: 'lease_contract'
 	has_many :lifecycles
+    has_one :attachment, as: :attachable
 
 	# Validations
 	validates_presence_of :name
 	validates_presence_of :manufacturer
 	validates_presence_of :asset_type_id
 	validates_presence_of :asset_status_id
+
+    accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }
+
 
 	def self.open_spreadsheet(file)
     	case File.extname(file.original_filename)

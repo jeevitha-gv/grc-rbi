@@ -89,6 +89,8 @@ Rails.application.routes.draw do
   collection do
     post 'other_asset_imports'
     get 'other_asset_export'
+    delete 'remove_attachment'
+    get 'download_other_asset_document'
   end
 end
 

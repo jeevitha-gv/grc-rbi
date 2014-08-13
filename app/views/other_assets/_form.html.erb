@@ -204,6 +204,22 @@
     </div>
   </div>
 </div>
+<div class="clearfix border-divider"> </div>
+<div class ="row">
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <%= f.fields_for :attachment, (@other_asset.attachment.present? ? @other_asset.attachment : @other_asset.build_attachment) do |attach| %>
+      <%= attach.label :attachment, t('other_asset.attachment'), :class => "attach-icon blue_link" %><br />
+      <%= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
+      <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
+      <br />
+      <div id="attach_<%= @other_asset.attachment.id%>"><%= link_to (File.basename(@other_asset.attachment.attachment_file_url)).truncate(20), download_other_asset_document_other_assets_path(id: @other_asset.attachment.id), class: "blue_link risl-blue-link" if @other_asset.attachment.attachment_file_url %>
+        <div class="addissue risk-rem"> <%= link_to "Remove", remove_attachment_other_assets_path(id: @other_asset.attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon" if @other_asset.attachment.attachment_file.present? %>
+          </div>
+    <% end %>
+    <div class="clearfix" id="selected_files"></div>
+  </div>
+</div>
+</div>
 
 
 <%#= f.fields_for :lifecycles do |builder| %>

@@ -59,9 +59,24 @@ class OtherAssetsController < ApplicationController
     end
   end
 
+  def download_other_asset_document
+    attachment = Attachment.find(params[:id])
+    send_file(Rails.public_path.to_s + attachment.attachment_file_url)
+  end
+
+  def download_document
+      attachment = Attachment.find(params[:id])
+      send_file(Rails.public_path.to_s + attachment.attachment_file_url)
+  end
+
+  def remove_attachment
+    attachment = Attachment.find(params[:id])
+    attachment.delete
+  end
+
 
   def other_asset_params
-  	params.require(:other_asset).permit(:name, :manufacturer, :asset_type_id, :asset_status_id, :model, :serial_number, :aset_id, :ip, :description, :asset_owner, :asset_user, :location_id, :department_id, :maintenance_contract, :lease_contract)
+  	params.require(:other_asset).permit(:name, :manufacturer, :asset_type_id, :asset_status_id, :model, :serial_number, :aset_id, :ip, :description, :asset_owner, :asset_user, :location_id, :department_id, :maintenance_contract, :lease_contract, attachment_attributes: [:id, :attachment_file, :company_id])
   end
 
 end

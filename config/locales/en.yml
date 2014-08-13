@@ -683,6 +683,7 @@ en:
     description: "Description"
     owner: "Asset Owner"
     user: "Asset User"
+    attachment: "Attach Document"
 
   contract:
     name: "Name"
