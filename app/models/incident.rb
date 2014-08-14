@@ -27,7 +27,8 @@ class Incident < ActiveRecord::Base
 
 	accepts_nested_attributes_for :evaluate
 	accepts_nested_attributes_for :resolution
-
+has_one :attachment, as: :attachable
+accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }
 
 	delegate :name, :to => :team, prefix: true, allow_nil: true
 	delegate :name, :to => :department, prefix: true, allow_nil: true

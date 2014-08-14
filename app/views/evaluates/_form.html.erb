@@ -25,7 +25,7 @@
                 <td><label>Category : </label>
                      <%= incident.incident_category_name if incident.present? %>
                   <td><label>Department : </label>
-                    <span> Networking</span></td>
+                     <%= incident.department_name if incident.present? %></td></td>
                   <td><label>Summary : </label>
                     <span> Mana</span></td>
                    
@@ -184,6 +184,30 @@
             </div>
           </div>
           <% end %>
+
+
+
+
+          <div class="clearfix border-divider"> </div>
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <%= f.fields_for :attachment, (@incident.evaluate.attachment.present? ? @incident.evaluate.attachment : @incident.evaluate.build_attachment) do |attach| %>
+      <%= attach.label :attachment, t('evaluate.attachment'), :class => "attach-icon fleft blue_link" %><br />
+      <%= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
+      <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
+      <br />
+      <div id="attach_<%= @incident.evaluate.attachment.id%>"><%= link_to (File.basename(@incident.evaluate.attachment.attachment_file_url)).truncate(20),  download_evaluate_document_incident_evaluates_path(id: @incident.evaluate.attachment.id), class: "blue_link risl-blue-link" if @incident.evaluate.attachment.attachment_file_url %>
+        <div class="addissue evaluate-rem"> <%= link_to "Remove", remove_attachment_incident_evaluates_path(id: @incident.evaluate.attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon" if @incident.evaluate.attachment.attachment_file.present? %>
+          </div>
+    <% end %>
+    <div class="clearfix" id="selected_files"></div>
+  </div>
+</div>
+<div class="clearfix border-divider"> </div>
+
+
+
+
          <div class="clearfix"></div>
                     <div class="fright paddingtop"> <%= f.submit "Submit", :class => "black_btn" %> <a class="grey_btn" href=""> Cancel</a></div>
         </div>

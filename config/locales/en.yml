@@ -648,6 +648,7 @@ en:
     incident_origin_id: "Origin"
     resolutiontime: "Resolution Time"
     escalation_id: "Escalation"
+    attachement: "Attachment"
 
   resolution:
     evaluate_id: "Evaluate"

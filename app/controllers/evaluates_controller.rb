@@ -30,7 +30,21 @@ def new
 	end
 
 
+def download_evaluate_document
+    attachment = Attachment.find(params[:id])
+    send_file(Rails.public_path.to_s + attachment.attachment_file_url)
+  end
 
+
+    def download_document
+      attachment = Attachment.find(params[:id])
+      send_file(Rails.public_path.to_s + attachment.attachment_file_url)
+    end
+
+  def remove_attachment
+    attachment = Attachment.find(params[:id])
+    attachment.delete
+  end
 
 
 
@@ -42,7 +56,7 @@ def new
    
    def evaluate_params
    # params.require(:incident).permit( evaluates_attributes:[:id, :incident_id, :urgency_id, :incident_priority_id,:incident_impact_id,:assignee,:target_date,:sla_id,:incident_origin_id,:resolutiontime,:escalation_id])
-    params.require(:incident).permit(:id,:Jobtitle,:title,:request_type_id,:incident_category_id,:sub_category_id,:date_occured,:summary,:department_id,:team_id,:incident_status_id,:comment,:contact_no ,evaluates_attributes: [:incident_id, :title,:Jobtitle,:urgency_id, :incident_priority_id,:incident_impact_id,:assignee,:target_date,:sla_id,:incident_origin_id,:resolutiontime,:escalation_id]) 
+    params.require(:incident).permit(:id,:Jobtitle,:title,:request_type_id,:incident_category_id,:sub_category_id,:date_occured,:summary,:department_id,:team_id,:incident_status_id,:comment,:contact_no ,evaluates_attributes: [:incident_id, :title,:Jobtitle,:urgency_id, :incident_priority_id,:incident_impact_id,:assignee,:target_date,:sla_id,:incident_origin_id,:resolutiontime,:escalation_id], attachment_attributes: [:id, :attachment_file, :company_id]) 
     
 end
 end
