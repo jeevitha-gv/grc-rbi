@@ -23,11 +23,11 @@
                 </tr>
                 <tr>
                 <td><label>Category : </label>
-                    <%= f.collection_select(:incident_category_id, IncidentCategory.all, :id, :name, :prompt => true) %></td>
+                     <%= incident.incident_category_name if incident.present? %>
                   <td><label>Department : </label>
                     <span> Networking</span></td>
-                  <td><label>IncidentSummary : </label><br>
-                    <span> Incident Management</span></td>
+                  <td><label>Summary : </label>
+                    <span> Mana</span></td>
                    
                 </tr>
                 <tr>
@@ -44,7 +44,7 @@
                   <td><label>Date of Creation: </label>
                     <span> 01/08/2014</span></td>
                   <td><label>Status : </label>
-                   <%= f.collection_select(:incident_status_id,IncidentStatus.all, :id, :name, :prompt => true) %>  
+                    <%= incident.incident_status_name if incident.present? %> 
                    </td>> 
                   <div class="col-lg-4 col-sm-6 col-xs-12">
   
@@ -101,11 +101,11 @@
                       <%= evaluate.collection_select(:escalation_id, Escalation.all, :id, :user)%>
                     </div>
                       </div>
-                    </div>
-
+                    </div></div>
+  
                     
 
-                  </div>
+                  
                   <div class="col-lg-4">
                     <div class="form-group clearfix">
                       <label class="col-sm-5"><b>Assignee :</b> </label>
@@ -136,14 +136,7 @@
                     </div>
                      
 
-                     <div class="form-group clearfix">
-                      <label  class="col-sm-5"><b>Summary :</b> </label>
-                       <div class="col-sm-7">
-                        <div class="risk-select">
-                     <%= f.text_area :summary, :class=>"audit-big-input" %>
-                    </div>
-                      </div>
-                    </div>
+                   
 
                     </div>    
                     
@@ -178,6 +171,15 @@
                    
                    </div>
                                    
+              </div>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="risk-assetes">
+              <div class="mitigation-recomm">
+                <div class="mit-reccom-title">Summary</div>
+                <p><%= incident.summary if incident.present? %></p>
               </div>
             </div>
           </div>

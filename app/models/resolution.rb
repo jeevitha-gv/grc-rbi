@@ -6,13 +6,22 @@ class Resolution < ActiveRecord::Base
 	belongs_to :closure_classification
 	belongs_to :parentincident, class_name: 'incident', foreign_key: 'parent_incident'
 
-	validates :incident_id, presence:true
-	validates :reassignee, presence:true
-	validates :solution_type_id	,presence:true
-	validates :solution, length: { maximum: 250 }, :if => Proc.new{|f| !f.summary.blank? }
-	validates :root_cause, length: { maximum: 250 }, :if => Proc.new{|f| !f.summary.blank? }
-	validates :closure_classification_id ,presence:true
-	validates :parent_incident,presence:true
-	validates :attachment_id, presence:true
-	
+
+	# validates :incident_id, presence:true
+	# validates :reassignee, presence:true
+	# validates :solution_type_id	,presence:true
+	# validates :solution, length: { maximum: 250 }, :if => Proc.new{|f| !f.summary.blank? }
+	# validates :root_cause, length: { maximum: 250 }, :if => Proc.new{|f| !f.summary.blank? }
+	# validates :closure_classification_id ,presence:true
+	# validates :parent_incident,presence:true
+	# validates :attachment_id, presence:true
+
+
+	delegate :name, :to => :closure_classification, prefix: true, allow_nil: true
+	delegate :name, :to => :solution_type, prefix: true, allow_nil: true
+
+
+
+
+
 end

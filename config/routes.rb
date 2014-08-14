@@ -97,8 +97,6 @@ Rails.application.routes.draw do
 
  resources :computers do
  end
-resources :mobile_assets do
-end
 
   resource :user do
     collection do

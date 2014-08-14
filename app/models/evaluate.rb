@@ -11,7 +11,15 @@ class Evaluate < ActiveRecord::Base
 	
 
 	delegate :name, :to => :incident_impact, prefix: true, allow_nil: true
-	
+	delegate :name, :to => :urgency, prefix: true, allow_nil: true
+	delegate :name, :to => :incident_priority, prefix: true, allow_nil: true
+	delegate :name, :to => :sla, prefix: true, allow_nil: true
+	delegate :name, :to => :incident_origin, prefix: true, allow_nil: true
+	delegate :name, :to => :escalation, prefix: true, allow_nil: true
+	delegate :level, :to => :incident_category, prefix: true, allow_nil: true
+
+
+
 	# validates :incident_id, presence:true
 	# validates :urgency_id, presence:true
 	# validates :incident_priority_id, presence:true
