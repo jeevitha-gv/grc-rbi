@@ -30,7 +30,14 @@ def new
 
   def edit
   end
-
+  
+  def update
+      if @incident.(evaluate_params)
+      redirect_to edit_incident_evaluate_path(incident_id: @incident.id, id: @incident.evaluate.id)
+    else
+      render "edit"
+    end
+  end
 
   private
    
