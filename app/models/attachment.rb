@@ -8,6 +8,8 @@ class Attachment < ActiveRecord::Base
 
   before_save :set_size
 
+  belongs_to :other_asset
+
   private
 
   def set_size

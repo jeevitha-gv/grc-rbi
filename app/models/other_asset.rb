@@ -49,5 +49,15 @@ class OtherAsset < ActiveRecord::Base
     	end
   	end
 
+    after_create :send_notification
+
+    def send_notification
+        users_email = []
+        users_email << (self.otherasset_owner.email if self.asset_owner.present?) << (self.otherasset_user.email if self.asset_user.present?)
+        users_email.each_with_index do |email, index|
+            # RiskMailer.delay.notify_users_about_risk(self, email, subject_array[index], name="risk")
+        AssetMailer.notify(self,email).deliver
+    end
+    end
 
 end
