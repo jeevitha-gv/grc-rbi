@@ -15,7 +15,7 @@ Having trouble viewing this email? <a style="color:#74ac37; text-decoration:none
 
 <table style="width:625px; margin:0 auto; ">
 <tr>
-	<td style="color:#fff; font-size:20px; font-weight:bold; width:20%;"><%= @other_asset.company.name %></td>
+	<td style="color:#fff; font-size:20px; font-weight:bold; width:20%;"><%= @vendor.company.name %></td>
 	<td style="width:21%;"></td>
 	<td style="background-image:url(<%= HOST_URL %>/assets/outer/header_right_bg.png)  ;background-repeat:no-repeat;font-size: 14px;padding: 10px 20px;text-align: right; width:13%; color:#64972f"> Note : <span>Notification</span></td>
 </tr>
@@ -28,15 +28,14 @@ Having trouble viewing this email? <a style="color:#74ac37; text-decoration:none
 
 <table style="margin:0 auto !important; width:625px;background-image:url(<%= HOST_URL %>/assets/outer/middle_content.png);background-repeat:repeat-y; "  cellpadding="0" cellspacing="0" border="0" >
   
-    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" ><b>Below is the summary about your Asset.</b></td></tr>
-    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Name: <%= @other_asset.name %></td></tr>
-    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Manufacturer: <%= @other_asset.manufacturer %></td></tr>
-    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Model: <%= @other_asset.model %></td></tr>
-    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Asset Type: <%= @other_asset.asset_type.name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" ><b>Below is the summary about your Vendor Asset.</b></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Name: <%= @vendor.name %></td></tr>
+    <tr><td style="color:#999999; padding:10px 0 0 20px; font-size:14px;" >Reseller Type: <%= @vendor.reseller_type.name %></td></tr>
+   
 </table>
 
 <table style="margin:0 auto; width:625px; padding: 20px 0;background-image:url(<%= HOST_URL %>/assets/outer/middle_content.png);background-repeat:repeat-y;"  cellpadding="0" cellspacing="0" border="0">
-<tr><td><%= link_to 'View Other Asset', other_assets_url , :style => "background:#74ac37; color:#fff; border-radius:5px; padding:10px 30px; border:1px solid #6c9c39; text-decoration:none; margin: 0 0 0 15px; font-size:12px;" %></td></tr>
+<tr><td><%= link_to 'View Vendor Asset', vendors_url , :style => "background:#74ac37; color:#fff; border-radius:5px; padding:10px 30px; border:1px solid #6c9c39; text-decoration:none; margin: 0 0 0 15px; font-size:12px;" %></td></tr>
 </table>
 
 

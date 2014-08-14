@@ -15,6 +15,8 @@ class Computer < ActiveRecord::Base
   validates_presence_of :serial
   validates_presence_of :manufacturer
 
+  after_create :send_computer
+
 
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)
@@ -39,6 +41,15 @@ class Computer < ActiveRecord::Base
       computer.save(:validate => false)
 
     end
+  end
+
+  def send_computer
+        users_email = []
+        users_email << (self.computertechnical_contact.email if self.technical_contact.present?) << (self.computerasset_owner.email if self.asset_owner.present?)
+        users_email.each_with_index do |email, index|
+            # RiskMailer.delay.notify_users_about_risk(self, email, subject_array[index], name="risk")
+        AssetMailer.notify_computer(self,email).deliver
+        end
   end
 
   

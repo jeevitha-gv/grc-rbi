@@ -50,6 +50,7 @@ class OtherAsset < ActiveRecord::Base
   	end
 
     after_create :send_notification
+    
 
     def send_notification
         users_email = []
@@ -59,5 +60,7 @@ class OtherAsset < ActiveRecord::Base
         AssetMailer.notify(self,email).deliver
     end
     end
+
+    
 
 end
