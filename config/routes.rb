@@ -153,7 +153,7 @@ Rails.application.routes.draw do
 
   # INCIDENT MANAGEMENT
 
-  resources :incident do 
+  resources :incidents do 
 
   
   resources :evaluates
