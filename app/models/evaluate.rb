@@ -8,6 +8,7 @@ class Evaluate < ActiveRecord::Base
 	belongs_to :sla
 	belongs_to :incident_origin
 	belongs_to :escalation
+	has_one :attachment, as: :attachable
 	
 
 	delegate :name, :to => :incident_impact, prefix: true, allow_nil: true
@@ -18,6 +19,7 @@ class Evaluate < ActiveRecord::Base
 	delegate :name, :to => :escalation, prefix: true, allow_nil: true
 	delegate :level, :to => :incident_category, prefix: true, allow_nil: true
 
+	accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }
 
 
 	# validates :incident_id, presence:true
