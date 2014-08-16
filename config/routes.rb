@@ -145,16 +145,16 @@ Rails.application.routes.draw do
   
 # INCIDENT MANAGEMENT
 
-  resources :incident do 
-  resources :evaluates do 
+  resources :incidents do 
     collection do 
       get 'download_evaluate_document'
       delete 'remove_attachment'
       end  
+  resources :evaluates  
   resources :resolutions
 
 end
-end
+
 
 root 'home#index'
 

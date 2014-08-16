@@ -8,7 +8,7 @@ class Incident < ActiveRecord::Base
 	has_one :evaluate
 	has_one :resolution
 	belongs_to :incident_status
-
+    has_one :attachment, as: :attachable
 	# validates :Jobtitle, presence:true, length: { in: 0..50 }
 	# validates :Jobtitle, uniqueness:true
 	#validates_form_of :title, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.title.blank? }
@@ -27,8 +27,8 @@ class Incident < ActiveRecord::Base
 
 	accepts_nested_attributes_for :evaluate
 	accepts_nested_attributes_for :resolution
-has_one :attachment, as: :attachable
-accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }
+
+    accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }
 
 	delegate :name, :to => :team, prefix: true, allow_nil: true
 	delegate :name, :to => :department, prefix: true, allow_nil: true
