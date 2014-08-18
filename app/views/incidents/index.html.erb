@@ -1,14 +1,15 @@
-<script>
-  var stage = "<%= params[:stage]%>";
-</script>
-<%= javascript_include_tag "/assets/views/incident.js" %>
+
+
+<%= javascript_include_tag "/assets/views/incident_index.js" %>
+
+<div class="page-wrap">
 <div class="clearfix"></div>
 <div class="content">
   <div class="container">
-    <div class="row">
+    <div class="row grid">
       <!-- Nav tabs -->
       <div id="example" class="k-content">
-      <div class="risk-title">Incident Listing</div>
+      <div class="risk-title">Incidents Listing</div>
        	<div class=" col-xs-12 col-md-12 col-sm-12 col-lg-12">
         	 <div class="box-wrapper">
              <div class="search-box src-space clearfix">
@@ -29,6 +30,6 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
 </div>
 </div>
