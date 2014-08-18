@@ -75,10 +75,9 @@
         <li><a  href="/incidents/new" class="<%= request.fullpath.include?("incidents") == true ? 'active' : '' %>">
           <div class="plan-icon"></div>
           FileIncident</a></li>
-
-           <li><a  href="incidents/evaluates/new" class="<%= (request.fullpath.include?("/evaluates/new") && action_name == "new") == true ? 'active' : '' %>">
+          <li><a  href="/evaluates/new" class="<%= request.fullpath.include?("evaluates") == true ? 'active' : '' %>">
           <div class="plan-icon"></div>
-          Diagnosis</a></li>
+           Diagnosis</a></li>
         
         <li><a href="/incidents" class="<%= request.fullpath.include?("mitigate") || request.fullpath.include?("mitigations") == true ? 'active' : '' %>">
           <div class="lmitigate-icon"></div>
