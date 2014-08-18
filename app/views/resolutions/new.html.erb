@@ -1,0 +1,7 @@
+<%= form_for(@incident,url: {controller: "resolutions", action: "create"},:method => "post") do |r| %>
+
+<%= render 'form', :r => r,:evaluate => @evaluate,:incident => @incident %>
+
+<%= r.submit 'ReSolution'%>
+
+<%end%>  

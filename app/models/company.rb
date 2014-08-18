@@ -33,12 +33,7 @@ class Company < ActiveRecord::Base
   has_many :risk_charts
   #has_many :company_payments
 
-  # Assosciations with Asset Module
-  has_many :other_assets
-  has_many :computers
-  has_many :vendors
-  has_many :mobile_assets
-  has_many :asset_types
+ 
 
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users
@@ -63,7 +58,7 @@ class Company < ActiveRecord::Base
   delegate :email, to: :company_admin, prefix: true, allow_nil: true
 
   attr_accessor :subscription
-  after_create :company_role_create, :review_rating_levels_create, :company_plan_create, :asset_type_create
+  after_create :company_role_create, :review_rating_levels_create, :company_plan_create
   after_create :send_notification
 
   scope :active, -> { where(is_disabled: false) }
@@ -104,30 +99,6 @@ class Company < ActiveRecord::Base
     RiskMailer.send_notification(self).deliver
   end
   
-  # Other Asset Type 
-  def asset_type_create
-    company = Company.last
-    AssetType.create(name: "Braoadband Modem", company_id: company.id)
-    AssetType.create(name: "Cable Modem", company_id: company.id)
-    AssetType.create(name: "Coffer Machine", company_id: company.id)
-    AssetType.create(name: "External Storage", company_id: company.id)
-    AssetType.create(name: "Fax Machine", company_id: company.id)
-    AssetType.create(name: "Hub", company_id: company.id)
-    AssetType.create(name: "Modem", company_id: company.id)
-    AssetType.create(name: "Monitor", company_id: company.id)
-    AssetType.create(name: "Network Attached Storage", company_id: company.id)
-    AssetType.create(name: "Network Printer", company_id: company.id)
-    AssetType.create(name: "PBX", company_id: company.id)
-    AssetType.create(name: "Phone", company_id: company.id)
-    AssetType.create(name: "Projector", company_id: company.id)
-    AssetType.create(name: "Router", company_id: company.id)
-    AssetType.create(name: "Scanner", company_id: company.id)
-    AssetType.create(name: "Router", company_id: company.id)
-    AssetType.create(name: "Shredder", company_id: company.id)
-    AssetType.create(name: "Speaker Phone", company_id: company.id)
-    AssetType.create(name: "Storage Area Network", company_id: company.id)
-    AssetType.create(name: "Switch", company_id: company.id)
-  end
 
 
 end
