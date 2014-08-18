@@ -180,7 +180,7 @@ $(document).ready(function() {
   function evaluate_file(e)
   {
     var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-    window.location.href = "/incidents/"+ dataItem.id + "/evalutes/new"
+    window.location.href = "/incidents/"+ dataItem.id + "/evaluates/new"
   }
 
   function resolution_file(e)
