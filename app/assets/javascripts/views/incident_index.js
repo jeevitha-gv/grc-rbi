@@ -180,13 +180,13 @@ $(document).ready(function() {
   function evaluate_file(e)
   {
     var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-    window.location.href = "/incident/"+ dataItem.id + "/evalutes/new"
+    window.location.href = "/incidents/"+ dataItem.id + "/evalutes/new"
   }
 
   function resolution_file(e)
   {
     var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-    window.location.href = "/incident/"+ dataItem.id + "/resolutions/new"
+    window.location.href = "/incidents/"+ dataItem.id + "/resolutions/new"
   }
   // function graph_file(e)
   // {
