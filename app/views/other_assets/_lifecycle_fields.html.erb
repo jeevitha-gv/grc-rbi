@@ -1,0 +1,17 @@
+<fieldset class="choices comaduit_resp">
+  
+  <%= f.label :lifecycle_date, t('lifecycle.date') %>
+  <%= f.text_field :lifecycle_date, :class => "audit-normal-input col-sm-10" %>
+  
+  <%= f.label :lifecycle_type_id, t('lifecycle.type') %>
+  <%= f.collection_select(:lifecycle_type_id, LifecycleType.all, :id, :name) %>
+  
+  <%= f.label :user_id, t('lifecycle.user') %>
+  <%= f.collection_select(:user_id, current_company.users, :id, :user_name) %>
+  
+  <%= f.label :notes, t('lifecycle.notes') %>
+  <%= f.text_area :notes, :class => "audit-normal-input col-sm-10" %>
+  
+  <%= link_to_remove_choices "", f %>
+
+</fieldset>

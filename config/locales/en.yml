@@ -630,7 +630,7 @@ en:
 
   lifecycle:
     lifecycle_date: "Date"
-    lifecycle_type: "Lifecycle Type"
+    lifecycle_type: "Transistion"
     notes: "Notes"
     user: "User"
 
