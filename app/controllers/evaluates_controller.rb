@@ -1,4 +1,5 @@
 class EvaluatesController < ApplicationController
+  layout 'incident_layout'
   def index
   	#@evaluates = current_user.evaluates
   end

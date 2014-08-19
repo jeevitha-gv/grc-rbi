@@ -1,4 +1,14 @@
-
+<html>
+<head>
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <script>
+  $(function incident() {
+    $( "#incident" ).datepicker();
+  });
+  </script>
+</head>
 <div class="clearfix"></div>
 <div class="content">
   <div class="container">
@@ -71,8 +81,8 @@
                     <label for="inputEmail3" class="col-sm-6 control-label" style=" width: 30.33333333%;">
                       <%= f.label :Date_Occured, t('incident.date_occured')%>
                     </label>
-                    <div class="col-sm-6">
-                    <%= f.text_field :title, :class => "form-control risk-normal-input",:maxlength => 25 %> </div>
+                    <div class="col-sm-8">
+                  <%= f.text_field :title, :class => "form-control risk-normal-input",:id => "incident",:maxlength => 25 %> </div>
                     </div>
                    
                   </div>
@@ -164,9 +174,9 @@
                                <div class="form-group">
                                      <div class="col-sm-11">
                                      <label for="exampleInputPassword1">
-                                      <%= f.label :comment%>
+                                      <%= f.label :comment, t('incident.summary')%>
                                      </label>
-                                     <%= f.text_area :comment,:class=>"form-control risk-big-input"%>
+                                     <%= f.text_area :comment,:class=>"form-control incident-big-input"%>
                                      <% if incident.errors[:comment].present? %>
                         <div class="error_message"><%= incident.errors[:comment][0]%></div>
                       <% end %>
@@ -174,11 +184,12 @@
                                   </div>
                                   </div>
                                  </div>
-
+<br>
                         <div class="row">
-                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="fright paddingtop" style="padding-right: 50px;">
+                       
     <%= f.fields_for :attachment, (@incident.attachment.present? ? @incident.attachment : @incident.build_attachment) do |attach| %>
-      <%= attach.label :attachment, t('incident.attachment'), :class => "attach-icon fleft blue_link" %><br />
+   
       <%= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
       <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
       <br />
@@ -186,11 +197,11 @@
         <div class="addissue risk-rem"> <%= link_to "Remove", remove_attachment_incidents_path(id: @incident.attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon" if @incident.attachment.attachment_file.present? %>
         </div>
     <% end %>
-            </div>
+       
+            </div> 
                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                  <div class="btn-wrap">
                          
-  <div class="fright paddingtop"><%= f.submit "Save ", :class => "orange_btn" %> <a class="grey_btn" href=""> Cancel</a></div>
 
 
                                   
@@ -200,7 +211,10 @@
 
 <br>
                             </div>
+                              <div class="fright paddingtop" style="padding-right: 80px;"><%= f.submit "Save ", :class => "orange_btn" %> <a class="grey_btn" href=""> Cancel</a></div>
+
                         </div>
+                        <br>
                    
              </form>
             </div>
@@ -224,3 +238,4 @@
   </div>
 </div>
 
+</html>

@@ -1,3 +1,17 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#evaluate" ).datepicker();
+  });
+  </script>
+</head>
   <div class="clearfix"></div>
   <div class="content">
     <div class="container">
@@ -64,7 +78,7 @@
 
           <div class="container">
             <div id="Accordion1">
-              <h3><a href="#">Incidet-Manager Evaluation</a> <span class="fright pending_msg">Pending</span></h3>
+              <h3><a href="#">Incidet-Manager Evaluation</a> <span class="fright pending_msg"></span></h3>
               
               <div>
                 <div class="row audit-title">
@@ -99,11 +113,9 @@
                      
                     
                       <div class="form-group clearfix">
-                      <label  class="col-sm-5"><b>Escalation :</b> </label>
+                    
                        <div class="col-sm-7">
-                        <div class="risk-select">
-                      <%= evaluate.collection_select(:escalation_id, Escalation.all, :id, :user)%>
-                    </div>
+                    
                       </div>
                     </div></div>
   
@@ -121,10 +133,10 @@
                        
                     </div>
                    <div class="form-group clearfix">
-                      <label  class="col-sm-5"><b>Target Date :</b> </label>
+                      <label  class="col-sm-5"><b>Escalation :</b> </label>
                        <div class="col-sm-7">
-                        <div class="risk-select">
-                      <%= evaluate.text_field :target_date%>
+                         <div class="risk-select">
+                      <%= evaluate.collection_select(:escalation_id, Escalation.all, :id, :user)%>
                     </div>
                       </div>
                     </div>
@@ -142,8 +154,9 @@
 
                   <div class="col-lg-4"><div class="form-group clearfix">
                       <label class="col-sm-5"><b>Target Date :</b> </label>
-                      <div class="col-sm-7"> <input id="datepicker2" value="10/10/2011" style="width:150px;" /></div>
-                        
+                      <div class="col-sm-7">
+                    <%= evaluate.text_field :target_date, :class => "form-control risk-normal-input",:id => "evaluate",:maxlength => 25 %>
+                    </div>
                     </div>
                     <div class="form-group clearfix">
                       <label  class="col-sm-5"><b>Origin:</b> </label>
@@ -177,28 +190,12 @@
 
 
 
-          <div class="clearfix border-divider"> </div>
-<div class="row">
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-    <%= f.fields_for :attachment, (@incident.evaluate.attachment.present? ? @incident.evaluate.attachment : @incident.evaluate.build_attachment) do |attach| %>
-      <%= attach.label :attachment, t('evaluate.attachment'), :class => "attach-icon fleft blue_link" %><br />
-      <%= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
-      <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
-      <br />
-      <div id="attach_<%= @incident.evaluate.attachment.id%>"><%= link_to (File.basename(@incident.evaluate.attachment.attachment_file_url)).truncate(20),  download_evaluate_document_incident_evaluates_path(id: @incident.evaluate.attachment.id), class: "blue_link risl-blue-link" if @incident.evaluate.attachment.attachment_file_url %>
-        <div class="addissue evaluate-rem"> <%= link_to "Remove", remove_attachment_incident_evaluates_path(id: @incident.evaluate.attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon" if @incident.evaluate.attachment.attachment_file.present? %>
-          </div>
-    <% end %>
-    <div class="clearfix" id="selected_files"></div>
-  </div>
-</div>
-<div class="clearfix border-divider"> </div>
-
+       
 
 
 
          <div class="clearfix"></div>
-                    <div class="fright paddingtop"> <%= f.submit "Submit", :class => "black_btn" %> <a class="grey_btn" href=""> Cancel</a></div>
+                    <div class="fright paddingtop" style="padding-right: 80px;"><%= f.submit "Save ", :class => "orange_btn" %> <a class="grey_btn" href=""> Cancel</a></div>
         </div>
       </div>
     </div>
@@ -213,3 +210,4 @@
     </div>
   </div>
 </div>
+</html>
