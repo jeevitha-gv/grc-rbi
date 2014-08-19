@@ -21,6 +21,7 @@ class OtherAsset < ActiveRecord::Base
 	validates_presence_of :asset_status_id
 
     accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }
+     accepts_nested_attributes_for :lifecycles, :allow_destroy => true
 
 
 	def self.open_spreadsheet(file)

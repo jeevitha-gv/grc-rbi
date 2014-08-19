@@ -1,17 +1,59 @@
 <fieldset class="choices comaduit_resp">
-  
-  <%= f.label :lifecycle_date, t('lifecycle.date') %>
-  <%= f.text_field :lifecycle_date, :class => "audit-normal-input col-sm-10" %>
-  
-  <%= f.label :lifecycle_type_id, t('lifecycle.type') %>
-  <%= f.collection_select(:lifecycle_type_id, LifecycleType.all, :id, :name) %>
-  
-  <%= f.label :user_id, t('lifecycle.user') %>
-  <%= f.collection_select(:user_id, current_company.users, :id, :user_name) %>
-  
-  <%= f.label :notes, t('lifecycle.notes') %>
-  <%= f.text_area :notes, :class => "audit-normal-input col-sm-10" %>
-  
-  <%= link_to_remove_choices "", f %>
+  <div class="row">
+    <div class="container">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+        <div class="likelihood clearfix">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+              <div class="form-group clearfix">
+    	             <label class="col-sm-4 control-label">
+  			               <%= f.label :lifecycle_date, t('lifecycle.date') %>
+  		             </label>
+  	               <div class="col-sm-8">
+  			               <%= f.text_field :lifecycle_date, :class => "datepicker" %>
+  		             </div>
+            	</div>
+             </div>
 
-</fieldset>
+             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                <div class="form-group clearfix">
+    	             <label class="col-sm-4 control-label">
+  		              	<%= f.label :lifecycle_type_id, t('lifecycle.type') %>
+  		              </label>
+  		              <div class="col-sm-8">
+  			               <%= f.collection_select(:lifecycle_type_id, LifecycleType.all, :id, :name) %>
+  	               	</div>
+  	           </div>
+             </div>
+
+             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                <div class="form-group clearfix">
+    	             <label class="col-sm-4 control-label">
+  			             <%= f.label :user_id, t('lifecycle.user') %>
+  		             </label>
+  		             <div class="col-sm-8">
+  		              	<%= f.collection_select(:user_id, current_company.users, :id, :user_name) %>
+  		             </div>
+  	            </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                <div class="form-group clearfix">
+    	              <label class="col-sm-4 control-label">
+  			               <%= f.label :notes, t('lifecycle.notes') %>
+  		              </label>
+  	               	<div class="col-sm-8">
+  				              <%= f.text_area :notes, :class => "audit-normal-input col-sm-10" %>
+  	               	</div>
+  	           </div>
+            </div>
+  
+           <%= link_to_remove_choices "", f %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+  </fieldset>

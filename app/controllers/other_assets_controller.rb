@@ -8,10 +8,13 @@ class OtherAssetsController < ApplicationController
 
   def new
   	@other_asset = OtherAsset.new
+    @other_asset.lifecycles.build unless @other_asset.lifecycles.present?
   end
 
   def create
   	@other_asset = current_company.other_assets.new(other_asset_params)
+
+
   	if @other_asset.save
   		redirect_to other_assets_path
   	else
@@ -76,7 +79,7 @@ class OtherAssetsController < ApplicationController
 
 
   def other_asset_params
-  	params.require(:other_asset).permit(:name, :manufacturer, :asset_type_id, :asset_status_id, :model, :serial_number, :aset_id, :ip, :description, :asset_owner, :asset_user, :location_id, :department_id, :maintenance_contract, :lease_contract, attachment_attributes: [:id, :attachment_file, :company_id])
+  	params.require(:other_asset).permit(:name, :manufacturer, :asset_type_id, :asset_status_id, :model, :serial_number, :aset_id, :ip, :description, :asset_owner, :asset_user, :location_id, :department_id, :maintenance_contract, :lease_contract, attachment_attributes: [:id, :attachment_file, :company_id],lifecycles_attributes: [:id, :lifecycle_date, :lifecycle_type_id, :user_id, :notes,:_destroy])
   end
 
 end
