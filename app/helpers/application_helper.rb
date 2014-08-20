@@ -90,7 +90,7 @@ def link_to_add_lifecycle_fields(name, f, association, lifecycle)
   fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
     render(association.to_s.singularize + "_fields", :f => builder, lifecycle: lifecycle)
   end
-  link_to "#{name}" ,'javascript:void(0)',  {onclick: "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", class: "plus-icon"}
+  link_to "#{name}" ,'javascript:void(0)',  {onclick: "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", class: "plusround-icon plus-backgroundn"}
 end
 
 end

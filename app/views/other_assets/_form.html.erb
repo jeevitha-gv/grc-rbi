@@ -230,7 +230,7 @@
   <%= f.fields_for :lifecycles do |builder| %>
   	<%= render 'lifecycle_fields', other_asset: other_asset, f: builder %>
   <% end %>
-  <%= link_to_add_lifecycle_fields "Add New Event", f, :lifecycles, other_asset %>
+  <%= link_to_add_lifecycle_fields "", f, :lifecycles, other_asset %>
 </div>
 
 
