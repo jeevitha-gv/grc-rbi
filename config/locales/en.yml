@@ -669,7 +669,7 @@ en:
     city: "City"
     state: "State"
     zip: "Zip"
-    note: "Note"
+    note: "Notes"
 
   other_asset:
     name: "Name"

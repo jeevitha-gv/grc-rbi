@@ -106,30 +106,32 @@
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
     <div class="form-group clearfix">
       <label class="col-sm-4 control-label">
-       <%= f.label :state, t('vendor.state') %>
-      </label>
-      <div class="col-sm-8">
-        <%= f.text_field :state, :class => "form-control risk-normal-input"%>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-    <div class="form-group clearfix">
-      <label class="col-sm-4 control-label">
-     	 <%= f.label :zip, t('vendor.zip') %>
+       <%= f.label :zip, t('vendor.zip') %>
       </label>
       <div class="col-sm-8">
       <%= f.text_field :zip, :class => "form-control risk-normal-input"%>
       </div>
     </div>
   </div>
+  
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+       <%= f.label :address, t('vendor.address') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_area :address, :class => "form-control risk-normal-input"%>
+      </div>
+    </div>
+  </div>
+  
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
     <div class="form-group clearfix">
       <label class="col-sm-4 control-label">
         <%= f.label :note, t('vendor.note') %>
       </label>
       <div class="col-sm-8">
-        <%= f.text_field :note, :class => "form-control risk-normal-input"%>
+        <%= f.text_area :note, :class => "form-control risk-normal-input"%>
       </div>
     </div>
   </div>
