@@ -1,5 +1,5 @@
 ActiveAdmin.register SubCategory do
-	permit_params :category_id,:name
+	permit_params :incident_category_id,:name
 
   config.filters = false
    index do
@@ -8,4 +8,11 @@ ActiveAdmin.register SubCategory do
      actions
   end
 
+    form do |f|
+    f.inputs "New SubCategory" do
+      f.input :incident_category_id, :label => 'Category', :as => :select, :collection => IncidentCategory.all, :prompt => "-Select category-"
+      f.input :name
+    end
+    f.actions
+  end
 end
