@@ -60,6 +60,12 @@ class VendorsController < ApplicationController
     end
   end
 
+  def destroy
+    @vendor = Vendor.find(params[:id])
+    @vendor.destroy
+    render json: {:data=> "success"}
+  end
+
   def vendor_params
     params.require(:vendor).permit(:name, :reseller_type_id, :contact_name, :contact_email, :contact_phone, :url, :telephone, :address, :city, :state, :zip, :note)
   end

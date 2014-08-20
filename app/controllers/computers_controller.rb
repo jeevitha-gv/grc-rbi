@@ -58,6 +58,12 @@ class ComputersController < ApplicationController
     end
   end
 
+  def destroy
+    @computer = Computer.find(params[:id])
+    @computer.destroy
+    render json: {:data=> "success"}
+  end
+
   private
 
   def computer_params

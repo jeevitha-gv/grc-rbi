@@ -32,6 +32,12 @@ class ContractsController < ApplicationController
     end
   end
 
+  def destroy
+    @contract = Contract.find(params[:id])
+    @contract.destroy
+    render json: {:data=> "success"}
+  end
+
   private
     def asset_params
       params.require(:contract).permit(:name, :manufacturer, :contract_type_id, :contract_status_id, :notes, :location_id, :department_id)

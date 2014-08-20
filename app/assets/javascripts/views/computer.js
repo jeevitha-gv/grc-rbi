@@ -68,6 +68,14 @@ function search_result()
                                     dataType: 'json',
                                     type: 'get'
                                 },
+                                destroy: {
+                                           url: function(risk) 
+                                                {
+                                                    return "/computers/" + computer.id
+                                                },
+                                                dataType: "json",
+                                                type: "DELETE"
+                                         }
                             },
                             schema: {
             errors: function(response) {
@@ -111,11 +119,26 @@ function search_result()
                             field: "technical_contact",
                             title: "Technical Contact"
                         },
-                      { command: [{text: "edit", click: edit_file}], title: "Action" }
+                      { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 
                         ],
                     });
           
+function delete_file(e)
+   {
+       var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+       if (confirm('Are you sure you want to delete this record ?')) {
+               $.ajax({
+               url: "/computers/"+dataItem.id,
+               type: 'delete',
+               dataType: 'json',
+               success:function(result){
+               }
+               });
+           }
+           $('#grid').data('kendoGrid').dataSource.read();
+           $('#grid').data('kendoGrid').refresh();
+   }
 
 function edit_file(e)
     {

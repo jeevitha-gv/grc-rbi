@@ -70,6 +70,14 @@ function search_result()
                                      dataType: 'json',
                                     type: 'get'
                                  },
+                                 destroy: {
+                                           url: function(risk) 
+                                                {
+                                                    return "/vendors/" + vendor.id
+                                                },
+                                                dataType: "json",
+                                                type: "DELETE"
+                                         }
                             
                              // {
                              //        url: crudServiceBaseUrl + "/vendors",
@@ -137,21 +145,34 @@ function search_result()
                             title: "City"
                         },
                         // { command: ["edit", "destroy"], title: "Action", width: "200px" }
-                        { command: [{text: "edit", click: edit_file}], title: "Action" }
+                        { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
                         ],
                        // editable: "popup"
                     });
-                function edit_file(e)
+    
+   function delete_file(e)
+   {
+       var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+       if (confirm('Are you sure you want to delete this record ?')) {
+               $.ajax({
+               url: "/vendors/"+dataItem.id,
+               type: 'delete',
+               dataType: 'json',
+               success:function(result){
+               }
+               });
+           }
+           $('#grid').data('kendoGrid').dataSource.read();
+           $('#grid').data('kendoGrid').refresh();
+   }
+
+    function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
         window.location.href = "/vendors/"+ dataItem.id + "/edit"
     }
 
-     function delete_file(e)
-    {
-        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/vendors/"+ dataItem.id + "/delete"
-    }
+     
       });
                
 

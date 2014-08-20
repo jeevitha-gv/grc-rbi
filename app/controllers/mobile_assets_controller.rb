@@ -60,6 +60,12 @@ class MobileAssetsController < ApplicationController
     end
   end
 
+  def destroy
+    @mobile_asset = MobileAsset.find(params[:id])
+    @mobile_asset.destroy
+    render json: {:data=> "success"}
+  end
+
   private
 
     def mobile_asset_params
