@@ -37,4 +37,10 @@ class Incident < ActiveRecord::Base
 	delegate :name, :to => :incident_status, prefix: true, allow_nil: true
 	delegate :name, :to => :incident_impact, prefix: true, allow_nil: true
 	delegate :name, :to => :request_type, prefix: true, allow_nil: true
+
+	def set_incident_status(incident, commit_name)
+    incident.incident_status_id = ((commit_name == "Save as Draft") ?  IncidentStatus.for_name("Draft").first.id : IncidentStatus.for_name("New").first.id)
+    return incident
+  end
+
 end

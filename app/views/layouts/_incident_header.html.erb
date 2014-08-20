@@ -69,20 +69,25 @@
         <li><a  href="#" class="">
           <div class="dash-icon"></div>
           Dashboard</a></li>
-          <li><a  href="/incidents" class="">
+          
+
+          <li><a  href="/incidents" class="<%= request.fullpath.exclude?("evaluate") && request.fullpath.exclude?("new") && request.fullpath.exclude?("resolution") && request.fullpath.exclude?("evaluates") == true ? 'active' : '' %>">
           <div class="listing-icon"></div>
           Listings</a></li>
-        <li><a  href="/incidents/new" class="<%= request.fullpath.include?("incidents") == true ? 'active' : '' %>">
+       
+          <li><a  href="/incidents/new" class="<%= (request.fullpath.include?("incidents/new") && action_name == "new") == true ? 'active' : '' %>">
           <div class="plan-icon"></div>
-          FileIncident</a></li>
-          <li><a  href="/evaluates/new" class="<%= request.fullpath.include?("evaluates") == true ? 'active' : '' %>">
-          <div class="plan-icon"></div>
-           Diagnosis</a></li>
-        
-        <li><a href="/incidents" class="<%= request.fullpath.include?("mitigate") || request.fullpath.include?("mitigations") == true ? 'active' : '' %>">
+          File</a></li>
+          
+        <li><a href="/incidents?stage=evaluate" class="<%= request.fullpath.include?("evaluate") || request.fullpath.include?("evaluates") == true ? 'active' : '' %>">
           <div class="lmitigate-icon"></div>
+          Diagnosis</a></li>
+
+          <li><a  href="/incidents?stage=resolution" class="<%= request.fullpath.include?("resolution") == true ? 'active' : '' %>">
+          <div class="review-icon"></div>
           Resolution</a></li>
-        <li><a  href="/incidents" class="<%= request.fullpath.include?("review") == true ? 'active' : '' %>">
+
+        <li><a  href="/incidents?stage=closure" class="<%= request.fullpath.include?("review") == true ? 'active' : '' %>">
           <div class="review-icon"></div>
           Closure</a></li>
         <li><a href="/incidents" >

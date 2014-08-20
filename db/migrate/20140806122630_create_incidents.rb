@@ -12,7 +12,7 @@ class CreateIncidents < ActiveRecord::Migration
     	t.integer :team_id
     	t.integer :incident_status_id
     	t.text :comment
-    	t.integer :contact_no
+    	t.string :contact_no
         t.integer :resolution_id
     	 	
 

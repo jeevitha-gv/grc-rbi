@@ -492,10 +492,9 @@ IncidentPriority.delete_all
 
 IncidentStatus.delete_all
     IncidentStatus.create(:name => "New")
+    IncidentStatus.create(:name => "Draft")
     IncidentStatus.create(:name => "In-Progress")
-    IncidentStatus.create(:name => "Waiting")
     IncidentStatus.create(:name => "Resolved")
-    IncidentStatus.create(:name => "Completed")
     IncidentStatus.create(:name => "Closed")
 
 

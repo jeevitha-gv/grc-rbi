@@ -111,6 +111,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  # def accessible_incidents
+  #   if(self.role.title == "company_admin")
+  #     Incident.where(company_id: self.company_id)
+  #   else
+  #     (self.risk_owner + self.risk_submitor + self.risk_mitigator + self.risk_reviewer).uniq
+  #   end
+  # end
+
   def audits_stage(params)
     audits = []
     case params[:stage]
@@ -140,6 +148,19 @@ class User < ActiveRecord::Base
       risks
     end
   end
+
+  def incidents_stage(params)
+    incidents = []
+    case params[:stage]
+    when 'evaluate'
+      self.accessible_incidents.select{ |x| incidents << x if(x.evaluate.blank? && ( x.incident_status_name == "New")) }
+      incidents
+    when 'resolution'
+      self.accessible_incidents.select{ |x| incidents << x if(x.evaluate.present? ) }
+      incidents
+    end
+  end
+
 
   protected
 
