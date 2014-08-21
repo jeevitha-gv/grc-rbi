@@ -1,0 +1,69 @@
+<div id="leftcol" class="ticket-leftcol cmdb-sidebar">
+    <div id="cmdb-tree">
+      <div class="demo-section k-header">
+          <ul id="treeview">              
+              <li><span class="test"><a href="/computers">Computers</a></span></li>
+              <hr>
+              <li><span class="test"><a>Software</a></span></li>
+              <hr>
+              <li><span class="test"><a>Mobile Assets</a></span></li>
+              <hr>
+              <li><span class="test"><a>Database</a></span></li>
+              <hr>
+              <li><span class="test"><a>Miscellaneous</a></span></li>
+              <hr>
+              <li><span class="test"><a>Server</a></span></li>
+              <hr>
+              <li><span class="test"><a>Operating Systems</a></span></li>
+              <hr>
+              <li><span class="test"><a>Services</a></span></li>
+              <hr>
+              <li><span class="test"><a>Consumable</a></span></li>
+              <hr>
+              <li><span class="test"><a>Network</a></span></li>
+              <hr>
+              <li><span class="test"><a>Document</a></span></li>
+              <hr>
+              <li><span class="test"><a>Trash</a></span></li>             
+        </ul>
+      </div>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+
+        $("#treeview").kendoTreeView();
+
+
+        var original = $("#treeview").clone(true);
+
+        $(".configuration input").change( function() {
+            var treeView = $("#treeview"),
+                clone = original.clone(true);
+
+            treeView.parent().empty().remove();
+            $(".demo-section").append(clone);
+
+            initTreeView();
+        });
+
+        var initTreeView = function () {
+            $("#treeview").width(200)
+                .kendoTreeView({
+                    animation: {
+                        expand: {
+                            effects: getEffects()
+                        }
+                    }
+                });
+        };
+
+        var getEffects = function () {
+            return (($("#expand")[0].checked ? "expand:vertical " : "") +
+                    ($("#opacity")[0].checked ? "fadeIn" : "")) || false;
+        };
+
+        initTreeView();
+    });
+</script>
