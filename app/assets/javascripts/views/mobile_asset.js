@@ -105,7 +105,7 @@ function search_result()
                         // },
                        columns: [{
                             field: "model",
-                            title: "width",
+                            title: "Model",
                             Model: 200
                         }, {
                             field: "manufacturer",
