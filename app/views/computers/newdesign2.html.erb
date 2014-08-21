@@ -67,7 +67,7 @@
 }
 
 .hasRightCol {
-    margin-left: 231px;
+    margin-left: 250px;
 }
 
 .cmdb-list #sticky_header {
@@ -83,6 +83,7 @@
 
 .title {
     padding: 5px 0;
+    margin-left: 15px;
 }
 
 .cmdb-list #sticky_header .buttons_container {
@@ -106,6 +107,34 @@ a.btn {
 }
 .btn {
     margin-right: 4px;
+}
+
+.btn-primary {
+    background-color: #373737;
+    background-image: linear-gradient(to bottom, #444, #222);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: white;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.floatl {
+    display: inline;
+    float: left;
+}
+
+#import_status .cmdb_status_header .floatl span {
+    color: #999;
+    font-size: 13px;
+    position: relative;
+    top: -8px;
+}
+
+.buttons_container {
+	margin-top: 16px;
 }
 
 </style>
@@ -145,33 +174,19 @@ a.btn {
 		    </div>
 		</div>
 	</div>
-	<div id="rightcol" class="contentCol hasRightCol">
-		<div id="sticky_header" class="fixed-header clearfix"  style="width: 1116px;">
-			<h3 class="title floatl">My Assets</h3>
+	<div id="rightCol" class="contentCol hasRightCol">
+		<div id="sticky_header" class="fixed-header clearfix" style="width: 1116px">
+			<h3 class="title floatl">Listing Computers</h3>
 			<div class="buttons_container pull-right">
-				<a id="ci_new_btn" class="btn btn-info add_new" href="">Add New</a>
-			</div>
-			<div>
-				<div id="example">
-			      <div class="row grid">
-
-			        <div class="fright set-wrap">
-			          <div class="form-group audit_search">
-			            <%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value" %>
-			            <%= submit_tag "Search", name: nil, :class=>"btn btn-default", :id => "search-button" %>
-			            <a href="javascript:void(0);" class="cancel-btn1">Clear</a>
-			          </div>
-			        </div>
-            		
-            		<div id="grid" class="k-grid-content"></div>
-
-        			</div>
-      			</div>
-
-      		</div>
-			</div>
+				<!-- <a class="" href="/cmdb/items_import/csv">Import</a> -->
+				<a class="btn btn-info add_new" href="/cmdb/items/new">Add New</a>
+     		</div>
+		</div>
+		</div>
+		<div>
 		</div>
 	</div>
+
 </div>
 </div>
 
