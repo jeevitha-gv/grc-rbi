@@ -141,6 +141,19 @@ class User < ActiveRecord::Base
     end
   end
 
+  
+  def incidents_stage(params)
+    incidents = []
+    case params[:stage]
+    when 'evaluate'
+      self.accessible_incidents.select{ |x| incidents << x if(x.evaluate.blank? && ( x.incident_status_name == "New")) }
+      incidents
+    when 'resolution'
+      self.accessible_incidents.select{ |x| incidents << x if(x.evaluate.present? ) }
+      incidents
+    end
+  end
+
   protected
 
   def password_required?

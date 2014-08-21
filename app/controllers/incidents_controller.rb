@@ -17,7 +17,8 @@ layout 'incident_layout'
 
   def create
     @incident = Incident.create(incident_params)
-    
+    @incident.set_incident_status(@incident, params[:commit])
+
     if @incident.save
       flash[:notice] = "The incident was successfully created"
       redirect_to new_incident_path
@@ -38,6 +39,13 @@ layout 'incident_layout'
     end
   end
 
+def incident_all
+    if params[:stage].present?
+      @incidents = current_user.incidents_stage(params)
+    else
+      @incidents = current_user.accessible_incidents
+    end
+  end
 
   def download_incident_document
     attachment = Attachment.find(params[:id])
@@ -96,7 +104,7 @@ layout 'incident_layout'
 private
   
   def incident_params
-    params.require(:incident).permit(:Jobtitle, :title, :request_type_id, :incident_category_id, :sub_category_id, :date_occured, :summary, :department_id, :team_id, :incident_status_id, :comment, :contact_no, attachment_attributes: [:id, :attachment_file, :company_id])
+    params.require(:incident).permit(:Jobtitle, :title, :request_type_id, :incident_category_id, :sub_category_id, :date_occured, :summary,:department_id, :team_id, :incident_status_id, :comment, :contact_no, attachment_attributes: [:id, :attachment_file, :company_id])
   end
 
 
