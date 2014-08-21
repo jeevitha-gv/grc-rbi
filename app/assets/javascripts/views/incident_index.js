@@ -158,7 +158,7 @@ $(document).ready(function() {
         { field: "incident_category", title: "Category", width: "35%" },
         { field: "incident_status", title: "Status", width: "35%" },
         { field: "team", title: "Team", width: "35%" },
-      { command: [{text: "list", click:evaluate_file },{text: "miti", click: resolution_file},{text: "edit", click: edit_file}], title: "Action", width: "200px" }
+      { command: [{text: "list", click:evaluate_file },{text: "miti", click: resolution_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Action", width: "200px" }
     ],
   //~ editable: "popup"
   });
@@ -187,6 +187,11 @@ $(document).ready(function() {
   {
     var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
     window.location.href = "/incidents/"+ dataItem.id + "/resolutions/new"
+  }
+  function pdf_file(e)
+  {
+    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+    window.location.href = "/incidents/"+ dataItem.id +".pdf"
   }
   // function graph_file(e)
   // {
@@ -273,6 +278,7 @@ $(document).ready(function() {
     $('.k-grid-list').attr('title','Evaluate');
     $('.k-grid-miti').attr('title','Resolution');
     $('.k-grid-edit').attr('title','edit');
+    $('.k-grid-pdf').attr('title','PDF');
     //$('.k-grid-graph').attr('title','Dashboard');
   }
 

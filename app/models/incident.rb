@@ -1,4 +1,4 @@
-class Incident < ActiveRecord::Base
+	class Incident < ActiveRecord::Base
 
 	belongs_to :request_type
 	belongs_to :incident_category
