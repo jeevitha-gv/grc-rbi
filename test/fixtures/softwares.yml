@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_id: 1
+  software_type_id: 1
+  description: MyText
+  product_name: MyString
+  manufacturer: MyString
+  vendor_id: 1
+  cost: 1.5
+  license_years: 1
+  license_months: 1
+  installation_date: 2014-08-22
+  license_expiry_date: 2014-08-22
+  license_key: MyString
+  version: 1.5
+  license_type_id: 1
+  installation_path: MyString
+  last_audit_date: 2014-08-22
+  location_id: 1
+  department_id: 1
+  asset_manager_id: 1
+  asset_user_id: 1
+  assigned_on: 2014-08-22
+
+two:
+  company_id: 1
+  software_type_id: 1
+  description: MyText
+  product_name: MyString
+  manufacturer: MyString
+  vendor_id: 1
+  cost: 1.5
+  license_years: 1
+  license_months: 1
+  installation_date: 2014-08-22
+  license_expiry_date: 2014-08-22
+  license_key: MyString
+  version: 1.5
+  license_type_id: 1
+  installation_path: MyString
+  last_audit_date: 2014-08-22
+  location_id: 1
+  department_id: 1
+  asset_manager_id: 1
+  asset_user_id: 1
+  assigned_on: 2014-08-22

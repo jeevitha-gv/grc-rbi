@@ -6,6 +6,7 @@
 
 .cmdb-sidebar {
     background: none repeat scroll 0 0 #DDDEE0;
+    /*background: none repeat scroll 0 0 #FFFFFF;*/
     min-height: 500px;
 }
 
@@ -18,6 +19,7 @@
 
 #cmdb-tree {
     background: none repeat scroll 0 0 #DDDEE0;
+    /*background: none repeat scroll 0 0 #FFFFFF;*/
     margin: 25px 10px 10px;
 }
 
@@ -39,7 +41,7 @@
 }
 
 .test {
-	font-size: large;
+	font-size: medium;
 }
 
 .test2 {
