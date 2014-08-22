@@ -5,9 +5,9 @@
 </style>
 
 <link rel="stylesheet" type="text/css" href="/assets/outer/asset-style.css">
-<%= javascript_include_tag "/assets/views/computer.js" %>
+<%= javascript_include_tag "/assets/views/document.js" %>
 
-<div id="test3">
+ <div id="test3"> 
 <div class="containerFull">
   
   <%= render partial: "asset_partials/asset_left_menu" %>
@@ -18,9 +18,9 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
-                    <h4 class="modal-title" id="myModalLabel">Import Computer from CSV/XLSX</h4>
+                    <h4 class="modal-title" id="myModalLabel">Import Document from CSV/XLSX</h4>
                        <div class="modal-content-inner">
-                      <%= form_tag computer_imports_computers_path, multipart: true do %>
+                      <%= form_tag document_imports_documents_path, multipart: true do %>
                         <%= file_field_tag :file %>
                         <br>
                         <div class="model-footer">
@@ -32,19 +32,19 @@
                     <p></p>
                     <p>
                       <div  class="grey_btn pop-up-gray">
-                      <%= link_to "Download Sample Computer CSV Template", computer_export_computers_path(format: "csv"), class: "download-file-icon plus-icon-sp" %>
+                      <%= link_to "Download Sample Document CSV Template", document_export_documents_path(format: "csv"), class: "download-file-icon plus-icon-sp" %>
                     </div>
                     </p>
                   </div>
                 </div>
               </div>
         </div>
-        <h3 class="title floatl">Listing Computers</h3>
+        <h3 class="title floatl">Listing Documents</h3>
         
            <div id="cmdb_data_table_wrapper" class="dataTables_wrapper">
             <!-- <div class="tbl-ctrls clearfix"> -->
             <div class="buttons_container pull-right">
-                    <a class="btn btn-info add_new" href="computers/new">Add New</a>
+                    <a class="btn btn-info add_new" href="">Add New</a>
                     <a class="btn btn-info add_new" data-toggle="modal" href="#add_url">Import</a>
             </div>
             <div id="example">
@@ -71,4 +71,4 @@
     </div>
   </div>
 </div>
-</div>
+ </div> 

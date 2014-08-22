@@ -102,6 +102,13 @@ end
   end
  end
 
+ resources :documents do
+  collection do
+    post 'document_imports'
+    get 'document_export'
+  end
+end
+
   resources :mobile_assets do
     collection do
       post 'mobile_asset_imports'
@@ -122,6 +129,13 @@ end
 
 
    resources :contracts do
+   end
+
+   resources :services do
+    collection do
+      post 'service_imports'
+      get 'service_export'
+    end
    end
 
   resource :user do
