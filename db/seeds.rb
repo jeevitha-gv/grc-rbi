@@ -1030,3 +1030,10 @@ ComputerCategory.delete_all
     DeviceType.create(:name => "Tablet")
     DeviceType.create(:name => "Media Player")
     DeviceType.create(:name => "Other")
+
+ SoftwareType.delete_all
+
+    SoftwareType.create(:name => "Application")
+    SoftwareType.create(:name => "Database")
+    SoftwareType.create(:name => "Operating System")
+    SoftwareType.create(:name => "Web Server")
