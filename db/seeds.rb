@@ -1030,3 +1030,22 @@ ComputerCategory.delete_all
     DeviceType.create(:name => "Tablet")
     DeviceType.create(:name => "Media Player")
     DeviceType.create(:name => "Other")
+
+ DocumentStatus.delete_all
+    DocumentStatus.create(:name => "Draft")
+    DocumentStatus.create(:name => "Approved")
+    DocumentStatus.create(:name => "Unapproved")
+
+ DocumentType.delete_all
+    DocumentType.create(:name => "Policy")
+    DocumentType.create(:name => "Procedure")
+    DocumentType.create(:name => "Reference")
+
+ ServiceType.delete_all
+    ServiceType.create(:name => "Business Services")
+    ServiceType.create(:name => "Sales Services")
+    ServiceType.create(:name => "Support Services")
+    ServiceType.create(:name => "IT Services")
+    ServiceType.create(:name => "Email Services")
+    ServiceType.create(:name => "Backup Services")
+    ServiceType.create(:name => "Hosting Services")

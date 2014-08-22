@@ -14,6 +14,8 @@ class Department < ActiveRecord::Base
   has_many :other_assets
   has_many :contracts
   has_many :mobile_assets
+  has_many :services
+  has_many :documents
 
   # validations
   validates :name, presence:true

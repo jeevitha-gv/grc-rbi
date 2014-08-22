@@ -46,6 +46,10 @@ class User < ActiveRecord::Base
   has_many :computertechnical_contact, class_name: 'Computer', foreign_key: 'technical_contact'
   has_many :computerasset_owner, class_name: 'Computer', foreign_key: 'asset_owner'
   has_many :lifecycles
+  has_many :service_manager, class_name: "Service", foreign_key: 'asset_manger_id'
+  has_many :service_user, class_name: "Service", foreign_key: 'asset_user_id'
+  has_many :document_manager, class_name: "Document", foreign_key: 'asset_user_id'
+  has_many :document_user, class_name: "Document", foreign_key: 'asset_user_id'
 
 # attribute to login with username or email
   attr_accessor :login, :domain

@@ -22,4 +22,6 @@ class Location < ActiveRecord::Base
   has_many :contracts
   has_many :computers
   has_many :mobile_assets
+  has_many :services
+  has_many :documents
 end

@@ -123,6 +123,22 @@ en:
       success: "Other Asset updated successfully"
     csv_upload:
       success: "Other Asset has been imported successfully"
+  Service: 
+    create: 
+      success: "Service has been created successfully"
+    update: 
+      success: "Service has been updated successfully"
+    csv_upload: 
+      success: "Service has been imported successfully"
+
+  Document: 
+    create: 
+      success: "Document has been created successfully"
+    update:
+      success: "Document has been updated successfully"
+    csv_upload: 
+      success: "Document has been imported successfully"
+
 
   audit:
     create:

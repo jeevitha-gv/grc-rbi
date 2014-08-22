@@ -693,3 +693,26 @@ en:
     notes: "Notes"
     location_id: "Location"
     department_id: "Department"
+
+  service:
+    name: "Name"
+    service_type_id: "Service Type"
+    description: "Description"
+    cost: "Cost"
+    sla: "Sla"
+    location_id: "Location"
+    department_id: "Department"
+    asset_manager_id: "Asset Manager"
+    asset_user_id: "Asset User"
+    assigned_on: "Assigned"
+
+  document: 
+    description: "Description"
+    doc_status: "Document Status"
+    doc_type: "Document Type"
+    version: "Version"
+    location_id: "Location"
+    department_id: "Department"
+    asset_manager_id: "Asset Manager"
+    asset_user_id: "Asset User"
+    assigned_on: "Assigned"
