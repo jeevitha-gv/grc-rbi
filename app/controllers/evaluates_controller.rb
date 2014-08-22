@@ -5,11 +5,12 @@ class EvaluatesController < ApplicationController
   end
 
 def new
-    if(@incident.evaluate.present?)
-      redirect_to edit_incident_evaluate_path(incident_id: @incident.id, id: @incident.evaluate.id)
-    else
+   @incident = Incident.first
+    # if(@incident.evaluate.present?)
+    #   redirect_to edit_incident_evaluate_path(incident_id: @incident.id, id: @incident.evaluate.id)
+    # else
       @incident.build_evaluate
-  end
+ 
 end
 
   def create
