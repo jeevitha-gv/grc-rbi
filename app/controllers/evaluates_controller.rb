@@ -26,9 +26,10 @@ def new
 
 
   def create
-    # @incident = Incident.first
+    
    if @incident.update(evaluate_params) 
     flash[:notice] = "Evaluation saved" 
+    @incident.update(incident_status_id: IncidentStatus.where("name= ?", "In-Progress").first.id )
     render "new"
     #redirect_to edit_incident_evaluate_path(incident_id: @incident.id, id: @incident.evaluate.id)
   else
@@ -72,7 +73,7 @@ def update
     if @incident.update(evaluate_params)
        #@incident.incident_scoring.scoring.update(mitigation_params["scoring"])
       flash[:notice] = "mitigation saved"
-      @incident.update(incident_status_id: IncidentStatus.where("name= ?", "In-Progress").first.id )
+      @incident.update(incident_status_id: IncidentStatus.where("name= ?", "New").first.id )
       redirect_to edit_incident_evaluate_path(incident_id: @incident.id, id: @incident.evaluate.id)
     else
       render "edit"
