@@ -28,9 +28,9 @@
                 </tr>
                 <tr>
                   <td><label>Requester : </label>
-                    <span> Selva</span></td>
+                    <span> </span></td>
                   <td><label>Type : </label>
-                    <span> Incident Management</span></td>
+                    <span><%= incident.request_type.name if incident.present? %></span></td>
                     <td><label>Title : </label>
                     <%= incident.title if incident.present? %></td>
                   
@@ -48,15 +48,13 @@
                 <td><label>Evidence : </label>
                     <span> <a href="" class="attach-icon  blue_link">Download Evidence</a></span></td>
                   <td><label>Date Occured: </label>
-                    <span> 01/08/2014</span></td>
-                  <td><label>Time Occured: </label>
-                    <span> 01/08/2014</span></td>
-                  
+                    <span><%= incident.date_occured if incident.present? %> </span></td>
+                 
                 </tr>
                  <td><label>Contact No : </label>
                     <%= incident.contact_no if incident.present?%></td>
                   <td><label>Date of Creation: </label>
-                    <span> 01/08/2014</span></td>
+                    <span></span></td>
                   <td><label>Status : </label>
                     <%= incident.incident_status_name if incident.present? %> 
                    </td>

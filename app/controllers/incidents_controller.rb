@@ -21,10 +21,10 @@ layout 'incident_layout'
 
     if @incident.save
       flash[:notice] = "The incident was successfully created"
-      redirect_to new_incident_path
+      redirect_to incident_path
     else
       
-      redirect_to risks_path
+      redirect_to new_incident_path
     end
   end
   
