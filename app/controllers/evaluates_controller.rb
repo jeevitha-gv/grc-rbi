@@ -1,20 +1,32 @@
 class EvaluatesController < ApplicationController
+
+  before_filter :current_incident
+
   layout 'incident_layout'
   def index
   	#@evaluates = current_user.evaluates
   end
 
+# def new
+#    @incident = Incident.first
+#     # if(@incident.evaluate.present?)
+#     #   redirect_to edit_incident_evaluate_path(incident_id: @incident.id, id: @incident.evaluate.id)
+#     # else
+#       @incident.build_evaluate
+# end
+
 def new
-   @incident = Incident.first
-    # if(@incident.evaluate.present?)
-    #   redirect_to edit_incident_evaluate_path(incident_id: @incident.id, id: @incident.evaluate.id)
-    # else
+    if(@incident.evaluate.present?)
+      redirect_to edit_incident_evaluate_path(incident_id: @incident.id, id: @incident.evaluate.id)
+    else
       @incident.build_evaluate
- 
-end
+    end
+  end
+
+
 
   def create
-    @incident = Incident.first
+    # @incident = Incident.first
    if @incident.update(evaluate_params) 
     flash[:notice] = "Evaluation saved" 
     render "new"
@@ -45,15 +57,31 @@ def download_evaluate_document
 
 
   def edit
+    redirect_to new_incident_evaluate_path(incident_id: @incident.id) unless @incident.evaluate.present?
   end
   
-  def update
-      if @incident.(evaluate_params)
+  # def update
+  #     if @incident.(evaluate_params)
+  #     redirect_to edit_incident_evaluate_path(incident_id: @incident.id, id: @incident.evaluate.id)
+  #   else
+  #     render "edit"
+  #   end
+  # end
+
+def update
+    if @incident.update(evaluate_params)
+       #@incident.incident_scoring.scoring.update(mitigation_params["scoring"])
+      flash[:notice] = "mitigation saved"
+      @incident.update(incident_status_id: IncidentStatus.where("name= ?", "In-Progress").first.id )
       redirect_to edit_incident_evaluate_path(incident_id: @incident.id, id: @incident.evaluate.id)
     else
       render "edit"
     end
   end
+
+
+
+
 
   private
    
