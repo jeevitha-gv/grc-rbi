@@ -46,7 +46,7 @@
                 </tr>
                 <tr>
                 <td><label>Evidence : </label>
-                    <span> <a href="" class="attach-icon  blue_link">Download Evidence</a></span></td>
+                     <%= link_to (File.basename(incident.attachment.attachment_file_url)).truncate(20), download_incident_document_incidents_path(id: incident.attachment.id), class: "blue_link" %></td>
                   <td><label>Date Occured: </label>
                     <span><%= incident.date_occured if incident.present? %> </span></td>
                  

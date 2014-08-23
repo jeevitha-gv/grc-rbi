@@ -147,8 +147,9 @@ Rails.application.routes.draw do
 
   resources :incidents do 
     collection do 
-      get 'download_evaluate_document'
+      # get 'download_evaluate_document'
       delete 'remove_attachment'
+      get 'download_incident_document'
       end  
   resources :evaluates  
   resources :resolutions
