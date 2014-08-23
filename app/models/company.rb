@@ -42,6 +42,7 @@ class Company < ActiveRecord::Base
   has_many :contracts
   has_many :services
   has_many :documents
+  has_many :softwares
 
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users

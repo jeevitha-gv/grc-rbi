@@ -3,6 +3,10 @@ class Vendor < ActiveRecord::Base
   # Assosciations
   belongs_to :company
   belongs_to :reseller_type
+  has_many :softwares
+
+ scope :vendor_name, ->(id) { where(id: id).first.name}
+ scope :for_name_by_company, lambda {|vendor_name, company_id| where("lower(name)=? and company_id=?", vendor_name, company_id)}
 
 
   def self.open_spreadsheet(file)

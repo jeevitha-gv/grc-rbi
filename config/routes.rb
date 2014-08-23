@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'softwares/index'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   post 'admin/privileges/modal_previlege'
@@ -125,6 +127,10 @@ end
   end
 
   resources :softwares do
+    collection do
+      post 'software_imports'
+      get 'software_export'
+    end
   end
 
 

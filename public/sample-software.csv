@@ -1,0 +1,3 @@
+software_type, description, product_name, manufacturer, vendor, cost, license_years, license_months, installation_date, license_expiry_date, license_key, version, license_type, installation_path, last_audit_date, location, department, asset_manager, asset_user, assigned_on
+Application,hello,kalyan,FixNix,Hp,123A,1,2,09/09/2014,09/09/2015,123,2.3,CAL,qw,10/09/014,Hyderabad,VIT,sunilkalyan08@gmail.com,fixnixriskowner@gmail.com,01/10/2014
+

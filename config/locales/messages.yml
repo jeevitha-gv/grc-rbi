@@ -139,6 +139,14 @@ en:
     csv_upload: 
       success: "Document has been imported successfully"
 
+  Software: 
+    create: 
+      success: "Software has been created successfully"
+    update: 
+      success: "Software has been updated successfully"
+    csv_upload: 
+      success: "Software has been imported successfully"
+
 
   audit:
     create:

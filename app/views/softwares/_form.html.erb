@@ -1,0 +1,62 @@
+<%= javascript_include_tag "/assets/views/software_new.js" %>
+
+<%= f.label :product_name, t('software.product_name') %>
+<%= f.text_field :product_name, :class => "form-control risk-normal-input" %>
+
+<%= f.label :manufacturer, t('software.manufacturer') %>
+<%= f.text_field :manufacturer, :class => "form-control risk-normal-input" %>
+
+<%= f.label :cost, t('software.cost') %>
+<%= f.text_field :cost, :class => "form-control risk-normal-input" %>
+
+<%= f.label :license_years, t('software.license_years') %>
+<%= f.text_field :license_years, :class => "form-control risk-normal-input" %>
+
+<%= f.label :license_months, t('software.license_months') %>
+<%= f.text_field :license_months, :class => "form-control risk-normal-input" %>
+
+<%= f.label :license_expiry_date, t('software.license_expiry') %>
+<%= f.text_field :license_expiry_date, :class => "datepicker" %> </br>
+
+<%= f.label :license_key, t('software.license_key') %>
+<%= f.text_field :license_key, :class => "form-control risk-normal-input" %>
+
+<%= f.label :installation_date, t('software.installation_date') %>
+<%= f.text_field :installation_date, :class => "datepicker" %> </br>
+
+<%= f.label :installation_path, t('software.install_path') %>
+<%= f.text_field :installation_path, :class => "form-control risk-normal-input" %>
+
+<%= f.label :last_audit_date, t('software.last_audit') %>
+<%= f.text_field :last_audit_date, :class => "datepicker" %> </br>
+
+<%= f.label :version, t('software.version') %>
+<%= f.text_field :version, :class => "form-control risk-normal-input" %>
+
+<%= f.label :assigned_on, t('software.assigned_on') %>
+<%= f.text_field :assigned_on, :class => "datepicker" %>
+
+<%= f.label :description, t('software.description') %>
+<%= f.text_area :description, :class => "form-control risk-normal-input" %>
+
+<%= f.label :software_type_id, t('software.soft_type') %>
+<%= f.collection_select(:software_type_id, SoftwareType.all, :id, :name) %>
+
+<%= f.label :location_id, t('software.location') %>
+<%= f.collection_select(:location_id, current_company.locations, :id, :name) %>
+
+<%= f.label :department_id, t('software.department') %>
+<%= f.collection_select(:department_id, current_company.departments, :id, :name) %>
+
+<%= f.label :vendor_id, t('software.vendor') %>
+<%= f.collection_select(:vendor_id, current_company.vendors, :id, :name) %>
+
+<%= f.label :license_type_id, t('software.license_type') %>
+<%= f.collection_select(:license_type_id, LicenseType.all, :id, :name) %>
+
+<%= f.label :asset_manger_id, t('software.asset_manger') %>
+<%= f.collection_select(:asset_manager_id, current_company.users, :id, :user_name) %>
+
+<%= f.label :asset_user_id, t('software.asset_user') %>
+<%= f.collection_select(:asset_user_id, current_company.users, :id, :user_name) %>
+
