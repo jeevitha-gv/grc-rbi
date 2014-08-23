@@ -20,7 +20,7 @@ def new
     flash[:notice] = "Resolution saved" 
     @incident.update(incident_status_id: IncidentStatus.where("name= ?", "Resolved").first.id )
     render "new"
-    #redirect_to edit_incident_evaluate_path(incident_id: @incident.id, id: @incident.evaluate.id)
+    # redirect_to edit_incident_resolution_path(incident_id: @incident.id, id: @incident.resolution.id)
   else
      flash[:notice] = "Resolution not  saved" 
     render new

@@ -58,7 +58,7 @@
             </div>
           </div>
 
-          <%= fields_for :resolution do |resolution| %>
+          <%= r.fields_for :resolution do |resolution| %>
           <div class="container">
             <div id="Accordion1">
               <h3><a href="#">Resolution and Recovery</a> <span class="fright pending_msg">Pending</span></h3>
@@ -115,7 +115,7 @@
                   <div class="form-group clearfix">
                       <label class="col-sm-6"><b>Parent Incident Id :</b> </label>
                       <div class="col-sm-6">
-                      <%= incident.title if incident.present? %></td>
+                     <!--  <#%= incident.title if incident.present? %></td> -->
                     </div>
                     </div>
                     
