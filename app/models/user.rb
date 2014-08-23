@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   # Associations with Incident Tables
   has_many :evaluates_assignee, class_name: 'Evaluate', foreign_key: 'assignee'
   has_many :incident_user, class_name: 'Escalation', foreign_key: 'user'
-  has_many :incident_user, class_name: 'Resolution', foreign_key: 'reassignee'
+  has_many :resolution_user, class_name: 'Resolution', foreign_key: 'reassignee'
 
 
 # attribute to login with username or email

@@ -58,7 +58,7 @@
             </div>
           </div>
 
-          <%= r.fields_for :resolution do |resolution| %>
+          <%= fields_for :resolution do |resolution| %>
           <div class="container">
             <div id="Accordion1">
               <h3><a href="#">Resolution and Recovery</a> <span class="fright pending_msg">Pending</span></h3>
@@ -71,7 +71,7 @@
                       <label class="col-sm-5"><b>Reassign :</b> </label>
                       <div class="col-sm-7">
                       <div class="risk-select">
-                      <%= resolution.collection_select(:reassignee, current_company.users, :id, :user_name)%>
+                      <%= resolution.collection_select :reassignee, User.all, :id, :user_name %>
                     </div>
                     </div>
                     </div>

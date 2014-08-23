@@ -1,11 +1,10 @@
 class Resolution < ActiveRecord::Base
 
 	belongs_to :incident
-	belongs_to :reassignee, class_name: 'User', foreign_key: 'reassignee'
 	belongs_to :solution_type
 	belongs_to :closure_classification
-	belongs_to :parentincident, class_name: 'incident', foreign_key: 'parent_incident'
-
+	belongs_to :parentincident, class_name: 'incident', foreign_key: 'incident_id'
+	belongs_to :resolution_user, class_name: 'User', foreign_key: 'reassignee'
 
 	# validates :incident_id, presence:true
 	# validates :reassignee, presence:true

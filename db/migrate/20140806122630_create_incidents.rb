@@ -18,5 +18,12 @@ class CreateIncidents < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :incidents, :request_type_id
+    add_index :incidents, :incident_category_id
+    add_index :incidents, :sub_category_id
+    add_index :incidents, :department_id
+    add_index :incidents, :team_id
+    add_index :incidents, :incident_status_id
+    add_index :incidents, :resolution_id
   end
 end
