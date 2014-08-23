@@ -31,7 +31,7 @@
                 </tr>
                 <tr>
                    <td><label>Evidence : </label>
-                    <span> 1100.jpg</span></td>
+                    <%= link_to (File.basename(incident.attachment.attachment_file_url)).truncate(20), download_incident_document_incidents_path(id: incident.attachment.id), class: "blue_link" %></td></td>
                   <td><label>Status : </label>
                     <%= incident.incident_status_name if incident.present? %></td>
                   <td><label>Impact :</label>

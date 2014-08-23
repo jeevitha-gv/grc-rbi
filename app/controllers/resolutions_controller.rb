@@ -26,7 +26,16 @@ def new
     render new
   end
   end
+def download_evaluate_document
+    attachment = Attachment.find(params[:id])
+    send_file(Rails.public_path.to_s + attachment.attachment_file_url)
+  end
 
+
+    def download_document
+      attachment = Attachment.find(params[:id])
+      send_file(Rails.public_path.to_s + attachment.attachment_file_url)
+    end
   
   def edit
     redirect_to new_incident_resolution_path(incident_id: @incident.id) unless @incident.resolution.present?
