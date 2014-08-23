@@ -19,7 +19,6 @@ def new
    if @incident.update(resolution_params) 
     flash[:notice] = "Resolution saved" 
     @incident.update(incident_status_id: IncidentStatus.where("name= ?", "Resolved").first.id )
-    # render new
      redirect_to edit_incident_resolution_path(incident_id: @incident.id, id: @incident.resolution.id)
   else
      flash[:notice] = "Resolution not  saved" 
@@ -43,7 +42,7 @@ def download_evaluate_document
   
 def update
     if @incident.update(resolution_params)
-      flash[:notice] = "mitigation saved"
+      flash[:notice] = "Resolution Updated"
       @incident.update(incident_status_id: IncidentStatus.where("name= ?", "In-Progress").first.id )
       redirect_to edit_incident_resolution_path(incident_id: @incident.id, id: @incident.resolution.id)
     else
@@ -54,7 +53,7 @@ def update
 private
    
    def resolution_params
-   params.require(:incident).permit( resolution_attributes:[ :evaluate_id,:incident_id, :reassignee, :solution_type_id,:solution, :rootcause,:closure_classification_id]) 
+   params.require(:incident).permit( resolution_attributes:[:id, :evaluate_id,:incident_id, :reassignee, :solution_type_id,:solution, :rootcause,:closure_classification_id]) 
 end
 end
 
