@@ -135,7 +135,12 @@
                   <div class="form-group clearfix">
                       <label class="col-sm-7"><b>Attachments :</b> </label>
 
-                        <a href="" class="attach-icon  blue_link">Add Evidence</a>
+                         <%= r.fields_for :attachment, (@incident.attachment.present? ? @incident.attachment : @incident.build_attachment) do |attach| %>
+   
+      <%= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
+      <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
+      <br />
+      <%end%>
                       </div>
                       <div class="col-sm-6">
                      
