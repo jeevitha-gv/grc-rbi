@@ -68,15 +68,9 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <li><a  href="/computers" class="<%= request.fullpath.include?("computers") == true ? 'active' : '' %>">
+        <li><a  href="/computers" class="<%= (request.fullpath.include?("computers") || request.fullpath.include?("softwares") || request.fullpath.include?("mobile_assets") || request.fullpath.include?("other_assets") || request.fullpath.include?("services") == true || request.fullpath.include?("documents")) ? 'active' : '' %>">
             <div class="plan-icon"></div>
-            Computers</a></li>
-        <li><a  href="/mobile_assets" class="<%= request.fullpath.include?("mobile_assets") == true ? 'active' : '' %>">
-            <div class="plan-icon"></div>
-            Mobile Assets</a></li>
-        <li><a  href="/other_assets" class="<%= request.fullpath.include?("other_assets") == true ? 'active' : '' %>">
-            <div class="plan-icon"></div>
-            Miscellaneous</a></li>
+            Assets</a></li>        
         <li><a  href="/vendors" class="<%= request.fullpath.include?("vendors") == true ? 'active' : '' %>">
             <div class="plan-icon"></div>
             Vendors</a></li>
