@@ -293,7 +293,7 @@
         { field: "incident_category", title: "Category", width: "35%" },
         { field: "incident_status", title: "Status", width: "35%" },
         { field: "team", title: "Team", width: "35%" },
-      { command: [{text: "list", click:evaluate_file },{text: "miti", click: resolution_file},{text: "edit", click: edit_file}], title: "Action", width: "200px" }
+      { command: [{text: "list", click:evaluate_file },{text: "miti", click: resolution_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Action", width: "200px" }
     ],
   //~ editable: "popup"
   });
@@ -302,6 +302,49 @@
 
 // function onActivate(e) {
   // if($('#search-value').val() != "")
+  // {
+  //   $('#search-value').val('')
+  //   $("#grid").data("kendoGrid").dataSource.filter({});
+  //   }
+  // }
+
+  // $("#tabstrip").kendoTabStrip({
+  //   activate: onActivate
+  // });
+
+  // $("#search-button").click(function(){
+  //   search_result();
+  // })
+
+
+
+
+  function edit_file(e)
+  {
+    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+    window.location.href = "/incidents/"+ dataItem.id + "/edit"
+  }
+  function evaluate_file(e)
+  {
+    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+    window.location.href = "/incidents/"+ dataItem.id + "/evaluates/new"
+  }
+
+  function resolution_file(e)
+  {
+    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+    window.location.href = "/incidents/"+ dataItem.id + "/resolutions/new"
+  }
+  function pdf_file(e)
+  {
+    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+    window.location.href = "/incidents/"+ dataItem.id +".pdf"
+  }
+  // function graph_file(e)
+
+// function onActivate(e) {
+  // if($('#search-value').val() != "")
+
   // {
   //   $('#search-value').val('')
   //   $("#grid").data("kendoGrid").dataSource.filter({});
@@ -368,6 +411,15 @@
 
 
 
+  function riskGridTitle()
+  {
+    $('.k-grid-file').attr('title','File');
+    $('.k-grid-list').attr('title','Evaluate');
+    $('.k-grid-miti').attr('title','Resolution');
+    $('.k-grid-edit').attr('title','edit');
+    $('.k-grid-pdf').attr('title','PDF');
+    //$('.k-grid-graph').attr('title','Dashboard');
+  }
 
 
 

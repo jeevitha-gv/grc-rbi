@@ -147,14 +147,14 @@ Rails.application.routes.draw do
 
   resources :incidents do 
     collection do 
-      get 'download_evaluate_document'
+      # get 'download_evaluate_document'
       delete 'remove_attachment'
-      end  
+      get 'download_incident_document'
+      end
   resources :evaluates  
   resources :resolutions
-
+ 
 end
-
 
 root 'home#index'
 

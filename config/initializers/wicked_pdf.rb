@@ -1,3 +1,3 @@
 WickedPdf.config = {
-  :exe_path => '/usr/bin/wkhtmltopdf'
+  :exe_path => '/home/selva/.rvm/gems/ruby-2.1.2/bin/wkhtmltopdf'
 }

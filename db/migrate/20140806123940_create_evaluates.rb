@@ -14,5 +14,15 @@ class CreateEvaluates < ActiveRecord::Migration
         
       t.timestamps
     end
+
+    add_index :evaluates, :incident_id
+    add_index :evaluates, :urgency_id
+    add_index :evaluates, :incident_priority_id
+    add_index :evaluates, :incident_impact_id
+    add_index :evaluates, :assignee
+    add_index :evaluates, :sla_id
+    add_index :evaluates, :incident_origin_id
+    add_index :evaluates, :resolutiontime
+    add_index :evaluates, :escalation_id
   end
 end

@@ -1,4 +1,4 @@
-class Incident < ActiveRecord::Base
+	class Incident < ActiveRecord::Base
 
 	belongs_to :request_type
 	belongs_to :incident_category
@@ -9,6 +9,7 @@ class Incident < ActiveRecord::Base
 	has_one :resolution
 	belongs_to :incident_status
     has_one :attachment, as: :attachable
+	
 	# validates :Jobtitle, presence:true, length: { in: 0..50 }
 	# validates :Jobtitle, uniqueness:true
 	#validates_form_of :title, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{ |f| !f.title.blank? }

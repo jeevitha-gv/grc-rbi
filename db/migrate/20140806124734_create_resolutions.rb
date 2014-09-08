@@ -13,5 +13,10 @@ class CreateResolutions < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :resolutions, :evaluate_id
+    add_index :resolutions, :incident_id
+    add_index :resolutions, :reassignee
+    add_index :resolutions, :solution_type_id
+    add_index :resolutions, :closure_classification_id
   end
 end

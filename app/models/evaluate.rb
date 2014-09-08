@@ -19,7 +19,7 @@ class Evaluate < ActiveRecord::Base
 	delegate :name, :to => :escalation, prefix: true, allow_nil: true
 	delegate :level, :to => :incident_category, prefix: true, allow_nil: true
 
-	accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }
+	#accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }
 
 
 	# validates :incident_id, presence:true

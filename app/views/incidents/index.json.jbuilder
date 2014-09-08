@@ -1,6 +1,6 @@
 json.data do |json|
 
-	json.array!(@incidents) do |incident|
+	json.array!(@incident) do |incident|
 	  json.id incident.id
 		json.title incident.title
 		json.request_type incident.request_type_name if incident.request_type.present?

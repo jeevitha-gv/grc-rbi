@@ -1,11 +1,11 @@
 class Resolution < ActiveRecord::Base
 
 	belongs_to :incident
-	belongs_to :reassignee, class_name: 'User', foreign_key: 'reassignee'
 	belongs_to :solution_type
 	belongs_to :closure_classification
-	belongs_to :parentincident, class_name: 'incident', foreign_key: 'parent_incident'
-
+	belongs_to :parentincident, class_name: 'incident', foreign_key: 'incident_id'
+	belongs_to :resolution_user, class_name: 'User', foreign_key: 'reassignee'
+	has_one :attachment, as: :attachable
 
 	# validates :incident_id, presence:true
 	# validates :reassignee, presence:true
@@ -20,8 +20,7 @@ class Resolution < ActiveRecord::Base
 	delegate :name, :to => :closure_classification, prefix: true, allow_nil: true
 	delegate :name, :to => :solution_type, prefix: true, allow_nil: true
 
-
-
+	accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }
 
 
 end

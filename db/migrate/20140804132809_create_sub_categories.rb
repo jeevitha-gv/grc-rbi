@@ -6,5 +6,7 @@ class CreateSubCategories < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :sub_categories, :incident_category_id
+
   end
 end

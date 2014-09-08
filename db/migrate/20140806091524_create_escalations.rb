@@ -13,5 +13,9 @@ class CreateEscalations < ActiveRecord::Migration
 
       t.timestamps
     end
+        add_index :escalations, :user
+        add_index :escalations, :incident_priority_id
+
+
   end
 end

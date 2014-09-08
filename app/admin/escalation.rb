@@ -13,5 +13,8 @@ ActiveAdmin.register Escalation do
   #  permitted << :other if resource.something?
   #  permitted
   # end
+
+  permit_params :value, :user, :level, :incident_priority_id,:time_line,:mail_count, :to, :cc, :bcc
+
   
 end
