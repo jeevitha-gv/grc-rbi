@@ -1,4 +1,7 @@
 class SoftwaresController < ApplicationController
+
+  layout 'asset_layout'
+  
   def index
   	@softwares = current_company.softwares
   end
