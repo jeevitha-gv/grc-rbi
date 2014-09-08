@@ -193,7 +193,7 @@
       <%= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
       <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
       <br />
-      <div id="attach_<%= @incident.attachment.id%>"><%= link_to (File.basename(@incident.attachment.attachment_file_url)).truncate(20), download_incident_document_incidents_path(id: @incident.attachment.id), class: "blue_link risl-blue-link" if @incident.attachment.attachment_file_url %>
+      <div id="attach_<%= @incident.attachment.id%>"><%= link_to (File.basename(@incident.attachment.attachment_file_url)).truncate(20), download_incident_document_incidents_path(id: @incident.attachment.id), class: "blue_link risl-blue-link" if @incident.attachment.attachment_file_url%>
         <div class="addissue risk-rem"> <%= link_to "Remove", remove_attachment_incidents_path(id: @incident.attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon" if @incident.attachment.attachment_file.present? %>
         </div>
     <% end %>

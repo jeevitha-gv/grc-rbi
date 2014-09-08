@@ -29,6 +29,7 @@
                     <td><label>IncidentSummary : </label>
                     <span> Overview</span></td>
                 </tr>
+                <% if incident.attachment.present? %>
                 <tr>
                    <td><label>Evidence : </label>
                     <%= link_to (File.basename(incident.attachment.attachment_file_url)).truncate(20), download_incident_document_incidents_path(id: incident.attachment.id), class: "blue_link" %></td></td>
@@ -37,6 +38,7 @@
                   <td><label>Impact :</label>
                    <%= incident.evaluate.incident_impact_name if evaluate.present? %> </td> 
                 </tr>
+                <% end %>
                 <tr>
                   <td><label>Urgency :</label>
                     <%= incident.evaluate.urgency_name if evaluate.present? %></td>
