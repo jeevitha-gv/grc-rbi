@@ -4,8 +4,7 @@ class CreateComputers < ActiveRecord::Migration
       t.integer :company_id
       t.string :name
       t.text :description
-      t.string :serial
-      t.string :manufacturer
+      t.string :serial      
       t.string :ip
       t.integer :computer_category_id
       t.integer :asset_status_id
@@ -13,12 +12,21 @@ class CreateComputers < ActiveRecord::Migration
       t.integer :department_id
       t.integer :technical_contact
       t.integer :asset_owner
-      t.integer :confidentiality_id
-      t.integer :integrity_id
-      t.integer :availability_id
-      t.boolean :personal_data
-      t.boolean :sensitive_data
-      t.boolean :customer_data
+      t.integer :impact_id
+      t.integer :operating_system_id
+      t.string :os_ver_ser
+      t.float :memory
+      t.float :disk_space
+      t.float :cpu_speed
+      t.float :cpu_core_count
+      t.string :mac
+      t.float :cost
+      t.date :acquisition_date
+      t.date :expiry_date
+      t.date :last_audit_date
+      t.date :assigned_on
+      t.integer :vendor_id
+      t.integer :contract_id      
 
       t.timestamps
     end
