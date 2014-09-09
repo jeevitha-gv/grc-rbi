@@ -3,6 +3,7 @@ class CreateComputers < ActiveRecord::Migration
     create_table :computers do |t|
       t.integer :company_id
       t.string :name
+      t.text :description
       t.string :serial
       t.string :manufacturer
       t.string :ip
@@ -12,6 +13,12 @@ class CreateComputers < ActiveRecord::Migration
       t.integer :department_id
       t.integer :technical_contact
       t.integer :asset_owner
+      t.integer :confidentiality_id
+      t.integer :integrity_id
+      t.integer :availability_id
+      t.boolean :personal_data
+      t.boolean :sensitive_data
+      t.boolean :customer_data
 
       t.timestamps
     end

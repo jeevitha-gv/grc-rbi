@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'softwares/index'
-
+  mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   post 'admin/privileges/modal_previlege'

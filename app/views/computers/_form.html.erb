@@ -56,7 +56,109 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :name, t('computer.name') %>
+        <%= f.text_field :name, :class=>"form-control" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :computer_category_id, t('computer.category') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:computer_category_id, ComputerCategory.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :description %>
+        <%= f.cktext_area :description, :class=>"form-control asset-big-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="clearfix border-divider"></div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :confidentiality_id, t('computer.conf') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:confidentiality_id, Priority.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :integrity_id, t('computer.inte') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:integrity_id, Priority.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :availability_id, t('computer.avai') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:availability_id, Priority.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-8">
+        <%= f.label :personal_data, t('computer.pdata') %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.check_box :personal_data %>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-8">
+        <%= f.label :sensitive_data, t('computer.sdata') %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.check_box :sensitive_data %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-8">
+        <%= f.label :customer_data, t('computer.cdata') %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.check_box :customer_data %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
@@ -65,7 +167,7 @@
         <%= f.label :computer_category_id, t('computer.category') %>
       </label>
       <div class="col-sm-8">
-        <div class="risk-select">
+        <div class="risk-select width-fix">
           <%= f.collection_select(:computer_category_id, ComputerCategory.all, :id, :name) %>
         </div>
       </div>

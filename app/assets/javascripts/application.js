@@ -14,6 +14,9 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery.remotipart
+//= require ckeditor/init
+//= require ckeditor/config
+
 
 
 function add_fields(link, association, content) {

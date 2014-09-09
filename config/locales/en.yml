@@ -646,7 +646,7 @@ en:
     department: "Department"
 
   computer:
-    name: "Name*"
+    name: "Display Name"
     serial: "Serial*"
     manufacturer: "Manufacturer*"
     ip: "IP"
@@ -656,6 +656,12 @@ en:
     department: "Department"
     tech_contact: "Technical Contact"
     owner: "Owner"
+    conf: "Confidentiality"
+    inte: "Integrity"
+    avai: "Availability"
+    pdata: "Personal Data"
+    sdata: "Sensitive Data"
+    cdata: "Customer Data"
 
   vendor:
     name: "Name"
