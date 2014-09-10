@@ -5,6 +5,8 @@ class Priority < ActiveRecord::Base
   has_many :checklist_recommendations
   has_many :artifact_answers
   has_many :reminders
+  has_many :impact, class_name: 'Document', foreign_key: 'impact_id'
+  has_many :impact, class_name: 'Computer', foreign_key: 'impact_id'
 
   # Validation
   validates :name, presence: true, :if => Proc.new{ |f| f.name.blank? }

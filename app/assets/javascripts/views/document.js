@@ -111,7 +111,7 @@ function search_result()
                             width: 200
                         }, {
                             field: "document_type",
-                            title: "Service Type"
+                            title: "Document Type"
                         }, {
                             field: "location",
                             title: "Location"

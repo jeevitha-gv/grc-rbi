@@ -68,7 +68,7 @@ class DocumentsController < ApplicationController
   end
 
   def document_params
-  	params.require(:document).permit(:description, :document_status_id, :document_type_id, :version, :location_id, :department_id, :asset_manager_id, :asset_user_id, :assigned_on)
+  	params.require(:document).permit(:name,:description, :impact_id, :document_status_id, :document_type_id, :version, :location_id, :department_id, :asset_manager_id, :asset_user_id, :assigned_on)
   end
 
 end
