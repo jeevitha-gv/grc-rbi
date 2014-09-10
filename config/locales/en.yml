@@ -712,7 +712,7 @@ en:
     service_type_id: "Service Type"
     description: "Description"
     cost: "Cost"
-    sla: "Sla"
+    sla: "SLA(Availability in %)"
     location_id: "Location"
     department_id: "Department"
     asset_manager_id: "Asset Manager"
