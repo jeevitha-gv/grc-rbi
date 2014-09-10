@@ -5,7 +5,8 @@ class Document < ActiveRecord::Base
 	belongs_to :department
 	belongs_to :document_type
 	belongs_to :document_status
-	belongs_to :document_manager, class_name: 'User', foreign_key: 'asset_manager_id'
+    belongs_to :impact, class_name: 'Priority', foreign_key: 'impact_id'
+    belongs_to :document_manager, class_name: 'User', foreign_key: 'asset_manager_id'
 	belongs_to :document_user, class_name: 'User', foreign_key: 'asset_user_id'
 
 	def self.open_spreadsheet(file)

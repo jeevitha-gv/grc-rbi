@@ -9,6 +9,7 @@ class Computer < ActiveRecord::Base
   belongs_to :vendor
   belongs_to :contract
   belongs_to :operating_system
+  belongs_to :impact, class_name: 'Priority', foreign_key: 'impact_id'
   belongs_to :computertechnical_contact, class_name: 'User', foreign_key: 'technical_contact'
   belongs_to :computerasset_owner, class_name: 'User', foreign_key: 'asset_owner'
 
