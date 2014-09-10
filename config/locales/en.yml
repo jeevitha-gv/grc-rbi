@@ -718,6 +718,7 @@ en:
     assigned_on: "Assigned"
 
   document: 
+    name: "Display Name"
     description: "Description"
     doc_status: "Document Status"
     doc_type: "Document Type"

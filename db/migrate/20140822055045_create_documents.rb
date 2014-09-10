@@ -1,7 +1,9 @@
 class CreateDocuments < ActiveRecord::Migration
   def change
     create_table :documents do |t|
+      t.string :name
       t.text :description
+      t.integer :impact_id
       t.integer :document_status_id
       t.integer :document_type_id
       t.float :version
