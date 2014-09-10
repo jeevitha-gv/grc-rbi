@@ -4,6 +4,7 @@ class Vendor < ActiveRecord::Base
   belongs_to :company
   belongs_to :reseller_type
   has_many :softwares
+  has_many :computers
 
  scope :vendor_name, ->(id) { where(id: id).first.name}
  scope :for_name_by_company, lambda {|vendor_name, company_id| where("lower(name)=? and company_id=?", vendor_name, company_id)}

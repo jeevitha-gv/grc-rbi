@@ -6,6 +6,9 @@ class Computer < ActiveRecord::Base
   belongs_to :asset_status
   belongs_to :location
   belongs_to :department
+  belongs_to :vendor
+  belongs_to :contract
+  belongs_to :operating_system
   belongs_to :computertechnical_contact, class_name: 'User', foreign_key: 'technical_contact'
   belongs_to :computerasset_owner, class_name: 'User', foreign_key: 'asset_owner'
 
@@ -13,7 +16,7 @@ class Computer < ActiveRecord::Base
   # Validations
   validates_presence_of :name
   validates_presence_of :serial
-  validates_presence_of :manufacturer
+ 
 
   after_create :send_computer
 
@@ -33,6 +36,7 @@ class Computer < ActiveRecord::Base
       row_data = spreadsheet.row(i)
       computer_category = ComputerCategory.where("lower(name) = ?", "#{row_data[4].to_s.strip.downcase}").first
       asset_status = AssetStatus.where("lower(name) = ?", "#{row_data[5].to_s.strip.downcase}").first
+      vendor = Vendor.for_name_by_company(row_data[].to_s.strip.downcase,company_id).last
       location = Location.for_name_by_company(row_data[6].to_s.strip.downcase,company.id).last
       department = Department.for_name_by_company(row_data[7].to_s.strip.downcase,company.id).last
       technical_contact = User.for_users_by_company(row_data[8].to_s.strip.downcase, company.id).last

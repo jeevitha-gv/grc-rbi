@@ -1,5 +1,5 @@
 <!-- First Row -->
-
+<%= javascript_include_tag "/assets/views/computer_new.js" %>
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="form-group clearfix">
@@ -98,11 +98,59 @@
     </div>
   </div>
 </div>
+<!-- Sixth Row -->
+<div class ="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :assigned_on, t('computer.assigned_on') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :assigned_on, :class => "datepicker" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :acquisition_date, t('computer.acquisition_date') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :acquisition_date, :class => "datepicker" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Seventh Row -->
+
+<div class ="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :expiry_date, t('computer.expiry') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :expiry_date, :class => "datepicker" %>
+      </div>
+    </div>
+  </div>
+   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :last_audit_date, t('computer.last_audit') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :last_audit_date, :class => "datepicker" %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="clearfix border-divider"></div>
 
 
-<!-- Fourth Row -->
+<!-- Eighth Row -->
 
 <div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -125,7 +173,7 @@
   </div>
 </div>
 
-<!-- Fifth Row -->
+<!-- Ninth Row -->
 
 <div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -146,7 +194,7 @@
   </div>
 </div>
 
-<!-- Sixth Row -->
+<!-- Tenth Row -->
 
 <div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -167,7 +215,7 @@
   </div>
 </div>
 
-<!-- Seventh Row -->
+<!-- Eleventh Row -->
 
 <div class="row">
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">

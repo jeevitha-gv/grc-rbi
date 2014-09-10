@@ -67,7 +67,7 @@ class ComputersController < ApplicationController
   private
 
   def computer_params
-  	params.require(:computer).permit(:name, :serial, :manufacturer, :ip, :computer_category_id, :asset_status_id, :location_id, :department_id, :technical_contact, :asset_owner)
+  	params.require(:computer).permit(:name, :description,:serial, :ip, :computer_category_id, :asset_status_id, :location_id, :department_id, :technical_contact, :asset_owner, :impact_id, :operating_system_id, :os_ver_ser, :memory,:disk_space,:cpu_speed,:cpu_core_count,:mac, :cost,:acquisition_date,:expiry_date,:last_audit_date,:assigned_on,:vendor_id,:contract_id)
   end
 
 end

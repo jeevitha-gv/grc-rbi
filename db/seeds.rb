@@ -1060,3 +1060,7 @@ ComputerCategory.delete_all
     ServiceType.create(:name => "Email Services")
     ServiceType.create(:name => "Backup Services")
     ServiceType.create(:name => "Hosting Services")
+ OperatingSystem.delete_all
+
+    OperatingSystem.create(:name => "Windows")
+    OperatingSystem.create(:name => "Linux")
