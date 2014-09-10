@@ -440,8 +440,6 @@ en:
               blank: "Computer name can't be blank"
             serial:
               blank: "Serial number can't be blank"
-            manufacturer:
-              blank: "Mamufacturer can't be blank"
         other_asset:
           attributes:
             name:
@@ -667,6 +665,10 @@ en:
     vendor: "Vendor"
     contract: "Contract"
     cost: "Cost(in $)"
+    assigned_on: "Assigned"
+    acquisition_date: "Acquisition"
+    expiry: "Expiry"
+    last_audit: "Last Audit"
 
   vendor:
     name: "Name"
