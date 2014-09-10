@@ -728,6 +728,7 @@ en:
     asset_manager_id: "Asset Manager"
     asset_user_id: "Asset User"
     assigned_on: "Assigned"
+    impact: "Impact"
 
   software: 
     soft_type: "Software Type"
