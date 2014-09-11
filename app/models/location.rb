@@ -25,4 +25,5 @@ class Location < ActiveRecord::Base
   has_many :services
   has_many :documents
   has_many :softwares
+  has_many :assets
 end

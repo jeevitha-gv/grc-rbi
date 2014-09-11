@@ -1074,3 +1074,17 @@ AssetDecision.delete_all
     AssetDecision.create(:name => "Accept Gap Analysis and Close")
     AssetDecision.create(:name => "Accept till next assessment")
     AssetDecision.create(:name => "Redo Actions")
+
+AssetState.delete_all
+
+    AssetState.create(:name => "Identified")
+    AssetState.create(:name => "Evaluate")
+    AssetState.create(:name => "Accomplish")
+    AssetState.create(:name => "Redo Action")
+
+Classification.delete_all
+
+    Classification.create(:name => "Strictly Confidential")
+    Classification.create(:name => "Confidential")
+    Classification.create(:name => "Public")
+    Classification.create(:name => "Business use only")
