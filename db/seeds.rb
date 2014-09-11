@@ -1068,3 +1068,9 @@ OperatingSystem.delete_all
     OperatingSystem.create(:name => "Mac")
     OperatingSystem.create(:name => "Solaris")
     OperatingSystem.create(:name => "AIX")
+
+AssetDecision.delete_all
+    
+    AssetDecision.create(:name => "Accept Gap Analysis and Close")
+    AssetDecision.create(:name => "Accept till next assessment")
+    AssetDecision.create(:name => "Redo Actions")
