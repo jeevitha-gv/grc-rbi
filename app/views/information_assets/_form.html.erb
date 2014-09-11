@@ -1,0 +1,258 @@
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :at_origin %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :at_origin, :class => "form-control risk-normal-input" %>
+      </div>
+      
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :info_moved %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :info_moved, :class => "form-control risk-normal-input" %>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :retention_period %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :retention_period, :class => "form-control risk-normal-input" %>
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+
+
+<%= f.fields_for :asset do |ff| %>
+<div class ="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+      <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">
+          <%= ff.label :name %>
+        </label>
+        <div class="col-sm-8">
+          <%= ff.text_field :name, :class => "form-control risk-normal-input" %>
+        </div>
+      </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+      <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">
+          <%= ff.label :description %>
+        </label>
+        <div class="col-sm-8">
+          <%= ff.text_area :description, :class => "form-control risk-big-input" %>
+        </div>
+      </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= ff.label :location_id, t('computer.location') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= ff.collection_select(:location_id, current_company.locations, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class ="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= ff.label :department_id, t('computer.location') %>
+      </label>
+      <div class="col-sm-8">
+        <div class="risk-select">
+          <%= ff.collection_select(:department_id, current_company.departments, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+      <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">
+          <%= ff.label :asset_state_id %>
+        </label>
+        <div class="col-sm-8">
+          <div class="risk-select">
+          <%= ff.collection_select(:asset_state_id, AssetState.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+      <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">
+          <%= ff.label :classification_id %>
+        </label>
+        <div class="col-sm-8">
+          <div class="risk-select">
+          <%= ff.collection_select(:classification_id, Classification.all, :id, :name) %>
+        </div>
+      </div>
+  </div>
+  </div>  
+</div>
+
+<div class ="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+      <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">
+          <%= ff.label :owner_id %>
+        </label>
+        <div class="col-sm-8">
+          <div class="risk-select">
+          <%= ff.collection_select(:owner_id, current_company.users, :id, :user_name) %>
+        </div>
+      </div>
+  </div> 
+</div>
+
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+      <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">
+          <%= ff.label :custodian_id %>
+        </label>
+        <div class="col-sm-8">
+          <div class="risk-select">
+          <%= ff.collection_select(:custodian_id, current_company.users, :id, :user_name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+      <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">
+          <%= ff.label :identifier_id %>
+        </label>
+        <div class="col-sm-8">
+          <div class="risk-select">
+          <%= ff.collection_select(:identifier_id, current_company.users, :id, :user_name) %>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+
+<div class="row">
+
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+      <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">
+          <%= ff.label :evaluated_by %>
+        </label>
+        <div class="col-sm-8">
+          <div class="risk-select">
+          <%= ff.collection_select(:evaluated_by, current_company.users, :id, :user_name) %>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+
+<div class ="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+      <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">
+          <%= ff.label :personal_data %>
+        </label>
+        <div class="col-sm-8">
+          <%= ff.check_box :personal_data %>
+        </div>
+      </div>
+  </div>
+
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+      <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">
+          <%= ff.label :sensitive_date %>
+        </label>
+        <div class="col-sm-8">
+          <%= ff.check_box :sensitive_date %>
+        </div>
+      </div>
+  </div>
+
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+      <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">
+          <%= ff.label :customer_data %>
+        </label>
+        <div class="col-sm-8">
+          <%= ff.check_box :customer_data %>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class ="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+      <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">
+          <%= ff.label :confidentiality %>
+        </label>
+        <div class="col-sm-8">
+          <div class="risk-select">
+          <%= ff.collection_select(:confidentiality, Priority.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+      <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">
+          <%= ff.label :availability %>
+        </label>
+        <div class="col-sm-8">
+          <div class="risk-select">
+          <%= ff.collection_select(:availability, Priority.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+      <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">
+          <%= ff.label :integrity %>
+        </label>
+        <div class="col-sm-8">
+          <div class="risk-select">
+          <%= ff.collection_select(:integrity, Priority.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+  
+<%end%>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -142,6 +143,8 @@ end
       get 'service_export'
     end
    end
+
+   resources :information_assets
 
   resource :user do
     collection do

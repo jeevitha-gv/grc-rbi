@@ -1068,3 +1068,17 @@ OperatingSystem.delete_all
     OperatingSystem.create(:name => "Mac")
     OperatingSystem.create(:name => "Solaris")
     OperatingSystem.create(:name => "AIX")
+
+AssetState.delete_all
+
+    AssetState.create(:name => "Identified")
+    AssetState.create(:name => "Evaluate")
+    AssetState.create(:name => "Accomplish")
+    AssetState.create(:name => "Redo Action")
+
+Classification.delete_all
+
+    Classification.create(:name => "Strictly Confidential")
+    Classification.create(:name => "Confidential")
+    Classification.create(:name => "Public")
+    Classification.create(:name => "Business use only")

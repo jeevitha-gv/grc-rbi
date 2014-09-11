@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_id: 1
+  assetable_id: 1
+  assetable_type: MyString
+  name: MyString
+  description: MyText
+  asset_state_id: 1
+  owner_id: 1
+  custodian_id: 1
+  identifier_id: 1
+  evaluated_by: 1
+  personal_data: false
+  sensitive_date: false
+  customer_data: false
+  confidentiality: 1
+  availability: 1
+  integrity: 1
+  classification_id: 1
+  department_id: 1
+  location_id: 1
+
+two:
+  company_id: 1
+  assetable_id: 1
+  assetable_type: MyString
+  name: MyString
+  description: MyText
+  asset_state_id: 1
+  owner_id: 1
+  custodian_id: 1
+  identifier_id: 1
+  evaluated_by: 1
+  personal_data: false
+  sensitive_date: false
+  customer_data: false
+  confidentiality: 1
+  availability: 1
+  integrity: 1
+  classification_id: 1
+  department_id: 1
+  location_id: 1
