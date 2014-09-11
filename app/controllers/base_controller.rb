@@ -143,4 +143,8 @@ class BaseController < ActionController::Base
 	  	end
 	end
 
+  def current_asset
+    @asset = Asset.find(params[:asset_id])
+  end
+
 end
