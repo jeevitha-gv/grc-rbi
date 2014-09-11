@@ -143,8 +143,15 @@ end
       get 'service_export'
     end
    end
-
-   resources :information_assets
+   
+  scope '/assets' do
+    resources :information_assets
+  end
+  
+  resources :assets do  
+    resources :assessments
+  end
+  
 
   resource :user do
     collection do
