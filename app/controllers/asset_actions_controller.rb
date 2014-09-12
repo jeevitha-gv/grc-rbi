@@ -30,8 +30,8 @@ class AssetActionsController < ApplicationController
   private
 
   def action_params
-    binding.pry
-    params.require(:asset_action).permit(:custodian_actions)
+    
+    params.require(:asset_action).permit(:custodian_actions, attachments_attributes: [:id, :attachment_file, :company_id])
   end
 
 end

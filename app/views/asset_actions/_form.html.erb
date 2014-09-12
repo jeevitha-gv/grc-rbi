@@ -13,6 +13,9 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	<%= f.fields_for :attachments, (@asset_action.attachments.present? ? @asset_action.attachments : @asset_action.attachments.build) do |attach| %>
 		<%= attach.label :attachment, 'Attach Evidence Documents', :class => "attach-icon fleft blue_link" %><br />
+    <%= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
+      <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
+      <br />
 	<% end %>
 	</div>
 </div>
