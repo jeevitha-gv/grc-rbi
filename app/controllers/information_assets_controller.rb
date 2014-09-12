@@ -1,4 +1,7 @@
 class InformationAssetsController < ApplicationController
+
+  layout 'asset_layout'
+
   def index
   end
 
