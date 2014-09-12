@@ -43,7 +43,7 @@ end
 private
 
 def close_params
-	params.require(:incident).permit(close_attributes: [:id, :incident_id, :evaluate_id, :resolution_id, :incident_category_id, :department_id, :closing_comment])
+	params.require(:incident).permit(close_attributes: [:id, :incident_id, :evaluate_id, :resolution_id, :incident_category_id, :close_evaluation_id, :close_status_id, :department_id, :closing_comment])
 end
 end
 

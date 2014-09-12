@@ -485,6 +485,16 @@ IncidentCategory.delete_all
     IncidentCategory.create(:name => "Switches")
     IncidentCategory.create(:name => "Telephone")
 
+CloseEvaluation.delete_all
+    CloseEvaluation.create(:name => "Great")
+    CloseEvaluation.create(:name => "Good")
+    CloseEvaluation.create(:name => "Bad")
+    CloseEvaluation.create(:name => "regular")
+
+CloseStatus.delete_all
+    CloseStatus.create(:name => "Problem Solved")
+    CloseStatus.create(:name => "Problem not Solved")
+
 IncidentPriority.delete_all
     IncidentPriority.create(:name => "High")
     IncidentPriority.create(:name => "Medium")

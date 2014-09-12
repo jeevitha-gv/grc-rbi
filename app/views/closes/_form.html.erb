@@ -83,6 +83,24 @@
                 <p><%= close.text_area :closing_comment, :class => "form-control risk-normal-input",:maxlength => 255 %></p>
               </div>           
           </div>
+          <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Evaluate :</b> </label>
+                       <div class="col-sm-7">
+                        <div class="risk-select">
+                      <%= close.collection_select(:close_evaluation_id, CloseEvaluation.all, :id, :name)%>
+                    </div>
+                      </div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Status :</b> </label>
+                       <div class="col-sm-7">
+                        <div class="risk-select">
+                      <%= close.collection_select(:close_status_id, CloseStatus.all, :id, :name)%>
+                    </div>
+                      </div>
+                    </div>
+
+
               <div>
                 <div class="row audit-title">
                   
