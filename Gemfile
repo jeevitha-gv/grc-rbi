@@ -84,3 +84,7 @@ gem 'daemons'
 # CKE Editor
 gem 'ckeditor', '~> 4.1.0'
 gem 'mini_magick'
+
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+
+gem 'semantic-ui-rails'
