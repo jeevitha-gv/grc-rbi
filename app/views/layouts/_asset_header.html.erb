@@ -71,6 +71,12 @@
         <li><a  href="/computers" class="<%= (request.fullpath.include?("computers") || request.fullpath.include?("softwares") || request.fullpath.include?("mobile_assets") || request.fullpath.include?("other_assets") || request.fullpath.include?("services") == true || request.fullpath.include?("documents")) ? 'active' : '' %>">
             <div class="plan-icon"></div>
             Assets</a></li>        
+        <li><a  href="/assets/information_assets/new" class="<%= request.fullpath.include?("information_assets/new") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Register</a></li>
+        <li><a  href="/assets/information_assets" class="<%= (request.fullpath.include?("information_assets") && action_name == "index") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Inventory</a></li>
         <li><a  href="/vendors" class="<%= request.fullpath.include?("vendors") == true ? 'active' : '' %>">
             <div class="plan-icon"></div>
             Vendors</a></li>
