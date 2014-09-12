@@ -41,16 +41,17 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">   
     <div class="form-group clearfix">
       <div class="col-sm-12">
         <%= ff.label :integrity %>
-        <div class="risk-select width-fix">
+        <div class="risk-select width-fix">        
           <%= ff.collection_select(:integrity, Priority.all, :id, :name) %>
         </div>
       </div>
     </div>
   </div>
+
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
       <div class="col-sm-12">
@@ -84,33 +85,42 @@
         <label class="col-sm-4 control-label">
           <%= ff.label :personal_data %>
         </label>
+        <div class="ui toggle checkbox">
         <div class="col-sm-8">
           <%= ff.check_box :personal_data %>
+          <label></label>
         </div>
       </div>
   </div>
+</div>
 
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
       <div class="form-group clearfix">
         <label class="col-sm-4 control-label">
           <%= ff.label :sensitive_date %>
         </label>
+        <div class="ui toggle checkbox">
         <div class="col-sm-8">
           <%= ff.check_box :sensitive_date %>
+          <label></label>
         </div>
       </div>
   </div>
+</div>
 
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
       <div class="form-group clearfix">
         <label class="col-sm-4 control-label">
           <%= ff.label :customer_data %>
         </label>
+        <div class="ui toggle checkbox">
         <div class="col-sm-8">
           <%= ff.check_box :customer_data %>
+          <label></label>
         </div>
       </div>
   </div>
+</div>
 </div>
 
 <div class="clearfix border-divider"></div>
@@ -130,6 +140,8 @@
       </div>
     </div>
   </div>
+
+
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
       <div class="col-sm-12">
@@ -212,3 +224,11 @@
     </div>
   </div>
 </div>
+<script>
+$('.ui.checkbox')
+  .checkbox();
+
+$('.ui.dropdown')
+  .dropdown()
+;
+  </script>

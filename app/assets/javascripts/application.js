@@ -16,6 +16,7 @@
 //= require jquery.remotipart
 //= require ckeditor/init
 //= require ckeditor/config
+//= require semantic-ui
 
 
 
