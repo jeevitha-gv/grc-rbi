@@ -185,36 +185,29 @@
                                   </div>
                                  </div>
 <br>
-                        <div class="row">
-                        <div class="fright paddingtop" style="padding-right: 50px;">
-                       
-    <%= f.fields_for :attachment, (@incident.attachment.present? ? @incident.attachment : @incident.build_attachment) do |attach| %>
-   
-      <%= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
-      <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
-      <br />
-      <div id="attach_<%= @incident.attachment.id%>"><%= link_to (File.basename(@incident.attachment.attachment_file_url)).truncate(20), download_incident_document_incidents_path(id: @incident.attachment.id), class: "blue_link risl-blue-link" if @incident.attachment.attachment_file_url%>
-        <div class="addissue risk-rem"> <%= link_to "Remove", remove_attachment_incidents_path(id: @incident.attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon" if @incident.attachment.attachment_file.present? %>
-        </div>
-    <% end %>
-       
-            </div> 
-                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                 <div class="btn-wrap">
-                                 </div>
-                                 </div>
-                                </div>
-
-<br>
-                            </div>
+                <div class="row">
+                <div class="fright paddingtop" style="padding-right: 50px;">
+                <%= f.fields_for :attachment, (@incident.attachment.present? ? @incident.attachment : @incident.build_attachment) do |attach| %>  
+                <%= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
+                <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
+          <br />
+                <div id="attach_<%= @incident.attachment.id%>"><%= link_to (File.basename(@incident.attachment.attachment_file_url)).truncate(20), download_incident_document_incidents_path(id: @incident.attachment.id), class: "blue_link risl-blue-link" if @incident.attachment.attachment_file_url%>
+                <div class="addissue risk-rem"> <%= link_to "Remove", remove_attachment_incidents_path(id: @incident.attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon" if @incident.attachment.attachment_file.present? %>
+                </div>
+                <% end %>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="btn-wrap">
+            </div>
+            </div>
+            </div>
+          <br>
+            </div>
 
                         
-                                <div class="fright paddingtop" style="padding-right: 80px;"><%= f.submit "Save ", :class => "orange_btn" %> <%= f.submit "Save as Draft", :class => "grey_btn"%><a class="grey_btn" href=""> Cancel</a></div>
-                                                  
-
-                        </div>
-                        <br>
-                   
+            <div class="fright paddingtop" style="padding-right: 80px;"><%= f.submit "Save ", :class => "orange_btn" %> <%= f.submit "Save as Draft", :class => "grey_btn"%><a class="grey_btn" href=""> Cancel</a></div>
+            </div>
+            <br>     
              </form>
             </div>
             </div>
