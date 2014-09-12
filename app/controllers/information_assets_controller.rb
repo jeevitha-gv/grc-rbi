@@ -10,6 +10,7 @@ class InformationAssetsController < ApplicationController
   def create
   	@information_asset = InformationAsset.new(info_assets)
   	@information_asset.asset.company_id = current_company.id
+    @information_asset.asset.asset_state_id = 1
   	if @information_asset.save
   		redirect_to information_assets_path
   	else 
