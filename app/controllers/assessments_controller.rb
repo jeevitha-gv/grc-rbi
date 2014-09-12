@@ -7,10 +7,8 @@ class AssessmentsController < ApplicationController
 	end
 
 	def new
-
-		@assessment = @asset.assessment.present? ? @asset.assessment : @asset.build_assessment
-		# @assessment = @asset.build_assessment
-		 @asset_info = @asset.assetable
+		@assessment = @asset.assessment.present? ? @asset.assessment : @asset.build_assessment		
+		@asset_info = @asset.assetable
 	end
 
 	def create
