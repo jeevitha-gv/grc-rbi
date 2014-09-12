@@ -3,6 +3,7 @@ class InformationAssetsController < ApplicationController
   layout 'asset_layout'
 
   def index
+    @assets = current_company.assets
   end
 
   def new

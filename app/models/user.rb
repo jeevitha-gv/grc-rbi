@@ -52,10 +52,11 @@ class User < ActiveRecord::Base
   has_many :document_user, class_name: 'Document', foreign_key: 'asset_user_id'
   has_many :software_manager, class_name: 'Software', foreign_key: 'asset_manager_id'
   has_many :software_manager, class_name: 'Software', foreign_key: 'asset_user_id'
-  has_many :info_asset_owner, class_name: 'InformationAsset', foreign_key: 'owner_id'
-  has_many :info_asset_custodian, class_name: 'InformationAsset', foreign_key: 'custodian_id'
-  has_many :info_asset_identifier, class_name: 'InformationAsset', foreign_key: 'identifier_id'
-  has_many :info_asset_evaluator, class_name: 'InformationAsset', foreign_key: 'evaluated_by'
+  has_many :info_asset_owner, class_name: 'Asset', foreign_key: 'owner_id'
+  has_many :info_asset_custodian, class_name: 'Asset', foreign_key: 'custodian_id'
+  has_many :info_asset_identifier, class_name: 'Asset', foreign_key: 'identifier_id'
+  has_many :info_asset_evaluator, class_name: 'Asset', foreign_key: 'evaluated_by'
+  has_many :assets
 
 
 # attribute to login with username or email
