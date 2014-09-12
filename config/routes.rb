@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
+<<<<<<< HEAD
 
   
 
+=======
+>>>>>>> 1dcb5a0332e731826e0c2c95569f82597f5f73b3
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -152,7 +155,11 @@ end
   
   resources :assets do  
     resources :assessments
+
     resources :asset_reviews
+
+    resources :asset_actions
+
   end
   
 
