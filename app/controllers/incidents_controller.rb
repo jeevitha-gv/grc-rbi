@@ -4,7 +4,37 @@ layout 'incident_layout'
 
   def index
     @incident = Incident.all
+   #   respond_to do |format|
+   #   format.html
+   #   format.csv {render text: @incident.to_csv}
+   # end
   end
+
+  def import
+if(params[:file].present?)
+      
+        Incident.import(params[:file], current_company)
+        redirect_to incidents_path
+      
+      
+    end
+
+    
+  end
+  def export
+    begin
+      file_to_download = "sample_incident.csv"
+      send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
+    rescue
+      redirect_to new_incident_path
+    end
+  end
+
+  # def import
+  #   Incident.import(params[:file])
+  #   redirect_to incidents_path
+  # end
+
 
   def new
     @incident = Incident.new
