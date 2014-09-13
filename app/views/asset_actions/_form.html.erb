@@ -1,8 +1,182 @@
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="tab-pane active" id="all">
+      <div class="table-responsive">
+        <table class="table table-striped table-bg">
+          <tr>
+            <th colspan="6" class="risk-able-th">Assignment / Security / CIA Information</th>
+          </tr>
+          <tr>
+            <td><label>Owner : </label>
+              <span> </span></td>
+            <td><label>Custodian : </label>
+              <span> </span></td>
+            <td><label>Identifier : </label>
+              <span></span></td>
+          </tr>
+          <tr>
+            <td><label>Evaluator/CIO : </label>
+            <span></span></td>
+            <td><label>Category : </label>
+              <span></span></td>
+            <td><label>Classification : </label>
+              <span></span></td>
+          </tr>
+          <tr>
+            <td><label>Confidentiality :</label>
+              <span></span></td>
+            <td><label>Integrity : </label>
+              <span></span></td>
+            <td><label>Availability : </label>
+              <span class="orange-method"></span></td>
+          </tr>
+          <tr>
+            <td><label>Personal Data :</label>
+              <span></span></td>
+            <td><label>Sensitive Data : </label>
+              <span></span></td>
+            <td><label>Customer Data : </label>
+              <span class="orange-method"></span></td>
+          </tr>
+          <%# if risk.attachment.present? %>
+          <tr>
+            <td><label>Document: </label>
+              <%#= link_to (File.basename(risk.attachment.attachment_file_url)).truncate(20), download_document_risks_path(id: risk.attachment.id), class: "blue_link" %></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <%# end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title">Asset Description</div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="tab-pane active" id="all">
+      <div class="table-responsive">
+        <table class="table table-striped table-bg">
+          <tr>
+            <th colspan="6" class="risk-able-th">Information Asset Properties</th>
+          </tr>
+          <tr>
+            <td><label>Current Level of Protection - When Information is in rest : </label>
+              <br>              
+                <span>
+                  
+                </span>              
+              <span>
+            </td>
+            <td><label>Current Level of Protection - When Information is moved : </label>
+              <br>
+              <span>
+                
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <label>Data Retention Period (in Years) :</label>
+              <span></span>
+            </td>
+          </tr>
+        </table>
+        <tr></tr>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title">Controls for Labelling</div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="mitigation-recomm">
+      <div class="mit-reccom-title">Controls for Storage</div>
+      <p></p>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title">Controls for Transport / Transmission</div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="mitigation-recomm">
+      <div class="mit-reccom-title">Controls for Addressing</div>
+      <p></p>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title">Controls for Disposal</div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title">Assessment</div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="mitigation-recomm">
+      <div class="mit-reccom-title">Conclusion</div>
+      <p></p>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="risk-wrap">
+<div class="sub-wrap">
+<div class="sub-titile">Submit Actions</div>
+<div class="sub-wrap-bg">
+<div class="ui info message">Give a brief descriptions about the actions taken with evidence documents. If possible provide a future action plan in case if some controls are still not yet implemented.</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="form-group clearfix">
       <div class="col-sm-12">
-        <%= f.label :custodian_actions, "Describe the action statements and control measures taken" %>
+        <%= f.label :custodian_actions, "Describe the action statements and control measures taken as a custodian" %>
         <%= f.cktext_area :custodian_actions, :class=>"form-control asset-big-input" %>
       </div>
     </div>
@@ -19,3 +193,21 @@
 	<% end %>
 	</div>
 </div>
+
+<div class="row">
+  <div id="example">
+    <div class="demo-section k-header">
+        <input name="files" id="files" type="file" />                    
+    </div>            
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+  $(document).ready(function() {
+      $("#files").kendoUpload();
+  });
+</script>
