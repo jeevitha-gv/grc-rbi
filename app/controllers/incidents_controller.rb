@@ -82,6 +82,11 @@ def incident_all
     send_file(Rails.public_path.to_s + attachment.attachment_file_url)
   end
 
+  def download_resolution_document
+    attachment = Attachment.find(params[:id])
+    send_file(Rails.public_path.to_s + attachment.attachment_file_url)
+  end
+
 
   def remove_attachment
     attachment = Attachment.find(params[:id])

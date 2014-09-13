@@ -1,0 +1,7 @@
+<%= form_for(@incident, url: { controller: "closes", action: "create" }, :method => "post") do |c| %>
+
+<%= render 'form', :c => c, :incident => @incident, :evaluate => @evaluate, :resolution => @resolution, :close => @close %>
+
+<%= c.submit 'Close' %>
+
+<% end %>

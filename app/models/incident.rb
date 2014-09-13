@@ -41,6 +41,7 @@
 	belongs_to :team
 	has_one :evaluate
 	has_one :resolution
+	has_one :close
 	belongs_to :incident_status
     has_one :attachment, as: :attachable
 	
@@ -62,6 +63,7 @@
 
 	accepts_nested_attributes_for :evaluate
 	accepts_nested_attributes_for :resolution
+	accepts_nested_attributes_for :close
 
     accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }
 

@@ -153,14 +153,19 @@ Rails.application.routes.draw do
       # get 'download_evaluate_document'
       delete 'remove_attachment'
       get 'download_incident_document'
-      end
+    end
+  resources :closes  
   resources :evaluates  
   resources :resolutions
- 
-end
+    collection do 
+      delete 'remove_attachment'
+      get 'download_resolution_document'
+      end
 
+  end
+
+  
 root 'home#index'
-
 
 end
 

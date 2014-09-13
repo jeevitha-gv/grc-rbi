@@ -128,6 +128,11 @@
     var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
     window.location.href = "/incidents/"+ dataItem.id + "/resolutions/new"
   }
+  function closure_file(e)
+  {
+    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+    window.location.href = "/incidents/"+ dataItem.id + "/closes/new"
+  }
   // function graph_file(e)
   // {
   //   var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
@@ -144,6 +149,10 @@
     else if(stage_class == 'resolution')
     {
       return "k-grid-miti, .k-grid-list";
+    }
+    else if(stage_class == 'close')
+    {
+      return "k-grid-miti, .k-grid-list, .k-grid-graph";
     }
   }
 
@@ -216,6 +225,7 @@
     $('.k-grid-file').attr('title','File');
     $('.k-grid-list').attr('title','evaluate');
     $('.k-grid-miti').attr('title','resolution');
+    $('.k-grid-graph').attr('title','close');
     $('.k-grid-edit').attr('title','edit');
     //$('.k-grid-graph').attr('title','Dashboard');
   }
@@ -293,7 +303,7 @@
         { field: "incident_category", title: "Category", width: "35%" },
         { field: "incident_status", title: "Status", width: "35%" },
         { field: "team", title: "Team", width: "35%" },
-      { command: [{text: "list", click:evaluate_file },{text: "miti", click: resolution_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Action", width: "200px" }
+      { command: [{text: "list", click:evaluate_file },{text: "miti", click: resolution_file},{text: "graph", click: closure_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Action", width: "200px" }
     ],
   //~ editable: "popup"
   });
@@ -334,6 +344,11 @@
   {
     var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
     window.location.href = "/incidents/"+ dataItem.id + "/resolutions/new"
+  }
+  function closure_file(e)
+  {
+    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+    window.location.href = "/incidents/"+ dataItem.id + "/closes/new"
   }
   function pdf_file(e)
   {
@@ -416,6 +431,7 @@
     $('.k-grid-file').attr('title','File');
     $('.k-grid-list').attr('title','Evaluate');
     $('.k-grid-miti').attr('title','Resolution');
+    $('.k-grid-graph').attr('title','Close');
     $('.k-grid-edit').attr('title','edit');
     $('.k-grid-pdf').attr('title','PDF');
     //$('.k-grid-graph').attr('title','Dashboard');
