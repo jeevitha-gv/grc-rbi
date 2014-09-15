@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>printout</title>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+<style type="text/css">
+body{ font-family: 'Open Sans', sans-serif;}
+.wrapper{ margin:0 auto; width:800px; padding:20px 0;}
+.wrapper table{ font-size:12px;}
+.wrapper table td{ text-align:center;}
+h2{ font-size:18px; font-weight:bold;}
+h4{ font-size:14px; font-weight:bold;}
+.textaligncenter{ text-align:center;}
+.cls{ clear:both;}
+.side{ width:100%;}
+.leftside{ width:50%; float:left;}
+.rightside{ width:50%; float:left;}
+.leftside label,.rightside label {float: left;padding: 5px 10px; font-weight:bold;width: 35%; font-size:12px;}
+.label_content {
+  padding: 5px 0;font-size:12px; width:70%; float: right; word-wrap:break-word; overflow: hidden;
+}
+.label_content_top {
+  padding: 5px 0;font-size:12px;
+}
+label {float: left;padding: 5px 10px; font-weight:bold; width: 25%; font-size:12px;}
+.line{ border-bottom:1px solid #989898; height:1px; padding:25px 0 0;}
+.paddingbottom{ padding-bottom: 50px;}
+.logo{height: 50px; border-bottom:5px solid #0085C8; font-size: 30px; text-align: center;}
+.content-wrap{width: 100%;}
+</style>
+</head>
+
+<body>
+<!-- Wrapper Start-->
+<div class="wrapper">
+
+  <div class="logo">
+
+  </div>
+<!--Title Start-->
+<h2 class="textaligncenter">Report for Incident</h2>
+<!--Title Start-->
+<div class="cls"></div>
+<!-- SideContent Start-->
+<div class="side">
+<!-- Leftside Content Start-->
+<div class="leftside">
+<label>Title: </label>
+<div class="label_content_top"><%=@incident.title%></div>
+<div class="cls"></div>
+<label>Type: </label>
+<div class="label_content_top"><%=@incident.request_type.name%> </div>
+<div class="cls"></div>
+<label>Category :</label>
+<div class="label_content_top"><%=@incident.incident_category.name%></div>
+<div class="cls"></div>
+<label>Date Occured: </label>
+<div class="label_content_top"><%=@incident.date_occured%></div>
+<div class="cls"></div>
+
+
+<label> Department : </label>
+<div class="label_content_top"><%=@incident.department_id%></div>
+</div>
+<!-- Leftside Content End-->
+<!-- Rightside Content Start-->
+<div class="rightside">
+
+<label> Contact No : </label>
+<div class="label_content_top"><%=@incident.contact_no%></div>
+<div class="cls"></div>
+<label> Job Title : </label>
+<div class="label_content_top"><%=@incident.Jobtitle%></div>
+<div class="cls"></div>
+<label> Sub-Category : </label>
+<div class="label_content_top"><%=@incident.sub_category%></div>
+<div class="cls"></div>
+<label> Team : </label>
+<div class="label_content_top"><%=@incident.team_id%></div>
+<div class="cls"></div>
+<label> Summary : </label>
+<div class="label_content_top"><%=@incident.summary%></div>
+
+</div>
+<!-- Rightside Content End-->
+</div>
+
+<div class="cls"></div>
+<div class="leftside">
+<label>Urgency: </label>
+<div class="content-wrap">
+<div class="label_content"><%=@incident.evaluate.urgency.name if @incident.evaluate.present?%></div>
+</div>
+<div class="cls"></div>
+<div class="content-wrap">
+<label>Assignee</label>
+<div class="label_content"> <%=@incident.evaluate.assignee if @incident.evaluate.present?%></div>
+</div>
+<div class="cls"></div>
+<div class="content-wrap">
+<label> TargetDate : </label>
+<div class="label_content"><%=@incident.evaluate.target_date if @incident.evaluate.present?%></div>
+</div>
+<div class="cls"></div>
+<div class="content-wrap">
+<label> Priority : </label>
+<div class="label_content"><%=@incident.evaluate.incident_priority.name if @incident.evaluate.present?%></div>
+</div>
+<div class="cls"></div>
+<div class="content-wrap">
+<label> Escalation : </label>
+<div class="label_content"><%=@incident.evaluate.escalation.name if @incident.evaluate.present?%></div>
+</div>
+<div class="cls"></div>
+</div>
+<div class="rightside">
+
+<label> Origin : </label>
+<div class="label_content_top"><%=@incident.evaluate.incident_origin.name if @incident.evaluate.present?%></div>
+<div class="cls"></div>
+<label> Impact : </label>
+<div class="label_content_top"><%=@incident.evaluate.incident_impact.name if @incident.evaluate.present?%></div>
+<div class="cls"></div>
+<label> SLA : </label>
+<div class="label_content_top"><%=@incident.evaluate.sla.name if @incident.evaluate.present?%></div>
+<div class="cls"></div>
+<label> Resolution-Time : </label>
+<div class="label_content_top"><%=@incident.evaluate.resolutiontime if @incident.evaluate.present?%></div>
+<div class="cls"></div>
+</div>
+
+<!-- Client Audited Start-->
+<div class="line"></div>
+<div class="cls"></div>
+<hr>
+<div class="leftside">
+<label>Reassign: </label>
+<div class="content-wrap">
+<div class="label_content"><%=@incident.evaluate.resolution.reassignee if @incident.resolution.present?%></div>
+</div>
+<div class="cls"></div>
+<div class="content-wrap">
+<label>Soltution-Type</label>
+<div class="label_content"> <%=@incident.evaluate.resolution.solution_type.name if @incident.resolution.present?%></div>
+</div>
+<div class="cls"></div>
+<div class="content-wrap">
+<label> Parent-ID : </label>
+<div class="label_content"><%=@incident.evaluate.resolution.incident.id if @incident.resolution.present?%></div>
+</div>
+<div class="cls"></div>
+
+
+</div>
+<div class="rightside">
+
+<label> Solution : </label>
+<div class="label_content_top"><%=@incident.evaluate.resolution.solution_type.name if @incident.resolution.present?%></div>
+<div class="cls"></div>
+<label> Root-Cause : </label>
+<div class="label_content_top"><%=@incident.evaluate.resolution.rootcause if @incident.resolution.present?%></div>
+<div class="cls"></div>
+<label> Closure-Classification : </label>
+<div class="label_content_top"><%=@incident.evaluate.resolution.closure_classification.name if @incident.resolution.present?%></div>
+
+
+</div>
+<!-- Wrapper End-->
+
+</body>
+</html>
