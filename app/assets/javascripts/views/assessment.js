@@ -32,13 +32,9 @@ function search_result()
     $("#grid").data("kendoGrid").dataSource.filter({
         logic  : "or",
         filters: [
+            
             {
-                field: "name",
-                operator: "contains",
-                value   : val
-            },
-            {
-                field: "asset_state",
+                field: "assetable_type",
                 operator: "contains",
                 value   : val
             },
@@ -51,38 +47,33 @@ function search_result()
                  field: "custodian",
                  operator: "contains",
                  value   : val
-            },
-            {
-                 field: "evaluated",
-                 operator: "contains",
-                 value   : val
-            },
-            
+            },           
         ]
     });
 }
 
 
 
+$("#panelbar").kendoPanelBar();
 
-                    $("#grid").kendoGrid({
-                        dataSource: {
-                            transport: {
-                                read: {
-                                    url: "/assets/information_assets",
-                                    dataType: 'json',
-                                    type: 'get'
-                                },
-                                destroy: {
-                                           url: function(risk) 
-                                                {
-                                                    return "/assets/information_assets/" + information_asset.id
-                                                },
-                                                dataType: "json",
-                                                type: "DELETE"
-                                         }
-                            },
-                            schema: {
+    if ( stage.length > 0 )
+    {
+        var assets_url = "/assets?stage="+stage;
+    }
+    else
+    {
+        var assets_url = "/assets"
+    }
+
+    dataSource = new kendo.data.DataSource({
+        transport: {
+            read: {
+                url: assets_url,
+                dataType: 'json',
+                type: 'get'
+            },
+        },
+        schema: {
             errors: function(response) {
             return response.errors;
         },
@@ -90,18 +81,20 @@ function search_result()
         model: {
             id: "id",
                 fields: {
-                    name: { type: "string" },
-                    asset_state: { type: "string" },
+                    assetable_type: { type: "string" },
                     owner: {type: "string"},
                     custodian: {type: "string"},
-                    evaluated: {type: "string"},
-                    
-                    //department: {type: "string"}
                 }
             }
         },
                             // pageSize: 20
-                        },
+                        });
+    $("#grid").kendoGrid({
+        dataSource: dataSource,
+        dataBound: function(){
+            updateGridForStage(stage)
+            riskGridTitle()
+        },
                         height: 550,
                         groupable: false,
                         sortable: true,
@@ -111,24 +104,16 @@ function search_result()
                         //     pageSizes: true,
                         //     buttonCount: 5
                         // },
-                       columns: [{
-                            field: "name",
-                            title: "Name",
-                            width: 200
-                        }, {
-                            field: "asset_state",
-                            title: "Status"
+                       columns: [ {
+                            field: "assetable_type",
+                            title: "Asset Type"
                         }, {
                             field: "owner",
                             title: "Asset Owner"
                         }, {
                             field: "custodian",
                             title: "Asset Custodian"
-                        },{
-                            field: "evaluated",
-                            title: "Evaluator"
-                        },
-                      { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
+                        },{ command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 
                         ],
                     });
@@ -138,7 +123,7 @@ function delete_file(e)
        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
        if (confirm('Are you sure you want to delete this record ?')) {
                $.ajax({
-               url: "/assets/information_assets/"+dataItem.id,
+               url: "/assessments"+dataItem.id,
                type: 'delete',
                dataType: 'json',
                success:function(result){
@@ -152,6 +137,21 @@ function delete_file(e)
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/assets/information_assets/"+ dataItem.id + "/edit"
+        window.location.href = "/assets/"+ dataItem.id + "/edit"
+    }
+function select_stage_class(stage_class)
+    {
+        if(stage_class == 'evaluate')
+      {
+        return "k-grid-list";
+      }
+      else if(stage_class == 'action')
+      {
+        return "k-grid-miti, .k-grid-list";
+      }
+      else if(stage_class == 'review')
+      {
+        return "k-grid-miti, .k-grid-list";
+      }
     }
       });

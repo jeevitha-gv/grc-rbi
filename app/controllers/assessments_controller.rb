@@ -2,8 +2,11 @@ class AssessmentsController < ApplicationController
 
 	layout 'asset_layout'
 	before_filter :current_asset
+	before_filter :authorize_evaluator, :only => [:new, :create,:edit,:update]
+	before_filter :accessible_assets, :only => [:index]
 
 	def index
+	
 	end
 
 	def new
@@ -35,10 +38,9 @@ class AssessmentsController < ApplicationController
 		end
 	end
 
+	private
+
 	def assess_params
 		params.require(:assessment).permit(:asset_id,:labelling,:disposal,:transport,:storage,:addressing,:assessment,:conclusion,:closure_date)
 	end
-
-
-
 end

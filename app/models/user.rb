@@ -179,6 +179,8 @@ class User < ActiveRecord::Base
       end
     end
 
+    
+
   private
     def user_name_without_spaces
       username_match = self.user_name.match(/[\s+\d+]/) ? true : false

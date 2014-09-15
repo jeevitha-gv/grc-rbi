@@ -22,9 +22,17 @@ class AssetActionsController < ApplicationController
   end
 
   def edit
+    @asset_action = @asset.asset_action(asset_id: @asset.id)
   end
 
   def update
+      @asset_action = @asset.asset_action
+      if @asset_action.update(action_params)
+        
+        redirect_to asset_asset_actions_path
+      else
+        render "edit"
+      end
   end
 
   private

@@ -1,6 +1,7 @@
 class InformationAssetsController < ApplicationController
 
   layout 'asset_layout'
+  
 
   def index
     @assets = current_company.assets
@@ -20,6 +21,25 @@ class InformationAssetsController < ApplicationController
   	else 
   		redirect_to new_information_asset_path
   	end
+  end
+
+  def edit
+    @information_asset = InformationAsset.find(params[:id])
+  end
+
+  def update 
+    @information_asset = InformationAsset.find(params[:id])
+    if @information_asset.update_attributes(info_assets)
+      redirect_to information_assets_path 
+    else
+        redirect_to new_information_asset_path
+    end
+  end
+
+  def destroy
+    @information_asset = InformationAsset.find(params[:id])
+    @information_asset.destroy
+    render json: {:data=> "success"}
   end
 
   def info_assets
