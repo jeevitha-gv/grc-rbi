@@ -1,3 +1,7 @@
+
+ <%= javascript_include_tag "/assets/outer/countdown.js" %>
+
+
 <link href="/assets/bootstrap-multiselect.css" rel="stylesheet" />
 <div class="content">
   <div class="container">
@@ -32,13 +36,16 @@
             </div>
           </div>
         </div>
-   
+
 <div class="page-wrap">
   <div class="content">
     <div class="container">
       <div class="row">
         <div id="example" class="k-content">
 <div class="risk-title">Document a New Incident</div>
+<!-- <div id = "counter">
+  <button onclick= "countdown()">Clickme</button> -->
+</div>
 <%= form_for(@incident) do |f| %>
 
 <%= render 'form',:f => f, :incident => @incident %>
