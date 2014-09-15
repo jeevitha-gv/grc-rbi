@@ -1,4 +1,55 @@
 <div class="row">
+  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+    <div class="mitigation-box-wrap">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <% value = calc_score(@asset) %>
+          <% if value > 7 && value <= 9 %>
+            <div class="high-box">
+              <div class="number"><%= value %></div>
+              <div class="text">Asset Value</div>
+            </div>
+          <% elsif value > 5 && value <= 7 %>
+            <div class="medium-box">
+              <div class="number"><%= value %></div>
+              <div class="text">Asset Value</div>
+            </div>
+          <% else %>
+            <div class="low-box">
+              <div class="number"><%= value %></div>
+              <div class="text">Asset Value</div>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+          <div class="mitigate-inner mitigate-box">
+              <div class="risk-box-lable"><%= @asset.assetable_type %></div>              
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="mitigation-box-wrap">
+      <div class="mitigation-sub">
+          <div class="risk-box-lable">Display Name :</div>
+          <div class="risk-box-text"><%= @asset.name %></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+    <div class="mitigation-box-wrap">
+      <div class="mitigation-status">
+          <div class="risk-box-lable">Status:</div>
+          <div class="risk-box-text"><%= @asset.asset_state.name %></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="tab-pane active" id="all">
       <div class="table-responsive">
