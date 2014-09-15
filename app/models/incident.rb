@@ -1,5 +1,39 @@
 	class Incident < ActiveRecord::Base
 
+		require 'csv'
+
+		def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when '.csv' then Roo::CSV.new(file.path)
+    when '.xlsx' then Roo::Excelx.new(file.path)
+    else raise "Unknown file type: #{file.original_filename}"
+    end
+  end
+
+	def self.import(file, company)
+    spreadsheet = Incident.open_spreadsheet(file)
+    start = 2
+    (start..spreadsheet.last_row).each do |i|
+      row_data = spreadsheet.row(i)
+      
+      incident = Incident.new(:Jobtitle => row_data[0], :title => row_data[1], :request_type_id => row_data[2], :incident_category_id => row_data[3], :sub_category_id => row_data[4], :date_occured => row_data[5], :summary => row_data[6], :department_id => row_data[7], :team_id =>  row_data[8], :incident_status_id =>  row_data[9], :comment =>  row_data[10], :contact_no =>  row_data[11], :resolution_id =>  row_data[12],:incident_status_id => IncidentStatus.where(:name=>"New").first.id)
+      incident.save(:validate => false)
+
+   
+    end
+  end
+	# def  self.to_csv
+	# 	CSV.generate do |csv|
+	# 		csv << column_names
+	# 		all.each do |company|
+	# 			csv << company.attributes.values_at(*column_names)
+			
+	# 		end
+	# 	end
+	
+		
+	# end
+
 	belongs_to :request_type
 	belongs_to :incident_category
 	belongs_to :sub_category
@@ -47,3 +81,6 @@
   end
 
 end
+
+
+#audit = Incident.new(:Jobtitle => row_data[0], :title => row_data[1], :request_type_id => row_data[2], :incident_category_id => row_data[3], :sub_category_id => row_data[4], :date_occured => row_data[5], :summary => row_data[6], :department_id => row_data[7], :team_id =>  row_data[8], :incident_status_id =>  row_data[9], :comment =>  row_data[10], :contact_no =>  row_data[11], :resolution_id =>  row_data[12])

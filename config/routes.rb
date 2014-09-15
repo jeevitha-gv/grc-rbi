@@ -147,6 +147,9 @@ Rails.application.routes.draw do
 
   resources :incidents do 
     collection do 
+      post 'import'
+      get 'export'
+
       # get 'download_evaluate_document'
       delete 'remove_attachment'
       get 'download_incident_document'
