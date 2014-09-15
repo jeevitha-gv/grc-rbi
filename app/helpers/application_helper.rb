@@ -93,4 +93,8 @@ def link_to_add_lifecycle_fields(name, f, association, lifecycle)
   link_to "#{name}" ,'javascript:void(0)',  {onclick: "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", class: "plusround-icon plus-backgroundn"}
 end
 
+  def calc_score(asset)
+    return asset.asset_confi.score + asset.asset_avail.score + asset.asset_integ.score
+  end
+
 end
