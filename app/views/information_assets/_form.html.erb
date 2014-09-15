@@ -1,3 +1,48 @@
+<style>
+  .high-box {
+    background: #e74c3c;
+    min-height: 60px;
+    box-shadow: 0px 0 5px #949494;
+    float: left;
+    width: 100%;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+    margin-right: 20px;
+  }
+  .medium-box {
+    background: #e67e22;
+    min-height: 60px;
+    box-shadow: 0px 0 5px #949494;
+    float: left;
+    width: 100%;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+    margin-right: 20px;
+  }
+  .low-box {
+    background: #2ecc71;
+    min-height: 60px;
+    box-shadow: 0px 0 5px #949494;
+    float: left;
+    width: 100%;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+    margin-right: 20px;
+  }
+  .number{
+  font-size: 28px;
+  color: #ecf0f1;
+  font-weight: bold;
+  line-height: 36px;
+  }
+  .text {
+    color: #ecf0f1;
+  }
+</style>
+
 <%= f.fields_for :asset do |ff| %>
 
 <!-- First Row -->
@@ -36,7 +81,7 @@
       <div class="col-sm-12">
         <%= ff.label :confidentiality %>
         <div class="risk-select width-fix">
-          <%= ff.collection_select(:confidentiality, Priority.all, :id, :name) %>
+          <%= ff.collection_select(:confidentiality, Priority.all, :score, :name, {}, {:class => "score", :id => "conf"}) %>
         </div>
       </div>
     </div>
@@ -46,7 +91,7 @@
       <div class="col-sm-12">
         <%= ff.label :integrity %>
         <div class="risk-select width-fix">        
-          <%= ff.collection_select(:integrity, Priority.all, :id, :name) %>
+          <%= ff.collection_select(:integrity, Priority.all, :score, :name, {}, {:class => "score", :id => "inte"}) %>
         </div>
       </div>
     </div>
@@ -57,13 +102,32 @@
       <div class="col-sm-12">
         <%= ff.label :availability %>
         <div class="risk-select width-fix">
-          <%= ff.collection_select(:integrity, Priority.all, :id, :name) %>
+          <%= ff.collection_select(:integrity, Priority.all, :score, :name, {}, {:class => "score", :id => "avai"}) %>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<br>
+<div class="row">
+  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+    <div id="score_color" class="high-box">
+      <div class="number" id="total_score">9</div>
+      <div class="text">Asset Value</div>
+    </div>
+  </div>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="ui info message">Asset Value is calculated based on Confidentiality, Integrity and Availability values. High, Medium and Low are configured with 3, 2 and 1 respectively.<br>
+    For example <code> 3 + 2 + 1 = 6 </code></div>
+  </div>
+</div>
+
+<br>
 <!-- Fourth Row -->
 <div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -122,8 +186,6 @@
   </div>
 </div>
 </div>
-
-<div class="ui info message">By default, all the information assets will be considered for Gap Analysis and Evaluation phases</div>
 
 <div class="clearfix border-divider"></div>
 
@@ -190,6 +252,8 @@
   </div>
 </div>
 
+<div class="ui info message">By default, all the information assets will be considered for Gap Analysis and Evaluation phases</div>
+
 <div class="clearfix border-divider"></div>
 
 <% end %>
@@ -226,11 +290,29 @@
     </div>
   </div>
 </div>
+
 <script>
+
+$( document ).ready(function() {
+  $('.score').change(function() {
+    var conf = parseInt($("#conf").val());
+    var inte = parseInt($("#inte").val());
+    var avai = parseInt($("#avai").val());
+    var total_score = conf + inte + avai;
+    $('#total_score').text(total_score);
+    if( total_score > 7 && total_score <= 9 )
+      $('#score_color').removeClass().addClass('high-box');         
+    else if( total_score > 5 && total_score <= 7 )
+      $('#score_color').removeClass().addClass('medium-box');
+    else if( total_score >= 3 && total_score <= 5 )
+      $('#score_color').removeClass().addClass('low-box');
+  });
+});
+
 $('.ui.checkbox')
   .checkbox();
 
 $('.ui.dropdown')
-  .dropdown()
-;
-  </script>
+  .dropdown();
+
+</script>

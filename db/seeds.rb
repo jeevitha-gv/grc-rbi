@@ -87,9 +87,9 @@ Section.delete_all
 
 Priority.delete_all
 
-    Priority.create(name: 'High')
-    Priority.create(name: 'Medium')
-    Priority.create(name: 'Low')
+    Priority.create(name: 'High', score: '3')
+    Priority.create(name: 'Medium', score: '2')
+    Priority.create(name: 'Low', score: '1')
 
 ReminderAssignment.delete_all
 
