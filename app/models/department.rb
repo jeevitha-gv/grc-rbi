@@ -15,6 +15,9 @@ class Department < ActiveRecord::Base
   has_many :contracts
   has_many :mobile_assets
 
+  # Associations with Policy Module
+  has_many :policies
+
   # validations
   validates :name, presence:true
   validates_format_of :name, :with =>/\A(?=.*[a-z])[a-z.! @ # $ % ^ & * ( ) _ - + =\d\s]+\Z/i,:if => Proc.new{|f| !f.name.blank? }

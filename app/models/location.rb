@@ -22,4 +22,8 @@ class Location < ActiveRecord::Base
   has_many :contracts
   has_many :computers
   has_many :mobile_assets
+
+  #  Associations with Policy Module
+  has_many :policies
+
 end

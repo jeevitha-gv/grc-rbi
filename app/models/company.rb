@@ -40,6 +40,11 @@ class Company < ActiveRecord::Base
   has_many :mobile_assets
   has_many :asset_types
 
+
+  # Associations with Policy Module
+  has_many :policies
+  has_many :company_controls
+
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users
   accepts_nested_attributes_for :plan

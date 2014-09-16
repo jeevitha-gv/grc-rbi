@@ -1030,3 +1030,70 @@ ComputerCategory.delete_all
     DeviceType.create(:name => "Tablet")
     DeviceType.create(:name => "Media Player")
     DeviceType.create(:name => "Other")
+
+
+
+# Seed Data for Policy
+
+    PolicyKind.delete_all
+
+        PolicyKind.create(name: "Company Policy")
+        PolicyKind.create(name: "Organization Policy")
+        PolicyKind.create(name: "Data Asset Policy")
+        PolicyKind.create(name: "Product Policy")
+        PolicyKind.create(name: "Contract Policy")
+        PolicyKind.create(name: "Company Control Policy")
+
+    ControlClassification.delete_all
+
+        ControlClassification.create(name: "Preventative")
+        ControlClassification.create(name: "Corrective")
+        ControlClassification.create(name: "Detective")
+
+    Purpose.delete_all
+
+        Purpose.create(name: "Process")
+        Purpose.create(name: "Technical")
+
+    ControlFreq.delete_all
+
+        ControlFreq.create(name: "Continues")
+        ControlFreq.create(name: "Event driven")
+        ControlFreq.create(name: "Periodic")
+
+    ControlState.delete_all
+
+        ControlState.create(name: "Active")
+        ControlState.create(name: "In-Active")
+
+    PolicyClassification.delete_all
+
+        PolicyClassification.create(name: "Public")
+        PolicyClassification.create(name: "Restricted")
+        PolicyClassification.create(name: "Confidential")
+
+    PolicyStatus.delete_all
+
+        PolicyStatus.create(name: "Drafted")
+        PolicyStatus.create(name: "Waiting for review")
+        PolicyStatus.create(name: "Reviewed")
+        PolicyStatus.create(name: "Waiting for Approval")
+        PolicyStatus.create(name: "Approved")
+        PolicyStatus.create(name: "Discard/Declined")
+
+    Audience.delete_all
+
+        Audience.create(name: "Internal")
+        Audience.create(name: "External")
+
+    ReviewAction.delete_all
+
+        ReviewAction.create(name: "Complete")
+        ReviewAction.create(name: "Inprogress")
+
+    ApprovalAction.delete_all
+
+        ApprovalAction.create(name: "Save Draft")
+        ApprovalAction.create(name: "Send to Rework")
+        ApprovalAction.create(name: "Reject")
+        ApprovalAction.create(name: "Approve")
