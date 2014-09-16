@@ -3,12 +3,37 @@ layout 'incident_layout'
   
 
   def index
-    @incident = Incident.all
-   #   respond_to do |format|
-   #   format.html
-   #   format.csv {render text: @incident.to_csv}
-   # end
+    query = ""
+    input_data = []
+    if params[:title] && params[:title].present?
+      query += "title = ? AND "
+      input_data << params[:title]
+    end
+    if params[:category_id] && params[:category_id].present?
+      query += "incident_category_id = ? AND "
+      input_data << params[:category_id]      
+    end
+    if params[:request_type_id] && params[:request_type_id].present?
+      query += "request_type_id = ? AND "
+       input_data << params[:request_type_id]      
+    end
+    # if params[:department_id] && params[:department_id].present?
+    #   query += "department_id = ? AND "
+    #    input_data << params[:department_id]      
+    # end
+    # if params[:team_id] && params[:team_id].present?
+    #   query += "team_id = ? AND "
+    #    input_data << params[:team_id]      
+    # end
+    if input_data.length > 0 
+      input_data.unshift(query.chomp(' AND '))
+      input_data.flatten!
+      @incident = Incident.where(input_data)
+    else
+      @incident = Incident.all
+    end
   end
+
 
   def import
 if(params[:file].present?)
@@ -76,6 +101,8 @@ def incident_all
       @incidents = current_user.accessible_incidents
     end
   end
+
+   
 
   def download_incident_document
     attachment = Attachment.find(params[:id])

@@ -43,12 +43,9 @@
 
   function search_result()
   {
-    var tabstrip = $("#tabstrip").kendoTabStrip().data("kendoTabStrip");
-    var tabActive = tabstrip.tabGroup.children("li.k-state-active").attr("aria-controls")
     var val = $('#search-value').val();
-    var gridForSearch = select_grid(tabActive)
-    $("#"+gridForSearch).data("kendoGrid").dataSource.filter({
-      logic  : "or",
+    $("#grid").data("kendoGrid").dataSource.filter({
+        logic  : "or",
       filters: [
         {
           field: "title",
@@ -230,7 +227,72 @@
     //$('.k-grid-graph').attr('title','Dashboard');
   }
 
+  function adavance_search()
+  {
+    //alert(1111111);
+      var title = $("#title").val();
+      var category_id = $("#category_id").val();
+      var request_type_id = $("#request_type_id").val();
+      var department_id = $("#department_id").val();
+      var team_id = $("#team_id").val();
+      var incidents_url = "/incidents?title="+title+"&"+"category_id="+category_id+"&"+"request_type_id="+request_type_id+"&"+"department_id="+department_id+"&"+"team_id="+ team_id
   
+   function pdf_file(e)
+  {
+    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+    window.location.href = "/incidents/"+ dataItem.id +".pdf"
+  }
+
+  dataSource = new kendo.data.DataSource({
+    transport: {
+      read: {
+        url: incidents_url,
+        dataType: 'json',
+        type: "get"
+      },
+    },
+    schema: {
+      errors: function(response) {
+      return response.errors;
+    },
+    data: "data",
+    model: {
+      id: "id",
+        fields: {
+         title: { type: "string"},
+          request_type: { type: "string"},
+          incident_category: { type: "string"},
+          incident_status: { type: "string"},
+          team: { type: "string"},
+        },
+      },
+    },
+  });
+
+    $("#grid").kendoGrid({
+    dataSource: dataSource,
+    dataBound: function(){
+
+      //updateGridForStage(stage)
+      incidentGridTitle()
+    },
+    height: 'auto',
+    scrollable: true,
+    sortable: true,
+    filterable: true,
+    pageable: true,
+    columns: [
+      { field: "title", title: "Title" ,width: "35%"},
+        { field: "request_type", title: "Type", width: "35%" },
+        { field: "incident_category", title: "Category", width: "35%" },
+        { field: "incident_status", title: "Status", width: "35%" },
+        { field: "team", title: "Team", width: "35%" },
+      { command: [{text: "list", click:evaluate_file },{text: "miti", click: resolution_file},{text: "graph", click: closure_file},{text: "pdf", click: pdf_file},{text: "edit", click: edit_file}], title: "Action", width: "200px" }
+    ],
+  //~ editable: "popup"
+  });
+
+  }
 
   $(document).ready(function(){
 
@@ -254,8 +316,9 @@
 //     var incidents_url = "/incidents/incident_all"
 //   }
 
-  
+
     var incidents_url = "/incidents"
+  
  
 
   dataSource = new kendo.data.DataSource({

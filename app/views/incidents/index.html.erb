@@ -15,19 +15,57 @@
         	 <div class="box-wrapper">
              <div class="search-box src-space clearfix">
   							<div class="fright scr-padding">
+                 <!-- <a href='/incidents' onclick='myJavaScriptFunction();'>Advanced Search</a> -->
+                 <!-- <a href='/incidents/search'>Advanced Search</a> -->
+
   							<div class="form-group audit_search">
   								<%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value" %>
-  								<%= submit_tag "Search", name: nil, :class=>"btn btn-default src-brn", :id => "search-button" %>
+  								<%= submit_tag "", name: nil, :class=>"btn btn-default src-brn", :id => "search-button" %>
                   <a href="javascript:void(0);" class="cancel-btn1">Clear</a>
+                 
+
   							</div>
+                
+                <div class="form-group audit_search">
+                 <%=label_tag :title, "Title"%>
+                <%= text_field_tag :title, params[:title] %><br>
+
+
+              <%=label_tag :incident_category_id, "IncidentCategory"%>
+                <%#= select_tag :incident_category_id, options_for_select(IncidentCategory::name) %>
+    <%= select_tag "category_id", options_from_collection_for_select(IncidentCategory.all, "id", "name")%>
+
+              <%=label_tag :request_type_id, "RequestType"%>
+    <%= select_tag "request_type_id", options_from_collection_for_select(RequestType.all, "id", "name")%>
+
+            <%=label_tag :department_id, "Deparment"%>
+    <%= select_tag "department_id", options_from_collection_for_select(Department.all, "id", "name")%> <br>
+
+            <%=label_tag :team_id, "Team"%>
+    <%= select_tag "team_id", options_from_collection_for_select(Team.all, "id", "name")%><br>
+
+            <%=label_tag :assignee, "Assignee"%>
+            <%= text_field_tag :assignee, params[:assignee] %><br>
+            <%=label_tag :reassignee, "Re-Assignee"%>
+            <%= text_field_tag :reassignee, params[:reassignee] %><br><br>
+            
+          <%= text_field_tag :query, params[:query], :class=>"form-control", :id => "advance-search-value" %>
+          <%= submit_tag "", name: nil, :class=>"btn btn-default src-brn", :id => "advance-search-button", :onclick=> "adavance_search()" %>
+            <a href="javascript:void(0);" class="cancel-btn1">Clear</a>
+                 
+
+                </div>
+
 						  </div>
 						</div>
+            
             <br>
             <%# if params[:stage].nil? %>
               <div id="grid"></div>
             <%# else %>
               <!-- <div id="gridforstage"></div> -->
             <%# end %>
+
           </div>
         </div>
       </div>
@@ -37,3 +75,26 @@
 </div>
 </div>
 
+
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Advanced Search
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        hi this is selva
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
