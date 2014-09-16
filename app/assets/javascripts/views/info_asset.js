@@ -75,7 +75,7 @@ function search_result()
                                 destroy: {
                                            url: function(risk) 
                                                 {
-                                                    return "/information_assets/" + computer.id
+                                                    return "/assets/information_assets/" + information_asset.id
                                                 },
                                                 dataType: "json",
                                                 type: "DELETE"
@@ -169,7 +169,7 @@ function delete_file(e)
 function edit_file(e)
 {
     var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-    window.location.href = "/information_assets/"+ dataItem.id + "/edit"
+    window.location.href = "/assets/information_assets/"+ dataItem.id + "/edit"
 }
       
 });

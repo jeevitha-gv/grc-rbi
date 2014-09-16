@@ -8,8 +8,7 @@ class AssetReviewsController < ApplicationController
 
   def new 
   	@asset_review = @asset.asset_review.present? ? @asset.asset_review : @asset.build_asset_review
-		# @assessment = @asset.build_assessment
-	
+		# @assessment = @asset.build_assessment	
 	@asset_info = @asset.assetable
   end
 
@@ -20,12 +19,24 @@ class AssetReviewsController < ApplicationController
 		else
 			redirect_to new_asset_asset_review_path
 		end
-	end
+  end
+
+  def edit
+  	@asset_review = @asset.asset_review(asset_id: @asset_id)
+  end
+
+  def update
+  	@asset_review = @asset.asset_review
+  	if @asset_review.update(review_params)
+  		redirect_to asset_asset_reviews_path
+  	else
+  		render 'edit'
+  	end
+  end
 
 	private
 
 	def review_params
-		binding.pry
 		params.require(:asset_review).permit(:asset_decision_id,:next_review,:closure_statement)
 	end
 

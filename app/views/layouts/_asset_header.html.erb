@@ -77,13 +77,13 @@
         <li><a  href="/assets/information_assets" class="<%= (request.fullpath.include?("information_assets") && action_name == "index") == true ? 'active' : '' %>">
             <div class="plan-icon"></div>
             Inventory</a></li>
-        <li><a  href="/assets/1/assessments/new" class="<%= request.fullpath.include?("assessments") == true ? 'active' : '' %>">
+        <li><a  href="/assets?stage=evaluate" class="<%= request.fullpath.include?("assessments") == true ? 'active' : '' %>">
             <div class="plan-icon"></div>
             Assessment</a></li>
-        <li><a  href="/assets/1/asset_actions/new" class="<%= request.fullpath.include?("asset_actions") == true ? 'active' : '' %>">
+        <li><a  href="/assets?stage=action" class="<%= request.fullpath.include?("asset_actions") == true ? 'active' : '' %>">
             <div class="plan-icon"></div>
             Action</a></li>
-        <li><a  href="/assets/1/asset_reviews/new" class="<%= request.fullpath.include?("asset_reviews") == true ? 'active' : '' %>">
+        <li><a  href="/assets?stage=review" class="<%= request.fullpath.include?("asset_reviews") == true ? 'active' : '' %>">
             <div class="plan-icon"></div>
             Review</a></li>
         <li><a  href="/vendors" class="<%= request.fullpath.include?("vendors") == true ? 'active' : '' %>">

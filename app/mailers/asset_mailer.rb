@@ -15,4 +15,9 @@ class AssetMailer < ActionMailer::Base
 		@computer = computer
 		mail(:to => email, content_type: "text/html", :subject => "Computer asset created")
 	end
+
+	def notify_info_assets(info_asset,email)
+		@info_asset = info_asset
+		mail(:to => email, content_type: "text/html", :subject => "Information Asset Created")
+	end
 end
