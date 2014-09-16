@@ -56,8 +56,7 @@ function search_result()
                  field: "evaluated",
                  operator: "contains",
                  value   : val
-            },
-            
+            },            
         ]
     });
 }
@@ -128,30 +127,49 @@ function search_result()
                             field: "evaluated",
                             title: "Evaluator"
                         },
-                      { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
+                      { command: [{text: "evaluate", click: evaluate_file}, {text: "action", click: action_file}, {text: "review", click: review_file}, {text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 
                         ],
                     });
-          
+
+function evaluate_file(e)
+{
+    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+    window.location.href = "/assets/" + dataItem.id + "/assessments/new";
+}
+
+function action_file(e)
+{
+    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+    window.location.href = "/assets/" + dataItem.id + "/asset_actions/new";
+}
+
+function review_file(e)
+
+{    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+    window.location.href = "/assets/" + dataItem.id + "/asset_reviews/new";
+}
+
 function delete_file(e)
-   {
-       var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-       if (confirm('Are you sure you want to delete this record ?')) {
-               $.ajax({
-               url: "/assets/information_assets/"+dataItem.id,
-               type: 'delete',
-               dataType: 'json',
-               success:function(result){
-               }
-               });
+{
+    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+    if (confirm('Are you sure you want to delete this record ?')) {
+       $.ajax({
+           url: "/assets/information_assets/"+dataItem.id,
+           type: 'delete',
+           dataType: 'json',
+           success:function(result){
            }
-           $('#grid').data('kendoGrid').dataSource.read();
-           $('#grid').data('kendoGrid').refresh();
-   }
+       });
+    }
+    $('#grid').data('kendoGrid').dataSource.read();
+    $('#grid').data('kendoGrid').refresh();
+}
 
 function edit_file(e)
-    {
-        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/information_assets/"+ dataItem.id + "/edit"
-    }
-      });
+{
+    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+    window.location.href = "/information_assets/"+ dataItem.id + "/edit"
+}
+      
+});

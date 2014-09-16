@@ -245,20 +245,27 @@
 	</div>
 </div>
 
-<div class="row">
-  <div id="example">
-    <div class="demo-section k-header">
-        <input name="files" id="files" type="file" />                    
-    </div>            
-  </div>
+</div>
+</div>
 </div>
 
-</div>
-</div>
-</div>
+
+        <div id="example">
+            <div>
+                <div class="demo-section k-header">
+                    <input name="files" id="files" type="file" />
+                </div>
+            </div>
+        </div>
 
 <script>
-  $(document).ready(function() {
-      $("#files").kendoUpload();
-  });
+$(document).ready(function() {
+    $("#files").kendoUpload({
+        async: {
+            saveUrl: "assessments/save_file",
+            removeUrl: "assessments/remove_file",
+            autoUpload: true
+        }
+    });
+});
 </script>
