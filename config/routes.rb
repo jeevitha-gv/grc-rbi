@@ -145,6 +145,7 @@ end
    
   scope '/assets' do
     resources :information_assets
+    resources :documents
   end
   
   resources :assets do  
