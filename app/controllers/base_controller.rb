@@ -154,7 +154,7 @@ class BaseController < ActionController::Base
       end
   end
   def authorize_evaluator
-    if(@asset.evaluated_by != current_user.id || current_user.role_title != "company_admin")
+    unless (@asset.evaluated_by == current_user.id || current_user.role_title == "company_admin")
         redirect_to audits_path, :alert => "Access Restricted"
       end
   end
