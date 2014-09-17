@@ -1,20 +1,25 @@
 class DocumentsController < ApplicationController
+
 	layout 'asset_layout'
+
   def index
   	@documents = current_company.documents
   end
 
   def new
   	@document = Document.new
+    @document.build_asset
   end
 
   def create
-  	@document = current_company.documents.new(document_params)
-  	if @document.save
-  		redirect_to documents_path, :flash => { :notice => MESSAGES["Document"]["create"]["success"]}
-  	else
-  		render 'new'
-  	end
+    @document = Document.new(document_params)
+    @document.asset.company_id = current_company.id
+    @document.asset.asset_state_id = 1
+    if @document.save
+      redirect_to documents_path
+    else 
+      render new
+    end
   end
 
   def edit
