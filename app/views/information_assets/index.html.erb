@@ -1,27 +1,30 @@
 <%= javascript_include_tag "/assets/views/info_asset.js" %>
 <%= flash[:alert] %>
+<br>
 <div class="clearfix"></div>
 <div class="content">
   <div class="container">
     <div class="row">
-      <div class="ui teal buttons">
-          <div class="ui button">Save</div>
-          <div class="ui teal floating dropdown icon button">
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              <div class="item"><a href ="/computers/new"><i class ="exclamation icon"></i><h5>Edit Post</h5></a></div>
-              <div class="item"></i>Remove Post</div>
-              <div class="item"></i>Hide Post</div>
-            </div>
-          </div>
-        </div>
       <!-- Nav tabs -->
       <div id="example" class="k-content">
       <div class="risk-title">Listing Assets</div>
       <div class="buttons_container pull-right">
-                    <a class="btn btn-info add_new" href="computers/new">Add New</a>
-                    
-                    <a class="btn btn-info add_new" data-toggle="test modal" href="#add_url">Import</a>
+        <div class="ui teal buttons">
+          <div class="ui button">Add New</div>
+          <div class="ui teal floating dropdown icon button">
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item"><h6>Information Asset</h6></div>
+              <div class="item"><h6>Computer/Server</h6></div>
+              <div class="item"><h6>Software</h6></div>
+              <div class="item"><h6>Mobile</h6></div>
+              <div class="item"><i class="hide icon"></i>Services</div>
+              <div class="item"><i class="hide icon"></i>Miscellaneous</div>
+              <div class="item"><i class="hide icon"></i>Document</div>
+            </div>
+          </div>
+        </div>        
+        <a class="btn btn-info add_new" data-toggle="test modal" href="#add_url">Import</a>
       </div>
 
               <!-- <div class="ui modal" id ="">
@@ -78,12 +81,12 @@
 $('.ui.dropdown')
 .dropdown();
 
-$('.ui.modal')
-  .modal('show');
 
-  $('.test.modal')
-  .modal('show')
-;
+
+$('#modal-text').click(function(){
+  $('.ui.modal')
+  .modal('show');
+});
 </script>
 
 
