@@ -1,3 +1,12 @@
+<style>
+.mitigation-recomm{
+height: 243px;
+overflow: auto;
+
+
+}
+</style>
+
 <div class="row">
   <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
     <div class="mitigation-box-wrap">
@@ -59,41 +68,42 @@
           </tr>
           <tr>
             <td><label>Owner : </label>
-              <span> </span></td>
+              <span><%=@asset.info_asset_owner.user_name %> </span></td>
             <td><label>Custodian : </label>
-              <span> </span></td>
+              <span> <%=@asset.info_asset_custodian.user_name %> </span></td>
             <td><label>Identifier : </label>
               <span></span></td>
           </tr>
           <tr>
             <td><label>Evaluator/CIO : </label>
-            <span></span></td>
-            <td><label>Category : </label>
-              <span></span></td>
-            <td><label>Classification : </label>
-              <span></span></td>
+            <span><%=@asset.info_asset_evaluator.user_name %></span></td>
+            <td><label>Location : </label>
+              <span><%= @asset.location.name%></span></td>
+            <td><label>Department : </label>
+              <span> <%= @asset.department.name%> </span></td>
           </tr>
           <tr>
             <td><label>Confidentiality :</label>
-              <span></span></td>
+              <span> <%= @asset.asset_confi.name%> </span></td>
             <td><label>Integrity : </label>
-              <span></span></td>
+              <span> <%= @asset.asset_integ.name%> </span></td>
             <td><label>Availability : </label>
-              <span class="orange-method"></span></td>
+              <span class="orange-method"> <%= @asset.asset_avail.name%> </span></td>
           </tr>
           <tr>
             <td><label>Personal Data :</label>
-              <span></span></td>
+              <span> <%= @asset.personal_data%> </span></td>
             <td><label>Sensitive Data : </label>
-              <span></span></td>
+              <span> <%= @asset.sensitive_date%> </span></td>
             <td><label>Customer Data : </label>
-              <span class="orange-method"></span></td>
+              <span class="orange-method"> <%= @asset.customer_data%> </span></td>
           </tr>
           <%# if risk.attachment.present? %>
           <tr>
-            <td><label>Document: </label>
+              <td><label>Classification : </label>
+              <span> <%= @asset.classification.name%> </span></td>
+              <td><label>Document: </label>
               <%#= link_to (File.basename(risk.attachment.attachment_file_url)).truncate(20), download_document_risks_path(id: risk.attachment.id), class: "blue_link" %></td>
-            <td></td>
             <td></td>
           </tr>
           <%# end %>
@@ -108,7 +118,7 @@
     <div class="risk-assetes">
       <div class="mitigation-recomm">
         <div class="mit-reccom-title">Asset Description</div>
-        <p></p>
+        <p><%= @asset.description%></p>
       </div>
     </div>
   </div>
@@ -127,21 +137,21 @@
             <td><label>Current Level of Protection - When Information is in rest : </label>
               <br>              
                 <span>
-                  
+                  <%= @asset.assetable.at_origin%>
                 </span>              
               <span>
             </td>
             <td><label>Current Level of Protection - When Information is moved : </label>
               <br>
               <span>
-                
+                <%= @asset.assetable.info_moved%>
               </span>
             </td>
           </tr>
           <tr>
             <td colspan="2">
               <label>Data Retention Period (in Years) :</label>
-              <span></span>
+              <span><%= @asset.assetable.retention_period%></span>
             </td>
           </tr>
         </table>
@@ -156,14 +166,14 @@
     <div class="risk-assetes">
       <div class="mitigation-recomm">
         <div class="mit-reccom-title">Controls for Labelling</div>
-        <p></p>
+        <p><%= @assessment.labelling%></p>
       </div>
     </div>
   </div>
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <div class="mitigation-recomm">
       <div class="mit-reccom-title">Controls for Storage</div>
-      <p></p>
+      <p><%= @assessment.storage%></p>
     </div>
   </div>
 </div>
@@ -174,14 +184,14 @@
     <div class="risk-assetes">
       <div class="mitigation-recomm">
         <div class="mit-reccom-title">Controls for Transport / Transmission</div>
-        <p></p>
+        <p><%= @assessment.transport%></p>
       </div>
     </div>
   </div>
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <div class="mitigation-recomm">
       <div class="mit-reccom-title">Controls for Addressing</div>
-      <p></p>
+      <%= sanitize(@assessment.addressing) %>
     </div>
   </div>
 </div>
@@ -192,7 +202,7 @@
     <div class="risk-assetes">
       <div class="mitigation-recomm">
         <div class="mit-reccom-title">Controls for Disposal</div>
-        <p></p>
+        <p><%= @assessment.disposal%></p>
       </div>
     </div>
   </div>
@@ -204,14 +214,14 @@
     <div class="risk-assetes">
       <div class="mitigation-recomm">
         <div class="mit-reccom-title">Assessment</div>
-        <p></p>
+        <%= sanitize @assessment.assessment %>
       </div>
     </div>
   </div>
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <div class="mitigation-recomm">
       <div class="mit-reccom-title">Conclusion</div>
-      <p></p>
+      <%= sanitize @assessment.conclusion %>
     </div>
   </div>
 </div>
