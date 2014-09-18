@@ -96,12 +96,7 @@ Rails.application.routes.draw do
   end
 end
 
- resources :computers do
-  collection do
-    post 'computer_imports'
-    get 'computer_export'
-  end
- end
+ 
 
  resources :documents do
   collection do
@@ -146,6 +141,12 @@ end
   scope '/assets' do
     resources :information_assets
     resources :documents
+    resources :computers do
+    collection do
+    post 'computer_imports'
+    get 'computer_export'
+  end
+ end
   end
   
   resources :assets do  
