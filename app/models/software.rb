@@ -1,13 +1,10 @@
 class Software < ActiveRecord::Base
-	belongs_to :company
 	belongs_to :vendor
-	belongs_to :location
-	belongs_to :department
+    has_one :asset, as: :assetable
+
 	belongs_to :software_type
 	belongs_to :license_type
-	belongs_to :software_manager, class_name: 'User', foreign_key: 'asset_manager_id'
-	belongs_to :software_user, class_name: 'User', foreign_key: 'asset_user_id'
-
+	accepts_nested_attributes_for :asset
 
 	def self.open_spreadsheet(file)
     	case File.extname(file.original_filename)

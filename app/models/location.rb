@@ -18,12 +18,7 @@ class Location < ActiveRecord::Base
   has_many :audits
   has_many :risks
   # Assosciations with Asset Module
-  has_many :other_assets
+  
   has_many :contracts
-  has_many :computers
-  has_many :mobile_assets
-  has_many :services
-  has_many :documents
-  has_many :softwares
   has_many :assets
 end

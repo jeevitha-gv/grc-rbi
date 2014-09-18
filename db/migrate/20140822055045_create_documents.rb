@@ -4,7 +4,7 @@ class CreateDocuments < ActiveRecord::Migration
       t.integer :document_status_id
       t.integer :document_type_id
       t.float :version
-      t.datetime :assigned_on
+      t.date :assigned_on
 
       t.timestamps
     end
