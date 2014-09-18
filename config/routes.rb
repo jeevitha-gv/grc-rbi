@@ -141,12 +141,22 @@ end
   scope '/assets' do
     resources :information_assets
     resources :documents
+
     resources :computers do
     collection do
     post 'computer_imports'
     get 'computer_export'
   end
  end
+    resources :other_assets do
+      collection do
+        post 'other_asset_imports'
+        get 'other_asset_export'
+        delete 'remove_attachment'
+        get 'download_other_asset_document'
+      end
+    end
+
   end
   
   resources :assets do  

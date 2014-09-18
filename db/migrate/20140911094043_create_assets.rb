@@ -12,7 +12,7 @@ class CreateAssets < ActiveRecord::Migration
       t.integer :identifier_id
       t.integer :evaluated_by
       t.boolean :personal_data
-      t.boolean :sensitive_date
+      t.boolean :sensitive_data
       t.boolean :customer_data
       t.integer :confidentiality
       t.integer :availability

@@ -5,6 +5,8 @@ class Document < ActiveRecord::Base
 	belongs_to :document_type
 	belongs_to :document_status
 
+    accepts_nested_attributes_for :asset
+
 	def self.open_spreadsheet(file)
     	case File.extname(file.original_filename)
     	when '.csv' then Roo::CSV.new(file.path)
