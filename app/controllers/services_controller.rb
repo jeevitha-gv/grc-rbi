@@ -1,20 +1,25 @@
 class ServicesController < ApplicationController
 	layout 'asset_layout'
+ 
   def index
-  	@services = current_company.services
+  	@services = current_company.assets
   end
 
   def new
   	@service = Service.new
+    @service.build_asset
   end
 
   def create
-  	@service = current_company.services.new(service_params)
-  	if @service.save
-  		redirect_to services_path,:flash => { :notice => MESSAGES["Service"]["create"]["success"]}
-  	else 
-  		render 'new'
-  	end
+  	@service = Service.new(service_params)
+    @service.asset.company_id = current_company.id
+    @service.asset.identifier_id = current_user.id
+    @service.asset.asset_state_id = 1
+    if @service.save
+      redirect_to services_path
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -62,7 +67,7 @@ class ServicesController < ApplicationController
   end
 
   def service_params
-  	params.require(:service).permit(:name, :service_type_id, :description, :cost, :sla, :location_id, :department_id, :asset_manager_id, :asset_user_id, :assigned_on)
+  	params.require(:service).permit(:service_type_id, :cost, :sla, :assigned_on, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_data,:customer_data,:confidentiality,:availability,:integrity])
   end
 
 end

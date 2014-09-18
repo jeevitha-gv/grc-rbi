@@ -136,12 +136,6 @@ end
    resources :contracts do
    end
 
-   resources :services do
-    collection do
-      post 'service_imports'
-      get 'service_export'
-    end
-   end
    
   scope '/assets' do
     resources :information_assets
@@ -154,6 +148,13 @@ end
         get 'download_other_asset_document'
       end
     end
+    resources :services do
+    collection do
+      post 'service_imports'
+      get 'service_export'
+    end
+   end
+   
   end
   
   resources :assets do  

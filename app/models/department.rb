@@ -11,11 +11,8 @@ class Department < ActiveRecord::Base
   belongs_to :company
 
   # Assosciations with Asset Module
-  has_many :other_assets
   has_many :contracts
   has_many :mobile_assets
-  has_many :services
-  has_many :documents
   has_many :softwares
   has_many :assets
 
