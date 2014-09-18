@@ -1,4 +1,11 @@
-<%= javascript_include_tag "/assets/views/software_new.js" %>
+<%= f.fields_for :asset do |ff| %>
+
+<%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>
+<%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
+
+<% end %>
+
+
 
 <%= f.label :product_name, t('software.product_name') %>
 <%= f.text_field :product_name, :class => "form-control risk-normal-input" %>
@@ -36,17 +43,11 @@
 <%= f.label :assigned_on, t('software.assigned_on') %>
 <%= f.text_field :assigned_on, :class => "datepicker" %>
 
-<%= f.label :description, t('software.description') %>
-<%= f.text_area :description, :class => "form-control risk-normal-input" %>
 
 <%= f.label :software_type_id, t('software.soft_type') %>
 <%= f.collection_select(:software_type_id, SoftwareType.all, :id, :name) %>
 
-<%= f.label :location_id, t('software.location') %>
-<%= f.collection_select(:location_id, current_company.locations, :id, :name) %>
 
-<%= f.label :department_id, t('software.department') %>
-<%= f.collection_select(:department_id, current_company.departments, :id, :name) %>
 
 <%= f.label :vendor_id, t('software.vendor') %>
 <%= f.collection_select(:vendor_id, current_company.vendors, :id, :name) %>
@@ -54,9 +55,13 @@
 <%= f.label :license_type_id, t('software.license_type') %>
 <%= f.collection_select(:license_type_id, LicenseType.all, :id, :name) %>
 
-<%= f.label :asset_manger_id, t('software.asset_manger') %>
-<%= f.collection_select(:asset_manager_id, current_company.users, :id, :user_name) %>
+<script>
 
-<%= f.label :asset_user_id, t('software.asset_user') %>
-<%= f.collection_select(:asset_user_id, current_company.users, :id, :user_name) %>
+$('.ui.checkbox')
+  .checkbox();
 
+$(document).ready(function(){
+  $('.datepicker').kendoDatePicker()
+});
+
+</script>

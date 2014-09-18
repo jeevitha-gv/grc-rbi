@@ -3,15 +3,19 @@ class MobileAssetsController < ApplicationController
   layout 'asset_layout'
 
   def index
-  	@mobile_assets = current_company.mobile_assets
+  	@mobile_assets = current_company.assets
   end
 
   def new
   	@mobile_asset = MobileAsset.new
+    @mobile_asset.build_asset
   end
 
   def create
-  	@mobile_asset = current_company.mobile_assets.new(mobile_asset_params)
+  	@mobile_asset = MobileAsset.new(mobile_asset_params)
+    @mobile_asset.asset.company_id = current_company.id
+    @mobile_asset.asset.asset_state_id = 1
+    @mobile_asset.asset.identifier_id = current_user.id
   	if @mobile_asset.save
   		redirect_to mobile_assets_path, :flash => { :notice => MESSAGES["MobileAsset"]["create"]["success"] }
   	else
@@ -69,7 +73,7 @@ class MobileAssetsController < ApplicationController
   private
 
     def mobile_asset_params
-  		params.require(:mobile_asset).permit(:model, :manufacturer, :serial_number, :service_provider, :imei, :description, :device_type_id, :location_id, :department_id)
+  		params.require(:mobile_asset).permit(:model, :manufacturer, :serial_number, :service_provider, :imei, :device_type_id, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity])
   	end
 
 end

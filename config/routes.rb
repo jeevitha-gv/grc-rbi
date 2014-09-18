@@ -105,26 +105,13 @@ end
   end
 end
 
-  resources :mobile_assets do
-    collection do
-      post 'mobile_asset_imports'
-      get 'mobile_asset_export'
-    end
-    
-  end
+  
 
  resources :vendors do
   collection do
     post 'vendor_imports'
     get 'vendor_export'
   end
-  end
-
-  resources :softwares do
-    collection do
-      post 'software_imports'
-      get 'software_export'
-    end
   end
 
 
@@ -156,8 +143,20 @@ end
         get 'download_other_asset_document'
       end
     end
-
+    resources :mobile_assets do
+    collection do
+      post 'mobile_asset_imports'
+      get 'mobile_asset_export'
+    end
+ end
+    resources :softwares do
+    collection do
+      post 'software_imports'
+      get 'software_export'
+    end
   end
+
+end
   
   resources :assets do  
     resources :assessments
