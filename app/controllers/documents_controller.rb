@@ -14,6 +14,7 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     @document.asset.company_id = current_company.id
+    @document.asset.identifier_id = current_user.id
     @document.asset.asset_state_id = 1
     if @document.save
       redirect_to documents_path
@@ -73,7 +74,7 @@ class DocumentsController < ApplicationController
   end
 
   def document_params
-  	params.require(:document).permit(:name,:description, :impact_id, :document_status_id, :document_type_id, :version, :location_id, :department_id, :asset_manager_id, :asset_user_id, :assigned_on)
+  	params.require(:document).permit(:document_status_id, :document_type_id, :version,:assigned_on, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity])
   end
 
 end
