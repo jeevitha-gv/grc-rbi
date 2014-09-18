@@ -1,6 +1,6 @@
 class Document < ActiveRecord::Base
 
-    has_one :asset , as: :assetable
+    has_one :asset, as: :assetable
 
 	belongs_to :document_type
 	belongs_to :document_status

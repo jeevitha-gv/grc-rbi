@@ -20,8 +20,5 @@ class Location < ActiveRecord::Base
   # Assosciations with Asset Module
   
   has_many :contracts
-  has_many :computers
-  has_many :mobile_assets
-  has_many :softwares
   has_many :assets
 end

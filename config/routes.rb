@@ -87,49 +87,19 @@ Rails.application.routes.draw do
     resource :answers, only: [:index, :create, :new]
  end
 
- resources :other_assets do
-  collection do
-    post 'other_asset_imports'
-    get 'other_asset_export'
-    delete 'remove_attachment'
-    get 'download_other_asset_document'
-  end
-end
-
- resources :computers do
-  collection do
+resources :computers do
+    collection do
     post 'computer_imports'
     get 'computer_export'
   end
  end
-
- resources :documents do
-  collection do
-    post 'document_imports'
-    get 'document_export'
-  end
-end
-
-  resources :mobile_assets do
-    collection do
-      post 'mobile_asset_imports'
-      get 'mobile_asset_export'
-    end
-    
-  end
+  
 
  resources :vendors do
   collection do
     post 'vendor_imports'
     get 'vendor_export'
   end
-  end
-
-  resources :softwares do
-    collection do
-      post 'software_imports'
-      get 'software_export'
-    end
   end
 
 
@@ -154,8 +124,20 @@ end
       get 'service_export'
     end
    end
-   
+    resources :mobile_assets do
+    collection do
+      post 'mobile_asset_imports'
+      get 'mobile_asset_export'
+    end
+ end
+    resources :softwares do
+    collection do
+      post 'software_imports'
+      get 'software_export'
+    end
   end
+
+end
   
   resources :assets do  
     resources :assessments

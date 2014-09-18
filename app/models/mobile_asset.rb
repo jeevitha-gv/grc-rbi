@@ -1,15 +1,15 @@
 class MobileAsset < ActiveRecord::Base
 
   # Assosciations
-  belongs_to :company
+
   belongs_to :device_type
-  belongs_to :location
-  belongs_to :department
+  has_one :asset, as: :assetable
+  accepts_nested_attributes_for :asset
   
   # Validations
-  validates_presence_of :model
-  validates_presence_of :manufacturer
-  validates_presence_of :serial_number
+  #validates_presence_of :model
+  #validates_presence_of :manufacturer
+  #validates_presence_of :serial_number
 
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)
