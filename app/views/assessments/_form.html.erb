@@ -23,7 +23,7 @@
         </div>
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
           <div class="mitigate-inner mitigate-box">
-              <div class="risk-box-lable"><%= @asset.assetable_type %></div>              
+              <div class="risk-box-lable"><%= @asset.assetable_type %></div>
           </div>
         </div>
       </div>
@@ -75,19 +75,19 @@
           </tr>
           <tr>
             <td><label>Confidentiality :</label>
-              <span> <%= @asset.asset_confi.name%> </span></td>
+              <span> <%= @asset.asset_confi.name%></span></td>
             <td><label>Integrity : </label>
-              <span> <%= @asset.asset_integ.name%> </span></td>
+              <span> <%= @asset.asset_integ.name%></span></td>
             <td><label>Availability : </label>
-              <span class="orange-method"> <%= @asset.asset_avail.name%> </span></td>
+              <span> <%= @asset.asset_avail.name%></span></td>
           </tr>
           <tr>
             <td><label>Personal Data :</label>
-              <span> <%= @asset.personal_data%> </span></td>
+              <span> <%= @asset.personal_data == "true" ? "Yes" : "No"%> </span></td>
             <td><label>Sensitive Data : </label>
-              <span> <%= @asset.sensitive_date%> </span></td>
+              <span> <%= @asset.sensitive_date == "true" ? "Yes" : "No"%> </span></td>
             <td><label>Customer Data : </label>
-              <span class="orange-method"> <%= @asset.customer_data%> </span></td>
+              <span> <%= @asset.customer_data == "true" ? "Yes" : "No" %> </span></td>
           </tr>
           <%# if risk.attachment.present? %>
           <tr>
