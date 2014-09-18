@@ -1,9 +1,7 @@
 class CreateSoftwares < ActiveRecord::Migration
   def change
     create_table :softwares do |t|
-      
       t.integer :software_type_id
-      
       t.string :product_name
       t.string :manufacturer
       t.integer :vendor_id

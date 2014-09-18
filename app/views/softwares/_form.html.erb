@@ -4,64 +4,214 @@
 <%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
 
 <% end %>
+<div class="clearfix">
+  <h4><b>Software Properties</b></h4>
+</div>
 
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :product_name, t('software.product_name') %>
+        <div class="risk-select width-fix">
+          <%= f.text_field :product_name, :class => "form-control risk-normal-input" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :manufacturer, t('software.manufacturer') %>
+        <div class="risk-select width-fix">
+          <%= f.text_field :manufacturer, :class => "form-control risk-normal-input" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="clearfix border-divider"></div>
 
-<%= f.label :product_name, t('software.product_name') %>
-<%= f.text_field :product_name, :class => "form-control risk-normal-input" %>
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :software_type_id, t('software.soft_type') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:software_type_id, SoftwareType.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">   
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+       <%= f.label :vendor_id, t('software.vendor') %>
+        <div class="risk-select width-fix">        
+          <%= f.collection_select(:vendor_id, current_company.vendors, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<%= f.label :manufacturer, t('software.manufacturer') %>
-<%= f.text_field :manufacturer, :class => "form-control risk-normal-input" %>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :license_type_id, t('software.license_type') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:license_type_id, LicenseType.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= f.label :cost, t('software.cost') %>
-<%= f.text_field :cost, :class => "form-control risk-normal-input" %>
+<div class="clearfix border-divider"></div>
 
-<%= f.label :license_years, t('software.license_years') %>
-<%= f.text_field :license_years, :class => "form-control risk-normal-input" %>
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :cost, t('software.cost') %>
+        <div class="risk-select width-fix">
+          <%= f.text_field :cost, :class => "form-control risk-normal-input" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :license_years, t('software.license_years') %>
+        <div class="risk-select width-fix">
+          <%= f.text_field :license_years, :class => "form-control risk-normal-input" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :license_months, t('software.license_months') %>
+        <div class="risk-select width-fix">
+          <%= f.text_field :license_months, :class => "form-control risk-normal-input" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= f.label :license_months, t('software.license_months') %>
-<%= f.text_field :license_months, :class => "form-control risk-normal-input" %>
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :license_key, t('software.license_key') %>
+        <div class="risk-select width-fix">
+          <%= f.text_field :license_key, :class => "form-control risk-normal-input" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :installation_path, t('software.install_path') %>
+        <div class="risk-select width-fix">
+          <%= f.text_field :installation_path, :class => "form-control risk-normal-input" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :version, t('software.version') %>
+        <div class="risk-select width-fix">
+        <div class="risk-select width-fix">
+          <%= f.text_field :version, :class => "form-control risk-normal-input" %>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
 
-<%= f.label :license_expiry_date, t('software.license_expiry') %>
-<%= f.text_field :license_expiry_date, :class => "datepicker" %> </br>
+<div class="clearfix border-divider"></div>
 
-<%= f.label :license_key, t('software.license_key') %>
-<%= f.text_field :license_key, :class => "form-control risk-normal-input" %>
+<div class ="row">
+	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+		<div class="form-group clearfix">
+			<label class="col-sm-4 control-label">
+				<%= f.label :license_expiry_date, t('software.license_expiry') %>
+			</label>
+		    <div class="col-sm-8">
+		    	<%= f.text_field :license_expiry_date, :class => "datepicker" %> </br>
+		    </div>
+		 </div>
+  	</div>
+  	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+		<div class="form-group clearfix">
+			<label class="col-sm-4 control-label">
+				<%= f.label :installation_date, t('software.installation_date') %>
+			</label>
+			<div class="col-sm-8">
+				<%= f.text_field :installation_date, :class => "datepicker" %> </br>
+			</div>
+      	</div>
+    </div>
+</div>
 
-<%= f.label :installation_date, t('software.installation_date') %>
-<%= f.text_field :installation_date, :class => "datepicker" %> </br>
+<div class="row">
+	
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    	<div class="form-group clearfix">
+    		<label class="col-sm-4 control-label">
+    			<%= f.label :last_audit_date, t('software.last_audit') %>
+    		</label>
+    		<div class="col-sm-8">
+    			<%= f.text_field :last_audit_date, :class => "datepicker" %> </br>
+    		</div>
+    	</div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    	<div class="form-group clearfix">
+    		<label class="col-sm-4 control-label">
+    			<%= f.label :assigned_on, t('software.assigned_on') %>
+    		</label>
+    		<div class="col-sm-8">
+    			<%= f.text_field :assigned_on, :class => "datepicker" %>
+    		</div>
+    	</div>
+  	</div>
+ </div>
 
-<%= f.label :installation_path, t('software.install_path') %>
-<%= f.text_field :installation_path, :class => "form-control risk-normal-input" %>
+<div class="clearfix border-divider"></div>
 
-<%= f.label :last_audit_date, t('software.last_audit') %>
-<%= f.text_field :last_audit_date, :class => "datepicker" %> </br>
-
-<%= f.label :version, t('software.version') %>
-<%= f.text_field :version, :class => "form-control risk-normal-input" %>
-
-<%= f.label :assigned_on, t('software.assigned_on') %>
-<%= f.text_field :assigned_on, :class => "datepicker" %>
-
-
-<%= f.label :software_type_id, t('software.soft_type') %>
-<%= f.collection_select(:software_type_id, SoftwareType.all, :id, :name) %>
-
-
-
-<%= f.label :vendor_id, t('software.vendor') %>
-<%= f.collection_select(:vendor_id, current_company.vendors, :id, :name) %>
-
-<%= f.label :license_type_id, t('software.license_type') %>
-<%= f.collection_select(:license_type_id, LicenseType.all, :id, :name) %>
 
 <script>
 
 $('.ui.checkbox')
   .checkbox();
 
-$(document).ready(function(){
-  $('.datepicker').kendoDatePicker()
-});
 
+ $(document).ready(function(){
+    
+    var temp_start = $(".datepicker").val()
+    var start = $(".datepicker").kendoDatePicker({
+      format: "dd/MM/yyyy"
+  }).data("kendoDatePicker");
+ 
+
+    $(".datepicker").bind("focus", function() {
+      $(this).data("kendoDatePicker").open();
+    });
+    $('.datepicker').attr('readonly', true);
+
+    $(".datepicker1").bind("focus", function() {
+      $(this).data("kendoDatePicker").open();
+    });
+    $('.datepicker1').attr('readonly', true);
+
+    $(".datepicker").val(temp_start)
+  });
 </script>
