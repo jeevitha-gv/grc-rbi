@@ -1,25 +1,22 @@
 class Computer < ActiveRecord::Base
 
+  has_one :asset , as: :assetable
+
   # Assosciations
-  belongs_to :company
   belongs_to :computer_category
   belongs_to :asset_status
-  belongs_to :location
-  belongs_to :department
   belongs_to :vendor
   belongs_to :contract
   belongs_to :operating_system
-  belongs_to :impact, class_name: 'Priority', foreign_key: 'impact_id'
-  belongs_to :computertechnical_contact, class_name: 'User', foreign_key: 'technical_contact'
-  belongs_to :computerasset_owner, class_name: 'User', foreign_key: 'asset_owner'
 
 
   # Validations
-  validates_presence_of :name
   validates_presence_of :serial
+
+  accepts_nested_attributes_for :asset
  
 
-  after_create :send_computer
+  # after_create :send_computer
 
 
   def self.open_spreadsheet(file)
