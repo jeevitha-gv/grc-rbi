@@ -27,7 +27,7 @@ class Asset < ActiveRecord::Base
         users_email << (self.info_asset_owner.email if self.owner_id.present?) << (self.info_asset_custodian.email if self.custodian_id.present?) << (self.info_asset_evaluator.email if self.evaluated_by.present?)
         users_email.each_with_index do |email, index|
             # RiskMailer.delay.notify_users_about_risk(self, email, subject_array[index], name="risk")
-        AssetMailer.notify_asset(self,email).deliver
+        AssetMailer.delay.notify_asset(self,email)
     end
 	end
 end

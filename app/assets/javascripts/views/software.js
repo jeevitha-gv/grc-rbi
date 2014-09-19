@@ -43,12 +43,12 @@ function search_result()
                 value   : val
             },
             {
-                 field: "location",
+                 field: "owner",
                  operator: "contains",
                  value   : val
             },
             {
-                 field: "department",
+                 field: "custodian",
                  operator: "contains",
                  value   : val
             },
@@ -64,14 +64,14 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/assets/softwares",
+                                    url: "/inventory/softwares",
                                     dataType: 'json',
                                     type: 'get'
                                 },
                                 destroy: {
                                            url: function(risk) 
                                                 {
-                                                    return "/softwares/" + software.id
+                                                    return "inventory/softwares/" + software.id
                                                   },
                                                 dataType: "json",
                                                 type: "DELETE"
@@ -130,7 +130,7 @@ function delete_file(e)
        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
        if (confirm('Are you sure you want to delete this record ?')) {
                $.ajax({
-               url: "/softwares/"+dataItem.id,
+               url: "softwares/"+dataItem.id,
                type: 'delete',
                dataType: 'json',
                success:function(result){
@@ -144,6 +144,6 @@ function delete_file(e)
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/softwares/"+ dataItem.id + "/edit"
+        window.location.href = "softwares/"+ dataItem.id + "/edit"
     }
       });
