@@ -3,20 +3,24 @@ class ComputersController < ApplicationController
   layout 'asset_layout'
 
   def index
-  	@computers = current_company.computers
+  	@computers = current_company.assets
   end
 
   def new
     @computer = Computer.new
+    @computer.build_asset
   end
 
   def create
-  	@computer = current_company.computers.new(computer_params)
-  	if @computer.save
-  		redirect_to computers_path, :flash => { :notice => MESSAGES["Computer"]["create"]["success"]}
-  	else
-  		render 'new'
-  	end
+  	@computer = Computer.new(computer_params)
+    @computer.asset.company_id = current_company.id
+    @computer.asset.asset_state_id = 1
+    @computer.asset.identifier_id = current_user.id
+    if @computer.save
+      redirect_to computers_path
+    else 
+      render new
+    end
   end
 
   def edit
@@ -67,7 +71,7 @@ class ComputersController < ApplicationController
   private
 
   def computer_params
-  	params.require(:computer).permit(:name, :description,:serial, :ip, :computer_category_id, :asset_status_id, :location_id, :department_id, :technical_contact, :asset_owner, :impact_id, :operating_system_id, :os_ver_ser, :memory,:disk_space,:cpu_speed,:cpu_core_count,:mac, :cost,:acquisition_date,:expiry_date,:last_audit_date,:assigned_on,:vendor_id,:contract_id)
+  	params.require(:computer).permit(:serial, :ip, :computer_category_id, :asset_status_id, :operating_system_id, :os_ver_ser, :memory, :disk_space, :cpu_speed, :cpu_core_count, :mac, :cost, :acquisition_date, :expiry_date, :last_audit_date, :assigned_on, :vendor_id, :contract_id,  asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity])
   end
 
 end
