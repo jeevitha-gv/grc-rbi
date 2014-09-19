@@ -15,10 +15,6 @@ $( document ).ready(function() {
   });
 });
 
-// For Semantic Checkbox
-$('.ui.checkbox')
-  .checkbox();
-
 // For Semantic Dropdown
 $('.ui.dropdown')
   .dropdown();

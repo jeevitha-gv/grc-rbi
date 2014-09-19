@@ -1,16 +1,26 @@
 <%= f.fields_for :asset do |ff| %>
-
-  <%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>
-  <%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
-
+  <%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>  
 <% end %>
 
 <div class="clearfix">
   <h4><b>Information Asset Properties</b></h4>
 </div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :retention_period, 'Retention Period (in Years)' %>
+        <%= f.text_field :retention_period, :class=>"form-control" %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="clearfix">
   <h5><b>Current Level of Protection</b></h5>
 </div>
+
 <div class="row">
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group clearfix">
@@ -30,19 +40,11 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :retention_period, 'Retention Period (in Years)' %>
-        <%= f.text_field :retention_period, :class=>"form-control" %>
-      </div>
-    </div>
-  </div>
-</div>
+<%= f.fields_for :asset do |ff| %>
+  <%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
+<% end %>
 
 <script>
-
 $('.ui.checkbox')
   .checkbox();
-  </script>
+</script>
