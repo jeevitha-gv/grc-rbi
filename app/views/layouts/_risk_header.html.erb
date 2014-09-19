@@ -18,6 +18,11 @@
             <li><a href="/user/edit" class="<%= add_admin_active_class(params) == 'Settings' ? 'active' : '' %>">
               <div class="overview-icon"></div>
               Overview</a></li>
+            <% if company_modules_check('Policy') %>
+              <li><a href="/policies" class="<%= add_active_class(params) == 'Policy' ? 'active' : '' %>">
+                <div class="policy-icon"></div>
+                Policy</a></li>
+            <% end %>
 						<% if company_modules_check('Audit') %>
 							<li><a href="/audits" class="<%= add_admin_active_class(params) == 'Audit' ? 'active' : '' %>">
 								<div class="audit-icon"></div>

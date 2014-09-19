@@ -1,5 +1,9 @@
 class Policy < ActiveRecord::Base
 
+
+	# Papertrail
+	has_paper_trail
+	
 	# Associations
 	belongs_to :company
 	belongs_to :policy_kind

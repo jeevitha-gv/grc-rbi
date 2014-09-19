@@ -7,6 +7,8 @@ module ActiveAdmin::ViewsHelper #camelized file name
       'Audit'
     when 'admin/controls','admin/procedures','admin/processes','admin/risk_review_levels','admin/projects'
       'Risk'
+    when 'admin/distribution_lists'
+      'Policy'
     else
       return ''
     end
@@ -20,6 +22,7 @@ module ActiveAdmin::ViewsHelper #camelized file name
       'Audit'
     when 'admin/planning_strategies','admin/reviews','admin/next_steps','admin/risk_approval_statuses','admin/implementation_statuses','admin/close_reasons'
       'Risk'
+    when 'admin/review_actions', 'admin/purposes', 'admin/policy_statuses', 'admin/policy_kinds', 'admin/policy_classifications', 'admin/control_states', 'admin/control_freqs', 'admin/control_classifications', 'admin/audiences', 'admin/approval_actions'
     else
       return ''
     end
@@ -32,6 +35,8 @@ module ActiveAdmin::ViewsHelper #camelized file name
       'audit'
     elsif ["controls","procedures", "processes","risk_review_levels","projects"].include?(action_path)
      'risk'
+    elsif ["distribution_lists"]
+      'policy'
     else
       ''
     end

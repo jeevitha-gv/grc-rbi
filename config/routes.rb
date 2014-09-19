@@ -146,6 +146,17 @@ end
 
   resources :update_payments
 
+
+
+  # Resources for policy
+
+  resources :policies do
+    member do
+      get 'show_individual'
+    end
+  end
+
+
   get 'welcome', to: 'companies#welcome', :as => :welcome
 
   # You can have the root of your site routed with "root"

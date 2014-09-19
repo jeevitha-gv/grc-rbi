@@ -12,6 +12,11 @@
             <li><a href="/admin/dashboard" class="<%= add_super_admin_active_class(params) == 'Settings' ? 'active' : '' %>">
               <div class="overview-icon"></div>
               Overview</a></li>
+
+            <li class="next-phase"><a href="/admin/policy_kinds" class="<%= add_super_admin_active_class(params) == 'Policy' ? 'active' : '' %>" >
+              <div class="audit-icon"></div>
+              Policy</a></li>
+
             <li class="next-phase"><a href="/admin/compliances" class="<%= add_super_admin_active_class(params) == 'Audit' ? 'active' : '' %>" >
               <div class="audit-icon"></div>
               Audit</a></li>
@@ -74,6 +79,10 @@
     if (module_check == 'overview' || module_check == '')
     {
       $("#links").append("<%= escape_javascript( render(:partial=>'/layouts/overview'))%>");
+    }
+    else if(module_check == 'policy')
+    {
+      $("#links").append("<%= escape_javascript( render(:partial=>'/layouts/policy'))%>");
     }
     else if(module_check == 'risk')
     {
