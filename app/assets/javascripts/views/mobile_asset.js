@@ -62,7 +62,7 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/assets/mobile_assets",
+                                    url: "/inventory/mobile_assets",
                                     dataType: 'json',
                                     type: 'get'
                                 },
@@ -84,6 +84,9 @@ function search_result()
             id: "id",
                 fields: {
                   name: { type: "string" },
+                  asset_status: { type: "string" },
+                  device_type: { type: "string" },
+                  asset_value: { type: "string" },
                     owner: { type: "string" },
                     custodian: {type: "string"},
                     device_type: {type: "string"},
@@ -106,16 +109,22 @@ function search_result()
                        columns: [{
                             field: "name",
                             title: "Name",
-                            Model: 200
+                            width: 200
+                        }, {
+                            field: "asset_state",
+                            title: "Asset Status"
+                        }, {
+                            field: "device_type",
+                            title: "Device Type"
+                        }, {
+                            field: "asset_value",
+                            title: "Asset Value"
                         }, {
                             field: "owner",
                             title: "Owner"
                         }, {
                             field: "custodian",
                             title: "custodian"
-                        }, {
-                            field: "device_type",
-                            title: "Device Type"
                         },
                         { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
                         ],
@@ -138,9 +147,6 @@ function delete_file(e)
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/mobile_assets/"+ dataItem.id + "/edit"
+        window.location.href = "mobile_assets/"+ dataItem.assetable_id + "/edit"
     }
       });
-               
-
-

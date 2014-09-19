@@ -64,7 +64,7 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/assets/documents",
+                                    url: "/inventory/documents",
                                     dataType: 'json',
                                     type: 'get'
                                 },
@@ -86,9 +86,12 @@ function search_result()
             id: "id",
                 fields: {
                     name: { type: "string" },
+                    asset_state: { type: "string" },
+                    asset_value: { type: "integer" },
+                    asset_type: {type: "string"},
                     owner: { type: "string" },
                     custodian: {type: "string"},
-                    document_type: {type: "string"},
+                    
                     
                     //department: {type: "string"}
                 }
@@ -109,6 +112,12 @@ function search_result()
                             field: "name",
                             title: "Name",
                             width: 200
+                        }, {
+                            field: "asset_state",
+                            title: "Document Type"
+                        }, {
+                            field: "asset_value",
+                            title: "Asset Value"
                         }, {
                             field: "owner",
                             title: "Owner"
@@ -143,6 +152,6 @@ function delete_file(e)
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/documents/"+ dataItem.id + "/edit"
+        window.location.href = "/documents/"+ dataItem.assetable_id + "/edit"
     }
       });
