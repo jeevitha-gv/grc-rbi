@@ -3,7 +3,7 @@ class SoftwaresController < ApplicationController
   layout 'asset_layout'
   
   def index
-  	@softwares = current_company.assets
+  	@assets = current_company.assets.where(:assetable_type => "Software")
   end
 
   def new

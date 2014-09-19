@@ -64,7 +64,7 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/services",
+                                    url: "/assets/services",
                                     dataType: 'json',
                                     type: 'get'
                                 },
@@ -86,9 +86,9 @@ function search_result()
             id: "id",
                 fields: {
                     name: { type: "string" },
-                    service_type: { type: "string" },
-                    location: {type: "string"},
-                    department: {type: "string"},
+                    owner: { type: "string" },
+                    custodian: {type: "string"},
+                    service_type: {type: "string"},
                     
                     //department: {type: "string"}
                 }
@@ -110,14 +110,14 @@ function search_result()
                             title: "Name",
                             width: 200
                         }, {
+                            field: "owner",
+                            title: "Owner"
+                        }, {
+                            field: "custodian",
+                            title: "Custodian"
+                        }, {
                             field: "service_type",
                             title: "Service Type"
-                        }, {
-                            field: "location",
-                            title: "Location"
-                        }, {
-                            field: "department",
-                            title: "department"
                         },
                       { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 

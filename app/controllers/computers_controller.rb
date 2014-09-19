@@ -3,7 +3,7 @@ class ComputersController < ApplicationController
   layout 'asset_layout'
 
   def index
-  	@computers = current_company.assets
+  	 @assets = current_company.assets.where(:assetable_type => "Computer")
   end
 
   def new
@@ -71,7 +71,7 @@ class ComputersController < ApplicationController
   private
 
   def computer_params
-  	params.require(:computer).permit(:serial, :ip, :computer_category_id, :asset_status_id, :operating_system_id, :os_ver_ser, :memory, :disk_space, :cpu_speed, :cpu_core_count, :mac, :cost, :acquisition_date, :expiry_date, :last_audit_date, :assigned_on, :vendor_id, :contract_id,  asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity])
+  	params.require(:computer).permit(:serial, :ip, :computer_category_id, :asset_status_id, :operating_system_id, :os_ver_ser, :memory, :disk_space, :cpu_speed, :cpu_core_count, :mac, :cost, :acquisition_date, :expiry_date, :last_audit_date, :assigned_on, :vendor_id, :contract_id,  asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_data,:customer_data,:confidentiality,:availability,:integrity])
   end
 
 end

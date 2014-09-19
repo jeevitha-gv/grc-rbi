@@ -64,14 +64,14 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/documents",
+                                    url: "/assets/documents",
                                     dataType: 'json',
                                     type: 'get'
                                 },
                                 destroy: {
                                            url: function(risk) 
                                                 {
-                                                    return "/documents/" + document.id
+                                                    return "/assets/documents/" + document.id
                                                   },
                                                 dataType: "json",
                                                 type: "DELETE"
@@ -85,10 +85,10 @@ function search_result()
         model: {
             id: "id",
                 fields: {
-                    document_status: { type: "string" },
-                    document_type: { type: "string" },
-                    location: {type: "string"},
-                    department: {type: "string"},
+                    name: { type: "string" },
+                    owner: { type: "string" },
+                    custodian: {type: "string"},
+                    document_type: {type: "string"},
                     
                     //department: {type: "string"}
                 }
@@ -106,18 +106,18 @@ function search_result()
                         //     buttonCount: 5
                         // },
                        columns: [{
-                            field: "document_status",
+                            field: "name",
                             title: "Name",
                             width: 200
                         }, {
+                            field: "owner",
+                            title: "Owner"
+                        }, {
+                            field: "custodian",
+                            title: "Custodian"
+                        }, {
                             field: "document_type",
                             title: "Document Type"
-                        }, {
-                            field: "location",
-                            title: "Location"
-                        }, {
-                            field: "department",
-                            title: "department"
                         },
                       { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 

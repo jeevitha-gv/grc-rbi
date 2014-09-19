@@ -64,7 +64,7 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/softwares",
+                                    url: "/assets/softwares",
                                     dataType: 'json',
                                     type: 'get'
                                 },
@@ -85,10 +85,10 @@ function search_result()
         model: {
             id: "id",
                 fields: {
-                    product_name: { type: "string" },
-                    software_type: { type: "string" },
-                    location: {type: "string"},
-                    department: {type: "string"},
+                    name: { type: "string" },
+                     software_type: { type: "string" },
+                     owner: {type: "string"},
+                    custodian: {type: "string"},
                     
                     //department: {type: "string"}
                 }
@@ -106,18 +106,19 @@ function search_result()
                         //     buttonCount: 5
                         // },
                        columns: [{
-                            field: "product_name",
-                            title: "Product Name",
+                            field: "name",
+                            title: "Name",
                             width: 200
-                        }, {
+                        }, 
+                        {
                             field: "software_type",
                             title: "Software Type"
                         }, {
-                            field: "location",
-                            title: "Location"
+                            field: "owner",
+                            title: "Owner"
                         }, {
-                            field: "department",
-                            title: "department"
+                            field: "custodian",
+                            title: "Custodian"
                         },
                       { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 

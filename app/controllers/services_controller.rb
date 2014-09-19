@@ -2,7 +2,7 @@ class ServicesController < ApplicationController
 	layout 'asset_layout'
  
   def index
-  	@services = current_company.assets
+  	 @assets = current_company.assets.where(:assetable_type => "Service")
   end
 
   def new

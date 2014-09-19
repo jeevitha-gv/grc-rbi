@@ -1,9 +1,9 @@
 json.data do |json|
-  json.array!(@mobile_assets) do |m|
-      json.id m.id
-      json.model m.model
-      json.manufacturer m.manufacturer
-      json.service_provider m.service_provider
-      json.device_type m.device_type.name
-     end
+    json.array!(@assets) do |a|
+      json.id a.id
+      json.name a.name
+      json.owner a.info_asset_owner.user_name if a.info_asset_owner.present?
+      json.custodian a.info_asset_custodian.user_name if a.info_asset_custodian.present?
+      json.device_type a.assetable.device_type.name if a.assetable.device_type.name.present?
+    end
 end
