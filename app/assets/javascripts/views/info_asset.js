@@ -91,6 +91,7 @@ function search_result()
                 fields: {
                     name: { type: "string" },
                     asset_state: { type: "string" },
+                    asset_value: { type: "integer" },
                     owner: {type: "string"},
                     custodian: {type: "string"},
                     evaluated: {type: "string"},
@@ -116,16 +117,24 @@ function search_result()
                             width: 200
                         }, {
                             field: "asset_state",
-                            title: "Status"
+                            title: "Status",
+                            width: 120
+                        }, {
+                            field: "asset_value",
+                            title: "Asset Value",
+                            width: 120
                         }, {
                             field: "owner",
-                            title: "Asset Owner"
+                            title: "Asset Owner",
+                            width: 150
                         }, {
                             field: "custodian",
-                            title: "Asset Custodian"
+                            title: "Asset Custodian",
+                            width: 150
                         },{
                             field: "evaluated",
-                            title: "Evaluator"
+                            title: "Evaluator",
+                            width: 120
                         },
                       { command: [{text: "evaluate", click: evaluate_file}, {text: "action", click: action_file}, {text: "review", click: review_file}, {text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 
@@ -169,7 +178,7 @@ function delete_file(e)
 function edit_file(e)
 {
     var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-    window.location.href = "/assets/information_assets/"+ dataItem.id + "/edit"
+    window.location.href = "/assets/information_assets/"+ dataItem.assetable_id + "/edit"
 }
       
 });

@@ -62,7 +62,7 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/mobile_assets",
+                                    url: "/assets/mobile_assets",
                                     dataType: 'json',
                                     type: 'get'
                                 },
@@ -83,9 +83,9 @@ function search_result()
         model: {
             id: "id",
                 fields: {
-                    model: { type: "string" },
-                    manufacturer: { type: "string" },
-                    service_provider: {type: "string"},
+                  name: { type: "string" },
+                    owner: { type: "string" },
+                    custodian: {type: "string"},
                     device_type: {type: "string"},
                     
                     //department: {type: "string"}
@@ -104,15 +104,15 @@ function search_result()
                         //     buttonCount: 5
                         // },
                        columns: [{
-                            field: "model",
-                            title: "Model",
+                            field: "name",
+                            title: "Name",
                             Model: 200
                         }, {
-                            field: "manufacturer",
-                            title: "Manufacturer"
+                            field: "owner",
+                            title: "Owner"
                         }, {
-                            field: "service_provider",
-                            title: "Provider"
+                            field: "custodian",
+                            title: "custodian"
                         }, {
                             field: "device_type",
                             title: "Device Type"

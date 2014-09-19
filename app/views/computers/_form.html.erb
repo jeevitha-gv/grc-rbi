@@ -1,15 +1,9 @@
-<!-- First Row -->
-<%= javascript_include_tag "/assets/views/computer_new.js" %>
-<div class="row">
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :name, t('computer.name') %>
-        <%= f.text_field :name, :class=>"form-control" %>
-      </div>
-    </div>
-  </div>
-</div>
+<%= f.fields_for :asset do |ff| %>
+
+  <%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>
+  <%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
+
+<% end %>
 
 <!-- Second Row -->
 
@@ -24,30 +18,9 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :impact_id, t('computer.impact') %>
-        <div class="risk-select width-fix">
-          <%= f.collection_select(:impact_id, Priority.all, :id, :name) %>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- Third Row -->
-
-<div class="row">
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :description %>
-        <%= f.cktext_area :description, :class=>"form-control asset-big-input" %>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="clearfix border-divider"></div>
 
@@ -245,66 +218,6 @@
       <div class="col-sm-12">
         <%= f.label :mac, t('computer.mac') %>
         <%= f.text_field :mac, :class=>"form-control" %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="clearfix border-divider"></div>
-
-<!-- Tenth Row -->
-
-<div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-    <div class="form-group clearfix">
-      <label class="col-sm-4 control-label">
-        <%= f.label :location_id, t('computer.location') %>
-      </label>
-      <div class="col-sm-8">
-        <div class="risk-select">
-          <%= f.collection_select(:location_id, current_company.locations, :id, :name) %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-    <div class="form-group clearfix">
-      <label class="col-sm-4 control-label">
-        <%= f.label :department_id, t('computer.department') %>
-      </label>
-      <div class="col-sm-8">
-        <div class="risk-select">
-          <%= f.collection_select(:department_id, current_company.departments, :id, :name) %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Eleventh Row -->
-
-<div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-    <div class="form-group clearfix">
-      <label class="col-sm-4 control-label">
-        <%= f.label :technical_contact, t('computer.tech_contact') %>
-      </label>
-      <div class="col-sm-8">
-        <div class="risk-select">
-          <%= f.collection_select(:technical_contact, current_company.users, :id, :user_name) %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-    <div class="form-group clearfix">
-      <label class="col-sm-4 control-label">
-        <%= f.label :asset_owner, t('computer.asset_owner') %>
-      </label>
-      <div class="col-sm-8">
-        <div class="risk-select">
-          <%= f.collection_select(:asset_owner, current_company.users, :id, :user_name) %>
-        </div>
       </div>
     </div>
   </div>
