@@ -1,0 +1,31 @@
+<h1>Policy</h1>
+<% if !@versions.empty? %>
+	<% if (params[:version].to_i < @versions.size) && params[:version].present? %>
+		<h3>Version : <%= params[:version].to_i %></h3>
+	<% else %>
+		<h3>Version : <%= @versions.length %></h3>
+	<% end %>
+	First Name:
+		<%= @policy.title %>
+	Last Name:
+		<%= @policy.scope %>
+	Description:
+		<%= @policy.description %>
+	<br><br>
+	<% if @versions.length.to_i >1 %>
+		<% if params[:version].to_i > 1 || !params[:version] %>
+			<%= link_to "Previous Version", {:version => (params[:version] || @versions.length).to_i - 1} %>
+		<% end %>
+		<% if params[:version].to_i >= 1 && (params[:version].to_i < (@versions.length - 1)) %>
+			<%= link_to "Next Version", {:version => (params[:version] || @versions.length).to_i + 1} %>
+		<% end %>
+		<br><br>
+		<% if (params[:version].to_i < @versions.length) %>
+			<%= link_to "Go to current version"%>
+		<% end %>
+	<% end %>
+
+	<br><br>
+	<%= link_to "Create New Version" , edit_policy_path(@policy) %>
+	<br><br>
+<% end %>

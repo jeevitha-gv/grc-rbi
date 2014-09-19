@@ -1,0 +1,187 @@
+<%= javascript_include_tag "/assets/views/policy_style" %>
+
+<div class="content">
+	<div class="container">
+		<div class="row">
+			<div class="new-policy">
+				<h2>New Policy</h2>
+				<%= form_for(@policy) do |f| %>
+					<div class="policy-content container">
+						<div class="container offset well">
+							<div class="tabbable">
+								<ul class="nav nav-tabs">
+            						<li class="active"><a href="#general" data-toggle="tab">Policy</a></li>
+            						<li><a href="#scope" data-toggle="tab">Scope,Purpose and Desc</a></li>
+            						<li><a href="#standards" data-toggle="tab">Standards and Controls</a></li>
+            						<li><a href="#handlers" data-toggle="tab">Handlers</a></li>
+            						<li><a href="#settings" data-toggle="tab">Settings</a></li>
+          						</ul>
+          						<div class="tab-content">
+          							<!-- Section I starts here -->
+          								<div class="tab-pane active" id="general">
+          									<div class="step-header">
+          										<h1>Step 1 0f 5</h1>
+          									</div>
+          									<div class="form-inputs">
+          										<div class="form-group clearfix">
+                  									<label class="col-sm-1 control-label">Title</label>
+                  									<div class="col-sm-4 p-big-l-pad">
+                    									<%= f.text_field :title, class: "policy-input" %>
+                  								  	</div>
+                								</div>
+                								<div class="form-group clearfix">
+                									<div class="form-group clearfix">
+                      									<label class="col-sm-3 control-label">Kind</label>
+                      									<div class="col-sm-9">
+                        									<%= f.collection_select(:policy_kind_id, PolicyKind.all, :id, :name, :prompt => true) %>
+                      									</div>
+                    								</div>
+                								</div>
+                								<div class="form-group clearfix">
+                      								<label class="col-sm-3 control-label">Audience</label>
+                      								<div class="col-sm-9">
+                        								<%= f.collection_select(:audience_id, Audience.all, :id, :name, :prompt => true) %>
+                      								</div>
+                    							</div>
+                    							<div class="form-group clearfix">
+                      								<label class="col-sm-3 control-label">Classification</label>
+                      								<div class="col-sm-9">
+                        								<%= f.collection_select(:policy_classification_id, PolicyClassification.all, :id, :name, :prompt => true) %>
+                      								</div>
+                    							</div>
+<!--                     							<div class="form-group clearfix">
+                      								<label class="col-sm-3 control-label">Locations</label>
+                      								<div class="col-sm-9">
+                        								<%#= f.collection_select(:policy_classification_id, PolicyClassification.all, :id, :name, :prompt => true) %>
+                      								</div>
+                    							</div> -->
+<!--                     							<div class="form-group clearfix">
+                      								<label class="col-sm-3 control-label">Departments</label>
+                      								<div class="col-sm-9">
+                        								<%#= f.collection_select(:policy_classification_id, PolicyClassification.all, :id, :name, :prompt => true) %>
+                      								</div>
+                    							</div> -->
+          									</div>
+          								</div>
+          							<!-- Section I ends here -->
+          								<div class="tab-pane" id="scope">
+          									<div class="step-header">
+          										<h1>Step 2 0f 5</h1>
+          									</div>
+          									<div class="form-inputs">
+          										<div class="form-group clearfix">
+                  									<label class="col-sm-1 control-label">Scope</label>
+                  									<div class="col-sm-4 p-big-l-pad">
+                    									<%= f.text_area :scope %>
+                  								  	</div>
+                								</div>
+												<div class="form-group clearfix">
+                  									<label class="col-sm-1 control-label">Purpose</label>
+                  									<div class="col-sm-4 p-big-l-pad">
+                    									<%= f.text_area :purpose %>
+                  								  	</div>
+                								</div>
+                								<div class="form-group clearfix">
+                									<label class="col-sm-1 control-label">Description</label>
+                  									<div class="col-sm-4 p-big-l-pad">
+                    									<%= f.text_area :description %>
+                  								  	</div>
+                								</div>
+          									</div>
+          								</div>
+          								<!-- Section II ends here -->
+          								<div class="tab-pane" id="standards">
+          									<div class="step-header">
+          										<h1>Step 3 0f 5</h1>
+          									</div>
+          									<div class="form-inputs">
+          										<div class="form-group clearfix">
+                  									<label class="col-sm-1 control-label">Standard</label>
+                  									<div class="col-sm-4 p-big-l-pad">
+                    									<%= f.collection_select(:standard_id, Compliance.all, :id,:name, :prompt => true) %>
+                  								  	</div>
+                								</div>
+          									</div>
+          								</div>
+          								<!-- Section III ends heress -->
+
+          								<div class="tab-pane" id="handlers">
+          									<div class="step-header">
+          										<h1>Step 4 0f 5</h1>
+          									</div>
+          									<div class="form-inputs">
+          										<div class="form-group clearfix">
+                  									<label class="col-sm-1 control-label">Handlers</label>
+                  									<div class="col-sm-4 p-big-l-pad">
+                    									<%#= f.collection_select(:standard_id, Compliance.all, :id,:name, :prompt => true) %>
+                  								  	</div>
+                								</div>
+          									</div>
+          								</div>
+          								<!-- Section IV ends here -->
+          								<div class="tab-pane" id="settings">
+          									<div class="step-header">
+          										<h1>Step 5 0f 5</h1>
+          									</div>
+          									<div class="form-inputs">
+          										<div class="form-group clearfix">
+                  									<label class="col-sm-1 control-label">Notes</label>
+                  									<div class="col-sm-4 p-big-l-pad">
+                    									<%= f.text_area :note %>
+                  								  	</div>
+                								</div>
+          									</div>
+          									<div class="form-inputs">
+          										<div class="form-group clearfix">
+                  									<label class="col-sm-1 control-label">Effective From</label>
+                  									<div class="col-sm-4 p-big-l-pad">
+                    									<%= f.date_select :effective_from %>
+                  								  	</div>
+                								</div>
+          									</div>
+          									<div class="form-inputs">
+          										<div class="form-group clearfix">
+                  									<label class="col-sm-1 control-label">Effective till</label>
+                  									<div class="col-sm-4 p-big-l-pad">
+                    									<%= f.date_select :effective_till %>
+                  								  	</div>
+                								</div>
+          									</div>
+          									<div class="form-inputs">
+          										<div class="form-group clearfix">
+                  									<label class="col-sm-1 control-label">Expected Publish Date</label>
+                  									<div class="col-sm-4 p-big-l-pad">
+                    									<%= f.date_select :expected_publish_date %>
+                  								  	</div>
+                								</div>
+          									</div>
+          									<div class="form-inputs">
+          										<div class="form-group clearfix">
+                  									<label class="col-sm-1 control-label">Review with in </label>
+                  									<div class="col-sm-4 p-big-l-pad">
+                    									<%= f.date_select :review_within_date %>
+                  								  	</div>
+                								</div>
+          									</div>
+          								</div>
+          								<!-- Section V ends here -->
+          						</div>
+							</div>
+						</div>
+
+
+            			<div class="col-lg-12 col-sm-6 col-xs-12 text-align-right">
+              				<br>
+              				<br>
+              				<a class="grey_btn" href="javascript:goBack()">Back</a>
+              				<%#= f.submit "Save as Draft", :class => "orange_btn" %>
+              				<%= f.submit "Save", :class => "black_btn" %>
+              				<br>
+              				<br>
+            			</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>	
+</div>
