@@ -108,7 +108,11 @@ resources :computers do
 
    
   scope '/assets' do
-    resources :information_assets
+    resources :information_assets do
+      collection do
+      post 'infoasset_imports'
+    end
+    end
     resources :documents
     resources :other_assets do
       collection do
