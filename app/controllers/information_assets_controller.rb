@@ -47,4 +47,38 @@ class InformationAssetsController < ApplicationController
   	params.require(:information_asset).permit(:at_origin, :info_moved, :retention_period, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity])
   end
 
+  def infoasset_imports
+    if(params[:file].present?)
+      begin
+        InformationAsset.import_from_file(params[:file], current_company)
+        flash[:notice] = MESSAGES["audit"]["csv_upload"]["success"]
+        redirect_to assets_path
+      rescue
+        flash[:notice]=  MESSAGES["csv_upload"]["error"]
+        redirect_to new_information_asset_path
+      end
+    else
+      flash[:notice]=  MESSAGES["csv_upload"]["presence"]
+      redirect_to new_information_asset_path
+    end
+  end
+
+
+
+  def audit_imports
+    if(params[:file].present?)
+      begin
+        Audit.import_from_file(params[:file], current_company)
+        flash[:notice] = MESSAGES["audit"]["csv_upload"]["success"]
+        redirect_to audits_path
+      rescue
+        flash[:notice]=  MESSAGES["csv_upload"]["error"]
+        redirect_to new_audit_path
+      end
+    else
+      flash[:notice]=  MESSAGES["csv_upload"]["presence"]
+      redirect_to new_audit_path
+    end
+  end
+
 end
