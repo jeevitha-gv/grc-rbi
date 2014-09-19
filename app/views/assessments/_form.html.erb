@@ -69,9 +69,9 @@
             <td><label>Evaluator/CIO : </label>
             <span><%=@asset.info_asset_evaluator.user_name %></span></td>
             <td><label>Location : </label>
-              <span><%= @asset.location.name%></span></td>
+              <span><%= @asset.location.name if @asset.location.present? %></span></td>
             <td><label>Department : </label>
-              <span> <%= @asset.department.name%> </span></td>
+              <span> <%= @asset.department.name if @asset.department.present? %> </span></td>
           </tr>
           <tr>
             <td><label>Confidentiality :</label>
@@ -85,7 +85,7 @@
             <td><label>Personal Data :</label>
               <span> <%= @asset.personal_data == "true" ? "Yes" : "No"%> </span></td>
             <td><label>Sensitive Data : </label>
-              <span> <%= @asset.sensitive_date == "true" ? "Yes" : "No"%> </span></td>
+              <span> <%= @asset.sensitive_data == "true" ? "Yes" : "No"%> </span></td>
             <td><label>Customer Data : </label>
               <span> <%= @asset.customer_data == "true" ? "Yes" : "No" %> </span></td>
           </tr>

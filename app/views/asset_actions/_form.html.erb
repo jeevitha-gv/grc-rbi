@@ -78,9 +78,9 @@ overflow: auto;
             <td><label>Evaluator/CIO : </label>
             <span><%=@asset.info_asset_evaluator.user_name %></span></td>
             <td><label>Location : </label>
-              <span><%= @asset.location.name%></span></td>
+              <span><%= @asset.location.name if @asset.location.present? %></span></td>
             <td><label>Department : </label>
-              <span> <%= @asset.department.name%> </span></td>
+              <span> <%= @asset.department.name if @asset.department.present? %> </span></td>
           </tr>
           <tr>
             <td><label>Confidentiality :</label>
@@ -94,7 +94,7 @@ overflow: auto;
             <td><label>Personal Data :</label>
               <span> <%= @asset.personal_data%> </span></td>
             <td><label>Sensitive Data : </label>
-              <span> <%= @asset.sensitive_date%> </span></td>
+              <span> <%= @asset.sensitive_data%> </span></td>
             <td><label>Customer Data : </label>
               <span class="orange-method"> <%= @asset.customer_data%> </span></td>
           </tr>
@@ -260,22 +260,25 @@ overflow: auto;
 </div>
 
 
+<%= f.fields_for :attachments, (@asset_action.attachments.present? ? @asset_action.attachments : @asset_action.attachments.build) do |attach|%>
         <div id="example">
-            <div>
-                <div class="demo-section k-header">
-                    <input name="files" id="files" type="file" />
+            <div class="demo-section k-header">
+                    <input name="files[]" id="files" type="file" />                    
                 </div>
-            </div>
         </div>
+<% end %>
 
 <script>
 $(document).ready(function() {
-    $("#files").kendoUpload({
-        async: {
-            saveUrl: "assessments/save_file",
-            removeUrl: "assessments/remove_file",
-            autoUpload: true
-        }
-    });
+    // $("#files").kendoUpload({
+    //     async: {
+    //         saveUrl: "assessments/save_file",
+    //         removeUrl: "assessments/remove_file",
+    //         autoUpload: true
+    //     }
+    // });
+    $(document).ready(function() {
+                    $("#files").kendoUpload();
+                });
 });
 </script>
