@@ -63,7 +63,7 @@
             <td><label>Custodian : </label>
               <span> <%=@asset.info_asset_custodian.user_name %> </span></td>
             <td><label>Identifier : </label>
-              <span></span></td>
+              <span><%=@asset.info_asset_identifier.user_name %></span></td>
           </tr>
           <tr>
             <td><label>Evaluator/CIO : </label>
@@ -85,7 +85,7 @@
             <td><label>Personal Data :</label>
               <span> <%= @asset.personal_data == "true" ? "Yes" : "No"%> </span></td>
             <td><label>Sensitive Data : </label>
-              <span> <%= @asset.sensitive_date == "true" ? "Yes" : "No"%> </span></td>
+              <span> <%= @asset.sensitive_data == "true" ? "Yes" : "No"%> </span></td>
             <td><label>Customer Data : </label>
               <span> <%= @asset.customer_data == "true" ? "Yes" : "No" %> </span></td>
           </tr>
