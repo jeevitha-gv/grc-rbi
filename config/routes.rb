@@ -107,7 +107,7 @@ resources :computers do
    end
 
    
-  scope '/assets' do
+  scope '/inventory' do
     resources :information_assets do
       collection do
       post 'infoasset_imports'
