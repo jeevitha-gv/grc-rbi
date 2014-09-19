@@ -110,6 +110,7 @@ resources :computers do
   scope '/assets' do
     resources :information_assets
     resources :documents
+    resources :computers
     resources :other_assets do
       collection do
         post 'other_asset_imports'
