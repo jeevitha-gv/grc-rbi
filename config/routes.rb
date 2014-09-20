@@ -106,6 +106,7 @@ Rails.application.routes.draw do
     end
     resources :documents
     resources :computers
+    resources :source_codes
     resources :other_assets do
       collection do
         post 'other_asset_imports'
