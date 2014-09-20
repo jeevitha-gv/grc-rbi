@@ -44,7 +44,7 @@ class InformationAssetsController < ApplicationController
       format.html
       format.pdf do
       @pdf = (render_to_string pdf: "PDF", template: "information_assets/show.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
-        send_data(@pdf, type: "application/pdf", filename: @asset.name)
+        send_data(@pdf, type: "application/pdf", filename: @information_asset.asset.name)
       end
     end
   end
