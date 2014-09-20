@@ -119,7 +119,7 @@ function search_result()
                             field: "service_type",
                             title: "Service Type"
                         },
-                      { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
+                      { command: [{text: "edit", click: edit_file},{text: "pdf", click: pdf_file},{text: "delete", click: delete_file}], title: "Action" }
 
                         ],
                     });
@@ -144,5 +144,11 @@ function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
         window.location.href = "services/"+ dataItem.assetable_id + "/edit"
+    }
+
+ function pdf_file(e)
+    {
+        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+        window.location.href = "services/"+ dataItem.assetable_id + ".pdf"
     }
       });
