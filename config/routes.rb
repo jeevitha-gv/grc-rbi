@@ -107,6 +107,7 @@ Rails.application.routes.draw do
       end
     end
     resources :documents
+    resources :source_codes
     resources :computers
     resources :source_codes
     resources :other_assets do

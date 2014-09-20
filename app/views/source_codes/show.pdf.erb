@@ -39,33 +39,34 @@ label {float: left;padding: 5px 10px; font-weight:bold; width: 25%; font-size:12
   <div class="logo">
 
   </div>
-<!--Title Start-->
-<h2 class="textaligncenter">Other Assets</h2>
+  <h2 class="textaligncenter">Report for Source Code</h2>
 <!--Title Start-->
 <div class="cls"></div>
 <!-- SideContent Start-->
 <div class="side">
 <!-- Leftside Content Start-->
 <div class="leftside">
-<label>Manufacturer: </label>
-<div class="label_content_top"><%= @other_asset.manufacturer %></div>
-<label>Model: </label>
-<div class="label_content_top"><%= @other_asset.model %></div>
-<label>IP: </label>
-<div class="label_content_top"><%=@other_asset.ip %></div>
+<label>Source Code Title: </label>
+<div class="label_content_top"><%= @sourcecode.asset.name %></div>
+<label>Assetable Type: </label>
+<div class="label_content_top"><%= @sourcecode.asset.assetable_type %></div>
+<div class="cls"></div>
 
-<label>Lease Contract: </label>
-<div class="label_content_top"><%=@other_asset.lease_contract %></div>
-<label>Maintenance Contract :  </label>
-<div class="label_content_top"><%=@other_asset.maintenance_contract %></div>
+<label>Asset State :</label>
+<div class="label_content_top"><%= @sourcecode.asset.asset_state.name if @sourcecode.asset.asset_state.present? %></div>
 
 </div>
+<!-- Leftside Content End-->
+<!-- Rightside Content Start-->
+<div class="rightside">
+<label>Department : </label>
+<div class="label_content_top"><%= @sourcecode.asset.department.name %></div>
+<div class="cls"></div>
 
 
-</table>
+<label> Source code Owner : </label>
+<div class="label_content_top"><%= @sourcecode.asset.info_asset_owner.user_name if @sourcecode.asset.info_asset_owner.present? %></div>
 
 </div>
-<!-- Wrapper End-->
-
-</body>
-</html>
+<!-- Rightside Content End-->
+</div>

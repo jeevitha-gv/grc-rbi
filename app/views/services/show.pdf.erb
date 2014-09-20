@@ -40,24 +40,22 @@ label {float: left;padding: 5px 10px; font-weight:bold; width: 25%; font-size:12
 
   </div>
 <!--Title Start-->
-<h2 class="textaligncenter">Other Assets</h2>
+<h2 class="textaligncenter">Services</h2>
 <!--Title Start-->
 <div class="cls"></div>
 <!-- SideContent Start-->
 <div class="side">
 <!-- Leftside Content Start-->
 <div class="leftside">
-<label>Manufacturer: </label>
-<div class="label_content_top"><%= @other_asset.manufacturer %></div>
-<label>Model: </label>
-<div class="label_content_top"><%= @other_asset.model %></div>
-<label>IP: </label>
-<div class="label_content_top"><%=@other_asset.ip %></div>
+<label>Cost: </label>
+<div class="label_content_top"><%= @service.cost %></div>
+<label>Sla: </label>
+<div class="label_content_top"><%= @service.sla %></div>
+<label>Assigned On: </label>
+<div class="label_content_top"><%= @service.assigned_on %></div>
 
-<label>Lease Contract: </label>
-<div class="label_content_top"><%=@other_asset.lease_contract %></div>
-<label>Maintenance Contract :  </label>
-<div class="label_content_top"><%=@other_asset.maintenance_contract %></div>
+
+
 
 </div>
 

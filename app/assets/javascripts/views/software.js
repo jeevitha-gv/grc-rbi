@@ -120,7 +120,7 @@ function search_result()
                             field: "custodian",
                             title: "Custodian"
                         },
-                      { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
+                      { command: [{text: "edit", click: edit_file},{text: "pdf", click: pdf_file},{text: "delete", click: delete_file}], title: "Action" }
 
                         ],
                     });
@@ -144,6 +144,11 @@ function delete_file(e)
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "softwares/"+ dataItem.id + "/edit"
+        window.location.href = "softwares/"+ dataItem.assetable_id + "/edit"
+    }
+    function pdf_file(e)
+    {
+        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+        window.location.href = "softwares/"+ dataItem.assetable_id + ".pdf"
     }
       });

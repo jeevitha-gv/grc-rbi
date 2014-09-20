@@ -113,7 +113,7 @@ function search_result()
                             field: "asset_type",
                             title: "AssetType"
                         },                               
-                      { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
+                      { command: [{text: "edit", click: edit_file},{text: "pdf", click: pdf_file},{text: "delete", click: delete_file}], title: "Action" }
 
                         ],
                     });
@@ -139,5 +139,12 @@ function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
         window.location.href = "other_assets/"+ dataItem.assetable_id + "/edit"
+    }
+
+
+function pdf_file(e)
+    {
+        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+        window.location.href = "other_assets/"+ dataItem.assetable_id + ".pdf"
     }
 });

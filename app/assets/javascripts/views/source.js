@@ -33,22 +33,22 @@ function search_result()
         logic  : "or",
         filters: [
             {
-                field: "model",
+                field: "name",
                 operator: "contains",
                 value   : val
             },
             {
-                field: "manufacturer",
+                field: "owner",
                 operator: "contains",
                 value   : val
             },
             {
-                 field: "service_provider",
+                 field: "custodian",
                  operator: "contains",
                  value   : val
             },
             {
-                 field: "device_type",
+                 field: "project_manager",
                  operator: "contains",
                  value   : val
             },
@@ -58,19 +58,21 @@ function search_result()
 }
 
 
+
+
                     $("#grid").kendoGrid({
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/inventory/mobile_assets",
+                                    url: "/inventory/source_codes",
                                     dataType: 'json',
                                     type: 'get'
                                 },
                                 destroy: {
                                            url: function(risk) 
                                                 {
-                                                    return "/mobile_assets/" + mobile_asset.id
-                                                },
+                                                    return "source_codes/" + service.id
+                                                  },
                                                 dataType: "json",
                                                 type: "DELETE"
                                          }
@@ -83,13 +85,10 @@ function search_result()
         model: {
             id: "id",
                 fields: {
-                  name: { type: "string" },
-                  asset_status: { type: "string" },
-                  device_type: { type: "string" },
-                  asset_value: { type: "string" },
+                    name: { type: "string" },
                     owner: { type: "string" },
                     custodian: {type: "string"},
-                    device_type: {type: "string"},
+                    project_manager: {type: "string"},
                     
                     //department: {type: "string"}
                 }
@@ -111,30 +110,26 @@ function search_result()
                             title: "Name",
                             width: 200
                         }, {
-                            field: "asset_state",
-                            title: "Asset Status"
-                        }, {
-                            field: "device_type",
-                            title: "Device Type"
-                        }, {
-                            field: "asset_value",
-                            title: "Asset Value"
-                        }, {
                             field: "owner",
                             title: "Owner"
                         }, {
                             field: "custodian",
-                            title: "custodian"
+                            title: "Custodian"
+                        }, {
+                            field: "project_manager",
+                            title: "Project Manager"
                         },
-                        { command: [{text: "edit", click: edit_file},{text: "pdf", click: pdf_file},{text: "delete", click: delete_file}], title: "Action" }
+                      { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file},{text: "pdf", click: pdf_file}], title: "Action" }
+
                         ],
                     });
+          
 function delete_file(e)
    {
        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
        if (confirm('Are you sure you want to delete this record ?')) {
                $.ajax({
-               url: "/mobile_assets/"+dataItem.id,
+               url: "services/"+dataItem.id,
                type: 'delete',
                dataType: 'json',
                success:function(result){
@@ -144,15 +139,15 @@ function delete_file(e)
            $('#grid').data('kendoGrid').dataSource.read();
            $('#grid').data('kendoGrid').refresh();
    }
+
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "mobile_assets/"+ dataItem.assetable_id + "/edit"
+        window.location.href = "/inventory/source_codes/"+ dataItem.assetable_id + "/edit"
     }
-
 function pdf_file(e)
-    {
-        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "mobile_assets/"+ dataItem.assetable_id + ".pdf"
-    }
+  {
+    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+    window.location.href = "/inventory/source_codes/"+ dataItem.assetable_id +".pdf"
+  }
       });

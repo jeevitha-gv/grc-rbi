@@ -3,7 +3,7 @@ class SourceCodesController < ApplicationController
   layout 'asset_layout'
 
   def index
-  	@sourcecode = current_company.assets
+  	  	@assets = current_company.assets.where(:assetable_type => "SourceCode")
   end
 
   def new
@@ -36,6 +36,17 @@ class SourceCodesController < ApplicationController
     end
   end
 
+
+  def show
+    @sourcecode = SourceCode.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+      @pdf = (render_to_string pdf: "PDF", template: "source_codes/show.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
+        send_data(@pdf, type: "application/pdf", filename: @sourcecode.asset.name)
+      end
+  end
+end
   private
 
   def sourcecode_params
