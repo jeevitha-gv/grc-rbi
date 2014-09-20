@@ -1078,9 +1078,10 @@ AssetDecision.delete_all
 AssetState.delete_all
 
     AssetState.create(:name => "Identified")
-    AssetState.create(:name => "Evaluate")
-    AssetState.create(:name => "Accomplish")
-    AssetState.create(:name => "Redo Action")
+    AssetState.create(:name => "Evaluated")
+    AssetState.create(:name => "Acted")
+    AssetState.create(:name => "Reviewed")
+    AssetState.create(:name => "Redo Actions")
 
 Classification.delete_all
 

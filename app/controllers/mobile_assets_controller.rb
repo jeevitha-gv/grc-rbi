@@ -4,7 +4,7 @@ class MobileAssetsController < ApplicationController
   
 
   def index
-  	@mobile_assets = current_company.assets
+  	@assets = current_company.assets.where(:assetable_type => "MobileAsset")
   end
 
   def new

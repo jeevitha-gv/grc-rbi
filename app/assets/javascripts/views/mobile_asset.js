@@ -62,7 +62,7 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/mobile_assets",
+                                    url: "/inventory/mobile_assets",
                                     dataType: 'json',
                                     type: 'get'
                                 },
@@ -83,9 +83,12 @@ function search_result()
         model: {
             id: "id",
                 fields: {
-                    model: { type: "string" },
-                    manufacturer: { type: "string" },
-                    service_provider: {type: "string"},
+                  name: { type: "string" },
+                  asset_status: { type: "string" },
+                  device_type: { type: "string" },
+                  asset_value: { type: "string" },
+                    owner: { type: "string" },
+                    custodian: {type: "string"},
                     device_type: {type: "string"},
                     
                     //department: {type: "string"}
@@ -104,18 +107,24 @@ function search_result()
                         //     buttonCount: 5
                         // },
                        columns: [{
-                            field: "model",
-                            title: "Model",
-                            Model: 200
+                            field: "name",
+                            title: "Name",
+                            width: 200
                         }, {
-                            field: "manufacturer",
-                            title: "Manufacturer"
-                        }, {
-                            field: "service_provider",
-                            title: "Provider"
+                            field: "asset_state",
+                            title: "Asset Status"
                         }, {
                             field: "device_type",
                             title: "Device Type"
+                        }, {
+                            field: "asset_value",
+                            title: "Asset Value"
+                        }, {
+                            field: "owner",
+                            title: "Owner"
+                        }, {
+                            field: "custodian",
+                            title: "custodian"
                         },
                         { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
                         ],
@@ -138,9 +147,6 @@ function delete_file(e)
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/mobile_assets/"+ dataItem.id + "/edit"
+        window.location.href = "mobile_assets/"+ dataItem.assetable_id + "/edit"
     }
       });
-               
-
-

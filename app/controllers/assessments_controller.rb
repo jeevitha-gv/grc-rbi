@@ -15,8 +15,10 @@ class AssessmentsController < ApplicationController
 	end
 
 	def create
-		@assessment = @asset.build_assessment(assess_params)
+		@assessment = @asset.build_assessment(assess_params)		
 		if @assessment.save
+			@asset.asset_state_id = 2
+			@asset.save
 			redirect_to asset_assessments_path
 		else
 			redirect_to new_asset_assessment_path

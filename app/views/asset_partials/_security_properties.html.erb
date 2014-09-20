@@ -1,9 +1,11 @@
 <%= javascript_include_tag "/assets/views/asset.js" %>
 
-<!-- Third Row -->
+<div class="clearfix border-divider"></div>
+
 <div class="clearfix">
   <h4><b>CIA/Security Properties</b></h4>
 </div>
+
 <div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
@@ -25,7 +27,6 @@
       </div>
     </div>
   </div>
-
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
       <div class="col-sm-12">
@@ -39,6 +40,7 @@
 </div>
 
 <br>
+
 <div class="row">
   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
     <div id="score_color" class="high-box">
@@ -49,10 +51,12 @@
 </div>
 
 <br>
+
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="ui info message">Asset Value is calculated based on Confidentiality, Integrity and Availability values. High, Medium and Low are configured with 3, 2 and 1 respectively.<br>
-    For example <code> 3 + 2 + 1 = 6 </code></div>
+    <div class="ui info message">Asset Value is calculated based on Confidentiality(C), Integrity(I) and Availability(A). The values of High, Medium and Low are configured with 3, 2 and 1 respectively.
+    <br><br>
+    For example, if C, I and A are High, Medium and Low respectively the asset value will be <code> 3 + 2 + 1 = 6 </code></div>
   </div>
 </div>
 
@@ -118,7 +122,6 @@
 
 <div class="clearfix border-divider"></div>
 
-<!-- Sixth Row -->
 <div class="clearfix">
   <h4><b>Assignment</b></h4>
 </div>
@@ -157,7 +160,6 @@
   </div>
 </div>
 
-<!-- Seventh Row -->
 <div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
@@ -180,7 +182,3 @@
     </div>
   </div>
 </div>
-
-<div class="ui info message">By default, all the information assets will be considered for Gap Analysis and Evaluation phases</div>
-
-<div class="clearfix border-divider"></div>

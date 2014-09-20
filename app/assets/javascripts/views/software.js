@@ -43,12 +43,12 @@ function search_result()
                 value   : val
             },
             {
-                 field: "location",
+                 field: "owner",
                  operator: "contains",
                  value   : val
             },
             {
-                 field: "department",
+                 field: "custodian",
                  operator: "contains",
                  value   : val
             },
@@ -64,14 +64,14 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/softwares",
+                                    url: "/inventory/softwares",
                                     dataType: 'json',
                                     type: 'get'
                                 },
                                 destroy: {
                                            url: function(risk) 
                                                 {
-                                                    return "/softwares/" + software.id
+                                                    return "inventory/softwares/" + software.id
                                                   },
                                                 dataType: "json",
                                                 type: "DELETE"
@@ -85,10 +85,10 @@ function search_result()
         model: {
             id: "id",
                 fields: {
-                    product_name: { type: "string" },
-                    software_type: { type: "string" },
-                    location: {type: "string"},
-                    department: {type: "string"},
+                    name: { type: "string" },
+                     software_type: { type: "string" },
+                     owner: {type: "string"},
+                    custodian: {type: "string"},
                     
                     //department: {type: "string"}
                 }
@@ -106,18 +106,19 @@ function search_result()
                         //     buttonCount: 5
                         // },
                        columns: [{
-                            field: "product_name",
-                            title: "Product Name",
+                            field: "name",
+                            title: "Name",
                             width: 200
-                        }, {
+                        }, 
+                        {
                             field: "software_type",
                             title: "Software Type"
                         }, {
-                            field: "location",
-                            title: "Location"
+                            field: "owner",
+                            title: "Owner"
                         }, {
-                            field: "department",
-                            title: "department"
+                            field: "custodian",
+                            title: "Custodian"
                         },
                       { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 
@@ -129,7 +130,7 @@ function delete_file(e)
        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
        if (confirm('Are you sure you want to delete this record ?')) {
                $.ajax({
-               url: "/softwares/"+dataItem.id,
+               url: "softwares/"+dataItem.id,
                type: 'delete',
                dataType: 'json',
                success:function(result){
@@ -143,6 +144,6 @@ function delete_file(e)
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/softwares/"+ dataItem.id + "/edit"
+        window.location.href = "softwares/"+ dataItem.id + "/edit"
     }
       });

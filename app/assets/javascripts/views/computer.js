@@ -64,7 +64,7 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/computers",
+                                    url: "/assets/computers",
                                     dataType: 'json',
                                     type: 'get'
                                 },
@@ -86,9 +86,9 @@ function search_result()
             id: "id",
                 fields: {
                     name: { type: "string" },
-                    status: { type: "string" },
-                    location: {type: "string"},
-                    technical_contact: {type: "string"},
+                    owner: { type: "string" },
+                    custodian: {type: "string"},
+                    computer_category: {type: "string"},
                     
                     //department: {type: "string"}
                 }
@@ -110,14 +110,14 @@ function search_result()
                             title: "Name",
                             width: 200
                         }, {
-                            field: "status",
-                            title: "Status"
+                            field: "owner",
+                            title: "Owner"
                         }, {
-                            field: "location",
-                            title: "Location"
+                            field: "custodian",
+                            title: "Custodian"
                         }, {
-                            field: "technical_contact",
-                            title: "Technical Contact"
+                            field: "computer_category",
+                            title: "ComputerCategory"
                         },
                       { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 

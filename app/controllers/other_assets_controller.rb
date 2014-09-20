@@ -3,7 +3,7 @@ class OtherAssetsController < ApplicationController
   layout 'asset_layout'
 
   def index
-  	@other_assets = current_company.assets
+  	@assets = current_company.assets.where(:assetable_type => "OtherAsset")
   end
 
   def new

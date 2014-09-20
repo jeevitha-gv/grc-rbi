@@ -64,14 +64,14 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/documents",
+                                    url: "/inventory/documents",
                                     dataType: 'json',
                                     type: 'get'
                                 },
                                 destroy: {
                                            url: function(risk) 
                                                 {
-                                                    return "/documents/" + document.id
+                                                    return "/assets/documents/" + document.id
                                                   },
                                                 dataType: "json",
                                                 type: "DELETE"
@@ -85,10 +85,13 @@ function search_result()
         model: {
             id: "id",
                 fields: {
-                    document_status: { type: "string" },
-                    document_type: { type: "string" },
-                    location: {type: "string"},
-                    department: {type: "string"},
+                    name: { type: "string" },
+                    asset_state: { type: "string" },
+                    asset_value: { type: "integer" },
+                    asset_type: {type: "string"},
+                    owner: { type: "string" },
+                    custodian: {type: "string"},
+                    
                     
                     //department: {type: "string"}
                 }
@@ -106,18 +109,24 @@ function search_result()
                         //     buttonCount: 5
                         // },
                        columns: [{
-                            field: "document_status",
+                            field: "name",
                             title: "Name",
                             width: 200
                         }, {
-                            field: "document_type",
+                            field: "asset_state",
                             title: "Document Type"
                         }, {
-                            field: "location",
-                            title: "Location"
+                            field: "asset_value",
+                            title: "Asset Value"
                         }, {
-                            field: "department",
-                            title: "department"
+                            field: "owner",
+                            title: "Owner"
+                        }, {
+                            field: "custodian",
+                            title: "Custodian"
+                        }, {
+                            field: "document_type",
+                            title: "Document Type"
                         },
                       { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 
@@ -143,6 +152,6 @@ function delete_file(e)
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/documents/"+ dataItem.id + "/edit"
+        window.location.href = "/documents/"+ dataItem.assetable_id + "/edit"
     }
       });

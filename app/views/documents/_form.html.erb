@@ -1,8 +1,5 @@
 <%= f.fields_for :asset do |ff| %>
-
-<%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>
-<%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
-
+  <%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>
 <% end %>
 
 <div class="clearfix">
@@ -56,18 +53,16 @@
   </div>
 </div>
 
-<script>
+<%= f.fields_for :asset do |ff| %>
+  <%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
+<% end %>
 
+
+<script>
 $('.ui.checkbox')
   .checkbox();
 
 $(document).ready(function(){
   $('.datepicker').kendoDatePicker()
 });
-
 </script>
-
-
-
-
-

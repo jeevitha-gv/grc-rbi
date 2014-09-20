@@ -3,7 +3,7 @@ class DocumentsController < ApplicationController
 	layout 'asset_layout'
 
   def index
-  	@documents = current_company.documents
+  	@assets = current_company.assets.where(:assetable_type => "Document")
   end
 
   def new

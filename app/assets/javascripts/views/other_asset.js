@@ -57,7 +57,7 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/other_assets",
+                                    url: "/inventory/other_assets",
                                     dataType: 'json',
                                     type: 'get'
                                 },
@@ -79,9 +79,9 @@ function search_result()
             id: "id",
                 fields: {
                     name: { type: "string" },
-                    status: { type: "string" },
-                    location: {type: "string"},
-                    technical_contact: {type: "string"},
+                   owner: { type: "string" },
+                    custodian: {type: "string"},
+                    asset_type: {type: "string"},
                     
                     //department: {type: "string"}
                 }
@@ -103,12 +103,16 @@ function search_result()
                             title: "Name",
                             width: 200
                         }, {
-                            field: "status",
-                            title: "Status"
+                            field: "owner",
+                            title: "Owner"
                         }, {
-                            field: "location",
-                            title: "Location"
-                        },                            
+                            field: "custodian",
+                            title: "Custodian"
+                        },                    
+                        {
+                            field: "asset_type",
+                            title: "AssetType"
+                        },                               
                       { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 
                         ],
@@ -134,6 +138,6 @@ function delete_file(e)
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/other_assets/"+ dataItem.id + "/edit"
+        window.location.href = "other_assets/"+ dataItem.assetable_id + "/edit"
     }
 });

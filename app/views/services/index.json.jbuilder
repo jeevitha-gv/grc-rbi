@@ -1,10 +1,11 @@
 json.data do |json|
-  json.array!(@services) do |s|
-      json.id s.id
-      json.name s.name
-      json.service_type s.service_type.name if s.service_type.present?
-      json.location s.location.name
-      json.department s.department.name
+  json.array!(@assets) do |a|
+      json.id a.id
+      json.assetable_id a.assetable_id
+      json.name a.name
+      json.owner a.info_asset_owner.user_name if a.info_asset_owner.present?
+      json.custodian a.info_asset_custodian.user_name if a.info_asset_custodian.present?
+      json.service_type a.assetable.service_type.name if a.assetable.service_type.name.present?
       
      end
 end

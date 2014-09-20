@@ -72,7 +72,7 @@ overflow: auto;
             <td><label>Custodian : </label>
               <span> <%=@asset.info_asset_custodian.user_name %> </span></td>
             <td><label>Identifier : </label>
-              <span></span></td>
+              <span><%=@asset.info_asset_identifier.user_name %></span></td>
           </tr>
           <tr>
             <td><label>Evaluator/CIO : </label>
@@ -244,20 +244,39 @@ overflow: auto;
   </div>
 </div>
 
-<div class="row">
+<!-- <div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-	<%= f.fields_for :attachments, (@asset_action.attachments.present? ? @asset_action.attachments : @asset_action.attachments.build) do |attach| %>
-		<%= attach.label :attachment, 'Attach Evidence Documents', :class => "attach-icon fleft blue_link" %><br />
-    <%= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
-      <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
+	<%#= f.fields_for :attachments, (@asset_action.attachments.present? ? @asset_action.attachments : @asset_action.attachments.build) do |attach| %>
+		<%#= attach.label :attachment, 'Attach Evidence Documents', :class => "attach-icon fleft blue_link" %><br />
+    <%#= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
+      <%#= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
       <br />
-	<% end %>
+	<%# end %>
 	</div>
-</div>
+</div> -->
 
 </div>
 </div>
 </div>
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<%= f.fields_for :attachments, (@asset_action.attachments.present? ? @asset_action.attachments : @asset_action.attachments.build) do |attach|%>
+  <div id="example">
+     <div class="demo-section k-header" id="files" method ="post" type="file">
+        <%#= attach.label :attachment, 'Attach Evidence Documents', :class => "attach-icon fleft blue_link" %><br />
+         <input name="files[]" id="files" type="file" />
+        <%#= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
+          <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>           
+     </div>
+  </div>
+  <% end %>
+</div>
+
+<script>
+
+   $(document).ready(function() {
+      $("#files").kendoUpload();
+    });
 
 
 <%= f.fields_for :attachments, (@asset_action.attachments.present? ? @asset_action.attachments : @asset_action.attachments.build) do |attach|%>
@@ -281,4 +300,5 @@ $(document).ready(function() {
                     $("#files").kendoUpload();
                 });
 });
+
 </script>
