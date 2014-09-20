@@ -106,12 +106,11 @@ resources :computers do
    resources :contracts do
    end
 
-   
   scope '/inventory' do
     resources :information_assets do
       collection do
-      post 'infoasset_imports'
-    end
+        post 'infoasset_imports'
+      end
     end
     resources :documents
     resources :computers
