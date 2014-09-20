@@ -5,14 +5,14 @@
 
 <% end %>
 <div class="clearfix">
-  <h4><b>Source Codes</b></h4>
+  <h4><b>Source Code Properties</b></h4>
 </div>
 
 <div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group clearfix">
       <div class="col-sm-12">
-        <%= f.label :vcs_url %>        
+        <%= f.label :vcs_url, "VCS URL" %>
         <%= f.text_field :vcs_url, :class => "form-control risk-normal-input" %>
       </div>
     </div>
@@ -23,7 +23,7 @@
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
       <div class="col-sm-12">
-        <%= f.label :Project_Manager %>        
+        <%= f.label :project_manager, "Project Manager Email" %>
         <%= f.text_field :project_manager, :class => "form-control risk-normal-input" %>
       </div>
     </div>
@@ -34,7 +34,7 @@
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
       <div class="col-sm-12">
-        <%= f.label :Version_Number %>        
+        <%= f.label :version_number, "Version / Build / Release Number" %>
         <%= f.text_field :version_number, :class => "form-control risk-normal-input" %>
       </div>
     </div>
@@ -45,8 +45,8 @@
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
       <div class="col-sm-12">
-        <%= f.label :Backup_Measure %>        
-        <%= f.text_field :backup_measure, :class => "form-control risk-normal-input" %>
+        <%= f.label :backup_measure, "Backup Measures Taken" %>
+        <%= f.text_area :backup_measure, :class => "form-control risk-normal-input" %>
       </div>
     </div>
   </div>
@@ -56,7 +56,7 @@
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
       <div class="col-sm-12">
-        <%= f.label :Assigned_On %>        
+        <%= f.label :Assigned_On %>      
         <%= f.text_field :assigned_on, :class => "form-control risk-normal-input" %>
       </div>
     </div>
@@ -67,7 +67,7 @@
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
       <div class="col-sm-12">
-        <%= f.label :Expected_Life %>        
+        <%= f.label :Expected_Life %>
         <%= f.text_field :expected_life, :class => "form-control risk-normal-input" %>
       </div>
     </div>
@@ -84,8 +84,3 @@ $(document).ready(function(){
 });
 
 </script>
-
-
-
-
-
