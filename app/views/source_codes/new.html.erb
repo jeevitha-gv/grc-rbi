@@ -3,19 +3,19 @@
     <div class="container">
       <div class="row">
         <div id="example" class="k-content">
-          <div class="risk-title">New SourceCode</div>
+          <div class="risk-title">New Document</div>
 
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="risk-wrap">
               <div class="sub-wrap">
-                <div class="sub-titile">Add a new SourceCode</div>
+                <div class="sub-titile">Add a new Document</div>
                 <div class="sub-wrap-bg">
-                  <%= form_for(@sourcecode) do |f| %>
+                  <%=form_for(@sourcecode) do |f| %>
                     <%= render 'form', :f => f, :sourcecode => @sourcecode %>
                     <div class="row">
                       <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                         <div class="btn-group gr-btn save-file">
-                          <%= f.submit "Add Computer", :class => "orange_btn"%>
+                          <%= f.submit "Add Sourcecode", :class => "orange_btn"%>
                         </div>
                       </div>
                     </div>
@@ -28,6 +28,4 @@
       </div>
     </div>
   </div>
-</div>
-</div>
 </div>

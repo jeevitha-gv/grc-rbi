@@ -38,17 +38,17 @@ function search_result()
                 value   : val
             },
             {
-                field: "status",
+                field: "owner",
                 operator: "contains",
                 value   : val
             },
             {
-                 field: "location",
+                 field: "custodian",
                  operator: "contains",
                  value   : val
             },
             {
-                 field: "technical_contact",
+                 field: "project_manager",
                  operator: "contains",
                  value   : val
             },
@@ -64,15 +64,15 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/inventory/computers",
+                                    url: "/inventory/source_codes",
                                     dataType: 'json',
                                     type: 'get'
                                 },
                                 destroy: {
                                            url: function(risk) 
                                                 {
-                                                    return "/computers/" + computer.id
-                                                },
+                                                    return "source_codes/" + service.id
+                                                  },
                                                 dataType: "json",
                                                 type: "DELETE"
                                          }
@@ -86,11 +86,11 @@ function search_result()
             id: "id",
                 fields: {
                     name: { type: "string" },
-                    computer_category: { type: "string" },
-                    asset_state: { type: "string" },
-                    asset_value: { type: "string" },
                     owner: { type: "string" },
-                    custodian: {type: "string"},                  
+                    custodian: {type: "string"},
+                    project_manager: {type: "string"},
+                    
+                    //department: {type: "string"}
                 }
             }
         },
@@ -110,22 +110,16 @@ function search_result()
                             title: "Name",
                             width: 200
                         }, {
-                            field: "computer_category",
-                            title: "Category"
-                        }, {
-                            field: "asset_state",
-                            title: "Status"
-                        }, {
-                            field: "asset_value",
-                            title: "Asset Value"
-                        }, {
                             field: "owner",
                             title: "Owner"
                         }, {
                             field: "custodian",
                             title: "Custodian"
+                        }, {
+                            field: "project_manager",
+                            title: "Project Manager"
                         },
-                      { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
+                      { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file},{text: "pdf", click: pdf_file}], title: "Action" }
 
                         ],
                     });
@@ -135,7 +129,7 @@ function delete_file(e)
        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
        if (confirm('Are you sure you want to delete this record ?')) {
                $.ajax({
-               url: "/computers/"+dataItem.id,
+               url: "services/"+dataItem.id,
                type: 'delete',
                dataType: 'json',
                success:function(result){
@@ -149,6 +143,11 @@ function delete_file(e)
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/computers/"+ dataItem.id + "/edit"
+        window.location.href = "/inventory/source_codes/"+ dataItem.assetable_id + "/edit"
     }
+function pdf_file(e)
+  {
+    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+    window.location.href = "/inventory/source_codes/"+ dataItem.assetable_id +".pdf"
+  }
       });

@@ -14,8 +14,9 @@ class AssetReviewsController < ApplicationController
 
   def create
 		@asset_review = @asset.build_asset_review(review_params)
-    @asset.asset_state_id = 4
 		if @asset_review.save
+      @asset.asset_state_id = 4
+      @asset.save
 			redirect_to asset_asset_reviews_path
 		else
 			redirect_to new_asset_asset_review_path
