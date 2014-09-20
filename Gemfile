@@ -80,3 +80,6 @@ gem 'activemerchant'
 gem "rails_best_practices"
 
 gem 'daemons'
+
+# Versioning gem
+ gem 'paper_trail', '~> 3.0.5'
