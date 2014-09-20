@@ -87,14 +87,6 @@ Rails.application.routes.draw do
     resource :answers, only: [:index, :create, :new]
  end
 
-resources :computers do
-    collection do
-    post 'computer_imports'
-    get 'computer_export'
-  end
- end
-  
-
  resources :vendors do
   collection do
     post 'vendor_imports'
