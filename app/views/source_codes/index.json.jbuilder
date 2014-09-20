@@ -5,6 +5,6 @@ json.data do |json|
       json.name a.name 
       json.owner a.info_asset_owner.user_name if a.info_asset_owner.present?
       json.custodian a.info_asset_custodian.user_name if a.info_asset_custodian.present?
-      json.software_type a.assetable.software_type.name if a.assetable.software_type.name.present?
+      json.project_manager a.assetable.project_manager if a.assetable.project_manager.present?
      end
 end

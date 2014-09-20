@@ -113,6 +113,7 @@ resources :computers do
       end
     end
     resources :documents
+    resources :source_codes
     resources :computers
     resources :other_assets do
       collection do
