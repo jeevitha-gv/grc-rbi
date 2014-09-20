@@ -57,7 +57,7 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/assets/other_assets",
+                                    url: "/inventory/other_assets",
                                     dataType: 'json',
                                     type: 'get'
                                 },
@@ -138,6 +138,6 @@ function delete_file(e)
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/other_assets/"+ dataItem.id + "/edit"
+        window.location.href = "other_assets/"+ dataItem.assetable_id + "/edit"
     }
 });
