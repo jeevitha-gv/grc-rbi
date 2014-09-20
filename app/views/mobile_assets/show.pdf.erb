@@ -1,6 +1,3 @@
-
-
-
 <!doctype html>
 <html>
 <head>
@@ -64,9 +61,9 @@ label {float: left;padding: 5px 10px; font-weight:bold; width: 25%; font-size:12
 <label>Evaluator/CIO : </label>
 <div class="label_content_top"><%=@mobile_asset.asset.info_asset_evaluator.user_name %></div>
 <label>Location : </label>
-<div class="label_content_top"><%= @mobile_asset.asset.location.name if @asset.location.present? %></div>
+<div class="label_content_top"><%= @mobile_asset.asset.location.name if @mobile_asset.asset.location.present? %></div>
 <label>Department : </label>
-<div class="label_content_top"><%= @mobile_asset.asset.department.name if @asset.department.present? %></div>
+<div class="label_content_top"><%= @mobile_asset.asset.department.name if @mobile_asset.asset.department.present? %></div>
 <label>Confidentiality : </label>
 <div class="label_content_top"><%= @mobile_asset.asset.asset_confi.name%></div>
 <label>Integrity : </label>
@@ -85,11 +82,6 @@ label {float: left;padding: 5px 10px; font-weight:bold; width: 25%; font-size:12
 <div class="label_content_top"></div>
 <label>Asset Description </label>
 <div class="label_content_top"><%= @mobile_asset.asset.description%> </div>
-
-
-
-
-
 
 </div>
 

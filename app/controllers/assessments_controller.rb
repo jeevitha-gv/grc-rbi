@@ -26,7 +26,6 @@ class AssessmentsController < ApplicationController
 	end
 
 	def edit
-		# binding.pry
 		@assessment = @asset.assessment(asset_id: @asset.id)
 	end
 

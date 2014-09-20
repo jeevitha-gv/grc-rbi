@@ -64,7 +64,7 @@ function search_result()
                         dataSource: {
                             transport: {
                                 read: {
-                                    url: "/assets/computers",
+                                    url: "/inventory/computers",
                                     dataType: 'json',
                                     type: 'get'
                                 },
@@ -86,11 +86,11 @@ function search_result()
             id: "id",
                 fields: {
                     name: { type: "string" },
+                    computer_category: { type: "string" },
+                    asset_state: { type: "string" },
+                    asset_value: { type: "string" },
                     owner: { type: "string" },
-                    custodian: {type: "string"},
-                    computer_category: {type: "string"},
-                    
-                    //department: {type: "string"}
+                    custodian: {type: "string"},                  
                 }
             }
         },
@@ -110,14 +110,20 @@ function search_result()
                             title: "Name",
                             width: 200
                         }, {
+                            field: "computer_category",
+                            title: "Category"
+                        }, {
+                            field: "asset_state",
+                            title: "Status"
+                        }, {
+                            field: "asset_value",
+                            title: "Asset Value"
+                        }, {
                             field: "owner",
                             title: "Owner"
                         }, {
                             field: "custodian",
                             title: "Custodian"
-                        }, {
-                            field: "computer_category",
-                            title: "ComputerCategory"
                         },
                       { command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 
