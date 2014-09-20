@@ -40,24 +40,29 @@ label {float: left;padding: 5px 10px; font-weight:bold; width: 25%; font-size:12
 
   </div>
 <!--Title Start-->
-<h2 class="textaligncenter">Other Assets</h2>
+<h2 class="textaligncenter">Software Assets</h2>
 <!--Title Start-->
 <div class="cls"></div>
 <!-- SideContent Start-->
 <div class="side">
 <!-- Leftside Content Start-->
 <div class="leftside">
+<label>Product Name: </label>
+<div class="label_content_top"><%= @software.asset.name %></div>
 <label>Manufacturer: </label>
-<div class="label_content_top"><%= @other_asset.manufacturer %></div>
-<label>Model: </label>
-<div class="label_content_top"><%= @other_asset.model %></div>
-<label>IP: </label>
-<div class="label_content_top"><%=@other_asset.ip %></div>
+<div class="label_content_top"><%= @software.manufacturer %></div>
+<label>Cost: </label>
+<div class="label_content_top"><%=@software.cost %></div>
 
-<label>Lease Contract: </label>
-<div class="label_content_top"><%=@other_asset.lease_contract %></div>
-<label>Maintenance Contract :  </label>
-<div class="label_content_top"><%=@other_asset.maintenance_contract %></div>
+<label>License Years: </label>
+<div class="label_content_top"><%=@software.license_years %></div>
+<label>License Months :  </label>
+<div class="label_content_top"><%=@software.license_months %></div>
+<label>license_key : </label>
+<div class="label_content_top"><%=@software.license_key %></div>
+<label>Version : </label>
+<div class="label_content_top"><%= @software.version %></div>
+
 
 </div>
 

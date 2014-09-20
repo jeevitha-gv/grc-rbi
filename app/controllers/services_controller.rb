@@ -22,6 +22,21 @@ class ServicesController < ApplicationController
     end
   end
 
+  
+  def show
+      @service = Service.find(params[:id])
+      # @incident=Evaluate.find(params[:id])
+      respond_to do |format|
+      format.html
+      format.pdf do
+      @pdf = (render_to_string pdf: "PDF", template: "services/show.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
+        send_data(@pdf, type: "application/pdf", filename: @service.asset.name)
+      end
+    end
+  end
+
+
+
   def edit
   	@service = Service.find(params[:id])
   end

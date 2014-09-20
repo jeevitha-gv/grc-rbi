@@ -23,6 +23,22 @@ class DocumentsController < ApplicationController
     end
   end
 
+
+
+  def show
+      @document = Document.find(params[:id])
+      # @incident=Evaluate.find(params[:id])
+      respond_to do |format|
+      format.html
+      format.pdf do
+      @pdf = (render_to_string pdf: "PDF", template: "documents/show.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
+        send_data(@pdf, type: "application/pdf", filename: @document.asset.name)
+      end
+    end
+  end
+
+
+
   def edit
   	@document = Document.find(params[:id])
   end

@@ -23,6 +23,18 @@ class SoftwaresController < ApplicationController
   	end
   end
 
+  def show
+      @software = Software.find(params[:id])
+      # @incident=Evaluate.find(params[:id])
+      respond_to do |format|
+      format.html
+      format.pdf do
+      @pdf = (render_to_string pdf: "PDF", template: "softwares/show.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
+        send_data(@pdf, type: "application/pdf", filename: @software.asset.name)
+      end
+    end
+  end
+
   def edit
   	@software = Software.find(params[:id])
   end

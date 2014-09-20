@@ -24,6 +24,19 @@ class OtherAssetsController < ApplicationController
   	end
   end
 
+  def show
+      @other_asset = OtherAsset.find(params[:id])
+      # @incident=Evaluate.find(params[:id])
+      respond_to do |format|
+      format.html
+      format.pdf do
+      @pdf = (render_to_string pdf: "PDF", template: "other_assets/show.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
+        send_data(@pdf, type: "application/pdf", filename: @other_asset.asset.name)
+      end
+    end
+  end
+
+
   def edit
     @other_asset = OtherAsset.find(params[:id])
   end
