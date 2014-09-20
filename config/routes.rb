@@ -98,6 +98,8 @@ Rails.application.routes.draw do
    resources :contracts do
    end
 
+  resources :asset_dashboards
+
   scope '/inventory' do
     resources :information_assets do
       collection do
