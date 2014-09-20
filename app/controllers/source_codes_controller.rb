@@ -3,11 +3,7 @@ class SourceCodesController < ApplicationController
   layout 'asset_layout'
 
   def index
-<<<<<<< HEAD
   	  	@assets = current_company.assets.where(:assetable_type => "SourceCode")
-=======
-  	@sourcecode = current_company.assets
->>>>>>> 0c8cb8a209b618f321ce7d2b0757c46fe8150c87
   end
 
   def new
