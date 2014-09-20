@@ -1,6 +1,7 @@
 class MobileAssetsController < ApplicationController
 
   layout 'asset_layout'
+  
 
   def index
   	@mobile_assets = current_company.assets
@@ -22,6 +23,19 @@ class MobileAssetsController < ApplicationController
   		render 'new'
   	end
   end
+  
+  def show
+      @mobile_asset = MobileAsset.find(params[:id])
+      respond_to do |format|
+      format.html
+      format.pdf do
+      @pdf = (render_to_string pdf: "PDF", template: "mobile_assets/show.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
+        send_data(@pdf, type: "application/pdf", filename: @mobile_asset.model)
+      end
+    end
+  end
+
+
 
   def edit
 		@mobile_asset = MobileAsset.find(params[:id])

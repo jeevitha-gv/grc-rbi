@@ -1,0 +1,91 @@
+<%= f.fields_for :asset do |ff| %>
+
+<%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>
+<%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
+
+<% end %>
+<div class="clearfix">
+  <h4><b>Source Codes</b></h4>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :vcs_url %>        
+        <%= f.text_field :vcs_url, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :Project_Manager %>        
+        <%= f.text_field :project_manager, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :Version_Number %>        
+        <%= f.text_field :version_number, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :Backup_Measure %>        
+        <%= f.text_field :backup_measure, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :Assigned_On %>        
+        <%= f.text_field :assigned_on, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :Expected_Life %>        
+        <%= f.text_field :expected_life, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+$('.ui.checkbox')
+  .checkbox();
+
+$(document).ready(function(){
+  $('.datepicker').kendoDatePicker()
+});
+
+</script>
+
+
+
+
+

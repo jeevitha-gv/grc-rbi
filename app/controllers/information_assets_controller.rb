@@ -37,6 +37,19 @@ class InformationAssetsController < ApplicationController
     end
   end
 
+  def show
+      @information_asset = InformationAsset.find(params[:id])
+      # @incident=Evaluate.find(params[:id])
+      respond_to do |format|
+      format.html
+      format.pdf do
+      @pdf = (render_to_string pdf: "PDF", template: "information_assets/show.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
+        send_data(@pdf, type: "application/pdf", filename: @asset.name)
+      end
+    end
+  end
+
+
   def destroy
     @information_asset = InformationAsset.find(params[:id])
     @information_asset.destroy
