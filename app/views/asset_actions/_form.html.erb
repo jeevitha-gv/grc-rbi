@@ -166,14 +166,14 @@ overflow: auto;
     <div class="risk-assetes">
       <div class="mitigation-recomm">
         <div class="mit-reccom-title">Controls for Labelling</div>
-        <p><%= @assessment.labelling%></p>
+        <p><%= @assessment.labelling if @assessment.labelling.present? %></p>
       </div>
     </div>
   </div>
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <div class="mitigation-recomm">
       <div class="mit-reccom-title">Controls for Storage</div>
-      <p><%= @assessment.storage%></p>
+      <p><%= @assessment.storage if @assessment.storage.present? %></p>
     </div>
   </div>
 </div>
@@ -184,14 +184,14 @@ overflow: auto;
     <div class="risk-assetes">
       <div class="mitigation-recomm">
         <div class="mit-reccom-title">Controls for Transport / Transmission</div>
-        <p><%= @assessment.transport%></p>
+        <p><%= @assessment.transport if @assessment.transport.present? %></p>
       </div>
     </div>
   </div>
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <div class="mitigation-recomm">
       <div class="mit-reccom-title">Controls for Addressing</div>
-      <%= sanitize(@assessment.addressing) %>
+      <%= sanitize(@assessment.addressing) if @assessment.addressing.present? %>
     </div>
   </div>
 </div>
@@ -202,7 +202,7 @@ overflow: auto;
     <div class="risk-assetes">
       <div class="mitigation-recomm">
         <div class="mit-reccom-title">Controls for Disposal</div>
-        <p><%= @assessment.disposal%></p>
+        <p><%= @assessment.disposal if @assessment.disposal.present? %></p>
       </div>
     </div>
   </div>
@@ -214,14 +214,14 @@ overflow: auto;
     <div class="risk-assetes">
       <div class="mitigation-recomm">
         <div class="mit-reccom-title">Assessment</div>
-        <%= sanitize @assessment.assessment %>
+        <%= sanitize @assessment.assessment if @assessment.assessment.present?  %>
       </div>
     </div>
   </div>
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <div class="mitigation-recomm">
       <div class="mit-reccom-title">Conclusion</div>
-      <%= sanitize @assessment.conclusion %>
+      <%= sanitize @assessment.conclusion if @assessment.conclusion.present? %>
     </div>
   </div>
 </div>
@@ -259,29 +259,9 @@ overflow: auto;
 </div>
 </div>
 
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-<%= f.fields_for :attachments, (@asset_action.attachments.present? ? @asset_action.attachments : @asset_action.attachments.build) do |attach|%>
-  <div id="example">
-     <div class="demo-section k-header" id="files" method ="post" type="file">
-        <%#= attach.label :attachment, 'Attach Evidence Documents', :class => "attach-icon fleft blue_link" %><br />
-         <input name="files[]" id="files" type="file" />
-        <%#= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
-          <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>           
-     </div>
-  </div>
-  <% end %>
-</div>
-
-<script>
-
-   $(document).ready(function() {
-      $("#files").kendoUpload();
-    });
-
-
 <%= f.fields_for :attachments, (@asset_action.attachments.present? ? @asset_action.attachments : @asset_action.attachments.build) do |attach|%>
         <div id="example">
-            <div class="demo-section k-header">
+            <div class="demo-section k-header" id="files">
                     <input name="files[]" id="files" type="file" />                    
                 </div>
         </div>
@@ -289,13 +269,7 @@ overflow: auto;
 
 <script>
 $(document).ready(function() {
-    // $("#files").kendoUpload({
-    //     async: {
-    //         saveUrl: "assessments/save_file",
-    //         removeUrl: "assessments/remove_file",
-    //         autoUpload: true
-    //     }
-    // });
+
     $(document).ready(function() {
                     $("#files").kendoUpload();
                 });
