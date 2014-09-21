@@ -98,7 +98,7 @@ Rails.application.routes.draw do
    resources :contracts do
    end
 
-  resources :asset_dashboards
+  resources :asset_dashboard
 
   scope '/inventory' do
     resources :information_assets do

@@ -29,7 +29,7 @@ class SourceCodesController < ApplicationController
 
   def update
     @source_code = SourceCode.find(params[:id])
-    if @source_code.update_attributes(info_assets)
+    if @source_code.update_attributes(sourcecode_params)
       redirect_to source_codes_path
     else
       render new

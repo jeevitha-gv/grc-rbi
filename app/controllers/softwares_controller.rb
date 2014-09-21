@@ -81,7 +81,7 @@ class SoftwaresController < ApplicationController
   end
 
   def software_params
-  	params.require(:software).permit(:software_type_id, :product_name, :manufacturer, :vendor_id, :cost, :license_years, :license_months, :installation_date, :license_expiry_date, :license_key, :version, :license_type_id, :installation_path, :last_audit_date, :assigned_on, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity])
+  	params.require(:software).permit(:software_type_id, :product_name, :manufacturer, :vendor_id, :cost, :installation_date, :license_expiry_date, :license_key, :version, :license_type_id, :installation_path, :last_audit_date, :assigned_on, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity])
   end
 
 end
