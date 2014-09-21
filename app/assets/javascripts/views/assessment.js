@@ -126,11 +126,29 @@ $("#panelbar").kendoPanelBar();
                             field: "evaluator",
                             title: "Evaluator",
                             width: 120
-                        },{ command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
+                        },{ command: [{text: "assessment", click: check_file}, {text: "action", click: act_file}, {text: "review", click: review_file}, {text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 
                         ],
                     });
           
+function check_file(e)
+{
+  var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+  window.location.href = "/assets/"+ dataItem.id + "/assessments/new"
+}
+
+function act_file(e)
+{
+  var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+  window.location.href = "/assets/"+ dataItem.id + "/asset_actions/new"
+}
+
+function review_file(e)
+{
+  var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+  window.location.href = "/assets/"+ dataItem.id + "/asset_reviews/new"
+}
+
 function delete_file(e)
    {
        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));

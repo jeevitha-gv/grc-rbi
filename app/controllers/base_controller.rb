@@ -161,16 +161,12 @@ class BaseController < ActionController::Base
 
   def accessible_assets
     if params[:stage] == "evaluate"
-      @access_asset = current_company.assets.where(evaluated_by: current_user.id)
+      @access_asset = current_company.assets.where("evaluated_by = ? AND assetable_type = ?", current_user.id, "InformationAsset")
     elsif params[:stage] == "action"
-      @access_asset = current_company.assets.where(custodian_id: current_user.id)
+      @access_asset = current_company.assets.where("custodian_id = ? AND assetable_type = ?", current_user.id, "InformationAsset")
     elsif params[:stage] == "review"
-      @access_asset = current_company.assets.where(evaluated_by: current_user.id)
+      @access_asset = current_company.assets.where("evaluated_by = ? AND assetable_type = ?", current_user.id, "InformationAsset")
     end
   end
-
-  
-
-
 
 end
