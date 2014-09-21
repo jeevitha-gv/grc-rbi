@@ -98,21 +98,34 @@ $("#panelbar").kendoPanelBar();
                         height: 550,
                         groupable: false,
                         sortable: true,
-                        pageable: false,
-                        //{
-                        //     refresh: true,
-                        //     pageSizes: true,
-                        //     buttonCount: 5
-                        // },
+                        pageable: false,                        
                        columns: [ {
+                            field: "name",
+                            title: "Name"
+                        }, {
+                            field: "status",
+                            title: "Status",
+                            width: 120
+                        }, {
                             field: "assetable_type",
-                            title: "Asset Type"
+                            title: "Asset Type",
+                            width: 150
+                        }, {
+                            field: "asset_value",
+                            title: "Asset Value",
+                            width: 120
                         }, {
                             field: "owner",
-                            title: "Asset Owner"
+                            title: "Owner",
+                            width: 120
                         }, {
                             field: "custodian",
-                            title: "Asset Custodian"
+                            title: "Custodian",
+                            width: 120
+                        },{
+                            field: "evaluator",
+                            title: "Evaluator",
+                            width: 120
                         },{ command: [{text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 
                         ],

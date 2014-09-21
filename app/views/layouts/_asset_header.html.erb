@@ -68,13 +68,13 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <li><a  href="/computers" class="<%= (request.fullpath.include?("computers") || request.fullpath.include?("softwares") || request.fullpath.include?("mobile_assets") || request.fullpath.include?("other_assets") || request.fullpath.include?("services") == true || request.fullpath.include?("documents")) ? 'active' : '' %>">
+        <li><a  href="/inventory/computers" class="<%= (request.fullpath.include?("computers") || request.fullpath.include?("softwares") || request.fullpath.include?("mobile_assets") || request.fullpath.include?("other_assets") || request.fullpath.include?("services") == true || request.fullpath.include?("documents")) ? 'active' : '' %>">
             <div class="plan-icon"></div>
             Assets</a></li>        
-        <li><a  href="/assets/information_assets/new" class="<%= request.fullpath.include?("information_assets/new") == true ? 'active' : '' %>">
+        <li><a  href="/inventory/information_assets/new" class="<%= request.fullpath.include?("information_assets/new") == true ? 'active' : '' %>">
             <div class="plan-icon"></div>
             Register</a></li>
-        <li><a  href="/assets/information_assets" class="<%= (request.fullpath.include?("information_assets") && action_name == "index") == true ? 'active' : '' %>">
+        <li><a  href="/inventory/information_assets" class="<%= (request.fullpath.include?("information_assets") && action_name == "index") == true ? 'active' : '' %>">
             <div class="plan-icon"></div>
             Inventory</a></li>
         <li><a  href="/assets?stage=evaluate" class="<%= request.fullpath.include?("assessments") == true ? 'active' : '' %>">
