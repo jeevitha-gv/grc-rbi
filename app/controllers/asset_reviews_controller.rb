@@ -8,8 +8,8 @@ class AssetReviewsController < ApplicationController
 
   def new 
   	@asset_review = @asset.asset_review.present? ? @asset.asset_review : @asset.build_asset_review
-		# @assessment = @asset.build_assessment	
-	@asset_info = @asset.assetable
+		@asset_action = @asset.asset_action
+  	@asset_info = @asset.assetable
   end
 
   def create
