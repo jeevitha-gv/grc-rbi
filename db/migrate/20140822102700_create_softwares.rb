@@ -6,8 +6,6 @@ class CreateSoftwares < ActiveRecord::Migration
       t.string :manufacturer
       t.integer :vendor_id
       t.float :cost
-      t.integer :license_years
-      t.integer :license_months
       t.date :installation_date
       t.date :license_expiry_date
       t.string :license_key

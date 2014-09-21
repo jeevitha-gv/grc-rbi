@@ -1,3 +1,10 @@
+<style>
+.move-down {
+  left: -9px;
+  top: 28px;  
+}
+</style>
+
 <%= f.fields_for :asset do |ff| %>
 
 <%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>
@@ -12,31 +19,6 @@
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
       <div class="col-sm-12">
-        <%= f.label :product_name, t('software.product_name') %>
-        <div class="risk-select width-fix">
-          <%= f.text_field :product_name, :class => "form-control risk-normal-input" %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :manufacturer, t('software.manufacturer') %>
-        <div class="risk-select width-fix">
-          <%= f.text_field :manufacturer, :class => "form-control risk-normal-input" %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="clearfix border-divider"></div>
-
-<div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
         <%= f.label :software_type_id, t('software.soft_type') %>
         <div class="risk-select width-fix">
           <%= f.collection_select(:software_type_id, SoftwareType.all, :id, :name) %>
@@ -44,6 +26,36 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :product_name, t('software.product_name') %>        
+        <%= f.text_field :product_name, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :version, t('software.version') %>
+        <%= f.text_field :version, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :manufacturer, t('software.manufacturer') %>
+        <%= f.text_field :manufacturer, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">   
     <div class="form-group clearfix">
       <div class="col-sm-12">
@@ -54,7 +66,6 @@
       </div>
     </div>
   </div>
-
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
       <div class="col-sm-12">
@@ -67,36 +78,20 @@
   </div>
 </div>
 
-<div class="clearfix border-divider"></div>
-
 <div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group clearfix">
       <div class="col-sm-12">
-        <%= f.label :cost, t('software.cost') %>
-        <div class="risk-select width-fix">
-          <%= f.text_field :cost, :class => "form-control risk-normal-input" %>
-        </div>
+        <%= f.label :license_key, t('software.license_key') %>
+        <%= f.text_field :license_key, :class => "form-control risk-normal-input" %>
       </div>
     </div>
   </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group clearfix">
       <div class="col-sm-12">
-        <%= f.label :license_years, t('software.license_years') %>
-        <div class="risk-select width-fix">
-          <%= f.text_field :license_years, :class => "form-control risk-normal-input" %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :license_months, t('software.license_months') %>
-        <div class="risk-select width-fix">
-          <%= f.text_field :license_months, :class => "form-control risk-normal-input" %>
-        </div>
+        <%= f.label :installation_path, t('software.install_path') %>
+        <%= f.text_field :installation_path, :class => "form-control risk-normal-input" %>
       </div>
     </div>
   </div>
@@ -106,34 +101,11 @@
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
       <div class="col-sm-12">
-        <%= f.label :license_key, t('software.license_key') %>
-        <div class="risk-select width-fix">
-          <%= f.text_field :license_key, :class => "form-control risk-normal-input" %>
-        </div>
+        <%= f.label :cost, "Cost (in $)" %>
+        <%= f.text_field :cost, :class => "form-control risk-normal-input" %>
       </div>
     </div>
   </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :installation_path, t('software.install_path') %>
-        <div class="risk-select width-fix">
-          <%= f.text_field :installation_path, :class => "form-control risk-normal-input" %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :version, t('software.version') %>
-        <div class="risk-select width-fix">
-        <div class="risk-select width-fix">
-          <%= f.text_field :version, :class => "form-control risk-normal-input" %>
-        </div>
-      </div>
-    </div>
-  </div> 
 </div>
 
 <div class="clearfix border-divider"></div>
@@ -184,8 +156,6 @@
     	</div>
   	</div>
  </div>
-
-<div class="clearfix border-divider"></div>
 
 
 <script>
