@@ -1,4 +1,4 @@
-class AssetDashboardsController < ApplicationController
+class AssetDashboardController < ApplicationController
 	def index
 @type=Asset.select("assetable_type as name,count(*) as count").group(:assetable_type)
 @asset = Asset.joins(:asset_state).select("asset_states.name as state,count(asset_state_id) as count").group(:state)
