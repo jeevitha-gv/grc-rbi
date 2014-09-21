@@ -93,7 +93,7 @@ $("#panelbar").kendoPanelBar();
         dataSource: dataSource,
         dataBound: function(){
             updateGridForStage(stage)
-            riskGridTitle()
+            gridTitle()
         },
                         height: 550,
                         groupable: false,
@@ -185,4 +185,14 @@ function select_stage_class(stage_class)
         return "k-grid-miti, .k-grid-list";
       }
     }
-      });
+
+function gridTitle()
+{
+  $('.k-grid-tick').attr('title','Evaluate');
+  $('.k-grid-tick1').attr('title','Act');
+  $('.k-grid-miti').attr('title','Review');
+  $('.k-grid-edit').attr('title','Edit');
+  $('.k-grid-delete').attr('title','Delete');
+}
+      
+});
