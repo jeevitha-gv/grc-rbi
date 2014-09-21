@@ -136,27 +136,27 @@ function search_result()
                             title: "Evaluator",
                             width: 120
                         },
-                      { command: [{text: "evaluate", click: evaluate_file}, {text: "action", click: action_file}, {text: "review", click: review_file}, {text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
+                      { command: [{text: "tick", click: check_file}, {text: "tick1", click: act_file}, {text: "miti", click: review_file}, {text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 
                         ],
                     });
 
-function evaluate_file(e)
+function check_file(e)
 {
-    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-    window.location.href = "/assets/" + dataItem.id + "/assessments/new";
+  var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+  window.location.href = "/assets/"+ dataItem.id + "/assessments/new"
 }
 
-function action_file(e)
+function act_file(e)
 {
-    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-    window.location.href = "/assets/" + dataItem.id + "/asset_actions/new";
+  var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+  window.location.href = "/assets/"+ dataItem.id + "/asset_actions/new"
 }
 
 function review_file(e)
-
-{    var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-    window.location.href = "/assets/" + dataItem.id + "/asset_reviews/new";
+{
+  var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+  window.location.href = "/assets/"+ dataItem.id + "/asset_reviews/new"
 }
 
 function delete_file(e)
