@@ -12,9 +12,9 @@ class OtherAsset < ActiveRecord::Base
 
 	# Validations
 	
-	validates_presence_of :manufacturer
-	validates_presence_of :asset_type_id
-	validates_presence_of :asset_status_id
+	# validates_presence_of :manufacturer
+	# validates_presence_of :asset_type_id
+	# validates_presence_of :asset_status_id
     accepts_nested_attributes_for :asset
     accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }
      accepts_nested_attributes_for :lifecycles, :allow_destroy => true
