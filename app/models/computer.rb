@@ -11,7 +11,7 @@ class Computer < ActiveRecord::Base
 
 
   # Validations
-  validates_presence_of :serial
+  # validates_presence_of :serial
 
   accepts_nested_attributes_for :asset
  
