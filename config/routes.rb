@@ -98,7 +98,11 @@ Rails.application.routes.draw do
    resources :contracts do
    end
 
-  resources :asset_dashboard
+  resources :asset_dashboard do
+    collection do
+      get 'calendar'
+    end
+  end
 
   scope '/inventory' do
     resources :information_assets do
@@ -106,7 +110,12 @@ Rails.application.routes.draw do
         post 'infoasset_imports'
       end
     end
-    resources :documents
+    resources :documents do
+      collection do
+        post 'document_imports'
+        get  'document_export'
+      end
+    end
     resources :source_codes
     resources :computers
     resources :source_codes

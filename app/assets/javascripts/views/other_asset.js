@@ -38,12 +38,17 @@ function search_result()
                 value   : val
             },
             {
-                field: "status",
+                field: "owner",
                 operator: "contains",
                 value   : val
             },
             {
-                 field: "location",
+                 field: "custodian",
+                 operator: "contains",
+                 value   : val
+            },
+             {
+                 field: "asset_type",
                  operator: "contains",
                  value   : val
             },

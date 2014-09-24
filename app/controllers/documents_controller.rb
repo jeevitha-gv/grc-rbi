@@ -61,7 +61,7 @@ class DocumentsController < ApplicationController
 
   def document_export
     begin
-      file_to_download = "sample-document.csv"
+      file_to_download = "document_assets.csv"
       send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
     rescue
       flash[:error] = MESSAGES["csv_export"]["error"]
@@ -73,7 +73,7 @@ class DocumentsController < ApplicationController
     if(params[:file].present?)
     	
       begin
-        Document.import_from_file(params[:file], current_company)
+        Document.import_from_file(params[:file], current_company,current_user)
        
         flash[:notice] = MESSAGES["Document"]["csv_upload"]["success"]
         redirect_to documents_path
