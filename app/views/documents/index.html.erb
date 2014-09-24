@@ -20,19 +20,19 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
                     <h4 class="modal-title" id="myModalLabel">Import Document from CSV/XLSX</h4>
                        <div class="modal-content-inner">
-                      <%#= form_tag document_imports_documents_path, multipart: true do %>
-                        <%#= file_field_tag :file %>
+                      <%= form_tag document_imports_documents_path, multipart: true do %>
+                        <%= file_field_tag :file %>
                         <br>
                         <div class="model-footer">
-                          <%#= submit_tag "Import" ,:class => "black_btn" %>
-                          <%#= submit_tag "Cancel" ,:class => "orange_btn" %>
+                          <%= submit_tag "Import" ,:class => "black_btn" %>
+                          <%= submit_tag "Cancel" ,:class => "orange_btn" %>
                         </div>
-                      <%# end %>
+                      <% end %>
                     </div>
                     <p></p>
                     <p>
                       <div  class="grey_btn pop-up-gray">
-                      <%#= link_to "Download Sample Document CSV Template", document_export_documents_path(format: "csv"), class: "download-file-icon plus-icon-sp" %>
+                      <%= link_to "Download Sample Document CSV Template", document_export_documents_path(format: "csv"), class: "download-file-icon plus-icon-sp" %>
                     </div>
                     </p>
                   </div>

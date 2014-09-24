@@ -114,7 +114,7 @@ function search_result()
                             width: 200
                         }, {
                             field: "asset_state",
-                            title: "Document Type"
+                            title: "Asset Type"
                         }, {
                             field: "asset_value",
                             title: "Asset Value"
@@ -152,7 +152,7 @@ function delete_file(e)
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/documents/"+ dataItem.assetable_id + "/edit"
+        window.location.href = "documents/"+ dataItem.assetable_id + "/edit"
     }
 
 function pdf_file(e)

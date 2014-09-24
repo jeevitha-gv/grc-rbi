@@ -52,7 +52,7 @@ class OtherAssetsController < ApplicationController
 
   def other_asset_export
     begin
-      file_to_download = "other-assets-sample.csv"
+      file_to_download = "other_assets.csv"
       send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
     rescue
       flash[:error] = MESSAGES["csv_export"]["error"]
@@ -63,11 +63,10 @@ class OtherAssetsController < ApplicationController
   def other_asset_imports
     if(params[:file].present?)
       begin
-        OtherAsset.import_from_file(params[:file], current_company)
+        OtherAsset.import_from_file(params[:file], current_company, current_user)
         flash[:notice] = MESSAGES["OtherAsset"]["csv_upload"]["success"]
         redirect_to other_assets_path
       rescue
-        binding.pry
         flash[:notice]=  MESSAGES["csv_upload"]["error"]
         redirect_to new_other_asset_path
       end

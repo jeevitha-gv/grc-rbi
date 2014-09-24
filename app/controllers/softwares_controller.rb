@@ -56,7 +56,7 @@ class SoftwaresController < ApplicationController
 
   def software_export
     begin
-      file_to_download = "sample-software.csv"
+      file_to_download = "software_assets.csv"
       send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
     rescue
       flash[:error] = MESSAGES["csv_export"]["error"]
@@ -67,7 +67,7 @@ class SoftwaresController < ApplicationController
   def software_imports
     if(params[:file].present?)
       begin
-        Software.import_from_file(params[:file], current_company)
+        Software.import_from_file(params[:file], current_company, current_user)
         flash[:notice] = MESSAGES["Software"]["csv_upload"]["success"]
         redirect_to softwares_path
       rescue
