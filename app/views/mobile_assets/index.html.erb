@@ -20,7 +20,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
                     <h4 class="modal-title" id="myModalLabel">Import MobileAsset from CSV/XLSX</h4>
                        <div class="modal-content-inner">
-                      <%= form_tag mobile_asset_imports_mobile_assets_path, multipart: true do %>
+                      <%= form_tag mobileasset_imports_mobile_assets_path, multipart: true do %>
                         <%= file_field_tag :file %>
                         <br>
                         <div class="model-footer">
