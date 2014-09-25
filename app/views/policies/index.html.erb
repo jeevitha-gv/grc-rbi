@@ -1,2 +1,22 @@
-<h1>Policy</h1>
-<%= link_to "New Policy", new_policy_path %>
+<% content_for :head do %>
+<%= javascript_include_tag '/assets/views/policy'%>
+<% end %>
+<div class="page-wrap">
+<div class="clearfix"></div>
+<div class="content">
+  <div class="container">
+    <div class="row grid-sp">
+    	<div class="risk-title">Policies</div>
+  				<div class="clearfix"><%= link_to '<img src="/assets/outer/new.png" style= "width:25px;"></img> New Policy'.html_safe , new_policy_path , :class => "btn btn-fresh" %>
+  				</div>
+      <!-- Nav tabs -->
+    </div>
+
+    <!-- #grid-->
+    <div id="grid"></div>
+
+    <!-- #grid  -->
+  </div>
+</div>
+</div>
+</div>
