@@ -1,6 +1,7 @@
 class EvaluatesController < ApplicationController
 
   before_filter :current_incident
+  before_filter :authorize_evaluate, :only => [:new, :create, :edit, :update]
 
   layout 'incident_layout'
   def index
@@ -47,7 +48,7 @@ def download_evaluate_document
 
 
 
-  def edit
+  def edits
     redirect_to new_incident_evaluate_path(incident_id: @incident.id) unless @incident.evaluate.present?
   end
 
@@ -67,4 +68,11 @@ def update
    def evaluate_params
    params.require(:incident).permit( evaluate_attributes:[ :id, :incident_id, :urgency_id, :incident_priority_id,:incident_impact_id, :assignee,:target_date,:sla_id,:incident_origin_id,:resolutiontime,:escalation_id]) 
 end
+
+def authorize_evaluate
+    if (current_user.role_title != "Incidentmanager") 
+      flash[:alert] = "Access restricted"
+      redirect_to incidents_path
+    end
+  end
 end

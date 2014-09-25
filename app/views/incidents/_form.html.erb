@@ -4,7 +4,7 @@
 <!-- 
  <%#= javascript_include_tag "/assets/jquery.countdown.js" %>
   <#%= javascript_include_tag "/assets/jquery.countdown.min.js" %> -->
-  <%= javascript_include_tag "/assets/outer/countdown.js" %>
+  <%#= javascript_include_tag "/assets/outer/countdown.js" %>
   
 
    
@@ -180,11 +180,11 @@
                                <div class="form-group">
                                      <div class="col-sm-11">
                                      <label for="exampleInputPassword1">
-                                      <%= f.label :comment, t('incident.summary')%>
+                                      <%= f.label :summary, t('incident.summary')%>
                                      </label>
-                                     <%= f.text_area :comment,:class=>"form-control incident-big-input"%>
-                                     <% if incident.errors[:comment].present? %>
-                        <div class="error_message"><%= incident.errors[:comment][0]%></div>
+                                     <%= f.text_area :summary,:class=>"form-control incident-big-input"%>
+                                     <% if incident.errors[:summary].present? %>
+                        <div class="error_message"><%= incident.errors[:summary][0]%></div>
                       <% end %>
                             </div>
                                   </div>
