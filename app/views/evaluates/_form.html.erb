@@ -35,6 +35,7 @@
                     <%= incident.title if incident.present? %></td>
                   
                 </tr>
+                
                 <tr>
                 <td><label>Category : </label>
                      <%= incident.incident_category_name if incident.present? %></td>
@@ -145,7 +146,8 @@
                       <label  class="col-sm-5"><b>SLA :</b> </label>
                       <div class="col-sm-7"> 
                       <div class="risk-select">
-                      <%= evaluate.collection_select(:sla_id, Sla.all, :id, :name)%>
+                      <%= evaluate.select(:sla_id, options_for_select(Sla.all.collect {|s| [ s.name, s.id,{"days" => s.days},{"hours" => s.hours},{"minutes" => s.minutes}]}), {}, :onChange=> "time_difference()")%>
+                      <%#= evaluate.collection_select(:sla_id, Sla.all, :id, :name, {data: { behavior: 'category_dropdown' }})%>
                         </div>
                     </div>
                     
@@ -189,7 +191,7 @@
 
 
 
-
+          <div id="time_update_here"></div>
        
 
 
@@ -210,4 +212,242 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  function time_difference()
+  {
+ var ids=$("#incident_evaluate_attributes_sla_id").val()
+ var names=$( "#incident_evaluate_attributes_sla_id option:selected" ).text();
+ var ms=$( "#incident_evaluate_attributes_sla_id option:selected" ).attr("minutes");
+ var hr= $( "#incident_evaluate_attributes_sla_id option:selected" ).attr("hours");
+ var ds=$( "#incident_evaluate_attributes_sla_id option:selected" ).attr("days");
+var x = new Date(); 
+var h = x.getHours(); 
+var m = x.getMinutes(); 
+var s = x.getSeconds(); 
+var d = x.getDate();
+var mon = x.getMonth()+1;
+var yr= x.getFullYear(); 
+
+//get date from javascript
+    var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday",
+                "Friday","Saturday")
+     day=weekday[x.getDay()];
+
+
+if(h>hr)
+{
+  //var hh=h-hr;
+    var hh=parseInt(h, 10) + parseInt(hr, 10);
+
+}
+else
+{
+    //var hh=hr-h;
+      var hh=parseInt(hr, 10) + parseInt(h, 10);
+
+
+}
+if(m>ms)
+{
+  //var mm=m-ms;
+    var mm=parseInt(m, 10) + parseInt(ms, 10);
+
+}
+else
+{
+  //var mm=ms-m;
+  var mm=parseInt(ms, 10) + parseInt(m, 10);
+
+
+}
+if(d>ds && day=="Saturday")
+{
+
+  var dd=parseInt(d, 10) + parseInt(ds, 10);
+  var dd=dd+2;
+  var dd= data(dd,mon);
+
+}
+else if(d>ds && ds>5 && day=="Monday")
+{
+  var dd=parseInt(d, 10) + parseInt(ds, 10);
+  var dd=dd+2;
+  var dd= data(dd,mon);
+
+}
+else if(d>ds && ds>4 && day=="Tuesday")
+{
+  var dd=parseInt(d, 10) + parseInt(ds, 10);
+  var dd=dd+2;
+  var dd= data(dd,mon);
+}
+
+else if(d>ds && ds>3 && day=="Wednesday")
+{
+
+   var dd=parseInt(d, 10) + parseInt(ds, 10);
+   dd=dd+2;
+   var dd= data(dd,mon);
+
+}
+else if(d>ds && ds>2 && day=="Thursday")
+{
+  var dd=parseInt(d, 10) + parseInt(ds, 10);
+  var dd=dd+2;
+  var passed=true;
+  var dd= data(dd,mon,passed);
+  //[dd,mon]= data(dd,mon);
+
+}
+else if(d>ds && ds>=1 && day=="Friday")
+{
+
+  var dd=parseInt(d, 10) + parseInt(ds, 10);
+  var dd=dd+2;
+  var dd= data(dd,mon);
+
+}
+else if(d>ds && day=="Sunday")
+{
+
+  var dd=parseInt(d, 10) + parseInt(ds, 10);
+  var dd=dd+1;
+  var dd= data(dd,mon);
+
+}
+else
+{
+    var dd=parseInt(d, 10) + parseInt(ds, 10);
+
+}
+
+
+
+
+////////////////
+
+
+function data(dd,mon,passed)
+{
+  if(dd>=31 && mon==1)
+  {
+     mon=mon+1;
+     dd=dd-31;
+     passed=true;
+    return [dd+"/"+mon];
+
+  }
+  else if(dd>=28 && mon==2)
+  {
+     mon=mon+1;
+     dd=dd-28;
+    return [dd+"/"+mon];
+
+  }
+  else if(dd>=31 && mon==3)
+  {
+     mon=mon+1;
+     dd=dd-31;
+     return [dd+"/"+mon];
+
+  }
+  else if(dd>=30 && mon==4)
+  {
+     mon=mon+1;
+     dd=dd-30;
+     return [dd+"/"+mon];
+
+  }
+  else if(dd>=31 && mon==5)
+  {
+     mon=mon+1;
+     dd=dd-31;
+    return [dd+"/"+mon];
+
+  }
+  else if(dd>=30 && mon==6)
+  {
+     mon=mon+1;
+     dd=dd-30;
+     return [dd+"/"+mon];
+
+  }
+  else if(dd>=31 && mon==7)
+  {
+     mon=mon+1;
+     dd=dd-31;
+     return [dd+"/"+mon];
+
+  }
+  else if(dd>=31 && mon==8)
+  {
+     mon=mon+1;
+     dd=dd-31;
+     return [dd+"/"+mon];
+
+  }
+  else if(dd>=30 && mon==9)
+  {
+     mon=mon+1;
+     dd=dd-30;
+     return [dd+"/"+mon];
+  }
+  else if(dd>=31 && mon==10)
+  {
+     mon=mon+1;
+     dd=dd-31;
+     return [dd+"/"+mon];
+
+  }
+  else if(dd>=30 && mon==11)
+  {
+     mon=mon+1;
+     dd=dd-30;
+     return [dd+"/"+mon];
+
+  }
+  else if(dd>=31 && mon==12)
+  {
+     mon=13-mon;
+     dd=dd-31;
+     return [dd+"/"+mon];
+
+  }
+
+}
+
+
+////////////////
+
+if(passed==true)
+{
+    var t = "Target-Time:"+dd+"/"+yr;
+}
+else
+{
+   var t = "Target-Time:"+dd+"/"+mon+"/"+yr;
+
+}
+
+
+
+
+
+ 
+
+
+// var today = new Date();
+// var birthday = new Date("December 17, 1995 03:24:00");
+// var birthday = new Date("1995-12-17T03:24:00");
+// var birthday = new Date(1995,11,17);
+// var birthday = new Date(1995,11,17,3,24,0);
+  
+// document.write(names)
+    $("#time_update_here").html(t);
+    // alert(t);
+        
+
+  }
+</script>>
 </html>
