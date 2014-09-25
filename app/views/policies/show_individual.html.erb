@@ -1,31 +1,154 @@
-<h1>Policy</h1>
-<% if !@versions.empty? %>
-	<% if (params[:version].to_i < @versions.size) && params[:version].present? %>
-		<h3>Version : <%= params[:version].to_i %></h3>
-	<% else %>
-		<h3>Version : <%= @versions.length %></h3>
-	<% end %>
-	First Name:
-		<%= @policy.title %>
-	Last Name:
-		<%= @policy.scope %>
-	Description:
-		<%= @policy.description %>
-	<br><br>
-	<% if @versions.length.to_i >1 %>
-		<% if params[:version].to_i > 1 || !params[:version] %>
-			<%= link_to "Previous Version", {:version => (params[:version] || @versions.length).to_i - 1} %>
-		<% end %>
-		<% if params[:version].to_i >= 1 && (params[:version].to_i < (@versions.length - 1)) %>
-			<%= link_to "Next Version", {:version => (params[:version] || @versions.length).to_i + 1} %>
-		<% end %>
-		<br><br>
-		<% if (params[:version].to_i < @versions.length) %>
-			<%= link_to "Go to current version"%>
-		<% end %>
-	<% end %>
+<div class="clearfix"></div>
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="actions-policy">
+            	<% if @versions.length.to_i >1 %>
+            		<% if params[:version].to_i > 1 || !params[:version] %>
+            			<%= link_to '<span class=" glyphicon glyphicon-circle-arrow-left"></span>'.html_safe, {:version => (params[:version] || @versions.length).to_i - 1}, class: "btn btn-lg btn-hover btn-default" %>
+        			<% end %>
+        			<% if params[:version].to_i >= 1 && (params[:version].to_i < (@versions.length - 1)) %>
+        			    <%= link_to '<span class=" glyphicon glyphicon-circle-arrow-right"></span>'.html_safe, {:version => (params[:version] || @versions.length).to_i + 1}, class: "btn btn-lg btn-hover btn-default" %>
+        			<% end %>
+			        <% if (params[:version].to_i < @versions.length) %>
+			            <%= link_to '<span class="glyphicon glyphicon-bookmark"></span>'.html_safe, show_individual_policy_path(@policy), class: "btn btn-lg btn-hover btn-default"  %>
+			        <% end %>
+                <% end %>
+            </div>
+                <div class="col-md-12">
+                    <div class="panel with-nav-tabs panel-default">
+                        <div class="panel-heading">
+                        <h4><b>Policy Title</b></h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped list-table">
+                                    <tr>
+                                        <th colspan="6">Policy ID - Version</th>
+                                    </tr>
+                                    <tr>
+                                      <td><label class="col-sm-5"class="col-sm-4">Kind of Policy</label>
+                                        <span>Company Policy</span></td>
+                                      <td><label class="col-sm-5"class="col-sm-4">Classification</label>
+                                        <span>Public</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="col-sm-5"class="col-sm-4">Audience</label>
+                                        <span>Internal</span></td>
+                                        <td><label class="col-sm-5"class="col-sm-4">Locations</label>
+                                        <span>Delhi,Mumbai,Chennai</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="col-sm-5"class="col-sm-4">Departments</label>
+                                        <span>Internal</span></td>
+                                        <td><label class="col-sm-5"class="col-sm-4">Locations</label>
+                                        <span>Delhi,Mumbai,Chennai</span></td>
+                                    </tr>
+                                </table>
+                                <table class="table table-striped list-table">
+                                    <tr>
+                                        <th colspan="6">Handlers</th>
+                                    </tr>
+                                    <tr>
+                                      <td><label class="col-sm-5"class="col-sm-4">Author</label>
+                                        <span> mm/dd/yyyy</span></td>
+                                      <td><label class="col-sm-5"class="col-sm-4">Owner</label>
+                                        <span> mm/dd/yyyy </span></td>
+                                    </tr>
+                                    <tr>
+                                      <td><label class="col-sm-5"class="col-sm-4">Reviewers</label>
+                                        <span> Akila</span></td>
+                                      <td><label class="col-sm-5"class="col-sm-4">Approvers</label>
+                                        <span> Jomon</span></td>
 
-	<br><br>
-	<%= link_to "Create New Version" , edit_policy_path(@policy) %>
-	<br><br>
-<% end %>
+                                    </tr>
+                                </table>
+                                <table class="table table-striped list-table">
+                                    <tr>
+                                        <th colspan="6">Dates</th>
+                                    </tr>
+                                    <tr>
+                                      <td><label class="col-sm-5"class="col-sm-4">Effective from:</label>
+                                        <span> mm/dd/yyyy</span></td>
+                                      <td><label class="col-sm-5"class="col-sm-4">Effective Till</label>
+                                        <span> mm/dd/yyyy </span></td>
+                                    </tr>
+                                    <tr>
+                                      <td><label class="col-sm-5"class="col-sm-4">Expected Publish Date</label>
+                                        <span> Akila</span></td>
+                                      <td><label class="col-sm-5"class="col-sm-4">Next Review Date</label>
+                                        <span> Jomon</span></td>
+
+                                    </tr>
+                                    <tr>
+                                      <td><label class="col-sm-5"class="col-sm-4">Created at:</label>
+                                        <span> Shan</span></td>
+                                      <td><label class="col-sm-5"class="col-sm-4">Last Updated at:</label>
+                                        <span>Shan</span></td>
+                                    </tr>
+                                    <tr>
+                                      <td><label class="col-sm-5"class="col-sm-4">Reviewed at:</label>
+                                        <span> Shan</span></td>
+                                      <td><label class="col-sm-5"class="col-sm-4">Approved at:</label>
+                                        <span>Shan</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="col-sm-5"class="col-sm-4">Published at:</label>
+                                        <span> Shan</span></td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                                <table class="table table-striped list-table">
+                                    <tr>
+                                        <th colspan="6">Policy ID - Version</th>
+                                    </tr>
+                                    <tr>
+                                      <td><label class="col-sm-5"class="col-sm-4">Scope </label>
+                                        <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></td>
+                                    </tr>
+                                    <tr>
+                                      <td><label class="col-sm-5"class="col-sm-4">Purpose</label>
+                                        <span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></td>
+                                    </tr>
+                                                                       <tr>
+                                      <td><label class="col-sm-5"class="col-sm-4">Description</label>
+                                        <span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></td>
+                                    </tr>
+                                </table>
+                                <table class="table table-striped list-table">
+                                    <tr>
+                                        <th>Supporting Documents</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Attachment 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Attachment 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Attachment 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Attachment 1</td>
+                                    </tr>
+                                </table>
+                            </div>
+            <div class="actions-policy">
+            	<% if @versions.length.to_i >1 %>
+            		<% if params[:version].to_i > 1 || !params[:version] %>
+            			<%= link_to '<span class=" glyphicon glyphicon-circle-arrow-left"></span>'.html_safe, {:version => (params[:version] || @versions.length).to_i - 1}, class: "btn btn-lg btn-hover btn-default" %>
+        			<% end %>
+        			<% if params[:version].to_i >= 1 && (params[:version].to_i < (@versions.length - 1)) %>
+        			    <%= link_to '<span class=" glyphicon glyphicon-circle-arrow-right"></span>'.html_safe, {:version => (params[:version] || @versions.length).to_i + 1}, class: "btn btn-lg btn-hover btn-default" %>
+        			<% end %>
+			        <% if (params[:version].to_i < @versions.length) %>
+			            <%= link_to '<span class="glyphicon glyphicon-bookmark"></span>'.html_safe, show_individual_policy_path(@policy), class: "btn btn-lg btn-hover btn-default"  %>
+			        <% end %>
+                <% end %>
+            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
