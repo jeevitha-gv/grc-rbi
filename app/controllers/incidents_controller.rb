@@ -1,8 +1,8 @@
 class IncidentsController < ApplicationController
-layout 'incident_layout'
-  
-
-  def index
+before_filter :authorize_incident, :only => [:new, :create, :update, :edit] 
+ layout 'incident_layout'
+ 
+   def index
     query = ""
     input_data = []
     if params[:title] && params[:title].present?
@@ -24,7 +24,7 @@ layout 'incident_layout'
     # if params[:team_id] && params[:team_id].present?
     #   query += "team_id = ? AND "
     #    input_data << params[:team_id]      
-    # end
+    # end 
     if input_data.length > 0 
       input_data.unshift(query.chomp(' AND '))
       input_data.flatten!
@@ -172,7 +172,15 @@ private
     #@teams = Team.for_department_and_company(department_id, current_company.id, section.id) if department_id
     #@team_users = Team.for_id(team_id).first.users << current_company.company_admin if team_id
   end
-  
+
+  def authorize_incident
+    if(current_user.role_title != "Incidentmanager" && current_user.role_title != "IncidentCreator" && current_user.role_title != "company_admin")
+      flash[:alert] = "Access Restricted"
+      redirect_to incidents_path
+  end
+end
+   
+                            
 end
 
  
