@@ -1,0 +1,73 @@
+<div class="step-header">
+  <blockquote>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+      <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+  </blockquote>
+</div>
+<hr>
+<div class="row">
+  <div class="col-lg-6 col-sm-8 col-xs-12">
+
+   <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">Attachments</label>
+      <div class="col-sm-7">
+        <div class="form-group">
+          <!-- <div class="btn btn-fresh"> -->
+            <%= f.file_field :attachment %>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">Notes</label>
+      <div class="col-sm-7">
+        <div class="form-group">
+          <%= f.text_area :note %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6 col-sm-8 col-xs-12">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">Effective from</label>
+      <div class="col-sm-7">
+        <div class="form-group">
+          <%= f.text_field :effective_from, :class => "datepicker" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">Effective Till</label>
+        <div class="col-sm-7">
+          <div class="form-group">
+            <%= f.text_field :effective_till, :class => "datepicker1" %>  
+          </div>
+      </div>
+    </div>
+    
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">Expected Publish date</label>
+      <div class="col-sm-7">
+        <div class="form-group">
+          <%= f.text_field :expected_publish_date, :class => "datepicker2" %>  
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">Next Review Date</label>
+      <div class="col-sm-7">
+        <div class="form-group">
+          <%= f.text_field :review_within_date, :class => "datepicker3" %> 
+        </div>
+      </div>
+    </div>    
+  </div>
+</div>
+
+
+
+

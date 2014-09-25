@@ -1,0 +1,12 @@
+<div class="policy-location">
+  <div class='approve_choice clearfix'>
+    <label class="col-sm-4 control-label">
+    </label>
+    <div class="col-sm-7">
+      <div class="auditees-users">
+        <%= f.select :location_id, options_for_select(Location.all.collect{|x| [x.name, x.id.to_i]}, :selected => f.object.location_id), {include_blank: 'Select Location' } %>
+      </div>
+      <%= link_to_remove_policy_location "", f %>
+    </div>
+  </div>
+</div>

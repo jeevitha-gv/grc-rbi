@@ -1,0 +1,72 @@
+<div class="step-header">
+    <blockquote>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+    </blockquote>
+</div>
+
+<div class="form-inputs">
+    <div class="form-group clearfix">
+        <label class="col-sm-2 control-label">Title</label>
+        <div class="col-sm-9">
+          <%= f.text_field :title, class: "audit-normal-input" %>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-lg-6 col-sm-8 col-xs-12">
+            <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">Kind</label>
+                <div class="col-sm-7">
+                    <div class="risk-select">
+                      <%= f.collection_select(:policy_kind_id, PolicyKind.all, :id, :name, :prompt => true) %>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group clearfix">
+            
+                <label class="col-sm-4 control-label">Classification</label>
+                <div class="col-sm-7">
+                    <div class="risk-select">
+                      <%= f.collection_select(:policy_classification_id, PolicyClassification.all, :id, :name, :prompt => true) %>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">Audience</label>
+                <div class="col-sm-7">
+                    <div class="risk-select">
+                        <%= f.collection_select(:audience_id, Audience.all, :id, :name, :prompt => true) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-8 col-xs-12">
+            <div class="form-group clearfix">
+                <label class="col-sm-2 control-label">Locations</label>
+                <div class="col-md-8">
+                    <div id="location-list">
+                        <%= f.fields_for :policy_locations, (f.object.policy_locations.present? ? f.object.policy_locations : PolicyLocation.new) do |builder| %>
+                        <%= render 'location_fields', policy: @policy, f: builder %>
+                        <% end %>
+                    </div>
+                    <div class="form-group clearfix addissue">
+                        <%= link_to_add_policy_location "", :policy_locations %>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">Departments</label>
+                <div class="col-sm-7">
+                    <div class="risk-select">
+                        <select>
+                            <option>HR</option>
+                            <option>Testing</option>
+                            <option>Development</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
