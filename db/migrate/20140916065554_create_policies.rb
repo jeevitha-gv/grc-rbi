@@ -7,8 +7,6 @@ class CreatePolicies < ActiveRecord::Migration
       t.integer :policy_kind_id
       t.integer :audience_id
       t.integer :policy_classification_id
-      t.string	:loctaion_ids, array: true, default: []
-      t.string	:departments_ids, array: true, default: []
       t.text	:scope
       t.text	:purpose
       t.text	:description
@@ -28,8 +26,6 @@ class CreatePolicies < ActiveRecord::Migration
     add_index :policies, :policy_kind_id
     add_index :policies, :audience_id
     add_index :policies, :policy_classification_id
-    add_index :policies, :loctaion_ids
-    add_index :policies, :departments_ids
     add_index :policies, :standard_id
     add_index :policies, :control_ids
     add_index :policies, :owner

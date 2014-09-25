@@ -3,6 +3,8 @@ $(document).ready(function(){
 	// effective from datepicker
 	$(".datepicker").kendoDatePicker();
 	$(".datepicker1").kendoDatePicker();
+	$(".datepicker2").kendoDatePicker();
+	$(".datepicker3").kendoDatePicker();
 
 	// Grid I
 

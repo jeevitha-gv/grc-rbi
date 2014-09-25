@@ -24,6 +24,6 @@ class Location < ActiveRecord::Base
   has_many :mobile_assets
 
   #  Associations with Policy Module
-  has_many :policies
+  has_many :policy_location
 
 end
