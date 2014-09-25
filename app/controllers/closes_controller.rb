@@ -1,5 +1,6 @@
 class ClosesController < ApplicationController
 	before_filter :current_incident
+	before_filter :authorize_close, :only => [:new, :edit, :create, :update] 
 	layout 'incident_layout'
 
 def index
@@ -45,5 +46,13 @@ private
 def close_params
 	params.require(:incident).permit(close_attributes: [:id, :incident_id, :evaluate_id, :resolution_id, :incident_category_id, :close_evaluation_id, :close_status_id, :department_id, :closing_comment])
 end
+
+def authorize_close
+	if(current_user.role_title != "IncidentCreator")
+		flash[:alert] = "Access Restricted"
+		redirect_to incidents_path
+	end
+end
+
 end
 

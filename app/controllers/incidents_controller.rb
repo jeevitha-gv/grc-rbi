@@ -17,14 +17,15 @@ before_filter :authorize_incident, :only => [:new, :create, :update, :edit]
       query += "request_type_id = ? AND "
        input_data << params[:request_type_id]      
     end
-    # if params[:department_id] && params[:department_id].present?
-    #   query += "department_id = ? AND "
-    #    input_data << params[:department_id]      
-    # end
-    # if params[:team_id] && params[:team_id].present?
-    #   query += "team_id = ? AND "
-    #    input_data << params[:team_id]      
-    # end 
+
+    if params[:department_id] && params[:department_id].present?
+      query += "department_id = ? AND "
+       input_data << params[:department_id]      
+    end
+    if params[:team_id] && params[:team_id].present?
+      query += "team_id = ? AND "
+       input_data << params[:team_id]      
+    end
     if input_data.length > 0 
       input_data.unshift(query.chomp(' AND '))
       input_data.flatten!

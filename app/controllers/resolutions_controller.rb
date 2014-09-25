@@ -1,5 +1,6 @@
 class ResolutionsController < ApplicationController
   before_filter :current_incident
+  before_filter :authorize_resolution, :only => [:new, :create, :update, :edit]
   layout 'incident_layout'
   
 def index
@@ -59,5 +60,14 @@ private
   def resolution_params
    params.require(:incident).permit( resolution_attributes:[:id, :evaluate_id,:incident_id, :reassignee, :solution_type_id,:solution, :rootcause,:closure_classification_id, attachment_attributes: [:id, :attachment_file, :company_id]]) 
   end
+
+  def authorize_resolution
+    if(current_user.role_title != "Incidentmanager")
+      flash[:alert] = "Access Restricted"
+      redirect_to incidents_path
+    end
+  end
+  
 end
+
 
