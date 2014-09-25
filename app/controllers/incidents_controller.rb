@@ -131,6 +131,35 @@ def incident_all
       end
     end
   end
+
+#    def visitdata
+#     # id = 0
+#     # status = 0
+#     #@nam= Control.joins(:standard).select("name").group(:name)
+   
+       
+     
+#      puts "------------------------------------------------------------"
+#      puts status
+#      if params[:stnd]  && params[:status]
+#        @nam2 = Control.joins(:standard).joins(:control_state).where("compliances.name = ? and control_states.name =?",params[:stnd],params[:status]).select("title,control_states.name as sname,compliances.name as cname,count(standard_id) as count").group(:sname,:cname,:standard_id,:title).order('cname')
+#  @data = {categories:@nam2.map(&:title), data: @nam2.map(&:count), cateory: params[:name]}
+#  elsif params[:name]
+#      @nam1 =  Control.joins(:standard).joins(:control_state).where("compliances.name = ?",params[:name]).select("control_states.name as sname,compliances.name as cname,count(standard_id) as count").group(:sname,:cname,:standard_id).order('cname')
+#             #binding.pry
+#    @data = {categories:@nam1.map(&:sname), data: @nam1.map(&:count), stnd: params[:name]}
+#     # else
+#     #   @data = {name: 'Tokyo', data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4], id: 1, status: 0}
+# else
+# # @nam =Control.joins(:standard).select("name,count(standard_id) as count").group(:name,:standard_id).order('name')
+# @nam =Evaluate.select("COUNT(evaluates.id) AS count, evaluates.name").group(:name)
+
+#       @data = {categories:@nam.map(&:name), data: @nam.map(&:count)}    
+#      end
+#     render :json =>@data
+#   end
+
+ 
  
   def incident_dashboard
     @incident = Incident.all
