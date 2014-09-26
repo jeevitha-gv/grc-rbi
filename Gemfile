@@ -81,5 +81,10 @@ gem "rails_best_practices"
 
 gem 'daemons'
 
+
+# CKE Editor
+gem 'ckeditor', '~> 4.1.0'
+gem 'mini_magick'
+
 # Versioning gem
  gem 'paper_trail', '~> 3.0.5'
