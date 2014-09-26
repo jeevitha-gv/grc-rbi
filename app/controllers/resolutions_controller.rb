@@ -58,7 +58,7 @@ end
 private
 
   def resolution_params
-   params.require(:incident).permit( resolution_attributes:[:id, :evaluate_id,:incident_id, :reassignee, :solution_type_id,:solution, :rootcause,:closure_classification_id, attachment_attributes: [:id, :attachment_file, :company_id]]) 
+   params.require(:incident).permit( evaluate_attributes:[ :id, :incident_id, :assignee],resolution_attributes:[:id, :evaluate_id,:incident_id, :reassignee, :solution_type_id,:solution, :rootcause,:closure_classification_id, attachment_attributes: [:id, :attachment_file, :company_id]]) 
   end
 
   def authorize_resolution
