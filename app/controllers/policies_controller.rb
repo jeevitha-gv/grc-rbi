@@ -5,6 +5,7 @@ class PoliciesController < ApplicationController
 
 	# Index
 	def index
+		@policies = Policy.all
 	end
 
 	# Method to create a new Policy

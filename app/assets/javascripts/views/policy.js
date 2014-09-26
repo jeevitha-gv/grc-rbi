@@ -29,7 +29,7 @@ $(document).ready(function(){
 					distribution: { type: "string" },
 					kind: { type: "string" },
 					version: { type: "string" },
-					author: { type: "string" }
+					owner: { type: "string" }
 
 				}
 			}
@@ -50,7 +50,7 @@ $(document).ready(function(){
 			{ field: "distribution", title: "Distributions", width: "40%" },
 			{ field: "kind", title: "Kinds", width: "40%" },
 			{ field: "version", title: "Versions", width: "40%" },
-			{ field: "author", title: "Authors", width: "40%" }
+			{ field: "owner", title: "Owners", width: "40%" }
 		]
 	});
 
