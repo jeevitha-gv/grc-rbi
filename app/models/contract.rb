@@ -13,5 +13,5 @@ class Contract < ActiveRecord::Base
 
 
 	scope :contract_name, ->(id) { where(id: id).first.name}
-	scope :for_name_by_company, lambda {|contract_name,company_id,contract_type_id| where("lower(name)=? and company_id=? and contract_type_id=?", contract_name,company_id,contract_type_id) }
+	scope :for_name_by_company, lambda {|contract_name,company_id| where("lower(name)=? and company_id=?", contract_name,company_id) }
 end

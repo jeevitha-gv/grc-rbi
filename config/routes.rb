@@ -117,7 +117,12 @@ Rails.application.routes.draw do
       end
     end
     resources :source_codes
-    resources :computers
+    resources :computers do 
+      collection do
+        post 'computer_imports'
+        get 'computer_export'
+      end
+    end
     resources :source_codes
     resources :other_assets do
       collection do

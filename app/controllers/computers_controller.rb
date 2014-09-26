@@ -1,9 +1,14 @@
+#require 'rqrcode_png'
 class ComputersController < ApplicationController
+
 
   layout 'asset_layout'
 
   def index
   	 @assets = current_company.assets.where(:assetable_type => "Computer")
+    #@qr = RQRCode::QRCode.new( "http://codingricky.com").to_img.resize(200, 200).to_data_url
+    # puts RQRCode::QRCode.new( "http://codingricky.com").to_img.resize(200, 200)
+  
   end
 
   def new
@@ -38,7 +43,7 @@ class ComputersController < ApplicationController
 
   def computer_export
     begin
-      file_to_download = "sample-computerasset.csv"
+      file_to_download = "computer_assets.csv"
       send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
     rescue
       flash[:error] = MESSAGES["csv_export"]["error"]
@@ -49,7 +54,7 @@ class ComputersController < ApplicationController
   def computer_imports
     if(params[:file].present?)
       begin
-        Computer.import_from_file(params[:file], current_company)
+        Computer.import_from_file(params[:file], current_company, current_user)
         flash[:notice] = MESSAGES["Computer"]["csv_upload"]["success"]
         redirect_to computers_path
       rescue
@@ -58,7 +63,7 @@ class ComputersController < ApplicationController
       end
     else
       flash[:notice]=  MESSAGES["csv_upload"]["presence"]
-      redirect_to new_computer_path
+      redirect_to computers_path
     end
   end
 
