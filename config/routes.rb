@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
 
 
-  
-
-
 
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -154,6 +151,12 @@ end
   resources :policies do
     member do
       get 'show_individual'
+    end
+  end
+
+  resources :policy_dashboards do
+    collection do
+      get 'calender'
     end
   end
 

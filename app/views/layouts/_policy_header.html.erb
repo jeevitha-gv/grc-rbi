@@ -70,10 +70,10 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <li><a  href="#" class="">
+        <li><a  href="/policy_dashboards" class="<%= request.fullpath.include?("policy_dashboards") == true ? 'active' : '' %>">
           <div class="dash-icon"></div>
           Dashboard</a></li>
-          <li><a href="" class="">
+          <li><a href="/policy_dashboards/calender" class="<%= request.fullpath.include?("policy_dashboards/calender") == true ? 'active' : '' %>">
           <div class="calender-icon"></div>
           Calendar</a></li>
           <li><a  href="#" class="<%= request.fullpath.include?("company_controls") == true ? 'active' : '' %>">
