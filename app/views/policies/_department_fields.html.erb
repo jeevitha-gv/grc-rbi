@@ -1,0 +1,12 @@
+<div class="policy-department">
+  <div class='policy_dep clearfix'>
+    <label class="col-sm-4 control-label">
+    </label>
+    <div class="col-sm-7">
+      <div class="auditees-users">
+        <%= f.select :department_id, options_for_select(Department.all.collect{|x| [x.name, x.id.to_i]}, :selected => f.object.department_id), {include_blank: 'Select Department' } %>
+      </div>
+      <%= link_to_remove_policy_department "", f %>
+    </div>
+  </div>
+</div>
