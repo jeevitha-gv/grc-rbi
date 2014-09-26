@@ -16,7 +16,7 @@ class Department < ActiveRecord::Base
   has_many :mobile_assets
 
   # Associations with Policy Module
-  has_many :policies
+  has_many :policy_departments
 
   # validations
   validates :name, presence:true

@@ -1,23 +1,30 @@
-<div class="step-header">
+<!-- <div class="step-header">
     <blockquote>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
         <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
     </blockquote>
-</div>
+</div> -->
 <div class="form-group clearfix">
     <label class="col-sm-3 control-label">Standards</label>
-    <div class="col-sm-9">
-        <%= f.collection_select(:standard_id, Compliance.all, :id,:name, :prompt => true) %>
+    <div class="col-sm-4">
+        <div class="risk-select">
+            <%= f.collection_select(:standard_id, Compliance.all, :id,:name, :prompt => true) %>
+        </div>
     </div>
 </div>
-<div class="form-group clearfix">
-    <label class="col-sm-3 control-label">Controls</label>
-    <div class="col-sm-9">
-        <select>
-            <option>Control 1</option>
-            <option>Control 2</option>
-            <option>Control 3</option>
-            <option>Control 4</option>
-        </select>
-    </div>             
-</div>
+<!--   <div class="col-lg-8 col-md-4 col-sm-8 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-2 control-label">
+        <%#= f.label :compliance_library_id, t('risk.control_number') %>
+      </label>
+      <div class="col-sm-10 control-select">
+        <div class="risk-select  control-dd">
+          <%# if compliance_libraries.present? %>
+            <%#= f.select :compliance_library_id, options_for_select(compliance_libraries.all.collect{|x| [x.name, x.id.to_i]}, :selected => risk.compliance_library_id), {include_blank: '--Select Control--' }, {  :class => "form-control"} %>
+          <% #else %>
+            <%#= f.select :compliance_library_id, options_for_select([], {:style =>"width: 200px!important;"}), {include_blank: '--Select Control--' }, { :class => "form-control"} %>
+          <%# end %>
+        </div>
+      </div>
+    </div>
+  </div> -->

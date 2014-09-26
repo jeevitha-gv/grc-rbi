@@ -91,5 +91,13 @@ def link_to_remove_policy_location(name, f)
   f.hidden_field(:_destroy, {class: "auditee-remove"}) + link_to("#{name}", 'javascript:void(0)', {onclick: "remove_policy_location(this)", class: "minusround-icon"})
 end
 
+def link_to_add_policy_department(name, association)
+  link_to "#{name}" ,'javascript:void(0)',  {onclick: "add_policy_department(this, \"#{association}\")", class: "plusround-icon plus-background"}
+end
+
+def link_to_remove_policy_department(name, f)
+  f.hidden_field(:_destroy, {class: "auditee-remove"}) + link_to("#{name}", 'javascript:void(0)', {onclick: "remove_policy_department(this)", class: "minusround-icon"})
+end
+
 
 end

@@ -1,24 +1,24 @@
-<div class="step-header">
+<!-- <div class="step-header">
     <blockquote>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
         <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
     </blockquote>
-</div>
+</div> -->
 <div class="form-group clearfix">
-    <label class="col-sm-4 control-label">Scope</label>
-    <div class="col-sm-7">
-        <%= f.text_area :scope %>
+    <label class="col-sm-6 control-label">Scope</label>
+    <div class="col-sm-9">
+        <%= f.cktext_area :scope  , :cols => 40%>
     </div>
 </div>
 <div class="form-group clearfix">
-    <label class="col-sm-4 control-label">Purpose</label>
-    <div class="col-sm-7">
-        <%= f.text_area :purpose %>
+    <label class="col-sm-6 control-label">Purpose</label>
+    <div class="col-sm-9">
+        <%= f.cktext_area :purpose  , :cols => 40%>
     </div>
 </div>
 <div class="form-group clearfix">
-    <label class="col-sm-4 control-label">Description</label>
-    <div class="col-sm-7">
-        <%= f.text_area :description %>
+    <label class="col-sm-6 control-label">Description</label>
+    <div class="col-sm-9">
+        <%= f.cktext_area :description  , :cols => 40%>
     </div>
 </div>
