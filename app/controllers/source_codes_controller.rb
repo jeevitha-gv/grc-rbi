@@ -47,6 +47,37 @@ class SourceCodesController < ApplicationController
       end
   end
 end
+
+def sourcecode_export
+    begin
+      file_to_download = "sourcecode_assets.csv"
+      send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
+    rescue
+      flash[:error] = MESSAGES["csv_export"]["error"]
+      redirect_to new_audit_path
+    end
+  end
+
+  def sourcecode_imports
+    if(params[:file].present?)
+      begin
+        SourceCode.import_from_file(params[:file], current_company, current_user)
+        flash[:notice] = MESSAGES["risk"]["csv_upload"]["success"]
+        redirect_to source_codes_path
+      rescue
+        flash[:notice]=  MESSAGES["csv_upload"]["error"]
+        redirect_to new_source_code_path
+      end
+    else
+      flash[:notice]=  MESSAGES["csv_upload"]["presence"]
+      redirect_to new_source_code_path
+    end
+  end
+
+
+
+
+
   private
 
   def sourcecode_params

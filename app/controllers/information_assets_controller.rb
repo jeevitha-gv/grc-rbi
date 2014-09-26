@@ -57,7 +57,7 @@ class InformationAssetsController < ApplicationController
   end
 
   def info_assets
-  	params.require(:information_asset).permit(:at_origin, :info_moved, :retention_period, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity])
+  	params.require(:information_asset).permit(:at_origin, :info_moved, :retention_period, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity, :asset_users])
   end
 
   def infoasset_imports

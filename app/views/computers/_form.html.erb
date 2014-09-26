@@ -1,11 +1,14 @@
+<%= javascript_include_tag "/assets/outer/jquery.tagsinput.min.js" %>
+
 <%= f.fields_for :asset do |ff| %>
 
   <%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>
-  <%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
 
 <% end %>
 
-<!-- Second Row -->
+<div class="clearfix">
+  <h4><b>Computer Properties</b></h4>
+</div>
 
 <div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -20,11 +23,83 @@
   </div>
 </div>
 
-<!-- Third Row -->
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :operating_system_id, t('computer.os') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:operating_system_id, OperatingSystem.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :os_ver_ser, t('computer.ver') %>
+        <%= f.text_field :os_ver_ser, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+</div>
 
-<div class="clearfix border-divider"></div>
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :memory, t('computer.memory') %>
+        <%= f.text_field :memory, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :disk_space, t('computer.space') %>
+        <%= f.text_field :disk_space, :class=>"form-control" %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- Fourth Row -->
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :cpu_speed, t('computer.speed') %>
+        <%= f.text_field :cpu_speed, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :cpu_core_count, t('computer.count') %>
+        <%= f.text_field :cpu_core_count, :class=>"form-control" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :serial, t('computer.serial') %>
+        <%= f.text_field :serial, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :mac, t('computer.mac') %>
+        <%= f.text_field :mac, :class=>"form-control" %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -48,8 +123,6 @@
     </div>
   </div>
 </div>
-
-<!-- Fifth Row -->
 
 <div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -95,8 +168,6 @@
   </div>
 </div>
 
-<!-- Seventh Row -->
-
 <div class ="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
     <div class="form-group clearfix">
@@ -120,108 +191,12 @@
   </div>
 </div>
 
-<div class="clearfix border-divider"></div>
 
+<%= f.fields_for :asset do |ff| %>
 
+  <%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
 
-<!-- Eighth Row -->
-
-<!-- Sixth Row -->
-
-
-<div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :operating_system_id, t('computer.os') %>
-        <div class="risk-select width-fix">
-          <%= f.collection_select(:operating_system_id, OperatingSystem.all, :id, :name) %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :os_ver_ser, t('computer.ver') %>
-        <%= f.text_field :os_ver_ser, :class=>"form-control" %>        
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Ninth Row -->
-<!-- Seventh Row -->
-
-
-<div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :memory, t('computer.memory') %>
-        <%= f.text_field :memory, :class=>"form-control" %>        
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :disk_space, t('computer.space') %>
-        <%= f.text_field :disk_space, :class=>"form-control" %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Tenth Row -->
-
-<!-- Eigth Row -->
-
-<div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :cpu_speed, t('computer.speed') %>
-        <%= f.text_field :cpu_speed, :class=>"form-control" %>        
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :cpu_core_count, t('computer.count') %>
-        <%= f.text_field :cpu_core_count, :class=>"form-control" %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Eleventh Row -->
-
-<!-- Nineth Row -->
-
-
-<div class="row">
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :serial, t('computer.serial') %>
-        <%= f.text_field :serial, :class=>"form-control" %>        
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :mac, t('computer.mac') %>
-        <%= f.text_field :mac, :class=>"form-control" %>
-      </div>
-    </div>
-  </div>
-</div>
+<% end %>
 
 <script>
 $('.ui.checkbox')
@@ -246,4 +221,8 @@ $('.ui.checkbox')
 
     $(".datepicker").val(temp_start)
   });
+
+ $('#tags').tagsInput({
+  'defaultText':'add email'
+ });
 </script>

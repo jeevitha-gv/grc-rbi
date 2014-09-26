@@ -110,6 +110,15 @@ Rails.application.routes.draw do
         post 'infoasset_imports'
       end
     end
+
+    resources :documents
+    resources :computers do
+    collection do
+      post 'computer_imports'
+      get 'computer_export'
+    end
+  end
+
     resources :documents do
       collection do
         post 'document_imports'
@@ -124,6 +133,7 @@ Rails.application.routes.draw do
       end
     end
     resources :source_codes
+
     resources :other_assets do
       collection do
         post 'other_asset_imports'
@@ -140,8 +150,14 @@ Rails.application.routes.draw do
    end
     resources :mobile_assets do
     collection do
-      post 'mobile_asset_imports'
+      post 'mobileasset_imports'
       get 'mobile_asset_export'
+    end
+ end
+ resources :source_codes do
+    collection do
+      post 'sourcecode_imports'
+      get 'sourcecode_export'
     end
  end
     resources :softwares do
