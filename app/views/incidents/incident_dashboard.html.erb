@@ -110,10 +110,11 @@ $(function () {
        series: [{
             name: 'Count',
             colorByPoint: true,
-            data: [<%@cate.each do |c1|%>
+            data: [<%value=4%> <%@cate.each do |c1|%>
                        {
                            name: '<%=c1.name%>',
                            y: <%=c1.count%>,
+                           color: Highcharts.getOptions().colors[<%=value=value+1%>]
                        },
                        <%end%>]
         }]
@@ -158,10 +159,11 @@ $(function () {
        series: [{
             name: 'Count',
             colorByPoint: true,
-            data: [<%@stat.each do |c1|%>
+            data: [<%value=1%> <%@stat.each do |c1|%> 
                        {
                            name: '<%=c1.name%>',
                            y: <%=c1.count%>,
+                           color: Highcharts.getOptions().colors[<%=value=value+2%>]
                        },
                        <%end%>]
         }]
@@ -206,10 +208,12 @@ $(function () {
        series: [{
             name: 'Count',
             colorByPoint: true,
-            data: [<%@dept.each do |c1|%>
+            data: [<%value=6%> <%@dept.each do |c1|%>
                        {
                            name: '<%=c1.name%>',
                            y: <%=c1.count%>,
+                        color: Highcharts.getOptions().colors[<%=value=value+1%>]
+
                        },
                        <%end%>]
         }]
@@ -222,6 +226,97 @@ $(function () {
 </div>
 
 
-<div id="container3" style="float:left; display:inline-block;">
+<div id="container5">
+<script type="text/javascript">
+$(function () {
+    $('#container5').highcharts({
+        title: {
+            text: 'Incident'
+        },
+        xAxis: {
+            categories: ['Category', 'Department', 'Status', 'Priority']
+        },
+        labels: {
+            items: [{
+                html: 'Total fruit consumption',
+                style: {
+                    left: '50px',
+                    top: '18px',
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                }
+            }]
+        },
+        series: [{
+            type: 'column',
+            name: 'Category',
+            data: [<%@cate.each do |c1|%>
+                       {
+                           name: '<%=c1.name%>',
+                           y: <%=c1.count%>,
+                       },
+                       <%end%>]
+        }, {
+            type: 'column',
+            name: 'John',
+            data: [<%@dept.each do |c1|%>
+                       {
+                           name: '<%=c1.name%>',
+                           y: <%=c1.count%>,
+                       },
+                       <%end%>]
+        }, {
+            type: 'column',
+            name: 'Joe',
+            data: [<%@stat.each do |c1|%>
+                       {
+                           name: '<%=c1.name%>',
+                           y: <%=c1.count%>,
+                       },
+                       <%end%>]
+        }, {
+            type: 'spline',
+            name: 'Priority',
+            data: [<%@inci.each do |c1|%>
+                       {
+                           name: '<%=c1.name%>',
+                           y: <%=c1.count%>,
+                       },
+                       <%end%>],
+            marker: {
+                lineWidth: 2,
+                lineColor: Highcharts.getOptions().colors[3],
+                fillColor: 'white'
+            }
+        }, {
+            type: 'pie',
+            name: 'Total consumption',
+            data: [{
+                name: 'Category',
+                y: 13,
+                color: Highcharts.getOptions().colors[0] // Jane's color
+            }, {
+                name: 'Department',
+                y: 23,
+                color: Highcharts.getOptions().colors[1] // John's color
+            }, {
+                name: 'Status',
+                y: 19,
+                color: Highcharts.getOptions().colors[2] // Joe's color
+            }, {
+                name: 'Priority',
+                y: 19,
+                color: Highcharts.getOptions().colors[3] // Joe's color
+            }],
+            center: [100, 80],
+            size: 100,
+            showInLegend: false,
+            dataLabels: {
+                enabled: false
+            }
+        }]
+    });
+});
+
+</script>
 
 </div>

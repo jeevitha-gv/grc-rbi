@@ -185,6 +185,7 @@ def incident_dashboard
 @cate = Incident.find_by_sql("select incident_categories.name as name,count(incident_category_id)as count FROM incidents INNER JOIN incident_categories ON incident_categories.id = incidents.incident_category_id  GROUP BY incident_category_id,name")
 @stat=Incident.find_by_sql("select incident_statuses.name as name,count(incident_status_id)as count FROM incidents INNER JOIN incident_statuses ON incident_statuses.id = incidents.incident_status_id  GROUP BY incident_status_id,name")
 @dept=Incident.find_by_sql("select departments.name as name,count(department_id)as count FROM incidents INNER JOIN departments ON departments.id = incidents.department_id  GROUP BY department_id,name")
+@pri_count=Evaluate.find_by_sql("select count(incident_priority_id) as count from evaluates")
 
  end
 
