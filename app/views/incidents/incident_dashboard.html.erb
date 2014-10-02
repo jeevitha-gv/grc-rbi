@@ -1,0 +1,227 @@
+
+<h5>Control Dashboard</h5>
+<script src="/assets/outer/highcharts.js"></script>
+<script src="/assets/outer/exporting.js"></script>
+<script src="/assets/outer/drilldown.js"></script>
+<div style="width:100%;height:1000px;"> 
+<div id="container2" style="float:left; display:inline-block;width:50%;">
+<script type="text/javascript" style="float:left">
+$(function () {
+    $('#container2').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'Incident Priority/Category'
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+            valueSuffix: ' incidents'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+       series: [{
+            name: 'Count',
+            colorByPoint: true,
+            data: [<%@inci.each do |c1|%>
+                       {
+                           name: '<%=c1.name%>',
+                           y: <%=c1.count%>,
+                           drilldown: '<%=c1.name%>'
+                       },
+                       <%end%>]
+        }],
+              drilldown: {
+            series: [ 
+            <%@inci.each do |c1|%>
+            {
+                id: '<%=c1.name%>',
+                data: [
+                <%@inci1.each do |c2|%>
+                <% if c1.id == c2.id %>
+                    {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+            <% end %>
+            <% end %>
+                ]
+            }, 
+            <% end %>
+                  
+            ]
+        } 
+    });
+});
+</script> 
+</$(function>
+</div>
+
+
+<div id="container1" style="float:left; display:inline-block;width:50%;">
+ <script type="text/javascript">
+$(function () {
+    $('#container1').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'Incident Category'
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+            valueSuffix: ' incidents'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+       series: [{
+            name: 'Count',
+            colorByPoint: true,
+            data: [<%@cate.each do |c1|%>
+                       {
+                           name: '<%=c1.name%>',
+                           y: <%=c1.count%>,
+                       },
+                       <%end%>]
+        }]
+    });
+});
+</script> 
+</$(function>
+</div>
+<div style="height:50%;"></div>
+<div id="container3" style="float:left; display:inline-block;width:50%;">
+ <script type="text/javascript">
+$(function () {
+    $('#container3').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'Incident Status'
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+            valueSuffix: ' incidents'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+       series: [{
+            name: 'Count',
+            colorByPoint: true,
+            data: [<%@stat.each do |c1|%>
+                       {
+                           name: '<%=c1.name%>',
+                           y: <%=c1.count%>,
+                       },
+                       <%end%>]
+        }]
+    });
+});
+</script> 
+</$(function>
+</div>
+
+<div id="container4" style="float:left; display:inline-block;width:50%;">
+ <script type="text/javascript">
+$(function () {
+    $('#container4').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'Incident Department'
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+            valueSuffix: ' incidents'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+       series: [{
+            name: 'Count',
+            colorByPoint: true,
+            data: [<%@dept.each do |c1|%>
+                       {
+                           name: '<%=c1.name%>',
+                           y: <%=c1.count%>,
+                       },
+                       <%end%>]
+        }]
+    });
+});
+</script> 
+</$(function>
+</div>
+
+</div>
+
+
+<div id="container3" style="float:left; display:inline-block;">
+
+</div>

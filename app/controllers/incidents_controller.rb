@@ -3,6 +3,7 @@ before_filter :authorize_incident, :only => [:new, :create, :update, :edit]
  layout 'incident_layout'
  
    def index
+    #binding.pry
     query = ""
     input_data = []
     if params[:title] && params[:title].present?
@@ -32,7 +33,23 @@ before_filter :authorize_incident, :only => [:new, :create, :update, :edit]
       @incident = Incident.where(input_data)
     else
       @incident = Incident.all
+      
     end
+
+    # respond_to do |format|
+    #   format.html
+    #   format.pdf do
+    #   @pdf = (render_to_string pdf: "PDF", template: "incidents/index.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8",locals: { incident: @incident},:disposition => 'attachment')
+    #     #send_data(@pdf, type: "application/pdf", filename: @incident.title)
+    #     send_data(@pdf, type: "application/pdf")
+    #     binding.pry
+    #   end
+    # end
+  end
+
+
+    def generate_pdf
+ 
   end
 
 
@@ -73,7 +90,7 @@ if(params[:file].present?)
 
   def create
     @incident = Incident.create(incident_params)
-    @incident.set_incident_status(@incident, params[:commit])
+    #@incident.set_incident_status(@incident, params[:commit])
 
     if @incident.save
       flash[:notice] = "The incident was successfully created"
@@ -162,31 +179,15 @@ def incident_all
 
  
  
-  def incident_dashboard
-    @incident = Incident.all
-     @inci= Incident.find_by_sql("SELECT count(*) FROM incidents ")
+def incident_dashboard
+@inci = Evaluate.find_by_sql("select incident_priorities.name,evaluates.incident_priority_id as id,count(incident_priority_id)as count FROM evaluates INNER JOIN incident_priorities ON incident_priorities.id = evaluates.incident_priority_id  GROUP BY incident_priority_id,incident_priorities.name")
+@inci1=Incident.find_by_sql("select incident_categories.name as name,incident_priority_id as id,count(incident_category_id)as count FROM incident_categories INNER JOIN incidents ON incident_categories.id = incidents.incident_category_id  INNER JOIN evaluates ON evaluates.incident_id = incidents.id GROUP BY incident_category_id,incident_priority_id,name")
+@cate = Incident.find_by_sql("select incident_categories.name as name,count(incident_category_id)as count FROM incidents INNER JOIN incident_categories ON incident_categories.id = incidents.incident_category_id  GROUP BY incident_category_id,name")
+@stat=Incident.find_by_sql("select incident_statuses.name as name,count(incident_status_id)as count FROM incidents INNER JOIN incident_statuses ON incident_statuses.id = incidents.incident_status_id  GROUP BY incident_status_id,name")
+@dept=Incident.find_by_sql("select departments.name as name,count(department_id)as count FROM incidents INNER JOIN departments ON departments.id = incidents.department_id  GROUP BY department_id,name")
 
-    @category_1= Incident.find_by_sql("SELECT count(*) FROM incidents where incident_category_id=1")
-    @category_2= Incident.find_by_sql("SELECT count(*) FROM incidents where incident_category_id=2")
-    @category_3= Incident.find_by_sql("SELECT count(*) FROM incidents where incident_category_id=3")
-    @category_4= Incident.find_by_sql("SELECT count(*) FROM incidents where incident_category_id=4")
-    @category_5= Incident.find_by_sql("SELECT count(*) FROM incidents where incident_category_id=5")
-    @category_6= Incident.find_by_sql("SELECT count(*) FROM incidents where incident_category_id=6")
-    @category_7= Incident.find_by_sql("SELECT count(*) FROM incidents where incident_category_id=7")
-    @category_8= Incident.find_by_sql("SELECT count(*) FROM incidents where incident_category_id=8")
-    
-    @priority_1= Incident.find_by_sql("select count(*) from evaluates where incident_priority_id=1")
-    @priority_2= Incident.find_by_sql("select count(*) from evaluates where incident_priority_id=2")
-    @priority_3= Incident.find_by_sql("select count(*) from evaluates where incident_priority_id=3")
-     
+ end
 
-
-
- # @inci= Incident.find_by_sql("SELECT count(*) FROM incidents where date_trunc('month', created_at), date_trunc('month', created_at)+'1month'::interval-'1day'::interval")
- 
-# @inci= Incident.find_by_sql("SELECT count(*) FROM incidents GROUB_BY created_at ")
-
-  end
 
 private
   
