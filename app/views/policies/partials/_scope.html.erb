@@ -5,19 +5,28 @@
     </blockquote>
 </div> -->
 <div class="form-group clearfix">
-    <label class="col-sm-6 control-label">Scope</label>
+    <label class="col-sm-1 control-label">Scope</label>
+    <% if @policy.errors[:scope].present? %>
+        <div class="error_message"><%= @policy.errors[:scope][0]%></div>
+    <% end %>
     <div class="col-sm-9">
         <%= f.cktext_area :scope  , :cols => 40%>
     </div>
 </div>
 <div class="form-group clearfix">
-    <label class="col-sm-6 control-label">Purpose</label>
+    <label class="col-sm-1 control-label">Purpose</label>
+    <% if @policy.errors[:purpose].present? %>
+        <div class="error_message"><%= @policy.errors[:purpose][0]%></div>
+    <% end %>
     <div class="col-sm-9">
         <%= f.cktext_area :purpose  , :cols => 40%>
     </div>
 </div>
 <div class="form-group clearfix">
-    <label class="col-sm-6 control-label">Description</label>
+    <label class="col-sm-1 control-label">Description</label>
+    <% if @policy.errors[:description].present? %>
+            <div class="error_message"><%= @policy.errors[:description][0]%></div>
+        <% end %>
     <div class="col-sm-9">
         <%= f.cktext_area :description  , :cols => 40%>
     </div>

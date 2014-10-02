@@ -11,6 +11,9 @@
         <div class="col-sm-9">
           <%= f.text_field :title, class: "audit-normal-input" %>
         </div>
+        <% if @policy.errors[:title].present? %>
+            <div class="error_message"><%= @policy.errors[:title][0]%></div>
+        <% end %>
     </div>
     <hr>
     <div class="row">
@@ -21,6 +24,9 @@
                     <div class="risk-select">
                       <%= f.collection_select(:policy_kind_id, PolicyKind.all, :id, :name, :prompt => true) %>
                     </div>
+                    <% if @policy.errors[:policy_kind_id].present? %>
+                        <div class="error_message"><%= @policy.errors[:policy_kind_id][0]%></div>
+                    <% end %>
                 </div>
             </div>
             <div class="form-group clearfix">
@@ -30,6 +36,9 @@
                     <div class="risk-select">
                       <%= f.collection_select(:policy_classification_id, PolicyClassification.all, :id, :name, :prompt => true) %>
                     </div>
+                    <% if @policy.errors[:policy_classification_id].present? %>
+                        <div class="error_message"><%= @policy.errors[:policy_classification_id][0]%></div>
+                    <% end %>
                 </div>
             </div>
             <div class="form-group clearfix">
@@ -38,6 +47,9 @@
                     <div class="risk-select">
                         <%= f.collection_select(:audience_id, Audience.all, :id, :name, :prompt => true) %>
                     </div>
+                    <% if @policy.errors[:audience_id].present? %>
+                        <div class="error_message"><%= @policy.errors[:audience_id][0]%></div>
+                    <% end %>
                 </div>
             </div>
         </div>

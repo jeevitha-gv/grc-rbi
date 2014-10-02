@@ -95,6 +95,42 @@ function remove_policy_department(link) {
   }
 }
 
+
+function add_policy_reviewer(link, association) {
+    var content = $(".policy-reviewer").html()
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("[0]", "g");
+    var regexp_new = new RegExp('selected="selected"', "g");
+    $(link).parent().parent().find("#reviewer-list").append("<div class='policy-reviewer'>"+content.replace(regexp, new_id).replace(regexp_new , "")+"</div>");
+    return false;
+}
+
+function remove_policy_reviewer(link) {
+  if($(".policy_reviewer:visible").length > 1)
+  {
+    jQuery(link).parent().find("input[type=hidden]").val(1);
+    jQuery(link).parents(".policy_reviewer").hide();
+  }
+}
+
+
+function add_policy_approver(link, association) {
+    var content = $(".policy-approver").html()
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("[0]", "g");
+    var regexp_new = new RegExp('selected="selected"', "g");
+    $(link).parent().parent().find("#approver-list").append("<div class='policy-approver'>"+content.replace(regexp, new_id).replace(regexp_new , "")+"</div>");
+    return false;
+}
+
+function remove_policy_approver(link) {
+  if($(".policy_approver:visible").length > 1)
+  {
+    jQuery(link).parent().find("input[type=hidden]").val(1);
+    jQuery(link).parents(".policy_approver").hide();
+  }
+}
+
 function setCookie(name, value) {
     var d = new Date();
     d.setTime(d.getTime() + (1*24*60*60*1000));

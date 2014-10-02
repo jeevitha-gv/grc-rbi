@@ -25,6 +25,9 @@
         <div class="form-group">
           <%= f.text_area :note %>
         </div>
+        <% if @policy.errors[:note].present? %>
+          <div class="error_message"><%=  @policy.errors[:note][0]%></div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -34,8 +37,11 @@
       <label class="col-sm-4 control-label">Effective from</label>
       <div class="col-sm-7">
         <div class="form-group">
-          <%= f.text_field :effective_from, :class => "datepicker" %>
+          <%= f.text_field :effective_from, value: (@policy.effective_from.strftime("%d/%m/%Y") if @policy.effective_from?), :class => "datepicker", :style =>"width:150px;" %>
         </div>
+        <% if @policy.errors[:effective_from].present? %>
+          <div class="error_message"><%=  @policy.errors[:effective_from][0]%></div>
+        <% end %>
       </div>
     </div>
 
@@ -43,8 +49,11 @@
       <label class="col-sm-4 control-label">Effective Till</label>
         <div class="col-sm-7">
           <div class="form-group">
-            <%= f.text_field :effective_till, :class => "datepicker1" %>  
+            <%= f.text_field :effective_till, value: (@policy.effective_till.strftime("%d/%m/%Y") if @policy.effective_till?), :class => "datepicker", :style =>"width:150px;" %>  
           </div>
+          <% if @policy.errors[:effective_till].present? %>
+            <div class="error_message"><%=  @policy.errors[:effective_till][0]%></div>
+          <% end %>
       </div>
     </div>
     
@@ -52,8 +61,11 @@
       <label class="col-sm-4 control-label">Expected Publish date</label>
       <div class="col-sm-7">
         <div class="form-group">
-          <%= f.text_field :expected_publish_date, :class => "datepicker2" %>  
+          <%= f.text_field :expected_publish_date, value: (@policy.expected_publish_date.strftime("%d/%m/%Y") if @policy.expected_publish_date?), :class => "datepicker", :style =>"width:150px;" %>  
         </div>
+        <% if @policy.errors[:expected_publish_date].present? %>
+          <div class="error_message"><%=  @policy.errors[:expected_publish_date][0]%></div>
+        <% end %>
       </div>
     </div>
 
@@ -61,8 +73,11 @@
       <label class="col-sm-4 control-label">Next Review Date</label>
       <div class="col-sm-7">
         <div class="form-group">
-          <%= f.text_field :review_within_date, :class => "datepicker3" %> 
+          <%= f.text_field :review_within_date, value: (@policy.review_within_date.strftime("%d/%m/%Y") if @policy.review_within_date?), :class => "datepicker", :style =>"width:150px;" %>  
         </div>
+        <% if @policy.errors[:review_within_date].present? %>
+          <div class="error_message"><%=  @policy.errors[:review_within_date][0]%></div>
+        <% end %>
       </div>
     </div>    
   </div>

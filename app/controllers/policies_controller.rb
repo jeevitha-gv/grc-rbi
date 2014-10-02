@@ -15,7 +15,6 @@ class PoliciesController < ApplicationController
 
 	# POST method to create a new policy
 	def create
-		binding.pry
 		@policy = current_company.policies.build(policy_params)
 		if @policy.save
 			redirect_to show_individual_policy_path(@policy)
@@ -30,8 +29,7 @@ class PoliciesController < ApplicationController
 	end
 
 	# Update Policy
-	def update 
-		binding.pry
+	def update
 		@policy = Policy.find(params[:id])
 		if @policy.update_attributes(policy_params)
 			redirect_to show_individual_policy_path(@policy)
@@ -56,7 +54,7 @@ class PoliciesController < ApplicationController
 
 	# parameters
 	def policy_params
-		params.require(:policy).permit(:title,:policy_kind_id,:audience_id,:policy_classification_id, :scope, :purpose, :description, :note,:standard_id, :effective_from, :effective_till, :expected_publish_date, :review_within_date, policy_locations_attributes: [:id, :location_id, :_destroy])
+		params.require(:policy).permit(:title,:policy_kind_id,:audience_id,:policy_classification_id, :scope, :purpose, :description, :owner, :note,:standard_id, :effective_from, :effective_till, :expected_publish_date, :review_within_date, policy_locations_attributes: [:id, :location_id, :_destroy], policy_departments_attributes: [:id, :department_id, :_destroy] , policy_approvers_attributes: [:id, :approver, :_destroy], policy_reviewers_attributes: [:id, :reviewer, :_destroy])
 	end
 
 
