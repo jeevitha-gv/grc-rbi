@@ -2,6 +2,6 @@ class PolicyReviewer < ActiveRecord::Base
 
 	# Associations
 	belongs_to :policy
-	belongs_to :policy_reviewer, class_name: "User", foreign_key: 'reviewer'
+	belongs_to :user
 	has_one :policy_review
 end

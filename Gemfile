@@ -88,3 +88,6 @@ gem 'mini_magick'
 
 # Versioning gem
  gem 'paper_trail', '~> 3.0.5'
+
+# ID generation
+gem 'protokoll'

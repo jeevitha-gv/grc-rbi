@@ -14,7 +14,7 @@
                             <div class="table-responsive">
                                 <table class="table table-striped list-table">
                                     <tr>
-                                        <th colspan="6">Policy ID - Version</th>
+                                        <th colspan="6"><%= @policy.policy_unique_id %>- Version</th>
                                     </tr>
                                     <tr>
                                       <td><label class="col-sm-5"class="col-sm-4">Kind of Policy</label>
@@ -55,15 +55,15 @@
                                     <tr>
                                       <td><label class="col-sm-5"class="col-sm-4">Reviewers</label>
                                         <span>
-                                            <%# @policy.policy_reviewers_list.each do |u| %>
-                                                <%#= u.user_name %>
-                                            <%# end %>  
+                                            <% @policy.approvers.each do |u| %>
+                                                <%= u.user_name %>
+                                            <% end %>  
                                         </span></td>
                                       <td><label class="col-sm-5"class="col-sm-4">Approvers</label>
                                         <span>
-                                            <%# @policy.policy_approvers_list.each do |u| %>
-                                                <%#= u.user_name %>
-                                            <%# end %>
+                                            <% @policy.reviewers.each do |u| %>
+                                                <%= u.user_name %>
+                                            <% end %>
                                         </span></td>
 
                                     </tr>
@@ -109,15 +109,15 @@
                                     </tr>
                                     <tr>
                                       <td><label class="col-sm-5"class="col-sm-4">Scope </label>
-                                        <span><%= @policy.scope %></span></td>
+                                        <span><%= sanitize @policy.scope %></span></td>
                                     </tr>
                                     <tr>
                                       <td><label class="col-sm-5"class="col-sm-4">Purpose</label>
-                                        <span> <%= @policy.purpose %></span></td>
+                                        <span> <%= sanitize  @policy.purpose %></span></td>
                                     </tr>
                                                                        <tr>
                                       <td><label class="col-sm-5"class="col-sm-4">Description</label>
-                                        <span><%= @policy.description %></span></td>
+                                        <span><%=  sanitize @policy.description %></span></td>
                                     </tr>
                                 </table>
                                 <table class="table table-striped list-table">

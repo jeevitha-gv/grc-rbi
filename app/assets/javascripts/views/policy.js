@@ -1,10 +1,18 @@
 $(document).ready(function(){
 
 	// effective from datepicker
-	$(".datepicker").kendoDatePicker();
-	$(".datepicker1").kendoDatePicker();
-	$(".datepicker2").kendoDatePicker();
-	$(".datepicker3").kendoDatePicker();
+	$(".datepicker").kendoDatePicker({
+		 format: "dd/MM/yyyy"
+	});
+	$(".datepicker1").kendoDatePicker({
+		format: "dd/MM/yyyy"
+	});
+	$(".datepicker2").kendoDatePicker({
+		format: "dd/MM/yyyy"
+	});
+	$(".datepicker3").kendoDatePicker({
+		format: "dd/MM/yyyy"
+	});
 
 	// Grid I
 
