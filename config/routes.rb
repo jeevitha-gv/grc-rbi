@@ -105,19 +105,19 @@ Rails.application.routes.draw do
   end
 
   scope '/inventory' do
+    
     resources :information_assets do
       collection do
         post 'infoasset_imports'
       end
     end
 
-    resources :documents
     resources :computers do
-    collection do
-      post 'computer_imports'
-      get 'computer_export'
+      collection do
+        post 'computer_imports'
+        get 'computer_export'
+      end
     end
-  end
 
     resources :documents do
       collection do
@@ -125,9 +125,6 @@ Rails.application.routes.draw do
         get  'document_export'
       end
     end
-    resources :source_codes
-    resources :computers
-    resources :source_codes
 
     resources :other_assets do
       collection do
@@ -137,32 +134,36 @@ Rails.application.routes.draw do
         get 'download_other_asset_document'
       end
     end
+  
     resources :services do
-    collection do
-      post 'service_imports'
-      get 'service_export'
+      collection do
+        post 'service_imports'
+        get 'service_export'
+      end
     end
-   end
-    resources :mobile_assets do
-    collection do
-      post 'mobileasset_imports'
-      get 'mobile_asset_export'
-    end
- end
- resources :source_codes do
-    collection do
-      post 'sourcecode_imports'
-      get 'sourcecode_export'
-    end
- end
-    resources :softwares do
-    collection do
-      post 'software_imports'
-      get 'software_export'
-    end
-  end
 
-end
+    resources :mobile_assets do
+      collection do
+        post 'mobileasset_imports'
+        get 'mobile_asset_export'
+      end
+    end
+ 
+    resources :source_codes do
+      collection do
+        post 'sourcecode_imports'
+        get 'sourcecode_export'
+      end
+    end
+
+    resources :softwares do
+      collection do
+        post 'software_imports'
+        get 'software_export'
+      end
+    end
+
+  end
   
   resources :assets do  
     resources :assessments
