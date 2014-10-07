@@ -83,7 +83,6 @@ class DocumentsController < ApplicationController
         redirect_to new_document_path
       end
     else
-      binding.pry
       flash[:notice]=  MESSAGES["csv_upload"]["presence"]
       redirect_to new_document_path
     end
