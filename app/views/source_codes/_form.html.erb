@@ -1,3 +1,4 @@
+<%= javascript_include_tag "/assets/outer/jquery.tagsinput.min.js" %>
 <%= f.fields_for :asset do |ff| %>
 
 <%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>
@@ -79,8 +80,29 @@
 $('.ui.checkbox')
   .checkbox();
 
-$(document).ready(function(){
-  $('.datepicker').kendoDatePicker()
+$('#tags').tagsInput({
+  'defaultText':'add email'
 });
+
+ $(document).ready(function(){
+    
+    var temp_start = $(".datepicker").val()
+    var start = $(".datepicker").kendoDatePicker({
+      format: "dd/MM/yyyy"
+  }).data("kendoDatePicker");
+ 
+
+    $(".datepicker").bind("focus", function() {
+      $(this).data("kendoDatePicker").open();
+    });
+    $('.datepicker').attr('readonly', true);
+
+    $(".datepicker1").bind("focus", function() {
+      $(this).data("kendoDatePicker").open();
+    });
+    $('.datepicker1').attr('readonly', true);
+
+    $(".datepicker").val(temp_start)
+  });
 
 </script>

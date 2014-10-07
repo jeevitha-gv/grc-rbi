@@ -81,7 +81,7 @@ def sourcecode_export
   private
 
   def sourcecode_params
-  	params.require(:source_code).permit(:vcs_url, :project_manager, :version_number, :backup_measure, :assigned_on, :expected_life, asset_attributes: [:id, :name, :description, :location_id, :department_id, :asset_state_id, :classification_id, :company_id, :owner_id, :custodian_id, :identifier_id, :evaluated_by, :personal_data, :sensitive_date, :customer_data, :confidentiality, :availability, :integrity])
+  	params.require(:source_code).permit(:vcs_url, :project_manager, :version_number, :backup_measure, :assigned_on, :expected_life, asset_attributes: [:id, :name, :description, :location_id, :department_id, :asset_state_id, :classification_id, :company_id, :owner_id, :custodian_id, :identifier_id, :evaluated_by, :personal_data, :sensitive_date, :customer_data, :confidentiality, :availability, :integrity, :asset_users])
   end
 
 end

@@ -99,7 +99,7 @@ class OtherAssetsController < ApplicationController
 
 
   def other_asset_params
-  	params.require(:other_asset).permit(:manufacturer, :asset_type_id, :asset_status_id, :model, :serial_number, :aset_id, :ip, :description, :maintenance_contract, :lease_contract, attachment_attributes: [:id, :attachment_file, :company_id],lifecycles_attributes: [:id, :lifecycle_date, :lifecycle_type_id, :user_id, :notes,:_destroy],asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity])
+  	params.require(:other_asset).permit(:manufacturer, :asset_type_id, :asset_status_id, :model, :serial_number, :aset_id, :ip, :description, :maintenance_contract, :lease_contract, attachment_attributes: [:id, :attachment_file, :company_id],lifecycles_attributes: [:id, :lifecycle_date, :lifecycle_type_id, :user_id, :notes,:_destroy],asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity, :asset_users])
   end
 
 end

@@ -1,5 +1,4 @@
-
-
+<%= javascript_include_tag "/assets/outer/jquery.tagsinput.min.js" %>
 <%= f.fields_for :asset do |ff| %>
 
 <%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>
@@ -72,6 +71,10 @@
 
 $('.ui.checkbox')
   .checkbox();
+
+$('#tags').tagsInput({
+  'defaultText':'add email'
+});
 
  $(document).ready(function(){
     

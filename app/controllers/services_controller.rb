@@ -82,7 +82,7 @@ class ServicesController < ApplicationController
   end
 
   def service_params
-  	params.require(:service).permit(:service_type_id, :cost, :sla, :assigned_on, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_data,:customer_data,:confidentiality,:availability,:integrity])
+  	params.require(:service).permit(:service_type_id, :cost, :sla, :assigned_on, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_data,:customer_data,:confidentiality,:availability,:integrity, :asset_users])
   end
 
 end

@@ -87,7 +87,7 @@ class MobileAssetsController < ApplicationController
   private
 
     def mobile_asset_params
-  		params.require(:mobile_asset).permit(:model, :manufacturer, :serial_number, :service_provider, :imei, :device_type_id, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity])
+  		params.require(:mobile_asset).permit(:model, :manufacturer, :serial_number, :service_provider, :imei, :device_type_id, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity, :asset_users])
   	end
 
 end

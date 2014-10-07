@@ -149,6 +149,6 @@ function delete_file(e)
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "/computers/"+ dataItem.id + "/edit"
+        window.location.href = "computers/"+ dataItem.assetable_id + "/edit"
     }
       });
