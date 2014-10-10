@@ -154,11 +154,15 @@ end
     end
   end
 
+
+  resources :company_controls 
+
   resources :policy_dashboards do
     collection do
       get 'calender'
     end
   end
+
 
 
   get 'welcome', to: 'companies#welcome', :as => :welcome

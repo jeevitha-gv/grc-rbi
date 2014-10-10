@@ -1,3 +1,4 @@
+
 .fleft {
 	float: left;
 }
@@ -1732,6 +1733,8 @@ a.import-btn{
 
 .form-group {
     margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: 8px;
 }
 
 .orange-method{

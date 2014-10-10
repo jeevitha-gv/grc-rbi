@@ -1,0 +1,113 @@
+
+
+<div class="clearfix"></div>
+<div class="content">
+<div class="container">
+<div class="row">
+<div class="new-policy">
+<h2>New Control</h2>
+	<%= form_for @control do |f|%>
+<div class="policy-content container">
+<div class="clearfix">
+    <h3>Control Details</h3>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <div class="form-group clearfix">
+            <!--<br>-->
+            <!--<br>-->
+            <label class="col-sm-2">  Control title</label>
+            <div class="col-sm-4 p-big-l-pad">
+               <%= f.text_field :title, class: "policy-input" %>
+            </div>
+        </div>
+    </div>
+    <div class=" col-md-4">
+        <div class="form-group clearfix">
+            <div class="policy-box-lable">Control ID:</div>
+            <div class="policy-box-lable">Ctrl-000500A</div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="col-lg-4 col-sm-6 col-xs-12">
+    <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">Standard</label>
+        <div class="col-sm-7">
+            <%= f.collection_select(:standard_id, Compliance.all, :id, :name, :prompt => "Select Standard" )%>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="form-group clearfix">
+        <label class="col-sm-4 control-label">Control State</label>
+        <div class="col-sm-7">
+           <%= f.collection_select(:control_state_id, ControlState.all, :id, :name, :prompt => "Select State")%>
+        </div>
+    </div>
+</div>
+ 
+         <!--      section II -->
+
+<div class="col-lg-4 col-sm-6 col-xs-12">
+    <div class="form-group clearfix">
+        <div class="form-group clearfix">
+            <label class="col-sm-4 control-label">Classification</label>
+            <div class="col-sm-7">
+              <%= f.collection_select(:control_classification_id, ControlClassification.all, :id, :name, :prompt => "Select Classification") %>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-group clearfix">
+            <label class="col-sm-4 control-label">Control Frequency</label>
+            <div class="col-sm-7">
+              <%= f.collection_select(:control_freq_id, ControlFreq.all, :id, :name, :prompt => "Select Frequency")%>
+            </div>
+        </div>
+    </div>
+</div>
+
+      <!--    section III -->
+
+<div class="col-lg-4 col-sm-6 col-xs-12">
+    <div class="form-group clearfix">
+        <div class="form-group clearfix">
+            <lable class="col-sm-4 control-label">Purpose</lable>
+            <div class="col-sm-7">
+             <%= f.collection_select(:purpose_id, Purpose.all, :id, :name, :prompt => "Select purpose")%>
+            </div>
+        </div>
+        <br>
+        <br>
+       
+    </div>
+</div>
+
+
+
+<div class="clearfix"></div>
+<hr>
+<div class="col-lg-12">
+        <div class="form-group clearfix">
+            <label class="col-sm-2">Description</label>
+            <div class="col-sm-10">
+              <%= f.text_area :description , class: "policy-small-input" %>
+            </div>
+        </div>
+    <div class="clearfix"></div>
+</div>
+<div class="clearfix"><br>
+    <div class="fright paddingtop p-new-btn">
+    <%= f.submit "Save", :class => "black_btn" %>
+        <!-- <a class="green_btn"  href="">Create</a>  --><a class="green_btn" href="">Cancel</a>
+    </div>
+</div>
+<!--Scope purpose description and comments-->
+</div>
+<% end %>
+</div>
+</div>
+</div>
+</div>

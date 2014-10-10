@@ -1,0 +1,22 @@
+<% content_for :head do %>
+<%= javascript_include_tag '/assets/views/company_controls'%>
+<% end %>
+<div class="page-wrap">
+<div class="clearfix"></div>
+<div class="content">
+  <div class="container">
+    <div class="row grid-sp">
+    	<div class="risk-title">Control</div>
+  				<div class="clearfix"><%= link_to '<img src="/assets/outer/new.png" style= "width:25px;"></img> New Control'.html_safe , new_company_control_path , :class => "btn btn-fresh" %>
+  				</div>
+      <!-- Nav tabs -->
+    </div>
+
+    <!-- #grid-->
+    <div id="grid"></div>
+
+    <!-- #grid  -->
+  </div>
+</div>
+</div>
+</div>
