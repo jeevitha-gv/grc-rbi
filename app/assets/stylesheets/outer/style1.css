@@ -458,3 +458,20 @@ a.plus-background {
 .k-link span{
 	display:inline-block;
 }
+
+.k-grid-show{
+    width: 20px;
+    margin:0;
+    height: 20px;
+    background: url('/assets/outer/show.png') no-repeat;
+    text-indent: -9999px;
+    min-width:0 !important;
+    margin:0 2px !important;
+    border: medium none;
+    float: left;
+    padding: 0;
+}
+.k-grid-show:hover, .k-grid-show.active{
+    background-position: 0 -20px;border: medium none; background-color: transparent;
+}
+

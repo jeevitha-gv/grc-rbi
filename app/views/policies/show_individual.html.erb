@@ -8,7 +8,14 @@
                 <div class="col-md-12">
                     <div class="panel with-nav-tabs panel-default">
                         <div class="panel-heading">
-                        <h4><b><%= @policy.title %></b></h4>
+                            <h4>
+                            <b><%= @policy.title %></b> --
+                            <% if (params[:version].to_i < @versions.size) && params[:version].present? %>
+                                Version : <%= params[:version].to_i %>
+                            <% else %>
+                                Version : <%= @versions.length %>
+                            <% end %>
+                            </h4>
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">

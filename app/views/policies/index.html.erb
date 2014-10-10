@@ -7,8 +7,22 @@
   <div class="container">
     <div class="row grid-sp">
     	<div class="risk-title">Policies</div>
-  				<div class="clearfix"><%= link_to '<img src="/assets/outer/new.png" style= "width:25px;"></img> New Policy'.html_safe , new_policy_path , :class => "btn btn-fresh" %>
-  				</div>
+  				<div class="clearfix">
+          <div style="position:relative;left:801px;top:17px;">
+            <div class="btn-group btn-group-success">
+              <button class="btn btn-success" type="button">Export</button>
+              <button data-toggle="dropdown" class="btn btn-success dropdown-toggle" type="button"><span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">CSV</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Excel</a></li>
+                <li class="divider"></li>
+                <li><a href="#">PDF</a></li>
+              </ul>
+            </div>
+          <%= link_to '<img src="/assets/outer/new.png" style= "width:25px;"></img> New Policy'.html_safe , new_policy_path , :class => "btn btn-success" %></div>
+                    </div>
       <!-- Nav tabs -->
     </div>
 

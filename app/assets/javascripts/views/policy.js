@@ -53,15 +53,32 @@ $(document).ready(function(){
 		filterable: true,
 		pageable: false,
 		columns: [
-			{ field: "title", title: "Policy Name", width: "40%" },
+			{ field: "title", title: "Policy Name", width: "100%" },
 			{ field: "classification", title: "Classifications", width: "40%" },
 			{ field: "distribution", title: "Distributions", width: "40%" },
 			{ field: "kind", title: "Kinds", width: "40%" },
 			{ field: "version", title: "Versions", width: "40%" },
-			{ field: "owner", title: "Owners", width: "40%" }
+			{ field: "owner", title: "Owners", width: "40%" },
+			{ command: [{text: "show", click: show_file},{text: "list"},{text: "miti"},{text: "edit"},{text: "graph"}], title: "Action", width: "200px"  }
 		]
 	});
 
-	// Grid II
+	function show_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/policies/"+ dataItem.id + "/show_individual"
+	}
+
+	function riskGridTitle()
+	{
+		$('.k-grid-file').attr('title','File');
+		$('.k-grid-show').attr('title','View');
+		$('.k-grid-list').attr('title','Mitigate');
+		$('.k-grid-miti').attr('title','review');
+		$('.k-grid-edit').attr('title','Edit');
+		$('.k-grid-pdf').attr('title','Report');
+		$('.k-grid-graph').attr('title','Dashboard');
+		$('.k-grid-delete').attr('title','Delete');
+	}
 
 });
