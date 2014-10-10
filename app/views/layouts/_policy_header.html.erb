@@ -76,7 +76,7 @@
           <li><a href="" class="">
           <div class="calender-icon"></div>
           Calendar</a></li>
-          <li><a  href="#" class="<%= request.fullpath.include?("company_controls") == true ? 'active' : '' %>">
+          <li><a  href="/company_controls" class="<%= request.fullpath.include?("company_controls") == true ? 'active' : '' %>">
           <div class="lmitigate-icon"></div>
           Control</a></li>
           <li><a   href="/policies" class="<%= (request.fullpath.include?("policies") && action_name == "index") == true ? 'active' : '' %>">
