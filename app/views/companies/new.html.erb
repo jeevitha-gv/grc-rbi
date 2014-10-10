@@ -1,21 +1,4 @@
-<div class="page-wrap">
-  <div class="header">
-    <div class="container">
-      <!-- Fixed navbar -->
-      <div class="navbar navbar-inverse " role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-            <%= link_to image_tag("/assets/outer/footer_logo.png", :class => "navbar-brand"), root_path %>
-          </div>
-          <div class="login-wrap"> <%= link_to "Sign in", "/users/sign_in" %> <%= link_to "Sign up", "/companies/new" %>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="clearfix"></div>
-    <div class="content" style="min-height:100px;">
+<div class= "signup_wrapper">
       <% if @company.errors.any? %>
         <div class="container">
             <div class="col-md-4 col-md-offset-4">
@@ -35,82 +18,40 @@
         </div>
       </div>
       <% end %>
-      <div class="container">
 
-            <!-- Nav tabs -->
-        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="login-box clearfix">
-            <div class="login-title">Sign Up</div>
-            <div class="login-box-con">
-              <%params[:subscription]= @subscription[:company][:subscription] if @subscription.present?%>
-              <%= form_for(@company, html: { class: "form-horizontal"}) do |f| %>
-                <%=f.hidden_field :subscription,{:value => params[:subscription]}%>
-                <%= f.fields_for :users do |user| %>
-                  <div class="form-group form-group-lg">
-                    <label class="col-sm-4 control-label" for="formGroupInputLarge">User name</label>
-                    <div class="col-sm-8">
-                      <%= user.text_field :user_name, :class =>"form-control", :placeholder => "User name" %>
-                    </div>
-                  </div>
 
-                  <div class="form-group form-group-lg">
-                    <label class="col-sm-4 control-label" for="formGroupInputLarge">Email</label>
-                    <div class="col-sm-8">
-                      <%= user.text_field :email ,:class =>"form-control", :placeholder => "Email " %>
-                    </div>
-                  </div>
-                <% end %>
+<title>FixNix|Login form</title>
+<link rel="stylesheet" href="/assets/outer/signin.css">
+<div>
+ <p class="trail-head"><b>Experience your GRC in cloud</b></p>
+</div>
+<section class="signup">
+  <%params[:subscription]= @subscription[:company][:subscription] if @subscription.present?%>
+  <%= form_for(@company, html: { class: "form-horizontal", id: "signup"}) do |f| %>
+    <%=f.hidden_field :subscription,{:value => params[:subscription]}%>
+      <center><img src="/assets/outer/logo.png" height="250px" width="250px" ></center>
 
-                <div class="form-group form-group-lg">
-                  <label class="col-sm-4 control-label" for="formGroupInputLarge">Company Name</label>
-                  <div class="col-sm-8">
-                    <%= f.text_field :name ,:class =>"form-control", :placeholder => "Company Name" %>
-                  </div>
-                </div>
+      <%= f.fields_for :users do |user| %>
+        <%= user.text_field :user_name, :placeholder => "Username", class: "validate[required]" %>
+        <%= user.text_field :email , :placeholder => "Email " , class: "validate[required]", id: "email"%>
+      <% end %>
 
-                <div class="form-group form-group-lg">
-                  <label class="col-sm-4 control-label" for="formGroupInputLarge">Domain</label>
-                  <div class="col-sm-8">
-                    <%= f.text_field :domain ,:class =>"form-control inp ut-width domain-width", :placeholder => "Domain"%><span>.fixrnix.in</span>
-                  </div>
-                </div>
-
-                <div class="form-group form-group-lg">
-                  <label class="col-sm-4 control-label" for="exampleInputFile">Country</label>
-                    <div class="col-sm-8">
-                      <div class="risk-select">
-                      <%= f.collection_select(:country_id, Country.all, :id, :name, {include_blank: '--Select Country--' }, {:class =>"form-control"})  %>
-                    </div>
-                    </div>
-                </div>
-
-                <div class="form-group form-group-lg">
-                  <label class="col-sm-4 control-label" for="exampleInputFile">Timezone</label>
-                  <div class="col-sm-8">
-                    <%= f.select(:timezone, Company::TIMEZONES, {include_blank: '--Select Timezone--' },{:class =>"form-control time-zon"})%>
-                  </div>
-                </div>
-
-                <div class = "logn-btn">
-                  <%= f.submit "Sign up", :class => "btn btn-warning" %>
-                </div>
-
-              <% end %>
-          </div>
-        </div>
-
+      <%= f.text_field :name , :placeholder => "Company" , class: "validate[required]"  %>
+      <%= f.text_field :domain , :placeholder => "Domain" , class: "validate[required]" %><span style="margin: -86px; color: #38B0DE;">.smbgrc.info</span>
+      
+      <div class="risk-select">
+        <%= f.collection_select(:country_id, Country.all, :id, :name, {include_blank: '--Select Country--' },{:class =>"form-control time-zon validate[required]", :type => "text"})  %>
       </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-  <div class="clearfix"></div>
-    <div class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="footer_left col-lg-6">2014 © FixNix GRC Platform</div>
-        <div class="footer_right col-lg-6">Powered By <img src="/assets/outer/footer_logo.png" alt=""/></div>
-      </div>
-    </div>
-  </div>
+      <br>
+      
+      <%= f.submit "Sign up", :class => "signin resend" %>
+      <br><br>
+      <span><%= link_to "Already have an account?", "/users/sign_in" %></span>
+<% end %>
+</section>
+</<div></div>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#signup").validationEngine();
+});
+</script>
