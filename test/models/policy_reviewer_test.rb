@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PolicyHandlerTest < ActiveSupport::TestCase
+class PolicyReviewerTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

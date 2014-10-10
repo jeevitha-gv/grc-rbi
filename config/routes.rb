@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
 
+  mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   post 'admin/privileges/modal_previlege'
@@ -153,7 +154,15 @@ end
     end
   end
 
+
   resources :company_controls 
+
+  resources :policy_dashboards do
+    collection do
+      get 'calender'
+    end
+  end
+
 
 
   get 'welcome', to: 'companies#welcome', :as => :welcome

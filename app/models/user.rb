@@ -48,9 +48,9 @@ class User < ActiveRecord::Base
   has_many :lifecycles
 
   # Associations with Policy Module
-  has_many :policy_owner, class_name: "Policy", foreign_key: 'owner'
-  has_many :policy_reviewer, class_name: "PolicyHandler", foreign_key: 'handler'
-  has_many :policy_approver, class_name: "PolicyHandler", foreign_key: 'handler'
+  has_many :policy_owners, class_name: "Policy", foreign_key: 'owner'
+  has_many :policy_reviewers
+  has_many :policy_approvers
 
 # attribute to login with username or email
   attr_accessor :login, :domain

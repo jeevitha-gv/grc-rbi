@@ -1,10 +1,18 @@
 $(document).ready(function(){
 
 	// effective from datepicker
-	$(".datepicker").kendoDatePicker();
-	$(".datepicker1").kendoDatePicker();
-	$(".datepicker2").kendoDatePicker();
-	$(".datepicker3").kendoDatePicker();
+	$(".datepicker").kendoDatePicker({
+		 format: "dd/MM/yyyy"
+	});
+	$(".datepicker1").kendoDatePicker({
+		format: "dd/MM/yyyy"
+	});
+	$(".datepicker2").kendoDatePicker({
+		format: "dd/MM/yyyy"
+	});
+	$(".datepicker3").kendoDatePicker({
+		format: "dd/MM/yyyy"
+	});
 
 	// Grid I
 
@@ -29,7 +37,7 @@ $(document).ready(function(){
 					distribution: { type: "string" },
 					kind: { type: "string" },
 					version: { type: "string" },
-					author: { type: "string" }
+					owner: { type: "string" }
 
 				}
 			}
@@ -50,7 +58,7 @@ $(document).ready(function(){
 			{ field: "distribution", title: "Distributions", width: "40%" },
 			{ field: "kind", title: "Kinds", width: "40%" },
 			{ field: "version", title: "Versions", width: "40%" },
-			{ field: "author", title: "Authors", width: "40%" }
+			{ field: "owner", title: "Owners", width: "40%" }
 		]
 	});
 
