@@ -71,6 +71,25 @@ Rails.application.configure do
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
+   config.action_mailer.raise_delivery_errors = false
+   config.action_mailer.delivery_method = :smtp
+   config.action_mailer.default_url_options = { host: 'audit.loc:3000' }
+      ActionMailer::Base.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port => 587,
+      :domain => "gmail.com",
+      :user_name => "ghayathri@fixrnix.in",
+      :password => "Iborn2achieve!",
+      :authentication => "plain",
+      :enable_starttls_auto => true
+}
+
+ config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "Exceptions",
+    :sender_address => %{"Exceptions" <ghayathri@fixrnix.in>},
+    :exception_recipients => %w{exception.fixnix@gmail.com}
+  }
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
@@ -80,4 +99,15 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.after_initialize do
+
+  ActiveMerchant::Billing::Base.mode = :production
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+    :login => "shan_api1.fixrnix.in",
+    :password => "PXJ68EC2ZPAVA437",
+    :signature => "AYD3mDEgPEvWHZ8oGoO7LvWwK.A0AaYV2QUdsWBsyyXfIyI6e4kmgUEE",
+    
+)
+end
 end
