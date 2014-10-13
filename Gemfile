@@ -91,3 +91,6 @@ gem 'mini_magick'
 
 # ID generation
 gem 'protokoll'
+
+# Gem for getting expection notification
+gem 'exception_notification'
