@@ -77,6 +77,7 @@ end
 	belongs_to :sub_category
 	belongs_to :department
 	belongs_to :team
+	belongs_to :company
 	has_one :evaluate
 	has_one :resolution
 	has_one :close

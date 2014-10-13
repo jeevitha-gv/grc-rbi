@@ -1,4 +1,6 @@
 class IncidentsController < ApplicationController
+    before_filter :check_company_disabled, :company_module_access_check
+
 before_filter :authorize_incident, :only => [:new, :create, :update, :edit] 
  layout 'incident_layout'
  
@@ -193,7 +195,7 @@ def incident_dashboard
 private
   
   def incident_params
-    params.require(:incident).permit(:Jobtitle, :title, :request_type_id, :incident_category_id, :sub_category_id, :date_occured, :summary,:department_id, :team_id, :incident_status_id, :comment, :contact_no, attachment_attributes: [:id, :attachment_file, :company_id])
+    params.require(:incident).permit(:Jobtitle, :title, :company_id,:request_type_id, :incident_category_id, :sub_category_id, :date_occured, :summary,:department_id, :team_id, :incident_status_id, :comment, :contact_no, attachment_attributes: [:id, :attachment_file, :company_id])
   end
 
 
