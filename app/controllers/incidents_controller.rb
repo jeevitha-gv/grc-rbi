@@ -3,7 +3,57 @@ before_filter :authorize_incident, :only => [:new, :create, :update, :edit]
  layout 'incident_layout'
  
    def index
+    #binding.pry
     query = ""
+    input_data = []
+    if params[:title] && params[:title].present?
+      query += "title = ? AND "
+      input_data << params[:title]
+    end
+    if params[:category_id] && params[:category_id].present?
+      query = "" if query.nil?
+      query += "incident_category_id = ? AND "
+      input_data << params[:category_id]      
+    end
+    if params[:request_type_id] && params[:request_type_id].present?
+      query = "" if query.nil?
+      query += "request_type_id = ? AND "
+       input_data << params[:request_type_id]      
+    end
+
+    if params[:department_id] && params[:department_id].present?
+      query = "" if query.nil?
+      query += "department_id = ? AND "
+       input_data << params[:department_id]      
+    end
+    if params[:team_id] && params[:team_id].present?
+      query = "" if query.nil?
+      query += "team_id = ? AND "
+       input_data << params[:team_id]      
+    end
+    if input_data.length > 0 
+      input_data.unshift(query.chomp(' AND '))
+      input_data.flatten!
+      @incident = Incident.where(input_data)
+    else
+      @incident = Incident.where(input_data)
+      
+    end
+
+    # respond_to do |format|
+    #   format.html
+    #   format.pdf do
+    #   @pdf = (render_to_string pdf: "PDF", template: "incidents/index.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8",locals: { incident: @incident},:disposition => 'attachment')
+    #     #send_data(@pdf, type: "application/pdf", filename: @incident.title)
+    #     send_data(@pdf, type: "application/pdf")
+    #     binding.pry
+    #   end
+    # end
+  end
+
+
+    def generate_pdf
+      query = ""
     input_data = []
     if params[:title] && params[:title].present?
       query += "title = ? AND "
@@ -31,8 +81,18 @@ before_filter :authorize_incident, :only => [:new, :create, :update, :edit]
       input_data.flatten!
       @incident = Incident.where(input_data)
     else
-      @incident = Incident.all
+      @incident = Incident.where(input_data)
+      #binding.pry
     end
+    respond_to do |format|
+      format.html
+      format.pdf do
+      @pdf = (render_to_string pdf: "PDF", template: "incidents/generate_pdf.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
+        #send_data(@pdf, type: "application/pdf", filename: @incident.title)
+        send_data(@pdf, type: "application/pdf",:disposition => 'attachment')
+      end
+    end
+    
   end
 
 
@@ -88,6 +148,7 @@ if(params[:file].present?)
     @incident = Incident.find(params[:id])
     @incident.set_incident_status(@incident, params[:commit]) if params[:commit] == "Initiate incident"
     if @incident.update_attributes(incident_params)
+      #binding.pry
       redirect_to edit_incident_path
     else
       incident_initializers( @incident.department_id, @incident.team_id, @incident.request_type_id,@incident.incident_status_id,@incident.sub_category_id,@incident.resolution_id)
@@ -179,6 +240,9 @@ def incident_all
     @priority_2= Incident.find_by_sql("select count(*) from evaluates where incident_priority_id=2")
     @priority_3= Incident.find_by_sql("select count(*) from evaluates where incident_priority_id=3")
      
+@inci = Evaluate.find_by_sql("select incident_priorities.name,evaluates.incident_priority_id as id,count(incident_priority_id)as count FROM evaluates INNER JOIN incident_priorities ON incident_priorities.id = evaluates.incident_priority_id  GROUP BY incident_priority_id,incident_priorities.name")
+@inci1=Incident.find_by_sql("select incident_categories.name as name,incident_priority_id as id,count(incident_category_id)as count FROM incident_categories INNER JOIN incidents ON incident_categories.id = incidents.incident_category_id  INNER JOIN evaluates ON evaluates.incident_id = incidents.id GROUP BY incident_category_id,incident_priority_id,name")
+
 
 
 
@@ -187,6 +251,7 @@ def incident_all
 # @inci= Incident.find_by_sql("SELECT count(*) FROM incidents GROUB_BY created_at ")
 
   end
+
 
 private
   
