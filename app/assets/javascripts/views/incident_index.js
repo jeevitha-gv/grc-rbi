@@ -25,6 +25,140 @@
       $("#"+gridForSearch).data("kendoGrid").dataSource.filter({});
      }
    }
+   
+   $("#btnExport").click(function(e) {
+
+ var dataSource =  $("#grid").data("kendoGrid").dataSource; 
+     var filteredDataSource = new kendo.data.DataSource( { 
+         data: dataSource.data(), 
+         filter: dataSource.filter(),
+     }); 
+
+     filteredDataSource.read();
+     var data = filteredDataSource.view();
+
+     var result = "data:application/vnd.ms-excel;filename=filename.xls,";
+
+     result += "<table><tr><th>title</th><th>category_id</th><th>request_type_id</th><th>department_id</th><th>team_id</th></tr>";
+
+     for (var i = 0; i < data.length; i++) {
+         result += "<tr>";
+
+         result += "<td>";
+         result += data[i].title;
+         result += "</td>";
+
+         result += "<td>";
+         result += data[i].request_type;
+         result += "</td>";
+
+         result += "<td>";
+         result += data[i].incident_category;
+         result += "</td>";
+
+         result += "<td>";
+         result += data[i].incident_status;
+         result += "</td>";
+
+         result += "<td>";
+         result += data[i].team;
+         result += "</td>";
+
+         result += "</tr>";
+     }
+
+     result += "</table>";
+
+function mains()
+{
+        var dt = new Date();
+        var day = dt.getDate();
+        var month = dt.getMonth() + 1;
+        var year = dt.getFullYear();
+        var hour = dt.getHours();
+        var mins = dt.getMinutes();
+        var postfix = day + "." + month + "." + year + " " + hour + ":" + mins;
+        var a = document.createElement('a');
+        var table_div = (document.getElementById('grid').getElementsByTagName('tbody')[0]);
+        var table_html = table_div.innerHTML.replace( );
+        a.href = result;
+        a.download = 'incidentexporteddata@'  +postfix+ '.xls';
+        a.click();
+}
+
+
+      var sBrowser, sUsrAg = navigator.userAgent;
+        if(sUsrAg.indexOf("Chrome") > -1) {
+              mains();
+              alert("Chrome Alert");
+
+            } else if (sUsrAg.indexOf("Safari") > -1) {
+              mains();
+              alert("Safari Alert");
+
+            } else if (sUsrAg.indexOf("Opera") > -1) {
+              mains();
+              alert("Opera Alert");
+
+            } else if (sUsrAg.indexOf("Firefox") > -1) {
+            alert("Firefox Alert");
+            // mains();
+            window.open(result,'application/vnd.ms-excel', '_blank', 'hida'+ '.xls');
+            } else if (sUsrAg.indexOf("MSIE") > -1) {
+            alert("MSIE alert");
+            mains();
+            }
+            });
+
+
+
+//      if (window.navigator.msSaveBlob) {
+// //Internet Explorer
+// window.navigator.msSaveBlob(new Blob([result]), 'incident.xls');
+//  //window.navigator.msSaveOrOpenBlob(new Blob([result]), 'exporteddata@'  +postfix+ '.xls');
+// }
+// else if (window.webkitURL != null) {
+// var dt = new Date();
+//         var day = dt.getDate();
+//         var month = dt.getMonth() + 1;
+//         var year = dt.getFullYear();
+//          var hour = dt.getHours();
+//         var mins = dt.getMinutes();
+//         var postfix = day + "." + month + "." + year + " " + hour + ":" + mins;
+//         var a = document.createElement('a');
+//       var table_div = (document.getElementById('grid').getElementsByTagName('tbody')[0]);
+//        var table_html = table_div.innerHTML.replace( );
+//      a.href = result;
+//               a.download = 'incidentexporteddata@'  +postfix+ '.xls';
+//            a.click();
+         
+//          }
+// else {
+//  alert(1111111111111111111111);
+//  window.open(result);
+// }
+// });
+
+// if (window.navigator.msSaveBlob) {
+// //Internet Explorer
+// window.navigator.msSaveBlob(new Blob([result]), 'incident.xls');
+//  //window.navigator.msSaveOrOpenBlob(new Blob([result]), 'exporteddata@'  +postfix+ '.xls');
+// }
+// else if (window.webkitURL != null) {
+// //Google Chrome and Mozilla Firefox
+// var a = document.createElement('a');
+// result = encodeURIComponent(result);
+// a.href = 'data:application/vnd.ms-excel;charset=UTF-8,' + result;
+// a.download = 'ExportedKendoGrid.xls';
+// a.click();
+// }
+// else {
+// //Everything Else
+// alert(1111111111111111111111);
+// window.open(result);
+// }
+// e.preventDefault();
+// });
 
   $("#tabstrip").kendoTabStrip({
     activate: onActivate

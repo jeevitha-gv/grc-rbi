@@ -26,7 +26,7 @@
                  <!-- <a href='/incidents' onclick='myJavaScriptFunction();'>Advanced Search</a> -->
                  <!-- <a href='/incidents/search'>Advanced Search</a> -->
 
-                <div class="form-group audit_search">
+                <div class="form-group audit_search" style="z-index: 0;">
                   <%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value"%>
                   <%= submit_tag "", name: nil, :class=>"btn btn-default src-brn", :id => "search-button" %>
                   <a href="javascript:void(0);" class="cancel-btn1">Clear</a>
@@ -163,7 +163,16 @@
     <div class="container">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <%= submit_tag "Search", name: nil, :class=>"btn btn-default src-brn", :id => "advance-search-button", :onclick=> "adavance_search()",:class => "risk-save-btn fright" %>
-            <!-- <a class="cancel-btn1" href="javascript:void(0);">Clear</a> -->
+        <!--    <button type="button" style="position:relative;left:32px;top:19px;" id="btnExport" class="btn btn-default src-brn" class="risk-save-btn fright">Export to csv also!</button> -->
+
+   <%= submit_tag "Export to csv", name: nil, :class=>"btn btn-default src-brn", :id => "btnExport",:class => "risk-save-btn fright",:style=>"position:relative;left:4px;top:0px;" %>
+        <%#= link_to "Report", controller: "incidents", action: "index"%>
+  <%#= submit_tag "Report", :onclick => "adavance_search()", :format => :pdf,:action => "generate_pdf", :remote => true %> 
+<%#= submit_tag "report", name: nil, :class=>"btn btn-primary", :id => "advance-search-button", :onclick=> "adavance_search()", :format => :pdf, remote: true, action: "generate_pdf"  %>   
+<!--  PDF GENERATION  
+<%#= link_to "Download PDF", { :action => "index", :format => :pdf }, name: nil, :class=>"btn btn-default src-brn", :id => "advance-search-button", :onclick=> "adavance_search()",:class => "risk-save-btn fright"%> -->
+
+           <!-- <a class="cancel-btn1" href="javascript:void(0);">Clear</a> -->
         <div class="btn-wrap">
         </div>
       </div>
