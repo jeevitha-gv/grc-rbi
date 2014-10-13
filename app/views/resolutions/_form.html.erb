@@ -60,23 +60,28 @@
             </div>
           </div>
 
+          
           <%= r.fields_for :resolution do |resolution| %>
           <div class="container">
             <div id="Accordion1">
-              <h3><a href="#">Resolution and Recovery</a> <span class="fright pending_msg">Pending</span></h3>
+              <h3><a href="#">Resolution and Recovery</a> <!-- <span class="fright pending_msg">Pending</span> --></h3>
               
               <div>
                 <div class="row audit-title">
                   
-                  <div class="col-lg-4">
-                  <div class="form-group clearfix">
-                      <label class="col-sm-5"><b>Reassign :</b> </label>
+                  <%= r.fields_for :evaluate do |evaluate| %>
+
+          <div class="col-lg-4">
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Re-Assignee :</b> </label>
                       <div class="col-sm-7">
-                      <div class="risk-select">
-                      <%= resolution.collection_select :reassignee, User.all, :id, :user_name %>
+                       <div class="risk-select">
+                      <%= evaluate.collection_select(:assignee, current_company.users, :id, :user_name)%>
                     </div>
-                    </div>
-                    </div>
+                      </div>
+                      </div>
+                      <%end%>
+                      
                    
                     
                     <div class="form-group clearfix">
