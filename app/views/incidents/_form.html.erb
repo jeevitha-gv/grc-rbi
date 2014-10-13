@@ -13,7 +13,8 @@
 <div class="content">
   <div class="container">
     <div class="row"> 
-    
+    <%= javascript_include_tag "/assets/views/audit_new.js" %>
+
       <!-- Nav tabs -->
       <div id="example" class="k-content" >
    
@@ -88,7 +89,8 @@
                       <%= f.label :Date_Occured, t('incident.date_occured')%>
                     </label>
                     <div class="col-sm-8">
-                  <%= f.text_field :date_occured, :class => "form-control risk-normal-input",:id => "incident",:maxlength => 25 %> </div>
+        <%= f.text_field :date_occured, value: (incident.date_occured.strftime("%d/%m/%Y") if incident.date_occured?), :class => "datepicker", :style =>"width:150px;" %>
+                  <%#= f.text_field :date_occured, :class => "form-control risk-normal-input",:id => "incident",:maxlength => 25 %> </div>
                     </div>
                    
                   </div>
