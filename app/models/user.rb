@@ -41,11 +41,13 @@ class User < ActiveRecord::Base
   has_many :closures
 
   # Assosciations with Asset Module
-  has_many :otherasset_owner, class_name: 'OtherAsset', foreign_key: 'asset_owner'
-  has_many :otherasset_user, class_name: 'OtherAsset', foreign_key: 'asset_user' 
-  has_many :computertechnical_contact, class_name: 'Computer', foreign_key: 'technical_contact'
-  has_many :computerasset_owner, class_name: 'Computer', foreign_key: 'asset_owner'
   has_many :lifecycles
+  has_many :info_asset_owner, class_name: 'Asset', foreign_key: 'owner_id'
+  has_many :info_asset_custodian, class_name: 'Asset', foreign_key: 'custodian_id'
+  has_many :info_asset_identifier, class_name: 'Asset', foreign_key: 'identifier_id'
+  has_many :info_asset_evaluator, class_name: 'Asset', foreign_key: 'evaluated_by'
+  has_many :assets
+
 
   # Associations with Policy Module
   has_many :policy_owners, class_name: "Policy", foreign_key: 'owner'
@@ -171,6 +173,8 @@ class User < ActiveRecord::Base
         where(conditions).first
       end
     end
+
+    
 
   private
     def user_name_without_spaces

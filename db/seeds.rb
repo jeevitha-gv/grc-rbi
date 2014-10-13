@@ -88,9 +88,9 @@ Section.delete_all
 
 Priority.delete_all
 
-    Priority.create(name: 'High')
-    Priority.create(name: 'Medium')
-    Priority.create(name: 'Low')
+    Priority.create(name: 'High', score: '3')
+    Priority.create(name: 'Medium', score: '2')
+    Priority.create(name: 'Low', score: '1')
 
 ReminderAssignment.delete_all
 
@@ -857,7 +857,7 @@ CvssMetricScoring.delete_all
 Subscription.delete_all
 
     # Subscription.create(:name => "Free", :description => "free",:section_ids=> [1,2], :amount => 0.00, :valid_log =>23,:valid_period => 1)
-    Subscription.create(name: "AuditRisk", description: "Cancel", section_ids: [1,2], amount: 0.00, valid_log: 23, valid_period: 1, user_count: 10, file_size: 25)
+    Subscription.create(name: "AuditRisk", description: "Cancel", section_ids: [1,2,3,4], amount: 0.00, valid_log: 23, valid_period: 1, user_count: 10, file_size: 25)
     Subscription.create(name: "Audit", description: "Audit", section_ids: [1], amount: 5.00, valid_log: 23, valid_period: 1, user_count: 25, file_size: 50)
     Subscription.create(name: "Risk", description: "Risk", section_ids: [2], amount: 10.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 75)
     Subscription.create(name: "Policy", description: "Policy", section_ids: [4], amount: 50.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 75)
@@ -1034,7 +1034,6 @@ ComputerCategory.delete_all
     DeviceType.create(:name => "Other")
 
 
-
 # Seed Data for Policy
 
     PolicyKind.delete_all
@@ -1099,3 +1098,61 @@ ComputerCategory.delete_all
         ApprovalAction.create(name: "Send to Rework")
         ApprovalAction.create(name: "Reject")
         ApprovalAction.create(name: "Approve")
+
+ SoftwareType.delete_all
+
+    SoftwareType.create(:name => "Application")
+    SoftwareType.create(:name => "Database")
+    SoftwareType.create(:name => "Operating System")
+    SoftwareType.create(:name => "Web Server")
+
+ DocumentStatus.delete_all
+    
+    DocumentStatus.create(:name => "Draft")
+    DocumentStatus.create(:name => "Approved")
+    DocumentStatus.create(:name => "Unapproved")
+
+ DocumentType.delete_all
+    
+    DocumentType.create(:name => "Policy")
+    DocumentType.create(:name => "Procedure")
+    DocumentType.create(:name => "Reference")
+
+ ServiceType.delete_all
+    
+    ServiceType.create(:name => "Business Service")
+    ServiceType.create(:name => "Sales Service")
+    ServiceType.create(:name => "Support Service")
+    ServiceType.create(:name => "IT Service")
+    ServiceType.create(:name => "Email Service")
+    ServiceType.create(:name => "Backup Service")
+    ServiceType.create(:name => "Hosting Service")
+
+OperatingSystem.delete_all
+
+    OperatingSystem.create(:name => "Windows")
+    OperatingSystem.create(:name => "Linux")
+    OperatingSystem.create(:name => "Mac")
+    OperatingSystem.create(:name => "Solaris")
+    OperatingSystem.create(:name => "AIX")
+
+AssetDecision.delete_all
+    
+    AssetDecision.create(:name => "Accept Gap Analysis and Close")
+    AssetDecision.create(:name => "Accept till next assessment")
+    AssetDecision.create(:name => "Redo Actions")
+
+AssetState.delete_all
+
+    AssetState.create(:name => "Identified")
+    AssetState.create(:name => "Evaluated")
+    AssetState.create(:name => "Acted")
+    AssetState.create(:name => "Reviewed")
+    AssetState.create(:name => "Redo Actions")
+
+Classification.delete_all
+
+    Classification.create(:name => "Strictly Confidential")
+    Classification.create(:name => "Confidential")
+    Classification.create(:name => "Public")
+    Classification.create(:name => "Business use only")

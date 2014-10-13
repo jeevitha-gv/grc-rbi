@@ -27,7 +27,7 @@ class BaseController < ActionController::Base
   def check_current_company_domain
     unless(current_company.domain.eql?(request.subdomain))
       redirect_to current_path_with_subdomain
-    end
+     end
   end
 
   # Set Locale for selected Language
@@ -142,5 +142,31 @@ class BaseController < ActionController::Base
 	  		redirect_to audits_path
 	  	end
 	end
+
+  def current_asset
+    @asset = Asset.find(params[:asset_id])
+  end
+
+  def authorize_custodian
+    unless (@asset.custodian_id == current_user.id || current_user.role_title == "company_admin")
+      flash[:alert] = "You are not permitted to do this action."
+        redirect_to information_assets_path
+      end
+  end
+  def authorize_evaluator
+    unless (@asset.evaluated_by == current_user.id || current_user.role_title == "company_admin")
+        redirect_to audits_path, :alert => "Access Restricted"
+      end
+  end
+
+  def accessible_assets
+    if params[:stage] == "evaluate"
+      @access_asset = current_company.assets.where("evaluated_by = ? AND assetable_type = ?", current_user.id, "InformationAsset")
+    elsif params[:stage] == "action"
+      @access_asset = current_company.assets.where("custodian_id = ? AND assetable_type = ?", current_user.id, "InformationAsset")
+    elsif params[:stage] == "review"
+      @access_asset = current_company.assets.where("evaluated_by = ? AND assetable_type = ?", current_user.id, "InformationAsset")
+    end
+  end
 
 end

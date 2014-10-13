@@ -1,0 +1,228 @@
+<%= javascript_include_tag "/assets/outer/jquery.tagsinput.min.js" %>
+
+<%= f.fields_for :asset do |ff| %>
+
+  <%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>
+
+<% end %>
+
+<div class="clearfix">
+  <h4><b>Computer Properties</b></h4>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :computer_category_id, t('computer.category') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:computer_category_id, ComputerCategory.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :operating_system_id, t('computer.os') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:operating_system_id, OperatingSystem.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :os_ver_ser, t('computer.ver') %>
+        <%= f.text_field :os_ver_ser, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :memory, t('computer.memory') %>
+        <%= f.text_field :memory, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :disk_space, t('computer.space') %>
+        <%= f.text_field :disk_space, :class=>"form-control" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :cpu_speed, t('computer.speed') %>
+        <%= f.text_field :cpu_speed, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :cpu_core_count, t('computer.count') %>
+        <%= f.text_field :cpu_core_count, :class=>"form-control" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :serial, t('computer.serial') %>
+        <%= f.text_field :serial, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :mac, t('computer.mac') %>
+        <%= f.text_field :mac, :class=>"form-control" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :vendor_id, t('computer.vendor') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:vendor_id, current_company.vendors, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :contract_id, t('computer.contract') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:contract_id, current_company.contracts, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :cost, t('computer.cost') %>
+        <%= f.text_field :cost, :class=>"form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :asset_status_id, t('computer.ass_status') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:asset_status_id, AssetStatus.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Sixth Row -->
+<div class ="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :assigned_on, t('computer.assigned_on') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :assigned_on, :class => "datepicker" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :acquisition_date, t('computer.acquisition_date') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :acquisition_date, :class => "datepicker" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class ="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :expiry_date, t('computer.expiry') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :expiry_date, :class => "datepicker" %>
+      </div>
+    </div>
+  </div>
+   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :last_audit_date, t('computer.last_audit') %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :last_audit_date, :class => "datepicker" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%= f.fields_for :asset do |ff| %>
+
+  <%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
+
+<% end %>
+
+<script>
+$('.ui.checkbox')
+  .checkbox();
+ $(document).ready(function(){
+    
+    var temp_start = $(".datepicker").val()
+    var start = $(".datepicker").kendoDatePicker({
+      format: "dd/MM/yyyy"
+  }).data("kendoDatePicker");
+ 
+
+    $(".datepicker").bind("focus", function() {
+      $(this).data("kendoDatePicker").open();
+    });
+    $('.datepicker').attr('readonly', true);
+
+    $(".datepicker1").bind("focus", function() {
+      $(this).data("kendoDatePicker").open();
+    });
+    $('.datepicker1').attr('readonly', true);
+
+    $(".datepicker").val(temp_start)
+  });
+
+ $('#tags').tagsInput({
+  'defaultText':'add email'
+ });
+</script>

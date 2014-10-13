@@ -4,9 +4,11 @@ class Attachment < ActiveRecord::Base
   mount_uploader :attachment_file, AttachmentUploader
   validates :attachment_file,
         :file_size => { :maximum => 100.megabytes.to_i}
-  validate :check_file_size
+  #validate :check_file_size
 
   before_save :set_size
+
+  belongs_to :other_asset
 
   private
 

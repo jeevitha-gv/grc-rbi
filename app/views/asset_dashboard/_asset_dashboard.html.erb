@@ -1,0 +1,201 @@
+<script src="/assets/outer/highcharts.js"></script>
+<script src="/assets/outer/exporting.js"></script>
+<script src="/assets/outer/drilldown.js"></script>
+<script src="/assets/outer/data.js"></script>
+<script src="/assets/outer/highcharts-3d.src.js"></script>
+<div id="container2" style="min-width: 765px; height: 400px;float:left; ">
+<script type="text/javascript">
+$(function () {
+    $('#container2').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'Assets Status'
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+            valueSuffix: ' assets'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+       series: [{
+            name: 'Count',
+            colorByPoint: true,
+            data: [<%@asset.each do |c1|%>
+                       {
+                           name: '<%=c1.state%>',
+                           y: <%=c1.count%>,
+                           drilldown: '<%=c1.state%>'
+                       },
+                       <%end%>]
+        }],
+              drilldown: {
+            series: [ 
+            <%@asset.each do |c1|%>
+            {
+                id: '<%=c1.state%>',
+                data: [
+                <%@asset1.each do |c2|%>
+                <% if c1.state == c2.state %>
+                    {
+                name: '<%= c2.type %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.type %>'
+            },
+            <% end %>
+            <% end %>
+                ]
+            }, 
+            <% end %>
+                  
+            ]
+        } 
+    });
+});
+</script> 
+</div>
+<div id="container1" style="min-width: 765px; height: 400px;float:left; ">
+<script type="text/javascript">
+$(function () {
+    $('#container1').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'Assets Types'
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+                       valueSuffix: ' assets'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+       series: [{
+            name: 'Count',
+            colorByPoint: true,
+            data: [<%@type.each do |c1|%>
+                       {
+                           name: '<%=c1.name%>',
+                           y: <%=c1.count%>,
+                           drilldown: '<%=c1.name%>'
+                       },
+                       <%end%>]
+        }],
+              drilldown: {
+            series: [ 
+                        {
+                id: 'Software',
+                data: [
+                <%@sfttype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }, 
+            {
+                id: 'Document',
+                data: [
+                <%@doctype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }, 
+           {
+                id: 'Computer',
+                data: [
+                <%@comptype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }, 
+            {
+                id: 'MobileAsset',
+                data: [
+                <%@mobtype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }, {
+                id: 'OtherAsset',
+                data: [
+                <%@othertype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }, {
+                id: 'Service',
+                data: [
+                <%@sertype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }
+                  
+            ]
+        } 
+    });
+});
+</script> 
+</div>

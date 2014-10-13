@@ -1,0 +1,81 @@
+<%= javascript_include_tag "/assets/views/info_asset.js" %>
+
+<div class="content">
+    <div class="container">
+      <div class="row"> 
+<div id="example" class="k-content">
+      <div class="risk-title">Listing Assets</div>
+      <div class="buttons_container pull-right">
+        <!-- <div class="ui teal buttons">
+          <div class="ui button">Add New</div>
+          <div class="ui teal floating dropdown icon button">
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item"><h6>Information Asset</h6></div>
+              <div class="item"><h6>Computer/Server</h6></div>
+              <div class="item"><h6>Software</h6></div>
+              <div class="item"><h6>Mobile</h6></div>
+              <div class="item"><i class="hide icon"></i>Services</div>
+              <div class="item"><i class="hide icon"></i>Miscellaneous</div>
+              <div class="item"><i class="hide icon"></i>Document</div>
+            </div>
+          </div>
+        </div>  -->       
+        <a class="btn btn-info add_new" data-toggle="test modal" href="#add_url">Import</a>
+        </div>
+      <!-- Nav tabs -->
+
+              <!-- <div class="ui modal" id ="">
+                <a class="btn btn-info add_new"  href="#add_url">Import</a>
+                        <i class="close icon"></i>
+                        <div class="header">
+                          Header
+                        </div>
+                        <div class="content">
+                          <div class="left">
+                            Some content to the left, usually an image or icon
+                          </div>
+                          <div class="right">
+                            Some content to the right
+                          </div>
+                        </div>
+                        <div class="actions">
+                          <div class="ui button">
+                            Cancel
+                          </div>
+                          <div class="ui button">
+                            Okay
+                          </div>
+                        </div>
+              </div> -->
+
+        <div class=" col-xs-12 col-md-12 col-sm-12 col-lg-12">
+           <div class="box-wrapper">
+             <div class="search-box src-space clearfix">
+                <div class="fright scr-padding">
+                <div class="form-group audit_search">
+                  <%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value" %>
+                  <%= submit_tag "Search", name: nil, :class=>"btn btn-default src-brn", :id => "search-button" %>
+                  <a href="javascript:void(0);" class="cancel-btn1">Clear</a>
+                </div>
+              </div>
+            </div>
+            <%# if params[:stage].nil? %>
+              <div id="grid"></div>
+            <%# else %>
+              <!-- <div id="gridforstage"></div> -->
+            <%# end %>
+          </div>
+        </div>
+      </div>
+
+
+
+        
+      </div>
+    </div>
+    <div class="container">
+
+      
+    </div>
+  </div>

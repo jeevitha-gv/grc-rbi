@@ -1,0 +1,61 @@
+<%= javascript_include_tag "/assets/views/vendor.js" %>
+
+<div class="page-wrap">
+<div class="clearfix"></div>
+  <div class="content">
+    <div class="container">
+    	<div class="clearfix"> <a class="import-btn" href="/vendors/new"><i class="download-icons"></i>New Vendor</a>
+      </div>
+
+       <div class="clearfix"> <a class="import-btn" data-toggle="modal" href="#add_url"><i class="download-icons"></i>Import</a>
+            <div id="add_url" class="modal fade">
+              <div class="modal-dialog modal-dialog_large">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
+                    <h4 class="modal-title" id="myModalLabel">Import Vendor from CSV/XLSX</h4>
+                       <div class="modal-content-inner">
+                      <%= form_tag vendor_imports_vendors_path, multipart: true do %>
+                        <%= file_field_tag :file %>
+                        <br>
+                        <div class="model-footer">
+                          <%= submit_tag "Import" ,:class => "black_btn" %>
+                          <%= submit_tag "Cancel" ,:class => "orange_btn" %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <p></p>
+                    <p>
+                      <div  class="grey_btn pop-up-gray">
+                      <%= link_to "Download Sample Vendor CSV Template", vendor_export_vendors_path(format: "csv"), class: "download-file-icon plus-icon-sp" %>
+                    </div>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="example">
+      <div class="row grid">
+
+        <div class="fright set-wrap">
+          <div class="form-group audit_search">
+            <%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value" %>
+            <%= submit_tag "Search", name: nil, :class=>"btn btn-default", :id => "search-button" %>
+            <a href="javascript:void(0);" class="cancel-btn1">Clear</a>
+          </div>
+        </div>
+
+        
+
+
+            <div id="grid" class="k-grid-content"></div>
+
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</div>

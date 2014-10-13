@@ -39,6 +39,12 @@ class Company < ActiveRecord::Base
   has_many :vendors
   has_many :mobile_assets
   has_many :asset_types
+  has_many :contracts
+  has_many :services
+  has_many :documents
+  has_many :softwares
+  has_many :assets
+  has_many :information_assets, :through => :assets, :source => :asset
 
 
   # Associations with Policy Module
@@ -89,6 +95,10 @@ class Company < ActiveRecord::Base
     Role.create(title: "riskowner", company_id: company.id)
     Role.create(title: "mitigator", company_id: company.id)
     Role.create(title: "reviewer", company_id: company.id)
+    Role.create(title: "Asset Owner", company_id: company.id)
+    Role.create(title: "Asset Custodian", company_id: company.id)
+    Role.create(title: "Evaluator", company_id: company.id)
+
   end
 
   def review_rating_levels_create

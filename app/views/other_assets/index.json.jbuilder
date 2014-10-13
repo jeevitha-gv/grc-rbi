@@ -1,10 +1,11 @@
 json.data do |json|
-  json.array!(@other_assets) do |p|
-      json.id p.id
-      json.name p.name
-      json.status p.asset_status.name
-      json.owner p.otherasset_owner.user_name
-      json.user p.otherasset_user.user_name
-      json.location p.location.name
-      end
+  json.array!(@assets) do |a|  	  
+  	  json.id a.id
+  	  json.assetable_id a.assetable_id
+      json.name a.name
+      json.owner a.info_asset_owner.user_name if a.info_asset_owner.present?
+      json.custodian a.info_asset_custodian.user_name if a.info_asset_custodian.present?
+      json.asset_type a.assetable.asset_type.name if a.assetable.asset_type.present?
+      
+     end
 end

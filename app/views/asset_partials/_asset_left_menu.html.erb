@@ -1,0 +1,81 @@
+<style>
+  .abc {
+    margin-left: 10px;
+  }
+</style>
+
+<div id="leftcol" class="ticket-leftcol cmdb-sidebar">
+    <div id="cmdb-tree">
+      <div class="demo-section k-header">
+          <ul id="treeview">              
+              <li><span class="test"><img src="/assets/outer/C.png"><a class="abc" href="/computers">Computers</a></span></li>
+              <hr>
+              <li><span class="test"><img src="/assets/outer/SW.png"><a class="abc" href="/softwares">Software</a></span></li>
+              <hr>
+              <li><span class="test"><img src="/assets/outer/M.png"><a class="abc" href= "/mobile_assets">Mobile Assets</a></span></li>
+              <hr>
+              <li><span class="test"><img src="/assets/outer/OA.png"><a class="abc" href ="/other_assets">Other Assets</a></span></li>
+              <hr>
+              <li><span class="test"><a href="/services">Services</a></span></li>
+              <hr>
+              <li><span class="test"><a href="/documents">Document</a></span></li>
+              <hr>
+              <li><span class="test"><a>Server</a></span></li>
+              <hr>
+              <li><span class="test"><a>Operating Systems</a></span></li>
+              <hr>
+              <li><span class="test"><a>Consumable</a></span></li>
+              <hr>
+              <li><span class="test"><a>Network</a></span></li>
+              <hr>
+              <li><span class="test"><a>Trash</a></span></li>             
+
+                      
+                        
+
+
+              <hr>              
+              <li><span class="test"><a href="/documents">Document</a></span></li>
+
+        </ul>
+      </div>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+
+        $("#treeview").kendoTreeView();
+
+
+        var original = $("#treeview").clone(true);
+
+        $(".configuration input").change( function() {
+            var treeView = $("#treeview"),
+                clone = original.clone(true);
+
+            treeView.parent().empty().remove();
+            $(".demo-section").append(clone);
+
+            initTreeView();
+        });
+
+        var initTreeView = function () {
+            $("#treeview").width(200)
+                .kendoTreeView({
+                    animation: {
+                        expand: {
+                            effects: getEffects()
+                        }
+                    }
+                });
+        };
+
+        var getEffects = function () {
+            return (($("#expand")[0].checked ? "expand:vertical " : "") +
+                    ($("#opacity")[0].checked ? "fadeIn" : "")) || false;
+        };
+
+        initTreeView();
+    });
+</script>

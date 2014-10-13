@@ -1,0 +1,31 @@
+<%= javascript_include_tag "/assets/views/contract.js" %>
+<div class="page-wrap">
+<div class="clearfix"></div>
+  <div class="content">
+    <div class="container">
+      <div class="clearfix"> <a class="import-btn" href="/contracts/new"><i class="download-icons"></i>New Contract</a>
+      </div>
+
+      <div id="example">
+      <div class="row grid">
+
+        <div class="fright set-wrap">
+          <div class="form-group audit_search">
+            <%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value" %>
+            <%= submit_tag "Search", name: nil, :class=>"btn btn-default", :id => "search-button" %>
+            <a href="javascript:void(0);" class="cancel-btn1">Clear</a>
+          </div>
+        </div>
+
+        
+
+
+            <div id="grid" class="k-grid-content"></div>
+
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</div>

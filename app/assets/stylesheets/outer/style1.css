@@ -464,6 +464,12 @@ a.plus-background {
     margin:0;
     height: 20px;
     background: url('/assets/outer/show.png') no-repeat;
+}
+.k-grid-delete{
+    width: 20px;
+    margin:0;
+    height: 20px;
+    background: url('/assets/outer/del-icon.png') no-repeat;
     text-indent: -9999px;
     min-width:0 !important;
     margin:0 2px !important;
@@ -474,4 +480,47 @@ a.plus-background {
 .k-grid-show:hover, .k-grid-show.active{
     background-position: 0 -20px;border: medium none; background-color: transparent;
 }
+.k-grid-delete:hover,.k-grid-delete.active{
+    background-position: 0 -20px;border: medium none; background-color: transparent;
+}
 
+/*Asset Styles*/
+
+.k-grid-evaluate{
+    width: 20px;
+    margin:0;
+    height: 20px;
+    background: url('/assets/outer/del-icon.png') no-repeat;
+    text-indent: -9999px;
+    min-width:0 !important;
+    margin:0 2px !important;
+    border: medium none;
+    float: left;
+    padding: 0;
+}
+
+.k-grid-action{
+    width: 20px;
+    margin:0;
+    height: 20px;
+    background: url('/assets/outer/action-icon.png') no-repeat;
+    text-indent: -9999px;
+    min-width:0 !important;
+    margin:0 2px !important;
+    border: medium none;
+    float: left;
+    padding: 0;
+}
+
+.k-grid-review{
+    width: 20px;
+    margin:0;
+    height: 20px;
+    background: url('/assets/outer/action-icon.png') no-repeat;
+    text-indent: -9999px;
+    min-width:0 !important;
+    margin:0 2px !important;
+    border: medium none;
+    float: left;
+    padding: 0;
+}

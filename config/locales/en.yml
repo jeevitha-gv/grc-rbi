@@ -440,27 +440,34 @@ en:
               blank: "Computer name can't be blank"
             serial:
               blank: "Serial number can't be blank"
-            manufacturer:
-              blank: "Mamufacturer can't be blank"
         other_asset:
           attributes:
             name:
               blank: "Asset Name can't be blank"
             manufacturer:
               blank: "Manufacturer can't be blank"
-            asset_type_id: 
+            asset_type_id:
               blank: "Asset Type can't be blank"
-            asset_status_id: 
+            asset_status_id:
               blank: "Asset Status can't be blank"
         mobile_asset:
           attributes:
-            name: 
-              blank: "Mobile Name can't be blank"
+            model:
+              blank: "Mobile model can't be blank"
             manufacturer:
               blank: "Manufacturer can't be blank"
             serial_number:
               blank: "Serial Number can't be blank"
-
+        contract:
+          attributes:
+            name:
+              blank: "Contract name can't be blank"
+            manufacturer:
+              blank: "Manufacturer can't be blank"
+            contract_type_id:
+              blank: "Contract Type can't be blank"
+            contract_status_id:
+              blank: "Contract Status can't be blank"
 
 
   blank:
@@ -619,4 +626,130 @@ en:
     vuln: "Vulnerability"
     velocity: "Velocity"
 
+  lifecycle:
+    lifecycle_date: "Date"
+    lifecycle_type: "Transistion"
+    notes: "Notes"
+    user: "User"
 
+  mobile_asset:
+    name: "Name"
+    manufacturer: "Manufacturer"
+    serial_number: "Serial Number"
+    service_provider: "Service Provider"
+    imei: "IMEI"
+    description: "Description"
+    device_type: "Device Type"
+    location: "Location"
+    department: "Department"
+
+  computer:
+    name: "Display Name"
+    serial: "Serial Number"
+    manufacturer: "Manufacturer"
+    ip: "IP"
+    category: "Category"
+    ass_status: "Asset Status"
+    location: "Location"
+    department: "Department"
+    tech_contact: "Technical Contact"
+    owner: "Owner"
+    impact: "Impact"
+    os: "Operating System"
+    ver: "Version/Service Pack"
+    memory: "Memory"
+    space: "Disk Space"
+    speed: "CPU Speed"
+    count: "CPU Core Count"
+    mac: "MAC Address"
+    vendor: "Vendor"
+    contract: "Contract"
+    cost: "Cost(in $)"
+    assigned_on: "Assigned"
+    acquisition_date: "Acquisition"
+    expiry: "Expiry"
+    last_audit: "Last Audit"
+
+  vendor:
+    name: "Name"
+    reseller_type: "Reseller Type"
+    contact_name: "Contact Name"
+    contact_email: "Contact Email"
+    contact_phone: "Contact Number"
+    url: "Url"
+    telephone: "Telephone"
+    address: "Address"
+    city: "City"
+    state: "State"
+    zip: "Zip"
+    note: "Notes"
+
+  other_asset:
+    name: "Name"
+    manufacturer: "Manufacturer"
+    asset_type_id: "Asset Type"
+    asset_status_id: "Asset Status"
+    model: "Model"
+    serial_number: "Serial Number"
+    asset_id: "Asset"
+    ip: "IP"
+    description: "Description"
+    owner: "Asset Owner"
+    user: "Asset User"
+    attachment: "Attach Document"
+
+  contract:
+    name: "Name"
+    manufacturer: "Manufacturer"
+    contract_type_id: "Contract Type"
+    contract_status_id: "Contract Status"
+    notes: "Notes"
+    location_id: "Location"
+    department_id: "Department"
+
+  service:
+    name: "Name"
+    service_type_id: "Service Type"
+    description: "Description"
+    cost: "Cost"
+    sla: "SLA(Availability in %)"
+    location_id: "Location"
+    department_id: "Department"
+    asset_manager_id: "Asset Manager"
+    asset_user_id: "Asset User"
+    assigned_on: "Assigned"
+
+  document: 
+    name: "Display Name"
+    description: "Description"
+    doc_status: "Document Status"
+    doc_type: "Document Type"
+    version: "Version"
+    location_id: "Location"
+    department_id: "Department"
+    asset_manager_id: "Asset Manager"
+    asset_user_id: "Asset User"
+    assigned_on: "Assigned"
+    impact: "Impact"
+
+  software: 
+    soft_type: "Software Type"
+    description: "Description"
+    product_name: "Prouct Name"
+    manufacturer: "Manufacturer"
+    vendor: "Vendor"
+    cost: "Cost"
+    license_years: "License Years"
+    license_months: "License Months"
+    installation_date: "Installation Date"
+    license_expiry: "License Expiry"
+    license_key: "License Key"
+    version: "Version"
+    license_type: "License Type"
+    install_path: "Installation Path"
+    last_audit: "Last Audit"
+    location: "Location"
+    department: "Department"
+    asset_manager: "Asset Manager"
+    asset_user: "Asset User"
+    assigned_on: "Assigned"

@@ -9,11 +9,13 @@ module ActiveAdmin::ViewsHelper #camelized file name
       'Risk'
     when 'admin/distribution_lists'
       'Policy'
+    when 'admin/asset_types'
+      'Asset'
     else
       return ''
     end
   end
-  
+
   def add_super_admin_active_class(params)
     case params[:controller]
     when 'admin/dashboard','admin/companies','admin/sections','admin/modulars','admin/languages','admin/subscriptions'
@@ -37,6 +39,8 @@ module ActiveAdmin::ViewsHelper #camelized file name
      'risk'
     elsif ["distribution_lists"]
       'policy'
+    elsif ["asset_types"]
+      'asset'
     else
       ''
     end
@@ -55,7 +59,7 @@ module ActiveAdmin::ViewsHelper #camelized file name
       ''
     end
   end
-  
+
   def company_modules_check(module_name)
     module_id = Section.find_by_name(module_name).id
     current_company.plan.subscription_section_ids.include?("#{module_id}")
@@ -68,5 +72,5 @@ module ActiveAdmin::ViewsHelper #camelized file name
   def check_for_free_plan
     current_company.subscriptions.last.amount  == 0.0
   end
-  
+
 end

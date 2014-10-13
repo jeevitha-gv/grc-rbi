@@ -1,0 +1,109 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title">Action Steps taken by Custodian</div>
+        <p><%= @asset_action.custodian_actions %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="tab-pane active" id="all">
+      <div class="table-responsive">
+        <table class="table table-striped table-bg">
+          <tr>
+            <th colspan="6" class="risk-able-th">Evidence Documents by Custodian</th>
+          </tr>
+          <tr>
+            <td><label>Documents : </label>
+              <span><a href="#">Click to download the documents in a .zip file</a></span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="risk-wrap">
+<div class="sub-wrap">
+<div class="sub-titile">Submit Review</div>
+<div class="sub-wrap-bg">
+<div class="ui info message">Review the actions and evidence documents. Take a decison for your next review.</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :closure_statement %>
+        <%= f.cktext_area :closure_statement, :class=>"form-control asset-big-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :next_review %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :next_review, :class => "datepicker" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :asset_decision_id %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:asset_decision_id, AssetDecision.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+</div>
+</div>
+
+
+
+
+
+<script>
+
+ $(document).ready(function(){
+    
+    var temp_start = $(".datepicker").val()
+    var start = $(".datepicker").kendoDatePicker({
+      format: "dd/MM/yyyy"
+  }).data("kendoDatePicker");
+ 
+
+  $(".datepicker").bind("focus", function() {
+    $(this).data("kendoDatePicker").open();
+  });
+  $('.datepicker').attr('readonly', true);
+
+  $(".datepicker1").bind("focus", function() {
+    $(this).data("kendoDatePicker").open();
+  });
+  $('.datepicker1').attr('readonly', true);
+
+  $(".datepicker").val(temp_start)
+  
+  });
+
+</script>
