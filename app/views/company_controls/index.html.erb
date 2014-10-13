@@ -7,7 +7,23 @@
   <div class="container">
     <div class="row grid-sp">
     	<div class="risk-title">Control</div>
-  				<div class="clearfix"><%= link_to '<img src="/assets/outer/new.png" style= "width:25px;"></img> New Control'.html_safe , new_company_control_path , :class => "btn btn-fresh" %>
+  				<div class="clearfix">
+            <div style="position:relative;left:801px;top:17px;">
+              <div class="btn-group btn-group-success">
+                <button class="btn btn-success" type="button">Export</button>
+                <button data-toggle="dropdown" class="btn btn-success dropdown-toggle" type="button">
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "CSV",export_company_controls_path(:format => :csv) %> </li>
+                  <li class="divider"></li>
+                  <li><%= link_to "Excel",export_company_controls_path(:format => :xls)%></li>
+                  <li class="divider"></li>
+                  <li><%= link_to "PDF",{ action: "export", :format => :pdf}%></li>
+                </ul>
+              </div>
+              <%= link_to '<img src="/assets/outer/new.png" style= "width:21px;"></img> New Control'.html_safe , new_company_control_path , :class => "btn btn-success" %>
+              </div>
   				</div>
       <!-- Nav tabs -->
     </div>

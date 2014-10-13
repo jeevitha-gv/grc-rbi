@@ -59,7 +59,7 @@ $(document).ready(function(){
 			{ field: "kind", title: "Kinds", width: "40%" },
 			{ field: "version", title: "Versions", width: "40%" },
 			{ field: "owner", title: "Owners", width: "40%" },
-			{ command: [{text: "show", click: show_file},{text: "list"},{text: "miti"},{text: "edit"},{text: "graph"}], title: "Action", width: "200px"  }
+			{ command: [{text: "show", click: show_file},{text: "list"},{text: "miti"},{text: "edit",  click: show_file},{ text: "pdf", click: pdf_file },{text: "graph"}], title: "Action", width: "75%"  }
 		]
 	});
 
@@ -67,6 +67,18 @@ $(document).ready(function(){
 	{
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		window.location.href = "/policies/"+ dataItem.id + "/show_individual"
+	}
+
+	function pdf_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/policies/"+ dataItem.id + ".pdf"
+	}
+
+	function edit_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/policies/"+ dataItem.id + "/edit"
 	}
 
 	function riskGridTitle()

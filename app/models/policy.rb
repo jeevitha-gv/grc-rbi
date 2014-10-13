@@ -83,7 +83,7 @@ class Policy < ActiveRecord::Base
     end
 
     # Method for validating the uniqueness of department
-	def check_department_uniqueness
+	  def check_department_uniqueness
       if self.policy_departments.present?
         check_department_id = policy_departments.size == policy_departments.collect{|x| x.department_id}.uniq.size
         errors.add(:department_id, ("Please select unique department")) if(check_department_id == false)
@@ -124,5 +124,15 @@ class Policy < ActiveRecord::Base
     # Method for checking reviewer and approver 
      def check_for_reviewer_in_approver
       self.errors[:user_id] = "Reviewer can not be approver" if policy_approvers.map(&:user_id).include?(self.user_id)
+    end
+
+    # Method for exporting as CSV
+    def self.to_csv
+      CSV.generate do |csv|
+        csv << ["Policy Title"]
+        all.each do |policy|
+          csv << [policy.title]
+        end
+      end
     end
 end

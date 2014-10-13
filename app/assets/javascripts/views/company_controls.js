@@ -19,14 +19,9 @@ $(document).ready(function(){
 		model: {
 			id: "id",
 				fields: {
-					title: { type: "string" }
-					// control_classification: { type: "string" },
-					// purpose: { type: "string" },
-					// control_state: { type: "string" },
-					// control_freq: { type: "string" },
-					// standard: { type: "string" },					
-					// description: { type: "string" }
-
+					title: { type: "string" },
+					control_state: { type: "string" },
+					owner: { type: "string" },
 				}
 			}
 		},
@@ -41,16 +36,29 @@ $(document).ready(function(){
 		filterable: true,
 		pageable: false,
 		columns: [
-			{ field: "title", title: "Title", width: "40%" }
-			// { field: "control_classification", title: "Control Classification", width: "40%" },
-			// { field: "purpose", title: "Purpose", width: "40%" },
-			// { field: "control_state", title: "Control State", width: "40%" },
-			// { field: "control_freq", title: "Control Freq", width: "40%" },
-			// { field: "standard", title: "Standard", width: "40%" },			
-			// { field: "description", title: "Cescription", width: "40%" }
+			{ field: "title", title: "Title", width: "100%" },
+			{ field: "control_state", title: "State", width: "40%" },
+			{ field: "owner", title: "Owner", width: "40%" },
+			{ command: [{text: "show" , click: show_file},{text: "list"},{text: "miti"},{text: "edit", click: edit_file},{ text: "pdf", click: pdf_file},{text: "graph"}], title: "Action", width: "45%"  }
 		]
 	});
 
-	// Grid II
+	function show_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/company_controls/"+ dataItem.id 
+	}
+
+	function pdf_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/company_controls/"+ dataItem.id + ".pdf"
+	}
+
+	function edit_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/company_controls/"+ dataItem.id + "/edit"
+	}
 
 });

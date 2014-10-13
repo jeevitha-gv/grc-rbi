@@ -152,10 +152,16 @@ end
     member do
       get 'show_individual'
     end
+    collection do
+      get 'export'
+    end
   end
 
-
-  resources :company_controls 
+  resources :company_controls  do
+    collection do
+      get 'export'
+    end
+  end
 
   resources :policy_dashboards do
     collection do

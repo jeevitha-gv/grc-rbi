@@ -16,9 +16,8 @@ class PoliciesController < ApplicationController
 	# POST method to create a new policy
 	def create
 		@policy = current_company.policies.build(policy_params)
-		binding.pry
 		if @policy.save
-			redirect_to show_individual_policy_path(@policy)
+			redirect_to show_individual_policy_path(@policy), :flash => { :notice => "Policy has been drafted successfully" }
 		else
 			render "new"
 		end
@@ -33,7 +32,7 @@ class PoliciesController < ApplicationController
 	def update
 		@policy = Policy.find(params[:id])
 		if @policy.update_attributes(policy_params)
-			redirect_to show_individual_policy_path(@policy)
+			redirect_to show_individual_policy_path(@policy), :flash => { :notice => "New Version of policy has been drafted successfully" }
 		else
 			render "new"
 		end
@@ -57,6 +56,18 @@ class PoliciesController < ApplicationController
 		end
 	end
 
+	# Export Option
+	def export
+		@policies = Policy.all
+		respond_to do |format|
+			format.pdf do
+        		@pdf = (render_to_string pdf: "PDF", template: "policies/export.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8", disposition: "inline")
+        		send_data(@pdf, type: "application/pdf", filename: "Policy-Report")
+      		end
+      		format.csv { send_data @policies.to_csv }
+      		format.xls
+      	end
+	end
 
 	private
 

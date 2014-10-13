@@ -9,11 +9,11 @@
     <div class="form-group clearfix">
         <label class="col-sm-2 control-label">Title</label>
         <div class="col-sm-9">
-          <%= f.text_field :title, class: "audit-normal-input" %>
+            <%= f.text_field :title, class: "audit-normal-input" %>
+            <% if @policy.errors[:title].present? %>
+                <div class="error_message"><%= @policy.errors[:title][0]%></div>
+            <% end %>
         </div>
-        <% if @policy.errors[:title].present? %>
-            <div class="error_message"><%= @policy.errors[:title][0]%></div>
-        <% end %>
     </div>
     <hr>
     <div class="row">
