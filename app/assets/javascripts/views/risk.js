@@ -124,7 +124,7 @@ $(document).ready(function() {
 	function updateGridForStage(stage)
 	{
 
-		alert(stage.length);
+		
 		if(stage.length == 0)
 		{
 			status_update_all()
