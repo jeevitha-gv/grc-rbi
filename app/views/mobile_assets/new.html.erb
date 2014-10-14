@@ -1,0 +1,33 @@
+<div class="page-wrap">
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div id="example" class="k-content">
+          <div class="risk-title">New Mobile</div>
+
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="risk-wrap">
+              <div class="sub-wrap">
+               <div class="sub-titile">Enter a new Mobile</div> 
+                <div class="sub-wrap-bg">
+                  <%= form_for(@mobile_asset) do |f| %>
+                    <%= render 'form', :f => f, :mobile_asset => @mobile_asset %>
+                    <div class="row">
+                      <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+                        <div class="btn-group gr-btn save-file">
+                          <%= f.submit "Add Mobile", :class => "orange_btn"%>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>

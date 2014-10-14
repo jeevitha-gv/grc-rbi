@@ -1,0 +1,15 @@
+<div class="policy-reviewer">
+  <div class='policy_reviewer clearfix'>
+    <label class="col-sm-4 control-label">
+    </label>
+    <div class="col-sm-7">
+      <% if @policy.errors[:user_id].present? %>
+        <div class="error_message"><%= @policy.errors[:user_id][0]%></div>
+      <% end %>
+      <div class="auditees-users">
+        <%= f.select :user_id, options_for_select(current_company.users.all.collect{|x| [x.user_name, x.id.to_i]}, :selected => f.object.user_id), {include_blank: 'Select Reviewer' } %>
+      </div>
+      <%= link_to_remove_policy_reviewer "", f %>
+    </div>
+  </div>
+</div>

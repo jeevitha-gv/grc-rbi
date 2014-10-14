@@ -1,0 +1,169 @@
+.containerFull:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.cmdb-sidebar {
+    background: none repeat scroll 0 0 #DDDEE0;
+    /*background: none repeat scroll 0 0 #FFFFFF;*/
+    min-height: 500px;
+}
+
+.ticket-leftcol {
+    float: left;
+    height: auto !important;
+    min-height: 477px;
+    width: 260px;
+}
+
+#cmdb-tree {
+    background: none repeat scroll 0 0 #DDDEE0;
+    /*background: none repeat scroll 0 0 #FFFFFF;*/
+    margin: 25px 10px 10px;
+}
+
+.demo-section {
+    width: 200px;
+}
+
+#treeview li {
+	color: #181818;
+}
+
+.k-state-selected {
+	color: black;
+	background: blue;	
+}
+
+.k-treeview-lines {
+	width: 200px;
+}
+
+.test {
+	font-size: medium;
+}
+
+.test2 {
+	padding: 0px;
+}
+
+#test3 {
+	font-family: 'Oswald', sans-serif;
+}
+
+.asset-divider {
+	border-bottom: 8px solid #f5f2f2;
+	margin: 15px 0;
+}
+
+#test4 {
+	background:#F87431; border:0; height:7px
+}
+
+.contentCol {
+    background-color: #fff;
+    border-left: 1px solid #cfcfcf;
+}
+
+.hasRightCol {
+    margin-left: 260px;
+}
+
+.cmdb-list #sticky_header {
+    margin: -20px 0 20px;
+    padding: 1%;
+}
+
+.fixed-header {
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 4px 0 #f4f4f4;
+    padding-bottom: 10px;
+    margin-left: 10px;
+}
+
+.title {
+    padding: 5px 0;
+    margin-left: 40px;
+}
+
+.cmdb-list #sticky_header .buttons_container {
+    padding-top: 8px;
+}
+.pull-right {
+    float: right;
+}
+
+a.btn {
+    padding: 5px 14px;
+}
+
+.btn-info, .btn-group.open .btn-info.dropdown-toggle {
+    background-color: #003c03;
+    background-image: -moz-linear-gradient(center top , #004604, #002d03);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.btn {
+    margin-right: 4px;
+}
+
+.btn-primary {
+    background-color: #373737;
+    background-image: linear-gradient(to bottom, #444, #222);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: white;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.floatl {
+    display: inline;
+    float: left;
+}
+
+#import_status .cmdb_status_header .floatl span {
+    color: #999;
+    font-size: 13px;
+    position: relative;
+    top: -8px;
+}
+
+.buttons_container {
+	margin-top: 23px;
+	margin-left: 150px;
+}
+
+.cmdb-list #inner .dataTables_wrapper {
+    padding: 0 20px;
+}
+.dataTables_wrapper {
+    clear: none;
+    position: relative;
+    margin-left: 20px;
+}
+.tbl-ctrls {
+	max-width: 750px; 
+}
+
+.cmdb-item-list {
+    border: 1px solid #eee;
+    border-collapse: collapse;
+    font-size: 12px;
+    font-weight: 200;
+    margin-bottom: 15px !important;
+    table-layout: fixed;
+}
+
+#grid {
+	margin-left: 36px;
+}
+
+.footer {
+    margin-top: 124px;
+}

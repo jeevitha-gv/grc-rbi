@@ -1,3 +1,4 @@
+
 .fleft {
 	float: left;
 }
@@ -1743,6 +1744,8 @@ a.import-btn{
 
 .form-group {
     margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: 8px;
 }
 
 .orange-method{
@@ -2461,4 +2464,23 @@ top:2px!important;
 	float:left;
 	margin:0 10px 0 0;
 
+}
+
+.text-decoration {
+	color: yellow;
+}
+
+.asset-big-input {
+  border-radius: 5px;
+  border: 1px solid #dad9d9;
+  -moz-box-shadow: inset 0 0 5px #dad9d9;
+  -webkit-box-shadow: inset 0 0 5px #dad9d9;
+  box-shadow: inset 0 0 5px #dad9d9;
+  padding: 5px 5px;
+  width: 100%;
+  height: 160px !important;
+}
+
+.width-fix {
+	width: 85%;
 }

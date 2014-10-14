@@ -80,3 +80,20 @@ gem 'activemerchant'
 gem "rails_best_practices"
 
 gem 'daemons'
+
+# CKE Editor
+gem 'ckeditor', '~> 4.1.0'
+gem 'mini_magick'
+
+# Versioning gem
+ gem 'paper_trail', '~> 3.0.5'
+
+# ID generation
+gem 'protokoll'
+
+# Gem for getting expection notification
+gem 'exception_notification'
+
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+
+gem 'semantic-ui-rails'

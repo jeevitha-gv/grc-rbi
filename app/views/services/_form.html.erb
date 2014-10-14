@@ -1,0 +1,101 @@
+<%= javascript_include_tag "/assets/outer/jquery.tagsinput.min.js" %>
+<%= f.fields_for :asset do |ff| %>
+
+<%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>
+<%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
+
+<% end %>
+
+<!-- First Row -->
+
+<!-- Second Row -->
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :service_type_id, t('service.service_type_id') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:service_type_id, ServiceType.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :assigned_on, t('service.assigned_on') %>
+      </label>
+      <div class="col-sm-8">
+          <%= f.text_field :assigned_on, :class => "datepicker" %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Third Row -->
+
+<div class="clearfix border-divider"></div>
+
+<!-- Fourth Row -->
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :cost, t('computer.cost') %>
+        <%= f.text_field :cost, :class=>"form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :sla, t('service.sla') %>
+        <%= f.text_field :sla, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Fifth Row -->
+
+
+<!-- Sixth Row -->
+
+
+<!-- Seventh Row -->
+
+
+<script>
+
+$('.ui.checkbox')
+  .checkbox();
+
+$('#tags').tagsInput({
+  'defaultText':'add email'
+});
+
+ $(document).ready(function(){
+    
+    var temp_start = $(".datepicker").val()
+    var start = $(".datepicker").kendoDatePicker({
+      format: "dd/MM/yyyy"
+  }).data("kendoDatePicker");
+ 
+
+    $(".datepicker").bind("focus", function() {
+      $(this).data("kendoDatePicker").open();
+    });
+    $('.datepicker').attr('readonly', true);
+
+    $(".datepicker1").bind("focus", function() {
+      $(this).data("kendoDatePicker").open();
+    });
+    $('.datepicker1').attr('readonly', true);
+
+    $(".datepicker").val(temp_start)
+  });
+
+</script>
+

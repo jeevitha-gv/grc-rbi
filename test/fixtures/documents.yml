@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  document_status_id: 1
+  document_type_id: 1
+  version: 1.5
+  location_id: 1
+  department_id: 1
+  asset_manager_id: 1
+  asset_user_id: 1
+  assigned_on: 2014-08-22 11:20:45
+
+two:
+  description: MyText
+  document_status_id: 1
+  document_type_id: 1
+  version: 1.5
+  location_id: 1
+  department_id: 1
+  asset_manager_id: 1
+  asset_user_id: 1
+  assigned_on: 2014-08-22 11:20:45

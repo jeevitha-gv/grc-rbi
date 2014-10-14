@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vcs_url: MyString
+  project_manager: MyString
+  version_number: MyString
+  backup_measure: MyText
+  assigned_on: 2014-09-19
+  expected_life: MyString
+
+two:
+  vcs_url: MyString
+  project_manager: MyString
+  version_number: MyString
+  backup_measure: MyText
+  assigned_on: 2014-09-19
+  expected_life: MyString

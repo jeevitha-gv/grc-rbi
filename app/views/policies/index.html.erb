@@ -1,0 +1,37 @@
+<% content_for :head do %>
+<%= javascript_include_tag '/assets/views/policy'%>
+<% end %>
+<div class="page-wrap">
+<div class="clearfix"></div>
+<div class="content">
+  <div class="container">
+    <div class="row grid-sp">
+    	<div class="risk-title">Policies</div>
+  				<div class="clearfix">
+          <div style="position:relative;left:801px;top:17px;">
+            <div class="btn-group btn-group-success">
+              <button class="btn btn-success" type="button">Export</button>
+              <button data-toggle="dropdown" class="btn btn-success dropdown-toggle" type="button">
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><%= link_to "CSV",export_policies_path(:format => :csv) %> </li>
+                <li class="divider"></li>
+                <li><%= link_to "Excel",export_policies_path(:format => :xls)%></li>
+                <li class="divider"></li>
+                <li><%= link_to "PDF",{ action: "export", :format => :pdf}%></li>
+              </ul>
+          </div>
+          <%= link_to '<img src="/assets/outer/new.png" style= "width:21px;"></img> New Policy'.html_safe , new_policy_path , :class => "btn btn-success" %></div>
+                    </div>
+      <!-- Nav tabs -->
+    </div>
+
+    <!-- #grid-->
+    <div id="grid"></div>
+
+    <!-- #grid  -->
+  </div>
+</div>
+</div>
+</div>

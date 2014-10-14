@@ -27,6 +27,11 @@
             <li><a href="/admin/settings" class="<%= add_admin_active_class(params) == 'Settings' ? 'active' : '' %>">
               <div class="overview-icon"></div>
               Overview</a></li>
+            <% if company_modules_check('Policy') %>
+              <li><a href="/admin/distribution_lists" class="<%= add_admin_active_class(params) == 'Policy' ? 'active' : '' %>">
+                <div class="risk-icon"></div>
+                Policy</a></li>
+                <% end %>
 						<% if company_modules_check('Audit') %>
 							<li><a href="/admin/operational_areas" class="<%= add_admin_active_class(params) == 'Audit' ? 'active' : '' %>">
 								<div class="audit-icon"></div>
@@ -42,6 +47,11 @@
                 Incident</a></li>
             
             
+            <% if company_modules_check('Asset') %>
+              <li><a href="/admin/asset_types" class="<%= add_admin_active_class(params) == 'Asset' ? 'active' : '' %>">
+                <div class="risk-icon"></div>
+                Asset</a></li>
+            <% end %>
           </ul>
         </div>
         <%end%>
@@ -107,6 +117,10 @@
 		{
 			$("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/overview_links'))%>");
 		}
+    else if(module == 'policy')
+    {
+      $("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/policy_links'))%>");
+    }
 		else if(module == 'risk')
 		{
 			$("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/risk_links'))%>");

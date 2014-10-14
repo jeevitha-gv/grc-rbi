@@ -1,0 +1,21 @@
+<style type="text/css">
+  td {
+    background-color: red;
+    width:70%;
+}
+</style>
+<table  style="width:100%">
+  <tr>
+    <th>ID</th>
+    <th >Name</th>
+  </tr>
+  <% @policies.each do |policy| %>
+  <tr>
+    <td><%= policy.id %></td>
+    <td ><%= policy.title %></td>
+  </tr>
+  <% end %>
+</table>
+
+
+

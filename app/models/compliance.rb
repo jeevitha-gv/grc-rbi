@@ -17,4 +17,8 @@ class Compliance < ActiveRecord::Base
     has_many :compliance_library
     has_many :risks
     has_many :cpp_measures
+
+    # Association with Policy
+    has_many :policies
+    has_many :company_controls
 end

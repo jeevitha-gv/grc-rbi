@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+  mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   post 'admin/privileges/modal_previlege'
@@ -87,11 +89,93 @@ Rails.application.routes.draw do
     resource :answers, only: [:index, :create, :new]
  end
 
- resources :other_assets do
- end
+ resources :vendors do
+  collection do
+    post 'vendor_imports'
+    get 'vendor_export'
+  end
+  end
 
- resources :computers do
- end
+
+   resources :contracts do
+   end
+
+  resources :asset_dashboard do
+    collection do
+      get 'calendar'
+    end
+  end
+
+  scope '/inventory' do
+    
+    resources :information_assets do
+      collection do
+        post 'infoasset_imports'
+      end
+    end
+
+    resources :computers do
+      collection do
+        post 'computer_imports'
+        get 'computer_export'
+      end
+    end
+
+    resources :documents do
+      collection do
+        post 'document_imports'
+        get  'document_export'
+      end
+    end
+
+    resources :other_assets do
+      collection do
+        post 'other_asset_imports'
+        get 'other_asset_export'
+        delete 'remove_attachment'
+        get 'download_other_asset_document'
+      end
+    end
+  
+    resources :services do
+      collection do
+        post 'service_imports'
+        get 'service_export'
+      end
+    end
+
+    resources :mobile_assets do
+      collection do
+        post 'mobileasset_imports'
+        get 'mobile_asset_export'
+      end
+    end
+ 
+    resources :source_codes do
+      collection do
+        post 'sourcecode_imports'
+        get 'sourcecode_export'
+      end
+    end
+
+    resources :softwares do
+      collection do
+        post 'software_imports'
+        get 'software_export'
+      end
+    end
+
+  end
+  
+  resources :assets do  
+    resources :assessments
+
+    resources :asset_reviews
+
+    resources :asset_actions
+
+  end
+  
 
   resource :user do
     collection do
@@ -139,6 +223,33 @@ Rails.application.routes.draw do
   resources :transactions, only: [:new, :create]
 
   resources :update_payments
+
+
+
+  # Resources for policy
+
+  resources :policies do
+    member do
+      get 'show_individual'
+    end
+    collection do
+      get 'export'
+    end
+  end
+
+  resources :company_controls  do
+    collection do
+      get 'export'
+    end
+  end
+
+  resources :policy_dashboards do
+    collection do
+      get 'calender'
+    end
+  end
+
+
 
   get 'welcome', to: 'companies#welcome', :as => :welcome
 

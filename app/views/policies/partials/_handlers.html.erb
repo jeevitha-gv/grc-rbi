@@ -1,0 +1,53 @@
+<div class="step-header">
+<!-- <blockquote>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+    <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+</blockquote> -->
+</div>
+
+<div class="form-group clearfix">
+    <label class="col-sm-2 control-label">Policy Owner</label>
+    <div class="col-sm-3">
+        <div class="risk-select">
+            <%= f.collection_select(:owner, current_company.users.all, :id, :user_name, :prompt => true) %>
+        </div>
+        <% if @policy.errors[:owner].present? %>
+            <div class="error_message"><%= @policy.errors[:owner][0]%></div>
+        <% end %>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-lg-6 col-sm-8 col-xs-12">
+        <div class="form-group clearfix">
+            <label class="col-sm-4 control-label">Policy Reviewer(s)</label>
+            <div class="col-sm-12">
+                <div id="reviewer-list">
+                    <%= f.fields_for :policy_reviewers, (f.object.policy_reviewers.present? ? f.object.policy_reviewers : PolicyReviewer.new) do |builder| %>
+                    <%= render 'policy_reviewers', policy: @policy, f: builder %>
+                    <% end %>
+                </div>
+                <div class="form-group clearfix addissue">
+                    <%= link_to_add_policy_reviewer "", :policy_reviewers %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-sm-8 col-xs-12">
+        <div class="form-group clearfix">
+            <label class="col-sm-4 control-label">Policy Approver(s)</label>
+            <div class="col-sm-12">
+                <div id="approver-list">
+                    <%= f.fields_for :policy_approvers, (f.object.policy_approvers.present? ? f.object.policy_approvers : PolicyApprover.new) do |builder| %>
+                    <%= render 'policy_approver', policy: @policy, f: builder %>
+                    <% end %>
+                </div>
+                <div class="form-group clearfix addissue">
+                    <%= link_to_add_policy_approver "", :policy_approvers %>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>

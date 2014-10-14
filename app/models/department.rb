@@ -12,9 +12,11 @@ class Department < ActiveRecord::Base
   has_many :incidents
 
   # Assosciations with Asset Module
-  has_many :other_assets
   has_many :contracts
-  has_many :mobile_assets
+  has_many :assets
+
+  # Associations with Policy Module
+  has_many :policy_departments
 
   # validations
   validates :name, presence:true
@@ -27,6 +29,7 @@ class Department < ActiveRecord::Base
   #scope
  # scope :for_location, lambda {|location_id| where(location_id: location_id)}
   scope :department_name, ->(id) { where(id: id).first.name}
+  scope :for_name_by_company, lambda {|department_name, company_id| where("lower(name)=? and company_id=?", department_name, company_id)}
   #scope :for_name_by_location, lambda  {|department_name, location_id| where("lower(name) = ? and location_id=?", department_name, location_id)}
 
 end

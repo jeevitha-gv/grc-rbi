@@ -84,12 +84,14 @@ Section.delete_all
     Section.create(name: 'Audit')
     Section.create(name: 'Risk')
     Section.create(name: 'Incident')
+    Section.create(name: 'Asset')
+    Section.create(name: 'Policy')
 
 Priority.delete_all
 
-    Priority.create(name: 'High')
-    Priority.create(name: 'Medium')
-    Priority.create(name: 'Low')
+    Priority.create(name: 'High', score: '3')
+    Priority.create(name: 'Medium', score: '2')
+    Priority.create(name: 'Low', score: '1')
 
 ReminderAssignment.delete_all
 
@@ -919,9 +921,10 @@ CvssMetricScoring.delete_all
 Subscription.delete_all
 
     # Subscription.create(:name => "Free", :description => "free",:section_ids=> [1,2], :amount => 0.00, :valid_log =>23,:valid_period => 1)
-    Subscription.create(name: "AuditRisk", description: "Cancel", section_ids: [1,2], amount: 0.00, valid_log: 23, valid_period: 1, user_count: 10, file_size: 25)
+    Subscription.create(name: "AuditRisk", description: "Cancel", section_ids: [1,2,3,4], amount: 0.00, valid_log: 23, valid_period: 1, user_count: 10, file_size: 25)
     Subscription.create(name: "Audit", description: "Audit", section_ids: [1], amount: 5.00, valid_log: 23, valid_period: 1, user_count: 25, file_size: 50)
     Subscription.create(name: "Risk", description: "Risk", section_ids: [2], amount: 10.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 75)
+    Subscription.create(name: "Policy", description: "Policy", section_ids: [4], amount: 50.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 75)
 
 RiskModel.delete_all
 
@@ -972,3 +975,248 @@ MitigationEffort.delete_all
     MitigationEffort.create(:name => "Significant")
     MitigationEffort.create(:name => "Exceptional")
 
+
+ResellerType.delete_all
+
+    ResellerType.create(:name => "Sass Vendor")
+    ResellerType.create(:name => "Manufacturer")
+    ResellerType.create(:name => "Reseller")
+    ResellerType.create(:name => "Value Added Reseller")
+    ResellerType.create(:name => "System Intetgrator")
+    ResellerType.create(:name => "Software Vendor")
+    ResellerType.create(:name => "Internal Infrastructure")
+    ResellerType.create(:name => "Facility Management")
+    ResellerType.create(:name => "Office Supplies")
+    ResellerType.create(:name => "Computer Hardware Vendor")
+    ResellerType.create(:name => "Computer Service/Repair")
+    ResellerType.create(:name => "Computer Supplies Vendor")
+    ResellerType.create(:name => "General Business Vendor")
+    ResellerType.create(:name => "Consultant")
+    ResellerType.create(:name => "Vendor")
+
+
+
+AssetStatus.delete_all
+
+    AssetStatus.create(:name => "Operational")
+    AssetStatus.create(:name => "Lost")
+    AssetStatus.create(:name => "In Repair")
+    AssetStatus.create(:name => "Broken")
+    AssetStatus.create(:name => "Replacement")
+    AssetStatus.create(:name => "Spare")
+    AssetStatus.create(:name => "Disposed")
+    AssetStatus.create(:name => "Duplicate")
+    AssetStatus.create(:name => "Stolen")
+
+ComputerCategory.delete_all
+
+    ComputerCategory.create(:name => "Laptop")
+    ComputerCategory.create(:name => "Workstation")
+    ComputerCategory.create(:name => "Server")
+    ComputerCategory.create(:name => "Thin Client")
+    ComputerCategory.create(:name => "PDA")
+    ComputerCategory.create(:name => "Server - Unix")
+    ComputerCategory.create(:name => "Macintosh")
+    ComputerCategory.create(:name => "Standalone")
+    ComputerCategory.create(:name => "NAS/File Server")
+    ComputerCategory.create(:name => "Server + VMware")
+    ComputerCategory.create(:name => "VM: VMware")
+    ComputerCategory.create(:name => "VM: XenServer")
+    ComputerCategory.create(:name => "VM: Microsoft")
+    ComputerCategory.create(:name => "VM: SWSoft")
+    ComputerCategory.create(:name => "VM: Virtuallron")
+    ComputerCategory.create(:name => "Mac Laptop")
+    ComputerCategory.create(:name => "Mac Desktop")
+    ComputerCategory.create(:name => "Tablet")
+    ComputerCategory.create(:name => "Other")
+
+ ContractType.delete_all
+
+    ContractType.create(:name => "Software License")
+    ContractType.create(:name => "Subscription")
+    ContractType.create(:name => "Lease")
+    ContractType.create(:name => "Maintenance")
+
+ ContractStatus.delete_all
+
+    ContractStatus.create(:name => "Draft")
+    ContractStatus.create(:name => "Active")
+    ContractStatus.create(:name => "Review")
+    ContractStatus.create(:name => "Expired")
+    ContractStatus.create(:name => "Terminated")
+
+ LifecycleType.delete_all
+
+    LifecycleType.create(:name => "Acquisition")
+    LifecycleType.create(:name => "Installed")
+    LifecycleType.create(:name => "Assigned")
+    LifecycleType.create(:name => "Disposed")
+    LifecycleType.create(:name => "Duplicate")
+    LifecycleType.create(:name => "Service-Planned")
+    LifecycleType.create(:name => "Service-Sent")
+    LifecycleType.create(:name => "Service-Returned")
+    LifecycleType.create(:name => "Loan-Sent")
+    LifecycleType.create(:name => "Loan-Returned")
+    LifecycleType.create(:name => "Spare-Deposited")
+    LifecycleType.create(:name => "Spare-Returned")
+    LifecycleType.create(:name => "Inventoried")
+    LifecycleType.create(:name => "Shipped")
+    LifecycleType.create(:name => "Received")
+    LifecycleType.create(:name => "Operational")
+
+ LicenseType.delete_all
+
+    LicenseType.create(:name => "CAL")
+    LicenseType.create(:name => "Concurrent")
+    LicenseType.create(:name => "Developer")
+    LicenseType.create(:name => "Enterprise")
+    LicenseType.create(:name => "Evaluation")
+    LicenseType.create(:name => "Floating")
+    LicenseType.create(:name => "Free")
+    LicenseType.create(:name => "Generic")
+    LicenseType.create(:name => "Home Use")
+    LicenseType.create(:name => "Named User")
+    LicenseType.create(:name => "OEM")
+    LicenseType.create(:name => "Open Source(GPU/GPL)")
+    LicenseType.create(:name => "Per CPU")
+    LicenseType.create(:name => "Per Project")
+    LicenseType.create(:name => "Per Server")
+    LicenseType.create(:name => "Per Usage")
+    LicenseType.create(:name => "Perpetual")
+    LicenseType.create(:name => "Secondary")
+    LicenseType.create(:name => "Shareware")
+    LicenseType.create(:name => "Site License")
+    LicenseType.create(:name => "Subscription")
+    LicenseType.create(:name => "Time Based")
+    LicenseType.create(:name => "Volume")
+
+ DeviceType.delete_all
+
+    DeviceType.create(:name => "Phone")
+    DeviceType.create(:name => "Tablet")
+    DeviceType.create(:name => "Media Player")
+    DeviceType.create(:name => "Other")
+
+
+# Seed Data for Policy
+
+    PolicyKind.delete_all
+
+        PolicyKind.create(name: "Company Policy")
+        PolicyKind.create(name: "Organization Policy")
+        PolicyKind.create(name: "Data Asset Policy")
+        PolicyKind.create(name: "Product Policy")
+        PolicyKind.create(name: "Contract Policy")
+        PolicyKind.create(name: "Company Control Policy")
+
+    ControlClassification.delete_all
+
+        ControlClassification.create(name: "Preventative")
+        ControlClassification.create(name: "Corrective")
+        ControlClassification.create(name: "Detective")
+
+    Purpose.delete_all
+
+        Purpose.create(name: "Process")
+        Purpose.create(name: "Technical")
+
+    ControlFreq.delete_all
+
+        ControlFreq.create(name: "Continues")
+        ControlFreq.create(name: "Event driven")
+        ControlFreq.create(name: "Periodic")
+
+    ControlState.delete_all
+
+        ControlState.create(name: "Active")
+        ControlState.create(name: "In-Active")
+
+    PolicyClassification.delete_all
+
+        PolicyClassification.create(name: "Public")
+        PolicyClassification.create(name: "Restricted")
+        PolicyClassification.create(name: "Confidential")
+
+    PolicyStatus.delete_all
+
+        PolicyStatus.create(name: "Drafted")
+        PolicyStatus.create(name: "Waiting for review")
+        PolicyStatus.create(name: "Reviewed")
+        PolicyStatus.create(name: "Waiting for Approval")
+        PolicyStatus.create(name: "Approved")
+        PolicyStatus.create(name: "Discard/Declined")
+
+    Audience.delete_all
+
+        Audience.create(name: "Internal")
+        Audience.create(name: "External")
+
+    ReviewAction.delete_all
+
+        ReviewAction.create(name: "Complete")
+        ReviewAction.create(name: "Inprogress")
+
+    ApprovalAction.delete_all
+
+        ApprovalAction.create(name: "Save Draft")
+        ApprovalAction.create(name: "Send to Rework")
+        ApprovalAction.create(name: "Reject")
+        ApprovalAction.create(name: "Approve")
+
+ SoftwareType.delete_all
+
+    SoftwareType.create(:name => "Application")
+    SoftwareType.create(:name => "Database")
+    SoftwareType.create(:name => "Operating System")
+    SoftwareType.create(:name => "Web Server")
+
+ DocumentStatus.delete_all
+    
+    DocumentStatus.create(:name => "Draft")
+    DocumentStatus.create(:name => "Approved")
+    DocumentStatus.create(:name => "Unapproved")
+
+ DocumentType.delete_all
+    
+    DocumentType.create(:name => "Policy")
+    DocumentType.create(:name => "Procedure")
+    DocumentType.create(:name => "Reference")
+
+ ServiceType.delete_all
+    
+    ServiceType.create(:name => "Business Service")
+    ServiceType.create(:name => "Sales Service")
+    ServiceType.create(:name => "Support Service")
+    ServiceType.create(:name => "IT Service")
+    ServiceType.create(:name => "Email Service")
+    ServiceType.create(:name => "Backup Service")
+    ServiceType.create(:name => "Hosting Service")
+
+OperatingSystem.delete_all
+
+    OperatingSystem.create(:name => "Windows")
+    OperatingSystem.create(:name => "Linux")
+    OperatingSystem.create(:name => "Mac")
+    OperatingSystem.create(:name => "Solaris")
+    OperatingSystem.create(:name => "AIX")
+
+AssetDecision.delete_all
+    
+    AssetDecision.create(:name => "Accept Gap Analysis and Close")
+    AssetDecision.create(:name => "Accept till next assessment")
+    AssetDecision.create(:name => "Redo Actions")
+
+AssetState.delete_all
+
+    AssetState.create(:name => "Identified")
+    AssetState.create(:name => "Evaluated")
+    AssetState.create(:name => "Acted")
+    AssetState.create(:name => "Reviewed")
+    AssetState.create(:name => "Redo Actions")
+
+Classification.delete_all
+
+    Classification.create(:name => "Strictly Confidential")
+    Classification.create(:name => "Confidential")
+    Classification.create(:name => "Public")
+    Classification.create(:name => "Business use only")

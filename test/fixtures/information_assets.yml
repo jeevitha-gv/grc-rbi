@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  at_origin: MyText
+  info_moved: MyText
+  retention_period: 1.5
+
+two:
+  at_origin: MyText
+  info_moved: MyText
+  retention_period: 1.5

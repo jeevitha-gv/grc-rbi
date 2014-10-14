@@ -1,0 +1,68 @@
+<% content_for :head do %>
+<%= javascript_include_tag '/assets/views/policy'%>
+<% end %>
+   <!-- Main Content -->
+    <div class="clearfix"></div>
+    <div class="content">
+        <div class="container">
+            <div class="row">
+              <h1>New Policy</h1>
+              <%= form_for(@policy) do |f| %>
+                <div class="col-md-12">
+                    <div class="panel with-nav-tabs panel-default">
+                        <div class="panel-heading">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#general" data-toggle="tab">General</a></li>
+                                <li><a href="#scope" data-toggle="tab">Scope</a></li>
+                                <li><a href="#standard" data-toggle="tab">Controls</a></li>
+                                <li><a href="#handler" data-toggle="tab">Handlers</a></li>
+                                <li><a href="#settings" data-toggle="tab">Dates</a></li>
+                            </ul>
+                        </div>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <!-- Tab I -->
+                                <div class="tab-pane fade in active" id="general">
+                                <%= render partial: "policies/partials/general", :locals => { :f => f } %>
+                                </div>
+                                <!-- Tab II -->
+                                <div class="tab-pane fade" id="scope">
+                                <%= render partial: "policies/partials/scope", :locals => { :f => f } %>
+                                </div>
+                                <!-- tab III -->
+                                <div class="tab-pane fade" id="standard">
+                                <%= render partial: "policies/partials/standard", :locals => { :f => f } %>
+                                </div>
+                                <!-- tab IV -->
+                                <div class="tab-pane fade" id="handler">
+                                    <%= render partial: "policies/partials/handlers", :locals => { :f => f } %>
+                                </div>
+                                <!-- Tab V -->
+                                <div class="tab-pane fade" id="settings">
+                                    <%= render partial: "policies/partials/dates", :locals => { :f => f } %>
+                                </div>
+                                <!-- Tab Ends -->
+                            </div>
+
+                            <div class="clearfix"><br>
+                              <div class="col-lg-12 col-sm-6 col-xs-12 text-align-right">
+                                <a class="grey_btn" href="javascript:goBack()">Back</a>
+                                  <%#= f.submit "Save as Draft", :class => "orange_btn" %>
+                                <%= f.submit "Save", :class => "black_btn" %>
+                              </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+              <% end %>
+            </div>
+        </div>
+    </div>
+    <!-- Main COntent -->
+</div>
+<script type="text/javascript">
+  // $(document).ready(function() {
+  //       $('.multiselect').multiselect();
+  //  });
+</script>

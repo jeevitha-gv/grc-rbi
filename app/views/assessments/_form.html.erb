@@ -1,0 +1,279 @@
+<div class="row">
+  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+    <div class="mitigation-box-wrap">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <% value = calc_score(@asset) %>
+          <% if value > 7 && value <= 9 %>
+            <div class="high-box">
+              <div class="number"><%= value %></div>
+              <div class="text">Asset Value</div>
+            </div>
+          <% elsif value > 5 && value <= 7 %>
+            <div class="medium-box">
+              <div class="number"><%= value %></div>
+              <div class="text">Asset Value</div>
+            </div>
+          <% else %>
+            <div class="low-box">
+              <div class="number"><%= value %></div>
+              <div class="text">Asset Value</div>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+          <div class="mitigate-inner mitigate-box">
+              <div class="risk-box-lable"><%= @asset.assetable_type %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="mitigation-box-wrap">
+      <div class="mitigation-sub">
+          <div class="risk-box-lable">Display Name :</div>
+          <div class="risk-box-text"><%= @asset.name %></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+    <div class="mitigation-box-wrap">
+      <div class="mitigation-status">
+          <div class="risk-box-lable">Status:</div>
+          <div class="risk-box-text"><%= @asset.asset_state.name %></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="tab-pane active" id="all">
+      <div class="table-responsive">
+        <table class="table table-striped table-bg">
+          <tr>
+            <th colspan="6" class="risk-able-th">Assignment / Security / CIA Information</th>
+          </tr>
+          <tr>
+            <td><label>Owner : </label>
+              <span><%=@asset.info_asset_owner.user_name %> </span></td>
+            <td><label>Custodian : </label>
+              <span> <%=@asset.info_asset_custodian.user_name %> </span></td>
+            <td><label>Identifier : </label>
+              <span><%=@asset.info_asset_identifier.user_name %></span></td>
+          </tr>
+          <tr>
+            <td><label>Evaluator/CIO : </label>
+            <span><%=@asset.info_asset_evaluator.user_name %></span></td>
+            <td><label>Location : </label>
+              <span><%= @asset.location.name if @asset.location.present? %></span></td>
+            <td><label>Department : </label>
+              <span> <%= @asset.department.name if @asset.department.present? %> </span></td>
+          </tr>
+          <tr>
+            <td><label>Confidentiality :</label>
+              <span> <%= @asset.asset_confi.name%></span></td>
+            <td><label>Integrity : </label>
+              <span> <%= @asset.asset_integ.name%></span></td>
+            <td><label>Availability : </label>
+              <span> <%= @asset.asset_avail.name%></span></td>
+          </tr>
+          <tr>
+            <td><label>Personal Data :</label>
+              <span> <%= @asset.personal_data == "true" ? "Yes" : "No"%> </span></td>
+            <td><label>Sensitive Data : </label>
+              <span> <%= @asset.sensitive_data == "true" ? "Yes" : "No"%> </span></td>
+            <td><label>Customer Data : </label>
+              <span> <%= @asset.customer_data == "true" ? "Yes" : "No" %> </span></td>
+          </tr>
+          <%# if risk.attachment.present? %>
+          <tr>
+              <td><label>Classification : </label>
+              <span> <%= @asset.classification.name%> </span></td>
+              <td><label>Document: </label>
+              <%#= link_to (File.basename(risk.attachment.attachment_file_url)).truncate(20), download_document_risks_path(id: risk.attachment.id), class: "blue_link" %></td>
+            <td></td>
+          </tr>
+          <%# end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title">Asset Description</div>
+        <p> <%= @asset.description%> </p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="tab-pane active" id="all">
+      <div class="table-responsive">
+        <table class="table table-striped table-bg">
+          <tr>
+            <th colspan="6" class="risk-able-th">Information Asset Properties</th>
+          </tr>
+          <tr>
+            <td><label>Current Level of Protection - When Information is in rest : </label>
+              <br>              
+                <span>
+                  <%= @asset.assetable.at_origin%>
+                </span>              
+              <span>
+            </td>
+            <td><label>Current Level of Protection - When Information is moved : </label>
+              <br>
+              <span>
+                <%= @asset.assetable.info_moved%>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <label>Data Retention Period (in Years) :</label>
+              <span><%= @asset.assetable.retention_period%></span>
+            </td>
+          </tr>
+        </table>
+        <tr></tr>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="risk-wrap">
+<div class="sub-wrap">
+<div class="sub-titile">Add a new Assessment</div>
+<div class="sub-wrap-bg">
+<div class="ui info message">Evaluate and Assess the current level of protection of this asset. Recommend some controls to be put in place for each of the categories below if necessary.</div>
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :labelling %>
+        <%= f.cktext_area :labelling, :class=>"form-control asset-big-input" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :disposal %>
+        <%= f.cktext_area :disposal, :class=>"form-control asset-big-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :storage %>
+        <%= f.cktext_area :storage, :class=>"form-control asset-big-input" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :transport %>
+        <%= f.cktext_area :transport, :class=>"form-control asset-big-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :addressing %>
+        <%= f.cktext_area :addressing, :class=>"form-control asset-big-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix border-divider"></div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :assessment %>
+        <%= f.cktext_area :assessment, :class=>"form-control asset-big-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :conclusion %>
+        <%= f.cktext_area :conclusion, :class=>"form-control asset-big-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix border-divider"></div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <label class="col-sm-4 control-label">
+        <%= f.label :closure_date %>
+      </label>
+      <div class="col-sm-8">
+        <%= f.text_field :closure_date, :class => "datepicker" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+
+ $(document).ready(function(){
+    
+    var temp_start = $(".datepicker").val()
+    var start = $(".datepicker").kendoDatePicker({
+      format: "dd/MM/yyyy"
+  }).data("kendoDatePicker");
+ 
+
+  $(".datepicker").bind("focus", function() {
+    $(this).data("kendoDatePicker").open();
+  });
+  $('.datepicker').attr('readonly', true);
+
+  $(".datepicker1").bind("focus", function() {
+    $(this).data("kendoDatePicker").open();
+  });
+  $('.datepicker1').attr('readonly', true);
+
+  $(".datepicker").val(temp_start)
+  
+  });
+
+</script>
