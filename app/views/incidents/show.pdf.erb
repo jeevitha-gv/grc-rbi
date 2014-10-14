@@ -138,17 +138,17 @@ label {float: left;padding: 5px 10px; font-weight:bold; width: 25%; font-size:12
 <div class="leftside">
 <label>Reassign: </label>
 <div class="content-wrap">
-<div class="label_content"><%=@incident.evaluate.resolution.reassignee if @incident.resolution.present?%></div>
+<div class="label_content"><%=@incident.resolution.reassignee if @incident.resolution.present?%></div>
 </div>
 <div class="cls"></div>
 <div class="content-wrap">
 <label>Soltution-Type</label>
-<div class="label_content"> <%=@incident.evaluate.resolution.solution_type.name if @incident.resolution.present?%></div>
+<div class="label_content"> <%=@incident.resolution.solution_type if @incident.resolution.present?%></div>
 </div>
 <div class="cls"></div>
 <div class="content-wrap">
 <label> Parent-ID : </label>
-<div class="label_content"><%=@incident.evaluate.resolution.incident.id if @incident.resolution.present?%></div>
+<div class="label_content"><%=@incident.resolution.incident.id if @incident.resolution.present?%></div>
 </div>
 <div class="cls"></div>
 
@@ -157,13 +157,13 @@ label {float: left;padding: 5px 10px; font-weight:bold; width: 25%; font-size:12
 <div class="rightside">
 
 <label> Solution : </label>
-<div class="label_content_top"><%=@incident.evaluate.resolution.solution_type.name if @incident.resolution.present?%></div>
+<div class="label_content_top"><%=@incident.resolution.solution_type if @incident.resolution.present?%></div>
 <div class="cls"></div>
 <label> Root-Cause : </label>
-<div class="label_content_top"><%=@incident.evaluate.resolution.rootcause if @incident.resolution.present?%></div>
+<div class="label_content_top"><%=@incident.resolution.rootcause if @incident.resolution.present?%></div>
 <div class="cls"></div>
 <label> Closure-Classification : </label>
-<div class="label_content_top"><%=@incident.evaluate.resolution.closure_classification.name if @incident.resolution.present?%></div>
+<div class="label_content_top"><%=@incident.resolution.closure_classification if @incident.resolution.present?%></div>
 
 
 </div>
