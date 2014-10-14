@@ -24,7 +24,6 @@
                 <div class="policy-icon"></div>
                 Policy</a></li>
             <% end %>
-            <!-- Policy Management  ends here-->
             <% if company_modules_check('Audit') %>
               <li><a href="/audits" class="<%= add_admin_active_class(params) == 'Audit' ? 'active' : '' %>">
                 <div class="audit-icon"></div>
@@ -40,6 +39,11 @@
                 <div class="risk-icon"></div>
                 Asset</a></li>
             <% end %>
+             <% if company_modules_check('Incident') %>
+             <li><a href="/incidents" class="<%= add_active_class(params) == 'Incident' ? 'active' : '' %>">
+                <div class="risk-icon"></div>
+                Incident</a></li>
+              <% end %>
           </ul>
         </div>
         <input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">
