@@ -149,7 +149,7 @@ Rails.application.routes.draw do
     collection do 
       post 'import'
       get 'export'
-
+      get 'incident_dashboard'
       # get 'download_evaluate_document'
       delete 'remove_attachment'
       get 'download_incident_document'
