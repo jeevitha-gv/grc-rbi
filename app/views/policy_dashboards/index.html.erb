@@ -1,4 +1,7 @@
-
+<script src="/assets/outer/highcharts.js"></script>
+<script src="/assets/outer/exporting.js"></script>
+<script src="/assets/outer/drilldown.js"></script>
+<script src="/assets/outer/data.js"></script>
 <script type="text/javascript">
     $(function () {
     $('#container').highcharts({
@@ -8,7 +11,7 @@
             plotShadow: false
         },
         title: {
-            text: 'Browser market shares at a specific website, 2014'
+            text: ''
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -30,28 +33,72 @@
             type: 'pie',
             name: 'Browser share',
             data: [
-                ['Firefox',   45.0],
-                ['IE',       26.8],
+                ['Chennai',   45.0],
+                ['Bangalore',       26.8],
                 {
-                    name: 'Chrome',
+                    name: 'Patna',
                     y: 12.8,
                     sliced: true,
                     selected: true
                 },
-                ['Safari',    8.5],
-                ['Opera',     6.2],
+                ['Mumbai',    8.5],
+                ['Kerala',     6.2],
+                ['Hyderabad',   0.7]
+            ]
+        }]
+    });
+
+    $('#container1').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 1,//null,
+            plotShadow: false
+        },
+        title: {
+            text: ''
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Browser share',
+            data: [
+                ['HR',   45.0],
+                ['Risk',       26.8],
+                {
+                    name: 'Audit',
+                    y: 12.8,
+                    sliced: true,
+                    selected: true
+                },
+                ['Testing',    8.5],
+                ['Development',     6.2],
                 ['Others',   0.7]
             ]
         }]
     });
-    $('#container1').highcharts({
+    $('#container2').highcharts({
         chart: {
             plotBackgroundColor: null,
-            // plotBorderWidth: 1,//null,
+            plotBorderWidth: 1,//null,
             plotShadow: false
         },
         title: {
-            text: 'Browser market shares at a specific website, 2014'
+            text: ''
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -73,17 +120,54 @@
             type: 'pie',
             name: 'Browser share',
             data: [
-                ['Firefox',   45.0],
-                ['IE',       26.8],
+                ['Prventive',   45.0],
+                ['Corrective',       26.8],
                 {
-                    name: 'Chrome',
+                    name: 'Detective',
                     y: 12.8,
                     sliced: true,
                     selected: true
-                },
-                ['Safari',    8.5],
-                ['Opera',     6.2],
-                ['Others',   0.7]
+                }
+            ]
+        }]
+    });
+    $('#container3').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 1,//null,
+            plotShadow: false
+        },
+        title: {
+            text: ''
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Browser share',
+            data: [
+                ['Continues',   45.0],
+                ['Event Driven',       26.8],
+                {
+                    name: 'Periodic',
+                    y: 12.8,
+                    sliced: true,
+                    selected: true
+                }
             ]
         }]
     });
@@ -235,7 +319,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="container1"></div>
+                            <div id="container2"></div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -249,7 +333,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="container1"></div>
+                            <div id="container3"></div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
