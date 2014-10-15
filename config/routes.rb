@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :home
 
+  
    resources :dashboard do
      collection do
       get 'calender'
@@ -251,6 +253,32 @@ Rails.application.routes.draw do
 
   get 'welcome', to: 'companies#welcome', :as => :welcome
 
-  # You can have the root of your site routed with "root"
-  root 'home#index'
+  
+# INCIDENT MANAGEMENT
+
+  resources :incidents do 
+    collection do 
+      post 'import'
+      get 'export'
+      get 'incident_dashboard'
+      # get 'download_evaluate_document'
+      delete 'remove_attachment'
+      get 'download_incident_document'
+    end
+  resources :closes  
+  resources :evaluates  
+  resources :resolutions
+    collection do 
+      delete 'remove_attachment'
+      get 'download_resolution_document'
+      end
+
+  end
+
+  
+root 'home#index'
+
 end
+
+
+

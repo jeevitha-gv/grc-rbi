@@ -123,6 +123,8 @@ $(document).ready(function() {
 
 	function updateGridForStage(stage)
 	{
+
+		
 		if(stage.length == 0)
 		{
 			status_update_all()

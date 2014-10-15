@@ -1,0 +1,172 @@
+<style type="text/css">
+.textbox1 {
+        font-family:verdana;
+        font-size: large;
+        font-weight:bold;
+        text-decoration:underline overline;
+        background-color:;}
+
+</style>
+
+
+<%= javascript_include_tag "/assets/views/incident_index.js" %>
+
+<div class="page-wrap">
+  <div class="clearfix"></div>
+  <div class="content">
+    <div class="container">
+      <div class="row grid">
+      <!-- Nav tabs -->
+        <div id="example" class="k-content">
+          <div class="risk-title">Incidents Listing</div>
+            <div class=" col-xs-12 col-md-12 col-sm-12 col-lg-12">
+              <div class="box-wrapper">
+                <div class="search-box src-space clearfix">
+                  <div class="fright scr-padding">
+                    <div class="form-group audit_search">
+                      <%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value"%>
+                      <%= submit_tag "", name: nil, :class=>"btn btn-default src-brn", :id => "search-button" %>
+                      <a href="javascript:void(0);" class="cancel-btn1">Clear</a>
+                    </div>               
+                    <br>
+                    <div id="grid"></div>
+                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal",style="vertical-align: middle;">
+                    Advanced Search
+                    </button>
+
+<!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria    -hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                             <h4 class="modal-title" id="myModalLabel">Advanced Search</h4>
+                          
+     <!-- <div class="form-group audit_search"> -->
+                            <div>
+                              <br>
+                                <div class="row">
+                                  <div class="container">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                                      <div class="form-group">
+                                        <label for="title" class="col-sm-3 control-label">Title</label>
+                                          <div class="col-sm-8">
+                                            <%= text_field_tag :title, params[:title]%><br>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                               <br>
+                                <div class="row">
+                                  <div class="container">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                                      <div class="form-group">
+                                        <label for="incident_category_id" class="col-sm-3 control-label">Type</label>
+                                          <div class="col-sm-8">
+                                            <div class="risk-select">
+                                              <%= select_tag "category_id", options_from_collection_for_select(IncidentCategory.all, "id", "name"), { :prompt => 'Select a Category' }%><br>
+                                            </div>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+                              <br>
+
+                              <div class="row">
+                                <div class="container">
+                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                                    <div class="form-group">
+                                      <label for="request_type_id" class="col-sm-3 control-label">RequestType</label>
+                                        <div class="col-sm-8">
+                                          <div class="risk-select">
+                                             <%= select_tag "request_type_id", options_from_collection_for_select(RequestType.all, "id", "name"), { :prompt => 'Select a RequestType' }%><br>
+                                          </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <br>
+                              <div class="row">
+                                <div class="container">
+                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                                    <div class="form-group">
+                                      <label for="department_id" class="col-sm-3 control-label">Department</label>
+                                        <div class="col-sm-8">
+                                          <div class="risk-select">
+                                            <%= select_tag "department_id", options_from_collection_for_select(Department.all, "id", "name"), { :prompt => 'Select a Department' }%> <br>
+                                          </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <br>
+                              <div class="row">
+                                <div class="container">
+                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                                    <div class="form-group">
+                                      <label for="team_id" class="col-sm-3 control-label">Team</label>
+                                        <div class="col-sm-8">
+                                          <div class="risk-select">
+                                            <%= select_tag "team_id", options_from_collection_for_select(Team.all, "id", "name"), { :prompt => 'Select a Team' }%><br>
+                                          </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <br>
+                              <div class="row">
+                                <div class="container">
+                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                                    <div class="form-group">
+                                        <label for="assignee" class="col-sm-3 control-label">Assignee</label>
+                                          <div class="col-sm-8">
+                                             <%= text_field_tag :assignee, params[:assignee],:class => 'textbox1 ' %><br>
+                                          </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <br>
+                              <div class="row">
+                                <div class="container">
+                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                                    <div class="form-group">
+                                      <label for="reassignee" class="col-sm-3 control-label">Re-Assignee</label>
+                                        <div class="col-sm-8">
+                                          <%= text_field_tag :reassignee, params[:reassignee]%>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <br>
+                              <div class="row">
+                                <div class="container">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <%= submit_tag "Search", name: nil, :class=>"btn btn-default src-brn", :id => "advance-search-button", :onclick=> "adavance_search()",:class => "risk-save-btn fright" %>
+                                        <!-- <a class="cancel-btn1" href="javascript:void(0);">Clear</a> -->
+                                    <div class="btn-wrap">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>      
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>   
+</div>
+</div> 

@@ -732,6 +732,45 @@ en:
     assigned_on: "Assigned"
     impact: "Impact"
 
+#INCIDENT MANAGEMENT
+
+  incident:
+    Jobtitle: "Job Title"
+    title: "Title"
+    request_type_id: "Request Type"
+    incident_category_id: "Incident Category" 
+    sub_category_id: "Sub Category"
+    date_occured: "Date Occured"
+    summary: "Summary"
+    department_id: "Department"
+    attachment: ""
+    incident_status_id: "Status"
+    comment: "Comment"
+    contact_no: "Contact No"
+    team_id: "Team"
+
+  evaluate:
+    incident_id: "Incident"
+    urgency_id: "Urgency"
+    incident_priority_id: "Priority"
+    incident_impact_id: "Impact"
+    assignee: "Assignee"
+    target_date: "Target Date"
+    sla_id: "SLA"
+    incident_origin_id: "Origin"
+    resolutiontime: "Resolution Time"
+    escalation_id: "Escalation"
+    attachement: "Attachment"
+
+  resolution:
+    evaluate_id: "Evaluate"
+    incident_id: "Incident"
+    reassignee: "Re-Assignee"
+    solution_type_id: "Solution Type"
+    solution: "Solution"
+    rootcause: "Root Cause"
+    closure_classification_id: "Closure Classification"
+
   software: 
     soft_type: "Software Type"
     description: "Description"

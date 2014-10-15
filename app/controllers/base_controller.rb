@@ -51,6 +51,10 @@ class BaseController < ActionController::Base
     @risk = Risk.find(params[:risk_id])
   end
 
+  def current_incident
+    @incident = Incident.find(params[:incident_id])
+  end
+
   def current_audit_with_id
     @audit = Audit.find(params[:id])
     authorize!(:read,  @audit)
@@ -68,14 +72,14 @@ class BaseController < ActionController::Base
 
   # Set TimeZone based upon the user and thier company
   def set_time_zone
-    case current_user.timezone || current_company.timezone
-    when current_user.timezone
-      Time.zone = current_user.timezone
-    when current_company.timezone
-      Time.zone = current_company.timezone
-    else
-      Time.zone = "Mumbai"
-    end
+    # case current_user.timezone || current_company.timezone
+    # when current_user.timezone
+    #   Time.zone = current_user.timezone
+    # when current_company.timezone
+    #   Time.zone = current_company.timezone
+    # else
+    #   Time.zone = "Mumbai"
+    # end
   end
 
   # check for company disable status

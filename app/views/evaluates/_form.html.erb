@@ -1,0 +1,453 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#evaluate" ).datepicker();
+  });
+  </script>
+</head>
+  <div class="clearfix"></div>
+  <div class="content">
+    <div class="container">
+      <div class="row"> 
+        <!-- Nav tabs --> 
+        <div class="tab_main_title">Incident-Manager Recommendation</div>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="all">
+            <div class="table-responsive">
+              <table class="table table-striped list-table">
+                <tr>
+                  <th colspan="6">Incident Requester Details</th>
+                </tr>
+                <tr>
+                  <td><label>Requester : </label>
+                    <span> </span></td>
+                  <td><label>Type : </label>
+                    <span><%= incident.request_type.name if incident.present? %></span></td>
+                    <td><label>Title : </label>
+                    <%= incident.title if incident.present? %></td>
+                  
+                </tr>
+                
+                <tr>
+                <td><label>Category : </label>
+                     <%= incident.incident_category_name if incident.present? %></td>
+                  <td><label>Department : </label>
+                     <%= incident.department_name if incident.present? %></td></td>
+                  <td><label>Summary : </label>
+                    <span> Mana</span></td>
+                   
+                </tr>
+
+                <% if incident.attachment.present? %>
+                <tr>
+                <td><label>Evidence : </label>
+                     <%= link_to (File.basename(incident.attachment.attachment_file_url)).truncate(20), download_incident_document_incidents_path(id: incident.attachment.id), class: "blue_link" %></td>
+                  <td><label>Date Occured: </label>
+                    <span><%= incident.date_occured if incident.present? %> </span></td>
+                 <% end %>
+                </tr>
+                 <td><label>Contact No : </label>
+                    <%= incident.contact_no if incident.present?%></td>
+                  <td><label>Date of Creation: </label>
+                    <span></span></td>
+                  <td><label>Status : </label>
+                    <%= incident.incident_status_name if incident.present? %> 
+                   </td>
+                </tr>
+               </table>
+
+            
+          <div class="col-lg-12 col-md-6 col-sm-6 col-xs-2">
+             <div class="mitigation-recomm">
+                <div class="mit-reccom-title">Summary</div>
+                <p><%= incident.summary if incident.present? %></p>
+              </div>           
+          </div>
+          
+
+            </div>
+         
+          <%= f.fields_for :evaluate do |evaluate| %>
+
+          <div class="container">
+            <div id="Accordion1">
+              <h3><a href="#">Incidet-Manager Evaluation</a> <span class="fright pending_msg"></span></h3>
+              
+              <div>
+                <div class="row audit-title">
+                  
+                  <div class="col-lg-4">
+                  <div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Urgency :</b> </label>
+                      <div class="col-sm-7"> 
+                      <div class="risk-select">
+                      <%= evaluate.collection_select(:urgency_id, Urgency.all, :id, :name)%>
+                    </div>
+                     </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Priority :</b> </label>
+                       <div class="col-sm-7">
+                        <div class="risk-select">
+                      <%= evaluate.collection_select(:incident_priority_id, IncidentPriority.all, :id, :name)%>
+                    </div>
+                      </div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Impact :</b> </label>
+                      <div class="col-sm-7">   
+                      <div class="risk-select">
+                      <%= evaluate.collection_select(:incident_impact_id, IncidentImpact.all, :id, :name)%>
+                        </div>
+                    </div>
+
+                    </div>
+                     
+                    
+                      <div class="form-group clearfix">
+                    
+                       <div class="col-sm-7">
+                    
+                      </div>
+                    </div></div>
+  
+                    
+
+                  
+                  <div class="col-lg-4">
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Assignee :</b> </label>
+                      <div class="col-sm-7">
+                       <div class="risk-select">
+                      <%= evaluate.collection_select(:assignee, current_company.users, :id, :user_name)%>
+                    </div>
+                      </div>
+                       
+                    </div>
+                   <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Escalation :</b> </label>
+                       <div class="col-sm-7">
+                         <div class="risk-select">
+                      <%= evaluate.collection_select(:escalation_id, Escalation.all, :id, :user)%>
+                    </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>SLA :</b> </label>
+                      <div class="col-sm-7"> 
+                      <div class="risk-select">
+                      <%= evaluate.select(:sla_id, options_for_select(Sla.all.collect {|s| [ s.name, s.id,{"days" => s.days},{"hours" => s.hours},{"minutes" => s.minutes}]}), {}, :onChange=> "time_difference()")%>
+                      <%#= evaluate.collection_select(:sla_id, Sla.all, :id, :name, {data: { behavior: 'category_dropdown' }})%>
+                        </div>
+                    </div>
+                    
+                    </div>
+                    </div>    
+
+                  <div class="col-lg-4"><div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Target Date :</b> </label>
+                      <div class="col-sm-7">
+                    <%= evaluate.text_field :target_date, :class => "form-control risk-normal-input",:id => "evaluate",:maxlength => 25 %>
+                    </div>
+                    </div>
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Origin:</b> </label>
+                      <div class="col-sm-7">
+                      <div class="risk-select">
+                      <%= evaluate.collection_select(:incident_origin_id, IncidentOrigin.all, :id, :name)%> 
+                        </div>
+                        </div>
+                        
+                    </div>
+                 
+                    <div class="form-group clearfix">
+                      <label  class="col-sm-5"><b>Resolution Time </b> </label>
+                      <div class="col-sm-7">
+                      <div class="risk-select">
+                      <%= evaluate.text_field :resolutiontime%>
+                        </div>
+                        </div>
+                    </div>
+                   
+                             
+                   
+                   </div>
+                                   
+              </div>
+            </div>
+          </div>
+          
+          <% end %>
+
+
+
+          <div id="time_update_here"></div>
+       
+
+
+
+         <div class="clearfix"></div>
+                    <div class="fright paddingtop" style="padding-right: 80px;"><%= f.submit "Save ", :class => "orange_btn" %> <a class="grey_btn" href=""> Cancel</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer_left col-lg-6">2014 © FixNix Audit Management</div>
+        <div class="footer_right col-lg-6">Powered By<img src="img/footer_logo.png" alt=""/></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function time_difference()
+  {
+ var ids=$("#incident_evaluate_attributes_sla_id").val()
+ var names=$( "#incident_evaluate_attributes_sla_id option:selected" ).text();
+ var ms=$( "#incident_evaluate_attributes_sla_id option:selected" ).attr("minutes");
+ var hr= $( "#incident_evaluate_attributes_sla_id option:selected" ).attr("hours");
+ var ds=$( "#incident_evaluate_attributes_sla_id option:selected" ).attr("days");
+var x = new Date(); 
+var h = x.getHours(); 
+var m = x.getMinutes(); 
+var s = x.getSeconds(); 
+var d = x.getDate();
+var mon = x.getMonth()+1;
+var yr= x.getFullYear(); 
+
+//get date from javascript
+    var weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday",
+                "Friday","Saturday")
+     day=weekday[x.getDay()];
+
+
+if(h>hr)
+{
+  //var hh=h-hr;
+    var hh=parseInt(h, 10) + parseInt(hr, 10);
+
+}
+else
+{
+    //var hh=hr-h;
+      var hh=parseInt(hr, 10) + parseInt(h, 10);
+
+
+}
+if(m>ms)
+{
+  //var mm=m-ms;
+    var mm=parseInt(m, 10) + parseInt(ms, 10);
+
+}
+else
+{
+  //var mm=ms-m;
+  var mm=parseInt(ms, 10) + parseInt(m, 10);
+
+
+}
+if(d>ds && day=="Saturday")
+{
+
+  var dd=parseInt(d, 10) + parseInt(ds, 10);
+  var dd=dd+2;
+  var dd= data(dd,mon);
+
+}
+else if(d>ds && ds>5 && day=="Monday")
+{
+  var dd=parseInt(d, 10) + parseInt(ds, 10);
+  var dd=dd+2;
+  var dd= data(dd,mon);
+
+}
+else if(d>ds && ds>4 && day=="Tuesday")
+{
+  var dd=parseInt(d, 10) + parseInt(ds, 10);
+  var dd=dd+2;
+  var dd= data(dd,mon);
+}
+
+else if(d>ds && ds>3 && day=="Wednesday")
+{
+
+   var dd=parseInt(d, 10) + parseInt(ds, 10);
+   dd=dd+2;
+   var dd= data(dd,mon);
+
+}
+else if(d>ds && ds>2 && day=="Thursday")
+{
+  var dd=parseInt(d, 10) + parseInt(ds, 10);
+  var dd=dd+2;
+  var passed=true;
+  var dd= data(dd,mon,passed);
+  //[dd,mon]= data(dd,mon);
+
+}
+else if(d>ds && ds>=1 && day=="Friday")
+{
+
+  var dd=parseInt(d, 10) + parseInt(ds, 10);
+  var dd=dd+2;
+  var dd= data(dd,mon);
+
+}
+else if(d>ds && day=="Sunday")
+{
+
+  var dd=parseInt(d, 10) + parseInt(ds, 10);
+  var dd=dd+1;
+  var dd= data(dd,mon);
+
+}
+else
+{
+    var dd=parseInt(d, 10) + parseInt(ds, 10);
+
+}
+
+
+
+
+////////////////
+
+
+function data(dd,mon,passed)
+{
+  if(dd>=31 && mon==1)
+  {
+     mon=mon+1;
+     dd=dd-31;
+     passed=true;
+    return [dd+"/"+mon];
+
+  }
+  else if(dd>=28 && mon==2)
+  {
+     mon=mon+1;
+     dd=dd-28;
+    return [dd+"/"+mon];
+
+  }
+  else if(dd>=31 && mon==3)
+  {
+     mon=mon+1;
+     dd=dd-31;
+     return [dd+"/"+mon];
+
+  }
+  else if(dd>=30 && mon==4)
+  {
+     mon=mon+1;
+     dd=dd-30;
+     return [dd+"/"+mon];
+
+  }
+  else if(dd>=31 && mon==5)
+  {
+     mon=mon+1;
+     dd=dd-31;
+    return [dd+"/"+mon];
+
+  }
+  else if(dd>=30 && mon==6)
+  {
+     mon=mon+1;
+     dd=dd-30;
+     return [dd+"/"+mon];
+
+  }
+  else if(dd>=31 && mon==7)
+  {
+     mon=mon+1;
+     dd=dd-31;
+     return [dd+"/"+mon];
+
+  }
+  else if(dd>=31 && mon==8)
+  {
+     mon=mon+1;
+     dd=dd-31;
+     return [dd+"/"+mon];
+
+  }
+  else if(dd>=30 && mon==9)
+  {
+     mon=mon+1;
+     dd=dd-30;
+     return [dd+"/"+mon];
+  }
+  else if(dd>=31 && mon==10)
+  {
+     mon=mon+1;
+     dd=dd-31;
+     return [dd+"/"+mon];
+
+  }
+  else if(dd>=30 && mon==11)
+  {
+     mon=mon+1;
+     dd=dd-30;
+     return [dd+"/"+mon];
+
+  }
+  else if(dd>=31 && mon==12)
+  {
+     mon=13-mon;
+     dd=dd-31;
+     return [dd+"/"+mon];
+
+  }
+
+}
+
+
+////////////////
+
+if(passed==true)
+{
+    var t = "Target-Time:"+dd+"/"+yr;
+}
+else
+{
+   var t = "Target-Time:"+dd+"/"+mon+"/"+yr;
+
+}
+
+
+
+
+
+ 
+
+
+// var today = new Date();
+// var birthday = new Date("December 17, 1995 03:24:00");
+// var birthday = new Date("1995-12-17T03:24:00");
+// var birthday = new Date(1995,11,17);
+// var birthday = new Date(1995,11,17,3,24,0);
+  
+// document.write(names)
+    $("#time_update_here").html(t);
+    // alert(t);
+        
+
+  }
+</script>>
+</html>

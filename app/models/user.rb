@@ -40,6 +40,13 @@ class User < ActiveRecord::Base
   has_many :mgmt_reviews
   has_many :closures
 
+
+  # Associations with Incident Tables
+  has_many :evaluates_assignee, class_name: 'Evaluate', foreign_key: 'assignee'
+  has_many :incident_user, class_name: 'Escalation', foreign_key: 'user'
+  has_many :resolution_user, class_name: 'Resolution', foreign_key: 'reassignee'
+
+
   # Assosciations with Asset Module
   has_many :lifecycles
   has_many :info_asset_owner, class_name: 'Asset', foreign_key: 'owner_id'
@@ -70,8 +77,8 @@ class User < ActiveRecord::Base
    validates :password, presence: true, :if => Proc.new{ |f| (f.reset_password_token.present?) }
    validates :password, confirmation: true
    validates :password, length: {in: 6..20}, :unless => lambda{ |a| a.password.blank? }
-  validate :user_name_without_spaces
-  validate :company_user_count, :if => Proc.new{|f| f.role_title != 'company_admin' && f.id.nil? }
+   validate :user_name_without_spaces
+   validate :company_user_count, :if => Proc.new{|f| f.role_title != 'company_admin' && f.id.nil? }
 
 
 
@@ -118,6 +125,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  # def accessible_incidents
+  #   if(self.role.title == "company_admin")
+  #     Incident.where(company_id: self.company_id)
+  #   else
+  #     (self.risk_owner + self.risk_submitor + self.risk_mitigator + self.risk_reviewer).uniq
+  #   end
+  # end
+
   def audits_stage(params)
     audits = []
     case params[:stage]
@@ -145,6 +160,19 @@ class User < ActiveRecord::Base
     when 'review'
       self.accessible_risks.select{ |x| risks << x if(x.mitigation.present? ) }
       risks
+    end
+  end
+
+
+  def incidents_stage(params)
+    incidents = []
+    case params[:stage]
+    when 'evaluate'
+      self.accessible_incidents.select{ |x| incidents << x if(x.evaluate.blank? && ( x.incident_status_name == "New")) }
+      incidents
+    when 'resolution'
+      self.accessible_incidents.select{ |x| incidents << x if(x.evaluate.present? ) }
+      incidents
     end
   end
 

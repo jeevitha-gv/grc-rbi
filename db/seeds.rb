@@ -83,6 +83,7 @@ Section.delete_all
 
     Section.create(name: 'Audit')
     Section.create(name: 'Risk')
+    Section.create(name: 'Incident')
     Section.create(name: 'Asset')
     Section.create(name: 'Policy')
 
@@ -474,6 +475,69 @@ Modular.delete_all
   Modular.create(model_name: 'Mitigation', action_name: 'edit', section_id: '2', label: "Authorise to edit the Mitigation efforts")
   Modular.create(model_name: 'Mitigation', action_name: 'update', section_id: '2', label:"Authorise to update the Mitigation efforts")
 
+# INCIDENT MANAGEMENT
+
+IncidentCategory.delete_all
+    IncidentCategory.create(:name => "Desktop Hardware")
+    IncidentCategory.create(:name => "Internet")
+    IncidentCategory.create(:name => "Network")
+    IncidentCategory.create(:name => "Operating System")
+    IncidentCategory.create(:name => "Printers")
+    IncidentCategory.create(:name => "Routers")
+    IncidentCategory.create(:name => "Switches")
+    IncidentCategory.create(:name => "Telephone")
+
+CloseEvaluation.delete_all
+    CloseEvaluation.create(:name => "Great")
+    CloseEvaluation.create(:name => "Good")
+    CloseEvaluation.create(:name => "Bad")
+    CloseEvaluation.create(:name => "regular")
+
+CloseStatus.delete_all
+    CloseStatus.create(:name => "Problem Solved")
+    CloseStatus.create(:name => "Problem not Solved")
+
+IncidentPriority.delete_all
+    IncidentPriority.create(:name => "High")
+    IncidentPriority.create(:name => "Medium")
+    IncidentPriority.create(:name => "Low")
+
+IncidentStatus.delete_all
+    IncidentStatus.create(:name => "New")
+    IncidentStatus.create(:name => "Draft")
+    IncidentStatus.create(:name => "In-Progress")
+    IncidentStatus.create(:name => "Resolved")
+    IncidentStatus.create(:name => "Closed")
+
+
+ClosureClassification.delete_all
+    ClosureClassification.create(:name => "Advise Given")
+    ClosureClassification.create(:name => "Change Request need to be raised")
+    ClosureClassification.create(:name => "Documentation needs reviewing")
+    ClosureClassification.create(:name => "Incident Completed Successfully")
+    ClosureClassification.create(:name => "Monitoring Required")
+    ClosureClassification.create(:name => "No Fault Found")
+
+
+IncidentOrigin.delete_all
+    IncidentOrigin.create(:name => "Phone")
+    IncidentOrigin.create(:name => "Web")
+    IncidentOrigin.create(:name => "email")
+
+RequestType.delete_all
+    RequestType.create(:name => "Incident")
+    RequestType.create(:name => "Information Request")
+    RequestType.create(:name => "Service Request")
+
+
+Urgency.delete_all
+    Urgency.create(:name => "High")
+    Urgency.create(:name => "Medium")
+    Urgency.create(:name => "Low")
+    Urgency.create(:name => "Urgent")
+
+
+
 
 CloseReason.delete_all
     CloseReason.create(:name => "Fully Mitigated")
@@ -857,10 +921,13 @@ CvssMetricScoring.delete_all
 Subscription.delete_all
 
     # Subscription.create(:name => "Free", :description => "free",:section_ids=> [1,2], :amount => 0.00, :valid_log =>23,:valid_period => 1)
-    Subscription.create(name: "AuditRisk", description: "Cancel", section_ids: [1,2,3,4], amount: 0.00, valid_log: 23, valid_period: 1, user_count: 10, file_size: 25)
-    Subscription.create(name: "Audit", description: "Audit", section_ids: [1], amount: 5.00, valid_log: 23, valid_period: 1, user_count: 25, file_size: 50)
-    Subscription.create(name: "Risk", description: "Risk", section_ids: [2], amount: 10.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 75)
-    Subscription.create(name: "Policy", description: "Policy", section_ids: [4], amount: 50.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 75)
+    Subscription.create(name: "All Modules", description: "Subscribe all Modules", section_ids: [1,2,3,4,5], amount: 0.00, valid_log: 23, valid_period: 1, user_count: 10, file_size: 75)
+    Subscription.create(name: "Audit", description: "Audit", section_ids: [1], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
+    Subscription.create(name: "Risk", description: "Risk", section_ids: [2], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
+    Subscription.create(name: "Asset", description: "Asset", section_ids: [3], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
+    Subscription.create(name: "Policy", description: "Policy", section_ids: [4], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
+    Subscription.create(name: "Incident", description: "Incident", section_ids: [5], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
+
 
 RiskModel.delete_all
 

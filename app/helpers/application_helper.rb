@@ -21,6 +21,8 @@ module ApplicationHelper
       'User'
     when 'risks'
       'Risk'
+    when 'incidents'
+      'Incident'
     when 'computers', 'other_assets', 'mobile_assets', 'vendors', 'contracts'
       'Asset'
     else

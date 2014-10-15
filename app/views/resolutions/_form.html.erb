@@ -1,0 +1,206 @@
+
+  <div class="clearfix"></div>
+  <div class="content">
+    <div class="container">
+      <div class="row"> 
+        <!-- Nav tabs --> 
+        <div class="tab_main_title">ReSolution</div>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="all">
+            <div class="table-responsive">
+              <table class="table table-striped list-table">
+                <tr>
+                  <th colspan="6">Incident Resolution</th>
+                </tr>
+                <tr>
+               <td><label>Requester : </label>
+                    <span> Selva</span></td>
+                  <td><label>Title : </label>
+                    <%= incident.title if incident.present? %></td>
+                  <td><label>Category : </label>
+                   <%= incident.incident_category_name if incident.present? %></td>
+                </tr>
+                <tr>
+                <td><label>Date : </label>
+                    <span> 01/08/2014</span></td>
+                  <td><label>Department : </label>
+                    <%= incident.department_name if incident.present? %></td>
+                    <td><label>IncidentSummary : </label>
+                    <span> Overview</span></td>
+                </tr>
+                <% if incident.attachment.present? %>
+                <tr>
+                   <td><label>Evidence : </label>
+                    <%= link_to (File.basename(incident.attachment.attachment_file_url)).truncate(20), download_incident_document_incidents_path(id: incident.attachment.id), class: "blue_link" %></td></td>
+                  <td><label>Status : </label>
+                    <%= incident.incident_status_name if incident.present? %></td>
+                  <td><label>Impact :</label>
+                   <%= incident.evaluate.incident_impact_name if evaluate.present? %> </td> 
+                </tr>
+                <% end %>
+                <tr>
+                  <td><label>Urgency :</label>
+                    <%= incident.evaluate.urgency_name if evaluate.present? %></td>
+                  <td><label>Priority : </label>
+                    <%= incident.evaluate.incident_priority_name if evaluate.present? %></td>
+                  <td><label>Date : </label>
+                    <span> 31/08/2014</span></td>
+                </tr>
+                <tr>
+                  <td><label>AssigneeTeam : </label>
+                    <%= incident.team_name if incident.present? %></td>
+                  <td><label>AssignUSers: </label>
+                    <span> Padma</span></td>
+                  <td><label>SLA : </label>
+                  <%= incident.evaluate.sla_name if evaluate.present? %>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          
+          <%= r.fields_for :resolution do |resolution| %>
+          <div class="container">
+            <div id="Accordion1">
+              <h3><a href="#">Resolution and Recovery</a> <!-- <span class="fright pending_msg">Pending</span> --></h3>
+              
+              <div>
+                <div class="row audit-title">
+                  
+                  <%= r.fields_for :evaluate do |evaluate| %>
+
+          <div class="col-lg-4">
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Re-Assignee :</b> </label>
+                      <div class="col-sm-7">
+                       <div class="risk-select">
+                      <%= evaluate.collection_select(:assignee, current_company.users, :id, :user_name)%>
+                    </div>
+                      </div>
+                      </div>
+                      <%end%>
+                      
+                   
+                    
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5">Solution</label>
+                      <div class="col-sm-7">
+                        <%= resolution.text_area :solution, :class => "form-control risk-normal-input",:maxlength => 255 %>
+                      </div>
+                    </div>
+                   
+                    
+                   <!--  <div class="form-group clearfix">
+                    <div class="col-sm-12"><a class="attach-icon fleft blue_link" href="">Attach Document</a></div>
+                    </div> -->
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5"><b>Solution Type :</b> </label>
+                      <div class="col-sm-7">
+                         <div class="risk-select">
+                      <select class="form-control">
+                      <%= resolution.collection_select(:solution_type_id, SolutionType.all, :id, :name)%>
+                    </div>
+                    </div>
+                    </div>
+                    
+                    
+                    <div class="form-group clearfix">
+                      <label class="col-sm-5">Root-Cause</label>
+                      <div class="col-sm-7">
+                        <%= resolution.text_area :rootcause, :class => "form-control risk-normal-input",:maxlength => 255 %>
+                      </div>
+                    </div>
+                    
+                  </div>
+                   <div class="row audit-title">
+                  
+                  <div class="col-lg-4">
+                  <div class="form-group clearfix">
+                      <label class="col-sm-6"><b>Parent Incident Id :</b> </label>
+                      <div class="col-sm-6">
+                     <!--  <#%= incident.title if incident.present? %></td> -->
+                    </div>
+                    </div>
+                    
+
+                 </div>
+                 <div class="col-lg-4">
+                  <div class="form-group clearfix">
+                      <label class="col-sm-7"><b>Closure Classification :</b> </label>
+                      <div style="width:150px">
+                      <div class="risk-select">
+                      <%= resolution.collection_select(:closure_classification_id, ClosureClassification.all, :id, :name)%>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                 <div class="col-lg-4">
+                  <div class="form-group clearfix">
+                      <label class="col-sm-7"><b>Attachments :</b> </label>
+
+                         <%= r.fields_for :attachment, (@incident.attachment.present? ? @incident.attachment : @incident.build_attachment) do |attach| %>
+   
+      <%= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
+      <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
+      <br />
+      <%end%>
+                      </div>
+                      <div class="col-sm-6">
+                     
+                   
+                    </div>
+                    </div>
+                    </div>
+ 					<div class="clearfix"></div>
+                    <div class="fright paddingtop"> <%= r.submit "Submit", :class => "black_btn" %> <a class="grey_btn" href=""> Cancel</a></div>
+        			</div>
+
+                    </div>
+                    
+                    
+                    
+                   <div class="clearfix"></div>
+                  
+        </div>
+
+                    
+                    </div>
+                    </div>
+                </div>
+              </div>
+             
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer_left col-lg-6">2014 © FixNix Audit Management</div>
+        <div class="footer_right col-lg-6">Powered By<img src="img/footer_logo.png" alt=""/></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<link href="jQueryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="jQueryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<link href="jQueryAssets/jquery.ui.accordion.min.css" rel="stylesheet" type="text/css">
+<script src="jQueryAssets/jquery-1.8.3.min.js" type="text/javascript"></script> 
+<script src="jQueryAssets/jquery-ui-1.9.2.accordion.custom.min.js" type="text/javascript"></script> 
+<script type="text/javascript">
+$(function() {
+	$( "#Accordion1" ).accordion(); 
+});
+</script>
+</body>
+</html>
+<% end %>
