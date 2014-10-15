@@ -13,7 +13,6 @@ class AssetActionsController < ApplicationController
   end
 
   def create
-    binding.pry
     @asset_action = @asset.build_asset_action(action_params)    
     if @asset_action.save
       params[:files].each do |a|

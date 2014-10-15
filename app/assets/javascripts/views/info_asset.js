@@ -178,7 +178,7 @@ function delete_file(e)
 function edit_file(e)
 {
     var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-    window.location.href = "/assets/information_assets/"+ dataItem.assetable_id + "/edit"
+    window.location.href = "information_assets/"+ dataItem.assetable_id + "/edit"
 }
       
 });
