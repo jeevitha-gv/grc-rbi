@@ -113,11 +113,6 @@ margin-top: 2px;
 position:static;
 }
 
-.nav > li > a:hover, .nav > li > a:focus {
-    background: none repeat scroll 0 0 #0085c8;
-    color: #1c8b98 !important;
-}
-
 .tab-content {
     display: block !important;
     border: medium none !important;
