@@ -37,7 +37,8 @@
 								<div class="risk-icon"></div>
 								Risk</a></li>
 						<% end %>
-            <li><a href="/admin/controls" class="<%= add_admin_active_class(params) == 'Risk' ? 'active' : '' %>">
+          
+            <li><a href="/admin/slas" class="<%= add_admin_active_class(params) == 'Incident' ? 'active' : '' %>">
                 <div class="risk-icon"></div>
                 Incident</a></li>
             
@@ -115,5 +116,9 @@
 		{
 			$("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/audit_links'))%>");
 		}
+    else if(module == 'incident')
+    {
+      $("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/incident_links'))%>");
+    }
   });
 </script>

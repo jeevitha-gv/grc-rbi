@@ -7,6 +7,8 @@ module ActiveAdmin::ViewsHelper #camelized file name
       'Audit'
     when 'admin/controls','admin/procedures','admin/processes','admin/risk_review_levels','admin/projects'
       'Risk'
+    when 'admin/slas','admin/escalations','admin/incident_categories'
+      'Incident'
     else
       return ''
     end
@@ -32,6 +34,8 @@ module ActiveAdmin::ViewsHelper #camelized file name
       'audit'
     elsif ["controls","procedures", "processes","risk_review_levels","projects"].include?(action_path)
      'risk'
+    elsif ["slas","escalations", "incident_categories"].include?(action_path)
+     'incident'
     else
       ''
     end
