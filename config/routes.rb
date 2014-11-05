@@ -19,6 +19,7 @@ Rails.application.routes.draw do
    resources :dashboard do
      collection do
       get 'calender'
+      get 'calender1'
       patch 'update'
      end
    end
@@ -165,6 +166,7 @@ Rails.application.routes.draw do
 
   end
   
+  
   resources :assets do  
     resources :assessments
 
@@ -172,7 +174,7 @@ Rails.application.routes.draw do
 
     resources :asset_actions
 
-  end
+ end
   
 
   resource :user do
