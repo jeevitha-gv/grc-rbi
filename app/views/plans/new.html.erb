@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="/assets/outer/subscription.css">
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 <div class="content">
-    <div class="ccr-price-title">Subscription Plan </div>
+    <div class="ccr-price-title"> Subscription Plan </div>
     <div class="container">   
         <div class="clearfix"></div>
         <div class="">
@@ -12,14 +12,14 @@
                                 <div class="ccr-pricing-table green">
                                     <p class="ccr-price-title"><%= subscription.name%></p>
                                     <div class="ccr-price">
-                                        <P class="ccr-price-value">$<%= subscription.amount%>/mo</P>
+                                        <P class="ccr-price-value">$<%= subscription.amount%></P>
                                     </div>
                                     <ul class="ccr-price-list">
                                         <li><span class="bubble"></span><strong><%= subscription.description%></strong> </li>
                                         <li><span class="bubble"></span><strong><%= subscription.file_size%>MB</strong> Storage</li>
                                         <li><span class="bubble"></span><strong><%= subscription.user_count%></strong> Sign ups</li>
                                         <li><span class="bubble"></span><strong><%= company_modules(subscription)%></strong></li>
-                                        <li><span class="bubble"></span><strong><%= subscription.valid_period%>Month(s)</strong> Valid period</li>
+                                        <li><span class="bubble"></span><strong><%= subscription.valid_period%>Month</strong> Validity</li>
                                         <!--<li>24/7 Email & Phone <strong>support</strong></li>-->
                                     </ul>
                                     <a href="<%= new_company_path(subscription: subscription.name)%>"><button type="button" class="ccr-price-host">Sign Up</button></a>
