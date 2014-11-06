@@ -8,6 +8,11 @@ class DashboardController < ApplicationController
 		@audit = current_user.accessible_audits
 	end
 
+  #Incident Calender Page
+  def incident_calender
+  	@incident = Incident.all	
+  end	
+
   # Main Dashboard page
   def index
 		@dashboard_chart = DashboardChart.new

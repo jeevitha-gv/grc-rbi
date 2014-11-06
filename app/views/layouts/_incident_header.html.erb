@@ -69,7 +69,9 @@
         <li><a  href="/incidents/incident_dashboard" class="">
           <div class="dash-icon"></div>
           Dashboard</a></li>
-          
+        <li><a href="/dashboard/incident_calender" class="<%= request.fullpath.include?("dashboard/incident_calender") == true ? 'active' : '' %>">
+          <div class="calender-icon"></div>
+          Calendar</a></li>
 
           <li><a  href="/incidents" class="<%= request.fullpath.exclude?("evaluate") && request.fullpath.exclude?("new") && request.fullpath.exclude?("resolution") && request.fullpath.exclude?("evaluates") == true ? 'active' : '' %>">
           <div class="listing-icon"></div>
