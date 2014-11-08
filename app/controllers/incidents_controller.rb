@@ -79,7 +79,7 @@ before_filter :authorize_incident, :only => [:new, :create, :update, :edit]
 
   def create
     @incident = Incident.create(incident_params)
-    #@incident.set_incident_status(@incident, params[:commit])
+    @incident.set_incident_status(@incident, params[:commit])
 
     if @incident.save
       flash[:notice] = "The incident was successfully created"

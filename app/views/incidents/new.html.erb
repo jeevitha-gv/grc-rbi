@@ -50,7 +50,12 @@
 
 <%= render 'form',:f => f, :incident => @incident %>
 
-
+<div class="fright paddingtop" style="padding-right: 80px;">
+<%= f.submit "Save ", :class => "orange_btn" %> 
+<%= f.submit "Save as Draft", :class => "grey_btn"%>
+<a class="grey_btn" href=""> Cancel</a>
+</div>
+</div>
 
 
 <%end%>

@@ -1,8 +1,8 @@
-	class Incident < ActiveRecord::Base
+class Incident < ActiveRecord::Base
 
-		require 'csv'
+	require 'csv'
 
-		def self.open_spreadsheet(file)
+	def self.open_spreadsheet(file)
     case File.extname(file.original_filename)
     when '.csv' then Roo::CSV.new(file.path)
     when '.xlsx' then Roo::Excelx.new(file.path)
@@ -18,29 +18,12 @@
       
       incident = Incident.new(:Jobtitle => row_data[0], :title => row_data[1], :request_type_id => row_data[2], :incident_category_id => row_data[3], :sub_category_id => row_data[4], :date_occured => row_data[5], :summary => row_data[6], :department_id => row_data[7], :team_id =>  row_data[8], :incident_status_id =>  row_data[9], :comment =>  row_data[10], :contact_no =>  row_data[11], :resolution_id =>  row_data[12],:incident_status_id => IncidentStatus.where(:name=>"New").first.id)
       incident.save(:validate => false)
-
-   
     end
   end
 
-	# def  self.to_csv
-	# 	CSV.generate do |csv|
-	# 		csv << column_names
-	# 		all.each do |company|
-	# 			csv << company.attributes.values_at(*column_names)
-			
-	# 		end
-	# 	end
-	
-		
-	# end
-
-
-def search
+ def search
   @incident ||= find_incidents
-end
-
-private
+ end
 
 def find_incidents
   Incident.find(:all, :conditions => conditions)
@@ -56,21 +39,6 @@ end
 def department_id_conditions
   ["incidents.department_id LIKE ?", "%#{department_id}%"] unless department_id.blank?
 end
-
-
-
-
-
-
-
-# def searchs(title)
-#   if title
-#     find(:all, :conditions => ['title LIKE ?', "%#{title}%"])
-#   else
-#     find(:all)
-#   end
-# end
-
 
 	belongs_to :request_type
 	belongs_to :incident_category
@@ -122,24 +90,3 @@ end
 end
 
 
-#audit = Incident.new(:Jobtitle => row_data[0], :title => row_data[1], :request_type_id => row_data[2], :incident_category_id => row_data[3], :sub_category_id => row_data[4], :date_occured => row_data[5], :summary => row_data[6], :department_id => row_data[7], :team_id =>  row_data[8], :incident_status_id =>  row_data[9], :comment =>  row_data[10], :contact_no =>  row_data[11], :resolution_id =>  row_data[12])
-# def products
-#   @incidentss ||= find_incidents
-# end
-
-# private
-
-# def find_incidents
-#   .find(:all, :conditions => conditions)
-# end
-
-# def title_conditions
-#   ["incidents.title LIKE ?", "%#{title}%"] unless keywords.blank?
-# end
-
-# def incident_category_conditions
-#   ["incidents.incident_category_id LIKE ?", "%#{incident_category_id}%"] unless incident_category_id.blank?
-# end
-# def incident_status_conditions
-#   ["incidents.incident_status_id LIKE ?", "%#{incident_status_id}%"] unless incident_status_id.blank?
-# end
