@@ -92,9 +92,9 @@ before_filter :authorize_incident, :only => [:new, :create, :update, :edit]
   
   def update
     @incident = Incident.find(params[:id])
-    @incident.set_incident_status(@incident, params[:commit]) if params[:commit] == "Initiate incident"
+    @incident.set_incident_status(@incident, params[:commit]) if params[:commit] == "Initiate Incident"
     if @incident.update_attributes(incident_params)
-      redirect_to edit_incident_path
+      redirect_to incidents_path, :flash => { :notice => MESSAGES["incident"]["update"]["success"]}
     else
       incident_initializers( @incident.department_id, @incident.team_id, @incident.request_type_id,@incident.incident_status_id,@incident.sub_category_id,@incident.resolution_id)
       render 'edit'

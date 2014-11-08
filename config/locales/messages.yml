@@ -161,6 +161,10 @@ en:
       y_axis: "Please select y_axis"
       chart_type: "Please select chart type"
 
+  incident:
+    update:
+      success: "Incident has been updated successfully"
+
 
 fr:
 
