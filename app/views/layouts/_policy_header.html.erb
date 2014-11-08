@@ -79,12 +79,21 @@
           <li><a  href="/company_controls" class="<%= request.fullpath.include?("company_controls") == true ? 'active' : '' %>">
           <div class="lmitigate-icon"></div>
           Control</a></li>
-          <li><a   href="/policies" class="<%= (request.fullpath.include?("policies") && action_name == "index") == true ? 'active' : '' %>">
+          <li><a   href="/policies" class="<%= (request.fullpath.include?("policies") && request.fullpath.include?("policies/new") ) == true ? 'active' : '' %>">
           <div class="plan-icon"></div>
           Policy</a></li>
-<!--           <li><a  href="" class="">
+           <li><a   href="/policies" class="">
+          <div class="review-icon"></div>
+          Review</a></li>
+           <li><a   href="/policies" class="<%= (request.fullpath.include?("policies") && request.fullpath.include?("policies/new") ) == true ? 'active' : '' %>">
+          <div class="lmitigate-icon"></div>
+          Approve</a></li>
+          <li><a href="#" class="">
+          <div class="published-icon"></div>
+          Publish</a></li>
+          <li><a  href="" class="">
           <div class="setting-icon"></div>
-          Settings</a></li> -->
+          Settings</a></li>
       </ul>
     </div>
   </div>
