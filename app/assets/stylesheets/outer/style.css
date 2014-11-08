@@ -777,7 +777,7 @@ text-align: left;
 .audit_search{ background-image: url("/assets/outer/search_bg.png"); width:287px; height: 38px;}
 
 .audit_search {
-    margin: 4px 0 0; position: relative; z-index: 99999;
+    margin: 4px 0 0; position: relative; z-index: 0;
 }
 .plusround-icon {
     background-image: url("/assets/outer/add-btn.jpg");
