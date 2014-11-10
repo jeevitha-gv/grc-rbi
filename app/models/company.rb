@@ -44,6 +44,7 @@ class Company < ActiveRecord::Base
   # Associations with Policy Module
   has_many :policies
   has_many :company_controls
+  has_many :distribution_lists
 
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users

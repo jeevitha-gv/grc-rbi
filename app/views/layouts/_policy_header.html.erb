@@ -85,10 +85,10 @@
            <li><a   href="/policies" class="">
           <div class="review-icon"></div>
           Review</a></li>
-           <li><a   href="/policies" class="<%= (request.fullpath.include?("policies") && request.fullpath.include?("policies/new") ) == true ? 'active' : '' %>">
+           <li><a   href="/policies" class="">
           <div class="lmitigate-icon"></div>
           Approve</a></li>
-          <li><a href="#" class="">
+          <li><a href="#" class="<%= (request.fullpath.include?("publish_policies")) == true ? 'active' : '' %>">
           <div class="published-icon"></div>
           Publish</a></li>
           <li><a  href="" class="">
