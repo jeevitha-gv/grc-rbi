@@ -1,0 +1,15 @@
+<div class="distribution">
+  <div class='distribute clearfix'>
+    <label class="col-sm-4 control-label">
+    </label>
+    <div class="col-sm-7">
+      <%# if @policy.errors[:location_id].present? %>
+        <div class="error_message"><%#= @policy.errors[:location_id][0]%></div>
+      <%# end %>
+      <div class="auditees-users">
+        <%= f.select :distribution_list_id, options_for_select(current_company.distribution_lists.collect{|x| [x.name, x.id.to_i]}, :selected => f.object.distribution_list_id), {include_blank: 'Select List' } %>
+      </div>
+      <%= link_to_remove_distribution_list "", f %>
+    </div>
+  </div>
+</div>
