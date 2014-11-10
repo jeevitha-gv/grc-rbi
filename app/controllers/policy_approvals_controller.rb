@@ -9,7 +9,6 @@ class PolicyApprovalsController < ApplicationController
 	def create
 
 		@policy_approve = @policy.policy_approvals.build(policy_approve_params)
-		binding.pry
 		@policy_approve.approver = current_user.id
 		if @policy_approve.save
 			flash[:notice] = "Policy is approved successfully"
@@ -18,17 +17,16 @@ class PolicyApprovalsController < ApplicationController
 			render "new"
 		end
 	end
+
 	def edit
-		@policy_approve = @policy.policy_approvals
+		@policy_approve = @policy.policy_approvals.find(params[:id])
 	end
 
-
 	def update
-		@policy_approve = @policy.policy_approvals
-		# risk_status = params[:mgmt_review][:review_id].to_i == 1 ? RiskStatus.where("name= ?", "Reviewed").first.id : RiskStatus.where("name= ?", "Rejected").first.id
+		@policy_approve = @policy.policy_approvals.find(params[:id])
 		if @policy_approve.update(policy_approve_params)
 			flash[:notice] = "Policy is updated successfully"
-			redirect_to edit_policy_policy_approve_path
+			redirect_to policies_path
 		else
 			render "edit"
 		end

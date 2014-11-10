@@ -1,4 +1,4 @@
-div class="header">
+<div class="header">
   <div class="container">
     <!-- Fixed navbar -->
     <div role="navigation" class="navbar navbar-inverse ">
@@ -82,11 +82,23 @@ div class="header">
           <li><a   href="/policies" class="<%= (request.fullpath.include?("policies") && request.fullpath.include?("policies/new") ) == true ? 'active' : '' %>">
           <div class="plan-icon"></div>
           Policy</a></li>
-
-          <li><a   href="/policy_approvals" class="<%= (request.fullpath.include?("policy_approvals") && action_name == "index") == true ? 'active' : '' %>">
+           <li><a   href="/policies" class="">
           <div class="review-icon"></div>
-          Approval</a></li>
-
+          Review</a></li>
+           <li><a   href="/policies" class="">
+          <div class="lmitigate-icon"></div>
+          Approve</a></li>
+          <li><a href="#" class="<%= (request.fullpath.include?("publish_policies")) == true ? 'active' : '' %>">
+          <div class="published-icon"></div>
+          Publish</a></li>
+          <li><a  href="" class="">
+          <div class="setting-icon"></div>
+          Settings</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- Notice -->
 <%if flash[:notice]%>
   <div class="alert alert-success"><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:notice] %></div>
 <%end%>
