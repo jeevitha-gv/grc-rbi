@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-
-
-  mount Ckeditor::Engine => '/ckeditor'
+    mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   post 'admin/privileges/modal_previlege'
@@ -149,6 +147,7 @@ end
   # Resources for policy
 
   resources :policies do
+    resources :policy_reviews
     member do
       get 'show_individual'
     end
