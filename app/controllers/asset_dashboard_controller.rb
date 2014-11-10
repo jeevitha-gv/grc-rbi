@@ -14,4 +14,7 @@ class AssetDashboardController < ApplicationController
 		@sertype=Service.joins(:service_type).select("name,count(service_type_id) as count").group(:name,:service_type_id).order('name')	
 	end
 
+	def calendar
+	end
+
 end
