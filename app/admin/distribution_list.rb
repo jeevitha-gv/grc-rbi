@@ -2,7 +2,7 @@ ActiveAdmin.register DistributionList do
 
   menu :if => proc{ !current_admin_user.present? }
   
-  permit_params :name, :email_ids,:email_list
+  permit_params :name, :email_ids,:email_list,:company_id
 
   controller do
     before_filter :check_company_admin, :check_role
@@ -14,19 +14,17 @@ ActiveAdmin.register DistributionList do
    
     def create
       @list = DistributionList.new(distribution_list_params)
-      #@client.company_id = current_user.company_id
+      @list.company_id = current_user.company_id
       if @list.save
         redirect_to admin_distribution_lists_path
       else
-        # flash[:error]=  MESSAGES["uniqueness"]["create"]["failure"]
-        #render new_admin_client_path
-        render 'new'
+        render new_admin_distribution_list_path
       end
     end
   
     private
       def distribution_list_params
-        params.require(:distribution_list).permit(:name, {:email_ids => []}, :email_list )
+        params.require(:distribution_list).permit(:name, {:email_ids => []}, :email_list, :company_id )
       end
   end
    #authentication
