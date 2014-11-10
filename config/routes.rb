@@ -155,6 +155,7 @@ end
     collection do
       get 'export'
     end
+    resources :policy_approvals
     resources :publish_policies
   end
 
