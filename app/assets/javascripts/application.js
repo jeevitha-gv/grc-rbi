@@ -131,6 +131,40 @@ function remove_policy_approver(link) {
   }
 }
 
+function remove_distribution_list(link) {
+  if($(".distribute:visible").length > 1)
+  {
+    jQuery(link).parent().find("input[type=hidden]").val(1);
+    jQuery(link).parents(".distribute").hide();
+  }
+}
+
+
+function add_distribution_list(link, association) {
+    var content = $(".distribution").html()
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("[0]", "g");
+    var regexp_new = new RegExp('selected="selected"', "g");
+    $(link).parent().parent().find("#distribution-list").append("<div class='distribution'>"+content.replace(regexp, new_id).replace(regexp_new , "")+"</div>");
+    return false;
+}
+
+
+function remove_email_list(link) {
+    jQuery(link).parent().find("input[type=hidden]").val(1);
+    jQuery(link).parents(".choices").hide();
+}
+
+
+function add_email_list(link, association) {
+    var content = $(".email").html()
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("[0]", "g");
+    var regexp_new = new RegExp('selected="selected"', "g");
+    $(link).parent().parent().find("#email-list").append("<div class='email'>"+content.replace(regexp, new_id).replace(regexp_new , "")+"</div>");
+    return false;
+}
+
 function setCookie(name, value) {
     var d = new Date();
     d.setTime(d.getTime() + (1*24*60*60*1000));

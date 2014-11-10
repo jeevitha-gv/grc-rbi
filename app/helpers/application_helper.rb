@@ -118,5 +118,31 @@ def link_to_remove_policy_approver(name, f)
   f.hidden_field(:_destroy, {class: "auditee-remove"}) + link_to("#{name}", 'javascript:void(0)', {onclick: "remove_policy_approver(this)", class: "minusround-icon"})
 end
 
+def link_to_add_distribution_list(name, association)
+  link_to "#{name}" ,'javascript:void(0)',  {onclick: "add_distribution_list(this, \"#{association}\")", class: "plusround-icon plus-background"}
+end
+
+
+def link_to_remove_distribution_list(name, f)
+  f.hidden_field(:_destroy, {class: "auditee-remove"}) + link_to("#{name}", 'javascript:void(0)', {onclick: "remove_distribution_list(this)", class: "minusround-icon"})
+end
+
+def link_to_add_email_list(name, association)
+  link_to "#{name}" ,'javascript:void(0)',  {onclick: "add_email_list(this, \"#{association}\")", class: "plusround-icon plus-background"}
+end
+
+
+def link_to_remove_email_list(name, f)
+  f.hidden_field(:_destroy) + link_to("#{name}", 'javascript:void(0)', {onclick: "remove_email_list(this)", class: "minusround-icon"})
+end
+
+def link_to_add_email_list(name, f, association)
+  new_object = f.object.class.reflect_on_association(association).klass.new
+  fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
+    render(association.to_s.singularize + "_fields", :f => builder)
+  end
+  link_to "#{name}" ,'javascript:void(0)',  {onclick: "add_email_list(this, \"#{association}\", \"#{escape_javascript(fields)}\")", class: "plusround-icon plus-background"}
+end
+
 
 end
