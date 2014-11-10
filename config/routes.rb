@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -156,6 +154,7 @@ end
       get 'export'
     end
     resources :policy_approvals
+    resources :publish_policies
   end
 
   resources :company_controls  do
