@@ -151,8 +151,11 @@ function add_distribution_list(link, association) {
 
 
 function remove_email_list(link) {
+  if($(".email:visible").length > 1)
+  {
     jQuery(link).parent().find("input[type=hidden]").val(1);
-    jQuery(link).parents(".choices").hide();
+    jQuery(link).parents(".email").hide();
+  }
 }
 
 

@@ -5,7 +5,7 @@ class PoliciesController < ApplicationController
 
 	# Index
 	def index
-		@policies = Policy.all
+		@policies = current_user.accessible_policies
 	end
 
 	# Method to create a new Policy
@@ -25,12 +25,12 @@ class PoliciesController < ApplicationController
 
 	# Edit Policy
 	def edit
-		@policy = Policy.find(params[:id])	
+		@policy = current_user.accessible_policies.find(params[:id])	
 	end
 
 	# Update Policy
 	def update
-		@policy = Policy.find(params[:id])
+		@policy = current_user.accessible_policies.find(params[:id])
 		if @policy.update_attributes(policy_params)
 			redirect_to show_individual_policy_path(@policy), :flash => { :notice => "New Version of policy has been drafted successfully" }
 		else
