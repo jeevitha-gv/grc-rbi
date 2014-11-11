@@ -1,11 +1,6 @@
 class PolicyReviewsController < ApplicationController
   layout 'policy_layout'
   before_filter :current_policy
-  before_action :set_review, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @policy_reviews = PolicyReview.all
-  end
 
   def new
     @policy_review = @policy.policy_reviews.build
@@ -13,7 +8,7 @@ class PolicyReviewsController < ApplicationController
 
   def create
     @policy_review = @policy.policy_reviews.build(review_params)
-    @policy_review.reviewer_id=current_user.id
+    @policy_review.reviewer_id = current_user.id
     if @policy_review.save
       redirect_to policies_path
     else
@@ -22,9 +17,17 @@ class PolicyReviewsController < ApplicationController
   end
 
   def edit
+    @policy_review = @policy.policy_reviews.find(params[:id])
   end
 
   def update
+    @policy_review = @policy.policy_reviews.find(params[:id])
+    if @policy_review.update(review_params)
+      flash[:notice] = "Policy is updated successfully"
+      redirect_to policies_path
+    else
+      render "edit"
+    end
   end
 
   private
