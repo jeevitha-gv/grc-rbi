@@ -19,7 +19,6 @@ Rails.application.routes.draw do
    resources :dashboard do
      collection do
       get 'calender'
-      get 'calender1'
       patch 'update'
      end
    end
@@ -101,7 +100,7 @@ Rails.application.routes.draw do
 
   resources :asset_dashboard do
     collection do
-      get 'calendar'
+      get 'calender1'
     end
   end
 
@@ -172,7 +171,12 @@ Rails.application.routes.draw do
 
     resources :asset_reviews
 
-    resources :asset_actions
+    resources :asset_actions do
+      collection do
+        get 'owner_action'
+        post 'owner_action_create'
+      end
+    end
 
  end
   

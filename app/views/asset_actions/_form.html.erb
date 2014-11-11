@@ -237,12 +237,19 @@ overflow: auto;
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="form-group clearfix">
       <div class="col-sm-12">
+      <% if current_user.role.title == "Asset Custodian"%>
         <%= f.label :custodian_actions, "Describe the action statements and control measures taken as a custodian" %>
         <%= f.cktext_area :custodian_actions, :class=>"form-control asset-big-input" %>
+        <%else if current_user.role.title == "Asset Owner"%>
+        <%= f.label :fair_policies, "Describe the action statements and control measures taken as a custodian" %>
+        <%= f.cktext_area :fair_policies, :class=>"form-control asset-big-input" %>
+        <%end%>
+ <%end%>
       </div>
     </div>
   </div>
 </div>
+
 
 <!-- <div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
