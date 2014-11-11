@@ -20,7 +20,12 @@ class Asset < ActiveRecord::Base
 	has_one :asset_action
 	belongs_to :users
 
-	after_create :send_notification
+	after_create :save_value, :send_notification
+
+	def save_value		
+		self.value = self.asset_confi.score + self.asset_avail.score + self.asset_integ.score
+		self.save
+	end
 
 	def send_notification
 		users_email = []
