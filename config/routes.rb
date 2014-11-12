@@ -102,6 +102,7 @@ Rails.application.routes.draw do
   resources :asset_dashboard do
     collection do
       get 'calendar'
+      get 'computers'
     end
   end
 
