@@ -85,8 +85,7 @@ before_filter :authorize_incident, :only => [:new, :create, :update, :edit]
       flash[:notice] = "The incident was successfully created"
       redirect_to incidents_path
     else
-      
-      redirect_to new_incident_path
+      render :action => 'new'
     end
   end
   

@@ -271,6 +271,29 @@ en:
               greater_than_or_equal_to: "Should be greater than or equal to 1"
               less_than_or_equal_to: "should be less than or equal to 30"
               only_integer: "Should be an Integer"
+        incident:
+          attributes:
+            title:
+              blank: "Title can't be blank"
+              taken: "Title has been already used"
+              too_long:
+                other: "Title must not exceed 50 characters"
+            Jobtitle:
+              blank: "Job Title can't be blank"
+            request_type_id: 
+              blank: "Type can't be blank"
+            contact_no: 
+              blank: "Contact can't be blank"
+            incident_category_id:
+              blank: "Category can't be blank"
+            sub_category_id:
+              blank: "Sub Category can't be blank"
+            summary:
+              blank: "Summary can't be blank"
+            department_id:
+              blank: "Department can't be blank"
+            incident_status_id:
+              blank: "Status can't be blank"
         audit:
           attributes:
             title:
@@ -619,23 +642,20 @@ en:
     vuln: "Vulnerability"
     velocity: "Velocity"
 
-
-#INCIDENT MANAGEMENT
-
   incident:
-    Jobtitle: "Job Title"
-    title: "Title"
-    request_type_id: "Request Type"
-    incident_category_id: "Incident Category" 
-    sub_category_id: "Sub Category"
-    date_occured: "Date Occured"
+    job: "Job Title"
+    title1: "Title"
+    Request_type: "Request Type"
+    incident_category: "Incident Category" 
+    sub_category: "Sub Category"
+    start_date: "Date Occured"
     summary: "Summary"
-    department_id: "Department"
-    attachment: ""
-    incident_status_id: "Status"
+    department: "Department"
+    attachment: "Attachment"
+    incident_status: "Status"
     comment: "Comment"
-    contact_no: "Contact No"
-    team_id: "Team"
+    contact: "Contact No"
+    team: "Team"
 
   evaluate:
     incident_id: "Incident"
@@ -658,4 +678,5 @@ en:
     solution: "Solution"
     rootcause: "Root Cause"
     closure_classification_id: "Closure Classification"
-    
+
+

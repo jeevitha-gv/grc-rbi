@@ -18,15 +18,16 @@
                 <div class="row">
                   <div class="container">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                      
                       <div class="form-group">
                         <label class="col-sm-3 control-label">
-                          <%= f.label :title, t('incident.title')%>
+                          <%= f.label :title1, t('incident.title1')%>
                         </label>
-                        <div class="col-sm-8">
-                          <%= f.text_field :title, :class => "form-control risk-normal-input" %>
+                        <div class="col-sm-8 <%='error_inputfield' if incident.errors[:title].present? %>">
+                          <%= f.text_field :title, :class => "audit-normal-input" %>
                           <% if incident.errors[:title].present? %>
-                          <div class="error_message"><%=  incident.errors[:title][0]%>
-                          </div>
+                            <div class="error_message"><%=  incident.errors[:title][0]%>
+                        </div>
                           <% end %>
                         </div>
                       </div>
@@ -35,7 +36,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                       <div class="form-group">
                           <label class="col-sm-3 control-label">
-                            <%= f.label :request_type_id, t('incident.type')%>
+                            <%= f.label :request_type, t('incident.request_type')%>
                           </label>
                           <div class="col-sm-8">
                             <div class="risk-select">
@@ -48,7 +49,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                       <div class="form-group">
                         <label for="inputPassword3" class="col-sm-3 control-label"> 
-                          <%= f.label :category, t('incident.incident_category_id')%>
+                          <%= f.label :incident_category, t('incident.incident_category_id')%>
                         </label>
                         <div class="col-sm-7" style=" width: 66.33333333%;">
                           <div class="risk-select">
@@ -68,7 +69,7 @@
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                     <div class="form-group clearfix">
                       <label for="inputEmail3" class="col-sm-6 control-label" style=" width: 30.33333333%;">
-                        <%= f.label :Date_Occured, t('incident.date_occured')%>
+                        <%= f.label :start_date, t('incident.start_date')%>
                       </label>
                       <div class="col-sm-8">
                         <%= f.text_field :date_occured, value: (incident.date_occured.strftime("%d/%m/%Y") if incident.date_occured?), :class => "datepicker", :style =>"width:150px;" %>
@@ -80,7 +81,7 @@
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                     <div class="form-group">
                       <label  class="col-sm-4 control-label" style=" width: 28.33333333%;" >
-                        <%= f.label :department_id, t('incident.department_id')%>
+                        <%= f.label :department, t('incident.department')%>
                       </label>
                       <div class="col-sm-8">
                         <div class="risk-select">
@@ -93,7 +94,7 @@
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-3 control-label" style=" width: 28.33333333%;" >
-                        <%= f.label :contact_no, t('incident.contact_no')%>
+                        <%= f.label :contact, t('incident.contact')%>
                       </label>
                       <div class="col-sm-8" style=" width: 66.33333333%">
                         <%= f.text_field :contact_no, :class=>"form-control risk-normal-input", :maxlength=>10 %>
@@ -108,7 +109,7 @@
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                     <div class="form-group">
                       <label for="inputPassword3" class="col-sm-5 control-label" style=" width: 30.63333333%;">
-                        <%= f.label :Jobtitle, t('incident.Jobtitle')%>
+                        <%= f.label :job, t('incident.job')%>
                       </label> 
                       <div class="col-sm-6" style=" width: 66.33333333%;">
                         <div class="risk-select">
@@ -126,12 +127,15 @@
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                       <div class="form-group">
                         <label  class="col-sm-4 control-label" style=" width: 28.33333333%;" >
-                          <%= f.label :sub_category_id, t('incident.sub_category_id')%>
+                          <%= f.label :sub_category, t('incident.sub_category')%>
                         </label>
                         <div class="col-sm-8">
                           <div class="risk-select">
                             <%= f.collection_select(:sub_category_id, current_company.departments, :id, :name)%>
                           </div>
+                          <% if incident.errors[:sub_category_id].present? %>
+                            <div class="error_message"><%=  incident.errors[:sub_category_id][0]%></div>
+                          <% end %>
                         </div>
                       </div>
                   </div>
@@ -139,7 +143,7 @@
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                       <div class="form-group">
                         <label  class="col-sm-4 control-label" style=" width: 28.33333333%;" >
-                          <%= f.label :team_id, t('incident.team_id')%>
+                          <%= f.label :team, t('incident.team')%>
                         </label>
                         <div class="col-sm-8">
                           <div class="risk-select">
