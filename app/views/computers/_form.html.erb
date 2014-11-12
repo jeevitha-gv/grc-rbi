@@ -162,7 +162,7 @@
         <%= f.label :acquisition_date, t('computer.acquisition_date') %>
       </label>
       <div class="col-sm-8">
-        <%= f.text_field :acquisition_date, :class => "datepicker" %>
+        <%= f.text_field :acquisition_date, :class => "datepicker1" %>
       </div>
     </div>
   </div>
@@ -175,7 +175,7 @@
         <%= f.label :expiry_date, t('computer.expiry') %>
       </label>
       <div class="col-sm-8">
-        <%= f.text_field :expiry_date, :class => "datepicker" %>
+        <%= f.text_field :expiry_date, :class => "datepicker2" %>
       </div>
     </div>
   </div>
@@ -185,7 +185,7 @@
         <%= f.label :last_audit_date, t('computer.last_audit') %>
       </label>
       <div class="col-sm-8">
-        <%= f.text_field :last_audit_date, :class => "datepicker" %>
+        <%= f.text_field :last_audit_date, :class => "datepicker3" %>
       </div>
     </div>
   </div>
@@ -201,26 +201,31 @@
 <script>
 $('.ui.checkbox')
   .checkbox();
- $(document).ready(function(){
-    
-    var temp_start = $(".datepicker").val()
-    var start = $(".datepicker").kendoDatePicker({
-      format: "dd/MM/yyyy"
-  }).data("kendoDatePicker");
- 
-
-    $(".datepicker").bind("focus", function() {
-      $(this).data("kendoDatePicker").open();
-    });
-    $('.datepicker').attr('readonly', true);
-
-    $(".datepicker1").bind("focus", function() {
-      $(this).data("kendoDatePicker").open();
-    });
-    $('.datepicker1').attr('readonly', true);
-
-    $(".datepicker").val(temp_start)
+$(document).ready(function(){  
+  var date = $('.datepicker').val();
+  $('.datepicker').kendoDatePicker({
+    format: "dd/MM/yyyy"
   });
+  $('.datepicker').val(date);
+
+  var date1 = $('.datepicker1').val();
+  $('.datepicker1').kendoDatePicker({
+    format: "dd/MM/yyyy"
+  });
+  $('.datepicker1').val(date1);
+
+  var date2 = $('.datepicker2').val();
+  $('.datepicker2').kendoDatePicker({
+    format: "dd/MM/yyyy"
+  });
+  $('.datepicker2').val(date2);
+
+  var date3 = $('.datepicker3').val()
+  $('.datepicker3').kendoDatePicker({
+    format: "dd/MM/yyyy"
+  });
+  $('.datepicker3').val(date3);
+});
 
  $('#tags').tagsInput({
   'defaultText':'add email'
