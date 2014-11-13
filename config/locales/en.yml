@@ -460,6 +460,14 @@ en:
               blank: "Manufacturer can't be blank"
             serial_number:
               blank: "Serial Number can't be blank"
+        distribution_list:
+          attributes:
+            name:
+              blank: "Cant be same"
+        policy:
+          attributes:
+            share_policy_email:
+              blank: "Cant Be blank"
 
 
 

@@ -1,14 +1,4 @@
-<% if @versions.length.to_i >1 %>
-	<% if params[:version].to_i > 1 || !params[:version] %>
-		<%= link_to '<span class=" glyphicon glyphicon-circle-arrow-left"></span>'.html_safe, {:version => (params[:version] || @versions.length).to_i - 1}, class: "btn btn-lg btn-hover btn-default" %>
-	<% end %>
-	<% if params[:version].to_i >= 1 && (params[:version].to_i < (@versions.length - 1)) %>
-	    <%= link_to '<span class=" glyphicon glyphicon-circle-arrow-right"></span>'.html_safe, {:version => (params[:version] || @versions.length).to_i + 1}, class: "btn btn-lg btn-hover btn-default" %>
-	<% end %>
-    <% if (params[:version].to_i < @versions.length) %>
-        <%= link_to '<span class="glyphicon glyphicon-bookmark"></span>'.html_safe, show_individual_policy_path(@policy), class: "btn btn-lg btn-hover btn-default"  %>
-    <% end %>
-<% end %>
 
 <a href="/policies/<%= @policy.id%>.pdf" class="btn btn-lg btn-hover btn-default"><span class="glyphicon glyphicon-cloud-download"></span></a>
 <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_policy_path(@policy),  class: "btn btn-lg btn-hover btn-default" %>
+<%= link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, show_version_policy_path(@policy), class: "btn btn-lg btn-hover btn-default" %>

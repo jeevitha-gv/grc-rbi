@@ -1082,6 +1082,7 @@ ComputerCategory.delete_all
         PolicyStatus.create(name: "Waiting for Approval")
         PolicyStatus.create(name: "Approved")
         PolicyStatus.create(name: "Discard/Declined")
+        PolicyStatus.create(name: "Published")
 
     Audience.delete_all
 

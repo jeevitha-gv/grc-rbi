@@ -1,6 +1,14 @@
 <div class="clearfix"></div>
 <div class="content">
     <div class="container">
+        <div class="col-lg-12">
+            <div class="col-lg-2">
+                <div class="row">
+                    <%= render "process_status", policy: @policy %>
+                </div>
+            </div>
+            <div class="col-lg-10">
+                
         <div class="row">
             <div class="actions-policy">
                 <%= render partial: "policies/partials/actions" %> 
@@ -143,4 +151,8 @@
                 </div>
             </div>
         </div>
+            </div>
+        </div>
+        
+
     </div>

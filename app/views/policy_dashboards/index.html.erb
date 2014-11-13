@@ -2,6 +2,9 @@
 <script src="/assets/outer/exporting.js"></script>
 <script src="/assets/outer/drilldown.js"></script>
 <script src="/assets/outer/data.js"></script>
+<script type="text/javascript" src="/assets/full_calendar.js"></script>
+<link href="/assets/outer/fullcalendar.css" rel="stylesheet" />
+<link href="/assets/outer/fullcalendar.print.css" rel="stylesheet" />
 <% content_for :head do %>
 <%= javascript_include_tag '/assets/views/policy_dashboard'%>
 <%= stylesheet_link_tag '/assets/outer/dashboard' %>
@@ -113,8 +116,8 @@
 
             <!-- Chart Starts here -->
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
+                <div class="col-lg-8">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> Location vs Status
                         </div>
@@ -125,23 +128,73 @@
                         <!-- /.panel-body -->
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
+
+                <div class="col-lg-4">
+                    <div class="panel panel-danger">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Department vs Status
+                            Task
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="container1"></div>
+                           
+                            <div class="list-group">
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-comment fa-fw"></i> New Comment
+                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-bolt fa-fw"></i> Server Crashed!
+                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-warning fa-fw"></i> Server Not Responding
+                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
+                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-money fa-fw"></i> Payment Received
+                                    <span class="pull-right text-muted small"><em>Yesterday</em>
+                                    </span>
+                                </a>
+                            </div>
+                        
                         </div>
                         <!-- /.panel-body -->
                     </div>
                 </div>
 
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
+
+                <div class="col-lg-8">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Kind
+                            Kind
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -151,19 +204,17 @@
                     </div>
                 </div>
 
-
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Drilldown Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
+                <div class="col-lg-4">
+                    <div class="panel panel-warning">
+                    <div class="panel-heading">
+                         <span class="glyphicon glyphicon-calendar"></span>Calendar
+                    </div>
                         <div class="panel-body">
-                            <div id="container3"></div>
+                            <div id="dashboard_calendar"></div>
                         </div>
-                        <!-- /.panel-body -->
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

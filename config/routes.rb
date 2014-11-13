@@ -151,9 +151,12 @@ end
     resources :policy_reviews
     member do
       get 'show_individual'
+      get 'show_version'
     end
     collection do
       get 'export'
+      get 'share_policy'
+      post 'send_emails_to_share'
     end
     resources :policy_approvals
     resources :publish_policies

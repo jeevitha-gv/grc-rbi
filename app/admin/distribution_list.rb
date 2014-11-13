@@ -1,5 +1,10 @@
 ActiveAdmin.register DistributionList do
-
+  config.filters = false
+  breadcrumb do
+    [
+      link_to('Distribution List', '/admin/distribution_lists')
+    ]
+  end
   menu :if => proc{ !current_admin_user.present? }
   
   permit_params :name, :email_ids,:email_list,:company_id
@@ -18,7 +23,7 @@ ActiveAdmin.register DistributionList do
       if @list.save
         redirect_to admin_distribution_lists_path
       else
-        render new_admin_distribution_list_path
+        render :new
       end
     end
   
