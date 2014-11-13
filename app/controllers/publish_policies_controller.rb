@@ -8,8 +8,8 @@ class PublishPoliciesController < ApplicationController
 
 	def create
 		@publish_policy = @policy.build_publish_policy(publish_params)
-				binding.pry
 		if @publish_policy.save
+			@policy.update(policy_status_id: 7)
 			redirect_to policies_path
 		else
 			render 'new'
@@ -23,6 +23,7 @@ class PublishPoliciesController < ApplicationController
 	def update
 		@publish_policy = @policy.publish_policy
 		if @publish_policy.update(publish_params)
+			@policy.update(policy_status_id: 7)
 			redirect_to policies_path
 		else
 			render 'edit'
