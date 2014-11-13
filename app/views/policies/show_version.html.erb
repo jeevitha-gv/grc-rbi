@@ -1,32 +1,55 @@
 <% if !@versions.present? %>
-
-<h1>No more Versions</h1>
-
-<% else %>
-<h2>Version</h2>
-<div id="accordion" class="panel-group">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-		<h4 class="panel-title">
-		Hello World</h4>
-		</div>
-		<div id="collapseOne" class="panel-collapse collapse">
-			<div class="panel-body">
-				Hello World
+	<div class="container">
+		<div class="col-lg-12">
+			<div class="col-lg-2">
+				
+			</div>
+			<div  class="col-lg-8">
+				<h1>Newly Drafted Version</h1>
 			</div>
 		</div>
 	</div>
+	
+<% else %>
+	<div class="container">
+		<div class="col-lg-12">
+			<div class="col-lg-2">
+				
+			</div>
+			<div  class="col-lg-8">
+				<h1>Previous Version History</h1>
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<%= @policy.title %> 
+							<div class="navbar-right">
+								Current Status -- 
+								<%= @versions.length.to_i %>
+							</div>
+						
+					</div>
+					<div class="panel-body">
+						<table class='table table-hover'>
+						  <thead>
+						    <tr>
+						      <th>Version #</th>
+						      <th>Date</th>
+						      <th>Status</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <%- @policy.versions.reverse.each do |version| %>
+						      <tr>
+						        <td><%= version.index %></td>
+						        <td><%= version.created_at.strftime("%m/%d/%Y") %></td>
+						        <td>Retired</td>
+						      </tr>
+						    <% end %>
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>
 </div>
-<% if @versions.length.to_i >1 %>
-	<% if params[:version].to_i > 1 || !params[:version] %>
-		<%= link_to '<span class=" glyphicon glyphicon-circle-arrow-left"></span>'.html_safe, {:version => (params[:version] || @versions.length).to_i - 1}, class: "btn btn-lg btn-hover btn-default" %>
-	<% end %>
-	<% if params[:version].to_i >= 1 && (params[:version].to_i < (@versions.length - 1)) %>
-	    <%= link_to '<span class=" glyphicon glyphicon-circle-arrow-right"></span>'.html_safe, {:version => (params[:version] || @versions.length).to_i + 1}, class: "btn btn-lg btn-hover btn-default" %>
-	<% end %>
-    <% if (params[:version].to_i < @versions.length) %>
-        <%= link_to '<span class="glyphicon glyphicon-bookmark"></span>'.html_safe, show_individual_policy_path(@policy), class: "btn btn-lg btn-hover btn-default"  %>
-    <% end %>
-<% end %>
-
-<% end %>
