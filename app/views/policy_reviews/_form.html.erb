@@ -123,11 +123,9 @@
                                       <div class="form-group clearfix">
                                           <label class="col-sm-3">Commment</label>
                                           <div class="col-sm-7">
-                                            <%=f.text_area  :comment ,:cols => "40",:rows => "5"%>
+                                            <%=f.text_area  :comment , row: "3", class: "form-control risk-big-input"%>
 
-                                             <%#@= f.fields_for :comment, (f.object.comment.present? ? f.object.comment : Comment.new) do |builder|%>
-                            <%#= builder.text_area(:comment, row: "3", class: "form-control risk-big-input")%>
-                           <%#end%>
+                           
                                           </div>
                                       </div>
                                   </div>
