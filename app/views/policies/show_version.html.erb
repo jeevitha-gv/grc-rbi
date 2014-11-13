@@ -1,0 +1,32 @@
+<% if !@versions.present? %>
+
+<h1>No more Versions</h1>
+
+<% else %>
+<h2>Version</h2>
+<div id="accordion" class="panel-group">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		<h4 class="panel-title">
+		Hello World</h4>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse">
+			<div class="panel-body">
+				Hello World
+			</div>
+		</div>
+	</div>
+</div>
+<% if @versions.length.to_i >1 %>
+	<% if params[:version].to_i > 1 || !params[:version] %>
+		<%= link_to '<span class=" glyphicon glyphicon-circle-arrow-left"></span>'.html_safe, {:version => (params[:version] || @versions.length).to_i - 1}, class: "btn btn-lg btn-hover btn-default" %>
+	<% end %>
+	<% if params[:version].to_i >= 1 && (params[:version].to_i < (@versions.length - 1)) %>
+	    <%= link_to '<span class=" glyphicon glyphicon-circle-arrow-right"></span>'.html_safe, {:version => (params[:version] || @versions.length).to_i + 1}, class: "btn btn-lg btn-hover btn-default" %>
+	<% end %>
+    <% if (params[:version].to_i < @versions.length) %>
+        <%= link_to '<span class="glyphicon glyphicon-bookmark"></span>'.html_safe, show_individual_policy_path(@policy), class: "btn btn-lg btn-hover btn-default"  %>
+    <% end %>
+<% end %>
+
+<% end %>

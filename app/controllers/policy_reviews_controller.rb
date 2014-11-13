@@ -34,7 +34,7 @@ class PolicyReviewsController < ApplicationController
 
   # parameters
   def review_params
-    params.require(:policy_review).permit(:review_action_id, comment_attributes: [:id, :comment])
+    params.require(:policy_review).permit(:review_action_id,:comment)
   end
 
 end
