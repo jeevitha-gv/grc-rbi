@@ -41,6 +41,11 @@ before_filter :authorize_incident, :only => [:new, :create, :update, :edit]
  
    end
 
+  #Incident Calender Page
+  def incident_calender
+    @incident = Incident.all  
+  end 
+
 
   def import
       if(params[:file].present?)
@@ -127,7 +132,7 @@ def incident_all
   end
   
   def show
-      @incident = Incident.find(params[:id])
+      # @incident = Incident.find(params[:id])
       # @incident=Evaluate.find(params[:id])
       respond_to do |format|
       format.html
