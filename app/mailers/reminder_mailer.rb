@@ -113,5 +113,9 @@ end
     @user = user
     mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Escalation for giving response", content_type: "text/html")
   end
+   def registration_confirmationss(email)
+    @email=email
+    mail(:to => email, :subject => "Selva Registered", :content_type => "text/html").deliver()
+  end
 
 end

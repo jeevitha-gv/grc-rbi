@@ -78,10 +78,11 @@ class PoliciesController < ApplicationController
 
   	# Post Method for Shring policies
   	def send_emails_to_share
-  		@policy = current_user.accessible_policies.find(params[:id])
-  		@email = params[:share_policy_email]
-  		@validation_error = @policy.errors[:share_policy_email][0] if @policy.errors.present?
-  	end
+      @policy = current_user.accessible_policies.find(params[:id])
+      @email = params[:share_policy_email]
+      @validation_error = @policy.errors[:share_policy_email][0] if @policy.errors.present?
+      ReminderMailer.registration_confirmationss(@email).deliver
+    end
 
   	# Method for showing Version Control
   	def show_version
