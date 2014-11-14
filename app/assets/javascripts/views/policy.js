@@ -118,20 +118,23 @@ $(document).ready(function(){
 
 function email_validation()
 {
-	var email = $('#share_policy_email').val();
-	var validate_email = email_validation();
-	function email_validation(){
-		if (email == '')
-		{
-			$('#share_policy_email').addClass("error_input");
-			$('#email_error').show()
-			return false
-		}
-		else
-		{
-			$('#share_policy_email').removeClass("error_input");
-			$('#email_error').hide()
-			return true
-		}
-	}
+    var email = $('#share_policy_email').val();
+    var validate_email = email_validation();
+    function email_validation(){
+        if (email == '')
+        {
+            $('#share_policy_email').addClass("error_input");
+            $('#email_error').show()
+            $('#share_modal').modal('show');
+            return false
+        }
+        else
+        {
+            $('#share_policy_email').removeClass("error_input");
+            $('#email_error').hide()
+            $('#share_modal').modal('hide');
+            new Messi("Email is Shared successfully", {title: 'Success', titleClass: 'success', autoclose: 1500});
+            return true
+        }
+    }
 }
