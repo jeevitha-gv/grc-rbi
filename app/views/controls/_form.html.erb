@@ -1,0 +1,491 @@
+<!doctype html>
+<html>
+
+
+<body>
+<div class="page-wrap">
+
+
+<div class="clearfix"></div>
+<div class="content">
+  <div class="container">
+    <div class="row"> 
+      <!-- Nav tabs -->
+      <div id="example" class="k-content">
+     
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="risk-wrap">
+          <div class="sub-wrap">
+                <div class="sub-titile">Use this form in order to design a new control for consideration in the Regulation.</div>
+            <div class="sub-wrap-bg">
+                    <form class="form-horizontal" role="form">
+              <!--Row first ------------>
+                <div class="row">
+               
+               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                      <%= f.label :controlid, t('control.controlid')%>
+                    </label>
+                    <div class="col-sm-8">
+                        <%= f.text_field :controlid, :class => "form-control risk-normal-input" %>
+                        <% if control.errors[:controlid].present? %>
+                        <div class="error_message"><%=  control.errors[:controlid][0]%></div>
+                    <% end %>
+                   </div>
+                  </div>
+              </div>
+
+               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                      <%= f.label :name, t('control.name')%>
+                    </label>
+                    <div class="col-sm-8">
+                        <%= f.text_field :name, :class => "form-control risk-normal-input" %>
+                        <% if control.errors[:name].present? %>
+                        <div class="error_message"><%=  control.errors[:name][0]%></div>
+                    <% end %>
+                   </div>
+                  </div>
+              </div>
+             
+          
+             </div>
+             
+              <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                 <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                    <%= f.label :classification_control_id, t('control.classification_control_id')%>
+                    </label>
+                    <div class="col-sm-8">
+                      
+                    <div class="risk-select">
+                    <%= f.collection_select(:classification_control_id, ClassificationControl.all, :id, :name)%>
+                    </div>
+                    </div>
+                    
+                  </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                 <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                    <%= f.label :purpose_control_id, t('control.purpose_control_id')%>
+                    </label>
+                    <div class="col-sm-8">
+                      
+                    <div class="risk-select">
+                    <%= f.collection_select(:purpose_control_id, PurposeControl.all, :id, :name)%>
+                    </div>
+                    </div>
+                    
+                  </div>
+                  
+              </div>
+              </div>
+              
+              
+              
+              <div class="row">
+                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                   <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                    <%= f.label :control_regulation_id, t('control.control_regulation_id')%>
+                    </label>
+                    <div class="col-sm-8">
+                      
+                    <div class="risk-select">
+                    <%= f.collection_select(:control_regulation_id, ControlRegulation.all, :id, :name)%>
+                    </div>
+                    </div>
+                    
+                  </div>
+              </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                  </div>
+       
+             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                  <!-- <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-4 control-label">created at</label>
+                    <div class="col-sm-8">
+                     <div class="risk-select">
+                      <select class="form-control">
+                      <option>Access Management</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                    </div>
+                    </div>
+                    </div> -->
+                  </div>
+              </div>
+              
+                         <div class="row">
+                  <div class="likelihood matrix-padding clearfix">
+                    <div class="base-score-matrix">Control Info
+                      <div class="up-triangle"></div>
+                    </div>
+                        <div class="">
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group clearfix">
+                                  <label class="col-sm-5"><b>Owner :</b> </label>
+                                  <div class="col-sm-7">
+                                      <div class="risk-select">
+                                  <%#= control.collection_select(:owner, current_company.users, :id, :user_name)%>
+                                    </div>
+                                  </div>
+                                   
+                                </div>
+                                  </div>
+                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group">
+                                  <label class="col-sm-3 control-label">
+                                  <%= f.label :owning_group_id, t('control.owning_group_id')%>
+                                  </label>
+                                  <div class="col-sm-8">
+                                    
+                                  <div class="risk-select">
+                                  <%= f.collection_select(:owning_group_id, OwningGroup.all, :id, :name)%>
+                                  </div>
+                                  </div>
+                                  
+                                </div>
+                                  </div>
+                                  
+                                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group clearfix">
+                                  <label class="col-sm-5"><b>Owner Delegate :</b> </label>
+                                  <div class="col-sm-7">
+                                      <div class="risk-select">
+                                  <%#= control.collection_select(:owner, current_company.users, :id, :user_name)%>
+                                    </div>
+                                  </div>
+                                   
+                                </div>
+                                  </div>
+                                   <div class="emp-hr clearfix"></div>
+                                  </div>
+                                
+                                 
+                                
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                               <div class="form-group">
+                                     
+                                     <div class="col-sm-11">
+                                     <label for="exampleInputPassword1">
+                                      <%= f.label :objective, t('control.objective')%>
+                                     </label>
+                                     <%= f.text_area :objective,:class=>"form-control control-big-input"%>
+                                     <% if control.errors[:objective].present? %>
+                                    <div class="error_message"><%= control.errors[:objective][0]%></div>
+                                     <% end %>
+                            </div>
+                                  
+                                  </div>
+                                  </div>
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                               <div class="form-group">
+                                         <div class="col-sm-11">
+                                     <label for="exampleInputPassword1">
+                                      <%= f.label :maintenance_metric_description, t('control.maintenance_metric_description')%>
+                                     </label>
+                                     <%= f.text_area :maintenance_metric_description,:class=>"form-control control-big-input"%>
+                                     <% if control.errors[:maintenance_metric_description].present? %>
+                                    <div class="error_message"><%= control.errors[:maintenance_metric_description][0]%></div>
+                                     <% end %>
+                            </div>
+                                  </div>
+                                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                               <div class="form-group">
+                                     <div class="col-sm-11">
+                                     <label for="exampleInputPassword1">
+                                      <%= f.label :description, t('control.description')%>
+                                     </label>
+                                     <%#= f.text_area :description,:class=>"form-control control-big-input"%>
+                                     <% if control.errors[:description].present? %>
+                                    <div class="error_message"><%= control.errors[:description][0]%></div>
+                                     <% end %>
+                            </div>
+                                  </div>
+                                  </div>
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                               <div class="form-group">
+                                          <div class="col-sm-11">
+                                     <label for="exampleInputPassword1">
+                                      <%= f.label :note, t('control.note')%>
+                                     </label>
+                                     <%= f.text_area :note,:class=>"form-control control-big-input"%>
+                                     <% if control.errors[:note].present? %>
+                                    <div class="error_message"><%= control.errors[:note][0]%></div>
+                                     <% end %>
+                            </div>
+                                  </div>
+                                  </div>
+              </div>
+              
+                 <div class="row">
+                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                              <a href="" class="attach-icon fleft blue_link">Attach Document</a>
+                                </div>
+                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                 <div class="btn-group gr-btn">
+          <div class="fright paddingtop" style="padding-right: 80px;"><%= f.submit "Save ", :class => "orange_btn" %> <%= f.submit "Save as Draft", :class => "grey_btn"%><a class="grey_btn" href=""> Cancel</a></div>
+        </div>
+                                </div>
+                        </div>
+              </form>
+            
+            </div>       
+            
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer_left col-lg-6">2014 © FixNix Audit Management</div>
+      <div class="footer_right col-lg-6">Powered By<img src="img/footer_logo.png" alt=""/></div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(window).load(function(){
+  var $container = $('#grid_items');
+  // initialize
+  $container.masonry({
+    columnWidth: 292,
+    itemSelector: '.item',
+    isFitWidth: true
+  });
+  
+  
+  $(".block_banner img").each(function(index, element) {
+        var screenImage = $(this);
+
+    // Create new offscreen image to test
+    var theImage = new Image();
+    theImage.src = screenImage.attr("src");
+    
+    var imageHeight = theImage.height;
+    
+    $(this).css("max-height",imageHeight);
+    $(this).css("min-height",imageHeight);
+    });
+});
+
+$(".click_icon").click(function() {
+      $(".share_pop").show();
+});
+
+$(".click_icon").click(function(){
+    $(".share_pop").show();
+});
+  
+$(document).ready(function(){
+  
+  Top_postion = $(window).scrollTop();
+  
+  $( ".user_login" ).mouseenter(function() {
+    $(this).addClass("active");
+    $(".account_header_dropdown").slideDown(100);   
+  })
+  .mouseleave(function() {
+    $(this).removeClass("active");
+    $(".account_header_dropdown").hide();
+  });
+  
+  //for notification drop hide in outside click
+  onclick_icon = 0;   
+  $(".click_icon").mouseenter(function() {
+    onclick_icon = 0;   
+  })
+  .mouseleave(function() {
+    onclick_icon = 1;   
+  });
+  
+  
+  $("body").click(function(){
+    if(onclick_icon){
+      $(".share_pop").hide();
+    }
+  });
+  
+  
+  /* placeholder */
+  $(".place_holder").each(function(index, element) {
+    placeholder = $(this).attr("data-original");
+    $(this).val(placeholder);
+    $(this).removeClass("active");
+    });
+
+  $(".place_holder").focus(function(){
+    placeholder = $(this).attr("data-original");
+    current_value = $(this).val();
+    if(current_value==placeholder){
+      $(this).val("");
+      $(this).addClass("active");
+    }
+  });
+  $(".place_holder").blur(function(){
+    placeholder = $(this).attr("data-original");
+    current_value = $(this).val();
+    if(current_value==""){
+      $(this).val(placeholder);
+      $(this).removeClass("active");
+    }else{
+      $(this).addClass("active");
+    }
+  });
+  $(".place_holder").click(function(){
+    placeholder = $(this).attr("data-original");
+    current_value = $(this).val();
+    if(current_value==placeholder){
+      $(this).val("");
+      $(this).addClass("active");
+    }
+  });
+  /* placeholder */
+  
+  
+});
+/*$(window).scroll(function(){
+  Top_postion = $(window).scrollTop();
+  
+  if(Top_postion>10){
+    $(".go_to_top").show();
+  }else{
+    $(".go_to_top").hide();
+  }
+});
+$(".go_to_top").click(function(){
+  top = 0;
+  $("html, body").animate({scrollTop: "0"}, 800);
+});
+*/
+</script> 
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+<script src="js/common/jquery.js" type="text/javascript"></script> 
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="js/common/bootstrap.min.js" type="text/javascript"></script> 
+<script src="js/common/kendo.all.min.js" type="text/javascript"></script> 
+<script src="js/common/jquery.fancybox.js" type="text/javascript"></script> 
+<script src="js/salenotes.js" type="text/javascript"></script> 
+<script src="js/proposals.js" type="text/javascript"></script> 
+<script type="text/javascript">
+      $(document).ready(function() {
+        // Fancybox
+        $(".fancybox").fancybox();
+        
+        // Kendo Datapicker
+        $("#datepicker").kendoDatePicker();
+        
+        // Kendo Tab
+        $("#tabstrip").kendoTabStrip({
+          animation:  {
+              open: {
+            effects: "fadeIn"
+              }
+          }
+        });
+          
+        // Kendo Panel
+        $("#panelbar").kendoPanelBar();
+          
+        // Kendo Grid
+        $("#grid").kendoGrid({
+          dataSource: {
+              data: salenotes,
+              schema: {
+            model: {
+                fields: {
+              ID: { type: "string" },
+              Subject: { type: "string" },
+              Status: { type: "string" },
+              Risk: { type: "string" },
+              Owner: { type: "string" },
+              Open: { type: "string" },
+              Action: { type: "string" },
+                }
+            }
+              },
+              pageSize: 20
+          },
+          height: 'auto',
+          scrollable: true,
+          sortable: true,
+          filterable: true,
+          pageable: {
+              input: true,
+              numeric: false
+          },
+          columns: [
+              { field: "ID", width: "10%"},
+              { field: "Subject", title: "Subject", width: "40%" },
+            { field: "Status", title: "Status", width: "30%" },
+            { field: "Risk", title: "score", width: "8%" },
+            { field: "Owner", title: "Owner", width: "20%" },
+            { field: "Open", title: "Days Open", width: "15%" },
+              { field: "Action", command: ["file","tick","tick1","book","pdf","edit"], title: "Action", width: "180px" }
+          ],
+          editable: "popup"
+        });
+        
+        // Editable select box
+        $('.editable-select').change(function(){ 
+          modify();
+        });
+
+        function modify(){
+          $('.editable-input').val($('.editable-select').val());
+          output();
+        }
+
+        function output(){
+          $('.editable-result').text('value: ' + $('.editable-input').val());
+        }
+
+        $('.editable-input').on('click', function(){
+          $(this).select()
+        }).on('blur', function(){
+          output();
+        })
+
+        modify();
+        
+        // More contacts show
+        $(".more-link").click(function(){
+          if($(this).html() == "More")
+            $(this).html("Less").parent().siblings(".more-info").show();
+          else
+            $(this).html("More").parent().siblings(".more-info").hide();
+        });
+      });
+      
+      // Edit Popup
+      $(window).load(function(){
+        $(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");
+        
+      });
+      
+    </script>
+        </div>
+        
+</body>
+</html>

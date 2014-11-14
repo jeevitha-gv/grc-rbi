@@ -1,0 +1,65 @@
+
+ <%= javascript_include_tag "/assets/outer/countdown.js" %>
+
+
+<link href="/assets/bootstrap-multiselect.css" rel="stylesheet" />
+<div class="content">
+  <div class="container">
+   <div class="clearfix"> <a class="import-btn" data-toggle="modal" href="#add_csv" style="width:157px"><i class="download-icons"></i>Import Controls</a>
+   </div>  
+    <div class="row">
+		<% flash[:notice] if flash[:notice].present? %>
+              
+          <div class="form-group clearfix addissue">
+            <div class="modal fade" id="add_csv">
+              <div class="modal-dialog modal-dialog_large">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"> &nbsp; </button>
+                    <h4 id="myModalLabel" class="modal-title">Upload files only CSV</h4>
+                    <!-- <div class="modal-content-inner">
+                      <%#= form_tag import_incidents_path, multipart: true do %>
+                        <%#= file_field_tag :file %>
+                        <br>
+                        <div class="model-footer">
+                        <%#= submit_tag "Import" ,:class => "black_btn" %>
+                      <%#= button_tag "Cancel", type: 'button', "data-dismiss" => "modal", :class => "orange_btn" %></div>
+                      <%# end %>
+                    </div> -->
+                      <p></p>
+                      <p>
+                        <%#= link_to "Download Sample Incident CSV", export_incidents_path(format: "csv") %>
+                      </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<div class="page-wrap">
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div id="example" class="k-content">
+<div class="risk-title">Document a New Control</div>
+<!-- <div id = "counter">
+  <button onclick= "countdown()">Clickme</button> -->
+</div>
+<%= form_for(@control) do |f| %>
+
+<%= render 'form',:f => f, :control => @control %>
+
+
+
+
+<%end%>
+
+</div>
+</div>
+</div>
+</div>
+   </div>
+    </div>
+  </div>
+</div>
