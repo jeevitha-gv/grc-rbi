@@ -18,10 +18,10 @@ def new
   def create
     
    if @control.update(control_review_params) 
-    flash[:notice] = "Evaluation saved" 
+    flash[:notice] = "Review saved Successfully" 
     redirect_to edit_control_control_review_path(control_id: @control.id, id: @control.control_review.id)
   else
-     flash[:notice] = "Evaluation not  saved" 
+     flash[:notice] = "Control Review not  saved" 
     render new
   end
 	end

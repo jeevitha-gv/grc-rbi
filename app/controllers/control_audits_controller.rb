@@ -18,10 +18,10 @@ def new
   def create
     
    if @control.update(control_audit_params) 
-    flash[:notice] = "Evaluation saved" 
+    flash[:notice] = "Auditing save sucessfully" 
     redirect_to edit_control_control_audit_path(control_id: @control.id, id: @control.control_audit.id)
   else
-     flash[:notice] = "Evaluation not  saved" 
+     flash[:notice] = "Control Audit not  saved" 
     render new
   end
 	end
