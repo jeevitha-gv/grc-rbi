@@ -62,7 +62,7 @@ $(document).ready(function(){
 			{ field: "kind", title: "Kinds", width: "40%" },
 			{ field: "version", title: "Versions", width: "40%" },
 			{ field: "owner", title: "Owners", width: "40%" },
-			{ command: [{text: "show", click: show_file},{text: "miti", click: review_file},{text: "list"},{text: "book", click: publish_file},{text: "edit",  click: edit_file},{ text: "pdf", click: pdf_file },{text: 'share', click: share_file}], title: "Action", width: "85%"  }
+			{ command: [{text: "show", click: show_file},{text: "miti", click: review_file},{text: "list", click: approve_file},{text: "book", click: publish_file},{text: "edit",  click: edit_file},{ text: "pdf", click: pdf_file },{text: 'share', click: share_file}], title: "Action", width: "85%"  }
 		]
 	});
 
@@ -93,6 +93,12 @@ $(document).ready(function(){
 	{
 		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
 		window.location.href = "/policies/"+ dataItem.id + "/publish_policies/new"
+	}
+
+	function approve_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/policies/"+ dataItem.id + "/policy_approvals/new"
 	}
 
 	function share_file(e)
