@@ -1,5 +1,7 @@
 class ControlApprovalsController < ApplicationController
  before_filter :current_control
+ before_filter :check_company_disabled, :company_module_access_check
+ layout 'control_layout'
 	def index
   	#@evaluates = current_user.evaluates
   end

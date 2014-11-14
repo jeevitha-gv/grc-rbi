@@ -1,6 +1,7 @@
 class ControlAuditsController < ApplicationController
-
+before_filter :check_company_disabled, :company_module_access_check
 	before_filter :current_control
+  layout 'control_layout'
 	def index
   	#@evaluates = current_user.evaluates
   end

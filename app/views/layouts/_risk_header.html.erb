@@ -43,6 +43,11 @@
                 <div class="risk-icon"></div>
                 Incident</a></li>
               <% end %>
+              <% if company_modules_check('Control') %>
+             <li><a href="/controls" class="<%= add_active_class(params) == 'Control' ? 'active' : '' %>">
+                <div class="risk-icon"></div>
+                Control</a></li>
+              <% end %>
           </ul>
         </div>
 				<input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">

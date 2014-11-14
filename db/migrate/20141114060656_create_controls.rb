@@ -8,7 +8,6 @@ class CreateControls < ActiveRecord::Migration
     	t.integer :owner_delegate
     	t.text :objective
     	t.text :maintenance_metric_description
-    	t.text :maintenance_metric_description
     	t.text :note
     	t.integer :classification_control_id
     	t.integer :purpose_control_id

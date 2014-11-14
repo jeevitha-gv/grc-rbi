@@ -1,5 +1,6 @@
 class ControlsController < ApplicationController
-
+before_filter :check_company_disabled, :company_module_access_check
+layout 'control_layout'
 	def new
     	@control = Control.new
   	end

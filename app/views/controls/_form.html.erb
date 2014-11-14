@@ -133,7 +133,7 @@
                     </div>
                         <div class="">
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <div class="form-group clearfix">
+                               <!-- <div class="form-group clearfix">
                                   <label class="col-sm-5"><b>Owner :</b> </label>
                                   <div class="col-sm-7">
                                       <div class="risk-select">
@@ -141,7 +141,19 @@
                                     </div>
                                   </div>
                                    
-                                </div>
+                                </div> -->
+                                <div class="form-group">
+                                     <div class="col-sm-12">
+                                     <label for="exampleInputPassword1">Owner</label>
+                                         <div class="risk-select">
+                                         <select class="form-control">
+                                          <option>Manager</option>
+                                          <option>Admin</option>
+                                          
+                                        </select>
+                                        </div>
+                            </div>
+                                  </div>
                                   </div>
                                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                <div class="form-group">
@@ -159,7 +171,7 @@
                                   </div>
                                   
                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <div class="form-group clearfix">
+                               <!-- <div class="form-group clearfix">
                                   <label class="col-sm-5"><b>Owner Delegate :</b> </label>
                                   <div class="col-sm-7">
                                       <div class="risk-select">
@@ -167,7 +179,19 @@
                                     </div>
                                   </div>
                                    
-                                </div>
+                                </div> -->
+                                
+                                <div class="form-group">
+                                     <div class="col-sm-12">
+                                     <label for="exampleInputPassword1">Owner Delegate</label>
+                                         <div class="risk-select">
+                                         <select class="form-control">
+                                          <option>Manger</option>
+                                          <option>Admin</option>
+                                        </select>
+                                        </div>
+                            </div>
+                                  </div>
                                   </div>
                                    <div class="emp-hr clearfix"></div>
                                   </div>
@@ -264,227 +288,7 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
-$(window).load(function(){
-  var $container = $('#grid_items');
-  // initialize
-  $container.masonry({
-    columnWidth: 292,
-    itemSelector: '.item',
-    isFitWidth: true
-  });
-  
-  
-  $(".block_banner img").each(function(index, element) {
-        var screenImage = $(this);
 
-    // Create new offscreen image to test
-    var theImage = new Image();
-    theImage.src = screenImage.attr("src");
-    
-    var imageHeight = theImage.height;
-    
-    $(this).css("max-height",imageHeight);
-    $(this).css("min-height",imageHeight);
-    });
-});
-
-$(".click_icon").click(function() {
-      $(".share_pop").show();
-});
-
-$(".click_icon").click(function(){
-    $(".share_pop").show();
-});
-  
-$(document).ready(function(){
-  
-  Top_postion = $(window).scrollTop();
-  
-  $( ".user_login" ).mouseenter(function() {
-    $(this).addClass("active");
-    $(".account_header_dropdown").slideDown(100);   
-  })
-  .mouseleave(function() {
-    $(this).removeClass("active");
-    $(".account_header_dropdown").hide();
-  });
-  
-  //for notification drop hide in outside click
-  onclick_icon = 0;   
-  $(".click_icon").mouseenter(function() {
-    onclick_icon = 0;   
-  })
-  .mouseleave(function() {
-    onclick_icon = 1;   
-  });
-  
-  
-  $("body").click(function(){
-    if(onclick_icon){
-      $(".share_pop").hide();
-    }
-  });
-  
-  
-  /* placeholder */
-  $(".place_holder").each(function(index, element) {
-    placeholder = $(this).attr("data-original");
-    $(this).val(placeholder);
-    $(this).removeClass("active");
-    });
-
-  $(".place_holder").focus(function(){
-    placeholder = $(this).attr("data-original");
-    current_value = $(this).val();
-    if(current_value==placeholder){
-      $(this).val("");
-      $(this).addClass("active");
-    }
-  });
-  $(".place_holder").blur(function(){
-    placeholder = $(this).attr("data-original");
-    current_value = $(this).val();
-    if(current_value==""){
-      $(this).val(placeholder);
-      $(this).removeClass("active");
-    }else{
-      $(this).addClass("active");
-    }
-  });
-  $(".place_holder").click(function(){
-    placeholder = $(this).attr("data-original");
-    current_value = $(this).val();
-    if(current_value==placeholder){
-      $(this).val("");
-      $(this).addClass("active");
-    }
-  });
-  /* placeholder */
-  
-  
-});
-/*$(window).scroll(function(){
-  Top_postion = $(window).scrollTop();
-  
-  if(Top_postion>10){
-    $(".go_to_top").show();
-  }else{
-    $(".go_to_top").hide();
-  }
-});
-$(".go_to_top").click(function(){
-  top = 0;
-  $("html, body").animate({scrollTop: "0"}, 800);
-});
-*/
-</script> 
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-<script src="js/common/jquery.js" type="text/javascript"></script> 
-<!-- Include all compiled plugins (below), or include individual files as needed --> 
-<script src="js/common/bootstrap.min.js" type="text/javascript"></script> 
-<script src="js/common/kendo.all.min.js" type="text/javascript"></script> 
-<script src="js/common/jquery.fancybox.js" type="text/javascript"></script> 
-<script src="js/salenotes.js" type="text/javascript"></script> 
-<script src="js/proposals.js" type="text/javascript"></script> 
-<script type="text/javascript">
-      $(document).ready(function() {
-        // Fancybox
-        $(".fancybox").fancybox();
-        
-        // Kendo Datapicker
-        $("#datepicker").kendoDatePicker();
-        
-        // Kendo Tab
-        $("#tabstrip").kendoTabStrip({
-          animation:  {
-              open: {
-            effects: "fadeIn"
-              }
-          }
-        });
-          
-        // Kendo Panel
-        $("#panelbar").kendoPanelBar();
-          
-        // Kendo Grid
-        $("#grid").kendoGrid({
-          dataSource: {
-              data: salenotes,
-              schema: {
-            model: {
-                fields: {
-              ID: { type: "string" },
-              Subject: { type: "string" },
-              Status: { type: "string" },
-              Risk: { type: "string" },
-              Owner: { type: "string" },
-              Open: { type: "string" },
-              Action: { type: "string" },
-                }
-            }
-              },
-              pageSize: 20
-          },
-          height: 'auto',
-          scrollable: true,
-          sortable: true,
-          filterable: true,
-          pageable: {
-              input: true,
-              numeric: false
-          },
-          columns: [
-              { field: "ID", width: "10%"},
-              { field: "Subject", title: "Subject", width: "40%" },
-            { field: "Status", title: "Status", width: "30%" },
-            { field: "Risk", title: "score", width: "8%" },
-            { field: "Owner", title: "Owner", width: "20%" },
-            { field: "Open", title: "Days Open", width: "15%" },
-              { field: "Action", command: ["file","tick","tick1","book","pdf","edit"], title: "Action", width: "180px" }
-          ],
-          editable: "popup"
-        });
-        
-        // Editable select box
-        $('.editable-select').change(function(){ 
-          modify();
-        });
-
-        function modify(){
-          $('.editable-input').val($('.editable-select').val());
-          output();
-        }
-
-        function output(){
-          $('.editable-result').text('value: ' + $('.editable-input').val());
-        }
-
-        $('.editable-input').on('click', function(){
-          $(this).select()
-        }).on('blur', function(){
-          output();
-        })
-
-        modify();
-        
-        // More contacts show
-        $(".more-link").click(function(){
-          if($(this).html() == "More")
-            $(this).html("Less").parent().siblings(".more-info").show();
-          else
-            $(this).html("More").parent().siblings(".more-info").hide();
-        });
-      });
-      
-      // Edit Popup
-      $(window).load(function(){
-        $(".k-grid-edit").addClass("fancybox").attr("href", "#edit-popup");
-        
-      });
-      
-    </script>
         </div>
         
 </body>

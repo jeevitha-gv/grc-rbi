@@ -27,6 +27,9 @@
               <li class="next-phase"><a href="/admin/incident_categories" class="<%= add_super_admin_active_class(params) == 'Incident' ? 'active' : '' %>" >
               <div class="risk-icon"></div>
               Incident  </a> </li>
+              <li class="next-phase"><a href="/admin/" class="<%= add_super_admin_active_class(params) == 'Incident' ? 'active' : '' %>" >
+              <div class="risk-icon"></div>
+              Control  </a> </li>
           </ul>
         </div>
         <input type="hidden" id="module_check" value="<%= super_admin_sub_menu(request.fullpath.split('/')[2])%>">
