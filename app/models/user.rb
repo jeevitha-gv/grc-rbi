@@ -46,6 +46,9 @@ class User < ActiveRecord::Base
   has_many :incident_user, class_name: 'Escalation', foreign_key: 'user'
   has_many :resolution_user, class_name: 'Resolution', foreign_key: 'reassignee'
 
+  # Associations with Control Tables
+  has_many :control_owner, class_name: 'Control', foreign_key: 'owner'
+  has_many :control_owner_delegate, class_name: 'Control', foreign_key: 'owner_delegate'
 
   # Assosciations with Asset Module
   has_many :lifecycles

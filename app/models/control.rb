@@ -9,6 +9,8 @@ class Control < ActiveRecord::Base
 	has_one :control_review
 	has_one :control_audit
     #has_one :attachment, as: :attachable
+    belongs_to :control_owner, class_name: 'User', foreign_key: 'owner'
+    belongs_to :control_owner_delegate, class_name: 'User', foreign_key: 'owner_delegate'
 
 	accepts_nested_attributes_for :control_approval
 	accepts_nested_attributes_for :control_review

@@ -275,6 +275,14 @@ Rails.application.routes.draw do
 
   end
 
+  # CONTROL MANAGEMENT
+
+  resources :controls do
+    resources :control_approvals
+    resources :control_reviews
+    resources :control_audits
+  end
+
   
 root 'home#index'
 
