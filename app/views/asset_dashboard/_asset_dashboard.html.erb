@@ -71,6 +71,25 @@ $(function () {
 });
 </script> 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div id="container1" style="min-width: 765px; height: 400px;float:left; ">
 <script type="text/javascript">
 $(function () {
@@ -114,7 +133,7 @@ $(function () {
                        },
                        <%end%>]
         }],
-              drilldown: {
+              drilldown: { 
             series: [ 
                         {
                 id: 'Software',
@@ -199,3 +218,245 @@ $(function () {
 });
 </script> 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="container3" style="min-width: 765px; height: 400px;float:left; ">
+<script type="text/javascript">
+$(function () {
+    $('#container3').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'Severity Types'
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+                       valueSuffix: ' assets'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+
+
+       series: [ 
+                        {
+                id: 'Severity',
+                data: [
+                <%@severity.each do |c2|%>
+                 {
+                name: '<%= c2.severity %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.count %>'
+            },
+             <% end %>
+            
+                ]
+            } 
+                
+            ],
+              drilldown: {
+            series: [ 
+
+            {
+                id: 'Software',
+                data: [
+                <%@sfttype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }, 
+            {
+                id: 'Document',
+                data: [
+                <%@doctype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }, 
+           {
+                id: 'Computer',
+                data: [
+                <%@comptype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }, 
+            {
+                id: 'MobileAsset',
+                data: [
+                <%@mobtype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }, {
+                id: 'OtherAsset',
+                data: [
+                <%@othertype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }, {
+                id: 'Service',
+                data: [
+                <%@sertype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            },
+                        {
+                id: 'Severity',
+                data: [
+                <%@severity.each do |c2|%>
+                 {
+                name: '<%= c2.severity %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.count %>'
+            },
+             <% end %>
+            
+                ]
+            } 
+                
+            ]
+        } 
+    });
+});
+</script> 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

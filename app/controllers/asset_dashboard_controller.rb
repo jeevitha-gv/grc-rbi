@@ -12,6 +12,7 @@ class AssetDashboardController < ApplicationController
 		@mobtype= MobileAsset.joins(:device_type).select("name,count(device_type_id) as count").group(:name,:device_type_id).order('name')	
 		@othertype=OtherAsset.joins(:asset_type).select("name,count(asset_type_id) as count").group(:name,:asset_type_id).order('name')	
 		@sertype=Service.joins(:service_type).select("name,count(service_type_id) as count").group(:name,:service_type_id).order('name')	
+		@severity = current_company.assets.select("severity as severity, count(*) as count").group(:severity)
 	end
 
 	def computers
