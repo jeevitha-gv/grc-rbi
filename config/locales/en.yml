@@ -468,6 +468,14 @@ en:
               blank: "Contract Type can't be blank"
             contract_status_id:
               blank: "Contract Status can't be blank"
+        distribution_list:
+          attributes:
+            name:
+              blank: "Cant be same"
+        policy:
+          attributes:
+            share_policy_email:
+              blank: "Cant Be blank"
 
 
   blank:

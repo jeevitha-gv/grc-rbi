@@ -2,6 +2,19 @@ class ReminderMailer < ActionMailer::Base
 
   default from: "noreply@fixrnix.in"
 
+  def registration_confirmation(user)
+    @user = user
+    @user.each do |use|
+    mail(:to => use.email_ids, :subject => "Selva Registered", :content_type => "text/html").deliver()
+  end
+end
+def registration_confirmations(user)
+    @user = user
+    @user.each do |use|
+    mail(:to => use.email, :subject => "Selva Status Registered", :content_type => "text/html").deliver()
+  end
+end
+
   def notify_auditor_about_audit(audit)
   	@audit = audit
   	mail(:to => audit.auditory_email, content_type: "text/html", :subject => "Your Audit has been successfully created" )

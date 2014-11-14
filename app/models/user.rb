@@ -57,9 +57,12 @@ class User < ActiveRecord::Base
 
 
   # Associations with Policy Module
-  has_many :policy_owners, class_name: "Policy", foreign_key: 'owner'
+  has_many :policy_owner, class_name: "Policy", foreign_key: 'owner'
   has_many :policy_reviewers
   has_many :policy_approvers
+
+  has_many :policy_reviewer, through: :policy_reviewers, source: :policy
+  has_many :policy_approver, through: :policy_approvers, source: :policy
 
 # attribute to login with username or email
   attr_accessor :login, :domain
@@ -125,13 +128,14 @@ class User < ActiveRecord::Base
     end
   end
 
-  # def accessible_incidents
-  #   if(self.role.title == "company_admin")
-  #     Incident.where(company_id: self.company_id)
-  #   else
-  #     (self.risk_owner + self.risk_submitor + self.risk_mitigator + self.risk_reviewer).uniq
-  #   end
-  # end
+
+  def accessible_policies
+    if(self.role.title == "company_admin")
+      Policy.where(company_id: self.company_id)
+    else
+      (self.policy_owner + self.policy_reviewer + self.policy_approver ).uniq
+    end
+  end
 
   def audits_stage(params)
     audits = []

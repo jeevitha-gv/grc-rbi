@@ -7,7 +7,6 @@ class MgmtReviewsController < ApplicationController
 
 	def new
 		@mgmt_review = @risk.mgmt_review.present? ? @risk.mgmt_review : @risk.build_mgmt_review
-
 	end
 
 	def create

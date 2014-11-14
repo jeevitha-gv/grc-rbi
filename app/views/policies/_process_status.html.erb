@@ -1,0 +1,68 @@
+<style type="text/css">
+    
+.stepwizard-step p {
+    margin-top: 10px;    
+}
+
+.process-row {
+    display: table-row;
+}
+
+.process {
+    display: table;     
+    width: 100%;
+    position: relative;
+    top: 60px;
+}
+
+.process-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+}
+
+.process-row:before {
+    background-color: #ccc;
+    bottom: 0;
+    content: " ";
+    /*height: 3px;*/
+    left: -18px;
+    position: absolute;
+    top: 38px;
+    /*idth: 83%;*/
+}
+
+.process-step {    
+    /*display: table-cell;*/
+    text-align: left;
+    position: relative;
+}
+
+.process-step p {
+    margin-top:10px;
+    
+}
+
+
+</style>
+<div class="container">
+<div class="process">
+    <div class="process-row">
+        <div class="process-step">
+            <button type="button" class="<%= get_policy_status(policy.policy_status_id, 'Drafted') unless policy.policy_status_id.nil?%>" disabled="disabled"><span class="glyphicon glyphicon-pencil"></span></button>
+            <p>Drafted</p>
+        </div>
+        <div class="process-step">
+            <button type="button" class="<%= get_policy_status(policy.policy_status_id, 'Reviewed') unless policy.policy_status_id.nil?%>" disabled="disabled"><span class="glyphicon glyphicon-eye-open"></span></button>
+            <p>Reviewed</p>
+        </div>
+        <div class="process-step">
+            <button type="button" class="<%= get_policy_status(policy.policy_status_id, 'Approved') unless policy.policy_status_id.nil?%>" disabled="disabled"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+            <p>Approved</p>
+        </div> 
+         <div class="process-step">
+            <button type="button" class="<%= get_policy_status(policy.policy_status_id, 'Published') unless policy.policy_status_id.nil?%>" disabled="disabled"><span class="glyphicon glyphicon-bullhorn"></span></button>
+            <p>Published</p>
+        </div> 
+    </div>
+</div>
+</div>
