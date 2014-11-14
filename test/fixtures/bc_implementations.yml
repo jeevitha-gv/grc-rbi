@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bc_analysis_id: 1
+  implementation_status_id: 1
+  impl_actions: MyText
+
+two:
+  bc_analysis_id: 1
+  implementation_status_id: 1
+  impl_actions: MyText
