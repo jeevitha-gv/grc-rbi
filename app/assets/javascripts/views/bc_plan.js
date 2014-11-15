@@ -1,4 +1,4 @@
-                $(document).ready(function () {
+$(document).ready(function () {
 
 $('.cancel-btn1').click(function(){
     $('#search-value').val('');
@@ -32,18 +32,19 @@ function search_result()
     $("#grid").data("kendoGrid").dataSource.filter({
         logic  : "or",
         filters: [
+            
             {
-                field: "title",
+                field: "plan",
                 operator: "contains",
                 value   : val
             },
             {
-                field: "department",
-                operator: "contains",
-                value   : val
+                 field: "opex",
+                 operator: "contains",
+                 value   : val
             },
             {
-                 field: "threat",
+                 field: "capex",
                  operator: "contains",
                  value   : val
             },
@@ -51,33 +52,33 @@ function search_result()
                  field: "owner",
                  operator: "contains",
                  value   : val
-            },
-            
+            },           
         ]
     });
 }
 
 
 
+$("#panelbar").kendoPanelBar();
 
-                    $("#grid").kendoGrid({
-                        dataSource: {
-                            transport: {
-                                read: {
-                                    url: "/bcm/bc_analyses",
-                                    dataType: 'json',
-                                    type: 'get'
-                                },
-                                destroy: {
-                                           url: function(risk) 
-                                                {
-                                                    return "/bc_analyses/" + bc_analysis.id
-                                                },
-                                                dataType: "json",
-                                                type: "DELETE"
-                                         }
-                            },
-                            schema: {
+    if ( stage.length > 0 )
+    {
+        var bc_analyses_url = "/bcm/bc_analyses?stage="+stage;
+    }
+    else
+    {
+        var bc_analyses_url = "/bcm/bc_analyses"
+    }
+
+    dataSource = new kendo.data.DataSource({
+        transport: {
+            read: {
+                url: bc_analyses_url,
+                dataType: 'json',
+                type: 'get'
+            },
+        },
+        schema: {
             errors: function(response) {
             return response.errors;
         },
@@ -85,47 +86,50 @@ function search_result()
         model: {
             id: "id",
                 fields: {
-                    title: { type: "string" },
-                    department: { type: "string" },
-                    threat: { type: "string" },
-                    owner: { type: "string" },
-                    
+                    plan: { type: "string" },
+                    opex: {type: "string"},
+                    capex: {type: "string"},
+                    owner: {type: "string"},
                 }
             }
         },
                             // pageSize: 20
-                        },
+                        });
+    $("#grid").kendoGrid({
+        dataSource: dataSource,
+        dataBound: function(){
+            updateGridForStage(stage)
+            gridTitle()
+        },
                         height: 550,
                         groupable: false,
                         sortable: true,
-                        pageable: false,
-                        //{
-                        //     refresh: true,
-                        //     pageSizes: true,
-                        //     buttonCount: 5
-                        // },
-                       columns: [{
-                            field: "title",
-                            title: "Title",
-                            width: 200
+                        pageable: false,                        
+                       columns: [ {
+                            field: "plan",
+                            title: "Plan Title"
                         }, {
-                            field: "department",
-                            title: "Department"
+                            field: "opex",
+                            title: "OPEX",
+                            width: 120
                         }, {
-                            field: "threat",
-                            title: "Threat"
+                            field: "capex",
+                            title: "CAPEX",
+                            width: 150
                         }, {
                             field: "owner",
-                            title: "Owner "
+                            title: "Plan Responsible",
+                            width: 120
                         }, 
-                       { command: [{text: "tick", click: check_file}, {text: "tick1", click: act_file}, {text: "miti", click: review_file}, {text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
+                        { command: [{text: "tick", click: check_file}, {text: "tick1", click: act_file}, {text: "miti", click: review_file}, {text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 
                         ],
                     });
+          
 function check_file(e)
 {
   var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
- window.location.href = "/bcm/bc_analyses/"+ dataItem.id + "/bc_plans/new"
+  window.location.href = "/bc_analyses/"+ dataItem.id + "/bc_plans/new"
 }
 
 function act_file(e)
@@ -139,13 +143,13 @@ function review_file(e)
   var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
   window.location.href = "/assets/"+ dataItem.id + "/asset_reviews/new"
 }
-          
+
 function delete_file(e)
    {
        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
        if (confirm('Are you sure you want to delete this record ?')) {
                $.ajax({
-               url: "/computers/"+dataItem.id,
+               url: "/assessments"+dataItem.id,
                type: 'delete',
                dataType: 'json',
                success:function(result){
@@ -159,6 +163,31 @@ function delete_file(e)
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "bc_analyses/"+ dataItem.id + "/edit"
+        window.location.href = "/assets/"+ dataItem.id + "/edit"
     }
-      });
+function select_stage_class(stage_class)
+    {
+        if(stage_class == 'evaluate')
+      {
+        return "k-grid-list";
+      }
+      else if(stage_class == 'action')
+      {
+        return "k-grid-miti, .k-grid-list";
+      }
+      else if(stage_class == 'review')
+      {
+        return "k-grid-miti, .k-grid-list";
+      }
+    }
+
+function gridTitle()
+{
+  $('.k-grid-tick').attr('title','Evaluate');
+  $('.k-grid-tick1').attr('title','Act');
+  $('.k-grid-miti').attr('title','Review');
+  $('.k-grid-edit').attr('title','Edit');
+  $('.k-grid-delete').attr('title','Delete');
+}
+      
+});

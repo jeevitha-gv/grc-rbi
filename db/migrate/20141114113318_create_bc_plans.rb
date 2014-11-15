@@ -7,7 +7,7 @@ class CreateBcPlans < ActiveRecord::Migration
       t.string :capex
       t.integer :plan_responsible
       t.integer :launch_responsible
-      t.integer :bcm_status_id
+      t.integer :plan_status_id
       t.integer :recurrence_id
       t.date :review_date
       t.text :objective

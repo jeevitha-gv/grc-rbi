@@ -761,6 +761,20 @@ en:
       manager: "Manager"
       assess: "Assessment"
       notes: "Notes"
+
+  bc_plan:
+      plan: "Plan Title"
+      opex: "OPEX"
+      capex: "CAPEX"
+      plan_resp: "Plan Responsible"
+      launch_resp: "Launch Responsible"
+      plan_status: "Plan Status"
+      recurrence: "Recurrence"
+      review: "Review Date"
+      obj: "Objective"
+      audit_metric: "Audit Metric"
+      suc_cri: "Sucess Criteria"
+      lau_cri: "Launch Criteria"
 #INCIDENT MANAGEMENT
 
   incident:

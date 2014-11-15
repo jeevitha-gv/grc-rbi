@@ -11,4 +11,6 @@ class BcAnalysis < ActiveRecord::Base
 	belongs_to :bc_owner, class_name: 'User', foreign_key: 'owner'
 	belongs_to :bc_manager, class_name: 'User', foreign_key: 'manager'
 
+	has_one :bc_plan
+
 end

@@ -1,26 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'bc_maintenances/index'
-
-  get 'bc_maintenances/new'
-
-  get 'bc_acceptances/index'
-
-  get 'bc_acceptances/new'
-
-  get 'bc_implementations/index'
-
-  get 'bc_implementations/new'
-
-  get 'bc_plans/index'
-
-  get 'bc_plans/new'
-
-  get 'bc_analyses/index'
-
-  get 'bc_analyses/new'
-
-  mount Ckeditor::Engine => '/ckeditor'
+ mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -128,7 +108,12 @@ Rails.application.routes.draw do
 
   scope '/bcm' do
 
-    resources :bc_analyses 
+    resources :bc_analyses do
+
+      resources :bc_plans
+      
+    end
+
   end
 
 

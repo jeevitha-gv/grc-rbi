@@ -58,6 +58,8 @@ class User < ActiveRecord::Base
   # Assosciations with Asset Module
   has_many :bc_owner, class_name: 'BcAnalysis', foreign_key: 'owner'
   has_many :bc_manager, class_name: 'BcAnalysis', foreign_key: 'manager'
+  has_many :plan_resp, class_name: 'BcPlan', foreign_key: 'plan_responsible'
+  has_many :launch_resp, class_name: 'BcPlan', foreign_key: 'launch_responsible'
 
 
   # Associations with Policy Module
