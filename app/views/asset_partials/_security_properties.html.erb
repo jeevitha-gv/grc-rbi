@@ -12,7 +12,7 @@
       <div class="col-sm-12">
         <%= ff.label :confidentiality %>
         <div class="risk-select width-fix">
-          <%= ff.collection_select(:confidentiality, Priority.all, :score, :name, {}, {:class => "score", :id => "conf"}) %>
+          <%= ff.collection_select(:confidentiality, AssetCriticality.all, :id, :name, {}, {:class => "score", :id => "conf"}) %>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
       <div class="col-sm-12">
         <%= ff.label :integrity %>
         <div class="risk-select width-fix">        
-          <%= ff.collection_select(:integrity, Priority.all, :score, :name, {}, {:class => "score", :id => "inte"}) %>
+          <%= ff.collection_select(:integrity, AssetCriticality.all, :id, :name, {}, {:class => "score", :id => "inte"}) %>
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
       <div class="col-sm-12">
         <%= ff.label :availability %>
         <div class="risk-select width-fix">
-          <%= ff.collection_select(:availability, Priority.all, :score, :name, {}, {:class => "score", :id => "avai"}) %>
+          <%= ff.collection_select(:availability, AssetCriticality.all, :id, :name, {}, {:class => "score", :id => "avai"}) %>
         </div>
       </div>
     </div>

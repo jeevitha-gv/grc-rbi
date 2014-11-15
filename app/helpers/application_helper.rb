@@ -94,7 +94,7 @@ def link_to_add_lifecycle_fields(name, f, association, lifecycle)
 end
 
   def calc_score(asset)
-    return asset.asset_confi.score + asset.asset_avail.score + asset.asset_integ.score
+    return asset.asset_confi.id + asset.asset_avail.id + asset.asset_integ.id
   end
 
 end

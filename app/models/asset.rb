@@ -9,9 +9,9 @@ class Asset < ActiveRecord::Base
 	belongs_to :info_asset_custodian, class_name: 'User', foreign_key: 'custodian_id'
 	belongs_to :info_asset_identifier, class_name: 'User', foreign_key: 'identifier_id'
 	belongs_to :info_asset_evaluator, class_name: 'User', foreign_key: 'evaluated_by'
-	belongs_to :asset_confi, class_name: 'Priority', foreign_key: 'confidentiality'
-	belongs_to :asset_avail, class_name: 'Priority', foreign_key: 'availability'
-	belongs_to :asset_integ, class_name: 'Priority', foreign_key: 'integrity'
+	belongs_to :asset_confi, class_name: 'AssetCriticality', foreign_key: 'confidentiality'
+	belongs_to :asset_avail, class_name: 'AssetCriticality', foreign_key: 'availability'
+	belongs_to :asset_integ, class_name: 'AssetCriticality', foreign_key: 'integrity'
 
 	has_one :assessment
 
