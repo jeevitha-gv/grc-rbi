@@ -7,8 +7,8 @@ class CreateBcAnalyses < ActiveRecord::Migration
       t.integer :bu_process_id
       t.integer :threat_id
       t.integer :vulnerability_id
-      t.text :threat
-      t.text :vulnerability
+      t.text :threat_desc
+      t.text :vul_desc
       t.string :impact
       t.text :business_impact
       t.text :business_req

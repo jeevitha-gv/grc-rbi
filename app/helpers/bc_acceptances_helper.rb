@@ -1,0 +1,2 @@
+module BcAcceptancesHelper
+end

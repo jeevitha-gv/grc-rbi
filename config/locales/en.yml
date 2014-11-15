@@ -740,6 +740,27 @@ en:
     assigned_on: "Assigned"
     impact: "Impact"
 
+# BCM
+  bc_analysis:
+      title: "Title"
+      dep: "Department"
+      bu_pro: "Processess"
+      vul: "Vulnerability"
+      threat: "Threat"
+      th_desc: "Threat Description"
+      vu_desc: "Vulnerability Description"
+      impact: "Impact"
+      bu_imp: "Business Impact"
+      bu_req: "Business Requirements"
+      tech: "Technical Requirements"
+      rec: "Recovery Requirements"
+      conf: "Confidentiality"
+      inti: "Integrity"
+      avail: "Availability"
+      owner: "Owner"
+      manager: "Manager"
+      assess: "Assessment"
+      notes: "Notes"
 #INCIDENT MANAGEMENT
 
   incident:

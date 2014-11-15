@@ -49,7 +49,8 @@ class Company < ActiveRecord::Base
   has_many :assets
   has_many :information_assets, :through => :assets, :source => :asset
 
-
+ # Associations with BCM Module
+  has_many :bc_analyses
   # Associations with Policy Module
   has_many :policies
   has_many :company_controls
