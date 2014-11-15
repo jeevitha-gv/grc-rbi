@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  get 'fraud_reviews/index'
+
+  get 'fraud_reviews/new'
+
+  get 'investigations/index'
+
+  get 'investigations/new'
+
+  get 'frauds/index'
+
+  get 'frauds/new'
+
   mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -98,6 +110,9 @@ Rails.application.routes.draw do
 
 
    resources :contracts do
+   end
+
+   resources :frauds do
    end
 
   resources :asset_dashboard do

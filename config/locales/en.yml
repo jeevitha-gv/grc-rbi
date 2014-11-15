@@ -800,3 +800,23 @@ en:
     asset_manager: "Asset Manager"
     asset_user: "Asset User"
     assigned_on: "Assigned"
+
+
+#FRAUD
+
+  fraud:
+    subject: "Subject"
+    control: "Control"
+    reference: "Reference"
+    location: "Location"
+    fraud_type: "Fraud Type"
+    technology: "Technology"
+    investigator: "Investigator"
+    fraud_manager: "Fraud Manager"
+    team: "Team"
+    fraud_status: "Fraud Status"
+    person_responsible: "Person Responsible"
+    investigation_object: "Investigation Object"
+    fraud_assessment: "Fraud Assessment"
+    risk_value: "Risk Value"
+    additional_note: "Additional Note"

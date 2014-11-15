@@ -1224,3 +1224,41 @@ Classification.delete_all
     Classification.create(:name => "Confidential")
     Classification.create(:name => "Public")
     Classification.create(:name => "Business use only")
+
+RiskValue.delete_all
+
+    RiskValue.create(:name => "1-10lakhs")
+    RiskValue.create(:name => "10-100lakhs")
+
+
+Finding.delete_all
+
+    Finding.create(:name => "Finding1") 
+    Finding.create(:name => "Finding2") 
+    Finding.create(:name => "Finding3")
+
+Closing.delete_all
+
+    Closing.create(:name => "Closing1") 
+    Closing.create(:name => "Closing2") 
+    Closing.create(:name => "Closing3")
+
+
+Rating.delete_all
+
+    Rating.create(:name => "1")
+    Rating.create(:name => "2")
+    Rating.create(:name => "3")
+    Rating.create(:name => "")
+    Rating.create(:name => "5")
+
+
+FraudStatus.delete_all
+
+    FraudStatus.create(:name => "Investigated");
+    FraudStatus.create(:name => "Published")
+
+InvestigationObject.delete_all
+
+    InvestigationObject.create(:name => "Investigate Insurance Claims")
+    InvestigationObject.create(:name => "Questionable Payment")

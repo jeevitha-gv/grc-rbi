@@ -128,6 +128,15 @@ class BaseController < ActionController::Base
 	  	end
   end
 
+  # Authorize the Investigator for current Fraud
+  # def authorize_fraud
+  #     unless (@fraud.investigator == current_user.id || current_user.role_title == "company_admin")
+  #       flash[:alert] = "Access restricted"
+  #       redirect_to frauds_path
+  #     end
+  # end
+
+
   # Authorize the Auditee for current audit
 	def authorize_auditees
 	  	unless @audit.auditees.map(&:id).include?(current_user.id)

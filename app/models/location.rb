@@ -24,7 +24,11 @@ class Location < ActiveRecord::Base
   has_many :mobile_assets
   has_many :assets
 
+
   #  Associations with Policy Module
   has_many :policy_location
+
+  # Assosciations with Fraud Module
+  has_many :frauds
 
 end

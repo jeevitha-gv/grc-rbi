@@ -13,6 +13,7 @@ class Team < ActiveRecord::Base
   belongs_to :section
   has_many :risks
   has_many :incidents
+  has_many :frauds
 
 
   # validations

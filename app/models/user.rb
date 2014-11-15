@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
   has_many :artifact_answers
 
   belongs_to :user_manager, class_name: 'User', foreign_key: 'manager'
+  
+  # Associations with Fraud Tables
+  belongs_to :investigator, class_name: 'User', foreign_key: 'fraud_investigator'
+  belongs_to :fraud_manager, class_name: 'User', foreign_key: 'fraud_manager'
 
   # Associations with Risk Tables
   has_many :risk_owner, class_name: 'Risk', foreign_key: 'owner'
