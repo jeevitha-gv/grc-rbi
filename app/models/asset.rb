@@ -24,6 +24,11 @@ class Asset < ActiveRecord::Base
 
 	def save_value		
 		self.value = self.asset_confi.score + self.asset_avail.score + self.asset_integ.score
+		if self.value <= 5
+			self.severity = "Low"
+		else
+			self.value > 7 ? self.severity = "High" : self.severity = "Medium"
+		end		
 		self.save
 	end
 
