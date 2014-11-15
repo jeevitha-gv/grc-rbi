@@ -87,9 +87,9 @@ Section.delete_all
 
 Priority.delete_all
 
-    Priority.create(name: 'High', score: '3')
-    Priority.create(name: 'Medium', score: '2')
-    Priority.create(name: 'Low', score: '1')
+    Priority.create(name: 'High')
+    Priority.create(name: 'Medium')
+    Priority.create(name: 'Low')
 
 ReminderAssignment.delete_all
 
@@ -1089,3 +1089,9 @@ Classification.delete_all
     Classification.create(:name => "Confidential")
     Classification.create(:name => "Public")
     Classification.create(:name => "Business use only")
+
+AssetCriticality.delete_all
+
+    AssetCriticality.create(name: 'Low')
+    AssetCriticality.create(name: 'Medium')
+    AssetCriticality.create(name: 'High')
