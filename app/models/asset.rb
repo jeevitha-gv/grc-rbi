@@ -23,7 +23,7 @@ class Asset < ActiveRecord::Base
 	after_create :save_value, :send_notification
 
 	def save_value		
-		self.value = self.asset_confi.score + self.asset_avail.score + self.asset_integ.score
+		self.value = self.asset_confi.id + self.asset_avail.id + self.asset_integ.id
 		if self.value <= 5
 			self.severity = "Low"
 		else

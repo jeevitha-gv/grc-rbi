@@ -1,143 +1,105 @@
 <%= javascript_include_tag "/assets/outer/jquery.tagsinput.min.js" %>
+
 <%= f.fields_for :asset do |ff| %>
-
 <%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>
-<%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
-
 <% end %>
+
 <div class="clearfix">
   <h4><b>Other Asset Properties</b></h4>
 </div>
+
 <div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
-      <label class="col-sm-4 control-label">
-        <%= f.label :manufacturer, t('other_asset.manufacturer') %>
-      </label>
-      <div class="col-sm-8">
-        <%= f.text_field :manufacturer, :class => "form-control risk-normal-input" %>
+      <div class="col-sm-12">
+        <%= f.label :asset_type_id, t('other_asset.asset_type_id')%>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:asset_type_id, current_company.asset_types, :id, :name) %>
+        </div>
       </div>
-      <% if other_asset.errors[:manufacturer].present? %>
-        <div class="error_message"><%= other_asset.errors[:manufacturer][0]%></div>
-      <% end %>
     </div>
   </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
-      <label class="col-sm-4 control-label">
-       <%= f.label :model, t('other_asset.model') %>
-      </label>
-      <div class="col-sm-8">
-        <%= f.text_field :model,:class => "form-control risk-normal-input" %>
+      <div class="col-sm-12">
+        <%= f.label :asset_status_id, t('other_asset.asset_status_id')%>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:asset_status_id, AssetStatus.all, :id, :name) %>
+        </div>
       </div>
-      <% if other_asset.errors[:model].present? %>
-        <div class="error_message"><%= other_asset.errors[:model][0]%></div>
-      <% end %>
     </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
-      <label class="col-sm-4 control-label">
-       <%= f.label :serial_number, t('other_asset.serial_number') %>
-
-      </label>
-      <div class="col-sm-8">
+      <div class="col-sm-12">
+        <%= f.label :manufacturer, t('other_asset.manufacturer') %>        
+        <%= f.text_field :manufacturer, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :model, t('other_asset.model') %>
+        <%= f.text_field :model,:class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :serial_number, t('other_asset.serial_number') %>
         <%= f.text_field :serial_number, :class => "form-control risk-normal-input" %>
       </div>
     </div>
   </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
-      <label class="col-sm-4 control-label">
-			<%= f.label :asset_id, t('other_asset.asset_id') %>
-      </label>
-      <div class="col-sm-8">
-			<%= f.text_field :asset_id, :class => "form-control risk-normal-input" %>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-    <div class="form-group clearfix">
-      <label class="col-sm-4 control-label">
-     	 <%= f.label :ip, t('other_asset.ip') %>
-      </label>
-      <div class="col-sm-8">
-       	<%= f.text_field :ip, :class => "form-control risk-normal-input" %>
+      <div class="col-sm-12">
+        <%= f.label :ip, t('other_asset.ip') %>
+        <%= f.text_field :ip, :class => "form-control risk-normal-input" %>
       </div>
     </div>
   </div>
 </div>
 
-
-<div class="clearfix border-divider"> </div>
-
 <div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
-      <label class="col-sm-4 control-label">
-        <%= f.label :asset_type_id, t('other_asset.asset_type_id')%>
-      </label>
-      <div class="col-sm-8">
-        <div class="risk-select">
-          <%= f.collection_select(:asset_type_id, current_company.asset_types, :id, :name) %>
-        </div>
-        <% if other_asset.errors[:asset_type_id].present? %>
-        <div class="error_message"><%= other_asset.errors[:asset_type_id][0]%></div>
-      <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-    <div class="form-group clearfix">
-      <label class="col-sm-4 control-label">
-        <%= f.label :asset_status_id, t('other_asset.asset_status_id')%>
-      </label>
-      <div class="col-sm-8">
-        <div class="risk-select">
-          <%= f.collection_select(:asset_status_id, AssetStatus.all, :id, :name) %>
-        </div>
-        <% if other_asset.errors[:asset_status_id].present? %>
-        <div class="error_message"><%= other_asset.errors[:asset_status_id][0]%></div>
-      <% end %>
-      </div>
-    </div>
-  </div>
-  
-</div>
-
-<div class="row">
-  
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-    <div class="form-group clearfix">
-      <label class="col-sm-4 control-label">
+      <div class="col-sm-12">
         <%= f.label :maintenance_contract, t('other_asset.maintenance_contract') %>
-      </label>
-      <div class="col-sm-8">
-        <div class="risk-select">
+        <div class="risk-select width-fix">
           <%= f.collection_select(:maintenance_contract, current_company.contracts, :id, :name) %>
         </div>
       </div>
     </div>
   </div>
-
-
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <div class="form-group clearfix">
-      <label class="col-sm-4 control-label">
+      <div class="col-sm-12">
         <%= f.label :lease_contract, t('other_asset.lease_contract') %>
-      </label>
-      <div class="col-sm-8">
-        <div class="risk-select">
-          <%= f.collection_select(:lease_contract, current_company.contracts, :id, :name) %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:maintenance_contract, current_company.contracts, :id, :name) %>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="clearfix border-divider"> </div>
+
+
+<%= f.fields_for :asset do |ff| %>
+  <%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
+<% end %>
+
+
+
+
 <div class ="row">
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <%= f.fields_for :attachment, (@other_asset.attachment.present? ? @other_asset.attachment : @other_asset.build_attachment) do |attach| %>
