@@ -785,6 +785,11 @@ en:
       scope: "Scope"
       test_goal: "Test Goal"
       test_obj: "Test Objective"
+
+  bc_maintenance:
+      test_type: "Test Type"
+      issue: "Issues"
+      recurrence: "Recurrence"
 #INCIDENT MANAGEMENT
 
   incident:

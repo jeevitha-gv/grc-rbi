@@ -1,2 +1,26 @@
-<h1>BcMaintenances#new</h1>
-<p>Find me in app/views/bc_maintenances/new.html.erb</p>
+<div class="page-wrap">
+  <div class="content">
+    <div class="container">  
+      <div class="row">
+        <div id="example" class="k-content">
+          <div class="risk-title">Business Maintenance</div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            
+                              
+            <%= form_for [@bc_analysis,@bc_main] do |f| %>
+              <%= render 'form', :f => f, :bc_main => @bc_main %>
+              <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+                  <div class="btn-group gr-btn save-file">
+                    <%= f.submit "Add Business Maintenance", :class => "orange_btn"%>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+                
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

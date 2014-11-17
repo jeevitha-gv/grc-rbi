@@ -14,5 +14,6 @@ class BcAnalysis < ActiveRecord::Base
 	has_one :bc_plan
 	has_one :bc_implementation
 	has_one :bc_acceptance
+	has_one :bc_maintenance
 
 end

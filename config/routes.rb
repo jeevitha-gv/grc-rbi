@@ -115,6 +115,8 @@ Rails.application.routes.draw do
       resources :bc_implementations
 
       resources :bc_acceptances
+
+      resources :bc_maintenances
       
     end
 
