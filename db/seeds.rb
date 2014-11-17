@@ -1224,3 +1224,27 @@ Classification.delete_all
     Classification.create(:name => "Confidential")
     Classification.create(:name => "Public")
     Classification.create(:name => "Business use only")
+
+# BCM 
+
+PlanStatus.delete_all
+
+    PlanStatus.create(:name => "Production")
+    PlanStatus.create(:name => "Designed")
+    PlanStatus.create(:name => "Proposed")
+    PlanStatus.create(:name => "Transistion")
+    PlanStatus.create(:name => "Retired")
+
+Recurrence.delete_all
+
+    Recurrence.create(:name => "Monthly")
+    Recurrence.create(:name => "Quarterly")
+    Recurrence.create(:name => "Semesterly")
+    Recurrence.create(:name => "Annually")
+
+TestType.delete_all
+
+    TestType.create(:name => "Table Top")
+    TestType.create(:name => "Functional")
+    TestType.create(:name => "Full Scale")
+    TestType.create(:name => "Orientation")

@@ -775,6 +775,16 @@ en:
       audit_metric: "Audit Metric"
       suc_cri: "Sucess Criteria"
       lau_cri: "Launch Criteria"
+
+  bc_implementation:
+      impl_action: "Implementation Actions"
+      impl_status: "Implementation Status"
+
+  bc_acceptance: 
+      test_type: "Test Type"
+      scope: "Scope"
+      test_goal: "Test Goal"
+      test_obj: "Test Objective"
 #INCIDENT MANAGEMENT
 
   incident:

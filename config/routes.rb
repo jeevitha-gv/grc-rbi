@@ -111,6 +111,10 @@ Rails.application.routes.draw do
     resources :bc_analyses do
 
       resources :bc_plans
+
+      resources :bc_implementations
+
+      resources :bc_acceptances
       
     end
 
