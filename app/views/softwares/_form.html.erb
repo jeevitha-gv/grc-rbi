@@ -107,47 +107,45 @@
 			<label class="col-sm-4 control-label">
 				<%= f.label :license_expiry_date, t('software.license_expiry') %>
 			</label>
-		    <div class="col-sm-8">
-		    	<%= f.text_field :license_expiry_date, :class => "datepicker" %> </br>
-		    </div>
-		 </div>
-  	</div>
+		  <div class="col-sm-8">
+		    <%= f.text_field :license_expiry_date, :class => "datepicker" %> </br>
+		  </div>
+		</div>
+  </div>
   	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-		<div class="form-group clearfix">
-			<label class="col-sm-4 control-label">
-				<%= f.label :installation_date, t('software.installation_date') %>
-			</label>
-			<div class="col-sm-8">
-				<%= f.text_field :installation_date, :class => "datepicker" %> </br>
-			</div>
-      	</div>
+  		<div class="form-group clearfix">
+  			<label class="col-sm-4 control-label">
+  				<%= f.label :installation_date, t('software.installation_date') %>
+  			</label>
+  			<div class="col-sm-8">
+  				<%= f.text_field :installation_date, :class => "datepicker" %> </br>
+  			</div>
+      </div>
     </div>
 </div>
 
 <div class="row">
-	
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-    	<div class="form-group clearfix">
-    		<label class="col-sm-4 control-label">
-    			<%= f.label :last_audit_date, t('software.last_audit') %>
-    		</label>
-    		<div class="col-sm-8">
-    			<%= f.text_field :last_audit_date, :class => "datepicker" %> </br>
-    		</div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+  	<div class="form-group clearfix">
+  		<label class="col-sm-4 control-label">
+  			<%= f.label :last_audit_date, t('software.last_audit') %>
+  		</label>
+  		<div class="col-sm-8">
+  			<%= f.text_field :last_audit_date, :class => "datepicker" %> </br>
+  		</div>
+  	</div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+    	<label class="col-sm-4 control-label">
+    		<%= f.label :assigned_on, t('software.assigned_on') %>
+    	</label>
+    	<div class="col-sm-8">
+    		<%= f.text_field :assigned_on, :class => "datepicker" %>
     	</div>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-    	<div class="form-group clearfix">
-    		<label class="col-sm-4 control-label">
-    			<%= f.label :assigned_on, t('software.assigned_on') %>
-    		</label>
-    		<div class="col-sm-8">
-    			<%= f.text_field :assigned_on, :class => "datepicker" %>
-    		</div>
-    	</div>
-  	</div>
- </div>
-
+  </div>
+</div>
 
 <%= f.fields_for :asset do |ff| %>
   <%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
