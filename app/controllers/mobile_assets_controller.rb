@@ -2,7 +2,6 @@ class MobileAssetsController < ApplicationController
 
   layout 'asset_layout'
   
-
   def index
   	@assets = current_company.assets.where(:assetable_type => "MobileAsset")
   end
@@ -35,19 +34,15 @@ class MobileAssetsController < ApplicationController
     end
   end
 
-
-
   def edit
 		@mobile_asset = MobileAsset.find(params[:id])
 	end
 
   def update
     @mobile_asset = MobileAsset.find(params[:id])
-    #@risk.set_risk_status(@risk, params[:commit]) if params[:commit] == "Initiate Risk"
     if @mobile_asset.update_attributes(mobile_asset_params)
       redirect_to mobile_assets_path, :flash => { :notice => MESSAGES["MobileAsset"]["update"]["success"]}
     else
-      #risk_initializers(@risk.location_id, @risk.department_id, @risk.team_id, @risk.compliance_id)
       render 'edit'
     end
   end
@@ -86,8 +81,8 @@ class MobileAssetsController < ApplicationController
 
   private
 
-    def mobile_asset_params
-  		params.require(:mobile_asset).permit(:model, :manufacturer, :serial_number, :service_provider, :imei, :device_type_id, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity, :asset_users])
-  	end
+  def mobile_asset_params
+		params.require(:mobile_asset).permit(:model, :manufacturer, :serial_number, :service_provider, :imei, :device_type_id, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity, :asset_users])
+	end
 
 end
