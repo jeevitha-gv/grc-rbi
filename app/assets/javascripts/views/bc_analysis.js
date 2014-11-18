@@ -131,13 +131,19 @@ function check_file(e)
 function act_file(e)
 {
   var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-  window.location.href = "/assets/"+ dataItem.id + "/asset_actions/new"
+  window.location.href = "/bcm/bc_analyses/"+ dataItem.id + "/bc_implementations/new"
 }
 
 function review_file(e)
 {
   var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-  window.location.href = "/assets/"+ dataItem.id + "/asset_reviews/new"
+  window.location.href = "/bcm/bc_analyses/"+ dataItem.id + "/bc_acceptances/new"
+}
+
+function main_file(e)
+{
+  var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+  window.location.href = "/bcm/bc_analyses/"+ dataItem.id + "/bc_maintenances/new"
 }
           
 function delete_file(e)
