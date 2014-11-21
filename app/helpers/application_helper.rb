@@ -21,7 +21,7 @@ module ApplicationHelper
       'User'
     when 'risks'
       'Risk'
-    when 'computers', 'other_assets', 'mobile_assets', 'vendors', 'contracts'
+    when 'assets', 'information_assets', 'computers', 'mobile_assets', 'softwares', 'services', 'other_assets', 'documents', 'source_codes', 'assessments', 'asset_actions', 'asset_reviews'
       'Asset'
     else
       return ''
