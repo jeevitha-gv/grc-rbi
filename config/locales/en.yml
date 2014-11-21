@@ -294,6 +294,26 @@ en:
               blank: "Department can't be blank"
             incident_status_id:
               blank: "Status can't be blank"
+        evaluate:
+          attributes:
+            urgency_id:
+              blank: "Title can't be blank"
+            incident_priority_id:
+              blank: "Job Title can't be blank"
+            incident_impact_id: 
+              blank: "Type can't be blank"
+            assignee: 
+              blank: "Contact can't be blank"
+            target_date:
+              blank: "Category can't be blank"
+            sla_id:
+              blank: "Sub Category can't be blank"
+            incident_origin_id:
+              blank: "Summary can't be blank"
+            resolutiontime:
+              blank: "Department can't be blank"
+            escalation_id:
+              blank: "Status can't be blank"
         audit:
           attributes:
             title:
@@ -643,8 +663,8 @@ en:
     velocity: "Velocity"
 
   incident:
-    job: "Job Title"
-    title1: "Title"
+    job: "Job Title*"
+    title1: "Title*"
     Request_type: "Request Type"
     incident_category: "Incident Category" 
     sub_category: "Sub Category"
@@ -654,7 +674,7 @@ en:
     attachment: "Attachment"
     incident_status: "Status"
     comment: "Comment"
-    contact: "Contact No"
+    contact_no: "Contact No*"
     team: "Team"
 
   evaluate:
