@@ -22,6 +22,14 @@ layout 'control_layout'
       redirect_to new_control_path
     end
   end
+
+  def control_all
+    if params[:stage].present?
+      @controls = current_user.controls_stage(params)
+    else
+      @controls = current_user.accessible_controls
+    end
+  end
   
   # def update
   #   @incident = Incident.find(params[:id])
@@ -50,7 +58,7 @@ layout 'control_layout'
   private
   
   def control_params
-    params.require(:control).permit(:controlid, :name, :owner, :owner_delegate, :objective, :maintenance_metric_description, :note, :classification_control_id, :purpose_control_id, :owning_group_id, :control_regulation_id)
+    params.require(:control).permit(:controlid, :name, :owner, :description,:owner_delegate, :objective, :maintenance_metric_description, :note, :classification_control_id, :purpose_control_id, :owning_group_id, :control_regulation_id)
   end
 
 

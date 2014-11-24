@@ -236,7 +236,7 @@
                                      <label for="exampleInputPassword1">
                                       <%= f.label :description, t('control.description')%>
                                      </label>
-                                     <%#= f.text_area :description,:class=>"form-control control-big-input"%>
+                                     <%= f.text_area :description,:class=>"form-control control-big-input"%>
                                      <% if control.errors[:description].present? %>
                                     <div class="error_message"><%= control.errors[:description][0]%></div>
                                      <% end %>
