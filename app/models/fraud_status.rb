@@ -1,3 +1,3 @@
 class FraudStatus < ActiveRecord::Base
-	belongs_to :fraud
+	has_many :frauds
 end

@@ -812,7 +812,7 @@ en:
     fraud_type: "Fraud Type"
     technology: "Technology"
     investigator: "Investigator"
-    fraud_manager: "Fraud Manager"
+    fraud_manager: "Fraud Manager" 
     team: "Team"
     fraud_status: "Fraud Status"
     person_responsible: "Person Responsible"
@@ -820,3 +820,15 @@ en:
     fraud_assessment: "Fraud Assessment"
     risk_value: "Risk Value"
     additional_note: "Additional Note"
+    summary: "Summary"
+    closing: "Reason For Closing"
+    finding: "Finding"
+    rating: "Rating"
+    actual_loss: "Actuall Loss"
+    assign_for: "Assign To"
+    detection_strategy: "Detection Strategy"
+    detection_method: "Detection_Method"
+
+
+
+     

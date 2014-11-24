@@ -128,13 +128,13 @@ class BaseController < ActionController::Base
 	  	end
   end
 
-  # Authorize the Investigator for current Fraud
-  # def authorize_fraud
-  #     unless (@fraud.investigator == current_user.id || current_user.role_title == "company_admin")
-  #       flash[:alert] = "Access restricted"
-  #       redirect_to frauds_path
-  #     end
-  # end
+  #Authorize the Investigator for current Fraud
+  def authorize_fraud
+      unless (@fraud.investigator == current_user.id || current_user.role_title == "company_admin")
+        flash[:alert] = "Access restricted"
+        redirect_to frauds_path
+      end
+  end
 
 
   # Authorize the Auditee for current audit
@@ -162,6 +162,10 @@ class BaseController < ActionController::Base
 
   def current_asset
     @asset = Asset.find(params[:asset_id])
+  end
+  
+  def current_fraud
+    @fraud = Fraud.find(params[:fraud_id])
   end
 
   def authorize_custodian

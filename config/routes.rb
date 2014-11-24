@@ -1,16 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'fraud_reviews/index'
-
-  get 'fraud_reviews/new'
-
-  get 'investigations/index'
-
-  get 'investigations/new'
-
-  get 'frauds/index'
-
-  get 'frauds/new'
+ 
 
   mount Ckeditor::Engine => '/ckeditor'
 
@@ -113,6 +103,8 @@ Rails.application.routes.draw do
    end
 
    resources :frauds do
+    resources :investigations
+    resources :fraud_reviews
    end
 
   resources :asset_dashboard do

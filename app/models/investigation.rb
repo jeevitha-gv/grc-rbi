@@ -1,7 +1,8 @@
 class Investigation < ActiveRecord::Base
-	has_one :fraud
-	has_one :closing
-	has_one :finding
-	has_one :rating
-	
+	belongs_to :fraud
+	belongs_to :closing
+	belongs_to :finding
+	belongs_to :rating
+
+	belongs_to :assign, class_name: 'User', foreign_key: 'assign_for'
 end

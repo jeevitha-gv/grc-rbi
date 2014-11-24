@@ -31,9 +31,20 @@ class User < ActiveRecord::Base
 
   belongs_to :user_manager, class_name: 'User', foreign_key: 'manager'
   
+
+
+
+  
   # Associations with Fraud Tables
-  belongs_to :investigator, class_name: 'User', foreign_key: 'fraud_investigator'
-  belongs_to :fraud_manager, class_name: 'User', foreign_key: 'fraud_manager'
+  has_many :fraud_inves, class_name: 'Fraud', foreign_key: 'investigator'
+  has_many :fraud_man, class_name: 'Fraud', foreign_key: 'fraud_manager'
+  has_many :fraud_resp, class_name: 'Fraud', foreign_key: 'person_responsible'
+  has_many :assign, class_name: 'Investigation', foreign_key: 'assign_for'
+  has_many :assign_tothe, class_name: 'FraudReview', foreign_key: 'assign_to'
+
+
+
+
 
   # Associations with Risk Tables
   has_many :risk_owner, class_name: 'Risk', foreign_key: 'owner'

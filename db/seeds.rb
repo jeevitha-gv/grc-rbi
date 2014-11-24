@@ -1233,15 +1233,15 @@ RiskValue.delete_all
 
 Finding.delete_all
 
-    Finding.create(:name => "Finding1") 
-    Finding.create(:name => "Finding2") 
-    Finding.create(:name => "Finding3")
+    Finding.create(:name => "Proven Fraud") 
+    Finding.create(:name => "Unproven Fraud") 
+    Finding.create(:name => "Fraud Discarded")
 
 Closing.delete_all
 
-    Closing.create(:name => "Closing1") 
-    Closing.create(:name => "Closing2") 
-    Closing.create(:name => "Closing3")
+    Closing.create(:name => "Fraud Proven By Internal Investigation") 
+    Closing.create(:name => "Unproven Fraud") 
+    Closing.create(:name => "Unrelated Fraud")
 
 
 Rating.delete_all
