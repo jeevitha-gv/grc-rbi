@@ -47,3 +47,16 @@
 .audit_search {
     z-index: 0;
 }
+
+.asset-search-box {
+  margin:0 0px 0 0;
+  padding:10px;
+  background:#ffffff;
+  border:1px solid #ffffff;
+  border-bottom:none;
+  min-height:50px;
+}
+
+.button-fix {
+  padding: 16px 81px;
+}
