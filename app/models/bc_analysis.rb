@@ -5,6 +5,7 @@ class BcAnalysis < ActiveRecord::Base
 	belongs_to :threat
 	belongs_to :vulnerability
 	belongs_to :company
+	belongs_to :bc_status
 	belongs_to :bc_confi, class_name: 'Priority', foreign_key: 'confidentiality'
 	belongs_to :bc_avail, class_name: 'Priority', foreign_key: 'availability'
 	belongs_to :bc_integ, class_name: 'Priority', foreign_key: 'integrity'

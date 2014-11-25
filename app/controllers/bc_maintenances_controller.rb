@@ -2,6 +2,8 @@ class BcMaintenancesController < ApplicationController
 
   before_filter :current_bc
   before_filter :accessible_plans, :only => [:index]
+
+  layout 'bcm_layout'
   
   def index
   end

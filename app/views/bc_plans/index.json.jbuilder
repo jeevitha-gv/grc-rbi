@@ -1,5 +1,5 @@
 json.data do |json|
-  json.array!(@bu) do |a|  	  
+  json.array!(@access_plans) do |a|  	  
   	  json.id a.id
   	  binding.pry
       json.plan a.bc_plan.plan

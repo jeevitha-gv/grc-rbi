@@ -1,6 +1,6 @@
 json.data do |json|
-  json.array!(@bu) do |a|  	  
-  	  json.id a.id
+  json.array!(@access_plans) do |a|  
+   	  json.id a.id
       json.title a.title
       json.department a.department.name
       json.threat a.threat.name

@@ -2,6 +2,8 @@ class BcImplementationsController < ApplicationController
 
   before_filter :current_bc
   before_filter :accessible_plans, :only => [:index]
+  
+  layout 'bcm_layout'
 
   def index
 
@@ -15,7 +17,8 @@ class BcImplementationsController < ApplicationController
   def create
   	@bc_impl = @bc_analysis.build_bc_implementation(bc_impl_params)
   	if @bc_impl.save
-  		
+      @bc_analysis.bc_status_id = 3
+      @bc_analysis.save  		
   		redirect_to bc_analysis_bc_implementations_path
   	else
   		render new

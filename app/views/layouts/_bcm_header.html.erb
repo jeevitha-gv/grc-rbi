@@ -13,21 +13,12 @@
             </div>
           <% end %>
           </div>
-    <%if company_plan_check%>
-      <div class="navbar-collapse collapse fleft">
-          <ul class="nav navbar-nav main_nav">
-            <li><a href="/admin/plans" class="<%= add_admin_active_class(params) == 'plans' ? 'active' : '' %>">
-              <div class="overview-icon"></div>
-              Over view</a></li>
-              </ul>
-        </div>
-    <%else%>
         <div class="navbar-collapse collapse fleft">
           <ul class="nav navbar-nav main_nav">
-            <li><a href="/admin/settings" class="<%= add_admin_active_class(params) == 'Settings' ? 'active' : '' %>">
+            <li><a href="/user/edit" class="<%= add_admin_active_class(params) == 'Settings' ? 'active' : '' %>">
               <div class="overview-icon"></div>
               Overview</a></li>
-           <% if company_modules_check('Policy') %>
+            <% if company_modules_check('Policy') %>
               <li><a href="/policies" class="<%= add_active_class(params) == 'Policy' ? 'active' : '' %>">
                 <div class="policy-icon"></div>
                 Policy</a></li>
@@ -59,9 +50,7 @@
               <% end %>
           </ul>
         </div>
-        <%end%>
-
-				<input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">
+        <input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">
         <div class="user_login">
           <% unless current_user.attachment.blank? || current_user.attachment.attachment_file.blank? %>
             <%= image_tag(current_user.attachment.attachment_file.small) %>
@@ -93,18 +82,57 @@
   <!-- Fixed navbar -->
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
-    <div class="container" id="header_links">
+      <ul class="subbar-nav nav navbar-nav">
+        <li><a  href="" class="<%= request.fullpath.include?("asset_dashboard") == true ? 'active' : '' %>">
+            <div class="dash-icon"></div>
+            Dashboard</a></li>
+              
+        <li><a  href="/bcm/bc_analyses/new" class="<%= request.fullpath.include?("bc_analyses/new") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Analysis</a></li>
+        <li><a  href="/bcm/bc_analyses" class="<%= (request.fullpath.include?("bc_analyses") && action_name == "index") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Inventory</a></li>
+        <li><a  href="/bcm/bc_analyses?stage=evaluate" class="<%=request.fullpath.include?("evaluate") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Business Plan</a></li>
+        <li><a  href="/bcm/bc_analyses?stage=action" class="<%= request.fullpath.include?("action") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Implemenatation</a></li>
+        <li><a  href="/bcm/bc_analyses?stage=review" class="<%= request.fullpath.include?("review") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Acceptance</a></li>
+        <li><a  href="/bcm/bc_analyses?stage=maintenance" class="<%= request.fullpath.include?("maintenance") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Maintenance</a></li>
+        <!-- <li><a  href="/vendors" class="<%#= request.fullpath.include?("vendors") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Vendors</a></li>
+        <li><a  href="/contracts" class="<%#= request.fullpath.include?("contracts") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Contracts --></a></li>
+        <li><a href="/admin/asset_types" >
+          <div class="setting-icon"></div>
+          Configure</a></li>
+      </ul>
     </div>
   </div>
 </div>
-<!-- Notice  -->
-  <!--<p class="notice"><%#= notice %></p>
-    <p class="alert"><%#= alert %></p>-->
+<!-- Notice -->
+<%if flash[:notice]%>
+  <div class="alert alert-success"><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:notice] %></div>
+<%end%>
+<%if flash[:alert]%>
+  <div class="alert alert-info"><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:alert] %></div>
+<%end%>
+<%if flash[:error]%>
+    <div class="alert alert-danger"><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:error]  %></div>
+<%end%>
 <!-- Notice end -->
 
 <script type="text/javascript">
   $(document).ready(function(){
-		var module = $('#module').val()
+    var module = $('#module').val()
     $( ".user_login" ).mouseenter(function() {
       $(this).addClass("active");
       $(".account_header_dropdown").slideDown(100);
@@ -118,21 +146,5 @@
       // new Messi('Planned for further phases.', {autoclose: '5000'});
       new Messi('Planned for further phases.', {title: 'Warning', titleClass: 'warning', autoclose: 2000});
     });
-	if (module == 'overview')
-		{
-			$("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/overview_links'))%>");
-		}
-    else if(module == 'policy')
-    {
-      $("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/policy_links'))%>");
-    }
-		else if(module == 'risk')
-		{
-			$("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/risk_links'))%>");
-		}
-		else if(module == 'audit')
-		{
-			$("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/audit_links'))%>");
-		}
   });
 </script>

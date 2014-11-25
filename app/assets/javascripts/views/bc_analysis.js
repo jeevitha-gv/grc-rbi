@@ -1,4 +1,4 @@
-                $(document).ready(function () {
+$(document).ready(function () {
 
 $('.cancel-btn1').click(function(){
     $('#search-value').val('');
@@ -32,52 +32,48 @@ function search_result()
     $("#grid").data("kendoGrid").dataSource.filter({
         logic  : "or",
         filters: [
+            
             {
-                field: "title",
+                field: "assetable_type",
                 operator: "contains",
                 value   : val
-            },
-            {
-                field: "department",
-                operator: "contains",
-                value   : val
-            },
-            {
-                 field: "threat",
-                 operator: "contains",
-                 value   : val
             },
             {
                  field: "owner",
                  operator: "contains",
                  value   : val
             },
-            
+            {
+                 field: "custodian",
+                 operator: "contains",
+                 value   : val
+            },           
         ]
     });
 }
 
 
 
+$("#panelbar").kendoPanelBar();
 
-                    $("#grid").kendoGrid({
-                        dataSource: {
-                            transport: {
-                                read: {
-                                    url: "/bcm/bc_analyses",
-                                    dataType: 'json',
-                                    type: 'get'
-                                },
-                                destroy: {
-                                           url: function(risk) 
-                                                {
-                                                    return "/bc_analyses/" + bc_analysis.id
-                                                },
-                                                dataType: "json",
-                                                type: "DELETE"
-                                         }
-                            },
-                            schema: {
+    if ( stage.length > 0 )
+    {
+        var bc_analyses_url = "/bcm/bc_analyses?stage="+stage;
+    }
+    else
+    {
+        var bc_analyses_url  = "/bcm/bc_analyses"
+    }
+
+    dataSource = new kendo.data.DataSource({
+        transport: {
+            read: {
+                url: bc_analyses_url,
+                dataType: 'json',
+                type: 'get'
+            },
+        },
+        schema: {
             errors: function(response) {
             return response.errors;
         },
@@ -86,15 +82,23 @@ function search_result()
             id: "id",
                 fields: {
                     title: { type: "string" },
-                    department: { type: "string" },
-                    threat: { type: "string" },
-                    owner: { type: "string" },
+                    department: {type: "string"},
+                    threat: {Type: "string"},
+                    owner: {type: "string"},
                     
                 }
             }
         },
                             // pageSize: 20
-                        },
+                        });
+
+
+                $("#grid").kendoGrid({
+        dataSource: dataSource,
+        dataBound: function(){
+            updateGridForStage(stage)
+            gridTitle()
+        },
                         height: 550,
                         groupable: false,
                         sortable: true,
@@ -118,7 +122,7 @@ function search_result()
                             field: "owner",
                             title: "Owner "
                         }, 
-                       { command: [{text: "tick", click: check_file}, {text: "tick1", click: act_file}, {text: "miti", click: review_file}, {text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
+                       { command: [{text: "tick", click: check_file}, {text: "tick1", click: act_file}, {text: "miti", click: review_file}, {text: "edit", click: main_file},{text: "delete", click: delete_file}], title: "Action" }
 
                         ],
                     });
@@ -166,5 +170,33 @@ function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
         window.location.href = "bc_analyses/"+ dataItem.id + "/edit"
+    }function select_stage_class(stage_class)
+    {
+       if(stage_class == 'evaluate')
+      {
+        return "k-grid-list";
+      }
+      else if(stage_class == 'action')
+      {
+        return "k-grid-miti, .k-grid-list";
+      }
+      else if(stage_class == 'review')
+      {
+        return "k-grid-miti, .k-grid-list";
+      }
+       if(stage_class == 'maintenance')
+      {
+        return "k-grid-list";
+      }
     }
-      });
+
+function gridTitle()
+{
+  $('.k-grid-tick').attr('title','Evaluate');
+  $('.k-grid-tick1').attr('title','Act');
+  $('.k-grid-miti').attr('title','Review');
+  $('.k-grid-edit').attr('title','Edit');
+  $('.k-grid-delete').attr('title','Delete');
+}
+      
+});

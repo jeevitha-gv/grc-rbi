@@ -86,6 +86,7 @@ Section.delete_all
     Section.create(name: 'Incident')
     Section.create(name: 'Asset')
     Section.create(name: 'Policy')
+    Section.create(name: 'BCPM')
 
 Priority.delete_all
 
@@ -921,12 +922,13 @@ CvssMetricScoring.delete_all
 Subscription.delete_all
 
     # Subscription.create(:name => "Free", :description => "free",:section_ids=> [1,2], :amount => 0.00, :valid_log =>23,:valid_period => 1)
-    Subscription.create(name: "All Modules", description: "Subscribe all Modules", section_ids: [1,2,3,4,5], amount: 0.00, valid_log: 23, valid_period: 1, user_count: 10, file_size: 75)
+    Subscription.create(name: "All Modules", description: "Subscribe all Modules", section_ids: [1,2,3,4,5,6], amount: 0.00, valid_log: 23, valid_period: 1, user_count: 10, file_size: 75)
     Subscription.create(name: "Audit", description: "Audit", section_ids: [1], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
     Subscription.create(name: "Risk", description: "Risk", section_ids: [2], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
     Subscription.create(name: "Asset", description: "Asset", section_ids: [3], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
     Subscription.create(name: "Policy", description: "Policy", section_ids: [4], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
     Subscription.create(name: "Incident", description: "Incident", section_ids: [5], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
+    Subscription.create(name: "BCPM", description: "Bcm", section_ids: [6], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
 
 
 RiskModel.delete_all
@@ -1248,3 +1250,11 @@ TestType.delete_all
     TestType.create(:name => "Functional")
     TestType.create(:name => "Full Scale")
     TestType.create(:name => "Orientation")
+
+BcStatus.delete_all
+
+    BcStatus.create(:name => "Analysis")
+    BcStatus.create(:name => "Planned")
+    BcStatus.create(:name => "Implemented")
+    BcStatus.create(:name => "Acceptance")
+    BcStatus.create(:name => "Maintenance")

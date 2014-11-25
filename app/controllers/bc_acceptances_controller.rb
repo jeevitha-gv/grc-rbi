@@ -2,6 +2,8 @@ class BcAcceptancesController < ApplicationController
 
   before_filter :current_bc
   before_filter :accessible_plans, :only => [:index]
+
+  layout 'bcm_layout'
   
   def index
   end
@@ -16,6 +18,8 @@ class BcAcceptancesController < ApplicationController
   def create
   	@bc_accep = @bc_analysis.build_bc_acceptance(bc_accep_params)
   	if @bc_accep.save
+      @bc_analysis.bc_status_id = 4
+      @bc_analysis.save   
   		redirect_to bc_analysis_bc_acceptances_path
   	else
   		render new

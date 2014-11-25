@@ -3,7 +3,10 @@ class BcPlansController < ApplicationController
 	before_filter :current_bc
   before_filter :accessible_plans, :only => [:index]
 
+  layout 'bcm_layout'
+  
   def index
+    
   end
 
   def new
@@ -14,6 +17,8 @@ class BcPlansController < ApplicationController
   	@bc_plan = @bc_analysis.build_bc_plan(bc_plan_params)
     @bc_plan.plan_status_id = 1
   	if @bc_plan.save
+      @bc_analysis.bc_status_id = 2
+      @bc_analysis.save
   		redirect_to bc_analysis_bc_plans_path
   	else
   		redirect_to new_bc_analysis_bc_plan_path

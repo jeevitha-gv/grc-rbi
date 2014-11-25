@@ -33,9 +33,9 @@ class AssetActionsController < ApplicationController
   def update
         @asset_action = @asset.asset_action
       if @asset_action.update(action_params)
-        params[:files].each do |a|
-        Attachment.update(:attachment_file => a, :attachable_type => "AssetAction", :attachable_id => @asset_action.id, :company_id => current_company.id)
-        end 
+        # params[:files].each do |a|
+        # Attachment.update(:attachment_file => a, :attachable_type => "AssetAction", :attachable_id => @asset_action.id, :company_id => current_company.id)
+        # end 
        
         redirect_to asset_asset_actions_path
       else

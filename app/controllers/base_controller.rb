@@ -182,12 +182,16 @@ class BaseController < ActionController::Base
   end
 
   def accessible_plans
-    if params[:stage] == "evaluate"
-      @access_plans = current_company.bc_analyses.where("owner = ? ", current_user.id)
+    if params[:stage].nil?
+       @access_plans = current_company.bc_analyses
+    elsif params[:stage] == "evaluate"
+      @access_plans = current_company.bc_analyses.where("owner = ? AND bc_status_id = ?", current_user.id,"1")
     elsif params[:stage] == "action"
-      @access_plans = current_company.bc_analyses.where("manager = ? AND ", current_user.id)
+      @access_plans = current_company.bc_analyses.where("owner = ? AND bc_status_id = ?", current_user.id,"2")
     elsif params[:stage] == "review"
-      @access_plans = current_company.assets.where("owner = ? ", current_user.id)
+      @access_plans = current_company.bc_analyses.where("owner = ? AND bc_status_id = ?", current_user.id,"3")
+    elsif params[:stage] == "maintenance"
+      @access_plans = current_company.bc_analyses.where("owner = ? AND bc_status_id = ?", current_user.id,"4")
     end
   end
 
