@@ -1,5 +1,5 @@
 class FraudsController < ApplicationController
-
+ layout 'fraud_layout'
 #before_filter :fraud_investigator_users, :only => [:new, :create, :edit, :update]
 # before_filter :authorize_fraud, :only => [:new, :create, :edit, :update]
 

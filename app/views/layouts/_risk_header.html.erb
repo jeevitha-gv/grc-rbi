@@ -43,6 +43,11 @@
                 <div class="risk-icon"></div>
                 Incident</a></li>
               <% end %>
+              <% if company_modules_check('Fraud') %>
+              <li><a href="/frauds" class="<%= add_admin_active_class(params) == 'Fraud' ? 'active' : '' %>">
+                <div class="audit-icon"></div>
+                Fraud</a></li>
+            <% end %>
           </ul>
         </div>
 				<input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">
@@ -87,10 +92,10 @@
         <li><a  href="/risks" class="<%= request.fullpath.exclude?("mitigate") && request.fullpath.exclude?("new") && request.fullpath.exclude?("review") && request.fullpath.exclude?("mitigations") == true ? 'active' : '' %>">
           <div class="listing-icon"></div>
           Listings</a></li>
-        <li><a href="/risks?stage=mitigate" class="<%= request.fullpath.include?("mitigate") || request.fullpath.include?("mitigations") == true ? 'active' : '' %>">
+        <li><a href="/frauds?stage=mitigate" class="<%= request.fullpath.include?("mitigate") || request.fullpath.include?("mitigations") == true ? 'active' : '' %>">
           <div class="lmitigate-icon"></div>
           Mitigate</a></li>
-        <li><a  href="/risks?stage=review" class="<%= request.fullpath.include?("review") == true ? 'active' : '' %>">
+        <li><a  href="/frauds?stage=review" class="<%= request.fullpath.include?("review") == true ? 'active' : '' %>">
           <div class="review-icon"></div>
           Review</a></li>
         <li><a href="/admin/controls" >

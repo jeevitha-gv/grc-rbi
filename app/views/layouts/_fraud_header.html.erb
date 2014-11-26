@@ -13,21 +13,12 @@
             </div>
           <% end %>
           </div>
-         <%if company_plan_check%>
-          <div class="navbar-collapse collapse fleft">
-          <ul class="nav navbar-nav main_nav">
-             <li><a href="/admin/plans" class="<%= add_admin_active_class(params) == 'plans' ? 'active' : '' %>">
-              <div class="overview-icon"></div>
-              Overview</a></li>
-            </ul>
-          </div>
-         <%else%>
         <div class="navbar-collapse collapse fleft">
           <ul class="nav navbar-nav main_nav">
-            <li><a href="/user/edit" class="<%= (add_active_class(params) == 'User' ||  add_active_class(params) == '') ? 'active' : '' %>">
+            <li><a href="/user/edit" class="<%= add_admin_active_class(params) == 'Settings' ? 'active' : '' %>">
               <div class="overview-icon"></div>
               Overview</a></li>
-           <% if company_modules_check('Policy') %>
+            <% if company_modules_check('Policy') %>
               <li><a href="/policies" class="<%= add_active_class(params) == 'Policy' ? 'active' : '' %>">
                 <div class="policy-icon"></div>
                 Policy</a></li>
@@ -53,28 +44,27 @@
                 Incident</a></li>
               <% end %>
               <% if company_modules_check('Fraud') %>
-             <li><a href="/frauds" class="<%= add_active_class(params) == 'Fraud' ? 'active' : '' %>">
-                <div class="risk-icon"></div>
+              <li><a href="/frauds" class="<%= add_admin_active_class(params) == 'Fraud' ? 'active' : '' %>">
+                <div class="audit-icon"></div>
                 Fraud</a></li>
-              <% end %>
+            <% end %>
           </ul>
         </div>
-        <% end %>
+        <input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">
         <div class="user_login">
-          <% if current_user.attachment.present? %>
-            <%= image_tag(current_user.attachment.attachment_file.small) if current_user.attachment.attachment_file.present? %>
+          <% unless current_user.attachment.blank? || current_user.attachment.attachment_file.blank? %>
+            <%= image_tag(current_user.attachment.attachment_file.small) %>
           <% else %>
             <img src="/assets/outer/user-icon.jpg">
           <% end %>
           <div class="roll-audit"><%= current_user.role_title.humanize.capitalize %></div>
-
           <div class="user-name"><%= current_user.user_name unless current_user.user_name.blank? %></div>
           <span id="login_drop"><img src="/assets/outer/user-down-arrow.png"></span>
 
           <div class="account_header_dropdown" style="display: none;">
             <ul>
               <li><%= link_to "User Profile", edit_user_path %></li>
-              <li><%= link_to "Audit Trail", activities_path %></li>
+              <li><%= link_to "Audit Trial", activities_path %></li>
               <li><%= link_to "Reset Password", password_user_path %></li>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
             </ul>
@@ -88,57 +78,40 @@
 
 <div class="clearfix"></div>
 
-<div class="sub_menu audit-sp">
+<div class="sub_menu">
   <!-- Fixed navbar -->
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-			<% if overview_header && !company_plan_check%>
-				<li><a href="/user/edit" class="<%= request.fullpath.include?("user/edit") == true ? 'active' : '' %>">
+        <!-- <li><a  href="/asset_dashboard" class="<%#= request.fullpath.include?("asset_dashboard") == true ? 'active' : '' %>">
+            <div class="dash-icon"></div>
+            Dashboard</a></li> -->       
+        <li><a  href="/frauds/new" class="<%= request.fullpath.include?("frauds/new") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            File</a></li>
+        <li><a  href="/frauds" class="<%= request.fullpath.exclude?("act") && request.fullpath.exclude?("new") && request.fullpath.exclude?("review") && request.fullpath.exclude?("investigations") == true ? 'active' : '' %>">
+          <div class="listing-icon"></div>
+          Listings</a></li>
+        <li><a href="/frauds?stage=act" class="<%= request.fullpath.include?("act") || request.fullpath.include?("investigations") == true ? 'active' : '' %>">
+          <div class="lmitigate-icon"></div>
+          Investigate</a></li>
+        <li><a  href="/frauds?stage=review" class="<%= request.fullpath.include?("review") == true ? 'active' : '' %>">
+          <div class="review-icon"></div>
+          Review</a></li>
+        <!-- <li><a  href="/vendors" class="<%#= request.fullpath.include?("vendors") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Vendors</a></li>
+        <li><a  href="/contracts" class="<%#= request.fullpath.include?("contracts") == true ? 'active' : '' %>">
+            <div class="plan-icon"></div>
+            Contracts --></a></li>
+        <li><a href="/admin/fraud_types" >
           <div class="setting-icon"></div>
-          Profile Settings</a></li>
-        <% if current_user.role.title == "company_admin" %>
-          <li><a href="/admin/settings">
-            <div class="setting-icon"></div>
-            Admin Settings</a></li>
-        <% end %>
-			<% elsif !overview_header && !company_plan_check %>
-        <li><a href="/" class="<%#= request.fullpath.include?("audit_dashboard") == true ? 'active' : '' %>">
-          <div class="dash-icon"></div>
-          Dashboard</a></li>
-        <li><a href="/dashboard/calender" class="<%= request.fullpath.include?("dashboard/calender") == true ? 'active' : '' %>">
-          <div class="calender-icon"></div>
-          Calendar</a></li>
-        <li><a href="/audits/new" class="<%= (request.fullpath.include?("audits/new") && action_name=="new") == true ? 'active' : '' %>">
-          <div class="plan-icon"></div>
-          Plan</a></li>
-        <li><a href="/audits" class="<%= ((request.fullpath.include?("audits") && controller_name == 'audits' && action_name=="index") == true ? 'active' : '') unless request.fullpath.include? '/audits?stage' %>">
-          <div class="list-icon"></div>
-          List</a></li>
-        <li><a href="<%= '/audits?stage=do' %>" class="<%= check_stage('do','nc_questions/new','audit_compliances') ? 'active' : '' %>">
-          <div class="do-icon"></div>
-          Do</a></li>
-        <li><a href="/audits?stage=check" class="<%= (request.fullpath.include?('stage=check') || request.fullpath.include?("checklist_recommendations/new")) == true ? 'active' : '' %>">
-          <div class="check-icon"></div>
-          Check</a></li>
-        <li><a href="/audits?stage=act" class="<%= (request.fullpath.include?('stage=act') || request.fullpath.include?("checklist_recommendations/auditee_response")) == true ? 'active' : '' %>">
-          <div class="act-icon"></div>
-          Act</a></li>
-        <li><a href="/audits?stage=published" class="<%= (request.fullpath.include?('stage=published') || request.fullpath.include?("checklist_recommendations/audit_observation")) == true ? 'active' : '' %>">
-          <div class="published-icon"></div>
-          Publish</a></li>
-        <li><a href="/admin/operational_areas" >
-          <div class="setting-icon"></div>
-          Configure</a></li>
-          <%else%>
-          <li><a href="/admin/plans">
-            <div class="setting-icon"></div>
-            Plan</a></li>
-					<% end %>
+          Configure</a></li> 
       </ul>
     </div>
   </div>
 </div>
+<!-- Notice -->
 <%if flash[:notice]%>
   <div class="alert alert-success"><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:notice] %></div>
 <%end%>
@@ -149,3 +122,22 @@
     <div class="alert alert-danger"><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:error]  %></div>
 <%end%>
 <!-- Notice end -->
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var module = $('#module').val()
+    $( ".user_login" ).mouseenter(function() {
+      $(this).addClass("active");
+      $(".account_header_dropdown").slideDown(100);
+    })
+    .mouseleave(function() {
+      $(this).removeClass("active");
+      $(".account_header_dropdown").hide();
+    });
+
+    $(".next-phase").click(function(){
+      // new Messi('Planned for further phases.', {autoclose: '5000'});
+      new Messi('Planned for further phases.', {title: 'Warning', titleClass: 'warning', autoclose: 2000});
+    });
+  });
+</script>

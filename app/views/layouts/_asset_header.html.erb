@@ -43,6 +43,11 @@
                 <div class="risk-icon"></div>
                 Incident</a></li>
               <% end %>
+              <% if company_modules_check('Fraud') %>
+              <li><a href="/frauds" class="<%= add_admin_active_class(params) == 'Fraud' ? 'active' : '' %>">
+                <div class="audit-icon"></div>
+                Fraud</a></li>
+            <% end %>
           </ul>
         </div>
         <input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">

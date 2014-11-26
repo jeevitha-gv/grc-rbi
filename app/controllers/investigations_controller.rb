@@ -1,5 +1,5 @@
 class InvestigationsController < ApplicationController
-  layout 'asset_layout'
+   layout 'fraud_layout'
   before_filter :current_fraud
   # before_filter :authorize_evaluator, :only => [:new, :create,:edit,:update]
   # before_filter :accessible_assets, :only => [:index]
