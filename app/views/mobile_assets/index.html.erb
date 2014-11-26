@@ -1,74 +1,63 @@
 <style>
-  .audit_search {
-    z-index: 0;
+  .k-grid-content {
+    height: auto !important;
+    max-height: 270px !important;
+    min-height: 450px !important;
+  }
+  .k-grid {
+      border-color: #e9e9e9;
+      height: 568px !important;
   }
 </style>
 
-<link rel="stylesheet" type="text/css" href="/assets/outer/asset-style.css">
 <%= javascript_include_tag "/assets/views/mobile_asset.js" %>
 
-<div id="test3">
-<div class="containerFull">
-  
-  <%= render partial: "asset_partials/new_menu" %>
-  <div id="rightCol" class="contentCol hasRightCol">
-    <div class="clearfix" style="width: 1116px">
-       <div id="add_url" class="modal fade">
-              <div class="modal-dialog modal-dialog_large">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp; </button>
-                    <h4 class="modal-title" id="myModalLabel">Import MobileAsset from CSV/XLSX</h4>
-                       <div class="modal-content-inner">
-                      <%= form_tag mobileasset_imports_mobile_assets_path, multipart: true do %>
-                        <%= file_field_tag :file %>
-                        <br>
-                        <div class="model-footer">
-                          <%= submit_tag "Import" ,:class => "black_btn" %>
-                          <%= submit_tag "Cancel" ,:class => "orange_btn" %>
-                        </div>
-                      <% end %>
-                    </div>
-                    <p></p>
-                    <p>
-                      <div  class="grey_btn pop-up-gray">
-                      <%= link_to "Download Sample Mobile Asset CSV Template", mobile_asset_export_mobile_assets_path(format: "csv"), class: "download-file-icon plus-icon-sp" %>
-                    </div>
-                    </p>
-                  </div>
-                </div>
-              </div>
-        </div>
-        <h3 class="title floatl">Listing Mobile Assets</h3>
-        
-           <div id="cmdb_data_table_wrapper" class="dataTables_wrapper">
-            <!-- <div class="tbl-ctrls clearfix"> -->
-            <div class="buttons_container pull-right">
-                    <a class="btn btn-info add_new" href="mobile_assets/new">Add New</a>
-                    <a class="btn btn-info add_new" data-toggle="modal" href="#add_url">Import</a>
-            </div>
-            <div id="example">
-              <div class="row grid">
-                <div class="fright set-wrap">
-                   <div class="form-group audit_search">
-                    <%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value" %>
-                    <%= submit_tag "Search", name: nil, :class=>"btn btn-default", :id => "search-button" %>
-                    <a href="javascript:void(0);" class="cancel-btn1">Clear</a>
-                  </div>
-                  
-                 
-                </div>
-                <div id="grid" class="k-grid-content"></div>
+<%= render partial: "asset_partials/left_nav" %>
 
-              </div>
-            </div>
-             
-
-        <!-- </div> -->
-            <div id="computergrid" class="row-fluid cmdb-item-list dataTable"></div>  
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="risk-title">Mobile Assets</div>
+    </div>
+    <div class="col-lg-3 button-fix">
+      <a href="/inventory/mobile_assets/new" class="btn btn-primary">New</a>
+      <a class="btn btn-default" data-toggle="modal" href="#add_url">Import</a>
+    </div>
+    <div class="col-lg-3">
+      <div class="asset-search-box src-space clearfix">
+        <div class="fright scr-padding">
+          <div class="form-group audit_search">
+            <%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value" %>
+            <%= submit_tag "Search", name: nil, :class=>"btn btn-default src-brn", :id => "search-button" %>
+            <a href="javascript:void(0);" class="cancel-btn1">Clear Search Results</a>
           </div>
-      
+        </div>
+      </div>
+    </div>    
+  </div>
+  <div id="grid" class="k-grid-content"></div>
+</div>
+
+<div id="add_url" class="modal fade">
+  <div class="modal-dialog modal-dialog_large">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp;</button>
+        <h4 class="modal-title" id="myModalLabel">Import Mobile Assets from CSV/XLSX</h4>
+          <div class="modal-content-inner">
+            <%= form_tag mobileasset_imports_mobile_assets_path, multipart: true do %>
+              <%= file_field_tag :file %>
+              <br>
+              <div class="model-footer">
+                <%= submit_tag "Import" ,:class => "black_btn" %>
+                <%= submit_tag "Cancel" ,:class => "orange_btn" %>
+              </div>
+            <% end %>
+          </div>
+          <div  class="grey_btn pop-up-gray">
+            <%= link_to "Download Sample CSV Template", mobile_asset_export_mobile_assets_path(format: "csv"), class: "download-file-icon plus-icon-sp" %>
+          </div>
+      </div>
     </div>
   </div>
-</div>
 </div>
