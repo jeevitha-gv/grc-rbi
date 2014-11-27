@@ -18,7 +18,7 @@ class BcMaintenancesController < ApplicationController
   def create
   	@bc_main = @bc_analysis.build_bc_maintenance(bc_main_params)
   	if @bc_main.save
-  		redirect_to bc_analysis_bc_maintenances_path
+  		redirect_to bc_analyses_path
   	else
   		render new
   	end
@@ -31,7 +31,7 @@ class BcMaintenancesController < ApplicationController
   def update
   	@bc_main = @bc_analysis.bc_maintenance
   	if @bc_main.update_attributes(bc_main_params)
-  		redirect_to bc_analysis_bc_maintenances_path
+  		redirect_to bc_analyses_path
   	else
   		render new
   	end

@@ -20,7 +20,7 @@ class BcAcceptancesController < ApplicationController
   	if @bc_accep.save
       @bc_analysis.bc_status_id = 4
       @bc_analysis.save   
-  		redirect_to bc_analysis_bc_acceptances_path
+  		redirect_to bc_analyses_path
   	else
   		render new
   	end
@@ -33,7 +33,7 @@ class BcAcceptancesController < ApplicationController
   def update
   	@bc_accep = @bc_analysis.bc_acceptance
   	if @bc_accep.update_attributes(bc_accep_params)
-  		redirect_to bc_analysis_bc_acceptances_path
+  		redirect_to bc_analyses_path
   	else
   		render new
   	end
