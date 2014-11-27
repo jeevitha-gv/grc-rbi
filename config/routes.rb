@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  
+
  mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -104,6 +106,9 @@ Rails.application.routes.draw do
     collection do
       get 'calendar'
     end
+  end
+
+  resources :bcm_dashboard do
   end
 
   scope '/bcm' do
