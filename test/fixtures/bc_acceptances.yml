@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bc_analysis_id: 1
+  test_type_id: 1
+  scope: MyText
+  test_goal: MyText
+  test_objective: MyText
+
+two:
+  bc_analysis_id: 1
+  test_type_id: 1
+  scope: MyText
+  test_goal: MyText
+  test_objective: MyText

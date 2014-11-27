@@ -740,6 +740,56 @@ en:
     assigned_on: "Assigned"
     impact: "Impact"
 
+# BCM
+  bc_analysis:
+      title: "Title"
+      dep: "Department"
+      bu_pro: "Processess"
+      vul: "Vulnerability"
+      threat: "Threat"
+      th_desc: "Threat Description"
+      vu_desc: "Vulnerability Description"
+      impact: "Impact"
+      bu_imp: "Business Impact"
+      bu_req: "Business Requirements"
+      tech: "Technical Requirements"
+      rec: "Recovery Requirements"
+      conf: "Confidentiality"
+      inti: "Integrity"
+      avail: "Availability"
+      owner: "Owner"
+      manager: "Manager"
+      assess: "Assessment"
+      notes: "Notes"
+
+  bc_plan:
+      plan: "Plan Title"
+      opex: "OPEX"
+      capex: "CAPEX"
+      plan_resp: "Plan Responsible"
+      launch_resp: "Launch Responsible"
+      plan_status: "Plan Status"
+      recurrence: "Recurrence"
+      review: "Review Date"
+      obj: "Objective"
+      audit_metric: "Audit Metric"
+      suc_cri: "Sucess Criteria"
+      lau_cri: "Launch Criteria"
+
+  bc_implementation:
+      impl_action: "Implementation Actions"
+      impl_status: "Implementation Status"
+
+  bc_acceptance: 
+      test_type: "Test Type"
+      scope: "Scope"
+      test_goal: "Test Goal"
+      test_obj: "Test Objective"
+
+  bc_maintenance:
+      test_type: "Test Type"
+      issue: "Issues"
+      recurrence: "Recurrence"
 #INCIDENT MANAGEMENT
 
   incident:

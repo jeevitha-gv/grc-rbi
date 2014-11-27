@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
- 
+ mount Ckeditor::Engine => '/ckeditor'
 
-  mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -113,6 +112,23 @@ Rails.application.routes.draw do
       get 'computers'
     end
   end
+
+  scope '/bcm' do
+
+    resources :bc_analyses do
+
+      resources :bc_plans
+
+      resources :bc_implementations
+
+      resources :bc_acceptances
+
+      resources :bc_maintenances
+      
+    end
+
+  end
+
 
   scope '/inventory' do
     

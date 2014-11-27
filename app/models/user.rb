@@ -70,6 +70,12 @@ class User < ActiveRecord::Base
   has_many :info_asset_evaluator, class_name: 'Asset', foreign_key: 'evaluated_by'
   has_many :assets
 
+  # Assosciations with Asset Module
+  has_many :bc_owner, class_name: 'BcAnalysis', foreign_key: 'owner'
+  has_many :bc_manager, class_name: 'BcAnalysis', foreign_key: 'manager'
+  has_many :plan_resp, class_name: 'BcPlan', foreign_key: 'plan_responsible'
+  has_many :launch_resp, class_name: 'BcPlan', foreign_key: 'launch_responsible'
+
 
   # Associations with Policy Module
   has_many :policy_owner, class_name: "Policy", foreign_key: 'owner'

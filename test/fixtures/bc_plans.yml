@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bc_analysis_id: 1
+  plan: MyString
+  opex: MyString
+  capex: MyString
+  plan_responsible: 1
+  launch_responsible: 1
+  bcm_status_id: 1
+  recurrence_id: 1
+  review_date: 2014-11-14
+  objective: MyText
+  audit_metric: MyText
+  success_criteria: MyText
+  launch_criteria: MyText
+
+two:
+  bc_analysis_id: 1
+  plan: MyString
+  opex: MyString
+  capex: MyString
+  plan_responsible: 1
+  launch_responsible: 1
+  bcm_status_id: 1
+  recurrence_id: 1
+  review_date: 2014-11-14
+  objective: MyText
+  audit_metric: MyText
+  success_criteria: MyText
+  launch_criteria: MyText

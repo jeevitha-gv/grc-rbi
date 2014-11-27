@@ -47,6 +47,11 @@
                 <div class="risk-icon"></div>
                 Asset</a></li>
             <% end %>
+            <% if company_modules_check('BCPM') %>
+              <li><a href="/bcm/bc_analyses" class="<%= add_active_class(params) == 'BCPM' ? 'active' : '' %>">
+                <div class="risk-icon"></div>
+                BCPM</a></li>
+            <% end %>
              <% if company_modules_check('Incident') %>
              <li><a href="/incidents" class="<%= add_active_class(params) == 'Incident' ? 'active' : '' %>">
                 <div class="risk-icon"></div>

@@ -1,0 +1,208 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :title, t('bc_analysis.title') %>
+        <%= f.text_field :title, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :department_id, t('bc_analysis.dep') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:department_id, Department.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :bu_process_id, t('bc_analysis.bu_pro') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:bu_process_id, BuProcess.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :threat_id, t('bc_analysis.threat') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:threat_id, Threat.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+ <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :vulnerability_id, t('bc_analysis.vul') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:vulnerability_id, Vulnerability.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :threat_desc, t('bc_analysis.th_desc') %>
+        <%= f.cktext_area :threat_desc, :class=>"form-control" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+ <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :vul_desc,t('bc_analysis.vu_desc') %>
+        <%= f.cktext_area :vul_desc, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+</div>
+
+ <div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :business_impact, t('bc_analysis.bu_imp') %>
+        <%= f.text_area :business_impact, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+ </div>
+
+<div class="clearfix border-divider"></div>
+
+<div class="clearfix">
+  <h4><b>Assignment</b></h4>
+</div>
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :owner %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:owner, current_company.users, :id, :user_name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :manager %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:manager, current_company.users, :id, :user_name) %>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
+
+<div class="clearfix border-divider"></div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :business_req, t('bc_analysis.bu_req') %>
+        <%= f.text_area :business_req, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :tech_req, t('bc_analysis.tech') %>
+        <%= f.text_area :tech_req, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :recovery_req, t('bc_analysis.rec') %>
+        <%= f.text_area :recovery_req, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix border-divider"></div>
+<div class="clearfix">
+  <h4><b>Properties</b></h4>
+</div>
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :confidentiality %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:confidentiality, Priority.all, :score, :name, {}, {:class => "score", :id => "conf"}) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">   
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :integrity %>
+        <div class="risk-select width-fix">        
+          <%= f.collection_select(:integrity, Priority.all, :score, :name, {}, {:class => "score", :id => "inte"}) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :availability %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:availability, Priority.all, :score, :name, {}, {:class => "score", :id => "avai"}) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix border-divider"></div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :assessment, t('bc_analysis.assess') %>
+        <%= f.text_area :assessment, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :note, t('bc_analysis.notes') %>
+        <%= f.text_area :note, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

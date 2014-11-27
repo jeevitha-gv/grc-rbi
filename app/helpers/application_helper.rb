@@ -25,6 +25,8 @@ module ApplicationHelper
       'Incident'
     when 'assets', 'information_assets', 'computers', 'mobile_assets', 'softwares', 'services', 'other_assets', 'documents', 'source_codes', 'assessments', 'asset_actions', 'asset_reviews', 'asset_dashboard'
       'Asset'
+    when 'bc_analyses'
+      'BCPM'
     else
       return ''
     end

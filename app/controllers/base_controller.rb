@@ -168,6 +168,10 @@ class BaseController < ActionController::Base
     @fraud = Fraud.find(params[:fraud_id])
   end
 
+  def current_bc
+    @bc_analysis = BcAnalysis.find(params[:bc_analysis_id])
+  end
+
   def authorize_custodian
     unless (@asset.custodian_id == current_user.id || current_user.role_title == "company_admin")
       flash[:alert] = "You are not permitted to do this action."
@@ -189,5 +193,20 @@ class BaseController < ActionController::Base
       @access_asset = current_company.assets.where("evaluated_by = ? AND assetable_type = ?", current_user.id, "InformationAsset")
     end
   end
+
+  def accessible_plans
+    if params[:stage].nil?
+       @access_plans = current_company.bc_analyses
+    elsif params[:stage] == "evaluate"
+      @access_plans = current_company.bc_analyses.where("owner = ? AND bc_status_id = ?", current_user.id,"1")
+    elsif params[:stage] == "action"
+      @access_plans = current_company.bc_analyses.where("owner = ? AND bc_status_id = ?", current_user.id,"2")
+    elsif params[:stage] == "review"
+      @access_plans = current_company.bc_analyses.where("owner = ? AND bc_status_id = ?", current_user.id,"3")
+    elsif params[:stage] == "maintenance"
+      @access_plans = current_company.bc_analyses.where("owner = ? AND bc_status_id = ?", current_user.id,"4")
+    end
+  end
+
 
 end
