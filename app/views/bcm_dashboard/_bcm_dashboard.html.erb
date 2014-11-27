@@ -1,0 +1,101 @@
+<script src="/assets/outer/highcharts.js"></script>
+<script src="/assets/outer/exporting.js"></script>
+<script src="/assets/outer/drilldown.js"></script>
+<script src="/assets/outer/data.js"></script>
+<script src="/assets/outer/highcharts-3d.src.js"></script>
+<div id="container2" style="min-width: 765px; height: 400px;float:left; ">
+<script type="text/javascript">
+$(function () {
+    $('#container2').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'BCM Threats'
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+            valueSuffix: 'assets'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+       series: [{
+            name: 'Count',
+            colorByPoint: true,
+            data: [<%@bca.each do |c1|%>
+                       {
+                           name: '<%=c1.name%>',
+                           y: <%=c1.count%>,
+                           drilldown: '<%=c1.name%>'
+                       },
+                       <%end%>]
+        }],
+             
+    });
+});
+</script> 
+ </div>
+ <div id="container1" style="min-width: 765px; height: 400px;float:left; ">
+ <script type="text/javascript">
+$(function () {
+    $('#container1').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'BCM Vulnerability'
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+                       valueSuffix: ' assets'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+       series: [{
+            name: 'Count',
+            colorByPoint: true,
+            data: [<%@bca1.each do |c1|%>
+                       {
+                           name: '<%=c1.name%>',
+                           y: <%=c1.count%>,
+                           drilldown: '<%=c1.name%>'
+                       },
+                       <%end%>]
+        }]
+    });
+});
+</script> 
+</div>
+
