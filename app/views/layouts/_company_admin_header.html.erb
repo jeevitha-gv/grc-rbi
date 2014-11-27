@@ -137,6 +137,9 @@
     else if(module == 'fraud')
     {
       $("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/fraud_links'))%>");
+    else if(module == 'asset')
+    {
+      $("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/asset_links'))%>");
     }
   });
 </script>

@@ -1,81 +1,67 @@
+<style>
+  .k-grid-content {
+    height: auto !important;
+    max-height: 270px !important;
+    min-height: 450px !important;
+  }
+  .k-grid {
+      border-color: #e9e9e9;
+      height: 568px !important;
+  }
+  #wrapper {
+   min-height: 91%!important;
+  }  
+</style>
+
 <%= javascript_include_tag "/assets/views/info_asset.js" %>
 
-<div class="content">
-    <div class="container">
-      <div class="row"> 
-<div id="example" class="k-content">
-      <div class="risk-title">Listing Assets</div>
-      <div class="buttons_container pull-right">
-        <!-- <div class="ui teal buttons">
-          <div class="ui button">Add New</div>
-          <div class="ui teal floating dropdown icon button">
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              <div class="item"><h6>Information Asset</h6></div>
-              <div class="item"><h6>Computer/Server</h6></div>
-              <div class="item"><h6>Software</h6></div>
-              <div class="item"><h6>Mobile</h6></div>
-              <div class="item"><i class="hide icon"></i>Services</div>
-              <div class="item"><i class="hide icon"></i>Miscellaneous</div>
-              <div class="item"><i class="hide icon"></i>Document</div>
-            </div>
-          </div>
-        </div>  -->       
-        <a class="btn btn-info add_new" data-toggle="test modal" href="#add_url">Import</a>
-        </div>
-      <!-- Nav tabs -->
+<%= render partial: "asset_partials/left_nav" %>
 
-              <!-- <div class="ui modal" id ="">
-                <a class="btn btn-info add_new"  href="#add_url">Import</a>
-                        <i class="close icon"></i>
-                        <div class="header">
-                          Header
-                        </div>
-                        <div class="content">
-                          <div class="left">
-                            Some content to the left, usually an image or icon
-                          </div>
-                          <div class="right">
-                            Some content to the right
-                          </div>
-                        </div>
-                        <div class="actions">
-                          <div class="ui button">
-                            Cancel
-                          </div>
-                          <div class="ui button">
-                            Okay
-                          </div>
-                        </div>
-              </div> -->
-
-        <div class=" col-xs-12 col-md-12 col-sm-12 col-lg-12">
-           <div class="box-wrapper">
-             <div class="search-box src-space clearfix">
-                <div class="fright scr-padding">
-                <div class="form-group audit_search">
-                  <%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value" %>
-                  <%= submit_tag "Search", name: nil, :class=>"btn btn-default src-brn", :id => "search-button" %>
-                  <a href="javascript:void(0);" class="cancel-btn1">Clear</a>
-                </div>
-              </div>
-            </div>
-            <%# if params[:stage].nil? %>
-              <div id="grid"></div>
-            <%# else %>
-              <!-- <div id="gridforstage"></div> -->
-            <%# end %>
-          </div>
-        </div>
-      </div>
-
-
-
-        
-      </div>
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="risk-title">Information Assets</div>
     </div>
-    <div class="container">
+    <div class="col-lg-3 button-fix">
+      <a href="/inventory/source_codes/new" class="btn btn-primary">New</a>
+      <a class="btn btn-default" data-toggle="modal" href="#add_url">Import</a>
+    </div>
+    <div class="col-lg-3">
+      <div class="asset-search-box src-space clearfix">
+        <div class="fright scr-padding">
+          <div class="form-group audit_search">
+            <%= text_field_tag :query, params[:query], :class=>"form-control", :id => "search-value" %>
+            <%= submit_tag "Search", name: nil, :class=>"btn btn-default src-brn", :id => "search-button" %>
+            <a href="javascript:void(0);" class="cancel-btn1">Clear Search Results</a>
+          </div>
+        </div>
+      </div>
+    </div>    
+  </div>
+  <div id="grid" class="k-grid-content"></div>
+</div>
 
-      
+<div id="add_url" class="modal fade">
+  <div class="modal-dialog modal-dialog_large">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &nbsp;</button>
+        <h4 class="modal-title" id="myModalLabel">Import Information Assets from CSV/XLSX</h4>
+          <div class="modal-content-inner">
+            <%= form_tag infoasset_imports_information_assets_path, multipart: true do %>
+              <%= file_field_tag :file %>
+              <br>
+              <div class="model-footer">
+                <%= submit_tag "Import" ,:class => "black_btn" %>
+                <%= submit_tag "Cancel" ,:class => "orange_btn" %>
+              </div>
+            <% end %>
+          </div>
+          <div  class="grey_btn pop-up-gray">
+            <%= link_to "Download Sample CSV Template", sourcecode_export_source_codes_path(format: "csv"), class: "download-file-icon plus-icon-sp" %>
+          </div>
+      </div>
     </div>
   </div>
+</div>
+</div>

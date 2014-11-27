@@ -1,10 +1,9 @@
 <%= javascript_include_tag "/assets/outer/jquery.tagsinput.min.js" %>
+
 <%= f.fields_for :asset do |ff| %>
-
-<%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>
-<%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
-
+  <%= render partial: "asset_partials/asset_properties", :locals => {:ff => ff } %>
 <% end %>
+
 <div class="clearfix">
   <h4><b>Source Code Properties</b></h4>
 </div>
@@ -13,26 +12,12 @@
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group clearfix">
       <div class="col-sm-12">
-        <%= f.label :vcs_url, "VCS URL" %>
+        <%= f.label :vcs_url, "Source Code VCS URL" %>
         <%= f.text_field :vcs_url, :class => "form-control risk-normal-input" %>
       </div>
     </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :project_manager, "Project Manager Email" %>
-        <%= f.text_field :project_manager, :class => "form-control risk-normal-input" %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group clearfix">
       <div class="col-sm-12">
         <%= f.label :version_number, "Version / Build / Release Number" %>
@@ -42,38 +27,24 @@
   </div>
 </div>
 
+<div class="clearfix">
+  <h5><b>Current Level of Protection</b></h5>
+</div>
+
 <div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group clearfix">
       <div class="col-sm-12">
         <%= f.label :backup_measure, "Backup Measures Taken" %>
-        <%= f.text_area :backup_measure, :class => "form-control risk-normal-input" %>
+        <%= f.text_area :backup_measure, :class => "form-control asset-big-input" %>
       </div>
     </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :Assigned_On %>        
-        <%= f.text_field :assigned_on, :class => "datepicker" %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <div class="form-group clearfix">
-      <div class="col-sm-12">
-        <%= f.label :Expected_Life %>
-        <%= f.text_field :expected_life, :class => "form-control risk-normal-input" %>
-      </div>
-    </div>
-  </div>
-</div>
+<%= f.fields_for :asset do |ff| %>
+  <%= render partial: "asset_partials/security_properties", :locals => { :ff => ff } %>
+<% end %>
 
 <script>
 

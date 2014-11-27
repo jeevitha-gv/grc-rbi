@@ -9,9 +9,9 @@ class Asset < ActiveRecord::Base
 	belongs_to :info_asset_custodian, class_name: 'User', foreign_key: 'custodian_id'
 	belongs_to :info_asset_identifier, class_name: 'User', foreign_key: 'identifier_id'
 	belongs_to :info_asset_evaluator, class_name: 'User', foreign_key: 'evaluated_by'
-	belongs_to :asset_confi, class_name: 'Priority', foreign_key: 'confidentiality'
-	belongs_to :asset_avail, class_name: 'Priority', foreign_key: 'availability'
-	belongs_to :asset_integ, class_name: 'Priority', foreign_key: 'integrity'
+	belongs_to :asset_confi, class_name: 'AssetCriticality', foreign_key: 'confidentiality'
+	belongs_to :asset_avail, class_name: 'AssetCriticality', foreign_key: 'availability'
+	belongs_to :asset_integ, class_name: 'AssetCriticality', foreign_key: 'integrity'
 
 	has_one :assessment
 
@@ -20,7 +20,17 @@ class Asset < ActiveRecord::Base
 	has_one :asset_action
 	belongs_to :users
 
-	after_create :send_notification
+	after_create :save_value, :send_notification
+
+	def save_value		
+		self.value = self.asset_confi.id + self.asset_avail.id + self.asset_integ.id
+		if self.value <= 5
+			self.severity = "Low"
+		else
+			self.value > 7 ? self.severity = "High" : self.severity = "Medium"
+		end		
+		self.save
+	end
 
 	def send_notification
 		users_email = []

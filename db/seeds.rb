@@ -90,9 +90,9 @@ Section.delete_all
 
 Priority.delete_all
 
-    Priority.create(name: 'High', score: '3')
-    Priority.create(name: 'Medium', score: '2')
-    Priority.create(name: 'Low', score: '1')
+    Priority.create(name: 'High')
+    Priority.create(name: 'Medium')
+    Priority.create(name: 'Low')
 
 ReminderAssignment.delete_all
 
@@ -1232,7 +1232,6 @@ RiskValue.delete_all
     RiskValue.create(:name => "1-10lakhs")
     RiskValue.create(:name => "10-100lakhs")
 
-
 Finding.delete_all
 
     Finding.create(:name => "Proven Fraud") 
@@ -1245,7 +1244,6 @@ Closing.delete_all
     Closing.create(:name => "Unproven Fraud") 
     Closing.create(:name => "Unrelated Fraud")
 
-
 Rating.delete_all
 
     Rating.create(:name => "1")
@@ -1253,7 +1251,6 @@ Rating.delete_all
     Rating.create(:name => "3")
     Rating.create(:name => "")
     Rating.create(:name => "5")
-
 
 FraudStatus.delete_all
 
@@ -1264,3 +1261,9 @@ InvestigationObject.delete_all
 
     InvestigationObject.create(:name => "Investigate Insurance Claims")
     InvestigationObject.create(:name => "Questionable Payment")
+
+AssetCriticality.delete_all
+
+    AssetCriticality.create(name: 'Low')
+    AssetCriticality.create(name: 'Medium')
+    AssetCriticality.create(name: 'High')

@@ -23,11 +23,8 @@ class DocumentsController < ApplicationController
     end
   end
 
-
-
   def show
       @document = Document.find(params[:id])
-      # @incident=Evaluate.find(params[:id])
       respond_to do |format|
       format.html
       format.pdf do
@@ -36,8 +33,6 @@ class DocumentsController < ApplicationController
       end
     end
   end
-
-
 
   def edit
   	@document = Document.find(params[:id])
@@ -87,6 +82,8 @@ class DocumentsController < ApplicationController
       redirect_to new_document_path
     end
   end
+
+  private
 
   def document_params
   	params.require(:document).permit(:document_status_id, :document_type_id, :version,:assigned_on, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_date,:customer_data,:confidentiality,:availability,:integrity, :asset_users])

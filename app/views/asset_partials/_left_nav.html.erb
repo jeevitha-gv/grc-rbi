@@ -1,0 +1,32 @@
+<link rel="stylesheet" type="text/css" href="/assets/outer/left-nav.css">
+
+<div class="navbar-default sidebar" role="navigation">
+  <div class="sidebar-nav navbar-collapse">
+    <ul class="nav" id="side-menu">
+      <li>
+          <a class="<%= request.fullpath.include?("information_assets") == true ? 'active' : '' %>" href="/inventory/information_assets"><i class="lock icon"></i> Information Assets</a>
+      </li>
+      <li>
+          <a class="<%= request.fullpath.include?("computers") == true ? 'active' : '' %>" href="/inventory/computers"><i class="desktop icon"></i> Computers</a>
+      </li>
+      <li>
+          <a class="<%= request.fullpath.include?("mobile_assets") == true ? 'active' : '' %>" href="/inventory/mobile_assets"><i class="tablet icon"></i> Mobile Assets</a>
+      </li>
+      <li>
+          <a class="<%= request.fullpath.include?("softwares") == true ? 'active' : '' %>" href="/inventory/softwares"><i class="cloud download icon"></i> Software Assets</a>
+      </li>
+      <li>
+          <a class="<%= request.fullpath.include?("services") == true ? 'active' : '' %>" href="/inventory/services"><i class="sitemap icon"></i> Service Assets</a>
+      </li>
+      <li>
+          <a class="<%= request.fullpath.include?("other_assets") == true ? 'active' : '' %>" href="/inventory/other_assets"><i class="suitcase icon"></i> Miscellaneous</a>
+      </li>
+      <li>
+          <a class="<%= request.fullpath.include?("documents") == true ? 'active' : '' %>" href="/inventory/documents"><i class="book icon"></i> Document Assets</a>
+      </li>
+      <li>
+          <a class="<%= request.fullpath.include?("source_codes") == true ? 'active' : '' %>" href="/inventory/source_codes"><i class="code icon"></i> Source Code Assets</a>
+      </li>
+    </ul>
+  </div>
+</div>

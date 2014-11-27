@@ -110,6 +110,7 @@ Rails.application.routes.draw do
   resources :asset_dashboard do
     collection do
       get 'calendar'
+      get 'computers'
     end
   end
 
@@ -174,14 +175,20 @@ Rails.application.routes.draw do
 
   end
   
+  
   resources :assets do  
     resources :assessments
 
     resources :asset_reviews
 
-    resources :asset_actions
+    resources :asset_actions do
+      collection do
+        get 'owner_action'
+        post 'owner_action_create'
+      end
+    end
 
-  end
+ end
   
 
   resource :user do

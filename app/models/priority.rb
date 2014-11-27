@@ -5,9 +5,6 @@ class Priority < ActiveRecord::Base
   has_many :checklist_recommendations
   has_many :artifact_answers
   has_many :reminders
-  has_many :asset_confi, class_name: 'Asset', foreign_key: 'confidentiality'
-  has_many :asset_avail, class_name: 'Asset', foreign_key: 'availability'
-  has_many :asset_integ, class_name: 'Asset', foreign_key: 'integrity'
 
 
   # Validation

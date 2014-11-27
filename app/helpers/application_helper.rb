@@ -23,7 +23,7 @@ module ApplicationHelper
       'Risk'
     when 'incidents'
       'Incident'
-    when 'computers', 'other_assets', 'mobile_assets', 'vendors', 'contracts'
+    when 'assets', 'information_assets', 'computers', 'mobile_assets', 'softwares', 'services', 'other_assets', 'documents', 'source_codes', 'assessments', 'asset_actions', 'asset_reviews', 'asset_dashboard'
       'Asset'
     else
       return ''
@@ -131,7 +131,7 @@ def link_to_add_lifecycle_fields(name, f, association, lifecycle)
 end
 
   def calc_score(asset)
-    return asset.asset_confi.score + asset.asset_avail.score + asset.asset_integ.score
+    return asset.asset_confi.id + asset.asset_avail.id + asset.asset_integ.id
   end
 
 def link_to_add_distribution_list(name, association)

@@ -36,7 +36,6 @@ class SourceCodesController < ApplicationController
     end
   end
 
-
   def show
     @sourcecode = SourceCode.find(params[:id])
     respond_to do |format|
@@ -45,10 +44,10 @@ class SourceCodesController < ApplicationController
       @pdf = (render_to_string pdf: "PDF", template: "source_codes/show.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
         send_data(@pdf, type: "application/pdf", filename: @sourcecode.asset.name)
       end
+    end
   end
-end
 
-def sourcecode_export
+  def sourcecode_export
     begin
       file_to_download = "sourcecode_assets.csv"
       send_file Rails.public_path + file_to_download, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{file_to_download}", :stream => true, :buffer_size => 4096
@@ -73,10 +72,6 @@ def sourcecode_export
       redirect_to new_source_code_path
     end
   end
-
-
-
-
 
   private
 
