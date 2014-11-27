@@ -1304,4 +1304,4 @@ BcStatus.delete_all
     BcStatus.create(:name => "Implemented")
     BcStatus.create(:name => "Acceptance")
     BcStatus.create(:name => "Maintenance")
->>>>>>> bcm-phase1
+
