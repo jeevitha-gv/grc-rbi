@@ -1,13 +1,13 @@
 ActiveAdmin.register FraudType do
+  config.filters = false
+  menu :if => proc{ !current_admin_user.present? }
 
-  
-permit_params :name
   breadcrumb do
       [
         link_to('FraudType', '/admin/fraud_types')
       ]
     end
-      menu :if => proc{ !current_admin_user.present? }
+      permit_params :company_id, :name
   index do
     column "Name", :name
   end
