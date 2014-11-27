@@ -19,7 +19,7 @@ class BcImplementationsController < ApplicationController
   	if @bc_impl.save
       @bc_analysis.bc_status_id = 3
       @bc_analysis.save  		
-  		redirect_to bc_analysis_bc_implementations_path
+  		redirect_to bc_analyses_path
   	else
   		render new
   	end
@@ -32,7 +32,7 @@ class BcImplementationsController < ApplicationController
   def update
     @bc_impl = @bc_analysis.bc_implementation
     if @bc_impl.update_attributes(bc_impl_params)
-      redirect_to bc_analysis_bc_implementations_path
+      redirect_to bc_analyses_path
     else 
       render new
     end

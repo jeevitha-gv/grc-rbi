@@ -19,7 +19,7 @@ class BcPlansController < ApplicationController
   	if @bc_plan.save
       @bc_analysis.bc_status_id = 2
       @bc_analysis.save
-  		redirect_to bc_analysis_bc_plans_path
+  		redirect_to bc_analyses_path
   	else
   		redirect_to new_bc_analysis_bc_plan_path
   	end
@@ -32,7 +32,7 @@ class BcPlansController < ApplicationController
   def update
     @bc_plan = @bc_analysis.bc_plan
     if @bc_plan.update_attributes(bc_plan_params)
-      redirect_to bc_analysis_bc_plans_path
+      redirect_to bc_analyses_path
     else 
       render new
     end
