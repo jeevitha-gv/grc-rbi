@@ -30,7 +30,7 @@ $(document).on('ready page:load', function(){
         // a future calendar might have many sources.
         eventSources: [
         {
-            url: '/asset_dashboard/computers',
+            url: '/asset_dashboard/calendar',
             color: 'grey',
             textColor: 'black',
         }        
@@ -39,14 +39,20 @@ $(document).on('ready page:load', function(){
         dragOpacity: "0.5",
 
 		eventMouseover: function(event, jsEvent, view) {
-    		title = ("Computer: "+ event.name + "<br />")
+            console.log(event);
+            console.log(jsEvent);
+            console.log(view);
+            title = ("Hello there");
+    		// title = ("Computer: "+ event.title + "<br />" + "Start date: "+event.start_date +"</br>"+ "End date: "+event.end_date);
+            // console.log(event);
+            // console.log("22222222222222222222222222222222222222222222");
             $('.fc-event-inner').attr('data-original-title', title);
             $('.fc-event-inner').attr('data-html', "true");
     		$('.fc-event-inner').tooltip({placement: 'bottom'});
 		},
 
 		eventMouseout: function(event, jsEvent, view) {
-			$('#tooltip').css({display: 'none'});
+			// $('#tooltip').css({display: 'none'});
 		},
 
 		//~ //http://arshaw.com/fullcalendar/docs/event_ui/eventDrop/
@@ -59,19 +65,13 @@ $(document).on('ready page:load', function(){
         },
 
 		eventAfterRender: function (event, element, view) {
-            var dataHoje =  convertDate();
-			if(event.publised == "4")
-			{
-	    		element.css('background-color', '#89CC52');
-				element.css('color','#fff');
-				element.css('border-color','#89CC52');
-			}
-            else if (event.end_date < dataHoje) {
+            var dataHoje =  convertDate();			
+            if (event.end_date < dataHoje) {
 				element.css('background-color', '#EC5959');
 				element.css('color','#fff');
 				element.css('border-color','#EC5959');
 			}
-            else if (event.end_date >= dataHoje)
+            else (event.end_date >= dataHoje)
 			{
                 element.css('background-color', '#FFA200');
 				element.css('color','#fff');
