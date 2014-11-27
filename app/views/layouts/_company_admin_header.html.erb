@@ -52,6 +52,11 @@
                 <div class="risk-icon"></div>
                 Incident</a></li>
               <% end %>
+              <% if company_modules_check('Fraud') %>
+             <li><a href="/frauds" class="<%= add_active_class(params) == 'Fraud' ? 'active' : '' %>">
+                <div class="risk-icon"></div>
+                Fraud</a></li>
+              <% end %>
           </ul>
         </div>
         <%end%>
@@ -129,5 +134,9 @@
 		{
 			$("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/audit_links'))%>");
 		}
+    else if(module == 'fraud')
+    {
+      $("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/fraud_links'))%>");
+    }
   });
 </script>

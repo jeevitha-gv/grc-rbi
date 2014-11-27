@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+ 
+
   mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -98,6 +100,11 @@ Rails.application.routes.draw do
 
 
    resources :contracts do
+   end
+
+   resources :frauds do
+    resources :investigations
+    resources :fraud_reviews
    end
 
   resources :asset_dashboard do

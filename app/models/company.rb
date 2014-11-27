@@ -33,8 +33,12 @@ class Company < ActiveRecord::Base
   has_many :risk_charts
   has_many :incidents
   #has_many :company_payments
-
  
+
+  
+  # Associations with Fraud table
+  has_many :frauds
+  
 
   # Assosciations with Asset Module
   has_many :other_assets
@@ -102,7 +106,7 @@ class Company < ActiveRecord::Base
     Role.create(title: "Asset Owner", company_id: company.id)
     Role.create(title: "Asset Custodian", company_id: company.id)
     Role.create(title: "Evaluator", company_id: company.id)
-
+    
   end
 
   def review_rating_levels_create

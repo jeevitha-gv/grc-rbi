@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fraud_id: 1
+  detection_strategy: MyText
+  detection_method: MyText
+
+two:
+  fraud_id: 1
+  detection_strategy: MyText
+  detection_method: MyText
