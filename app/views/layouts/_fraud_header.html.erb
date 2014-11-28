@@ -92,7 +92,7 @@
         <li><a  href="/frauds" class="<%= request.fullpath.exclude?("act") && request.fullpath.exclude?("new") && request.fullpath.exclude?("review") && request.fullpath.exclude?("investigations") == true ? 'active' : '' %>">
           <div class="listing-icon"></div>
           Listings</a></li>
-        <li><a href="/frauds?stage=act" class="<%= request.fullpath.include?("act") || request.fullpath.include?("investigations") == true ? 'active' : '' %>">
+        <li><a href="/frauds?stage=action" class="<%= request.fullpath.include?("action") || request.fullpath.include?("investigations") == true ? 'active' : '' %>">
           <div class="lmitigate-icon"></div>
           Investigate</a></li>
         <li><a  href="/frauds?stage=review" class="<%= request.fullpath.include?("review") == true ? 'active' : '' %>">

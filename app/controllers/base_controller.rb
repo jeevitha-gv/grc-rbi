@@ -190,4 +190,14 @@ class BaseController < ActionController::Base
     end
   end
 
+  def accessible_frauds
+    if params[:stage].nil?
+      @access_fraud = current_company.frauds
+    elsif params[:stage] == "action"
+      @access_fraud = current_company.frauds.where("investigator = ? AND fraud_status_id = ?", current_user.id, "1")
+    elsif params[:stage] == "review"
+      @access_fraud = current_company.frauds.where("fraud_manager = ? AND fraud_status_id = ?", current_user.id, "2")
+    end
+  end
+
 end

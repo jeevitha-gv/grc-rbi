@@ -15,6 +15,8 @@ class FraudReviewsController < ApplicationController
   def create
     @review = @fraud.build_fraud_review(review_params)    
     if @review.save
+      @fraud.fraud_status_id = 3
+      @fraud.save
       redirect_to fraud_fraud_reviews_path
     else
       redirect_to new_fraud_fraud_review_path

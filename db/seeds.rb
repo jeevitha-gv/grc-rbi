@@ -1257,8 +1257,9 @@ Rating.delete_all
 
 FraudStatus.delete_all
 
-    FraudStatus.create(:name => "Investigated");
+    FraudStatus.create(:name => "Investigated")
     FraudStatus.create(:name => "Published")
+    FraudStatus.create(:name => "Reviewed")
 
 InvestigationObject.delete_all
 
