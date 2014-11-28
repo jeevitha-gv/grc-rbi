@@ -31,7 +31,7 @@ class BaseController < ActionController::Base
   end
 
   # Set Locale for selected Language
-  def set_locale
+ def set_locale
       I18n.locale  = current_user.language_id.present? ? ::Language.current_user_language(current_user.language_id).first.code : I18n.default_locale
       MESSAGES.replace ::ALLMESSAGES["#{I18n.locale}"]
   end

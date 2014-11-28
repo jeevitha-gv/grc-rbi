@@ -58,14 +58,9 @@ class AssetActionsController < ApplicationController
       render 'edit'
     end
   end
-      # if @asset_action.update(action_params)
-      #   params[:files].each do |a|
-      #   Attachment.update(:attachment_file => a, :attachable_type => "AssetAction", :attachable_id => @asset_action.id, :company_id => current_company.id)
-      #   end 
 
-     
 
-  private
+ private
 
   def action_params
     
