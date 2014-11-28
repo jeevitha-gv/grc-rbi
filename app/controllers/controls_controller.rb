@@ -5,6 +5,16 @@ layout 'control_layout'
     	@control = Control.new
   	end
 
+   def index
+    if params[:stage].present?
+      @controls = current_user.controls_stage(params)
+    else
+      @controls = current_user.accessible_controls
+    end
+    
+  end
+
+ 
   	def edit
     	@control = Control.find(params[:id])
     	control_initializers( @control.classification_control_id, @control.purpose_control_id, @control.owning_group_id)
@@ -21,6 +31,10 @@ layout 'control_layout'
       
       redirect_to new_control_path
     end
+  end
+
+  def show
+  
   end
 
   def control_all

@@ -52,6 +52,7 @@ class BaseController < ActionController::Base
   end
 
   def current_incident
+    binding.pry
     @incident = Incident.find(params[:incident_id])
   end
 

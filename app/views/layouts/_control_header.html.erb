@@ -86,18 +86,24 @@
         <li><a  href="/asset_dashboard" class="<%= request.fullpath.include?("asset_dashboard") == true ? 'active' : '' %>">
             <div class="dash-icon"></div>
             Dashboard</a></li>
-        <li><a  href="/controls/new" class="<%= (request.fullpath.include?("computers") || request.fullpath.include?("softwares") || request.fullpath.include?("mobile_assets") || request.fullpath.include?("other_assets") || request.fullpath.include?("services") == true || request.fullpath.include?("documents")) ? 'active' : '' %>">
-            <div class="plan-icon"></div>
-            Controls</a></li>        
-        <li><a  href="/controls/1/control_approvals/1/edit" class="<%= request.fullpath.include?("information_assets/new") == true ? 'active' : '' %>">
-            <div class="plan-icon"></div>
-            Approval</a></li>
-        <li><a  href="/controls/1/control_reviews/1/edit" class="<%= (request.fullpath.include?("information_assets") && action_name == "index") == true ? 'active' : '' %>">
-            <div class="plan-icon"></div>
-            Review</a></li>
-        <li><a  href="/controls/1/control_audits/1/edit" class="<%= (request.fullpath.include?("assessments") || request.fullpath.include?("evaluate")) == true ? 'active' : '' %>">
-            <div class="plan-icon"></div>
-            Audit</a></li>
+        <li><a  href="/controls" class="<%= request.fullpath.exclude?("approval") && request.fullpath.exclude?("review") && request.fullpath.exclude?("audit") == true ? 'active' : '' %>">
+          <div class="listing-icon"></div>
+          Listings</a></li>
+        <li><a  href="/controls/new" class="<%= (request.fullpath.include?("controls/new") && action_name == "new") == true ? 'active' : '' %>">
+          <div class="plan-icon"></div>
+          Control</a></li>       
+        <li><a href="/controls?stage=approval" class="<%= request.fullpath.include?("approval") || request.fullpath.include?("control_approvals") == true ? 'active' : '' %>">
+          <div class="lmitigate-icon"></div>
+          Approval</a></li>
+
+        <li><a  href="/controls?stage=review" class="<%= request.fullpath.include?("review") == true ? 'active' : '' %>">
+          <div class="review-icon"></div>
+          Review</a></li>
+
+        <li><a  href="/controls?stage=audit" class="<%= request.fullpath.include?("audit") == true ? 'active' : '' %>">
+          <div class="review-icon"></div>
+          Audit</a></li>
+
         <li><a href="/incidents" >
           <div class="setting-icon"></div>
           Setting</a></li>

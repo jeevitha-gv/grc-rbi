@@ -6,11 +6,8 @@
 <div class="content">
   <div class="container">
    <div class="clearfix"> <a class="import-btn" data-toggle="modal" href="#add_csv" style="width:157px"><i class="download-icons"></i>Import Controls</a>
-   </div>  
-    <div class="row">
-		<% flash[:notice] if flash[:notice].present? %>
-              
-          <div class="form-group clearfix addissue">
+   </div> 
+		<% flash[:notice] if flash[:notice].present? %>       
             <div class="modal fade" id="add_csv">
               <div class="modal-dialog modal-dialog_large">
                 <div class="modal-content">
@@ -34,9 +31,6 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
 <div class="page-wrap">
   <div class="content">
     <div class="container">
@@ -47,11 +41,7 @@
   <button onclick= "countdown()">Clickme</button> -->
 </div>
 <%= form_for(@control) do |f| %>
-
 <%= render 'form',:f => f, :control => @control %>
-
-
-
 
 <%end%>
 

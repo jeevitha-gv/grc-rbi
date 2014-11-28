@@ -3,6 +3,8 @@ class Control < ActiveRecord::Base
 
 	belongs_to :classification_control
 	belongs_to :purpose_control
+	belongs_to :control_owner, class_name: 'User', foreign_key: 'owner'
+	belongs_to :control_delegate, class_name: 'User', foreign_key: 'owner_delegate'
 	belongs_to :owning_group
 	belongs_to :control_regulation
 	has_one :control_approval
@@ -20,5 +22,8 @@ class Control < ActiveRecord::Base
     delegate :name, :to => :control_approval, prefix: true, allow_nil: true
 	delegate :name, :to => :control_review, prefix: true, allow_nil: true
 	delegate :name, :to => :control_audit, prefix: true, allow_nil: true
+
+	delegate :user_name, to: :control_owner, prefix: true, allow_nil: true
+	delegate :user_name, to: :control_delegate, prefix: true, allow_nil: true
 	
 end

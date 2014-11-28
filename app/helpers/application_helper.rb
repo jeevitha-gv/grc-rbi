@@ -25,6 +25,8 @@ module ApplicationHelper
       'Incident'
     when 'computers', 'other_assets', 'mobile_assets', 'vendors', 'contracts'
       'Asset'
+    when 'controls'
+      'Control'
     else
       return ''
     end
