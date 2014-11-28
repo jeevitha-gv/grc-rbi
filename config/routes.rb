@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
  
 
+  get 'fraud_dashboard/index'
+
   mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -259,6 +261,12 @@ Rails.application.routes.draw do
   resources :policy_dashboards do
     collection do
       get 'calender'
+    end
+  end
+
+  resources :fraud_dashboard do
+    collection do
+      
     end
   end
 

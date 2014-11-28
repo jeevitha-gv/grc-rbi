@@ -83,9 +83,9 @@
   <div role="navigation" class="navbar navbar-inverse subnavbar-fixed-top">
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
-        <!-- <li><a  href="/asset_dashboard" class="<%#= request.fullpath.include?("asset_dashboard") == true ? 'active' : '' %>">
+        <li><a  href="/fraud_dashboard" class="<%= request.fullpath.include?("fraud_dashboard") == true ? 'active' : '' %>">
             <div class="dash-icon"></div>
-            Dashboard</a></li> -->       
+            Dashboard</a></li>       
         <li><a  href="/frauds/new" class="<%= request.fullpath.include?("frauds/new") == true ? 'active' : '' %>">
             <div class="plan-icon"></div>
             File</a></li>
