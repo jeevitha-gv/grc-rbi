@@ -34,17 +34,17 @@ function search_result()
         filters: [
             
             {
-                field: "assetable_type",
+                field: "fraud_type",
                 operator: "contains",
                 value   : val
             },
             {
-                 field: "owner",
+                 field: "investigator",
                  operator: "contains",
                  value   : val
             },
             {
-                 field: "custodian",
+                 field: "fraud_manager",
                  operator: "contains",
                  value   : val
             },           
@@ -58,17 +58,17 @@ $("#panelbar").kendoPanelBar();
 
     if ( stage.length > 0 )
     {
-        var bc_analyses_url = "/bcm/bc_analyses?stage="+stage;
+        var frauds_url = "/frauds?stage="+stage;
     }
     else
     {
-        var bc_analyses_url  = "/bcm/bc_analyses"
+        var frauds_url = "/frauds"
     }
 
     dataSource = new kendo.data.DataSource({
         transport: {
             read: {
-                url: bc_analyses_url,
+                url: frauds_url,
                 dataType: 'json',
                 type: 'get'
             },
@@ -81,19 +81,17 @@ $("#panelbar").kendoPanelBar();
         model: {
             id: "id",
                 fields: {
-                    title: { type: "string" },
-                    department: {type: "string"},
-                    threat: {type: "string"},
-                    owner: {type: "string"},
-                    
+                    name: {type: "string"},
+                    location: {type: "string"},
+                    fraud_type: { type: "string" },
+                    investigator: {type: "string"},
+                    fraud_manager: {type: "string"},
                 }
             }
         },
                             // pageSize: 20
                         });
-
-
-                $("#grid").kendoGrid({
+    $("#grid").kendoGrid({
         dataSource: dataSource,
         dataBound: function(){
             updateGridForStage(stage)
@@ -102,60 +100,51 @@ $("#panelbar").kendoPanelBar();
                         height: 550,
                         groupable: false,
                         sortable: true,
-                        pageable: false,
-                        //{
-                        //     refresh: true,
-                        //     pageSizes: true,
-                        //     buttonCount: 5
-                        // },
-                       columns: [{
-                            field: "title",
-                            title: "Title",
-                            width: 200
+                        pageable: false,                        
+                       columns: [ {
+                            field: "name",
+                            title: "Name"
                         }, {
-                            field: "department",
-                            title: "Department"
+                            field: "location",
+                            title: "Location",
+                            width: 120
                         }, {
-                            field: "threat",
-                            title: "Threat"
+                            field: "fraud_type",
+                            title: "Fraud Type",
+                            width: 150
+                        },  {
+                            field: "investigator",
+                            title: "Investigator",
+                            width: 120
                         }, {
-                            field: "owner",
-                            title: "Owner "
-                        }, 
-                       { command: [{text: "tick", click: check_file}, {text: "tick1", click: act_file}, {text: "miti", click: review_file}, {text: "edit", click: main_file},{text: "delete", click: delete_file}], title: "Action" }
+                            field: "fraud_manager",
+                            title: "Fraud Manager",
+                            width: 120
+                        },{ command: [{text: "tick1", click: act_file}, {text: "miti", click: review_file}, {text: "edit", click: edit_file},{text: "delete", click: delete_file}], title: "Action" }
 
                         ],
                     });
-function check_file(e)
-{
-  var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
- window.location.href = "/bcm/bc_analyses/"+ dataItem.id + "/bc_plans/new"
-}
+          
+
 
 function act_file(e)
 {
   var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-  window.location.href = "/bcm/bc_analyses/"+ dataItem.id + "/bc_implementations/new"
+  window.location.href = "/frauds/"+ dataItem.id + "/investigations/new"
 }
 
 function review_file(e)
 {
   var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-  window.location.href = "/bcm/bc_analyses/"+ dataItem.id + "/bc_acceptances/new"
+  window.location.href = "/frauds/"+ dataItem.id + "/fraud_reviews/new"
 }
 
-function main_file(e)
-{
-  var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-  window.location.href = "/bcm/bc_analyses/"+ dataItem.id + "/bc_maintenances/new"
-}
-          
 function delete_file(e)
    {
        var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
        if (confirm('Are you sure you want to delete this record ?')) {
                $.ajax({
-               url: "/computers/"+dataItem.id,
+               url: "/frauds"+dataItem.id,
                type: 'delete',
                dataType: 'json',
                success:function(result){
@@ -169,10 +158,11 @@ function delete_file(e)
 function edit_file(e)
     {
         var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
-        window.location.href = "bc_analyses/"+ dataItem.id + "/edit"
-    }function select_stage_class(stage_class)
+        window.location.href = "/frauds/"+ dataItem.id + "/edit"
+    }
+function select_stage_class(stage_class)
     {
-       if(stage_class == 'evaluate')
+        if(stage_class == 'evaluate')
       {
         return "k-grid-list";
       }
@@ -183,10 +173,6 @@ function edit_file(e)
       else if(stage_class == 'review')
       {
         return "k-grid-miti, .k-grid-list";
-      }
-       if(stage_class == 'maintenance')
-      {
-        return "k-grid-list";
       }
     }
 

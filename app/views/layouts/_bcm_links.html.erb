@@ -1,0 +1,9 @@
+	<input type="hidden" id="module" value="0">
+<ul class="subbar-nav nav navbar-nav">
+	<li><a href="/admin/bu_processes" class="<%= request.fullpath.include?("/admin/bu_processes") == true ? 'active' : '' %>">
+		Bu Process</a></li>
+	<li><a href="/admin/threats" class="<%= request.fullpath.include?("/admin/threats") == true ? 'active' : '' %>">
+		Threats</a></li>
+	<li><a href="/admin/vulnerabilities" class="<%= request.fullpath.include?("/admin/vulnerabilities") == true ? 'active' : '' %>">
+		Vulnerabilites</a></li>
+</ul>

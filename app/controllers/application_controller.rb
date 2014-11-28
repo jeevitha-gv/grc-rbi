@@ -123,10 +123,13 @@ class ApplicationController < BaseController
     name = request.fullpath.split('/')[2]
     risk_actions = ["controls","procedures","processes","risk_review_levels","projects"]
     audit_actions = ["operational_areas","artifacts","reminders"]
+    bcm_actions = ["bu_processes", "threats", "vulnerabilities"]
     if risk_actions.include?("#{request.fullpath.split('/')[2]}")
       module_id = Section.find_by_name('Risk').id
     elsif audit_actions.include?("#{request.fullpath.split('/')[2]}")
       module_id = Section.find_by_name('Audit').id
+    elsif bcm_actions.include?("#{request.fullpath.split('/')[2]}")
+      module_id = Section.find_by_name('BCPM').id
     else
       module_id = nil
     end

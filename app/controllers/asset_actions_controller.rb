@@ -51,30 +51,16 @@ class AssetActionsController < ApplicationController
   end
 
   def update
-        @asset_action = @asset.asset_action
-        if @asset_action.update_attributes(action_params)
+     @asset_action = @asset.asset_action
+   if @asset_action.update_attributes(action_params)
       redirect_to asset_asset_actions_path :flash => { :notice => MESSAGES["Computer"]["update"]["success"] }
     else
       render 'edit'
     end
-      # if @asset_action.update(action_params)
-      #   params[:files].each do |a|
-      #   Attachment.update(:attachment_file => a, :attachable_type => "AssetAction", :attachable_id => @asset_action.id, :company_id => current_company.id)
-      #   end 
-
-      if @asset_action.update(action_params)
-        # params[:files].each do |a|
-        # Attachment.update(:attachment_file => a, :attachable_type => "AssetAction", :attachable_id => @asset_action.id, :company_id => current_company.id)
-        # end 
-
-       
-      #   redirect_to asset_asset_actions_path
-      # else
-      #   render "edit"
-      # end
   end
-end
-  private
+
+
+ private
 
   def action_params
     

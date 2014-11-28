@@ -43,6 +43,11 @@
                 <div class="risk-icon"></div>
                 BCPM</a></li>
             <% end %>
+            <% if company_modules_check('Fraud') %>
+              <li><a href="/frauds" class="<%= add_admin_active_class(params) == 'Fraud' ? 'active' : '' %>">
+                <div class="audit-icon"></div>
+                Fraud</a></li>
+            <% end %>
              <% if company_modules_check('Incident') %>
              <li><a href="/incidents" class="<%= add_active_class(params) == 'Incident' ? 'active' : '' %>">
                 <div class="risk-icon"></div>
@@ -111,6 +116,8 @@
         <li><a  href="/contracts" class="<%#= request.fullpath.include?("contracts") == true ? 'active' : '' %>">
             <div class="plan-icon"></div>
             Contracts --></a></li>
+
+        <li><a href="/admin/bu_processes" >
         <li><a href="/admin/asset_types" >
           <div class="setting-icon"></div>
           Configure</a></li>
