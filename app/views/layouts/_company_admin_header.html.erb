@@ -145,6 +145,9 @@
     else if(module == 'asset')
     {
       $("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/asset_links'))%>");
+    else if(module == 'bcpm')
+    {
+      $("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/bcm_links'))%>");
     }
   });
 </script>

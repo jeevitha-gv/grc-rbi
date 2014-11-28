@@ -107,7 +107,8 @@ class Company < ActiveRecord::Base
     Role.create(title: "Asset Owner", company_id: company.id)
     Role.create(title: "Asset Custodian", company_id: company.id)
     Role.create(title: "Evaluator", company_id: company.id)
-    
+    Role.create(title: "Bcm Owner", company_id: company.id)
+    Role.create(title: "Bcm Manager", company_id: company.id)
   end
 
   def review_rating_levels_create

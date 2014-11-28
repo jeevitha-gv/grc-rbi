@@ -83,7 +83,7 @@ $("#panelbar").kendoPanelBar();
                 fields: {
                     title: { type: "string" },
                     department: {type: "string"},
-                    threat: {Type: "string"},
+                    threat: {type: "string"},
                     owner: {type: "string"},
                     
                 }

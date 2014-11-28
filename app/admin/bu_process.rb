@@ -11,7 +11,7 @@ ActiveAdmin.register BuProcess do
   permit_params :name, :company_id
 
   controller do
-    before_filter :check_company_admin, :check_role
+    before_filter :check_company_admin, :check_role, :company_admin_module_check
     before_filter :check_subdomain
     before_filter :check_plan_expire
    action :all, except: [:new, :show]
