@@ -2,6 +2,7 @@ class BcImplementationsController < ApplicationController
 
   before_filter :current_bc
   before_filter :accessible_plans, :only => [:index]
+  before_filter :authorize_bcimpl, :only => [:new, :create, :update, :edit] 
   
   layout 'bcm_layout'
 
@@ -41,6 +42,13 @@ class BcImplementationsController < ApplicationController
   private
   def bc_impl_params
   	params.require(:bc_implementation).permit(:implementation_status_id, :impl_actions)
+  end
+
+  def authorize_bcimpl
+    if(current_user.role_title != "Bcm Manager" && current_user.role_title != "company_admin")
+      flash[:alert] = "Access Restricted"
+      redirect_to bc_analyses_path
+  end
   end
   
 end

@@ -2,6 +2,7 @@ class BcMaintenancesController < ApplicationController
 
   before_filter :current_bc
   before_filter :accessible_plans, :only => [:index]
+  before_filter :authorize_bcmain, :only => [:new, :create, :update, :edit] 
 
   layout 'bcm_layout'
   
@@ -41,5 +42,12 @@ class BcMaintenancesController < ApplicationController
 
   def bc_main_params
   	params.require(:bc_maintenance).permit(:recurrence_id, :issues, :decision)
+  end
+
+  def authorize_bcmain
+    if(current_user.role_title != "Bcm Manager" && current_user.role_title != "company_admin")
+      flash[:alert] = "Access Restricted"
+      redirect_to bc_analyses_path
+    end
   end
 end
