@@ -73,7 +73,7 @@ class AssetActionsController < ApplicationController
       #   render "edit"
       # end
   end
-
+end
   private
 
   def action_params
