@@ -1,6 +1,7 @@
 class FraudReviewsController < ApplicationController
   layout 'fraud_layout'
   before_filter :current_fraud
+  before_filter :authorize_fraud, :only => [:new, :create, :update, :edit] 
   # before_filter :authorize_evaluator, :only => [:new, :create,:edit,:update]
   # before_filter :accessible_assets, :only => [:index]
 
@@ -42,4 +43,11 @@ class FraudReviewsController < ApplicationController
   def review_params
     params.require(:fraud_review).permit(:fraud_id, :assign_to, :detection_strategy, :detection_method)
   end
+
+  def authorize_fraud
+    if(current_user.role_title != "Fraud Manager" && current_user.role_title != "company_admin")
+      flash[:alert] = "Access Restricted"
+      redirect_to frauds_path
+  end
+end
 end

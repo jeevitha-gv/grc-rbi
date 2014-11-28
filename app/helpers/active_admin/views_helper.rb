@@ -44,12 +44,13 @@ module ActiveAdmin::ViewsHelper #camelized file name
      'risk'
     elsif ["bu_processes", "threats", "vulnerabilities"].include?(action_path)
       'bcpm'
+    elsif ["fraud_types"].include?(action_path)
+      'fraud'
     elsif ["distribution_lists"]
       'policy'
     elsif ["asset_types"]
       'asset'
-    elsif ["fraud_types"]
-      'fraud'
+   
     else
       ''
     end

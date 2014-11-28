@@ -1,6 +1,7 @@
 class InvestigationsController < ApplicationController
    layout 'fraud_layout'
   before_filter :current_fraud
+  before_filter :authorize_fraud, :only => [:new, :create, :update, :edit] 
   # before_filter :authorize_evaluator, :only => [:new, :create,:edit,:update]
   # before_filter :accessible_assets, :only => [:index]
 
@@ -42,4 +43,11 @@ class InvestigationsController < ApplicationController
   def inv_params
     params.require(:investigation).permit(:fraud_id, :summary, :closing_id, :finding_id, :rating_id, :actual_loss, :assign_for)
   end
+
+  def authorize_fraud
+    if(current_user.role_title != "Investigator" && current_user.role_title != "company_admin")
+      flash[:alert] = "Access Restricted"
+      redirect_to frauds_path
+  end
+end
 end
