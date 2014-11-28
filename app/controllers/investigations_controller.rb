@@ -15,6 +15,8 @@ class InvestigationsController < ApplicationController
   def create
     @investigate = @fraud.build_investigation(inv_params)    
     if @investigate.save
+      @fraud.fraud_status_id = 2
+      @fraud.save
       redirect_to fraud_investigations_path
     else
       redirect_to new_fraud_investigation_path

@@ -2,10 +2,11 @@ class FraudsController < ApplicationController
  layout 'fraud_layout'
 #before_filter :fraud_investigator_users, :only => [:new, :create, :edit, :update]
 # before_filter :authorize_fraud, :only => [:new, :create, :edit, :update]
+ before_filter :accessible_frauds, only: [:index]
 
 
   def index
-  	@frauds = current_company.frauds
+  	# @frauds = current_company.frauds
   end
 
   def new
@@ -14,6 +15,7 @@ class FraudsController < ApplicationController
 
   def create
   	@fraud = Fraud.new(fraud_params)
+    @fraud.company_id = current_company.id
     @fraud.fraud_status_id = 1
       
   	if @fraud.save
