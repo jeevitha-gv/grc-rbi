@@ -39,12 +39,13 @@ module ActiveAdmin::ViewsHelper #camelized file name
       'audit'
     elsif ["controls","procedures", "processes","risk_review_levels","projects"].include?(action_path)
      'risk'
+    elsif ["fraud_types"].include?(action_path)
+      'fraud'
     elsif ["distribution_lists"]
       'policy'
     elsif ["asset_types"]
       'asset'
-    elsif ["fraud_types"]
-      'fraud'
+   
     else
       ''
     end
