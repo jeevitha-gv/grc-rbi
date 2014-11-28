@@ -32,6 +32,8 @@ class Company < ActiveRecord::Base
   has_many :dashboard_charts
   has_many :risk_charts
   has_many :incidents
+  has_many :controls
+  has_many :control_charts
   #has_many :company_payments
 
  

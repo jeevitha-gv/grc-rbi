@@ -31,6 +31,12 @@ Rails.application.routes.draw do
      end
    end
 
+   resources :control_dashboard do
+     collection do
+      patch 'update'
+     end
+   end
+
   resources :risks do
     collection do
       get 'department_teams_users'
@@ -278,6 +284,7 @@ Rails.application.routes.draw do
   # CONTROL MANAGEMENT
 
   resources :controls do
+    
     resources :control_approvals
     resources :control_reviews
     resources :control_audits
