@@ -11,6 +11,8 @@ module ActiveAdmin::ViewsHelper #camelized file name
       'Policy'
     when 'admin/asset_types'
       'Asset'
+    when 'admin/bu_processes', 'admin/threats', 'admin/vulnerabilities'
+      'BCPM'
     else
       return ''
     end
