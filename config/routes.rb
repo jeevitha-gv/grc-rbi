@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-
-  
-
- mount Ckeditor::Engine => '/ckeditor'
-
-
   get 'fraud_dashboard/index'
 
   mount Ckeditor::Engine => '/ckeditor'
