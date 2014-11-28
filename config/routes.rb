@@ -5,6 +5,11 @@ Rails.application.routes.draw do
  mount Ckeditor::Engine => '/ckeditor'
 
 
+  get 'fraud_dashboard/index'
+
+  mount Ckeditor::Engine => '/ckeditor'
+
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   post 'admin/privileges/modal_previlege'
@@ -287,6 +292,12 @@ Rails.application.routes.draw do
   resources :policy_dashboards do
     collection do
       get 'calender'
+    end
+  end
+
+  resources :fraud_dashboard do
+    collection do
+      
     end
   end
 
