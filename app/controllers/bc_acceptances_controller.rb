@@ -2,6 +2,7 @@ class BcAcceptancesController < ApplicationController
 
   before_filter :current_bc
   before_filter :accessible_plans, :only => [:index]
+  before_filter :authorize_bcaccpetance, :only => [:new, :create, :update, :edit] 
 
   layout 'bcm_layout'
   
@@ -43,6 +44,13 @@ class BcAcceptancesController < ApplicationController
 
   def bc_accep_params
   	params.require(:bc_acceptance).permit(:test_type_id, :scope, :test_goal, :test_objective)
+  end
+
+  def authorize_bcaccpetance
+    if(current_user.role_title != "Bcm Owner" && current_user.role_title != "Bcm Manager"&& current_user.role_title != "company_admin")
+      flash[:alert] = "Access Restricted"
+      redirect_to bc_analyses_path
+  end
   end
 
 end

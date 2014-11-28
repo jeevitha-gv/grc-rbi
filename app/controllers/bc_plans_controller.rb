@@ -2,6 +2,7 @@ class BcPlansController < ApplicationController
 
 	before_filter :current_bc
   before_filter :accessible_plans, :only => [:index]
+  before_filter :authorize_bcplans, :only => [:new, :create, :update, :edit] 
 
   layout 'bcm_layout'
   
@@ -44,4 +45,10 @@ class BcPlansController < ApplicationController
     params.require(:bc_plan).permit(:bc_analysis_id, :plan, :opex, :capex, :plan_responsible, :launch_responsible, :plan_status_id, :recurrence_id, :review_date, :objective, :audit_metric, :success_criteria,:launch_criteria)
   end
 
+  def authorize_bcplans
+    if(current_user.role_title != "Bcm Owner" && current_user.role_title != "company_admin")
+      flash[:alert] = "Access Restricted"
+      redirect_to bc_analyses_path
+  end
+end
 end
