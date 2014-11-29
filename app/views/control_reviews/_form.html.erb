@@ -17,7 +17,7 @@
             <div class="mitigation-box-wrap">
               <div class="mitigation-status">
                   <div class="risk-box-lable">Control ID:</div>
-                    <div class="risk-box-text"><%= control.controlid if control.present? %></div>
+                    <div class="risk-box-text"><%= control.id if control.present? %></div>
                 </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 </tr> -->
                 <tr>
                   <td><label>Control ID : </label>
-                    <%= control.controlid if control.present? %></td>
+                    <%= control.id if control.present? %></td>
                   <td><label>Owner Delegate: </label>
                     <span> Manager</span></td>
                   <td><label>Classification : </label>

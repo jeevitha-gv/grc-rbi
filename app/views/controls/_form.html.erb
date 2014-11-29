@@ -22,19 +22,19 @@
               <!--Row first -->
                 <div class="row">
                
-               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+               <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                   <div class="form-group">
                     <label class="col-sm-3 control-label">
-                      <%= f.label :controlid, t('control.controlid')%>
+                      <%#= f.label :controlid, t('control.controlid')%>
                     </label>
                     <div class="col-sm-8">
-                        <%= f.text_field :controlid, :class => "form-control risk-normal-input" %>
-                        <% if control.errors[:controlid].present? %>
-                        <div class="error_message"><%=  control.errors[:controlid][0]%></div>
-                    <% end %>
+                        <%#= f.text_field :controlid, :class => "form-control risk-normal-input" %>
+                        <%# if control.errors[:controlid].present? %>
+                        <div class="error_message"><%#=  control.errors[:controlid][0]%></div>
+                    <%# end %>
                    </div>
                   </div>
-              </div>
+              </div> -->
 
                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                   <div class="form-group">
@@ -147,27 +147,16 @@
                     </div>
                         <div class="">
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <!-- <div class="form-group clearfix">
-                                  <label class="col-sm-5"><b>Owner :</b> </label>
-                                  <div class="col-sm-7">
-                                      <div class="risk-select">
-                                  <%#= control.collection_select(:owner, current_company.users, :id, :user_name)%>
-                                    </div>
-                                  </div>
-                                   
-                                </div> -->
-                                <div class="form-group">
-                                     <div class="col-sm-12">
-                                     <label for="exampleInputPassword1">Owner</label>
-                                         <div class="risk-select">
-                                         <select class="form-control">
-                                          <option>Manager</option>
-                                          <option>Admin</option>
-                                          
-                                        </select>
-                                        </div>
-                            </div>
-                                  </div>
+                               
+                                <div class="form-group clearfix">
+                      <label class="col-sm-5">Owner : </label>
+                      <div class="col-sm-7">
+                       <div class="risk-select">
+                      <%= f.collection_select(:owner, current_company.users, :id, :user_name)%>
+                    </div>
+                      </div>
+                       
+                    </div>
                                   </div>
                                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                <div class="form-group">
@@ -177,35 +166,23 @@
                                   <div class="col-sm-8">
                                     
                                   <div class="risk-select">
-                                  <%= f.collection_select(:owning_group_id, OwningGroup.all, :id, :name)%>
+                                   <%= f.select :team_id, options_for_select(current_company.teams.collect{|x| [x.name, x.id.to_i]}, :selected => control.team_id), {include_blank: '--Select Team--' }, { :id => "team_id"} %>
                                   </div>
                                   </div>
                                   
                                 </div>
                                   </div>
                                   
-                                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                               <!-- <div class="form-group clearfix">
-                                  <label class="col-sm-5"><b>Owner Delegate :</b> </label>
-                                  <div class="col-sm-7">
-                                      <div class="risk-select">
-                                  <%#= control.collection_select(:owner, current_company.users, :id, :user_name)%>
-                                    </div>
-                                  </div>
-                                   
-                                </div> -->
-                                
-                                <div class="form-group">
-                                     <div class="col-sm-12">
-                                     <label for="exampleInputPassword1">Owner Delegate</label>
-                                         <div class="risk-select">
-                                         <select class="form-control">
-                                          <option>Manger</option>
-                                          <option>Admin</option>
-                                        </select>
-                                        </div>
+                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                     <div class="form-group clearfix">
+                            <label class="col-sm-5">Owner Delegate: </label>
+                            <div class="col-sm-7">
+                             <div class="risk-select">
+                            <%= f.collection_select(:owner_delegate, current_company.users, :id, :user_name)%>
+                          </div>
                             </div>
-                                  </div>
+                             
+                          </div>
                                   </div>
                                    <div class="emp-hr clearfix"></div>
                                   </div>

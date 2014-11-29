@@ -37,10 +37,10 @@ $(document).ready(function() {
 		model: {
 			id: "id",
 				fields: {
-					controlid: { type: "integer" },
+					id: { type: "integer" },
 					name: { type: "string" },
 					owner: { type: "integer" },
-					control_regulation_id: { type: "integer" },					
+					control_regulation: { type: "integer" },					
 				}
 			}
 		},
@@ -59,10 +59,10 @@ $(document).ready(function() {
 		filterable: true,
 		pageable: false,
 		columns: [
-			{ field: "controlid", title: "Control ID", width: "20%" },
+			{ field: "id", title: "Control ID", width: "20%" },
 			{ field: "name", title: "Name", width: "30%" },
 			{ field: "owner", title: "Owner", width: "30%" },
-			{ field: "control_regulation_id", title: "Control Regulation", width: "30%" },
+			{ field: "control_regulation", title: "Control Regulation", width: "30%" },
 		
 			{ command: [{text: "list", click: approval_file},{text: "miti", click: review_file},{text: "book", click: audit_file},{text: "edit", click: edit_file},{text: "graph", click: graph_file}], title: "Action", width: "200px" }
 		],
@@ -231,7 +231,7 @@ $(document).ready(function() {
 			logic  : "or",
 			filters: [
 			{
-				field: "controlid",
+				field: "id",
 				operator: "contains",
 				value   : val
 			},
@@ -246,7 +246,7 @@ $(document).ready(function() {
 				value   : val
 			},
 			{
-				field: "control_regulation_id",
+				field: "control_regulation",
 				operator: "contains",
 				value   : val
 			},

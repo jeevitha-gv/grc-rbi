@@ -16,6 +16,7 @@ class Control < ActiveRecord::Base
     #has_one :attachment, as: :attachable
     belongs_to :control_owner, class_name: 'User', foreign_key: 'owner'
     belongs_to :control_owner_delegate, class_name: 'User', foreign_key: 'owner_delegate'
+    belongs_to :team
 
 	accepts_nested_attributes_for :control_approval
 	accepts_nested_attributes_for :control_review
@@ -25,8 +26,10 @@ class Control < ActiveRecord::Base
     delegate :name, :to => :control_approval, prefix: true, allow_nil: true
 	delegate :name, :to => :control_review, prefix: true, allow_nil: true
 	delegate :name, :to => :control_audit, prefix: true, allow_nil: true
+	delegate :name, :to => :team, prefix: true, allow_nil: true
 
 	delegate :user_name, to: :control_owner, prefix: true, allow_nil: true
 	delegate :user_name, to: :control_delegate, prefix: true, allow_nil: true
+	delegate :name, :to => :control_regulation, prefix: true, allow_nil: true
 	
 end

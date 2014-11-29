@@ -28,7 +28,17 @@ def new
 	end
 
   def edit
-  redirect_to new_control_control_audit_path(control_id: @control.id) unless @control.control_audit.present?
+    redirect_to new_control_control_audit_path(control_id: @control.id) unless @control.control_audit.present?
+  end
+
+  def update
+  if @control.update(control_audit_params)
+    flash[:notice] = "Auditing Updated"
+    # @control.update(control_status_id: IncidentStatus.where("name= ?", "In-Progress").first.id )
+    redirect_to edit_control_control_audit_path(control_id: @control.id, id: @control.control_audit.id)
+  else
+    render "edit"
+  end
 end
 
 private

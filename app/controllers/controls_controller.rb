@@ -33,6 +33,17 @@ layout 'control_layout'
     end
   end
 
+  def update
+    @control = Control.find(params[:id])
+    # @control.set_incident_status(@control, params[:commit]) if params[:commit] == "Initiate control"
+    if @control.update_attributes(control_params)
+      redirect_to edit_control_path
+    else
+      incident_initializers( @control.owner, @control.owner_delegate, @control.classification_control_id,@control.purpose_control_id,@control.owning_group_id,@control.control_regulation_id,@control.data_purpose_id,@control.control_status_id,@control.fraud_related_id,@control.team_id)
+      render 'edit'
+    end
+  end
+  
   def show
   
   end
@@ -46,7 +57,7 @@ layout 'control_layout'
   end
   
   # def update
-  #   @incident = Incident.find(params[:id])
+  #   @control = Incident.find(params[:id])
   #   @incident.set_incident_status(@incident, params[:commit]) if params[:commit] == "Initiate incident"
   #   if @incident.update_attributes(incident_params)
   #     redirect_to edit_incident_path

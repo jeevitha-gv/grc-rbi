@@ -27,6 +27,16 @@ def new
   end
 	end
 
+def update
+  if @control.update(control_review_params)
+    flash[:notice] = "Review Updated"
+    # @control.update(control_status_id: IncidentStatus.where("name= ?", "In-Progress").first.id )
+    redirect_to edit_control_control_review_path(control_id: @control.id, id: @control.control_review.id)
+  else
+    render "edit"
+  end
+end
+
   def edit
     redirect_to new_control_control_review_path(control_id: @control.id) unless @control.control_review.present?
   end

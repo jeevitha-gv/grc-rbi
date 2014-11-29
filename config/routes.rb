@@ -284,7 +284,6 @@ Rails.application.routes.draw do
   # CONTROL MANAGEMENT
 
   resources :controls do
-    
     resources :control_approvals
     resources :control_reviews
     resources :control_audits
