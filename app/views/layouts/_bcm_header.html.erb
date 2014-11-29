@@ -24,7 +24,7 @@
                 Policy</a></li>
             <% end %>
             <% if company_modules_check('Audit') %>
-              <li><a href="/audits" class="<%= add_admin_active_class(params) == 'Audit' ? 'active' : '' %>">
+              <li><a href="/audits" class="<%= add_active_class(params) == 'Audit' ? 'active' : '' %>">
                 <div class="audit-icon"></div>
                 Audit</a></li>
             <% end %>

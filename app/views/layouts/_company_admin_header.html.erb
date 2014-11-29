@@ -47,20 +47,11 @@
                 <div class="risk-icon"></div>
                 Asset</a></li>
             <% end %>
-            <% if company_modules_check('BCPM') %>
-              <li><a href="/bcm/bc_analyses" class="<%= add_active_class(params) == 'BCPM' ? 'active' : '' %>">
-                <div class="risk-icon"></div>
-                BCPM</a></li>
-            <% end %>
+            
              <% if company_modules_check('Incident') %>
              <li><a href="/incidents" class="<%= add_active_class(params) == 'Incident' ? 'active' : '' %>">
                 <div class="risk-icon"></div>
                 Incident</a></li>
-              <% end %>
-              <% if company_modules_check('Fraud') %>
-             <li><a href="/frauds" class="<%= add_active_class(params) == 'Fraud' ? 'active' : '' %>">
-                <div class="risk-icon"></div>
-                Fraud</a></li>
               <% end %>
           </ul>
         </div>
@@ -142,9 +133,11 @@
     else if(module == 'fraud')
     {
       $("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/fraud_links'))%>");
+    }
     else if(module == 'asset')
     {
       $("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/asset_links'))%>");
+    }
     else if(module == 'bcpm')
     {
       $("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/bcm_links'))%>");
