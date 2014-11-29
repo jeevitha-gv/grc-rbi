@@ -90,19 +90,19 @@
       <ul class="subbar-nav nav navbar-nav">
         <li><a  href="/fraud_dashboard" class="<%= request.fullpath.include?("fraud_dashboard") == true ? 'active' : '' %>">
             <div class="dash-icon"></div>
-            Dashboard</a></li>       
+            Fraud Dashboard</a></li>       
         <li><a  href="/frauds/new" class="<%= request.fullpath.include?("frauds/new") == true ? 'active' : '' %>">
             <div class="plan-icon"></div>
-            File</a></li>
+            Fraud Registry</a></li>
         <li><a  href="/frauds" class="<%= request.fullpath.exclude?("act") && request.fullpath.exclude?("new") && request.fullpath.exclude?("review") && request.fullpath.exclude?("investigations") == true ? 'active' : '' %>">
           <div class="listing-icon"></div>
           Fraud Inventory</a></li>
         <li><a href="/frauds?stage=action" class="<%= request.fullpath.include?("action") || request.fullpath.include?("investigations") == true ? 'active' : '' %>">
           <div class="lmitigate-icon"></div>
-          Investigate</a></li>
+         Fraud Investigation</a></li>
         <li><a  href="/frauds?stage=review" class="<%= request.fullpath.include?("review") == true ? 'active' : '' %>">
           <div class="review-icon"></div>
-          Review</a></li>
+          Fraud Review</a></li>
         <!-- <li><a  href="/vendors" class="<%#= request.fullpath.include?("vendors") == true ? 'active' : '' %>">
             <div class="plan-icon"></div>
             Vendors</a></li>
