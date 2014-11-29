@@ -1224,3 +1224,43 @@ Classification.delete_all
     Classification.create(:name => "Confidential")
     Classification.create(:name => "Public")
     Classification.create(:name => "Business use only")
+
+ClassificationControl.delete_all
+    
+    ClassificationControl.create(:name => "Preventive")
+    ClassificationControl.create(:name => "Corrective")
+    ClassificationControl.create(:name => "Detective")
+
+PurposeControl.delete_all
+    
+    PurposeControl.create(:name => "Process")
+    PurposeControl.create(:name => "Technical")
+
+DataPurpose.delete_all
+    
+    DataPurpose.create(:name => "None")
+    DataPurpose.create(:name => "Support Test Execution")
+    DataPurpose.create(:name => "Identifies non compliacne")
+    DataPurpose.create(:name => "Identifies Compliance")
+
+ControlStatus.delete_all
+    
+    ControlStatus.create(:name => "New")
+    ControlStatus.create(:name => "Draft")
+    ControlStatus.create(:name => "Active")
+    ControlStatus.create(:name => "In-Active")
+
+ControlRegulation.delete_all
+    
+    ControlRegulation.create(:name => "ISO/IEC 27001")
+    ControlRegulation.create(:name => "HIPAA")
+    ControlRegulation.create(:name => "PCI-DSS")
+    ControlRegulation.create(:name => "DIACAP")
+    ControlRegulation.create(:name => "FISMA")
+    ControlRegulation.create(:name => "FedRAMP")
+
+FraudRelated.delete_all
+    
+    FraudRelated.create(:name => "Yes")
+    FraudRelated.create(:name => "No")
+

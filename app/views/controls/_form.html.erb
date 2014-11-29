@@ -19,7 +19,7 @@
                 <div class="sub-titile">Use this form in order to design a new control for consideration in the Regulation.</div>
             <div class="sub-wrap-bg">
                     <form class="form-horizontal" role="form">
-              <!--Row first ------------>
+              <!--Row first -->
                 <div class="row">
                
                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
@@ -84,6 +84,21 @@
                   </div>
                   
               </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                 <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                    <%= f.label :control_status_id, t('control.control_status_id')%>
+                    </label>
+                    <div class="col-sm-8">
+                      
+                    <div class="risk-select">
+                    <%= f.collection_select(:control_status_id, ControlStatus.all, :id, :name)%>
+                    </div>
+                    </div>
+                    
+                  </div>
+                  
+              </div>
               </div>
               
               
@@ -104,25 +119,24 @@
                   </div>
               </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                   <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                    <%= f.label :data_purpose_id, t('control.data_purpose_id')%>
+                    </label>
+                    <div class="col-sm-8">
+                      
+                    <div class="risk-select">
+                    <%= f.collection_select(:data_purpose_id, DataPurpose.all, :id, :name)%>
+                    </div>
+                    </div>
+                    
                   </div>
+              </div>
        
              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-                  <!-- <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-4 control-label">created at</label>
-                    <div class="col-sm-8">
-                     <div class="risk-select">
-                      <select class="form-control">
-                      <option>Access Management</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                    </div>
-                    </div>
-                    </div> -->
+                  
                   </div>
               </div>
               

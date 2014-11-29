@@ -7,6 +7,9 @@ class Control < ActiveRecord::Base
 	belongs_to :control_delegate, class_name: 'User', foreign_key: 'owner_delegate'
 	belongs_to :owning_group
 	belongs_to :control_regulation
+	belongs_to :fraud_related
+	belongs_to :control_status_id
+	belongs_to :data_purpose_id
 	has_one :control_approval
 	has_one :control_review
 	has_one :control_audit
