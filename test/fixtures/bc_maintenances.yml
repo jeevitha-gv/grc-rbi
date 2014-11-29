@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bc_analysis_id: 1
+  recurrence_id: 1
+  issues: MyText
+  decision: false
+
+two:
+  bc_analysis_id: 1
+  recurrence_id: 1
+  issues: MyText
+  decision: false

@@ -1,0 +1,22 @@
+<div class="content">
+  	<div class="container">
+     	<div class="row">
+        	<div class="panel-heading">
+          		<h4><b>Publish Policy</b></h4>
+        	</div>
+        	<div class="col-md-12">
+          		<div class="panel with-nav-tabs panel-default">
+            		<div class="panel-heading">
+              			<h4><b><%= @policy.title %></b></h4>
+            		</div>
+            		<div class="panel-body">
+              			<div class="table-responsive">
+							<%= render 'policy', :policy => @policy %>
+							<%= render 'form' %>
+              			</div>
+            		</div>
+          		</div>
+        	</div>
+      	</div>
+    </div>
+</div>

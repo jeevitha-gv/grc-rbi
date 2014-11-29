@@ -3,7 +3,69 @@
 <script src="/assets/outer/drilldown.js"></script>
 <script src="/assets/outer/data.js"></script>
 <script src="/assets/outer/highcharts-3d.src.js"></script>
-<div id="container2" style="min-width: 765px; height: 400px;float:left; ">
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="risk-title">Asset Dashboard</div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="pie chart basic icon"></i> Asset based on type
+                </div>
+                <div class="panel-body">
+                    <div id="container1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="pie chart basic icon"></i> Assets based on status
+                </div>
+                <div class="panel-body">
+                    <div id="container2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="pie chart basic icon"></i> Asset based on severity
+                </div>
+                <div class="panel-body">
+                    <div id="container3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="list layout icon"></i> Inventory Stats
+                </div>
+                <div class="panel-body">                    
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-comment fa-fw"></i> Information Assets
+                            <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-comment fa-fw"></i> Information Assets
+                            <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                            </span>
+                        </a>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 $(function () {
     $('#container2').highcharts({
@@ -70,8 +132,7 @@ $(function () {
     });
 });
 </script> 
-</div>
-<div id="container1" style="min-width: 765px; height: 400px;float:left; ">
+
 <script type="text/javascript">
 $(function () {
     $('#container1').highcharts({
@@ -114,7 +175,7 @@ $(function () {
                        },
                        <%end%>]
         }],
-              drilldown: {
+              drilldown: { 
             series: [ 
                         {
                 id: 'Software',
@@ -198,4 +259,151 @@ $(function () {
     });
 });
 </script> 
-</div>
+
+<script type="text/javascript">
+$(function () {
+    $('#container3').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'Severity Types'
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+                       valueSuffix: ' assets'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+
+
+       series: [ 
+                        {
+                id: 'Severity',
+                data: [
+                <%@severity.each do |c2|%>
+                 {
+                name: '<%= c2.severity %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.count %>'
+            },
+             <% end %>
+            
+                ]
+            } 
+                
+            ],
+              drilldown: {
+            series: [ 
+
+            {
+                id: 'Software',
+                data: [
+                <%@sfttype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }, 
+            {
+                id: 'Document',
+                data: [
+                <%@doctype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }, 
+           {
+                id: 'Computer',
+                data: [
+                <%@comptype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }, 
+            {
+                id: 'MobileAsset',
+                data: [
+                <%@mobtype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }, {
+                id: 'OtherAsset',
+                data: [
+                <%@othertype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            }, {
+                id: 'Service',
+                data: [
+                <%@sertype.each do |c2|%>
+                 {
+                name: '<%= c2.name %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.name %>'
+            },
+             <% end %>
+            
+                ]
+            },
+                        {
+                id: 'Severity',
+                data: [
+                <%@severity.each do |c2|%>
+                 {
+                name: '<%= c2.severity %>',
+                y: <%= c2.count %>,
+                drilldown: '<%= c2.count %>'
+            },
+             <% end %>
+            
+                ]
+            } 
+                
+            ]
+        } 
+    });
+});
+</script>

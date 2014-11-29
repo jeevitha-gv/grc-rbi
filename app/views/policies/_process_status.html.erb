@@ -1,0 +1,22 @@
+<div class="container">
+<div class="process">
+    <div class="process-row">
+        <div class="process-step">
+            <button type="button" class="<%= get_policy_status(policy.policy_status_id, 'Drafted') unless policy.policy_status_id.nil?%>" disabled="disabled"><span class="glyphicon glyphicon-pencil"></span></button>
+            <p>Drafted</p>
+        </div>
+        <div class="process-step">
+            <button type="button" class="<%= get_policy_status(policy.policy_status_id, 'Reviewed') unless policy.policy_status_id.nil?%>" disabled="disabled"><span class="glyphicon glyphicon-eye-open"></span></button>
+            <p>Reviewed</p>
+        </div>
+        <div class="process-step">
+            <button type="button" class="<%= get_policy_status(policy.policy_status_id, 'Approved') unless policy.policy_status_id.nil?%>" disabled="disabled"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+            <p>Approved</p>
+        </div> 
+         <div class="process-step">
+            <button type="button" class="<%= get_policy_status(policy.policy_status_id, 'Published') unless policy.policy_status_id.nil?%>" disabled="disabled"><span class="glyphicon glyphicon-bullhorn"></span></button>
+            <p>Published</p>
+        </div> 
+    </div>
+</div>
+</div>

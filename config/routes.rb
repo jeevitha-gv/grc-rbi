@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-
+  get 'fraud_dashboard/index'
 
   mount Ckeditor::Engine => '/ckeditor'
+
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   post 'admin/privileges/modal_previlege'
@@ -106,11 +108,37 @@ Rails.application.routes.draw do
    resources :contracts do
    end
 
+   resources :frauds do
+    resources :investigations
+    resources :fraud_reviews
+   end
+
   resources :asset_dashboard do
     collection do
       get 'calendar'
+      get 'computers'
     end
   end
+
+  resources :bcm_dashboard do
+  end
+
+  scope '/bcm' do
+
+    resources :bc_analyses do
+
+      resources :bc_plans
+
+      resources :bc_implementations
+
+      resources :bc_acceptances
+
+      resources :bc_maintenances
+      
+    end
+
+  end
+
 
   scope '/inventory' do
     
@@ -173,14 +201,20 @@ Rails.application.routes.draw do
 
   end
   
+  
   resources :assets do  
     resources :assessments
 
     resources :asset_reviews
 
-    resources :asset_actions
+    resources :asset_actions do
+      collection do
+        get 'owner_action'
+        post 'owner_action_create'
+      end
+    end
 
-  end
+ end
   
 
   resource :user do
@@ -235,12 +269,18 @@ Rails.application.routes.draw do
   # Resources for policy
 
   resources :policies do
+    resources :policy_reviews
     member do
       get 'show_individual'
+      get 'show_version'
     end
     collection do
       get 'export'
+      get 'share_policy'
+      post 'send_emails_to_share'
     end
+    resources :policy_approvals
+    resources :publish_policies
   end
 
   resources :company_controls  do
@@ -252,6 +292,12 @@ Rails.application.routes.draw do
   resources :policy_dashboards do
     collection do
       get 'calender'
+    end
+  end
+
+  resources :fraud_dashboard do
+    collection do
+      
     end
   end
 

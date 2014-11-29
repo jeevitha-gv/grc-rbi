@@ -468,6 +468,14 @@ en:
               blank: "Contract Type can't be blank"
             contract_status_id:
               blank: "Contract Status can't be blank"
+        distribution_list:
+          attributes:
+            name:
+              blank: "Cant be same"
+        policy:
+          attributes:
+            share_policy_email:
+              blank: "Cant Be blank"
 
 
   blank:
@@ -732,6 +740,56 @@ en:
     assigned_on: "Assigned"
     impact: "Impact"
 
+# BCM
+  bc_analysis:
+      title: "Title"
+      dep: "Department"
+      bu_pro: "Processess"
+      vul: "Vulnerability"
+      threat: "Threat"
+      th_desc: "Threat Description"
+      vu_desc: "Vulnerability Description"
+      impact: "Impact"
+      bu_imp: "Business Impact"
+      bu_req: "Business Requirements"
+      tech: "Technical Requirements"
+      rec: "Recovery Requirements"
+      conf: "Confidentiality"
+      inti: "Integrity"
+      avail: "Availability"
+      owner: "Owner"
+      manager: "Manager"
+      assess: "Assessment"
+      notes: "Notes"
+
+  bc_plan:
+      plan: "Plan Title"
+      opex: "OPEX"
+      capex: "CAPEX"
+      plan_resp: "Plan Responsible"
+      launch_resp: "Launch Responsible"
+      plan_status: "Plan Status"
+      recurrence: "Recurrence"
+      review: "Review Date"
+      obj: "Objective"
+      audit_metric: "Audit Metric"
+      suc_cri: "Sucess Criteria"
+      lau_cri: "Launch Criteria"
+
+  bc_implementation:
+      impl_action: "Implementation Actions"
+      impl_status: "Implementation Status"
+
+  bc_acceptance: 
+      test_type: "Test Type"
+      scope: "Scope"
+      test_goal: "Test Goal"
+      test_obj: "Test Objective"
+
+  bc_maintenance:
+      test_type: "Test Type"
+      issue: "Issues"
+      recurrence: "Recurrence"
 #INCIDENT MANAGEMENT
 
   incident:
@@ -792,3 +850,35 @@ en:
     asset_manager: "Asset Manager"
     asset_user: "Asset User"
     assigned_on: "Assigned"
+
+
+#FRAUD
+
+  fraud:
+    subject: "Subject"
+    control: "Control"
+    reference: "Reference"
+    location: "Location"
+    fraud_type: "Fraud Type"
+    technology: "Technology"
+    investigator: "Investigator"
+    fraud_manager: "Fraud Manager" 
+    team: "Team"
+    fraud_status: "Fraud Status"
+    person_responsible: "Person Responsible"
+    investigation_object: "Investigation Object"
+    fraud_assessment: "Fraud Assessment"
+    risk_value: "Risk Value"
+    additional_note: "Additional Note"
+    summary: "Summary"
+    closing: "Reason For Closing"
+    finding: "Finding"
+    rating: "Rating"
+    actual_loss: "Actuall Loss"
+    assign_for: "Assign To"
+    detection_strategy: "Detection Strategy"
+    detection_method: "Detection_Method"
+
+
+
+     

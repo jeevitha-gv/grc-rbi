@@ -23,10 +23,15 @@ module ApplicationHelper
       'Risk'
     when 'incidents'
       'Incident'
-    when 'computers', 'other_assets', 'mobile_assets', 'vendors', 'contracts'
+    when 'assets', 'information_assets', 'computers', 'mobile_assets', 'softwares', 'services', 'other_assets', 'documents', 'source_codes', 'assessments', 'asset_actions', 'asset_reviews', 'asset_dashboard'
       'Asset'
+
     when 'controls'
       'Control'
+
+    when 'bc_analyses', 'bcm_dashboard', 'bc_acceptances', 'bc_implementations', 'bc_maintenances', 'bc_plans'
+      'BCPM'
+
     else
       return ''
     end
@@ -133,7 +138,33 @@ def link_to_add_lifecycle_fields(name, f, association, lifecycle)
 end
 
   def calc_score(asset)
-    return asset.asset_confi.score + asset.asset_avail.score + asset.asset_integ.score
+    return asset.asset_confi.id + asset.asset_avail.id + asset.asset_integ.id
   end
+
+def link_to_add_distribution_list(name, association)
+  link_to "#{name}" ,'javascript:void(0)',  {onclick: "add_distribution_list(this, \"#{association}\")", class: "plusround-icon plus-background"}
+end
+
+
+def link_to_remove_distribution_list(name, f)
+  f.hidden_field(:_destroy, {class: "auditee-remove"}) + link_to("#{name}", 'javascript:void(0)', {onclick: "remove_distribution_list(this)", class: "minusround-icon"})
+end
+
+def link_to_add_email_list(name, association)
+  link_to "#{name}" ,'javascript:void(0)',  {onclick: "add_email_list(this, \"#{association}\")", class: "plusround-icon plus-background"}
+end
+
+
+def link_to_remove_email_list(name, f)
+  f.hidden_field(:_destroy) + link_to("#{name}", 'javascript:void(0)', {onclick: "remove_email_list(this)", class: "minusround-icon"})
+end
+
+def link_to_add_email_list(name, f, association)
+  new_object = f.object.class.reflect_on_association(association).klass.new
+  fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
+    render(association.to_s.singularize + "_fields", :f => builder)
+  end
+  link_to "#{name}" ,'javascript:void(0)',  {onclick: "add_email_list(this, \"#{association}\", \"#{escape_javascript(fields)}\")", class: "plusround-icon plus-background"}
+end
 
 end

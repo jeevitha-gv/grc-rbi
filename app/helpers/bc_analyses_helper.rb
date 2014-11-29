@@ -1,0 +1,2 @@
+module BcAnalysesHelper
+end

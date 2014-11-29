@@ -25,7 +25,7 @@
                 Policies</a></li>
             <% end %>
             <% if company_modules_check('Audit') %>
-              <li><a href="/audits" class="<%= add_admin_active_class(params) == 'Audit' ? 'active' : '' %>">
+              <li><a href="/audits" class="<%= add_active_class(params) == 'Audit' ? 'active' : '' %>">
                 <div class="audit-icon"></div>
                 Audit</a></li>
             <% end %>
@@ -39,16 +39,29 @@
                 <div class="risk-icon"></div>
                 Asset</a></li>
             <% end %>
+            <% if company_modules_check('BCPM') %>
+              <li><a href="/bcm/bc_analyses" class="<%= add_active_class(params) == 'BCPM' ? 'active' : '' %>">
+                <div class="risk-icon"></div>
+                BCPM</a></li>
+            <% end %>
              <% if company_modules_check('Incident') %>
              <li><a href="/incidents" class="<%= add_active_class(params) == 'Incident' ? 'active' : '' %>">
                 <div class="risk-icon"></div>
                 Incident</a></li>
               <% end %>
+
               <% if company_modules_check('Control') %>
              <li><a href="/controls" class="<%= add_active_class(params) == 'Control' ? 'active' : '' %>">
                 <div class="risk-icon"></div>
                 Control</a></li>
               <% end %>
+
+              <% if company_modules_check('Fraud') %>
+              <li><a href="/frauds" class="<%= add_admin_active_class(params) == 'Fraud' ? 'active' : '' %>">
+                <div class="audit-icon"></div>
+                Fraud</a></li>
+            <% end %>
+
           </ul>
         </div>
         <input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">
@@ -93,12 +106,21 @@
           <li><a  href="/company_controls" class="<%= request.fullpath.include?("company_controls") == true ? 'active' : '' %>">
           <div class="lmitigate-icon"></div>
           Control</a></li>
-          <li><a   href="/policies" class="<%= (request.fullpath.include?("policies") && action_name == "index") == true ? 'active' : '' %>">
+          <li><a   href="/policies" class="<%= (request.fullpath.include?("policies") && request.fullpath.include?("policies/new") ) == true ? 'active' : '' %>">
           <div class="plan-icon"></div>
           Policy</a></li>
-<!--           <li><a  href="" class="">
+           <li><a   href="/policies" class="">
+          <div class="review-icon"></div>
+          Review</a></li>
+           <li><a   href="/policies" class="">
+          <div class="lmitigate-icon"></div>
+          Approve</a></li>
+          <li><a href="#" class="<%= (request.fullpath.include?("publish_policies")) == true ? 'active' : '' %>">
+          <div class="published-icon"></div>
+          Publish</a></li>
+          <li><a  href="" class="">
           <div class="setting-icon"></div>
-          Settings</a></li> -->
+          Settings</a></li>
       </ul>
     </div>
   </div>

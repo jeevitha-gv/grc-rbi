@@ -31,7 +31,7 @@ class BaseController < ActionController::Base
   end
 
   # Set Locale for selected Language
-  def set_locale
+ def set_locale
       I18n.locale  = current_user.language_id.present? ? ::Language.current_user_language(current_user.language_id).first.code : I18n.default_locale
       MESSAGES.replace ::ALLMESSAGES["#{I18n.locale}"]
   end
@@ -56,8 +56,12 @@ class BaseController < ActionController::Base
     @incident = Incident.find(params[:incident_id])
   end
 
+
   def current_control
     @control = Control.find(params[:control_id])
+end
+  def current_policy
+    @policy = Policy.find(params[:policy_id])
   end
 
   def current_audit_with_id
@@ -129,6 +133,15 @@ class BaseController < ActionController::Base
 	  	end
   end
 
+  #Authorize the Investigator for current Fraud
+  def authorize_fraud
+      unless (@fraud.investigator == current_user.id || current_user.role_title == "company_admin")
+        flash[:alert] = "Access restricted"
+        redirect_to frauds_path
+      end
+  end
+
+
   # Authorize the Auditee for current audit
 	def authorize_auditees
 	  	unless @audit.auditees.map(&:id).include?(current_user.id)
@@ -155,6 +168,14 @@ class BaseController < ActionController::Base
   def current_asset
     @asset = Asset.find(params[:asset_id])
   end
+  
+  def current_fraud
+    @fraud = Fraud.find(params[:fraud_id])
+  end
+
+  def current_bc
+    @bc_analysis = BcAnalysis.find(params[:bc_analysis_id])
+  end
 
   def authorize_custodian
     unless (@asset.custodian_id == current_user.id || current_user.role_title == "company_admin")
@@ -175,6 +196,33 @@ class BaseController < ActionController::Base
       @access_asset = current_company.assets.where("custodian_id = ? AND assetable_type = ?", current_user.id, "InformationAsset")
     elsif params[:stage] == "review"
       @access_asset = current_company.assets.where("evaluated_by = ? AND assetable_type = ?", current_user.id, "InformationAsset")
+    end
+  end
+
+
+  def accessible_plans
+    if params[:stage].nil?
+       @access_plans = current_company.bc_analyses
+    elsif params[:stage] == "evaluate"
+      @access_plans = current_company.bc_analyses.where("owner = ? AND bc_status_id = ?", current_user.id,"1")
+    elsif params[:stage] == "action"
+      @access_plans = current_company.bc_analyses.where("owner = ? AND bc_status_id = ?", current_user.id,"2")
+    elsif params[:stage] == "review"
+      @access_plans = current_company.bc_analyses.where("owner = ? AND bc_status_id = ?", current_user.id,"3")
+    elsif params[:stage] == "maintenance"
+      @access_plans = current_company.bc_analyses.where("owner = ? AND bc_status_id = ?", current_user.id,"4")
+    end
+  end
+
+
+
+  def accessible_frauds
+    if params[:stage].nil?
+      @access_fraud = current_company.frauds
+    elsif params[:stage] == "action"
+      @access_fraud = current_company.frauds.where("investigator = ? AND fraud_status_id = ?", current_user.id, "1")
+    elsif params[:stage] == "review"
+      @access_fraud = current_company.frauds.where("fraud_manager = ? AND fraud_status_id = ?", current_user.id, "2")
     end
   end
 

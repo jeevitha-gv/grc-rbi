@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fraud_id: 1
+  summary: MyText
+  closing_id: 1
+  finding_id: 1
+  rating_id: 1
+  actual_loss: MyString
+
+two:
+  fraud_id: 1
+  summary: MyText
+  closing_id: 1
+  finding_id: 1
+  rating_id: 1
+  actual_loss: MyString

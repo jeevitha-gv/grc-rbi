@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_id: 1
+  title: MyString
+  department_id: 1
+  bu_process_id: 1
+  threat_id: 1
+  vulnerability_id: 1
+  threat: MyText
+  vulnerability: MyText
+  impact: MyString
+  business_impact: MyText
+  business_req: MyText
+  tech_req: MyText
+  recovery_req: MyText
+  confidentiality: 1
+  availability: 1
+  integrity: 1
+  owner: 1
+  manager: 1
+  assessment: MyText
+  note: MyText
+
+two:
+  company_id: 1
+  title: MyString
+  department_id: 1
+  bu_process_id: 1
+  threat_id: 1
+  vulnerability_id: 1
+  threat: MyText
+  vulnerability: MyText
+  impact: MyString
+  business_impact: MyText
+  business_req: MyText
+  tech_req: MyText
+  recovery_req: MyText
+  confidentiality: 1
+  availability: 1
+  integrity: 1
+  owner: 1
+  manager: 1
+  assessment: MyText
+  note: MyText

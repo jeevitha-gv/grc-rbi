@@ -30,6 +30,21 @@ class User < ActiveRecord::Base
   has_many :artifact_answers
 
   belongs_to :user_manager, class_name: 'User', foreign_key: 'manager'
+  
+
+
+
+  
+  # Associations with Fraud Tables
+  has_many :fraud_inves, class_name: 'Fraud', foreign_key: 'investigator'
+  has_many :fraud_man, class_name: 'Fraud', foreign_key: 'fraud_manager'
+  has_many :fraud_resp, class_name: 'Fraud', foreign_key: 'person_responsible'
+  has_many :assign, class_name: 'Investigation', foreign_key: 'assign_for'
+  has_many :assign_tothe, class_name: 'FraudReview', foreign_key: 'assign_to'
+
+
+
+
 
   # Associations with Risk Tables
   has_many :risk_owner, class_name: 'Risk', foreign_key: 'owner'
@@ -58,11 +73,20 @@ class User < ActiveRecord::Base
   has_many :info_asset_evaluator, class_name: 'Asset', foreign_key: 'evaluated_by'
   has_many :assets
 
+  # Assosciations with Asset Module
+  has_many :bc_owner, class_name: 'BcAnalysis', foreign_key: 'owner'
+  has_many :bc_manager, class_name: 'BcAnalysis', foreign_key: 'manager'
+  has_many :plan_resp, class_name: 'BcPlan', foreign_key: 'plan_responsible'
+  has_many :launch_resp, class_name: 'BcPlan', foreign_key: 'launch_responsible'
+
 
   # Associations with Policy Module
-  has_many :policy_owners, class_name: "Policy", foreign_key: 'owner'
+  has_many :policy_owner, class_name: "Policy", foreign_key: 'owner'
   has_many :policy_reviewers
   has_many :policy_approvers
+
+  has_many :policy_reviewer, through: :policy_reviewers, source: :policy
+  has_many :policy_approver, through: :policy_approvers, source: :policy
 
 # attribute to login with username or email
   attr_accessor :login, :domain
@@ -128,6 +152,7 @@ class User < ActiveRecord::Base
     end
   end
 
+
 def accessible_controls
   @control = Control.all
   # if(self.role.title == "company_admin") 
@@ -142,6 +167,14 @@ end
   #   end
   # end
 
+
+  def accessible_policies
+    if(self.role.title == "company_admin")
+      Policy.where(company_id: self.company_id)
+    else
+      (self.policy_owner + self.policy_reviewer + self.policy_approver ).uniq
+    end
+  end
   def audits_stage(params)
     audits = []
     case params[:stage]

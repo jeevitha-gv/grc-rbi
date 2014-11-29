@@ -87,12 +87,14 @@ Section.delete_all
     Section.create(name: 'Asset')
     Section.create(name: 'Policy')
     Section.create(name: 'Control')
+    Section.create(name: 'Fraud')
+    Section.create(name: 'BCPM')
 
 Priority.delete_all
 
-    Priority.create(name: 'High', score: '3')
-    Priority.create(name: 'Medium', score: '2')
-    Priority.create(name: 'Low', score: '1')
+    Priority.create(name: 'High')
+    Priority.create(name: 'Medium')
+    Priority.create(name: 'Low')
 
 ReminderAssignment.delete_all
 
@@ -922,13 +924,23 @@ CvssMetricScoring.delete_all
 Subscription.delete_all
 
     # Subscription.create(:name => "Free", :description => "free",:section_ids=> [1,2], :amount => 0.00, :valid_log =>23,:valid_period => 1)
-    Subscription.create(name: "All Modules", description: "Subscribe all Modules", section_ids: [1,2,3,4,5,6], amount: 0.00, valid_log: 23, valid_period: 1, user_count: 10, file_size: 75)
+
+
+    Subscription.create(name: "All Modules", description: "Subscribe all Modules", section_ids: [1,2,3,4,5,6,7,8], amount: 0.00, valid_log: 23, valid_period: 1, user_count: 10, file_size: 75)
+
     Subscription.create(name: "Audit", description: "Audit", section_ids: [1], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
     Subscription.create(name: "Risk", description: "Risk", section_ids: [2], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
     Subscription.create(name: "Asset", description: "Asset", section_ids: [3], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
     Subscription.create(name: "Policy", description: "Policy", section_ids: [4], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
     Subscription.create(name: "Incident", description: "Incident", section_ids: [5], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
-    Subscription.create(name: "Control", description: "Control", section_ids: [6], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
+
+    Subscription.create(name: "Control", description: "Control", section_ids: [8], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
+
+    Subscription.create(name: "Fraud", description: "Fraud", section_ids: [6], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
+    Subscription.create(name: "BCPM", description: "Bcm", section_ids: [7], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
+
+
+
 
 RiskModel.delete_all
 
@@ -1149,6 +1161,7 @@ ComputerCategory.delete_all
         PolicyStatus.create(name: "Waiting for Approval")
         PolicyStatus.create(name: "Approved")
         PolicyStatus.create(name: "Discard/Declined")
+        PolicyStatus.create(name: "Published")
 
     Audience.delete_all
 
@@ -1263,4 +1276,80 @@ FraudRelated.delete_all
     
     FraudRelated.create(:name => "Yes")
     FraudRelated.create(:name => "No")
+
+
+RiskValue.delete_all
+
+    RiskValue.create(:name => "1-10lakhs")
+    RiskValue.create(:name => "10-100lakhs")
+
+Finding.delete_all
+
+    Finding.create(:name => "Proven Fraud") 
+    Finding.create(:name => "Unproven Fraud") 
+    Finding.create(:name => "Fraud Discarded")
+
+Closing.delete_all
+
+    Closing.create(:name => "Fraud Proven By Internal Investigation") 
+    Closing.create(:name => "Unproven Fraud") 
+    Closing.create(:name => "Unrelated Fraud")
+
+Rating.delete_all
+
+    Rating.create(:name => "1")
+    Rating.create(:name => "2")
+    Rating.create(:name => "3")
+    Rating.create(:name => "")
+    Rating.create(:name => "5")
+
+FraudStatus.delete_all
+
+    FraudStatus.create(:name => "Investigated")
+    FraudStatus.create(:name => "Published")
+    FraudStatus.create(:name => "Reviewed")
+
+InvestigationObject.delete_all
+
+    InvestigationObject.create(:name => "Investigate Insurance Claims")
+    InvestigationObject.create(:name => "Questionable Payment")
+
+AssetCriticality.delete_all
+
+    AssetCriticality.create(name: 'Low')
+    AssetCriticality.create(name: 'Medium')
+    AssetCriticality.create(name: 'High')
+
+# BCM 
+
+PlanStatus.delete_all
+
+    PlanStatus.create(:name => "Production")
+    PlanStatus.create(:name => "Designed")
+    PlanStatus.create(:name => "Proposed")
+    PlanStatus.create(:name => "Transistion")
+    PlanStatus.create(:name => "Retired")
+
+Recurrence.delete_all
+
+    Recurrence.create(:name => "Monthly")
+    Recurrence.create(:name => "Quarterly")
+    Recurrence.create(:name => "Semesterly")
+    Recurrence.create(:name => "Annually")
+
+TestType.delete_all
+
+    TestType.create(:name => "Table Top")
+    TestType.create(:name => "Functional")
+    TestType.create(:name => "Full Scale")
+    TestType.create(:name => "Orientation")
+
+BcStatus.delete_all
+
+    BcStatus.create(:name => "Analysis")
+    BcStatus.create(:name => "Planned")
+    BcStatus.create(:name => "Implemented")
+    BcStatus.create(:name => "Acceptance")
+    BcStatus.create(:name => "Maintenance")
+
 

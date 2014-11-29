@@ -35,8 +35,12 @@ class Company < ActiveRecord::Base
   has_many :controls
   has_many :control_charts
   #has_many :company_payments
-
  
+
+  
+  # Associations with Fraud table
+  has_many :frauds
+  
 
   # Assosciations with Asset Module
   has_many :other_assets
@@ -51,10 +55,12 @@ class Company < ActiveRecord::Base
   has_many :assets
   has_many :information_assets, :through => :assets, :source => :asset
 
-
+ # Associations with BCM Module
+  has_many :bc_analyses
   # Associations with Policy Module
   has_many :policies
   has_many :company_controls
+  has_many :distribution_lists
 
   accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }, allow_destroy: true
   accepts_nested_attributes_for :users
@@ -103,7 +109,12 @@ class Company < ActiveRecord::Base
     Role.create(title: "Asset Owner", company_id: company.id)
     Role.create(title: "Asset Custodian", company_id: company.id)
     Role.create(title: "Evaluator", company_id: company.id)
+    Role.create(title: "Bcm Owner", company_id: company.id)
+    Role.create(title: "Bcm Manager", company_id: company.id)
+    Role.create(title: "Investigator", company_id: company.id)
+    Role.create(title: "Fraud Manager", company_id: company.id)
 
+    
   end
 
   def review_rating_levels_create
