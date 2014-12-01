@@ -41,7 +41,7 @@ class FraudReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:fraud_review).permit(:fraud_id, :assign_to, :detection_strategy, :detection_method)
+    params.require(:fraud_review).permit(:fraud_id, :assign_to, :detection_strategy, :resolution, :prevention, :detection_method)
   end
 
   def authorize_fraud
