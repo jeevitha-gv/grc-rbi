@@ -13,8 +13,13 @@ module ActiveAdmin::ViewsHelper #camelized file name
       'Policy'
     when 'admin/asset_types'
       'Asset'
+
+    when 'admin/controls'
+      'Control'
+
     when 'admin/fraud_types'
       'Fraud'
+
 
     else
       return ''
@@ -50,7 +55,10 @@ module ActiveAdmin::ViewsHelper #camelized file name
       'policy'
     elsif ["asset_types"]
       'asset'
-   
+
+    elsif ["controls"]
+      'control'
+
     else
       ''
     end

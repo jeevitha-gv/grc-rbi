@@ -61,6 +61,9 @@ class User < ActiveRecord::Base
   has_many :incident_user, class_name: 'Escalation', foreign_key: 'user'
   has_many :resolution_user, class_name: 'Resolution', foreign_key: 'reassignee'
 
+  # Associations with Control Tables
+  has_many :control_owner, class_name: 'Control', foreign_key: 'owner'
+  has_many :control_delegate, class_name: 'Control', foreign_key: 'owner_delegate'
 
   # Assosciations with Asset Module
   has_many :lifecycles
@@ -150,6 +153,21 @@ class User < ActiveRecord::Base
   end
 
 
+def accessible_controls
+  @control = Control.all
+  # if(self.role.title == "company_admin") 
+  #     Control.where(company_id: self.company_id)
+  # end
+end
+  # def accessible_incidents
+  #   if(self.role.title == "company_admin")
+  #     Incident.where(company_id: self.company_id)
+  #   else
+  #     (self.risk_owner + self.risk_submitor + self.risk_mitigator + self.risk_reviewer).uniq
+  #   end
+  # end
+
+
   def accessible_policies
     if(self.role.title == "company_admin")
       Policy.where(company_id: self.company_id)
@@ -157,7 +175,6 @@ class User < ActiveRecord::Base
       (self.policy_owner + self.policy_reviewer + self.policy_approver ).uniq
     end
   end
-
   def audits_stage(params)
     audits = []
     case params[:stage]
@@ -189,6 +206,7 @@ class User < ActiveRecord::Base
   end
 
 
+
   def incidents_stage(params)
     incidents = []
     case params[:stage]
@@ -198,6 +216,18 @@ class User < ActiveRecord::Base
     when 'resolution'
       self.accessible_incidents.select{ |x| incidents << x if(x.evaluate.present? ) }
       incidents
+    end
+  end
+
+  def controls_stage(params)
+    controls = []
+    case params[:stage]
+    when 'approval'
+      self.accessible_controls.select{ |x| controls << x if(x.approval.blank? ) }
+      controls
+    when 'review'
+      self.accessible_controls.select{ |x| controls << x if(x.approval.present? ) }
+      controls
     end
   end
 

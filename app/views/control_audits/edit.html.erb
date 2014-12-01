@@ -1,0 +1,7 @@
+<%= form_for(@control,url: {controller: "control_audits", action: "update"},:method => "patch") do |f| %>
+
+
+<%= render 'form', :f => f,  :control => @control %>
+
+<%end%>
+

@@ -1,0 +1,2 @@
+module ControlApprovalsHelper
+end

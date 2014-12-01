@@ -52,9 +52,14 @@ class BaseController < ActionController::Base
   end
 
   def current_incident
+    binding.pry
     @incident = Incident.find(params[:incident_id])
   end
 
+
+  def current_control
+    @control = Control.find(params[:control_id])
+end
   def current_policy
     @policy = Policy.find(params[:policy_id])
   end

@@ -86,9 +86,9 @@ Section.delete_all
     Section.create(name: 'Incident')
     Section.create(name: 'Asset')
     Section.create(name: 'Policy')
+    Section.create(name: 'Control')
     Section.create(name: 'Fraud')
     Section.create(name: 'BCPM')
-
 
 Priority.delete_all
 
@@ -924,14 +924,21 @@ CvssMetricScoring.delete_all
 Subscription.delete_all
 
     # Subscription.create(:name => "Free", :description => "free",:section_ids=> [1,2], :amount => 0.00, :valid_log =>23,:valid_period => 1)
-    Subscription.create(name: "All Modules", description: "Subscribe all Modules", section_ids: [1,2,3,4,5,6,7], amount: 0.00, valid_log: 23, valid_period: 1, user_count: 10, file_size: 75)
+
+
+    Subscription.create(name: "All Modules", description: "Subscribe all Modules", section_ids: [1,2,3,4,5,6,7,8], amount: 0.00, valid_log: 23, valid_period: 1, user_count: 10, file_size: 75)
+
     Subscription.create(name: "Audit", description: "Audit", section_ids: [1], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
     Subscription.create(name: "Risk", description: "Risk", section_ids: [2], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
     Subscription.create(name: "Asset", description: "Asset", section_ids: [3], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
     Subscription.create(name: "Policy", description: "Policy", section_ids: [4], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
     Subscription.create(name: "Incident", description: "Incident", section_ids: [5], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
+
+    Subscription.create(name: "Control", description: "Control", section_ids: [8], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
+
     Subscription.create(name: "Fraud", description: "Fraud", section_ids: [6], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
     Subscription.create(name: "BCPM", description: "Bcm", section_ids: [7], amount: 500.00, valid_log: 23, valid_period: 1, user_count: 30, file_size: 150)
+
 
 
 
@@ -1231,6 +1238,45 @@ Classification.delete_all
     Classification.create(:name => "Public")
     Classification.create(:name => "Business use only")
 
+ClassificationControl.delete_all
+    
+    ClassificationControl.create(:name => "Preventive")
+    ClassificationControl.create(:name => "Corrective")
+    ClassificationControl.create(:name => "Detective")
+
+PurposeControl.delete_all
+    
+    PurposeControl.create(:name => "Process")
+    PurposeControl.create(:name => "Technical")
+
+DataPurpose.delete_all
+    
+    DataPurpose.create(:name => "None")
+    DataPurpose.create(:name => "Support Test Execution")
+    DataPurpose.create(:name => "Identifies non compliacne")
+    DataPurpose.create(:name => "Identifies Compliance")
+
+ControlStatus.delete_all
+    
+    ControlStatus.create(:name => "New")
+    ControlStatus.create(:name => "Draft")
+    ControlStatus.create(:name => "Active")
+    ControlStatus.create(:name => "In-Active")
+
+ControlRegulation.delete_all
+    
+    ControlRegulation.create(:name => "ISO/IEC 27001")
+    ControlRegulation.create(:name => "HIPAA")
+    ControlRegulation.create(:name => "PCI-DSS")
+    ControlRegulation.create(:name => "DIACAP")
+    ControlRegulation.create(:name => "FISMA")
+    ControlRegulation.create(:name => "FedRAMP")
+
+FraudRelated.delete_all
+    
+    FraudRelated.create(:name => "Yes")
+    FraudRelated.create(:name => "No")
+
 
 RiskValue.delete_all
 
@@ -1305,4 +1351,5 @@ BcStatus.delete_all
     BcStatus.create(:name => "Implemented")
     BcStatus.create(:name => "Acceptance")
     BcStatus.create(:name => "Maintenance")
+
 
