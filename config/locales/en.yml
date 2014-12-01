@@ -878,6 +878,8 @@ en:
     assign_for: "Assign To"
     detection_strategy: "Detection Strategy"
     detection_method: "Detection_Method"
+    resolution: "Resolution"
+    prevention: "Prevention"
 
 
 
