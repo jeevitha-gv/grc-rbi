@@ -6,7 +6,7 @@ class FraudsController < ApplicationController
 
 
   def index
-  	# @frauds = current_company.frauds
+  	@frauds = current_company.frauds
   end
 
   def new
