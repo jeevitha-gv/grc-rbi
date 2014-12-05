@@ -10,26 +10,18 @@
         <div class="navbar-collapse collapse fleft">
           <ul class="nav navbar-nav main_nav">
             <li><a href="/admin/dashboard" class="<%= add_super_admin_active_class(params) == 'Settings' ? 'active' : '' %>">
-              <div class="overview-icon"></div>
               Overview</a></li>
 
             <li class="next-phase"><a href="/admin/policy_kinds" class="<%= add_super_admin_active_class(params) == 'Policy' ? 'active' : '' %>" >
-              <div class="audit-icon"></div>
               Policy</a></li>
 
             <li class="next-phase"><a href="/admin/compliances" class="<%= add_super_admin_active_class(params) == 'Audit' ? 'active' : '' %>" >
-              <div class="audit-icon"></div>
               Audit</a></li>
 
             <li class="next-phase"><a href="/admin/planning_strategies" class="<%= add_super_admin_active_class(params) == 'Risk' ? 'active' : '' %>" >
-              <div class="risk-icon"></div>
               Risk</a> </li>
-<<<<<<< HEAD
-              <li class="next-phase"><a href="/admin/incident_categories" class="<%= add_super_admin_active_class(params) == 'Incident' ? 'active' : '' %>" >
-              <div class="risk-icon"></div>
-=======
+
               <li class="next-phase"><a href="/admin/slas" class="<%= add_super_admin_active_class(params) == 'Incident' ? 'active' : '' %>" >
->>>>>>> incident-phase1
               Incident  </a> </li>
 
               <li class="next-phase"><a href="/admin/controls" class="<%= add_super_admin_active_class(params) == 'Control' ? 'active' : '' %>" >
