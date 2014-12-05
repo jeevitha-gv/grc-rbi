@@ -3,7 +3,12 @@ class PublishPoliciesController < ApplicationController
 	before_filter :current_policy
 
 	def new
-		@publish_policy = @policy.publish_policy.present? ? @policy.publish_policy : @policy.build_publish_policy
+		# @publish_policy = @policy.publish_policy.present? ? @policy.publish_policy : @policy.build_publish_policy
+		if(@policy.publish_policy.present?)
+      		redirect_to edit_policy_publish_policy_path(@policy, id: @policy.publish_policy.id)
+    	else
+      		@publish_policy = @policy.build_publish_policy
+    	end
 	end
 
 	def create
@@ -40,6 +45,7 @@ class PublishPoliciesController < ApplicationController
 			 ReminderMailer.registration_confirmation(@user).deliver
 			 ReminderMailer.registration_confirmations(@users).deliver
 		end
+		
 		def publish_params
 			params.require(:publish_policy).permit(:subject, :body, publish_emails_attributes: [:id, :email,:_destroy], publish_distribution_lists_attributes: [:id, :distribution_list_id,:_destroy])
 		end

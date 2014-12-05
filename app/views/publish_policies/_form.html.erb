@@ -31,11 +31,11 @@
                       <div id="email-list">
                         <%= f.fields_for :publish_emails, (f.object.publish_emails.present? ? f.object.publish_emails : PublishEmail.new) do |builder|%>
                             <%= render 'publish_email_fields', :f => builder %>
-                           <%end%>
-                </div>
-                <div class="form-group clearfix addissue">
-                  <%= link_to_add_choices "", f, :publish_emails %>
-              </div>
+                        <%end%>
+                      </div>
+                      <div class="form-group clearfix addissue">
+                        <%= link_to_add_choices "", f, :publish_emails %>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -59,6 +59,35 @@
                         </div>
                       </div>
                   </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="col-md-12">
+                    <h4>Publish Status</h4>
+                    <hr>
+                    <% unless @policy.policy_status_name == "Published" %>
+                      <div class="col-xs-9 col-md-5">
+                        <div class="panel status panel-success">
+                          <div class="panel-heading">
+                            <h1 class="panel-title text-center">Published At</h1>
+                          </div>
+                          <div class="panel-body text-center">                        
+                            <strong><%#= @policy.publish_policy.created_at.strftime("%F")%></strong>
+                          </div>
+                        </div>
+                      </div> 
+                    <% else %>
+                      <div class="col-xs-9 col-md-5">
+                        <div class="panel status panel-warning">
+                          <div class="panel-heading">
+                            <h1 class="panel-title text-center">Published At</h1>
+                          </div>
+                          <div class="panel-body text-center">                        
+                            <strong><%#= @policy.publish_policy.created_at.strftime("%F") %></strong>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>    
                 </div>
               </div>
             </div>

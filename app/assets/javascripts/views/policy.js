@@ -144,3 +144,9 @@ function email_validation()
         }
     }
 }
+
+function attach_file(){
+	$('#attach_file').modal({
+			// remote: "/policies/share_policy?id=" + dataItem.id
+	});
+}

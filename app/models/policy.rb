@@ -72,6 +72,7 @@ class Policy < ActiveRecord::Base
   		accepts_nested_attributes_for :policy_departments, reject_if: lambda { |a| a[:department_id].blank? },:allow_destroy => true
   		accepts_nested_attributes_for :policy_reviewers, reject_if: lambda { |a| a[:user_id].blank? },:allow_destroy => true
   		accepts_nested_attributes_for :policy_approvers, reject_if: lambda { |a| a[:user_id].blank? },:allow_destroy => true
+      accepts_nested_attributes_for :attachments, reject_if: lambda { |a| a[:attachment_file].blank? },:allow_destroy => true
 
 	private
 

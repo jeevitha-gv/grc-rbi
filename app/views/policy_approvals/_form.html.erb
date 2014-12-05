@@ -1,4 +1,3 @@
-
   <div class="clearfix"></div>
   <div class="content">
     <div class="container">
@@ -9,117 +8,14 @@
         <div class="col-md-12">
           <div class="panel with-nav-tabs panel-default">
             <div class="panel-heading">
-              <h4><b>Information Security Management System (ISMS) policy </b></h4>
-              <a href="policy_view.html" style="float: right;">Detailed View</a>
+              <h4><b><%= policy.title %></b></h4>
             </div>
             <div class="panel-body">
               <div class="table-responsive">
-                <table class="table table-striped list-table">
-                    <tr>
-                        <th colspan="6">POLICY0001 - 4.1</th>
-                    </tr>
-                    <tr>
-                      <td><label class="col-sm-5"class="col-sm-4">Kind of Policy</label>
-                        <span><%= @policy.policy_kind_name %></span></td>
-                      <td><label class="col-sm-5"class="col-sm-4">Classification</label>
-                        <span><%= @policy.policy_classification_name %></span></td>
-                    </tr>
-                    <tr>
-                        <td><label class="col-sm-5"class="col-sm-4">Audience</label>
-                        <span><%= @policy.audience_name %></span></td>
-                        <td><label class="col-sm-5"class="col-sm-4">Locations</label>
-                        <span>
-                          <% @policy.locations.each do |l| %>
-                          <%= l.name %>
-                          <% end %>
-                        </span></td>
-                    </tr>
-                    <tr>
-                        <td><label class="col-sm-5"class="col-sm-4">Departments</label>
-                        <span>
-                          <% @policy.departments.each do |d| %>
-                          <%= d.name %>
-                          <% end %>
-                        </span></td>
-                        <td><label class="col-sm-5"class="col-sm-4">Locations</label>
-                        <span><% @policy.locations.each do |l| %>
-                                                <%= l.name %>
-                                            <% end %>
-                        </span></td>
-                    </tr>
-                </table>
-                <table class="table table-striped list-table">
-                    <tr>
-                        <th colspan="6">Handlers</th>
-                    </tr>
-                    <tr>
-                      <td><label class="col-sm-5"class="col-sm-4">Author</label>
-                        <span><%= @policy.policy_owner_user_name %></span></td>
-                      <td><label class="col-sm-5"class="col-sm-4">Owner</label>
-                        <span><%= @policy.policy_owner_user_name %></span></td>
-                    </tr>
-                    <tr>
-                      <td><label class="col-sm-5"class="col-sm-4">Reviewers</label>
-                        <span>
-                          <% @policy.reviewers.each do |u| %>
-                          <%= u.user_name %>
-                          <% end %>
-                        </span></td>
-                      <td><label class="col-sm-5"class="col-sm-4">Approvers</label>
-                        <span>
-                          <% @policy.approvers.each do |u| %>
-                          <%= u.user_name %>
-                          <% end %>
-                        </span></td>
-
-                    </tr>
-                </table>
-                <table class="table table-striped list-table">
-                    <tr>
-                        <th colspan="6">Dates</th>
-                    </tr>
-                    <tr>
-                      <td><label class="col-sm-5"class="col-sm-4">Effective from:</label>
-                        <span><%= @policy.effective_from.strftime("%b %d, %Y") %></span></td>
-                      <td><label class="col-sm-5"class="col-sm-4">Effective Till</label>
-                        <span><%= @policy.effective_till.strftime("%b %d, %Y") %></span></td>
-                    </tr>
-                    <tr>
-                      <td><label class="col-sm-5"class="col-sm-4">Publish Date</label>
-                        <span><%= @policy.expected_publish_date.strftime("%b %d, %Y") %></span></td>
-                      <td><label class="col-sm-5"class="col-sm-4">Next Review Date</label>
-                        <span><%= @policy.review_within_date.strftime("%b %d, %Y") %></span></td>
-
-                    </tr>
-                    <tr>
-                      <td><label class="col-sm-5"class="col-sm-4">Created at:</label>
-                        <span><%= @policy.created_at.strftime("%b %d, %Y") %></span></td>
-                      <td><label class="col-sm-5"class="col-sm-4">Last Updated at:</label>
-                        <span><%= @policy.updated_at.strftime("%b %d, %Y") %></span></td>
-                    </tr>
-                    <tr>
-                      <td><label class="col-sm-5"class="col-sm-4">Reviewed at:</label>
-                        <span>Sep 31,2014</span></td>
-                      <td><label class="col-sm-5"class="col-sm-4">Approved at:</label>
-                        <span>Oct 9,2014</span></td>
-                    </tr>
-                    <tr>
-                        <td><label class="col-sm-5"class="col-sm-4">Published by:</label>
-                        <span>Ghayathri</span></td>
-                        <td></td>
-                    </tr>
-                </table>
-                <table class="table table-striped list-table">
-                    <tr>
-                        <th>Supporting Documents</th>
-                    </tr>
-                    <tr>
-                        <td>Attachments</td>
-                    </tr>
-                </table>
-                  <%= form_for([policy, @policy_approve], html: { class: "form-horizontal"}) do |f| %>
+                <%= render 'policy_detail' , policy: policy %>
                 <hr>
-                <table class="table table-striped list-table">
+                <%= form_for([policy, @policy_approve], html: { class: "form-horizontal"}) do |f| %>
+                  <table class="table table-striped list-table">
                     <tr>
                         <th>Approve Policy</th>
                     </tr>
@@ -159,7 +55,7 @@
                           </div>
                         </td>
                     </tr>
-                </table>
+                  </table>
                 <% end %>
               </div>
             </div>

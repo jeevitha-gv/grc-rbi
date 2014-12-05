@@ -3,154 +3,69 @@
     <div class="container">
       <div class="row">
         <div class="panel-heading">
-          <h4><b>Selva Policy Review</b></h4>
+          <h4><b>Policy Review</b></h4>
         </div>
         <div class="col-md-12">
           <div class="panel with-nav-tabs panel-default">
             <div class="panel-heading">
-              <h4><b>Information Security Management System (ISMS) policy </b></h4>
-              <a href="policy_view.html" style="float: right;">Detailed View</a>
+              <h4><b><%= policy.title%></b></h4>
             </div>
             <div class="panel-body">
               <div class="table-responsive">
-                <table class="table table-striped list-table">
-                    <tr>
-                        <th colspan="6">POLICY0001 - 4.1</th>
-                    </tr>
-                    <tr>
-                      <td><label class="col-sm-5"class="col-sm-4">Kind of Policy</label>
-                        <span><%= policy.policy_kind_name if policy.present? %></span></td>
-                      <td><label class="col-sm-5"class="col-sm-4">Classification</label>
-                        <span><%= policy.policy_classification_name if policy.present? %></span></td>
-                    </tr>
-                    <tr>
-                        <td><label class="col-sm-5"class="col-sm-4">Audience</label>
-                        <span><%=policy.audience_name%></span></td>
-                        <td><label class="col-sm-5"class="col-sm-4">Locations</label>
-                        <span> <% policy.locations.each do |l| %>
-                                                <%= l.name %>
-                                            <% end %> </span></td>
-                    </tr>
-                    <tr>
-                        <td><label class="col-sm-5"class="col-sm-4">Departments</label>
-                        <span><% policy.departments.each do |d|%></span>
-                        <%= d.name %>
-                        <% end %></td>
-                        <td><label class="col-sm-5"class="col-sm-4">Locations</label>
-                        <span>Delhi,Mumbai,Chennai</span></td>
-                    </tr>
-                </table>
-                <table class="table table-striped list-table">
-                    <tr>
-                        <th colspan="6">Handlers</th>
-                    </tr>
-                    <tr>
-                      <td><label class="col-sm-5"class="col-sm-4">Author</label>
-                        <span><%= @policy.policy_owner_user_name if policy.present? %></span></td>
-                      <td><label class="col-sm-5"class="col-sm-4">Owner</label>
-                        <span><%= @policy.policy_owner_user_name if policy.present? %></span></td>
-                    </tr>
-                    <tr>
-                      <td><label class="col-sm-5"class="col-sm-4">Reviewers</label>
-                        <span>  <% @policy.reviewers.each do |u| %>
-                                                <%= u.user_name %>
-                                            <% end %> </span></td>
-                      <td><label class="col-sm-5"class="col-sm-4">Approvers</label>
-                        <span>
-                        <% @policy.reviewers.each do |u| %>
-                                                <%= u.user_name %>
-                                            <% end %>
-                                            </span></td>
-
-                    </tr>
-                </table>
-                <table class="table table-striped list-table">
-                    <tr>
-                        <th colspan="6">Dates</th>
-                    </tr>
-                    <tr>
-                      <td><label class="col-sm-5"class="col-sm-4">Effective from:</label>
-                        <span><%= policy.effective_from if policy.present?%></span></td>
-                      <td><label class="col-sm-5"class="col-sm-4">Effective Till</label>
-                        <span><%=policy.effective_till if policy.present?%></span></td>
-                    </tr>
-                    <tr>
-                      <td><label class="col-sm-5"class="col-sm-4">Publish Date</label>
-                        <span><%= policy.expected_publish_date if policy.present? %></span></td>
-                      <td><label class="col-sm-5"class="col-sm-4">Next Review Date</label>
-                        <span><%= policy.review_within_date if policy.present?%></span></td>
-
-                    </tr>
-                    <tr>
-                      <td><label class="col-sm-5"class="col-sm-4">Created at:</label>
-                        <span><%=policy.created_at if policy.present?%></span></td>
-                      <td><label class="col-sm-5"class="col-sm-4">Last Updated at:</label>
-                        <span><%=policy.updated_at if policy.present?%></span></td>
-                    </tr>
-                    <tr>
-                      <td><label class="col-sm-5"class="col-sm-4">Reviewed at:</label>
-                        <span>Sep 31,2014</span></td>
-                      <td><label class="col-sm-5"class="col-sm-4">Approved at:</label>
-                        <span>Oct 9,2014</span></td>
-                    </tr>
-                    <tr>
-                        <td><label class="col-sm-5"class="col-sm-4">Published by:</label>
-                        <span>Ghayathri</span></td>
-                        <td></td>
-                    </tr>
-                </table>
-                <table class="table table-striped list-table">
-                    <tr>
-                        <th>Supporting Documents</th>
-                    </tr>
-                    <tr>
-                        <td>Attachments</td>
-                    </tr>
-                </table>
+                <%= render 'policy_details', policy: policy %>
                 <hr>
                 <table class="table table-striped list-table">
-                    <tr>
-                        <th>Review Policy</th>
-                    </tr>
-                    <tr>
-                        <td>
-                        <%= form_for([policy, @policy_review], html: { class: "form-horizontal"}) do |f| %>
-
-                          <div class="row">
-                            <div class="new-policy">
-                              <div class="col-lg-6 col-lg-6">
-                                  <div class="col-md-12" >
-                                      <div class="form-group clearfix">
-                                          <label class="col-sm-3">Commment</label>
-                                          <div class="col-sm-7">
-                                            <%=f.text_area  :comment , row: "3", class: "form-control risk-big-input"%>
-
-                           
-                                          </div>
-                                      </div>
+                  <tr>
+                    <th>Review Policy</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <%= form_for([policy, @policy_review], html: { class: "form-horizontal"}) do |f| %>
+                        <div class="row">
+                          <div class="new-policy">
+                            <div class="col-lg-6" style="height: 350;">
+                                <div class="col-md-12" >
+                                  <div class="form-group clearfix">
+                                    <label class="col-sm-3">Comment</label>
+                                    <div class="col-sm-7">
+                                      <%= f.text_area  :comment , row: "3", class: "form-control risk-big-input"%>
+                                    </div>
                                   </div>
-                              </div>
-                              <div class="col-lg-6 col-lg-6">
-                                <div class="form-group clearfix">
-                                  <label class="col-sm-2 control-label">Status</label>
-                                  <div class="col-sm-8">
+                                </div>
+                                <div class="col-md-12" >
+                                  <div class="form-group clearfix">
+                                    <label class="col-sm-3">Comment</label>
+                                    <div class="col-sm-7">
                                       <div class="risk-select">
-                        				<%= f.collection_select :review_action_id, PolicyStatus.all, :id, :name %>
+                                        <%= f.collection_select :review_action_id, PolicyStatus.all, :id, :name %>
                                       </div>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                              <div class="clearfix"><br>
-                                <div class="fright paddingtop p-new-btn">
-                                    <!-- <a class="green_btn"  href="">Create</a>  -->
-                                   <a class="black_btn" href="javascript:goBack()">Back</a>
-          <%= f.submit "Submit", :class => "orange_btn" %>
-                                </div>
-                                <%end%>
-                              </div>
                             </div>
+<!--                             <div class="col-lg-6 col-lg-6">
+                              <div class="form-group clearfix">
+                                <label class="col-sm-2 control-label">History</label>
+                                <div class="col-sm-8">
+                                    <%# if !policy.policy_reviews.nil? %>
+                                      <p> Last Updated at : </p>
+                                    <%# else %>
+                                        'Policy Review is not present'
+                                    <%# end %>
+                                </div>
+                              </div>
+                            </div> -->
                           </div>
-                        </td>
+                            <div class="clearfix"><br>
+                              <div class="fright paddingtop p-new-btn">
+                                  <!-- <a class="green_btn"  href="">Create</a>  -->
+                                  <a class="black_btn" href="javascript:goBack()">Back</a>
+                                  <%= f.submit "Submit", :class => "orange_btn" %>
+                              </div>
+                              <% end %>
+                            </div>
+                        </div>
+                      </td>
                     </tr>
                 </table>
               </div>
