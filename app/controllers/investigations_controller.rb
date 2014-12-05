@@ -41,7 +41,7 @@ class InvestigationsController < ApplicationController
   private
 
   def inv_params
-    params.require(:investigation).permit(:fraud_id, :summary, :closing_id, :finding_id, :rating_id, :actual_loss, :assign_for)
+    params.require(:investigation).permit(:fraud_id, :internal_investigation_protocol, :remediation_protocol, :enforcement_and_accountability_protocol, :disclosure_protocol, :summary, :closing_id, :finding_id, :rating_id, :actual_loss, :assign_for)
   end
 
   def authorize_fraud
