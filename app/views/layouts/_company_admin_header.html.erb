@@ -53,10 +53,16 @@
                 <div class="risk-icon"></div>
                 Incident</a></li>
               <% end %>
+
               <% if company_modules_check('Control') %>
              <li><a href="/controls" class="<%= add_active_class(params) == 'Control' ? 'active' : '' %>">
                 <!-- <div class="risk-icon"></div> -->
                 Control</a></li>
+
+              <% if company_modules_check('Fraud') %>
+             <li><a href="/frauds" class="<%= add_active_class(params) == 'Fraud' ? 'active' : '' %>">
+                Fraud</a></li>
+
               <% end %>
           </ul>
         </div>
