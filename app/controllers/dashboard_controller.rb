@@ -8,6 +8,7 @@ class DashboardController < ApplicationController
 		@audit = current_user.accessible_audits
 	end
 
+ 
   # Main Dashboard page
   def index
 		@dashboard_chart = DashboardChart.new

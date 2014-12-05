@@ -11,54 +11,101 @@
             <div class="table-responsive">
               <table class="table table-striped list-table">
                 <tr>
-                  <th colspan="6">Incident Resolution</th>
+                  <th colspan="6">Incident Requester Details</th>
                 </tr>
                 <tr>
-               <td><label>Requester : </label>
-                    <span> Selva</span></td>
-                  <td><label>Title : </label>
+                  <td><label>Requester : </label>
+                    <span> </span></td>
+                  <td><label>Type : </label>
+                    <span><%= incident.request_type.name if incident.present? %></span></td>
+                    <td><label>Title : </label>
                     <%= incident.title if incident.present? %></td>
-                  <td><label>Category : </label>
-                   <%= incident.incident_category_name if incident.present? %></td>
+                  
                 </tr>
+                
                 <tr>
-                <td><label>Date : </label>
-                    <span> 01/08/2014</span></td>
+                <td><label>Category : </label>
+                     <%= incident.incident_category_name if incident.present? %></td>
                   <td><label>Department : </label>
-                    <%= incident.department_name if incident.present? %></td>
-                    <td><label>IncidentSummary : </label>
-                    <span> Overview</span></td>
+                     <%= incident.department_name if incident.present? %></td></td>
+                  <td><label>Summary : </label>
+                    <span> Mana</span></td>
+                   
                 </tr>
+
                 <% if incident.attachment.present? %>
                 <tr>
-                   <td><label>Evidence : </label>
-                    <%= link_to (File.basename(incident.attachment.attachment_file_url)).truncate(20), download_incident_document_incidents_path(id: incident.attachment.id), class: "blue_link" %></td></td>
+                <td><label>Evidence : </label>
+                     <%= link_to (File.basename(incident.attachment.attachment_file_url)).truncate(20), download_incident_document_incidents_path(id: incident.attachment.id), class: "blue_link" %></td>
+                  <td><label>Date Occured: </label>
+                    <span><%= incident.date_occured if incident.present? %> </span></td>
+                 <% end %>
+                </tr>
+                 <td><label>Contact No : </label>
+                    <%= incident.contact_no if incident.present?%></td>
+                  <td><label>Date of Creation: </label>
+                    <span></span></td>
                   <td><label>Status : </label>
-                    <%= incident.incident_status_name if incident.present? %></td>
-                  <td><label>Impact :</label>
-                   <%= incident.evaluate.incident_impact_name if evaluate.present? %> </td> 
+                    <%= incident.incident_status_name if incident.present? %> 
+                   </td>
                 </tr>
-                <% end %>
-                <tr>
-                  <td><label>Urgency :</label>
-                    <%= incident.evaluate.urgency_name if evaluate.present? %></td>
-                  <td><label>Priority : </label>
-                    <%= incident.evaluate.incident_priority_name if evaluate.present? %></td>
-                  <td><label>Date : </label>
-                    <span> 31/08/2014</span></td>
-                </tr>
-                <tr>
-                  <td><label>AssigneeTeam : </label>
-                    <%= incident.team_name if incident.present? %></td>
-                  <td><label>AssignUSers: </label>
-                    <span> Padma</span></td>
-                  <td><label>SLA : </label>
-                  <%= incident.evaluate.sla_name if evaluate.present? %>
-                  </td>
-                </tr>
-              </table>
-            </div>
+               </table>
+
+             <div class="container">
+          <div class="col-lg-12 col-md-6 col-sm-6 col-xs-2">
+             <div class="mitigation-recomm">
+                <div class="mit-reccom-title">Summary</div>
+                <p><%= incident.summary if incident.present? %></p>
+              </div>           
           </div>
+          </div>
+          
+
+            </div>
+
+
+          <div class="tab-pane active" id="all">
+            <div class="table-responsive">
+              <table class="table table-striped list-table">
+                <tr>
+                  <th colspan="6">Incident Evaluation Details</th>
+                </tr>
+                <tr>
+                  <td><label>Urgency : </label>
+                    <span><%= @incident.evaluate.urgency.name if incident.evaluate.present? %> </span></td>
+                   <td><label>Assignee : </label>
+                     <%= @incident.evaluate.evaluate_assignee_user_name if incident.evaluate.present? %></td>
+                  <td><label>Target Date: </label>
+                    <span><%= incident.evaluate.target_date if incident.evaluate.present? %> </span></td>
+                    
+                  
+                </tr>
+                
+                <tr>
+                <td><label>Priority : </label>
+                    <span><%= @incident.evaluate.incident_priority.name if incident.evaluate.present? %></span></td>
+               
+                  <td><label>Escalation : </label>
+                     <%= @incident.evaluate.escalation_level if incident.evaluate.present? %></td></td>
+                  <td><label>origin : </label>
+                    <span><%= @incident.evaluate.incident_origin_name if incident.evaluate.present? %> </span></td>
+                   
+                </tr>
+
+                
+                <tr>
+                <td><label>Impact : </label>
+                    <%= @incident.evaluate.incident_impact_name if incident.evaluate.present? %></td>
+                <td><label>Sla : </label>
+                    <%= @incident.evaluate.sla.name if incident.evaluate.present?%></td> 
+               <td><label>Resolution Time : </label>
+                    <%= @incident.evaluate.resolutiontime if incident.evaluate.present? %> 
+                   </td>
+                </tr>
+                 
+             
+               </table>
+
 
           
           <%= r.fields_for :resolution do |resolution| %>
@@ -139,21 +186,21 @@
                     </div>
                     </div>
                  <div class="col-lg-4">
-                  <div class="form-group clearfix">
-                      <label class="col-sm-7"><b>Attachments :</b> </label>
-
-                         <%= r.fields_for :attachment, (@incident.attachment.present? ? @incident.attachment : @incident.build_attachment) do |attach| %>
-   
-      <%= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
-      <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
-      <br />
-      <%end%>
+                   <div class="fright paddingtop" style="padding-right: 50px;">
+                    <%= resolution.fields_for :attachment, (@incident.resolution.attachment.present? ? @incident.resolution.attachment : @incident.resolution.build_attachment) do |attach| %>  
+                    <%= attach.file_field :attachment_file, :class=>"risk_attachment", onchange: "display_selected_files(this)" %>
+                    <%= attach.hidden_field :company_id, :value => "#{current_company.id}"%>
+                    <br/>
+                    <div id="attach_<%= @incident.resolution.attachment.id%>"><%= link_to (File.basename(@incident.resolution.attachment.attachment_file_url)).truncate(20), download_resolution_document_incidents_path(id: @incident.resolution.attachment.id), class: "blue_link risl-blue-link" if @incident.resolution.attachment.attachment_file_url%>
+                      <div class="addissue risk-rem"> <%= link_to "Remove", remove_attachment_incidents_path(id: @incident.resolution.attachment.id ), data: { confirm: "Are you sure?" }, method: :delete, remote: true, class: "minus-icon" if @incident.resolution.attachment.attachment_file.present? %>
                       </div>
-                      <div class="col-sm-6">
-                     
-                   
+                      <% end %>
                     </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="btn-wrap">
+                      </div>
                     </div>
+                  </div>
                     </div>
  					<div class="clearfix"></div>
                     <div class="fright paddingtop"> <%= r.submit "Submit", :class => "black_btn" %> <a class="grey_btn" href=""> Cancel</a></div>
@@ -181,14 +228,7 @@
     </div>
   </div>
   <div class="clearfix"></div>
-  <div class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="footer_left col-lg-6">2014 © FixNix Audit Management</div>
-        <div class="footer_right col-lg-6">Powered By<img src="img/footer_logo.png" alt=""/></div>
-      </div>
-    </div>
-  </div>
+  
 </div>
 
 <link href="jQueryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">

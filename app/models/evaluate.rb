@@ -16,9 +16,9 @@ class Evaluate < ActiveRecord::Base
 	delegate :name, :to => :incident_priority, prefix: true, allow_nil: true
 	delegate :name, :to => :sla, prefix: true, allow_nil: true
 	delegate :name, :to => :incident_origin, prefix: true, allow_nil: true
-	delegate :name, :to => :escalation, prefix: true, allow_nil: true
-	delegate :level, :to => :incident_category, prefix: true, allow_nil: true
-
+	delegate :level, :to => :escalation, prefix: true, allow_nil: true
+	delegate :name, :to => :incident_category, prefix: true, allow_nil: true
+    delegate :user_name, :to => :evaluate_assignee,prefix:true, allow_nill: true
 	#accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }
 
 

@@ -41,6 +41,11 @@ before_filter :authorize_incident, :only => [:new, :create, :update, :edit]
  
    end
 
+  #Incident Calender Page
+  def incident_calender
+    @incident = Incident.all  
+  end 
+
 
   def import
       if(params[:file].present?)
@@ -79,22 +84,21 @@ before_filter :authorize_incident, :only => [:new, :create, :update, :edit]
 
   def create
     @incident = Incident.create(incident_params)
-    #@incident.set_incident_status(@incident, params[:commit])
-
+    @incident.set_incident_status(@incident, params[:commit])
+     
     if @incident.save
       flash[:notice] = "The incident was successfully created"
       redirect_to incidents_path
     else
-      
-      redirect_to new_incident_path
+      render :action => 'new'
     end
   end
   
   def update
     @incident = Incident.find(params[:id])
-    @incident.set_incident_status(@incident, params[:commit]) if params[:commit] == "Initiate incident"
+    @incident.set_incident_status(@incident, params[:commit]) if params[:commit] == "Initiate Incident"
     if @incident.update_attributes(incident_params)
-      redirect_to edit_incident_path
+      redirect_to incidents_path, :flash => { :notice => MESSAGES["incident"]["update"]["success"]}
     else
       incident_initializers( @incident.department_id, @incident.team_id, @incident.request_type_id,@incident.incident_status_id,@incident.sub_category_id,@incident.resolution_id)
       render 'edit'
@@ -128,12 +132,12 @@ def incident_all
   end
   
   def show
-      @incident = Incident.find(params[:id])
+       @incident = Incident.find(params[:id])
       # @incident=Evaluate.find(params[:id])
       respond_to do |format|
       format.html
       format.pdf do
-      @pdf = (render_to_string pdf: "PDF", template: "incidents/show.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
+        @pdf = (render_to_string pdf: "PDF", template: "incidents/show.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
         send_data(@pdf, type: "application/pdf", filename: @incident.title)
       end
     end

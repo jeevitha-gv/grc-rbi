@@ -1,4 +1,13 @@
 ActiveAdmin.register IncidentStatus do
+	
+	breadcrumb do
+    [
+      link_to('IncidentStatus', '/admin/incident_statuses')
+    ]
+  end
+
+
+
 	permit_params :name
 
   config.filters = false

@@ -1,4 +1,11 @@
 ActiveAdmin.register SubCategory do
+
+  breadcrumb do
+    [
+      link_to('SubCategory', '/admin/sub_categories')
+    ]
+  end
+
 	permit_params :incident_category_id,:name
 
   config.filters = false

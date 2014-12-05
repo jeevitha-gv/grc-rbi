@@ -11,6 +11,8 @@ module ActiveAdmin::ViewsHelper #camelized file name
       'Policy'
     when 'admin/asset_types'
       'Asset'
+    when 'admin/slas','admin/escalations','admin/incident_categories','admin/incident_impacts', 'admin/incident_origins', 'admin/incident_statuses', 'admin/sub_categories', 'admin/incident_priorities'
+      'Incident'
     else
       return ''
     end
@@ -41,6 +43,8 @@ module ActiveAdmin::ViewsHelper #camelized file name
       'policy'
     elsif ["asset_types"]
       'asset'
+    elsif ["slas","escalations", "incident_categories", "incident_impacts", 'incident_origins', 'incident_statuses', 'sub_categories', 'incident_priorities'].include?(action_path)
+     'incident'
     else
       ''
     end
@@ -72,5 +76,6 @@ module ActiveAdmin::ViewsHelper #camelized file name
   def check_for_free_plan
     current_company.subscriptions.last.amount  == 0.0
   end
-
 end
+ 
+

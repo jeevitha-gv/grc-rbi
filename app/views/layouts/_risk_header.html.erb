@@ -18,6 +18,7 @@
             <li><a href="/user/edit" class="<%= add_admin_active_class(params) == 'Settings' ? 'active' : '' %>">
               <div class="overview-icon"></div>
               Overview</a></li>
+
             <% if company_modules_check('Policy') %>
               <li><a href="/policies" class="<%= add_active_class(params) == 'Policy' ? 'active' : '' %>">
                 <div class="policy-icon"></div>
@@ -40,9 +41,9 @@
             <% end %>
              <% if company_modules_check('Incident') %>
              <li><a href="/incidents" class="<%= add_active_class(params) == 'Incident' ? 'active' : '' %>">
-                <div class="risk-icon"></div>
                 Incident</a></li>
               <% end %>
+
           </ul>
         </div>
 				<input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">

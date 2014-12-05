@@ -15,11 +15,11 @@ class Resolution < ActiveRecord::Base
 	# validates :closure_classification_id ,presence:true
 	# validates :parent_incident,presence:true
 	# validates :attachment_id, presence:true
-
+ 
 
 	delegate :name, :to => :closure_classification, prefix: true, allow_nil: true
 	delegate :name, :to => :solution_type, prefix: true, allow_nil: true
-
+    
 	accepts_nested_attributes_for :attachment, reject_if: lambda { |a| a[:attachment_file].blank? }
 
 

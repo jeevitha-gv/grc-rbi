@@ -1,5 +1,11 @@
 ActiveAdmin.register Escalation do
+breadcrumb do
+    [
+      link_to('Escalation', '/admin/escalations')
+    ]
+  end
 
+  menu :if => proc{ !current_admin_user.present? }
   
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

@@ -40,7 +40,6 @@
             <% end %>
              <% if company_modules_check('Incident') %>
              <li><a href="/incidents" class="<%= add_active_class(params) == 'Incident' ? 'active' : '' %>">
-                <div class="risk-icon"></div>
                 Incident</a></li>
               <% end %>
           </ul>
@@ -81,7 +80,9 @@
         <li><a  href="/incidents/incident_dashboard" class="">
           <div class="dash-icon"></div>
           Dashboard</a></li>
-          
+        <li><a href="/incidents/incident_calender" class="<%= request.fullpath.include?("incidents/incident_calender") == true ? 'active' : '' %>">
+          <div class="calender-icon"></div>
+          Calendar</a></li>
 
           <li><a  href="/incidents" class="<%= request.fullpath.exclude?("evaluate") && request.fullpath.exclude?("new") && request.fullpath.exclude?("resolution") && request.fullpath.exclude?("evaluates") == true ? 'active' : '' %>">
           <div class="listing-icon"></div>
@@ -102,7 +103,7 @@
         <li><a  href="/incidents?stage=closure" class="<%= request.fullpath.include?("closure") == true ? 'active' : '' %>">
           <div class="review-icon"></div>
           Closure</a></li>
-        <li><a href="/incidents" >
+        <li><a href="/admin/slas" >
           <div class="setting-icon"></div>
           Setting</a></li>
       </ul>
