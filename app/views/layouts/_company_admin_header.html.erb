@@ -59,7 +59,7 @@
               <% end %>
           </ul>
         </div>
-        <%end%>
+     
 
 				<input type="hidden" id="module" value="<%= add_sub_menu(request.fullpath.split('/')[2])%>">
         <div class="user_login">
@@ -134,15 +134,15 @@
 		{
 			$("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/audit_links'))%>");
 		}
-<<<<<<< HEAD
+
     else if(module == 'incident')
     {
       $("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/incident_links'))%>");
-=======
-
+   }
     else if(module == 'control')
     {
       $("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/risk_links'))%>");
+    }
     else if(module == 'fraud')
     {
       $("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/fraud_links'))%>");
@@ -155,7 +155,6 @@
     {
       $("#header_links").append("<%= escape_javascript( render(:partial=>'/layouts/bcm_links'))%>");
 
->>>>>>> 85f6b990a59ec530030ed01e7affc6297f911a7b
     }
   });
 </script>
