@@ -37,7 +37,7 @@
       <% end %>
 
       <%= f.text_field :name , :placeholder => "Company" , class: "validate[required]"  %>
-      <%= f.text_field :domain , :placeholder => "Domain" , class: "validate[required]" %><span style="margin: -86px; color: #38B0DE;">.smbgrc.info</span>
+      <%= f.text_field :domain , :placeholder => "Domain" , class: "validate[required]" %><span style="margin: -80px; color: #38B0DE;">.smbgrc.com</span>
       
       <div class="risk-select">
         <%= f.collection_select(:country_id, Country.all, :id, :name, {include_blank: '--Select Country--' },{:class =>"form-control time-zon validate[required]", :type => "text"})  %>

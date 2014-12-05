@@ -1,5 +1,5 @@
 json.data do |json|
-  json.array!(@access_fraud) do |a|    
+  json.array!(@frauds) do |a|    
   	  json.id a.id
   	  json.location a.location.name 
   	  json.name a.subject

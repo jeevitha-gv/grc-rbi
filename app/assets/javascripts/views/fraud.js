@@ -68,7 +68,7 @@ $("#panelbar").kendoPanelBar();
     dataSource = new kendo.data.DataSource({
         transport: {
             read: {
-                url: frauds_url,
+                url: "/frauds",
                 dataType: 'json',
                 type: 'get'
             },
