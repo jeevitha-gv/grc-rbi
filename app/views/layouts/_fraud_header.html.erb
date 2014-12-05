@@ -51,7 +51,7 @@
               <% end %>
               <% if company_modules_check('Control') %>
              <li><a href="/controls" class="<%= add_active_class(params) == 'Control' ? 'active' : '' %>">
-                <div class="risk-icon"></div>
+                <!-- <div class="risk-icon"></div> -->
                 Control</a></li>
                 <% end %>
                 <% if company_modules_check('Fraud') %>
@@ -95,7 +95,7 @@
     <div class="container">
       <ul class="subbar-nav nav navbar-nav">
         <li><a  href="/fraud_dashboard" class="<%= request.fullpath.include?("fraud_dashboard") == true ? 'active' : '' %>">
-            <div class="dash-icon"></div>
+        <div class="dash-icon"></div>
             Fraud Dashboard</a></li>       
         <li><a  href="/frauds/new" class="<%= request.fullpath.include?("frauds/new") == true ? 'active' : '' %>">
             <div class="plan-icon"></div>
