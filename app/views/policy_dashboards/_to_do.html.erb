@@ -1,0 +1,7 @@
+<% policies = current_company.policies.where('policy_status_id = ?', 1) %>
+<% policies.each do |p| %>
+    <a href="#" class="list-group-item" style="height: 60px;">
+        <%= p.title %>
+        <span class="pull-right text-muted small"><em>Yet to Review</em></span>
+    </a>
+<% end %>
