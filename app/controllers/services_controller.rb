@@ -1,4 +1,5 @@
 class ServicesController < ApplicationController
+
 	layout 'asset_layout'
  
   def index
@@ -21,11 +22,9 @@ class ServicesController < ApplicationController
       render 'new'
     end
   end
-
   
   def show
       @service = Service.find(params[:id])
-      # @incident=Evaluate.find(params[:id])
       respond_to do |format|
       format.html
       format.pdf do
@@ -34,8 +33,6 @@ class ServicesController < ApplicationController
       end
     end
   end
-
-
 
   def edit
   	@service = Service.find(params[:id])
@@ -55,6 +52,7 @@ class ServicesController < ApplicationController
     @service.destroy
     render json: {:data=> "success"}
   end
+
   def service_export
     begin
       file_to_download = "service_assets.csv"
@@ -80,6 +78,8 @@ class ServicesController < ApplicationController
       redirect_to new_service_path
     end
   end
+
+  private
 
   def service_params
   	params.require(:service).permit(:service_type_id, :cost, :sla, :assigned_on, asset_attributes: [:id,:name, :description, :location_id, :department_id,:asset_state_id,:classification_id,:company_id, :owner_id,:custodian_id,:identifier_id,:evaluated_by,:personal_data,:sensitive_data,:customer_data,:confidentiality,:availability,:integrity, :asset_users])

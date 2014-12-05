@@ -1,0 +1,286 @@
+<!doctype html>
+<html>
+
+
+<body>
+<div class="page-wrap">
+
+
+<div class="clearfix"></div>
+<div class="content">
+  <div class="container">
+    <div class="row"> 
+      <!-- Nav tabs -->
+      <div id="example" class="k-content">
+     
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="risk-wrap">
+          <div class="sub-wrap">
+                <div class="sub-titile">Use this form in order to design a new control for consideration in the Regulation.</div>
+            <div class="sub-wrap-bg">
+                    <form class="form-horizontal" role="form">
+              <!--Row first -->
+                <div class="row">
+               
+               <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                      <%#= f.label :controlid, t('control.controlid')%>
+                    </label>
+                    <div class="col-sm-8">
+                        <%#= f.text_field :controlid, :class => "form-control risk-normal-input" %>
+                        <%# if control.errors[:controlid].present? %>
+                        <div class="error_message"><%#=  control.errors[:controlid][0]%></div>
+                    <%# end %>
+                   </div>
+                  </div>
+              </div> -->
+
+               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                      <%= f.label :name, t('control.name')%>
+                    </label>
+                    <div class="col-sm-8">
+                        <%= f.text_field :name, :class => "form-control risk-normal-input" %>
+                        <% if control.errors[:name].present? %>
+                        <div class="error_message"><%=  control.errors[:name][0]%></div>
+                    <% end %>
+                   </div>
+                  </div>
+              </div>
+             
+          
+             </div>
+             
+              <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                 <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                    <%= f.label :classification_control_id, t('control.classification_control_id')%>
+                    </label>
+                    <div class="col-sm-8">
+                      
+                    <div class="risk-select">
+                    <%= f.collection_select(:classification_control_id, ClassificationControl.all, :id, :name)%>
+                    </div>
+                    </div>
+                    
+                  </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                 <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                    <%= f.label :purpose_control_id, t('control.purpose_control_id')%>
+                    </label>
+                    <div class="col-sm-8">
+                      
+                    <div class="risk-select">
+                    <%= f.collection_select(:purpose_control_id, PurposeControl.all, :id, :name)%>
+                    </div>
+                    </div>
+                    
+                  </div>
+                  
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                 <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                    <%= f.label :control_status_id, t('control.control_status_id')%>
+                    </label>
+                    <div class="col-sm-8">
+                      
+                    <div class="risk-select">
+                    <%= f.collection_select(:control_status_id, ControlStatus.all, :id, :name)%>
+                    </div>
+                    </div>
+                    
+                  </div>
+                  
+              </div>
+              </div>
+              
+              
+              
+              <div class="row">
+                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                   <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                    <%= f.label :control_regulation_id, t('control.control_regulation_id')%>
+                    </label>
+                    <div class="col-sm-8">
+                      
+                    <div class="risk-select">
+                    <%= f.collection_select(:control_regulation_id, ControlRegulation.all, :id, :name)%>
+                    </div>
+                    </div>
+                    
+                  </div>
+              </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                   <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                    <%= f.label :data_purpose_id, t('control.data_purpose_id')%>
+                    </label>
+                    <div class="col-sm-8">
+                      
+                    <div class="risk-select">
+                    <%= f.collection_select(:data_purpose_id, DataPurpose.all, :id, :name)%>
+                    </div>
+                    </div>
+                    
+                  </div>
+              </div>
+       
+             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                  
+                  </div>
+              </div>
+              
+                         <div class="row">
+                  <div class="likelihood matrix-padding clearfix">
+                    <div class="base-score-matrix">Control Info
+                      <div class="up-triangle"></div>
+                    </div>
+                        <div class="">
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               
+                                <div class="form-group clearfix">
+                      <label class="col-sm-5">Owner : </label>
+                      <div class="col-sm-7">
+                       <div class="risk-select">
+                      <%= f.collection_select(:owner, current_company.users, :id, :user_name)%>
+                    </div>
+                      </div>
+                       
+                    </div>
+                                  </div>
+                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                               <div class="form-group">
+                                  <label class="col-sm-3 control-label">
+                                  <%= f.label :owning_group_id, t('control.owning_group_id')%>
+                                  </label>
+                                  <div class="col-sm-8">
+                                    
+                                  <div class="risk-select">
+                                   <%= f.select :team_id, options_for_select(current_company.teams.collect{|x| [x.name, x.id.to_i]}, :selected => control.team_id), {include_blank: '--Select Team--' }, { :id => "team_id"} %>
+                                  </div>
+                                  </div>
+                                  
+                                </div>
+                                  </div>
+                                  
+                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                     <div class="form-group clearfix">
+                            <label class="col-sm-5">Owner Delegate: </label>
+                            <div class="col-sm-7">
+                             <div class="risk-select">
+                            <%= f.collection_select(:owner_delegate, current_company.users, :id, :user_name)%>
+                          </div>
+                            </div>
+                             
+                          </div>
+                                  </div>
+                                   <div class="emp-hr clearfix"></div>
+                                  </div>
+                                
+                                 
+                                
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                               <div class="form-group">
+                                     
+                                     <div class="col-sm-11">
+                                     <label for="exampleInputPassword1">
+                                      <%= f.label :objective, t('control.objective')%>
+                                     </label>
+                                     <%= f.text_area :objective,:class=>"form-control control-big-input"%>
+                                     <% if control.errors[:objective].present? %>
+                                    <div class="error_message"><%= control.errors[:objective][0]%></div>
+                                     <% end %>
+                            </div>
+                                  
+                                  </div>
+                                  </div>
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                               <div class="form-group">
+                                         <div class="col-sm-11">
+                                     <label for="exampleInputPassword1">
+                                      <%= f.label :maintenance_metric_description, t('control.maintenance_metric_description')%>
+                                     </label>
+                                     <%= f.text_area :maintenance_metric_description,:class=>"form-control control-big-input"%>
+                                     <% if control.errors[:maintenance_metric_description].present? %>
+                                    <div class="error_message"><%= control.errors[:maintenance_metric_description][0]%></div>
+                                     <% end %>
+                            </div>
+                                  </div>
+                                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                               <div class="form-group">
+                                     <div class="col-sm-11">
+                                     <label for="exampleInputPassword1">
+                                      <%= f.label :description, t('control.description')%>
+                                     </label>
+                                     <%= f.text_area :description,:class=>"form-control control-big-input"%>
+                                     <% if control.errors[:description].present? %>
+                                    <div class="error_message"><%= control.errors[:description][0]%></div>
+                                     <% end %>
+                            </div>
+                                  </div>
+                                  </div>
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                               <div class="form-group">
+                                          <div class="col-sm-11">
+                                     <label for="exampleInputPassword1">
+                                      <%= f.label :note, t('control.note')%>
+                                     </label>
+                                     <%= f.text_area :note,:class=>"form-control control-big-input"%>
+                                     <% if control.errors[:note].present? %>
+                                    <div class="error_message"><%= control.errors[:note][0]%></div>
+                                     <% end %>
+                            </div>
+                                  </div>
+                                  </div>
+              </div>
+              
+                 <div class="row">
+                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                              <a href="" class="attach-icon fleft blue_link">Attach Document</a>
+                                </div>
+                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                 <div class="btn-group gr-btn">
+          <div class="fright paddingtop" style="padding-right: 80px;"><%= f.submit "Save ", :class => "orange_btn" %> <%= f.submit "Save as Draft", :class => "grey_btn"%><a class="grey_btn" href=""> Cancel</a></div>
+        </div>
+                                </div>
+                        </div>
+              </form>
+            
+            </div>       
+            
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer_left col-lg-6">2014 © FixNix Audit Management</div>
+      <div class="footer_right col-lg-6">Powered By<img src="img/footer_logo.png" alt=""/></div>
+    </div>
+  </div>
+</div>
+
+        </div>
+        
+</body>
+</html>

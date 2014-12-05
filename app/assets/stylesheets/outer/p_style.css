@@ -165,23 +165,6 @@
     min-width: 240px !important ;
 }
 
-.main_nav a.active {
-    background-color: #1c8b98;
-    color: #ffffff !important;
-}
-
-.k-grid th.k-header,
-.k-grid-header
-{
-    background: #1c8b98;
-}
-div.k-grid-header, div.k-grid-footer, .k-grid-header .k-header {
-    background-color: #1c8b98 !important;
-}
-
-.header {
-    border-bottom: 5px solid #1c8b98;
-}
 
 .new-btn{
   background:#929292;

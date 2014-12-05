@@ -1,0 +1,276 @@
+<div class="row">
+  
+  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+    <div class="mitigation-box-wrap">
+      <div class="mitigation-sub">
+          <div class="risk-box-lable">Title :</div>
+          <div class="risk-box-text"><%= @bc_analysis.title %></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+    <div class="mitigation-box-wrap">
+      <div class="mitigation-status">
+          <div class="risk-box-lable">Status:</div>
+          <div class="risk-box-text"><%= @bc_plan.plan_status.name %></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+    <div class="mitigation-box-wrap">
+      <div class="mitigation-status">
+          <div class="risk-box-lable">Business Plan:</div>
+          <div class="risk-box-text"><%= @bc_impl.implementation_status.name %></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="tab-pane active" id="all">
+      <div class="table-responsive">
+        <table class="table table-striped table-bg">
+          <tr>
+            <th colspan="6" class="risk-able-th">Assignment / CIA Information</th>
+          </tr>
+          <tr>
+            <td><label>Owner : </label>
+              <span><%=@bc_analysis.bc_owner.user_name %> </span></td>
+            <td><label>Manager : </label>
+              <span> <%=@bc_analysis.bc_manager.user_name %> </span></td>
+            <td><label>Department: </label>
+              <span><%=@bc_analysis.department.name %></span></td>
+          </tr>
+          
+          <tr>
+            <td><label>Confidentiality :</label>
+              <span> <%= @bc_analysis.bc_confi.name%></span></td>
+            <td><label>Integrity : </label>
+              <span> <%= @bc_analysis.bc_integ.name%></span></td>
+            <td><label>Availability : </label>
+              <span> <%= @bc_analysis.bc_avail.name%></span></td>
+          </tr>
+          
+          <%# if risk.attachment.present? %>
+          <tr>
+            <td><label>Business Process :</label>
+              <span> <%= @bc_analysis.bu_process.name%></span></td>
+            <td><label>Threat : </label>
+              <span> <%= @bc_analysis.threat.name%></span></td>
+            <td><label>Vulnerability : </label>
+              <span> <%= @bc_analysis.vulnerability.name%></span></td>
+          </tr>
+          
+          
+          <%# end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title">Threat Description</div>
+        <p> <%= sanitize(@bc_analysis.threat_desc)%> </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title">Vulnerability Description</div>
+        <p> <%= sanitize(@bc_analysis.vul_desc)%> </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="tab-pane active" id="all">
+      <div class="table-responsive">
+        <table class="table table-striped table-bg">
+          <tr>
+            <th colspan="6" class="risk-able-th">Business Plan Info</th>
+          </tr>
+          <tr>
+            <td><label>Plan Responsible : </label>
+              <span><%=@bc_plan.plan_resp.user_name %> </span></td>
+            <td><label>Launch Responsible : </label>
+              <span> <%=@bc_plan.launch_resp.user_name %> </span></td>
+            <td><label>Recurrence : </label>
+              <span> <%= @bc_plan.recurrence.name%></span></td>
+          </tr>
+          
+          <tr>
+            <td><label>Operation Expenditure: </label>
+              <span><%=@bc_plan.opex %></span></td>
+            <td><label>Capital Expenditure :</label>
+              <span> <%= @bc_plan.capex%></span></td>
+            <td><label>Review Date : </label>
+              <span> <%= @bc_plan.review_date%></span></td>
+            
+          </tr>
+          
+          <%# if risk.attachment.present? %>
+          <tr>
+            <td><label>Business Process :</label>
+              <span> <%= @bc_analysis.bu_process.name%></span></td>
+            <td><label>Threat : </label>
+              <span> <%= @bc_analysis.threat.name%></span></td>
+            <td><label>Vulnerability : </label>
+              <span> <%= @bc_analysis.vulnerability.name%></span></td>
+          </tr>
+          
+          
+          <%# end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title">Plan Objective</div>
+        <p> <%= @bc_plan.objective%> </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title">Audit Metric </div>
+        <p> <%= @bc_plan.audit_metric%> </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+ <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title">Success Criteria</div>
+        <p> <%= sanitize(@bc_plan.success_criteria)%> </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title">Launch Criteria </div>
+        <p> <%= sanitize(@bc_plan.launch_criteria)%> </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+ <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title">Business Implementation</div>
+        <p> <%= @bc_impl.impl_actions%> </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  
+  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+    <div class="mitigation-box-wrap">
+      <div class="mitigation-sub">
+          <div class="risk-box-lable">Test Type :</div>
+          <div class="risk-box-text"><%= @bc_accep.test_type.name %></div>
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+
+<div class="row">
+ <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title"> Business Acceptance Scope</div>
+        <p> <%= @bc_accep.scope%> </p>
+      </div>
+    </div>
+  </div>
+   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title"> Business Acceptance Test Goals</div>
+        <p> <%= @bc_accep.test_goal%> </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class = "row">
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="risk-assetes">
+      <div class="mitigation-recomm">
+        <div class="mit-reccom-title"> Business Acceptance Objective</div>
+        <p> <%= @bc_accep.test_objective%> </p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="risk-wrap">
+<div class="sub-wrap">
+<div class="sub-titile">Business Maintenance</div>
+<div class="sub-wrap-bg">
+<!-- <div class="ui info message">Evaluate and Assess the current level of protection of this asset. Recommend some controls to be put in place for each of the categories below if necessary.</div>
+ -->
+ 
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :recurrence_id %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:recurrence_id, Recurrence.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group clearfix">
+    <label class="col-sm-4">
+      <%= f.label :issues, t('bc_maintenance.issue') %>
+    </label>
+    <div class="col-sm-7">
+      <%= f.text_area :issues, :class=>"audit-big-input" %>
+      
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :decision, t('bc_maintenance.decision') %>
+        <%= f.check_box :decision %>
+      </div>
+    </div>
+  </div>
+</div>
+

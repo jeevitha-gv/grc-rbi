@@ -2,6 +2,19 @@ class ReminderMailer < ActionMailer::Base
 
   default from: "noreply@fixrnix.in"
 
+  def registration_confirmation(user)
+    @user = user
+    @user.each do |use|
+    mail(:to => use.email_ids, :subject => "Selva Registered", :content_type => "text/html").deliver()
+  end
+end
+def registration_confirmations(user)
+    @user = user
+    @user.each do |use|
+    mail(:to => use.email, :subject => "Selva Status Registered", :content_type => "text/html").deliver()
+  end
+end
+
   def notify_auditor_about_audit(audit)
   	@audit = audit
   	mail(:to => audit.auditory_email, content_type: "text/html", :subject => "Your Audit has been successfully created" )
@@ -99,6 +112,10 @@ class ReminderMailer < ActionMailer::Base
     @nc_question = nc_question
     @user = user
     mail(to: reminder_mail_to, cc: reminder_mail_cc , subject: "Escalation for giving response", content_type: "text/html")
+  end
+   def registration_confirmationss(email)
+    @email=email
+    mail(:to => email, :subject => "Selva Registered", :content_type => "text/html").deliver()
   end
 
 end

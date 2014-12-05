@@ -47,6 +47,9 @@ $(document).ready(function(){
 	// Kendo Grid
 	$("#grid").kendoGrid({
 		dataSource: dataSource,
+		dataBound: function(){
+			riskGridTitle()
+		},
 		height: 'auto',
 		scrollable: true,
 		sortable: true,
@@ -59,7 +62,7 @@ $(document).ready(function(){
 			{ field: "kind", title: "Kinds", width: "40%" },
 			{ field: "version", title: "Versions", width: "40%" },
 			{ field: "owner", title: "Owners", width: "40%" },
-			{ command: [{text: "show", click: show_file},{text: "list"},{text: "miti"},{text: "edit",  click: show_file},{ text: "pdf", click: pdf_file },{text: "graph"}], title: "Action", width: "75%"  }
+			{ command: [{text: "show", click: show_file},{text: "miti", click: review_file},{text: "list", click: approve_file},{text: "book", click: publish_file},{text: "edit",  click: edit_file},{ text: "pdf", click: pdf_file },{text: 'share', click: share_file}], title: "Action", width: "85%"  }
 		]
 	});
 
@@ -81,16 +84,69 @@ $(document).ready(function(){
 		window.location.href = "/policies/"+ dataItem.id + "/edit"
 	}
 
+	function review_file(e)
+	{	
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/policies/"+ dataItem.id + "/policy_reviews/new"
+	}
+	function publish_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/policies/"+ dataItem.id + "/publish_policies/new"
+	}
+
+	function approve_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		window.location.href = "/policies/"+ dataItem.id + "/policy_approvals/new"
+	}
+
+	function share_file(e)
+	{
+		var dataItem = this.dataItem(jQuery(e.currentTarget).closest("tr"));
+		$('#share_modal').modal({
+  			remote: "/policies/share_policy?id=" + dataItem.id
+		});
+	}
+
 	function riskGridTitle()
 	{
-		$('.k-grid-file').attr('title','File');
 		$('.k-grid-show').attr('title','View');
-		$('.k-grid-list').attr('title','Mitigate');
-		$('.k-grid-miti').attr('title','review');
+		$('.k-grid-list').attr('title','Approve');
+		$('.k-grid-miti').attr('title','Review');
 		$('.k-grid-edit').attr('title','Edit');
 		$('.k-grid-pdf').attr('title','Report');
-		$('.k-grid-graph').attr('title','Dashboard');
-		$('.k-grid-delete').attr('title','Delete');
+		$('.k-grid-book').attr('title','Publish');
+		$('.k-grid-share').attr('title','Share');
 	}
 
 });
+
+function email_validation()
+{
+    var email = $('#share_policy_email').val();
+    var validate_email = email_validation();
+    function email_validation(){
+        if (email == '')
+        {
+            $('#share_policy_email').addClass("error_input");
+            $('#email_error').show()
+            $('#share_modal').modal('show');
+            return false
+        }
+        else
+        {
+            $('#share_policy_email').removeClass("error_input");
+            $('#email_error').hide()
+            $('#share_modal').modal('hide');
+            new Messi("Email is Shared successfully", {title: 'Success', titleClass: 'success', autoclose: 1500});
+            return true
+        }
+    }
+}
+
+function attach_file(){
+	$('#attach_file').modal({
+			// remote: "/policies/share_policy?id=" + dataItem.id
+	});
+}

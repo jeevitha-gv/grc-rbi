@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+<head>
+
+
+<div class="clearfix"></div>
+<div class="content">
+  <div class="container">
+    <div class="row">
+
+      <!-- Nav tabs -->
+      <div id="example" class="k-content">
+      <div class="risk-title">Approval</div>
+      <!-- <a class="import-btn"><i class="download-icons"></i>Import  Controls</a> -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="risk-wrap">
+          <div class="sub-wrap">
+
+                <div class="sub-titile">Use this form in order to design a new control for consideration in the Regulation.</div>
+            <div class="sub-wrap-bg">
+            <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+               <div class="tab-pane active" id="all">
+            <div class="table-responsive">
+             <table class="table table-striped table-bg">
+                <!-- <tr>
+                  <th colspan="6" class="risk-able-th">Security process for conveyance operators</th>
+                </tr> -->
+                <tr>
+                  <td><label>Control ID : </label>
+                    <%= control.id if control.present? %></td>
+                  <td><label>Owner Delegate: </label>
+                    <span> Manager</span></td>
+                  <td><label>Classification : </label>
+                     <span>IT Security</span><%#= control.classification_control_name if control.present? %></td>
+                </tr>
+                <tr>
+                  <td><label>Created at : </label>
+                    <span> 12/11/2014</span></td>
+                  <td><label>Owner : </label>
+                    <span>Manager</span></td>
+                  <td><label>effective date :</label>
+                    <span> 28/11/2014</span></td>
+                </tr>
+                <tr>
+                  <td><label>Type: </label>
+                    <span>Access Management</span></td>
+                  <td><label>Owning Group : </label>
+                      <span>Manager</span><%#= control.owning_group_name if control.present? %></td>
+                  <td><label> stop date :</label>
+                    <span> 03/12/2014</span></td>
+                </tr>
+                <tr>
+                  <td><label>Purpose : </label>
+                      <span>Internal</span><%#= control.purpose_control_name if control.present? %></td>
+                  <td><label>Control Regulation : </label>
+                     <span>ISO 27001</span><%#= control.control_regulation_name if control.present? %></td>
+                  <td></td>
+                </tr>
+               
+              </table>
+            </div>
+          </div>
+            </div>
+         </div>
+                    <form class="form-horizontal" role="form">
+              
+                                  </div>
+                                   <div class="emp-hr clearfix"></div>
+                                  </div>
+                                <%= f.fields_for :control_approval do |control_approval| %>
+                                 
+                   <!---------------Table 2 -------->
+         <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="risk-assetes">
+              <div class="mitigation-recomm">
+                <div class="mit-reccom-title">Objective</div>
+                <p><%= control.objective if control.present? %></p>
+              </div> 
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="mitigation-recomm">
+                <div class="mit-reccom-title">Maintenance Metric Description</div>
+                <p><%= control.maintenance_metric_description if control.present? %></p>
+              </div> 
+            </div>
+         </div>   
+
+         <!---------------Table 3 -------->
+         <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="risk-assetes">
+              <div class="mitigation-recomm">
+                <div class="mit-reccom-title">Description</div>
+                  <p><%= control.description if control.present? %></p>
+                </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="mitigation-recomm">
+                <div class="mit-reccom-title">Notes</div>
+                <p><%= control.note if control.present? %></p>
+              </div> 
+            </div>
+         </div> 
+           
+
+                
+              </form>
+              </div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                               <div class="form-group">
+                                     <div class="col-lg-12 col-md-6 col-sm-6 col-xs-2">
+                                   <div class="mitigation-recomm">
+                                      <div class="mit-reccom-title">Comment's</div>
+                                      <p><%= control_approval.text_area :comments, :class => "form-control risk-normal-input",:maxlength => 255 %></p>
+                                    </div>           
+                                </div>
+                                  </div>
+                                  </div>
+                                  <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                               <div class="form-group">
+                                         <div class="col-sm-12">
+                                         <label for="exampleInputPassword1">Audit Success Criteria</label>
+                                           <textarea class="form-control risk-big-input" rows="2"></textarea>   
+                                        </div>
+                                  </div>
+                                  </div> -->
+              </div>
+                              <div class="row">
+                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                              <a href="" class="attach-icon fleft blue_link">Attach Document</a>
+                                </div>
+                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                 <div class="btn-group gr-btn">
+            <div class="fright paddingtop" style="padding-right: 80px;"><%= f.submit "Save ", :class => "orange_btn" %> <a class="grey_btn" href=""> Cancel</a></div>
+        </div>
+                                </div>
+                        </div>
+    </div>
+  </div>
+</div>
+ </div>       
+            
+            </div>
+            </div>
+        </div>
+
+<div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer_left col-lg-6">2014 © FixNix Audit Management</div>
+      <div class="footer_right col-lg-6">Powered By<img src="img/footer_logo.png" alt=""/></div>
+    </div>
+  </div>
+</div>
+
+        <% end %>
+</body>
+</html>

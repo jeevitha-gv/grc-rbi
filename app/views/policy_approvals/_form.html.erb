@@ -1,0 +1,66 @@
+  <div class="clearfix"></div>
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="panel-heading">
+          <h4><b>Policy Approval</b></h4>
+        </div>
+        <div class="col-md-12">
+          <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading">
+              <h4><b><%= policy.title %></b></h4>
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <%= render 'policy_detail' , policy: policy %>
+                <hr>
+                <%= form_for([policy, @policy_approve], html: { class: "form-horizontal"}) do |f| %>
+                  <table class="table table-striped list-table">
+                    <tr>
+                        <th>Approve Policy</th>
+                    </tr>
+                    <tr>
+                        <td>
+                          <div class="row">
+                            <div class="new-policy">
+                              <div class="col-lg-6 col-lg-6">
+                                  <div class="col-md-12" >
+                                      <div class="form-group clearfix">
+                                          <label class="col-sm-3">Commment</label>
+                                          <div class="col-sm-4">
+                                             <%= f.fields_for :comment, (f.object.comment.present? ? f.object.comment : Comment.new) do |builder|%>
+                                             <%= builder.text_area(:comment, row: "3", class: "form-control risk-big-input")%>
+                                              <%end%>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-lg-6 col-lg-6">
+                                <div class="form-group clearfix">
+                                  <label class="col-sm-2 control-label">Status</label>
+                                  <div class="col-sm-8">
+                                     <div class="risk-select">
+                                <%= f.collection_select :approval_action_id, ApprovalAction.all , :id, :name, @policy_approve.present? ? {selected: @policy_approve.approval_action_id } : {}, {:class =>"form-control",  :prompt => "Please select"} %>
+                              </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="clearfix"><br>
+                                 <div class="btn-group save-file">
+                                  <a class="black_btn" href="javascript:goBack()">Back</a>
+                                 <%= f.submit "Submit", :class => "orange_btn"  %>
+                              </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                    </tr>
+                  </table>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

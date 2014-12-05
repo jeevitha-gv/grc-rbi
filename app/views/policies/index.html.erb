@@ -1,6 +1,13 @@
 <% content_for :head do %>
 <%= javascript_include_tag '/assets/views/policy'%>
 <% end %>
+<style type="text/css">
+  .import_export{
+    position:relative;
+    left:626px;
+    top:17px;
+  }
+</style>
 <div class="page-wrap">
 <div class="clearfix"></div>
 <div class="content">
@@ -8,7 +15,7 @@
     <div class="row grid-sp">
     	<div class="risk-title">Policies</div>
   				<div class="clearfix">
-          <div style="position:relative;left:801px;top:17px;">
+          <div class="import_export">
             <div class="btn-group btn-group-success">
               <button class="btn btn-success" type="button">Export</button>
               <button data-toggle="dropdown" class="btn btn-success dropdown-toggle" type="button">
@@ -22,7 +29,8 @@
                 <li><%= link_to "PDF",{ action: "export", :format => :pdf}%></li>
               </ul>
           </div>
-          <%= link_to '<img src="/assets/outer/new.png" style= "width:21px;"></img> New Policy'.html_safe , new_policy_path , :class => "btn btn-success" %></div>
+          <%= link_to '<img src="/assets/outer/new.png" style= "width:21px;"></img> New Policy'.html_safe , new_policy_path , :class => "btn btn-success" %>
+          </div>
                     </div>
       <!-- Nav tabs -->
     </div>
@@ -34,4 +42,14 @@
   </div>
 </div>
 </div>
+</div>
+
+
+<!-- Modal form for Share the Policies -->
+<div class="modal fade" id="share_modal">
+  <div class="modal-dialog modal-dialog_large">
+    <div class="modal-content">
+    <!-- Partial file -->
+    </div>
+  </div>
 </div>

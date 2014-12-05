@@ -1,0 +1,2 @@
+module BcmDashboardHelper
+end

@@ -1,0 +1,7 @@
+<fieldset class="email">
+  <%= f.text_field :email, :class => "audit-normal-input col-sm-10" %>
+  <% if @publish_policy.errors[:email].present? %>
+        <div class="error_message"><%= @publish_policy.errors[:location_id][0]%></div>
+      <% end %>
+  <%= link_to_remove_email_list "", f %>
+</fieldset>

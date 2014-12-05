@@ -4,7 +4,10 @@ class Policy < ActiveRecord::Base
     protokoll :policy_unique_id, :pattern => "POLICY#####"
 
 	# Papertrail
-		has_paper_trail
+		has_paper_trail ignore: [:policy_status_id, :share_policy_email], :on => [:update]
+
+  # Attribute Accessor Temporary valiable
+    attr_accessor :share_policy_email
 	
 	# Associations
 		belongs_to :company
@@ -53,18 +56,23 @@ class Policy < ActiveRecord::Base
   	validate  :check_reviewer_presence
   	validate  :check_approver_uniquesness
   	validate  :check_approver_presence
+    validate  :share_policy_email, presence: true
+    validates_format_of :share_policy_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,:if => Proc.new{|f| !f.share_policy_email.blank? }
+
 
 	# Delegation
     	delegate :name, to: :policy_classification, prefix: true, allow_nil: true
     	delegate :name, to: :audience, prefix: true, allow_nil: true
     	delegate :name, to: :policy_kind, prefix: true, allow_nil: true
     	delegate :user_name, to: :policy_owner, prefix: true, allow_nil: true
+      delegate :name, to: :policy_status, prefix: true, allow_nil: true
 
     # Nested Attributes
   		accepts_nested_attributes_for :policy_locations, reject_if: lambda { |a| a[:location_id].blank? },:allow_destroy => true
   		accepts_nested_attributes_for :policy_departments, reject_if: lambda { |a| a[:department_id].blank? },:allow_destroy => true
   		accepts_nested_attributes_for :policy_reviewers, reject_if: lambda { |a| a[:user_id].blank? },:allow_destroy => true
   		accepts_nested_attributes_for :policy_approvers, reject_if: lambda { |a| a[:user_id].blank? },:allow_destroy => true
+      accepts_nested_attributes_for :attachments, reject_if: lambda { |a| a[:attachment_file].blank? },:allow_destroy => true
 
 	private
 

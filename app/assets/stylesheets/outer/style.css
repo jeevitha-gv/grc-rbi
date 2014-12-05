@@ -2484,3 +2484,6 @@ top:2px!important;
 .width-fix {
 	width: 85%;
 }
+.container {
+    width: 1230px;
+}

@@ -517,10 +517,20 @@ a.plus-background {
     margin:0;
     height: 20px;
     background: url('/assets/outer/action-icon.png') no-repeat;
+}
+
+.k-grid-share{
+    width: 20px;
+    margin:0;
+    height: 20px;
+    background: url('/assets/outer/policy-share.png') no-repeat;
     text-indent: -9999px;
     min-width:0 !important;
     margin:0 2px !important;
     border: medium none;
     float: left;
     padding: 0;
+}
+.k-grid-share:hover,.k-grid-share.active{
+    background-position: 0 -20px;border: medium none; background-color: transparent;
 }

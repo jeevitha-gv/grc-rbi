@@ -1,0 +1,19 @@
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="risk-title">Edit Control</div>
+          <%= form_for(@control) do |f| %>
+            <%= render 'form', :f => f, :control => @control, :classification_controls => @classification_controls, :purpose_controls => @purpose_controls, :owning_groups => @owning_groups %>
+            <div class="col-sm-8" id="auditee-button" style="display:none;">
+              <div class="form-group clearfix addissue">
+                <a href="javascript:void(0)" class="plus-icon" id="add_auditee">Add Auditee
+                </a>
+              </div>
+            </div>
+           
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

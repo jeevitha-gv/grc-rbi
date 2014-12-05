@@ -1,0 +1,106 @@
+<%= form_for([@policy, @publish_policy], html: { class: "form-horizontal"}) do |f| %>
+  <table class="table table-striped list-table">
+      <tr>
+          <th>Publish Policy</th>
+      </tr>
+      <tr>
+          <td>
+            <div class="row">
+              <div class="new-policy">
+                <div class="col-lg-6 col-lg-6">
+                    <div class="col-md-12" >
+                        <div class="form-group clearfix">
+                          <label class="col-sm-3">Distribution List</label>
+                          <div class="col-md-8">
+                            <div id="distribution-list">
+                                <%= f.fields_for :publish_distribution_lists, (f.object.publish_distribution_lists.present? ? f.object.publish_distribution_lists : PublishDistributionList.new) do |builder| %>
+                                <%= render 'distribution_fileds', f: builder %>
+                                <% end %>
+                            </div>
+                            <div class="form-group clearfix addissue">
+                                <%= link_to_add_distribution_list "", :publish_distribution_lists %>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-lg-6">
+                  <div class="form-group clearfix">
+                    <label class="col-sm-2 control-label">Status</label>
+                    <div class="col-sm-8">
+                      <div id="email-list">
+                        <%= f.fields_for :publish_emails, (f.object.publish_emails.present? ? f.object.publish_emails : PublishEmail.new) do |builder|%>
+                            <%= render 'publish_email_fields', :f => builder %>
+                        <%end%>
+                      </div>
+                      <div class="form-group clearfix addissue">
+                        <%= link_to_add_choices "", f, :publish_emails %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="new-policy">
+                <div class="col-lg-6 col-lg-6">
+                  <div class="col-md-12" >
+                      <div class="form-group clearfix">
+                        <label class="col-sm-3">Subject</label>
+                        <div class="col-md-12">
+                          <%= f.text_field :subject, class: "audit-normal-input" %>
+                        </div>
+                      </div>
+                      <div class="form-group clearfix">
+                        <label class="col-sm-3">Content</label>
+                        <div class="col-md-12">
+                           <%= f.cktext_area :body%>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="col-md-12">
+                    <h4>Publish Status</h4>
+                    <hr>
+                    <% unless @policy.policy_status_name == "Published" %>
+                      <div class="col-xs-9 col-md-5">
+                        <div class="panel status panel-success">
+                          <div class="panel-heading">
+                            <h1 class="panel-title text-center">Published At</h1>
+                          </div>
+                          <div class="panel-body text-center">                        
+                            <strong><%#= @policy.publish_policy.created_at.strftime("%F")%></strong>
+                          </div>
+                        </div>
+                      </div> 
+                    <% else %>
+                      <div class="col-xs-9 col-md-5">
+                        <div class="panel status panel-warning">
+                          <div class="panel-heading">
+                            <h1 class="panel-title text-center">Published At</h1>
+                          </div>
+                          <div class="panel-body text-center">                        
+                            <strong><%#= @policy.publish_policy.created_at.strftime("%F") %></strong>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>    
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"><br>
+              <div class="fright paddingtop p-new-btn">
+                <!-- <a class="green_btn"  href="">Create</a>  -->
+                <% unless @policy.policy_status_id == 7%>
+                  <%= f.submit "Submit", :class => "grey_btn" %>
+                <% end %>
+                <a class="grey_btn" href="javascript:goBack()">Back</a>
+              </div>
+            </div>
+          </td>
+      </tr>
+  </table>
+<% end %>

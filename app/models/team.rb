@@ -14,6 +14,11 @@ class Team < ActiveRecord::Base
   has_many :risks
   has_many :incidents
 
+  has_many :controls
+
+  has_many :frauds
+
+
 
   # validations
   validates :name, presence:true

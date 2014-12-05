@@ -12,7 +12,7 @@ ActiveAdmin.register User do
   # removing delete option
   actions :all, :except => [:destroy]
 
-  permit_params :full_name, :email, :user_name, :password , :password_confirmation, :role_id, :city, :state, :country_id,:is_disabled, :manager,  team_ids: [], profile_attributes: [:personal_email, :address2, :address1,  :city, :state, :country_id, :phone_no]
+  permit_params :full_name, :email, :user_name, :password , :password_confirmation, :role_id, :city, :state, :country_id,:is_disabled, :manager, team_ids: [], profile_attributes: [:personal_email, :address2, :address1,  :city, :state, :country_id, :phone_no]
 
   controller do
     # removing delete option

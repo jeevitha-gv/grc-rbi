@@ -1,0 +1,290 @@
+<%= javascript_include_tag "/assets/outer/jquery.tagsinput.min.js" %>
+<%= javascript_include_tag "/assets/views/asset.js" %>
+
+<div class="clearfix border-divider"></div>
+
+<%#= f.fields_for :fraud do |ff| %>
+
+  <%#= render partial: "asset_partials/fraud_properties", :locals => {:ff => ff } %>
+
+<%# end %>
+
+<div class="clearfix">
+  <h4><b>Fraud Details</b></h4>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :subject, t('fraud.subject') %>
+        <%= f.text_field :subject, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :control, t('fraud.control') %>
+        <%= f.text_field :control, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :reference, t('fraud.reference') %>
+        <%= f.text_field :reference, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix border-divider"></div>
+
+<!-- <div class="row">
+  
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%#= f.label :subject, t('fraud.subject') %>
+        <%#= f.text_field :subject, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%#= f.label :control, t('fraud.control') %>
+        <%#= f.text_field :control, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%#= f.label :reference, t('fraud.reference') %>
+        <%#= f.text_field :reference, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+</div>
+ -->
+
+
+<div class="row">
+  
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :location_id, t('fraud.location') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:location_id, Location.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :fraud_type_id, t('fraud.fraud_type') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:fraud_type_id, FraudType.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :technology_id, t('fraud.technology') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:technology_id, Technology.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</div>
+
+
+
+
+
+  <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+  <div class="form-group clearfix">
+    <label class="col-sm-4 control-label">
+      <%#= f.label :investigator, t('fraud.investigator') %>
+    </label>
+      <%#= f.select :investigator, options_for_select(investigator_users.collect{|x| [x.user_name, x.id.to_i]}, :selected => fraud.investigator), {include_blank: 'Select Investigator' } %>
+    </div>
+  </div> -->
+
+
+
+ <!--  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+  <div class="form-group clearfix">
+    <label class="col-sm-4 control-label">
+      <%#= f.label :investigator, t('fraud.fraud_manager') %>
+    </label>
+      <%#= f.select :investigator, options_for_select(investigator_users.collect{|x| [x.user_name, x.id.to_i]}, :selected => fraud.investigator), {include_blank: 'Select Fraud Manager' } %>
+    </div>
+  </div> -->
+
+
+
+ <div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :investigation_object_id, t('fraud.investigation_object') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:investigation_object_id, InvestigationObject.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :team_id, t('fraud.team') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:team_id, Team.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :risk_value_id, t('fraud.risk_value') %>
+        <div class="risk-select width-fix">
+          <%= f.collection_select(:risk_value_id, RiskValue.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="row">
+  
+ <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+      <%= f.label :fraud_manager, t('fraud.fraud_manager') %>
+    <div class="risk-select width-fix">
+      <%= f.collection_select(:fraud_manager, current_company.users, :id, :user_name) %>
+    </div>
+    </div>
+  </div> 
+</div>
+
+
+  
+ <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+      <%= f.label :investigator, t('fraud.investigator') %>
+    <div class="risk-select width-fix">
+      <%= f.collection_select(:investigator, current_company.users, :id, :user_name) %>
+    </div>
+    </div>
+  </div> 
+</div>
+
+ <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+      <%= f.label :person_responsible, t('fraud.person_responsible') %>
+    <div class="risk-select width-fix">
+      <%= f.collection_select(:person_responsible, current_company.users, :id, :user_name) %>
+    </div>
+    </div>
+  </div> 
+</div>
+
+
+</div>
+
+<div class="clearfix border-divider"></div>
+
+
+
+
+
+  <!-- <div class="col-lg-6 col-md-10 col-sm6 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%#= f.label :fraud_assessment, t('fraud.fraud_assessment') %>
+        <%#= f.text_field :fraud_assessment, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+
+    <div class="col-lg-6 col-md-10 col-sm6 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%#= f.label :additional_note, t('fraud.additional_note') %>
+        <%#= f.text_field :additional_note, :class=>"form-control" %>        
+      </div>
+    </div>
+  </div>
+  -->
+        
+<!-- 
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+  <div class="form-group clearfix">
+    <label class="col-sm-4 control-label">
+      <%#= f.label :person_responsible, t('fraud.person_responsible') %>
+    </label>
+      <%#= f.select :investigator, options_for_select(investigator_users.collect{|x| [x.user_name, x.id.to_i]}, :selected => fraud.investigator), {include_blank: 'Person Responsible' } %>
+    </div>
+  </div>  -->   
+
+
+
+
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :fraud_assessment %>
+        <%= f.cktext_area :fraud_assessment, :class=>"form-control asset-big-input redactor" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :additional_note %>
+        <%= f.cktext_area :additional_note, :class=>"form-control asset-big-input redactor" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix border-divider"></div>
