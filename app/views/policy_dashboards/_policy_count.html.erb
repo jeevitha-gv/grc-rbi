@@ -1,0 +1,226 @@
+ <div class="col-lg-3 col-md-6">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge"><%= get_policy_count('Drafted')%></div>
+                    <div>Newly Drafted</div>
+                </div>
+            </div>
+        </div>
+        <a href="#">
+            <div class="panel-footer">
+                <span class="pull-left"><a href="" data-toggle="modal" data-target="#draft_modal">Click Here</a></span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div>
+<!-- Column II -->
+<div class="col-lg-3 col-md-6">
+    <div class="panel panel-green">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="glyphicon glyphicon-eye-open"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge"><%= get_policy_count('Reviewed') %></div>
+                    <div>Policy Reviewed</div>
+                </div>
+            </div>
+        </div>
+        <a href="#">
+            <div class="panel-footer">
+                <span class="pull-left"><a href="" data-toggle="modal" data-target="#review_modal">Click Here</a></span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div>
+<!-- Column III -->
+<div class="col-lg-3 col-md-6">
+    <div class="panel panel-yellow">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="glyphicon glyphicon-ok"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge"><%= get_policy_count('Approved') %></div>
+                    <div>Policy Approved</div>
+                </div>
+            </div>
+        </div>
+        <a href="#">
+            <div class="panel-footer">
+                <span class="pull-left"><a href="" data-toggle="modal" data-target="#approved_modal">Click Here</a></span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div>
+<!-- Column IV -->
+<div class="col-lg-3 col-md-6">
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="glyphicon glyphicon-bullhorn"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge"><%= get_policy_count('Published') %></div>
+                    <div>Policy Published</div>
+                </div>
+            </div>
+        </div>
+        <a href="#">
+            <div class="panel-footer">
+                <span class="pull-left"><a href="" data-toggle="modal" data-target="#published_modal">Click Here</a></span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="draft_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <% @policies = get_policy_list('Drafted') %>
+        <% if @policies == 0 %>
+            'No Policies has been Drafted'
+        <% else %>
+            <table class="table">
+                <tr>
+                    <th>Policy</th>
+                    <th>Action</th>
+                </tr>
+                <% @policies.each do |p| %>
+                    <tr>
+                        <td><%= p.title%></td>
+                        <td><%= link_to '<span class="k-grid-show"></span>'.html_safe, show_individual_policy_path(p.id) %></td>
+                    </tr>
+                <% end %>
+            </table>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="review_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <% @policies = get_policy_list('Reviewed') %>
+        <% if @policies == 0 %>
+           'No Policies has been Drafted'
+        <% else %>
+            <table class="table">
+                <tr>
+                    <th>Policy</th>
+                    <th>Action</th>
+                </tr>
+                <% @policies.each do |p| %>
+                    <tr>
+                        <td><%= p.title%></td>
+                        <td><%= link_to '<span class="k-grid-show"></span>'.html_safe, show_individual_policy_path(p.id) %></td>
+                    </tr>
+                <% end %>
+            </table>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="approved_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <% @policies = get_policy_list('Approved') %>
+        <% if @policies == 0 %>
+           'No Policies has been Drafted'
+        <% else %>
+            <table class="table">
+                <tr>
+                    <th>Policy</th>
+                    <th>Action</th>
+                </tr>
+                <% @policies.each do |p| %>
+                    <tr>
+                        <td><%= p.title%></td>
+                        <td><%= link_to '<span class="k-grid-show"></span>'.html_safe, show_individual_policy_path(p.id) %></td>
+                    </tr>
+                <% end %>
+            </table>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="published_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <% @policies = get_policy_list('Published') %>
+        <% if @policies == 0 %>
+           'No Policies has been Drafted'
+        <% else %>
+            <table class="table">
+                <tr>
+                    <th>Policy</th>
+                    <th>Action</th>
+                </tr>
+                <% @policies.each do |p| %>
+                    <tr>
+                        <td><%= p.title%></td>
+                        <td><%= link_to '<span class="k-grid-show"></span>'.html_safe, show_individual_policy_path(p.id) %></td>
+                    </tr>
+                <% end %>
+            </table>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
