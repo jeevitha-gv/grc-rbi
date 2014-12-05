@@ -19,7 +19,6 @@ Rails.application.routes.draw do
    resources :dashboard do
      collection do
       get 'calender'
-      get 'incident_calender'
       patch 'update'
      end
    end
@@ -151,6 +150,8 @@ Rails.application.routes.draw do
       post 'import'
       get 'export'
       get 'incident_dashboard'
+      get 'incident_calender'
+      #patch 'update'
       # get 'download_evaluate_document'
       delete 'remove_attachment'
       get 'download_incident_document'

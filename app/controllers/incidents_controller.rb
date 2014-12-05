@@ -85,7 +85,7 @@ before_filter :authorize_incident, :only => [:new, :create, :update, :edit]
   def create
     @incident = Incident.create(incident_params)
     @incident.set_incident_status(@incident, params[:commit])
-
+     
     if @incident.save
       flash[:notice] = "The incident was successfully created"
       redirect_to incidents_path
@@ -132,12 +132,12 @@ def incident_all
   end
   
   def show
-      # @incident = Incident.find(params[:id])
+       @incident = Incident.find(params[:id])
       # @incident=Evaluate.find(params[:id])
       respond_to do |format|
       format.html
       format.pdf do
-      @pdf = (render_to_string pdf: "PDF", template: "incidents/show.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
+        @pdf = (render_to_string pdf: "PDF", template: "incidents/show.pdf.erb", layout: 'layouts/pdf.html.erb', encoding: "UTF-8")
         send_data(@pdf, type: "application/pdf", filename: @incident.title)
       end
     end

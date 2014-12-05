@@ -32,7 +32,7 @@ $(document).on('ready page:load', function(){
 
         // a future calendar might have many sources.
         eventSources: [{
-            url: '/dashboard/incident_calender',
+            url: '/incidents/incident_calender',
             color: 'yellowgreen',
             textColor: 'black',
             //~ ignoreTimezone: false,
@@ -83,7 +83,7 @@ $(document).on('ready page:load', function(){
 
         // http://arshaw.com/fullcalendar/docs/mouse/eventClick/
         eventClick: function(event, jsEvent, view){
-            window.location.replace("/audits/"+event.id+'-'+event.title+"/audit_dashboard");
+            window.location.replace("/incidents/"+event.id+'-'+event.title+"/incident_dashboard");
         },
   });
 
