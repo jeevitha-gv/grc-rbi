@@ -77,6 +77,59 @@
 <div class="sub-titile">Add a new Investigation</div>
 <div class="sub-wrap-bg">
 <!-- <div class="ui info message">Evaluate and Assess the current level of protection of this asset. Recommend some controls to be put in place for each of the categories below if necessary.</div> -->
+<div class="row">
+  
+
+  <div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :internal_investigation_protocol, t('fraud.internal_investigation') %>
+        <%= f.text_field :internal_investigation_protocol, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :remediation_protocol, t('fraud.remediation_protocol') %>
+        <%= f.text_field :remediation_protocol, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :enforcement_and_accountability_protocol, t('fraud.enforcement_and_accountability') %>
+        <%= f.text_field :enforcement_and_accountability_protocol, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group clearfix">
+      <div class="col-sm-12">
+        <%= f.label :disclosure_protocol, t('fraud.disclosure_protocol') %>
+        <%= f.text_field :disclosure_protocol, :class => "form-control risk-normal-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+</div>
+
+
+
+
+
 
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -121,6 +174,10 @@
     </div>
   </div>
 </div>
+
+
+
+
 
 
 </div>

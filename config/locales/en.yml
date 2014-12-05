@@ -922,9 +922,14 @@ en:
     actual_loss: "Actuall Loss"
     assign_for: "Assign To"
     detection_strategy: "Detection Strategy"
-    detection_method: "Detection_Method"
+    detection_method: "Detection Method"
     resolution: "Resolution"
     prevention: "Prevention"
+    internal_investigation: "Intenal Investigation Protocol"
+    remediation_protocol: "Remediation Protocol"
+    enforcement_and_accountability: "Enforcement and Accountability Protocol"
+    disclosure_protocol: "Disclosure Protocol"
+
 
 
 
