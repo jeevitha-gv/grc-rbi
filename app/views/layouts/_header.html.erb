@@ -87,6 +87,11 @@
             <div class="setting-icon"></div>
             Admin Settings</a></li>
         <% end %>
+        <% if current_user.role.title == "company_admin" %>
+          <li><a href="/charges/new" class="<%= request.fullpath.include?("charges/new") == true ? 'active' : '' %>">
+            <div class="setting-icon"></div>
+            Manage Payments</a></li>
+        <% end %>
 			<% elsif !overview_header && !company_plan_check %>
         <li><a href="/" class="<%#= request.fullpath.include?("audit_dashboard") == true ? 'active' : '' %>">
           <div class="dash-icon"></div>

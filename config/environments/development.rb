@@ -45,6 +45,9 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.after_initialize do
 
+  Rails.configuration.stripe[:secret_key] = "sk_test_hpudM7C5huwzSjz8Tp9R3Xjm"
+  Rails.configuration.stripe[:publishable_key] = "pk_test_7vp1WEu0o1IOyLilC0WhkVXs"
+
   ActiveMerchant::Billing::Base.mode = :test
     ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
     :login => "bharan_1337931714_biz_api1.gmail.com",
