@@ -97,3 +97,6 @@ gem 'exception_notification'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
 gem 'semantic-ui-rails'
+
+# Stripe
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'

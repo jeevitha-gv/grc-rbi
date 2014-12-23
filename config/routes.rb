@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   post 'admin/privileges/role_privileges'
   post 'admin/transactions/cancel_recurring'
 
+  resources :charges
+
   devise_for :users
 
   resources :home
