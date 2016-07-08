@@ -38,7 +38,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 # Devise
-gem 'devise'
+gem 'devise', '~> 3.2.0'
 gem 'activeadmin', :path => 'vendor/active_admin'
 
 # For attachments
