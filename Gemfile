@@ -94,9 +94,9 @@ gem 'protokoll'
 # Gem for getting expection notification
 gem 'exception_notification'
 
-gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+gem 'semantic-ui-sass', :path => 'vendor/semantic-ui-sass'
 
 gem 'semantic-ui-rails'
 
 # Stripe
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'stripe', :path => 'vendor/stripe-ruby'
