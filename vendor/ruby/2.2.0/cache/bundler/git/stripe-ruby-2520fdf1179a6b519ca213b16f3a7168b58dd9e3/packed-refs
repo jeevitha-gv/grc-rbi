@@ -10,9 +10,7 @@ c98a5c4e2678c93c02a6d13652966892cea013b7 refs/heads/balance-transactions
 2a22605618bd8928d933d603381fe37aa88cce2d refs/heads/brandur-empty-2
 a79d10af3fdf67e06ea803aeade0df12d4cce851 refs/heads/brandur-empty-3
 e7c1a12619009ba5f298e204ee1bdc69a11282bc refs/heads/brandur-empty-4
-3984246514f2572bda08a27d63638436bc5df9f2 refs/heads/brandur-retry-conflict
 a551744413cac15a00e22bbcc2d3d16f27454990 refs/heads/brandur-schema-testing
-6a412344068512322aa18f04792d203885562863 refs/heads/brandur-serialize-whitelist
 b3610798c2c66835d4fc4b802f0789cdb9afe34e refs/heads/data-rename
 43d591a93e49a612652444c2fd10fa11dcd474d4 refs/heads/delete-api-key
 d945c2f15720137c49b724e281e40346904a763f refs/heads/deprecate-code-dot-stripe-dot-com
@@ -25,7 +23,7 @@ f7467728d7a3cc385f9b1b936e8662733fc2c7b9 refs/heads/fix-connection-error-message
 0046cd1e4fe49731787a762d64451f145522b065 refs/heads/karla-openssl-errors
 3a83841b4878affa68d140dc314e14a361b8b976 refs/heads/kjc-modify
 c1d5c94864cfb8d473f06788240fa6d63015e5ab refs/heads/masetr
-be8466b47b4080cb81f4fb7a68ac1993316aee14 refs/heads/master
+d6c73c2b65ebd58e03b71e190d0dfe3fa5a021de refs/heads/master
 f3c0766a0dacd5721dc74d59a289f0357bd28c31 refs/heads/mlm-add-fraud-reporting-methods
 57309a05de434417bd13cb14836e754ea2a2af9d refs/heads/recipient-cards
 13979ce5be5829b3a872c257be31ef8afbb3b89f refs/heads/refunds
@@ -158,6 +156,10 @@ a2fedad66061c895b06e9b1e88285ea6ed9048bd refs/tags/v1.43.0
 ^f2aa8c1e584916bd82c23c1f3065230cf2e3833d
 99ece49018424f7da5d888f490fdd01ac28fdfcb refs/tags/v1.44.0
 ^8377a9f94174de2fcc6bdc0bdbea397c32466e31
+0cb522291fcbef629fc96c9aebd8a0403071cdae refs/tags/v1.45.0
+^bf1cc03227853bfa22c325555e18b5cf0e182854
+47aad617ad335157dbc00c08dc385c455691fe22 refs/tags/v1.46.0
+^660f7725b7fbbf0209844e9c624ae5837f7f44ac
 0813418b743e3cae6bae1265d2b90bc8b6f9a2b4 refs/tags/v1.5.0
 2e8fed2759f93a196a2db8fb7fc0f38d2583e7a1 refs/tags/v1.5.1
 d21463480dfe1fd3a3e3880298eb537cab40eaba refs/tags/v1.5.10

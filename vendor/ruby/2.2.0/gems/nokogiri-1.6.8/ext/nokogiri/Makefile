@@ -31,8 +31,8 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20160706-12017-1aejgzu
-sitelibdir = $(DESTDIR)./.gem.20160706-12017-1aejgzu
+sitearchdir = $(DESTDIR)./.gem.20160709-10107-qum8bb
+sitelibdir = $(DESTDIR)./.gem.20160709-10107-qum8bb
 sitedir = $(rubylibprefix)/site_ruby
 rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
@@ -82,7 +82,7 @@ CCDLFLAGS = -fPIC
 CFLAGS   = $(CCDLFLAGS) $(cflags)  -fPIC  -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
-CPPFLAGS = -DHAVE_XMLPARSEDOC -DHAVE_XSLTPARSESTYLESHEETDOC -DHAVE_EXSLTFUNCREGISTER -DHAVE_XMLHASFEATURE -DHAVE_XMLFIRSTELEMENTCHILD -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETPARSERSTRUCTUREDERRORS -I/home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29/include -I/home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4/include/libxml2 -I/home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4/include/libxml2  $(DEFS) $(cppflags) "-DNOKOGIRI_LIBXML2_PATH=\"/home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\""
+CPPFLAGS = -DHAVE_XMLPARSEDOC -DHAVE_XSLTPARSESTYLESHEETDOC -DHAVE_EXSLTFUNCREGISTER -DHAVE_XMLHASFEATURE -DHAVE_XMLFIRSTELEMENTCHILD -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETPARSERSTRUCTUREDERRORS -I/home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29/include -I/home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4/include/libxml2 -I/home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4/include/libxml2  $(DEFS) $(cppflags) "-DNOKOGIRI_LIBXML2_PATH=\"/home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\""
 CXXFLAGS = $(CCDLFLAGS) $(cxxflags) $(ARCH_FLAG)
 ldflags  = -L. -fstack-protector -rdynamic -Wl,-export-dynamic
 dldflags =  
@@ -121,8 +121,8 @@ TOUCH = exit >
 
 preload = 
 
-libpath = /home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4/lib /home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29/lib . $(libdir)
-LIBPATH =  -L/home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4/lib -Wl,-R/home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4/lib -L/home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29/lib -Wl,-R/home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29/lib -L. -L$(libdir) -Wl,-R$(libdir)
+libpath = /home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4/lib /home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29/lib . $(libdir)
+LIBPATH =  -L/home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4/lib -Wl,-R/home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4/lib -L/home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29/lib -Wl,-R/home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29/lib -L. -L$(libdir) -Wl,-R$(libdir)
 DEFFILE = 
 
 CLEANFILES = mkmf.log
@@ -133,7 +133,7 @@ extout =
 extout_prefix = 
 target_prefix = /nokogiri
 LOCAL_LIBS = 
-LIBS = $(LIBRUBYARG_SHARED) /home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29/lib/libexslt.a -lm -ldl -llzma -lz /home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4/lib/libxml2.a /home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29/lib/libxslt.a -ldl -lm -llzma -lz /home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc 
+LIBS = $(LIBRUBYARG_SHARED) /home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29/lib/libexslt.a -lm -ldl -llzma -lz /home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4/lib/libxml2.a /home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29/lib/libxslt.a -ldl -lm -llzma -lz /home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc 
 ORIG_SRCS = xslt_stylesheet.c xml_xpath_context.c xml_sax_push_parser.c xml_entity_decl.c xml_processing_instruction.c xml_node_set.c xml_encoding_handler.c xml_document_fragment.c xml_document.c xml_reader.c xml_cdata.c xml_attribute_decl.c html_element_description.c html_sax_push_parser.c xml_libxml2_hacks.c xml_text.c xml_node.c xml_io.c xml_syntax_error.c xml_entity_reference.c xml_element_content.c xml_element_decl.c xml_namespace.c xml_sax_parser.c xml_comment.c html_entity_lookup.c html_document.c xml_relax_ng.c xml_dtd.c xml_attr.c nokogiri.c xml_schema.c html_sax_parser_context.c xml_sax_parser_context.c
 SRCS = $(ORIG_SRCS) 
 OBJS = xslt_stylesheet.o xml_xpath_context.o xml_sax_push_parser.o xml_entity_decl.o xml_processing_instruction.o xml_node_set.o xml_encoding_handler.o xml_document_fragment.o xml_document.o xml_reader.o xml_cdata.o xml_attribute_decl.o html_element_description.o html_sax_push_parser.o xml_libxml2_hacks.o xml_text.o xml_node.o xml_io.o xml_syntax_error.o xml_entity_reference.o xml_element_content.o xml_element_decl.o xml_namespace.o xml_sax_parser.o xml_comment.o html_entity_lookup.o html_document.o xml_relax_ng.o xml_dtd.o xml_attr.o nokogiri.o xml_schema.o html_sax_parser_context.o xml_sax_parser_context.o

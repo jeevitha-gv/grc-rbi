@@ -1,4 +1,4 @@
-/home/arun/.rvm/rubies/ruby-2.2.2/bin/ruby -r ./siteconf20160706-12017-1chco31.rb extconf.rb
+/home/arun/.rvm/rubies/ruby-2.2.2/bin/ruby -r ./siteconf20160709-10107-16wlbia.rb extconf.rb
 checking for gcc... yes
 checking for Magick-config... yes
 checking for outdated ImageMagick version (<= 6.4.9)... no
@@ -127,7 +127,7 @@ creating Makefile
 
 
 ======================================================================
-Wed 06Jul16 19:37:39
+Sat 09Jul16 11:40:25
 This installation of RMagick 2.15.4 is configured for
 Ruby 2.2.2 (x86_64-linux) and ImageMagick 6.7.7
 ======================================================================
@@ -170,4 +170,4 @@ compiling rmfill.c
 linking shared-object RMagick2.so
 
 make "DESTDIR=" install
-/usr/bin/install -m 0755 RMagick2.so ./.gem.20160706-12017-6y2kf2
+/usr/bin/install -m 0755 RMagick2.so ./.gem.20160709-10107-1guum1v

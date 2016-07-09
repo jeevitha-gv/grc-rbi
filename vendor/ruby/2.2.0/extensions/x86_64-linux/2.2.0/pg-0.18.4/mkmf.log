@@ -1046,8 +1046,8 @@ conftest.c: In function ‘t’:
 conftest.c:13:1: warning: implicit declaration of function ‘rb_enc_alias’ [-Wimplicit-function-declaration]
  int t(void) { rb_enc_alias(); return 0; }
  ^
-/tmp/ccOi8uK6.o: In function `t':
-/home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/pg-0.18.4/ext/conftest.c:13: undefined reference to `rb_enc_alias'
+/tmp/ccSiyQBA.o: In function `t':
+/home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/pg-0.18.4/ext/conftest.c:13: undefined reference to `rb_enc_alias'
 collect2: error: ld returned 1 exit status
 checked program was:
 /* begin */
@@ -1231,8 +1231,8 @@ conftest.c: In function ‘t’:
 conftest.c:13:1: warning: implicit declaration of function ‘rb_w32_wrap_io_handle’ [-Wimplicit-function-declaration]
  int t(void) { rb_w32_wrap_io_handle(); return 0; }
  ^
-/tmp/ccUuR2sE.o: In function `t':
-/home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/pg-0.18.4/ext/conftest.c:13: undefined reference to `rb_w32_wrap_io_handle'
+/tmp/cctusf9b.o: In function `t':
+/home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/pg-0.18.4/ext/conftest.c:13: undefined reference to `rb_w32_wrap_io_handle'
 collect2: error: ld returned 1 exit status
 checked program was:
 /* begin */

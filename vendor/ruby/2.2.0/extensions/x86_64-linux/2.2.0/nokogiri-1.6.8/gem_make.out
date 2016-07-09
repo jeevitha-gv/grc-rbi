@@ -1,4 +1,4 @@
-/home/arun/.rvm/rubies/ruby-2.2.2/bin/ruby -r ./siteconf20160706-12017-1i50g57.rb extconf.rb
+/home/arun/.rvm/rubies/ruby-2.2.2/bin/ruby -r ./siteconf20160709-10107-8qr5fh.rb extconf.rb
 Using pkg-config version 1.1.7
 checking if the C compiler accepts ... yes
 Building nokogiri using packaged libraries.
@@ -31,7 +31,7 @@ Extracting libxml2-2.9.4.tar.gz into tmp/x86_64-unknown-linux-gnu/ports/libxml2/
 Running 'configure' for libxml2 2.9.4... OK
 Running 'compile' for libxml2 2.9.4... OK
 Running 'install' for libxml2 2.9.4... OK
-Activating libxml2 2.9.4 (from /home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4)...
+Activating libxml2 2.9.4 (from /home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxml2/2.9.4)...
 ************************************************************************
 IMPORTANT NOTICE:
 
@@ -55,7 +55,7 @@ Extracting libxslt-1.1.29.tar.gz into tmp/x86_64-unknown-linux-gnu/ports/libxslt
 Running 'configure' for libxslt 1.1.29... OK
 Running 'compile' for libxslt 1.1.29... OK
 Running 'install' for libxslt 1.1.29... OK
-Activating libxslt 1.1.29 (from /home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29)...
+Activating libxslt 1.1.29 (from /home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports/x86_64-unknown-linux-gnu/libxslt/1.1.29)...
 checking for main() in -llzma... yes
 checking for xmlParseDoc() in libxml/parser.h... yes
 checking for xsltParseStylesheetDoc() in libxslt/xslt.h... yes
@@ -239,8 +239,8 @@ compiling xml_sax_parser_context.c
 linking shared-object nokogiri/nokogiri.so
 Using pkg-config version 1.1.7
 Cleaning files only used during build.
-rm -rf /home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ext/nokogiri/tmp/x86_64-unknown-linux-gnu/ports
-rm -rf /home/arun/Desktop/Rails/fixnix-grc/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports
+rm -rf /home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ext/nokogiri/tmp/x86_64-unknown-linux-gnu/ports
+rm -rf /home/arun/Desktop/Rails/fixnix-grc-tets/vendor/ruby/2.2.0/gems/nokogiri-1.6.8/ports
 
 make "DESTDIR=" install
-/usr/bin/install -m 0755 nokogiri.so ./.gem.20160706-12017-1aejgzu/nokogiri
+/usr/bin/install -m 0755 nokogiri.so ./.gem.20160709-10107-qum8bb/nokogiri
