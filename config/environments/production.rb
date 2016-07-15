@@ -43,7 +43,7 @@ Rails.application.configure do
   # config.force_ssl = true
 
   # Set to :debug to see everything in the log.
-  config.log_level = :info
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
@@ -68,7 +68,7 @@ Rails.application.configure do
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
-
+   config.log_formatter = ::Logger::Formatter.new
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
    config.action_mailer.raise_delivery_errors = false
@@ -107,7 +107,7 @@ Rails.application.configure do
     :login => "shan_api1.fixrnix.in",
     :password => "PXJ68EC2ZPAVA437",
     :signature => "AYD3mDEgPEvWHZ8oGoO7LvWwK.A0AaYV2QUdsWBsyyXfIyI6e4kmgUEE",
-    
+
 )
 end
 end

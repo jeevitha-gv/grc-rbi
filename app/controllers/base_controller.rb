@@ -4,9 +4,9 @@ class BaseController < ActionController::Base
 
   # will check for sudomain presence and correct subdomain
   def check_subdomain
-    if(request.subdomain.present? || current_company.present?)
-      current_company.present? ? check_current_company_domain : (redirect_to current_path_without_subdomain)
-    end
+    # if(request.subdomain.present? || current_company.present?)
+    #   current_company.present? ? check_current_company_domain : (redirect_to current_path_without_subdomain)
+    # end
   end
 
   # Escape the subdomain from the given url
@@ -168,7 +168,7 @@ end
   def current_asset
     @asset = Asset.find(params[:asset_id])
   end
-  
+
   def current_fraud
     @fraud = Fraud.find(params[:fraud_id])
   end

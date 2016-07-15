@@ -35,12 +35,12 @@ class Company < ActiveRecord::Base
   has_many :controls
   has_many :control_charts
   #has_many :company_payments
- 
 
-  
+
+
   # Associations with Fraud table
   has_many :frauds
-  
+
 
   # Assosciations with Asset Module
   has_many :other_assets
@@ -69,10 +69,10 @@ class Company < ActiveRecord::Base
   #validations
   validates :name, presence: true
   validates_format_of :name, :with =>/\A(?=.*[a-z])[a-z\d\s]+\Z/i, :if => Proc.new{|f| !f.name.blank? }
-  validates :domain, presence: true
-  validates :domain, uniqueness: true
-  validates_format_of :domain, :with =>/\A[a-z]+\z/
-  validates :domain,length: { in: 2..25 }
+  # validates :domain, presence: true
+  # validates :domain, uniqueness: true
+  # validates_format_of :domain, :with =>/\A[a-z]+\z/
+  # validates :domain,length: { in: 2..25 }
   validates :name, length: { in: 2..50 }, :if => Proc.new{|f| !f.name.blank? }
   validates_format_of :secondary_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :if => Proc.new{|f| !f.secondary_email.blank? }
   validates_format_of :primary_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :if => Proc.new{|f| !f.primary_email.blank? }
@@ -86,7 +86,7 @@ class Company < ActiveRecord::Base
 
   attr_accessor :subscription
   after_create :company_role_create, :review_rating_levels_create, :company_plan_create
-  after_create :send_notification
+  # after_create :send_notification
 
   scope :active, -> { where(is_disabled: false) }
   # def active_audits
@@ -114,7 +114,7 @@ class Company < ActiveRecord::Base
     Role.create(title: "Investigator", company_id: company.id)
     Role.create(title: "Fraud Manager", company_id: company.id)
 
-    
+
   end
 
   def review_rating_levels_create
@@ -134,7 +134,7 @@ class Company < ActiveRecord::Base
   def send_notification
     RiskMailer.send_notification(self).deliver
   end
-  
+
 
 
 end
